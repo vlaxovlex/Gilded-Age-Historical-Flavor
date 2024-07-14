@@ -65,6 +65,7 @@ je_sick_man_syria = {
 
 	on_complete = {
 		hidden_effect = {	#HJE edit start
+			set_strategy = ai_strategy_placate_population
 			every_country = {
 				limit = {
 					has_secret_goal = {

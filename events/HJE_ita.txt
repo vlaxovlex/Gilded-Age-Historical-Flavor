@@ -1057,13 +1057,23 @@ HJE_italy.7 = {
 			}
 		}
 		if = {
-			limit = {
-				scope:iwai1_attacker_scope = {
-					is_ai = yes
-				}
-			}
+			limit = { scope:iwai1_attacker_scope = { is_ai = yes } }
 			scope:iwai1_attacker_scope = {
-				add_modifier = { name = wartime_zeal months = 12 }
+				add_modifier = { name = wartime_zeal months = 16 }
+				random_scope_state = {
+					limit = { is_capital = yes }
+					create_building={
+						building="building_barracks"
+						add_ownership={
+							country={
+								country="root"
+								levels=2
+							}
+						}
+						reserves=1
+						activate_production_methods={ "pm_no_organization" }
+					}
+				}
 			}
 		}		
 	}
