@@ -1,0 +1,257 @@
+# TEST
+# test_ruler = {
+# 	clicksound = "event:/SFX/DLC/1.3_ip1/UI/exile_character"
+# 	potential = {
+# 		is_ruler = yes
+# 	}
+# 	possible = {		# 131ms
+# 		always = yes
+# 	}
+# }
+
+# test_nga = {
+# 	clicksound = "event:/SFX/DLC/1.3_ip1/UI/exile_character"
+# 	potential = {
+# 		NOR = {
+# 			has_role = general
+# 			has_role = admiral
+# 		}
+# 	}
+# 	possible = {		
+# 		always = yes
+# 	}
+# }
+
+# test_owner = {
+# 	clicksound = "event:/SFX/DLC/1.3_ip1/UI/exile_character"
+# 	potential = {
+# 		owner = scope:actor
+# 	}
+# 	possible = {		
+# 		always = yes
+# 	}
+# }
+
+
+# test_general = {
+# 	clicksound = "event:/SFX/DLC/1.3_ip1/UI/exile_character"
+# 	potential = {
+# 		has_role = general
+# 	}
+# 	possible = {		
+# 		always = yes
+# 	}
+# }
+
+# test_dlc_agitator = {
+# 	clicksound = "event:/SFX/DLC/1.3_ip1/UI/exile_character"
+# 	potential = {
+# 		has_dlc_feature = agitators
+# 	}
+# 	possible = {		
+# 		always = yes
+# 	}
+# }
+
+# test_agitator = {
+# 	clicksound = "event:/SFX/DLC/1.3_ip1/UI/exile_character"
+# 	potential = {
+# 		has_role = agitator
+# 	}
+# 	possible = {		
+# 		always = yes
+# 	}
+# }
+
+# test_ruler_or_heir = {
+# 	clicksound = "event:/SFX/DLC/1.3_ip1/UI/exile_character"
+# 	potential = {
+# 		OR = {
+# 			is_ruler = yes
+# 			is_heir = yes
+# 		}
+# 	}
+# 	possible = {		
+# 		always = yes
+# 	}
+# }
+
+# test_dlc_voice = {
+# 	clicksound = "event:/SFX/DLC/1.3_ip1/UI/exile_character"
+# 	potential = {
+# 		has_dlc_feature = voice_of_the_people_content
+# 	}
+# 	possible = {		
+# 		always = yes
+# 	}
+# }
+
+# test_monarchy = {
+# 	clicksound = "event:/SFX/DLC/1.3_ip1/UI/exile_character"
+# 	potential = {
+# 		owner = {
+# 			has_law = law_type:law_monarchy
+# 		}
+# 	}
+# 	possible = {		
+# 		always = yes
+# 	}
+# }
+
+# test_has_heir = {
+# 	clicksound = "event:/SFX/DLC/1.3_ip1/UI/exile_character"
+# 	potential = {
+# 		exists = owner.heir
+# 	}
+# 	possible = {		
+# 		always = yes
+# 	}
+# }
+
+# test_not_in_exile = {
+# 	clicksound = "event:/SFX/DLC/1.3_ip1/UI/exile_character"
+# 	potential = {
+# 		is_in_exile_pool = no
+# 	}
+# 	possible = {		
+# 		always = yes
+# 	}
+# }
+
+# test_not_in_void = {
+# 	clicksound = "event:/SFX/DLC/1.3_ip1/UI/exile_character"
+# 	potential = {
+# 		is_in_void = no
+# 	}
+# 	possible = {		
+# 		always = yes
+# 	}
+# }
+
+# test_not_ruler = {
+# 	clicksound = "event:/SFX/DLC/1.3_ip1/UI/exile_character"
+# 	potential = {
+# 		is_ruler = no
+# 	}
+# 	possible = {		
+# 		always = yes
+# 	}
+# }
+
+# test_not_heir = {
+# 	clicksound = "event:/SFX/DLC/1.3_ip1/UI/exile_character"
+# 	potential = {
+# 		is_heir = no
+# 	}
+# 	possible = {		
+# 		always = yes
+# 	}
+# }
+
+# test_pol_or_agi = {
+# 	clicksound = "event:/SFX/DLC/1.3_ip1/UI/exile_character"
+# 	potential = {
+# 		OR = {
+# 			has_role = politician
+# 			has_role = agitator
+# 		}
+# 	}
+# 	possible = {		
+# 		always = yes
+# 	}
+# }
+
+# test_in_exile = {
+# 	clicksound = "event:/SFX/DLC/1.3_ip1/UI/exile_character"
+# 	potential = {
+# 		is_in_exile_pool = yes
+# 	}
+# 	possible = {		
+# 		always = yes
+# 	}
+# }
+
+# test_commander = {
+# 	clicksound = "event:/SFX/DLC/1.3_ip1/UI/exile_character"
+# 	potential = {
+# 		is_commander = yes
+# 	}
+# 	possible = {		
+# 		always = yes
+# 	}
+# }
+
+# test_not_pol = {
+# 	clicksound = "event:/SFX/DLC/1.3_ip1/UI/exile_character"
+# 	potential = {
+# 		NOT = { has_role = politician }
+# 	}
+# 	possible = {		
+# 		always = yes
+# 	}
+# }
+
+# test_has_home = {
+# 	clicksound = "event:/SFX/DLC/1.3_ip1/UI/exile_character"
+# 	potential = {
+# 		exists = root.home_country
+# 	}
+# 	possible = {		
+# 		always = yes
+# 	}
+# }
+
+# test_foreigner = {
+# 	clicksound = "event:/SFX/DLC/1.3_ip1/UI/exile_character"
+# 	potential = {
+# 		NOT = { root.home_country = this.owner }
+# 	}
+# 	possible = {		
+# 		always = yes
+# 	}
+# }
+
+# test_nationalist = {
+# 	clicksound = "event:/SFX/DLC/1.3_ip1/UI/exile_character"
+# 	potential = {
+# 		owner = {
+# 			any_primary_culture = {
+# 				this = root.culture
+# 			}
+# 			has_technology_researched = nationalism
+# 		}
+# 	}
+# 	possible = {		
+# 		always = yes
+# 	}
+# }
+
+# test_gapa= {
+# 	clicksound = "event:/SFX/DLC/1.3_ip1/UI/exile_character"
+# 	potential = {
+# 		OR = {
+# 			has_role = general
+# 			has_role = admiral
+# 			has_role = politician
+# 			has_role = agitator
+# 		}
+# 	}
+# 	possible = {		
+# 		always = yes
+# 	}
+# }
+
+# test_not_mornarchy_nor_theocracy= {
+# 	clicksound = "event:/SFX/DLC/1.3_ip1/UI/exile_character"
+# 	potential = {
+# 		owner = {
+# 			NOR = {
+# 				has_law = law_type:law_monarchy
+# 				has_law = law_type:law_theocracy
+# 			}
+# 		}
+# 	}
+# 	possible = {		
+# 		always = yes
+# 	}
+# }

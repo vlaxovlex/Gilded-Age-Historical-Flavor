@@ -1,0 +1,387 @@
+﻿HJ_britain_the_great_game = { #GREAT BRITISH BAKE-OFF lmao (I'm so tired)
+	icon = "gfx/interface/icons/event_icons/event_military.dds"
+	
+	group = je_group_historical_content
+	
+	on_monthly_pulse = {
+		random_events = {
+			65 = 0
+			65 = HJE_britain.13 #Anti-Russia coalition (Crimean War)
+			25 = HJE_britain.19 #Reaffirmation of Vienna Agreement
+		}
+	}
+
+	complete = {
+		OR = {
+			hidden_trigger = { has_global_variable = GBR_won_the_great_game }
+			calc_true_if = {
+				amount >= 4
+				custom_tooltip = {
+					text = tgg_rus_hasnt_conquered_caucasus_tt
+					NOT = {
+						c:RUS = {
+							owns_entire_state_region = STATE_KUBAN
+							owns_entire_state_region = STATE_DAGESTAN
+						}
+					}
+				}
+				custom_tooltip = {
+					text = tgg_rus_hasnt_conquered_kazakhs_tt
+					year >= 1846
+					NOT = {
+						NOT = {
+							any_country = {
+								NOT = {
+									OR = {
+										this = c:RUS
+										this = { is_subject_of = c:RUS }
+									}
+								}
+								has_state_in_state_region = STATE_AKMOLINSK
+							}
+						}
+						c:RUS = { country_or_subject_owns_entire_state_region = STATE_AKTOBE }
+						OR = {
+							c:RUS = { has_state_in_state_region = STATE_KHIVA }
+							any_country = { is_subject_of = c:RUS has_state_in_state_region = STATE_KHIVA }
+						}
+						c:RUS = { country_or_subject_owns_entire_state_region = STATE_SEMIRECHE }
+						OR = {
+							c:RUS = { has_state_in_state_region = STATE_SYRDARYA }
+							any_country = { is_subject_of = c:RUS has_state_in_state_region = STATE_SYRDARYA }
+						}
+						OR = {
+							c:RUS = { has_state_in_state_region = STATE_URALSK }
+							any_country = { is_subject_of = c:RUS has_state_in_state_region = STATE_URALSK }
+						}
+						NOT = {
+							any_country = {
+								NOT = {
+									OR = {
+										this = c:RUS
+										this = { is_subject_of = c:RUS }
+									}
+								}
+								has_state_in_state_region = STATE_CHELYABINSK
+							}
+						}
+						NOT = {
+							any_country = {
+								NOT = {
+									OR = {
+										this = c:RUS
+										this = { is_subject_of = c:RUS }
+									}
+								}
+								has_state_in_state_region = STATE_SAMARA
+							}
+						}
+					}
+				}
+				custom_tooltip = {
+					text = tgg_rus_hasnt_conquered_central_asia_tt
+					year >= 1856
+					NOT = {
+						calc_true_if = {
+							amount >= 6
+							NOT = {
+								any_country = {
+									NOT = {
+										OR = {
+											this = c:RUS
+											this = { is_subject_of = c:RUS }
+										}
+									}
+									has_state_in_state_region = STATE_KHIVA
+								}
+							}
+							NOT = {
+								any_country = {
+									NOT = {
+										OR = {
+											this = c:RUS
+											this = { is_subject_of = c:RUS }
+										}
+									}										
+									has_state_in_state_region = STATE_MERZ
+								}
+							}
+							NOT = {
+								any_country = {
+									NOT = {
+										OR = {
+											this = c:RUS
+											this = { is_subject_of = c:RUS }
+										}
+									}	
+									has_state_in_state_region = STATE_TURKMENIA
+								}
+							}
+							NOT = {
+								any_country = {
+									NOT = {
+										OR = {
+											this = c:RUS
+											this = { is_subject_of = c:RUS }
+										}
+									}
+									has_state_in_state_region = STATE_TAJIKISTAN
+								}
+							}
+							NOT = {
+								any_country = {
+									NOT = {
+										OR = {
+											this = c:RUS
+											this = { is_subject_of = c:RUS }
+										}
+									}
+									has_state_in_state_region = STATE_UZBEKIA	
+								}
+							}
+							NOT = {
+								any_country = {
+									NOT = {
+										OR = {
+											this = c:RUS
+											this = { is_subject_of = c:RUS }
+										}
+									}
+									has_state_in_state_region = STATE_FERGANA
+								}
+							}
+						}
+					}
+				}
+				custom_tooltip = {
+					text = tgg_rus_hasnt_conquered_chinese_frontier_tt
+					year >= 1871
+					NOT = {
+						c:RUS = {
+							calc_true_if = {
+								amount >= 3
+								country_or_subject_owns_entire_state_region = STATE_TOMSK
+								country_or_subject_owns_entire_state_region = STATE_JETISY
+								country_or_subject_owns_entire_state_region = STATE_KIRGHIZIA
+								country_or_subject_owns_entire_state_region = STATE_OUTER_MANCHURIA
+								country_or_subject_owns_entire_state_region = STATE_ALTAI
+								country_or_subject_owns_entire_state_region = STATE_AMUR
+							}
+						}
+					}
+				}
+				custom_tooltip = {
+					text = tgg_took_or_subjugated_afghanistan_tt
+					NOT = {
+						any_country = {
+							NOT = { is_subject_of = root }
+							is_afghan_nation = yes
+						}
+					}
+				}
+				custom_tooltip = {
+					text = tgg_took_or_subjugated_persia_tt
+					calc_true_if = {
+						amount >= 6
+						country_or_subject_owns_entire_state_region = STATE_FARS
+						country_or_subject_owns_entire_state_region = STATE_LARISTAN
+						country_or_subject_owns_entire_state_region = STATE_IRAKAJEMI
+						country_or_subject_owns_entire_state_region = STATE_ISFAHAN
+						country_or_subject_owns_entire_state_region = STATE_KERMAN
+						country_or_subject_owns_entire_state_region = STATE_KHORASAN
+						country_or_subject_owns_entire_state_region = STATE_LURISTAN	
+						country_or_subject_owns_entire_state_region = STATE_PERSIAN_KURDISTAN	
+						country_or_subject_owns_entire_state_region = STATE_SEMNAN
+						country_or_subject_owns_entire_state_region = STATE_TABRIZ	
+						country_or_subject_owns_entire_state_region = STATE_URMIA
+					}
+				}
+			}
+		}
+	}
+	
+	on_complete = {
+		if = { 
+			limit = { NOT = { has_global_variable = GBR_won_the_great_game } } 
+			c:GBR = { trigger_event = { id = HJE_britain.10 } }
+		}
+	}
+
+	timeout = 21535
+	on_timeout = {
+		trigger_event = { id = HJE_britain.11 }
+	}
+
+	invalid = {
+		OR = {
+			custom_tooltip = {
+				text = TGG_anglo_russian_agreement_tt
+				has_global_variable = TGG_anglo_russian_agreement
+			}
+			has_journal_entry = je_great_game_control
+		}
+	}
+
+	fail = {
+		OR = {
+			hidden_trigger = { has_global_variable = RUS_won_the_great_game }
+			is_subject = yes
+			global_country_ranking > 8
+			AND = {
+				NOT = { any_scope_state = { state_is_in_india = yes } }
+				OR = {
+					NOT = { exists = c:BIC }
+					AND = {
+						exists = c:BIC
+						NOT = { c:BIC = { is_subject_of = ROOT } }
+					}
+				}
+			}
+		}
+	}
+	on_fail = {
+		if = { 
+			limit = { NOT = { has_global_variable = RUS_won_the_great_game } } 
+			c:RUS = { trigger_event = { id = HJE_russia.2 } }
+		}
+	}
+
+
+	weight = 1000
+	should_be_pinned_by_default = yes
+}
+
+HJ_suez_canal_lease = {
+	icon = "gfx/interface/icons/event_icons/event_map.dds"
+
+	group = je_group_historical_content
+
+	immediate = {
+		set_variable = {
+			name = canal_existance_progress_var
+			value = 0
+		}
+	}
+
+	timeout = 5475
+	
+	on_timeout = { 
+		remove_variable = GP_offering_to_build_suez_canal
+		random_country = {
+			limit = { has_variable = is_original_owner_of_suez }
+			save_scope_as = sinai_owner_scope
+			remove_variable = is_original_owner_of_suez
+			trigger_event = { id = canal_events.100 popup = yes } 
+		}
+		every_scope_state = {
+			limit = { state_region = s:STATE_SINAI }
+			set_state_owner = scope:sinai_owner_scope
+		}
+	}
+	
+	on_monthly_pulse = {
+		effect = {
+			if = {
+				limit = {
+					any_scope_state = {
+						state_region = s:STATE_SINAI
+						any_scope_building = {
+							is_building_type = building_suez_canal
+							occupancy > 0
+						}
+					}
+				}
+				change_variable = {
+					name = canal_existance_progress_var
+					add = 1
+				}
+			}
+		}
+	}
+
+	current_value = {
+		value = root.var:canal_existance_progress_var
+	}
+
+	goal_add_value = {
+		value = 12
+	}
+
+	progressbar = yes
+
+	complete = {
+		scope:journal_entry = { is_goal_complete = yes }
+	}
+
+	on_complete = {
+		set_global_variable = suez_canal_complete
+		set_variable = GBR_wheres_my_money_bitch
+		random_country = {
+			limit = { has_variable = is_original_owner_of_suez }
+			save_scope_as = sinai_owner_scope
+			set_variable = EGY_wheres_my_money_bitch
+			add_journal_entry = { type = HJ_debt_to_the_suez_company }
+			ROOT = {
+				create_diplomatic_pact = {
+					country = PREV
+					type = protectorate
+				}
+			}
+		}
+		every_scope_state = {
+			limit = { state_region = s:STATE_SINAI }
+			set_state_owner = scope:sinai_owner_scope
+		}
+	}
+	should_be_pinned_by_default = yes
+}
+
+HJ_debt_to_the_suez_company = {
+	icon = "gfx/interface/icons/event_icons/event_map.dds"
+
+	group = je_group_crises
+
+	timeout = 3650
+	
+	on_timeout = { 
+		make_independent = yes
+		random_country = {
+			limit = { has_variable = GBR_wheres_my_money_bitch }
+			remove_variable = GBR_wheres_my_money_bitch
+			trigger_event = { id = HJE_mideast.3 popup = yes }
+		}
+	}
+	
+	fail = {
+		any_country = {
+			has_variable = GBR_wheres_my_money_bitch
+			ROOT = { NOT = { is_subject_of = PREV } }
+		}
+	}
+
+	on_fail = { 
+		make_independent = yes
+		random_country = {
+			limit = { has_variable = GBR_wheres_my_money_bitch }
+			remove_variable = GBR_wheres_my_money_bitch
+			trigger_event = { id = HJE_mideast.3 popup = yes }
+		}
+	}
+
+	complete = {
+		custom_tooltip = {
+			text = EGY_paid_off_suez_company_debt_tt
+			has_variable = EGY_paid_off_suez_company_debt
+		}
+	}
+
+	on_complete = {
+		remove_variable = EGY_wheres_my_money_bitch
+		make_independent = yes
+		random_country = {
+			limit = { has_variable = GBR_wheres_my_money_bitch }
+			remove_variable = GBR_wheres_my_money_bitch
+		}
+	}
+	should_be_pinned_by_default = yes
+}

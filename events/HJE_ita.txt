@@ -1,0 +1,1916 @@
+﻿namespace = italian_unification
+
+# Garibaldi
+italian_unification.3 = {	
+	type = country_event
+	placement = ROOT
+
+	title = italian_unification.3.t
+	desc = italian_unification.3.d
+	flavor = italian_unification.3.f
+
+	event_image = {
+		video = "gfx/event_pictures/europenorthamerica_before_the_battle.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/before_the_battle"
+
+	icon = "gfx/interface/icons/event_icons/event_portrait.dds"
+
+	duration = 3
+
+	trigger = {
+		game_date < 1882.1.1
+		NOT = { any_country = { has_variable = currently_has_garibaldi } }
+		OR = {
+			has_variable = pan_italian_rebellion
+			AND = {
+				year >= 1850
+				has_variable = ITA_current_favourite_to_unify
+			}
+			AND = {
+				year >= 1855
+				exists = c:ITA
+				c:ITA = ROOT
+			}
+		}
+	}
+
+	immediate = {
+		set_variable = currently_has_garibaldi
+	}
+
+	option = {
+		name = italian_unification.3.a
+		ai_chance = { base = 1 }
+		create_character = {
+			first_name = Giuseppe
+			last_name = Garibaldi
+			historical = yes
+			is_general = yes
+			interest_group = ig_armed_forces
+			female = no
+			birth_date = 1807.7.4
+			dna = dna_giuseppe_garibaldi
+			ideology = ideology:ideology_republican_leader
+			traits = {
+				resupply_commander
+				surveyor
+				expert_artillery_commander
+				meticulous
+				cautious
+			}
+			on_created = {
+				set_variable = is_giuseppe_garibaldi
+				add_modifier = {
+					name = garibaldi_popularity
+				}
+			}
+		}
+	}
+	option = {
+		name = italian_unification.3.b
+		ai_chance = { base = 3 }
+		create_character = {
+			first_name = Giuseppe
+			last_name = Garibaldi
+			historical = yes
+			ig_leader = yes
+			interest_group = ig_armed_forces
+			female = no
+			birth_date = 1807.7.4
+			dna = dna_giuseppe_garibaldi
+			ideology = ideology:ideology_republican_leader
+			traits = {
+				meticulous
+				cautious
+				resupply_commander
+				surveyor
+				expert_artillery_commander
+			}
+			on_created = {
+				set_variable = is_giuseppe_garibaldi
+				add_modifier = {
+					name = garibaldi_popularity
+				}
+			}
+		}
+	}
+	option = {
+		name = italian_unification.3.c
+		default_option = yes
+		ai_chance = { base = 5 }
+		create_character = {
+			first_name = Giuseppe
+			last_name = Garibaldi
+			historical = yes
+			ig_leader = yes
+			is_general = yes
+			interest_group = ig_armed_forces
+			female = no
+			birth_date = 1807.7.4
+			dna = dna_giuseppe_garibaldi
+			ideology = ideology:ideology_republican_leader
+			traits = {
+				meticulous
+				cautious
+				resupply_commander
+				surveyor
+				expert_artillery_commander
+			}
+			on_created = {
+				set_variable = is_giuseppe_garibaldi
+				add_modifier = {
+					name = garibaldi_popularity
+				}
+			}
+		}
+	}
+}
+
+
+namespace = HJE_italy
+
+
+HJE_italy.2 = {
+	type = country_event
+	placement = scope:RSI_sicily_scope
+	title = HJE_italy.2.t
+	desc = HJE_italy.2.d
+	flavor = HJE_italy.2.f
+
+	duration = 3
+
+	event_image = {
+		video = "gfx/event_pictures/southamerica_aristocrats.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/rich_and_poor"
+
+	icon = "gfx/interface/icons/event_icons/event_default.dds"
+
+	trigger = {
+		NOT = { has_global_variable = sic_revolution }
+		any_scope_state = { turmoil > 0.1 }
+		any_scope_state = { state_region = s:STATE_SICILY }
+		NOT = { has_variable = ITA_current_favourite_to_unify }
+		OR = {
+			country_has_primary_culture = cu:north_italian
+			country_has_primary_culture = cu:south_italian
+		}
+		OR = {
+			has_law = law_type:law_autocracy
+			has_law = law_type:law_oligarchy
+			has_law = law_type:law_landed_voting
+		}
+		OR = {
+			owns_entire_state_region = STATE_LOMBARDY
+			owns_entire_state_region = STATE_PIEDMONT
+			owns_entire_state_region = STATE_UMBRIA
+			owns_entire_state_region = STATE_CAMPANIA
+			owns_entire_state_region = STATE_CALABRIA
+			owns_entire_state_region = STATE_APULIA
+			owns_entire_state_region = STATE_ABRUZZO
+			owns_entire_state_region = STATE_SAVOY
+			owns_entire_state_region = STATE_EMILIA
+			owns_entire_state_region = STATE_TUSCANY
+			owns_entire_state_region = STATE_ROMAGNA
+			owns_entire_state_region = STATE_LAZIO
+			owns_entire_state_region = STATE_VENETIA
+			owns_entire_state_region = STATE_SICILY
+		}
+	}
+	
+	immediate = {
+		set_global_variable = sic_revolution
+		set_variable = risorgimento_anti_unifying_stance
+		save_scope_as = SIC_two_sicilies_scope
+		add_modifier = {
+			name = revolutionary_zeal
+			months = 12
+		}
+		random_scope_state = {
+			limit = { state_region = s:STATE_SICILY }
+			save_scope_as = RSI_sicily_scope
+		}
+		create_country = {
+			tag = RSI
+			origin = this
+			state = scope:RSI_sicily_scope
+			on_created = {
+				set_variable = risorgimento_unifying_stance
+				set_variable = pan_italian_rebellion
+				activate_law = law_type:law_parliamentary_republic
+				activate_law = law_type:law_wealth_voting
+			}
+		}
+		c:RSI = {
+			create_diplomatic_play = {
+                target_country = ROOT
+                type = dp_annex_war
+				add_war_goal = {
+					holder = ROOT
+					type = annex_country
+					target_country = c:RSI
+					primary_demand = yes
+				}
+			}
+		}
+		add_radicals = {
+			value = 0.4
+			culture = cu:north_italian
+		}
+		add_radicals = {
+			value = 0.4
+			culture = cu:south_italian
+		}
+		random_interest_group = {
+			limit = {
+				is_marginal = no
+				leader = { NOT = { has_ideology = ideology:ideology_radical } }
+				OR = {
+					is_interest_group_type = ig_rural_folk
+					is_interest_group_type = ig_intelligentsia
+					is_interest_group_type = ig_trade_unions
+					is_interest_group_type = ig_petty_bourgeoisie
+					is_interest_group_type = ig_industrialists
+				}
+			}
+	    	leader = { set_ideology = ideology:ideology_radical }
+			add_modifier = {
+				name = ig_government_betrayed
+				months = short_modifier_time
+			}
+		}
+		random_interest_group = {
+			limit = {
+				is_marginal = no
+				leader = { NOT = { has_ideology = ideology:ideology_radical } }
+				OR = {
+					is_interest_group_type = ig_rural_folk
+					is_interest_group_type = ig_intelligentsia
+					is_interest_group_type = ig_trade_unions
+					is_interest_group_type = ig_petty_bourgeoisie
+					is_interest_group_type = ig_industrialists
+				}
+			}
+	    	leader = { set_ideology = ideology:ideology_radical }
+			add_modifier = {
+				name = ig_government_betrayed
+				months = short_modifier_time
+			}
+		}
+		random_interest_group = {
+			limit = {
+				is_marginal = no
+				leader = { NOT = { has_ideology = ideology:ideology_radical } }
+				OR = {
+					is_interest_group_type = ig_rural_folk
+					is_interest_group_type = ig_intelligentsia
+					is_interest_group_type = ig_trade_unions
+					is_interest_group_type = ig_petty_bourgeoisie
+					is_interest_group_type = ig_industrialists
+				}
+			}
+	    	leader = { set_ideology = ideology:ideology_radical }
+			add_modifier = {
+				name = ig_government_betrayed
+				months = short_modifier_time
+			}
+		}
+	}
+
+	option = {
+		name = HJE_italy.2.a
+ 		play_as = c:RSI
+	}
+
+	option = {
+		name = HJE_italy.2.b
+		default_option = yes
+	}		
+}
+
+HJE_italy.3 = {
+	type = country_event
+	placement = scope:RPA_rome_scope
+	title = HJE_italy.3.t
+	desc = HJE_italy.3.d
+	flavor = HJE_italy.3.f
+
+	duration = 3
+
+	event_image = {
+		video = "gfx/event_pictures/southamerica_aristocrats.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/rich_and_poor"
+
+	icon = "gfx/interface/icons/event_icons/event_default.dds"
+
+	trigger = {
+		NOT = { has_global_variable = pap_revolution }
+		any_scope_state = { turmoil > 0.1 }
+		any_scope_state = { state_region = s:STATE_LAZIO }
+		NOT = { has_variable = ITA_current_favourite_to_unify }
+		OR = {
+			country_has_primary_culture = cu:north_italian
+			country_has_primary_culture = cu:south_italian
+		}
+		OR = {
+			has_law = law_type:law_autocracy
+			has_law = law_type:law_oligarchy
+			has_law = law_type:law_landed_voting
+		}
+		OR = {
+			owns_entire_state_region = STATE_LOMBARDY
+			owns_entire_state_region = STATE_PIEDMONT
+			owns_entire_state_region = STATE_UMBRIA
+			owns_entire_state_region = STATE_CAMPANIA
+			owns_entire_state_region = STATE_CALABRIA
+			owns_entire_state_region = STATE_APULIA
+			owns_entire_state_region = STATE_ABRUZZO
+			owns_entire_state_region = STATE_SAVOY
+			owns_entire_state_region = STATE_EMILIA
+			owns_entire_state_region = STATE_TUSCANY
+			owns_entire_state_region = STATE_ROMAGNA
+			owns_entire_state_region = STATE_LAZIO
+			owns_entire_state_region = STATE_VENETIA
+			owns_entire_state_region = STATE_SICILY
+		}
+	}
+	
+	immediate = {
+		set_global_variable = pap_revolution
+		set_variable = risorgimento_anti_unifying_stance
+		save_scope_as = PAP_papal_states_scope
+		random_scope_state = {
+			limit = { state_region = s:STATE_LAZIO }
+			save_scope_as = RPA_rome_scope
+		}
+		add_modifier = {
+			name = revolutionary_zeal
+			months = 12
+		}
+		create_country = {
+			tag = RPA
+			origin = this
+			state = scope:RPA_rome_scope
+			on_created = {
+				set_variable = risorgimento_unifying_stance
+				set_variable = pan_italian_rebellion
+				activate_law = law_type:law_parliamentary_republic
+				activate_law = law_type:law_wealth_voting
+			}
+		}
+		c:RPA = {
+			create_diplomatic_play = {
+                target_country = ROOT
+                type = dp_annex_war
+				add_war_goal = {
+					holder = ROOT
+					type = annex_country
+					target_country = c:RPA
+					primary_demand = yes
+				}
+			}
+		}
+	}
+
+	option = {
+		name = HJE_italy.3.a
+ 		play_as = c:RPA
+	}
+
+	option = {
+		name = HJE_italy.3.b
+		default_option = yes
+	}		
+}
+
+# New Constitution (Sardinia-Piedmont)
+# Triggered from Italian 1848 Revolutions Journal
+HJE_italy.4 = {
+	type = country_event
+	placement = root
+	title = HJE_italy.4.t
+	desc = HJE_italy.4.d
+	flavor = HJE_italy.4.f
+
+	duration = 3
+
+	event_image = {
+		video = "gfx/event_pictures/unspecific_ruler_speaking_to_people.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/political_extremism"
+
+	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
+
+	trigger = {
+		OR = {
+			NOT = { exists = c:SAR }
+			AND = {
+				exists = c:SAR
+				c:SAR = ROOT
+			}
+		}
+		any_scope_state = { turmoil > 0.1 }
+		#has_law = law_type:law_monarchy
+		has_journal_entry = HJ_italian_1848_revolutions
+		NOT = { has_global_variable = SAR_constitution_event }
+		NOT = { 
+			any_country = { 
+				is_subject = no
+				has_variable = ITA_current_favourite_to_unify 
+			} 
+		}
+		OR = {
+			country_has_primary_culture = cu:north_italian
+			country_has_primary_culture = cu:south_italian
+		}
+		OR = {
+			owns_entire_state_region = STATE_LOMBARDY
+			owns_entire_state_region = STATE_PIEDMONT
+			owns_entire_state_region = STATE_UMBRIA
+			owns_entire_state_region = STATE_CAMPANIA
+			owns_entire_state_region = STATE_CALABRIA
+			owns_entire_state_region = STATE_APULIA
+			owns_entire_state_region = STATE_ABRUZZO
+			owns_entire_state_region = STATE_SAVOY
+			owns_entire_state_region = STATE_EMILIA
+			owns_entire_state_region = STATE_TUSCANY
+			owns_entire_state_region = STATE_ROMAGNA
+			owns_entire_state_region = STATE_LAZIO
+			owns_entire_state_region = STATE_VENETIA
+			owns_entire_state_region = STATE_SICILY
+		}
+		OR = {
+			has_law = law_type:law_autocracy
+			has_law = law_type:law_oligarchy
+			has_law = law_type:law_landed_voting
+		}
+		NOT = {
+			any_country = {
+				NOT = { THIS = ROOT }
+				country_definition = root.country_definition
+			}
+		}
+	}
+
+	immediate = {
+		set_global_variable = SAR_constitution_event
+	}
+
+	option = {
+		name = HJE_italy.4.a
+		ai_chance = { base = 100 }
+		default_option = yes
+		set_variable = ITA_current_favourite_to_unify
+		set_strategy = ai_strategy_unify_italy
+		add_radicals = { value = -0.4 }
+		add_loyalists = { value = 0.2 }
+		activate_law = law_type:law_wealth_voting
+		set_variable = risorgimento_unifying_stance
+		set_ruling_interest_groups = { ig_intelligentsia ig_armed_forces }
+		if = {
+			limit = {
+				any_scope_character = {
+					is_ruler = yes
+					age > 35
+				}
+			}
+			ruler = { kill_character = yes }
+		}
+		# reactionaries kinda angry
+		ig:ig_landowners = { 
+			add_modifier = {
+				name = modifier_revolution_defeated_light
+				months = short_modifier_time
+			}
+		}
+		ig:ig_armed_forces = { 
+			add_modifier = {
+				name = modifier_revolution_defeated_light
+				months = short_modifier_time
+			}
+		}
+		hidden_effect = {
+			every_country = {
+				limit = {
+					NOT = { THIS = ROOT }
+					NOT = { is_subject_of = ROOT }
+					NOT = { has_variable = pan_italian_rebellion }
+					country_is_in_europe = yes
+					OR = {
+						country_has_primary_culture = cu:north_italian
+						country_has_primary_culture = cu:south_italian
+					}
+				}
+				change_relations = {
+					country = ROOT
+					value = -20
+			    }
+				set_secret_goal = {
+					country = ROOT
+					secret_goal = none
+				}
+				ROOT = {
+					set_secret_goal = {
+						country = PREV
+						secret_goal = conquer
+					}
+				}
+			}
+		}
+	}
+	option = {
+		name = HJE_italy.4.b
+		ai_chance = { base = 0 }
+		add_radicals = { value = 0.2 }
+		add_loyalists = { value = -0.1 }
+		every_interest_group = {
+			limit = {
+				OR = {
+					has_ideology = ideology:ideology_radical
+					leader = { has_ideology = ideology:ideology_radical }
+				}
+			}
+			add_modifier = {
+				name = ig_government_betrayed
+				months = long_modifier_time
+			}
+		}
+	}
+}
+
+# New Constitution (everyone who matters but Sardinia-Piedmont)
+# Triggered from Italian 1848 Revolutions Journal
+HJE_italy.5 = {
+	type = country_event
+	placement = root
+	title = HJE_italy.4.t
+	desc = HJE_italy.4.d
+	flavor = HJE_italy.4.f
+
+	duration = 3
+
+	event_image = {
+		video = "gfx/event_pictures/unspecific_ruler_speaking_to_people.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/political_extremism"
+
+	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
+
+	trigger = {
+		exists = c:SAR
+		NOT = { c:SAR = ROOT }
+		any_scope_state = { turmoil > 0.1 }
+		#has_law = law_type:law_monarchy
+		has_journal_entry = HJ_italian_1848_revolutions
+		NOT = { has_global_variable = SAR_constitution_event }
+		NOT = { 
+			any_country = { 
+				is_subject = no
+				has_variable = ITA_current_favourite_to_unify 
+			} 
+		}
+		OR = {
+			country_has_primary_culture = cu:north_italian
+			country_has_primary_culture = cu:south_italian
+		}
+		OR = {
+			owns_entire_state_region = STATE_LOMBARDY
+			owns_entire_state_region = STATE_PIEDMONT
+			owns_entire_state_region = STATE_UMBRIA
+			owns_entire_state_region = STATE_CAMPANIA
+			owns_entire_state_region = STATE_CALABRIA
+			owns_entire_state_region = STATE_APULIA
+			owns_entire_state_region = STATE_ABRUZZO
+			owns_entire_state_region = STATE_SAVOY
+			owns_entire_state_region = STATE_EMILIA
+			owns_entire_state_region = STATE_TUSCANY
+			owns_entire_state_region = STATE_ROMAGNA
+			owns_entire_state_region = STATE_LAZIO
+			owns_entire_state_region = STATE_VENETIA
+			owns_entire_state_region = STATE_SICILY
+		}
+		OR = {
+			has_law = law_type:law_autocracy
+			has_law = law_type:law_oligarchy
+			has_law = law_type:law_landed_voting
+		}
+		NOT = {
+			any_country = {
+				NOT = { THIS = ROOT }
+				country_definition = root.country_definition
+			}
+		}
+	}
+
+	immediate = {
+		set_global_variable = SAR_constitution_event
+	}
+
+	option = {
+		name = HJE_italy.4.a
+		ai_chance = { base = 100 }
+		default_option = yes
+		set_variable = ITA_current_favourite_to_unify
+		set_strategy = ai_strategy_unify_italy
+		add_radicals = { value = -0.4 }
+		add_loyalists = { value = 0.2 }
+		activate_law = law_type:law_wealth_voting
+		set_ruling_interest_groups = { ig_intelligentsia ig_armed_forces }
+		if = {
+			limit = {
+				any_scope_character = {
+					is_ruler = yes
+					age > 35
+				}
+			}
+			ruler = { kill_character = yes }
+		}
+		# reactionaries kinda angry
+		ig:ig_landowners = { 
+			add_modifier = {
+				name = modifier_revolution_defeated_light
+				months = short_modifier_time
+			}
+		}
+		ig:ig_armed_forces = { 
+			add_modifier = {
+				name = modifier_revolution_defeated_light
+				months = short_modifier_time
+			}
+		}
+		hidden_effect = {
+			every_country = {
+				limit = {
+					NOT = { THIS = ROOT }
+					NOT = { is_subject_of = ROOT }
+					NOT = { has_variable = pan_italian_rebellion }
+					country_is_in_europe = yes
+					OR = {
+						country_has_primary_culture = cu:north_italian
+						country_has_primary_culture = cu:south_italian
+					}
+				}
+				change_relations = {
+					country = ROOT
+					value = -35
+			    }
+				set_secret_goal = {
+					country = ROOT
+					secret_goal = antagonize
+				}
+				ROOT = {
+					set_secret_goal = {
+						country = PREV
+						secret_goal = conquer
+					}
+				}
+			}
+		}
+	}
+	option = {
+		name = HJE_italy.4.b
+		ai_chance = { base = 0 }
+		add_radicals = { value = 0.2 }
+		add_loyalists = { value = -0.1 }
+		every_interest_group = {
+			limit = {
+				OR = {
+					has_ideology = ideology:ideology_radical
+					leader = { has_ideology = ideology:ideology_radical }
+				}
+			}
+			add_modifier = {
+				name = ig_government_betrayed
+				months = long_modifier_time
+			}
+		}
+	}
+}
+
+# Rebellion in neighbouring Italian state owned by non-italians declares intention to join unification favourite, accept this?
+HJE_italy.6 = {
+	type = country_event
+	placement = scope:iwai1_state_lombardy_scope
+	
+	event_image = {
+		video = "gfx/event_pictures/unspecific_fire.bk2"
+	}
+	
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/american_civil_war"
+	
+	icon = "gfx/interface/icons/event_icons/event_fire.dds"
+	
+	title = HJE_italy.6.t
+	desc = HJE_italy.6.d 
+	flavor = HJE_italy.6.f 
+	
+	duration = 3
+	
+	trigger = {
+		is_subject = no
+		has_variable = ITA_current_favourite_to_unify
+		any_country = {
+			NOT = { THIS = ROOT }
+			has_journal_entry = HJ_italian_1848_revolutions
+			NOT = { has_variable = iwai1_victim }
+			NOR = {
+				country_has_primary_culture = cu:north_italian
+				country_has_primary_culture = cu:south_italian
+			}
+			any_scope_state = {
+				turmoil > 0.1
+				OR = {
+					state_region = s:STATE_LOMBARDY
+					state_region = s:STATE_PIEDMONT
+					state_region = s:STATE_UMBRIA
+					state_region = s:STATE_CAMPANIA
+					state_region = s:STATE_CALABRIA
+					state_region = s:STATE_APULIA
+					state_region = s:STATE_ABRUZZO
+					state_region = s:STATE_SAVOY
+					state_region = s:STATE_EMILIA
+					state_region = s:STATE_TUSCANY
+					state_region = s:STATE_ROMAGNA
+					state_region = s:STATE_LAZIO
+					state_region = s:STATE_VENETIA
+					state_region = s:STATE_SICILY
+				}
+			}
+		}
+	}
+	
+	immediate = {
+		random_country = {
+			limit = {
+				NOT = { THIS = ROOT }
+				has_journal_entry = HJ_italian_1848_revolutions
+				NOT = { has_variable = iwai1_victim }
+				NOR = {
+					country_has_primary_culture = cu:north_italian
+					country_has_primary_culture = cu:south_italian
+				}
+				any_scope_state = {
+					turmoil > 0.1
+					OR = {
+						state_region = s:STATE_LOMBARDY
+						state_region = s:STATE_PIEDMONT
+						state_region = s:STATE_UMBRIA
+						state_region = s:STATE_CAMPANIA
+						state_region = s:STATE_CALABRIA
+						state_region = s:STATE_APULIA
+						state_region = s:STATE_ABRUZZO
+						state_region = s:STATE_SAVOY
+						state_region = s:STATE_EMILIA
+						state_region = s:STATE_TUSCANY
+						state_region = s:STATE_ROMAGNA
+						state_region = s:STATE_LAZIO
+						state_region = s:STATE_VENETIA
+						state_region = s:STATE_SICILY
+					}
+				}
+			}
+			set_variable = iwai1_victim
+			save_scope_as = iwai1_victim_scope
+		}
+		if = {
+			limit = {
+				any_state = {
+					turmoil > 0.1
+					OR = {
+						state_region = s:STATE_LOMBARDY
+						state_region = s:STATE_PIEDMONT
+						state_region = s:STATE_UMBRIA
+						state_region = s:STATE_CAMPANIA
+						state_region = s:STATE_CALABRIA
+						state_region = s:STATE_APULIA
+						state_region = s:STATE_ABRUZZO
+						state_region = s:STATE_SAVOY
+						state_region = s:STATE_EMILIA
+						state_region = s:STATE_TUSCANY
+						state_region = s:STATE_ROMAGNA
+						state_region = s:STATE_LAZIO
+						state_region = s:STATE_VENETIA
+						state_region = s:STATE_SICILY
+					}
+					owner = {
+						has_journal_entry = HJ_italian_1848_revolutions
+						NOR = {
+							country_has_primary_culture = cu:north_italian
+							country_has_primary_culture = cu:south_italian
+						}
+						OR = {
+							ROOT = { is_adjacent_to_country = PREV }
+							ROOT = { any_subject_or_below = { is_adjacent_to_country = PREV } }
+						}
+					}
+					any_neighbouring_state = {
+						owner = { OR = { THIS = ROOT is_subject_of = ROOT } }
+					}
+				}
+			}
+			random_state = {
+				limit = {
+					turmoil > 0.1
+					OR = {
+						state_region = s:STATE_LOMBARDY
+						state_region = s:STATE_PIEDMONT
+						state_region = s:STATE_UMBRIA
+						state_region = s:STATE_CAMPANIA
+						state_region = s:STATE_CALABRIA
+						state_region = s:STATE_APULIA
+						state_region = s:STATE_ABRUZZO
+						state_region = s:STATE_SAVOY
+						state_region = s:STATE_EMILIA
+						state_region = s:STATE_TUSCANY
+						state_region = s:STATE_ROMAGNA
+						state_region = s:STATE_LAZIO
+						state_region = s:STATE_VENETIA
+						state_region = s:STATE_SICILY
+					}
+					owner = {
+						has_journal_entry = HJ_italian_1848_revolutions
+						NOR = {
+							country_has_primary_culture = cu:north_italian
+							country_has_primary_culture = cu:south_italian
+						}
+						OR = {
+							ROOT = { is_adjacent_to_country = PREV }
+							ROOT = { any_subject_or_below = { is_adjacent_to_country = PREV } }
+						}
+					}
+					any_neighbouring_state = {
+						owner = { OR = { THIS = ROOT is_subject_of = ROOT } }
+					}
+				}
+				save_scope_as = iwai1_state_lombardy_scope
+			}
+		}
+		else_if = {
+			limit = {
+				any_state = {
+					turmoil > 0.1
+					OR = {
+						state_region = s:STATE_LOMBARDY
+						state_region = s:STATE_PIEDMONT
+						state_region = s:STATE_UMBRIA
+						state_region = s:STATE_CAMPANIA
+						state_region = s:STATE_CALABRIA
+						state_region = s:STATE_APULIA
+						state_region = s:STATE_ABRUZZO
+						state_region = s:STATE_SAVOY
+						state_region = s:STATE_EMILIA
+						state_region = s:STATE_TUSCANY
+						state_region = s:STATE_ROMAGNA
+						state_region = s:STATE_LAZIO
+						state_region = s:STATE_VENETIA
+						state_region = s:STATE_SICILY
+					}
+					owner = {
+						has_journal_entry = HJ_italian_1848_revolutions
+						NOR = {
+							country_has_primary_culture = cu:north_italian
+							country_has_primary_culture = cu:south_italian
+						}
+					}
+				}
+			}
+			random_state = {
+				limit = {
+					turmoil > 0.1
+					OR = {
+						state_region = s:STATE_LOMBARDY
+						state_region = s:STATE_PIEDMONT
+						state_region = s:STATE_UMBRIA
+						state_region = s:STATE_CAMPANIA
+						state_region = s:STATE_CALABRIA
+						state_region = s:STATE_APULIA
+						state_region = s:STATE_ABRUZZO
+						state_region = s:STATE_SAVOY
+						state_region = s:STATE_EMILIA
+						state_region = s:STATE_TUSCANY
+						state_region = s:STATE_ROMAGNA
+						state_region = s:STATE_LAZIO
+						state_region = s:STATE_VENETIA
+						state_region = s:STATE_SICILY
+					}
+					owner = {
+						has_journal_entry = HJ_italian_1848_revolutions
+						NOR = {
+							country_has_primary_culture = cu:north_italian
+							country_has_primary_culture = cu:south_italian
+						}
+					}
+				}
+				save_scope_as = iwai1_state_lombardy_scope
+			}
+		}
+	}
+	
+	option = {
+		name = HJE_italy.6.a
+		default_option = yes
+		ai_chance = { base = 100 }
+		set_variable = italian_1848_revolutions_has_ended_in_THIS
+		every_state = {
+			limit = { 
+				NOT = { has_claim_by = ROOT }
+				owner = { 
+					OR = { 
+						THIS = scope:iwai1_victim_scope 
+						is_subject_of = scope:iwai1_victim_scope 
+					} 
+				}
+				OR = {
+					state_region = s:STATE_LOMBARDY
+					state_region = s:STATE_PIEDMONT
+					state_region = s:STATE_UMBRIA
+					state_region = s:STATE_CAMPANIA
+					state_region = s:STATE_CALABRIA
+					state_region = s:STATE_APULIA
+					state_region = s:STATE_ABRUZZO
+					state_region = s:STATE_SAVOY
+					state_region = s:STATE_EMILIA
+					state_region = s:STATE_TUSCANY
+					state_region = s:STATE_ROMAGNA
+					state_region = s:STATE_LAZIO
+					state_region = s:STATE_VENETIA
+					state_region = s:STATE_SICILY
+				}
+			}
+			this.state_region = { add_claim = ROOT }
+		}
+		scope:iwai1_state_lombardy_scope = {
+			set_variable = iwai1_state_lombardy
+			set_state_owner = ROOT
+			this.state_region = { add_claim = scope:iwai1_victim_scope }
+		}
+		scope:iwai1_victim_scope = {
+			trigger_event = { id = HJE_italy.7 days = 1 }
+		}
+		s:STATE_VENETIA = { add_claim = scope:iwai1_victim_scope }
+	}
+	option = {
+		name = HJE_italy.6.b
+		ai_chance = { base = 0 }
+		add_modifier = {
+			name = withdrew_from_colonial_incident
+			months = long_modifier_time
+		}
+	}
+}
+
+HJE_italy.7 = {
+	type = country_event
+	placement = scope:iwai1_state_lombardy_scope
+	title = HJE_italy.7.t
+	flavor = HJE_italy.7.f
+	desc = HJE_italy.7.d
+
+	duration = 3
+
+	is_popup = yes
+
+	event_image = {
+		video = "gfx/event_pictures/unspecific_politicians_arguing.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/before_the_battle"
+
+	icon = "gfx/interface/icons/event_icons/event_map.dds"
+
+	trigger = {
+	}
+	
+	immediate = {
+		random_country = {
+			limit = { 
+				is_subject = no 
+				has_variable = ITA_current_favourite_to_unify 
+			}
+			save_scope_as = iwai1_attacker_scope
+		}
+		random_state = {
+			limit = {
+				has_claim_by = ROOT
+				has_variable = iwai1_state_lombardy
+				owner = { 
+					is_subject = no 
+					has_variable = ITA_current_favourite_to_unify  
+				}
+				OR = {
+					state_region = s:STATE_LOMBARDY
+					state_region = s:STATE_PIEDMONT
+					state_region = s:STATE_UMBRIA
+					state_region = s:STATE_CAMPANIA
+					state_region = s:STATE_CALABRIA
+					state_region = s:STATE_APULIA
+					state_region = s:STATE_ABRUZZO
+					state_region = s:STATE_SAVOY
+					state_region = s:STATE_EMILIA
+					state_region = s:STATE_TUSCANY
+					state_region = s:STATE_ROMAGNA
+					state_region = s:STATE_LAZIO
+					state_region = s:STATE_VENETIA
+					state_region = s:STATE_SICILY
+				}
+			}
+			save_scope_as = iwai1_state_lombardy_scope
+		}
+	}
+
+	option = {
+		name = HJE_italy.7.a
+		default_option = yes
+		ai_chance = { base = 5 }
+		create_diplomatic_play = {
+			target_state = scope:iwai1_state_lombardy_scope
+            type = dp_return_state
+			war = no
+			add_war_goal = {
+				holder = root
+				type = return_state
+				target_state = s:STATE_VENETIA
+				primary_demand = yes
+			}
+		}
+		hidden_effect = {
+	        random_diplomatic_play = {
+				limit = {
+					initiator_is = ROOT
+		            target_is = scope:iwai1_attacker_scope
+				}
+				add_escalation = 50
+			}
+		}
+		if = {
+			limit = {
+				scope:iwai1_attacker_scope = {
+					is_ai = yes
+				}
+			}
+			scope:iwai1_attacker_scope = {
+				add_modifier = { name = wartime_zeal months = 12 }
+			}
+		}		
+	}
+
+	option = {
+		name = HJE_italy.7.b
+		ai_chance = { base = 1 }
+		add_modifier = {
+			name = withdrew_from_colonial_incident
+			months = short_modifier_time
+		}
+	}	
+}
+
+HJE_italy.8 = {
+	type = country_event
+	placement = ROOT
+	title = HJE_italy.8.t
+	desc = HJE_italy.8.d
+	flavor = HJE_italy.8.f
+
+	duration = 3
+
+	event_image = {
+		video = "gfx/event_pictures/southamerica_aristocrats.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/rich_and_poor"
+
+	icon = "gfx/interface/icons/event_icons/event_default.dds"
+
+	trigger = {
+		has_variable = pan_italian_rebellion
+		is_at_war = no
+		is_diplomatic_play_committed_participant = no
+		NOT = { has_variable = ITA_might_get_declared_war_on }
+		NAND = { 
+			is_subject = no 
+			has_variable = ITA_current_favourite_to_unify  
+		}
+		OR = {
+			country_has_primary_culture = cu:north_italian
+			country_has_primary_culture = cu:south_italian
+		}
+	}
+	
+	immediate = {
+		if = {
+			limit = { NOT = { has_global_variable = at_least_one_successful_italian_nationalist_revolt } }
+			set_global_variable = at_least_one_successful_italian_nationalist_revolt
+		}
+		random_country = {
+			limit = {
+				is_subject = no 
+				has_variable = ITA_current_favourite_to_unify  
+			}
+			save_scope_as = italian_unifier_scope
+		}
+	}
+
+	option = {
+		name = HJE_italy.8.a
+		trigger = { exists = scope:italian_unifier_scope }
+		default_option = yes
+		ai_chance = { base = 900 }
+		add_radicals = { value = -0.3 }
+ 		play_as = scope:italian_unifier_scope
+		scope:italian_unifier_scope = { annex = ROOT }
+	}
+
+	option = {
+		name = HJE_italy.8.b
+		trigger = {
+			is_subject = no
+			OR = {
+				owns_entire_state_region = STATE_LOMBARDY
+				owns_entire_state_region = STATE_PIEDMONT
+				owns_entire_state_region = STATE_UMBRIA
+				owns_entire_state_region = STATE_CAMPANIA
+				owns_entire_state_region = STATE_CALABRIA
+				owns_entire_state_region = STATE_APULIA
+				owns_entire_state_region = STATE_ABRUZZO
+				owns_entire_state_region = STATE_SAVOY
+				owns_entire_state_region = STATE_EMILIA
+				owns_entire_state_region = STATE_TUSCANY
+				owns_entire_state_region = STATE_ROMAGNA
+				owns_entire_state_region = STATE_LAZIO
+				owns_entire_state_region = STATE_VENETIA
+				owns_entire_state_region = STATE_SICILY
+			}
+		}
+		ai_chance = { base = 1 }
+		set_variable = ITA_current_favourite_to_unify
+		if = {
+			limit = { exists = scope:italian_unifier_scope }
+			add_radicals = { value = 0.6 }
+			every_scope_state = {
+				this.state_region = { add_claim = scope:italian_unifier_scope }
+			}
+		}
+		change_relations = {
+			country = scope:italian_unifier_scope
+			value = -25
+	    }
+	}
+}
+
+# United Provinces of Central Italy
+# Triggered from Risorgimento Journal
+HJE_italy.9 = {
+	type = country_event
+	placement = root
+	title = HJE_italy.9.t
+	desc = HJE_italy.9.d
+	flavor = HJE_italy.9.f
+
+	duration = 3
+
+	event_image = {
+		video = "gfx/event_pictures/unspecific_ruler_speaking_to_people.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/political_extremism"
+
+	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
+
+	trigger = {
+		NOT = { has_global_variable = UCI_second_war_of_independence }
+		NAND = { 
+			is_subject = no 
+			has_variable = ITA_current_favourite_to_unify  
+		}
+		NOT = { 
+			any_overlord_or_above = { 
+				is_subject = no 
+				has_variable = ITA_current_favourite_to_unify 
+			}
+		}
+		OR = {
+			country_has_primary_culture = cu:north_italian
+			country_has_primary_culture = cu:south_italian
+		}
+		OR = {
+			year >= 1858
+			NOT = { exists = c:MOD }
+			AND = {
+				exists = c:MOD
+				c:MOD = ROOT
+			}
+		}
+		OR = {
+			year >= 1858
+			has_global_variable = at_least_one_successful_italian_nationalist_revolt
+			AND = {
+				exists = c:UCI
+				c:UCI = ROOT
+			}
+		}
+		any_scope_state = {
+			is_capital = yes
+			OR = {
+				state_region = s:STATE_EMILIA
+				state_region = s:STATE_TUSCANY
+				state_region = s:STATE_ROMAGNA
+			}
+		}
+		NOT = {
+			any_country = {
+				NOT = { THIS = ROOT }
+				country_definition = root.country_definition
+			}
+		}
+	}
+
+	immediate = {
+		set_global_variable = UCI_second_war_of_independence
+		random_country = {
+			limit = {
+				is_subject = no 
+				has_variable = ITA_current_favourite_to_unify 
+			} 
+			save_scope_as = italian_unifier_scope
+		}
+		every_state = {
+			limit = {
+				owner = {
+					OR = {
+						NOT = {
+							any_scope_state = {
+								is_capital = yes
+								OR = {
+									state_region = s:STATE_EMILIA
+									state_region = s:STATE_TUSCANY
+									state_region = s:STATE_ROMAGNA
+								}
+							}
+						}
+						NOT = {
+							OR = {
+								country_has_primary_culture = cu:north_italian
+								country_has_primary_culture = cu:south_italian
+							}
+						}
+					}
+				}
+				OR = {
+					state_region = s:STATE_EMILIA
+					state_region = s:STATE_TUSCANY
+					state_region = s:STATE_ROMAGNA
+				}
+			}
+			owner = { set_variable = UCI_took_state_from_this }
+			set_state_owner = ROOT
+		}
+		every_state = {
+			limit = {
+				OR = {
+					state_region = s:STATE_EMILIA
+					state_region = s:STATE_TUSCANY
+					state_region = s:STATE_ROMAGNA
+				}
+			}
+			this.state_region = { add_claim = ROOT }
+		}
+	}
+
+	option = {
+		name = HJE_italy.9.a
+		trigger = { exists = scope:italian_unifier_scope }
+		default_option = yes
+		ai_chance = { base = 900 }
+		add_radicals = { value = -0.3 }
+		if = {
+			limit = { 
+				NOR = { 
+					exists = c:UCI
+					AND = {
+						exists = c:UCI
+						NOT = { c:UCI = ROOT }
+					}
+				} 
+			}
+			change_tag = UCI
+			set_variable = pan_italian_rebellion
+			set_variable = {
+				name = ITA_might_get_declared_war_on
+				days = 200
+			}
+		}
+		if = {
+			limit = { NOT = { has_law = law_type:law_parliamentary_republic } }
+			activate_law = law_type:law_parliamentary_republic
+		}
+		if = {
+			limit = { NOT = { has_law = law_type:law_wealth_voting } }
+			activate_law = law_type:law_wealth_voting
+		}
+		scope:italian_unifier_scope = { 
+			create_diplomatic_pact = {
+				country = ROOT
+				type = puppet
+			}
+			change_relations = {
+				country = ROOT
+				value = 50
+		    }
+		}
+	}
+
+	option = {
+		name = HJE_italy.9.b
+		trigger = {
+			OR = {
+				NOT = { exists = scope:italian_unifier_scope }
+				AND = {
+					is_subject = no
+					exists = c:UCI
+					c:UCI = ROOT
+				}
+			}
+		}
+		ai_chance = { base = 1 }
+		if = {
+			limit = { 
+				NOR = { 
+					exists = c:UCI
+					AND = {
+						exists = c:UCI
+						NOT = { c:UCI = ROOT }
+					}
+				} 
+			}
+			change_tag = UCI
+		}
+		set_variable = ITA_current_favourite_to_unify
+		if = {
+			limit = { exists = scope:italian_unifier_scope }
+			add_radicals = { value = 0.6 }
+			every_scope_state = {
+				this.state_region = { add_claim = scope:italian_unifier_scope }
+			}
+		}
+		change_relations = {
+			country = scope:italian_unifier_scope
+			value = -25
+	    }
+	}
+}
+
+HJE_italy.10 = {
+	type = country_event
+	placement = ROOT
+	title = HJE_italy.10.t
+	desc = HJE_italy.10.d
+	flavor = HJE_italy.10.f
+
+	duration = 3
+
+	event_image = {
+		video = "gfx/event_pictures/southamerica_aristocrats.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/rich_and_poor"
+
+	icon = "gfx/interface/icons/event_icons/event_default.dds"
+
+	trigger = {
+		is_diplomatic_play_committed_participant = no
+		exists = c:UCI
+		NOT = { c:UCI = ROOT }
+		OR = {
+			country_has_primary_culture = cu:north_italian
+			country_has_primary_culture = cu:south_italian
+		}
+		any_scope_state = {
+			is_capital = yes
+			OR = {
+				state_region = s:STATE_EMILIA
+				state_region = s:STATE_TUSCANY
+				state_region = s:STATE_ROMAGNA
+			}
+		}
+	}
+	
+	immediate = {
+	}
+
+	option = {
+		name = HJE_italy.10.a
+		default_option = yes
+		ai_chance = { base = 1 }
+		add_radicals = { value = -0.3 }
+ 		play_as = c:UCI
+		c:UCI = { annex = ROOT }
+	}
+}
+
+HJE_italy.11 = {
+	type = country_event
+	placement = c:UCI
+	title = HJE_italy.11.t
+	flavor = HJE_italy.11.f
+	desc = HJE_italy.11.d
+
+	duration = 3
+
+	is_popup = yes
+
+	event_image = {
+		video = "gfx/event_pictures/unspecific_politicians_arguing.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/before_the_battle"
+
+	icon = "gfx/interface/icons/event_icons/event_map.dds"
+
+	trigger = {
+		year <= 1870
+		NOT = { has_variable = got_chance_to_dunk_on_italy }
+		country_is_in_europe = yes
+		calc_true_if = {
+			amount >= 4
+			any_scope_state = { state_region = s:STATE_LOMBARDY }
+			any_scope_state = { state_region = s:STATE_PIEDMONT }
+			any_scope_state = { state_region = s:STATE_UMBRIA }
+			any_scope_state = { state_region = s:STATE_CAMPANIA }
+			any_scope_state = { state_region = s:STATE_CALABRIA }
+			any_scope_state = { state_region = s:STATE_APULIA }
+			any_scope_state = { state_region = s:STATE_ABRUZZO }
+			any_scope_state = { state_region = s:STATE_SAVOY }
+			any_scope_state = { state_region = s:STATE_EMILIA }
+			any_scope_state = { state_region = s:STATE_TUSCANY }
+			any_scope_state = { state_region = s:STATE_ROMAGNA }
+			any_scope_state = { state_region = s:STATE_LAZIO }
+			any_scope_state = { state_region = s:STATE_VENETIA }
+			any_scope_state = { state_region = s:STATE_SICILY }
+		}
+		NOR = {
+			country_has_primary_culture = cu:north_italian
+			country_has_primary_culture = cu:south_italian
+		}
+		exists = c:UCI
+		NOT = { c:UCI = ROOT }
+		OR = {
+			is_adjacent_to_country = c:UCI
+			has_variable = UCI_took_state_from_this
+			any_country = {
+				OR = {
+					is_subject_of = ROOT
+					is_in_customs_union_with = ROOT
+				}
+				any_scope_state = {
+					is_capital = yes
+					OR = {
+						state_region = s:STATE_EMILIA
+						state_region = s:STATE_TUSCANY
+						state_region = s:STATE_ROMAGNA
+					}
+				}
+			}
+		}
+	}
+	
+	immediate = {
+		set_variable = got_chance_to_dunk_on_italy
+	}
+
+	option = {
+		name = HJE_italy.11.a
+		default_option = yes
+		ai_chance = { base = 5 }
+		if = {
+			limit = {
+				exists = c:UCI
+				c:UCI = { is_subject = yes NOT = { is_subject_of = ROOT } }
+			}
+			random_country = {
+				limit = { any_subject_or_below = { THIS = c:UCI } }
+				save_scope_as = italy_scope
+			}
+   			create_diplomatic_play = {
+                target_country = scope:italy_scope
+                type = dp_humiliation
+				war = no
+				add_war_goal = {
+					holder = ROOT
+					type = liberate_subject
+					target_country = c:UCI
+					primary_demand = yes
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				exists = c:UCI
+				c:UCI = { is_subject = no }
+			}
+   			create_diplomatic_play = {
+                target_country = c:UCI
+                type = dp_humiliation
+				war = no
+				add_war_goal = {
+					holder = ROOT
+					type = make_protectorate
+					target_country = c:UCI
+					primary_demand = yes
+				}
+			}
+		}
+	}
+
+	option = {
+		name = HJE_italy.11.b
+		ai_chance = { base = 1 }
+		add_modifier = {
+			name = withdrew_from_colonial_incident
+			months = short_modifier_time
+		}
+	}	
+}
+
+HJE_italy.12 = { #Italy Claims (Expedition of the Thousand)
+	type = country_event
+	placement = this
+	title = HJE_italy.12.t
+	flavor = HJE_italy.12.f
+	desc = HJE_italy.12.d
+
+	duration = 3
+
+	is_popup = yes
+
+	event_image = {
+		video = "gfx/event_pictures/unspecific_military_parade.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/before_the_battle"
+
+	icon = "gfx/interface/icons/event_icons/event_map.dds"
+
+	trigger = {
+		NOT = { has_variable = got_risorgimento_claims }
+		aggressive_diplomatic_plays_permitted = yes
+		is_diplomatic_play_committed_participant = no
+		OR = {
+			AND = { 
+				is_subject = no 
+				has_variable = ITA_current_favourite_to_unify 
+			}
+			NOT = { 
+				any_country = { 
+					is_subject = no
+					has_variable = ITA_current_favourite_to_unify 
+				} 
+			}
+		}
+		OR = {
+			year >= 1860
+			calc_true_if = {
+				amount >= 7
+				owns_entire_state_region = STATE_LOMBARDY
+				owns_entire_state_region = STATE_PIEDMONT
+				owns_entire_state_region = STATE_UMBRIA
+				owns_entire_state_region = STATE_CAMPANIA
+				owns_entire_state_region = STATE_CALABRIA
+				owns_entire_state_region = STATE_APULIA
+				owns_entire_state_region = STATE_ABRUZZO
+				owns_entire_state_region = STATE_SAVOY
+				owns_entire_state_region = STATE_EMILIA
+				owns_entire_state_region = STATE_TUSCANY
+				owns_entire_state_region = STATE_ROMAGNA
+				owns_entire_state_region = STATE_LAZIO
+				owns_entire_state_region = STATE_VENETIA
+				owns_entire_state_region = STATE_SICILY
+				owns_entire_state_region = STATE_SOUTH_TYROL
+				owns_entire_state_region = STATE_ISTRIA
+			}
+		}
+	}
+	
+	immediate = {
+		if = {
+			limit = {
+				is_player = no 
+			}
+			random_scope_state = {
+				limit = { is_coastal = yes }
+				create_building={
+					building="building_naval_base"
+					level=3
+					reserves=1
+					activate_production_methods={ "pm_no_naval_theory" }
+				}
+			}
+		}
+		random_country = {
+			limit = { 
+				NOT = { ROOT = THIS }
+				NOT = { is_subject_of = ROOT }
+				NAND = {
+					exists = c:PAP
+					c:PAP = THIS
+				}
+				country_is_in_europe = yes
+				OR = {
+					country_has_primary_culture = cu:north_italian
+					country_has_primary_culture = cu:south_italian
+				}
+				calc_true_if = {
+					amount > 2
+					owns_entire_state_region = STATE_LOMBARDY
+					owns_entire_state_region = STATE_PIEDMONT
+					owns_entire_state_region = STATE_UMBRIA
+					owns_entire_state_region = STATE_CAMPANIA
+					owns_entire_state_region = STATE_CALABRIA
+					owns_entire_state_region = STATE_APULIA
+					owns_entire_state_region = STATE_ABRUZZO
+					owns_entire_state_region = STATE_SAVOY
+					owns_entire_state_region = STATE_EMILIA
+					owns_entire_state_region = STATE_TUSCANY
+					owns_entire_state_region = STATE_ROMAGNA
+					owns_entire_state_region = STATE_LAZIO
+					owns_entire_state_region = STATE_VENETIA
+					owns_entire_state_region = STATE_SICILY
+				}
+			}
+			save_scope_as = random_italian_victim
+		}
+	}
+
+	option = {
+		name = HJE_italy.12.a
+		default_option = yes
+		ai_chance = 100
+
+		set_variable = got_risorgimento_claims
+		if = {
+			limit = {
+				has_variable = ITA_current_favourite_to_unify
+				exists = c:PAP
+				c:PAP = {
+					NOT = { has_variable = ITA_current_favourite_to_unify }
+					calc_true_if = {
+						amount >= 2
+						any_scope_state = { state_region = s:STATE_LOMBARDY }
+						any_scope_state = { state_region = s:STATE_PIEDMONT }
+						any_scope_state = { state_region = s:STATE_UMBRIA }
+						any_scope_state = { state_region = s:STATE_CAMPANIA }
+						any_scope_state = { state_region = s:STATE_CALABRIA }
+						any_scope_state = { state_region = s:STATE_APULIA }
+						any_scope_state = { state_region = s:STATE_ABRUZZO }
+						any_scope_state = { state_region = s:STATE_SAVOY }
+						any_scope_state = { state_region = s:STATE_EMILIA }
+						any_scope_state = { state_region = s:STATE_TUSCANY }
+						any_scope_state = { state_region = s:STATE_ROMAGNA }
+						any_scope_state = { state_region = s:STATE_LAZIO }
+						any_scope_state = { state_region = s:STATE_VENETIA }
+						any_scope_state = { state_region = s:STATE_SICILY }
+					}
+				}
+			}
+			every_state = {
+				limit = {
+					owner = {
+						exists = c:PAP
+						OR = {
+							c:PAP = THIS
+							is_subject_of = c:PAP
+						}
+					}
+					OR = {
+						state_region = s:STATE_LOMBARDY
+						state_region = s:STATE_PIEDMONT
+						state_region = s:STATE_UMBRIA
+						state_region = s:STATE_CAMPANIA
+						state_region = s:STATE_CALABRIA
+						state_region = s:STATE_APULIA
+						state_region = s:STATE_ABRUZZO
+						state_region = s:STATE_SAVOY
+						state_region = s:STATE_EMILIA
+						state_region = s:STATE_TUSCANY
+						state_region = s:STATE_ROMAGNA
+						state_region = s:STATE_VENETIA
+						state_region = s:STATE_SICILY
+					}
+				}
+				set_state_owner = ROOT
+			}
+		}
+		if = {
+			limit = { 
+				#is_player = no 
+				exists = scope:random_italian_victim 
+				OR = {
+					AND = { 
+						is_subject = no 
+						has_variable = ITA_current_favourite_to_unify 
+					}
+					NOT = { 
+						any_country = { 
+							is_subject = no
+							has_variable = ITA_current_favourite_to_unify 
+						} 
+					}
+				}
+			}
+			create_diplomatic_play = {
+                target_country = scope:random_italian_victim
+                type = dp_annex_war
+				war = no
+			}
+		}
+		s:STATE_LOMBARDY = { 
+			if = {
+				limit = {
+					any_scope_state = {
+						 NOT = {
+							owner = ROOT
+						}
+					}
+				}
+				add_claim = ROOT 
+			}
+		}
+		s:STATE_PIEDMONT = { 
+			if = {
+				limit = {
+					any_scope_state = {
+						 NOT = {
+							owner = ROOT
+						}
+					}
+				}
+				add_claim = ROOT 
+			}
+		}
+		s:STATE_UMBRIA = { 
+			if = {
+				limit = {
+					any_scope_state = {
+						 NOT = {
+							owner = ROOT
+						}
+					}
+				}
+				add_claim = ROOT 
+			}
+		}
+		s:STATE_CAMPANIA = { 
+			if = {
+				limit = {
+					any_scope_state = {
+						 NOT = {
+							owner = ROOT
+						}
+					}
+				}
+				add_claim = ROOT 
+			}
+		}
+		s:STATE_CALABRIA = { 
+			if = {
+				limit = {
+					any_scope_state = {
+						 NOT = {
+							owner = ROOT
+						}
+					}
+				}
+				add_claim = ROOT 
+			}
+		}
+		s:STATE_APULIA = { 
+			if = {
+				limit = {
+					any_scope_state = {
+						 NOT = {
+							owner = ROOT
+						}
+					}
+				}
+				add_claim = ROOT 
+			}
+		}
+		s:STATE_ABRUZZO = { 
+			if = {
+				limit = {
+					any_scope_state = {
+						 NOT = {
+							owner = ROOT
+						}
+					}
+				}
+				add_claim = ROOT 
+			}
+		}
+		s:STATE_EMILIA = { 
+			if = {
+				limit = {
+					any_scope_state = {
+						 NOT = {
+							owner = ROOT
+						}
+					}
+				}
+				add_claim = ROOT 
+			}
+		}
+		s:STATE_TUSCANY = { 
+			if = {
+				limit = {
+					any_scope_state = {
+						 NOT = {
+							owner = ROOT
+						}
+					}
+				}
+				add_claim = ROOT 
+			}
+		}
+		s:STATE_ROMAGNA = { 
+			if = {
+				limit = {
+					any_scope_state = {
+						 NOT = {
+							owner = ROOT
+						}
+					}
+				}
+				add_claim = ROOT 
+			}
+		}
+		s:STATE_LAZIO = { 
+			if = {
+				limit = {
+					any_scope_state = {
+						 NOT = {
+							owner = ROOT
+						}
+					}
+				}
+				add_claim = ROOT 
+			}
+		}
+		s:STATE_VENETIA = { 
+			if = {
+				limit = {
+					any_scope_state = {
+						 NOT = {
+							owner = ROOT
+						}
+					}
+				}
+				add_claim = ROOT 
+			}
+		}
+		s:STATE_SICILY = { 
+			if = {
+				limit = {
+					any_scope_state = {
+						 NOT = {
+							owner = ROOT
+						}
+					}
+				}
+				add_claim = ROOT 
+			}
+		}
+		if = {
+			limit = {
+				is_player = no
+			}
+			add_modifier = { name = wartime_zeal months = 48 }
+		}
+	}
+
+	option = {
+		name = HJE_italy.12.b
+		ai_chance = 0
+		add_modifier = {
+			name = withdrew_from_colonial_incident
+			months = normal_modifier_time
+		}
+	}		
+}

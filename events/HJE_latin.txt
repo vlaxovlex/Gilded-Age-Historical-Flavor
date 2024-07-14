@@ -1,0 +1,1991 @@
+﻿namespace = HJE_latin_america
+
+HJE_latin_america.1 = {
+	type = country_event
+	placement = c:BOL
+	title = HJE_latin_america.1.t
+	desc = HJE_latin_america.1.d
+	flavor = HJE_latin_america.1.f
+
+	cooldown = ( months = 60 }
+
+	duration = 3
+
+	event_image = {
+		video = "gfx/event_pictures/southamerica_war_civilians.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/before_the_battle"
+
+	icon = "gfx/interface/icons/event_icons/event_map.dds"
+
+	trigger = {
+		year >= 1837
+		year < 1851
+		c:CHL = ROOT
+		exists = c:CHL
+		NOT = { has_truce_with = c:BOL }
+		aggressive_diplomatic_plays_permitted = yes
+		is_diplomatic_play_committed_participant = no
+		is_diplomatic_play_initiator = no
+		is_diplomatic_play_target = no
+		exists = c:BOL
+		c:BOL = { aggressive_diplomatic_plays_permitted = yes }
+		OR = {
+			AND = {
+				exists = c:SPU
+				c:SPU = { is_direct_subject_of = c:BOL }
+			}
+			AND = {
+				exists = c:NPU
+				c:NPU = { is_direct_subject_of = c:BOL }
+			}
+			AND = {
+				exists = c:IQU
+				c:IQU = { is_direct_subject_of = c:BOL }
+			}
+		}
+	}
+	
+	immediate = {
+	}
+
+	option = {
+		name = HJE_latin_america.1.a
+		default_option = yes
+				
+		if = {
+			limit = {
+				exists = c:CHL
+				c:CHL = { is_player = no }
+			}
+			random_scope_state = {
+				create_building={
+					building="building_barracks"
+					add_ownership={
+						country={
+							country="root"
+							levels=5
+						}
+					}
+					reserves=1
+					activate_production_methods={ "pm_no_organization" }
+				}
+			}
+			random_scope_state = {
+				create_building={
+					building="building_barracks"
+					add_ownership={
+						country={
+							country="root"
+							levels=5
+						}
+					}
+					reserves=1
+					activate_production_methods={ "pm_no_organization" }
+				}
+			}
+			add_modifier = { 
+				name = separatist_zeal
+				months = 36
+			}
+		}
+		create_diplomatic_play = {
+                target_country = c:BOL
+                type = dp_contain_threat
+				war = no
+		}
+		every_country = {
+			limit = {
+				NOT = { ROOT = THIS }
+				aggressive_diplomatic_plays_permitted = yes
+				NOT = { is_country_type = decentralized }
+				is_adjacent_to_country = c:BOL
+			}
+			trigger_event = { id = HJE_latin_america.2 }
+		}	
+		add_modifier = {
+			name = modifier_prussia_of_the_americas
+			months = 552
+		}		
+			
+		ai_chance = 100
+	}
+
+	option = {
+		name = HJE_latin_america.1.b
+		ai_chance = 0
+	}		
+}
+
+HJE_latin_america.2 = {
+	type = country_event
+	placement = c:BOL
+	title = HJE_latin_america.2.t
+	flavor = HJE_latin_america.2.f
+	desc = HJE_latin_america.2.d
+
+	duration = 3
+
+	is_popup = yes
+
+	event_image = {
+		video = "gfx/event_pictures/unspecific_politicians_arguing.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/before_the_battle"
+
+	icon = "gfx/interface/icons/event_icons/event_map.dds"
+
+	trigger = {
+	}
+	
+	immediate = {
+	}
+
+	option = {
+		name = HJE_latin_america.2.a
+		ai_chance = {
+			base = 33
+			modifier = {
+				factor = 0
+				OR = {
+					c:BOL = { relations:root > relations_threshold:cordial }
+				}
+			}
+		}
+
+		set_strategy = ai_strategy_maintain_power_balance
+		change_relations = {
+			country = c:CHL
+			value = 60
+		}
+		change_relations = {
+			country = c:BOL
+			value = -30
+		}
+		random_diplomatic_play = {
+			limit = { initiator_is = c:CHL target_is = c:BOL }
+			add_initiator_backers = { ROOT }
+			add_escalation = 80
+		}
+		if = {
+			limit = {
+				is_player = no
+			}
+			random_scope_state = {
+				create_building={
+					building="building_barracks"
+					add_ownership={
+						country={
+							country="root"
+							levels=5
+						}
+					}
+					reserves=1
+					activate_production_methods={ "pm_no_organization" }
+				}
+			}
+			random_scope_state = {
+				create_building={
+					building="building_barracks"
+					add_ownership={
+						country={
+							country="root"
+							levels=5
+						}
+					}
+					reserves=1
+					activate_production_methods={ "pm_no_organization" }
+				}
+			}
+			add_modifier = { 
+				name = separatist_zeal
+				months = 36
+			}
+		}
+	}
+
+	option = {
+		name = HJE_latin_america.2.b
+		ai_chance = {
+			base = 33
+			modifier = {
+				factor = 0
+				OR = {
+					AND = {
+						exists = c:ARG
+						c:ARG = ROOT
+					}
+					AND = {
+						exists = c:BRZ
+						c:BRZ = ROOT
+					}
+				}
+				NOR = {
+					c:BOL = { relations:root > relations_threshold:cordial }
+				}
+			}
+		}
+
+		set_strategy = ai_strategy_maintain_power_balance
+		if = {
+			limit = {
+				has_diplomatic_pact = {
+					who = c:BOL
+					type = rivalry
+				}
+			}
+			c:BOL = {
+				remove_diplomatic_pact = {
+					country = ROOT
+					type = rivalry
+				}
+			}
+			remove_diplomatic_pact = {
+				country = c:BOL
+				type = rivalry
+			}
+		}
+		change_relations = {
+			country = c:BOL
+			value = 60
+		}
+		change_relations = {
+			country = c:CHL
+			value = -30
+		}
+		random_diplomatic_play = {
+			limit = { initiator_is = c:CHL target_is = c:BOL }
+			add_target_backers = { ROOT }
+			add_escalation = 10
+		}
+	}	
+
+	option = {
+		name = HJE_latin_america.2.c
+		ai_chance = {
+			base = 33
+			modifier = {
+				factor = 0
+				OR = {
+					AND = {
+						exists = c:ARG
+						c:ARG = ROOT
+					}
+				}
+			}
+		}
+		change_relations = {
+			country = c:BOL
+			value = -15
+		}
+		change_relations = {
+			country = c:CHL
+			value = -15
+		}
+		add_modifier = {
+			name = withdrew_from_colonial_incident
+			months = normal_modifier_time
+		}
+	}		
+}
+
+HJE_latin_america.3 = {
+	type = country_event
+	placement = c:BOL
+	title = HJE_latin_america.3.t
+	desc = HJE_latin_america.3.d
+	flavor = HJE_latin_america.3.f
+
+	cooldown = ( months = 120 }
+
+	duration = 3
+
+	event_image = {
+		video = "gfx/event_pictures/unspecific_politicians_arguing.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/before_the_battle"
+
+	icon = "gfx/interface/icons/event_icons/event_map.dds"
+
+	trigger = {
+		year >= 1873
+		exists = c:PEU
+		c:PEU = ROOT
+		aggressive_diplomatic_plays_permitted = yes
+		is_diplomatic_play_committed_participant = no
+		is_diplomatic_play_initiator = no
+		is_diplomatic_play_target = no
+		exists = c:BOL
+		c:BOL = { aggressive_diplomatic_plays_permitted = yes }
+		exists = c:CHL
+		c:CHL = { aggressive_diplomatic_plays_permitted = yes }
+	}
+	
+	immediate = {
+	}
+
+	option = {
+		name = HJE_latin_america.1.a
+		default_option = yes
+
+        c:BOL = {
+			trigger_event = { id = HJE_latin_america.4 }
+        }
+			
+		ai_chance = 100
+	}
+
+	option = {
+		name = HJE_latin_america.3.b
+		ai_chance = 0
+	}		
+}
+
+
+HJE_latin_america.4 = {
+	type = country_event
+	placement = c:PEU
+	title = HJE_latin_america.4.t
+	desc = HJE_latin_america.4.d
+	flavor = HJE_latin_america.4.f
+
+	duration = 3
+
+	event_image = {
+		video = "gfx/event_pictures/unspecific_signed_contract.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/rich_and_poor"
+
+	icon = "gfx/interface/icons/event_icons/event_default.dds"
+
+	trigger = {
+	}
+	
+	immediate = {
+	}
+
+	option = {
+		name = HJE_latin_america.4.a
+		default_option = yes
+
+		set_mutual_secret_goal = {
+			country = c:PEU
+			secret_goal = befriend
+		}
+		change_relations = {
+			country = c:PEU
+			value = 90
+		}
+		c:PEU = {
+			create_diplomatic_pact = {
+				country = c:BOL
+				type = alliance
+			}
+			change_relations = {
+				country = c:BOL
+				value = 90
+			}
+		}
+			
+		ai_chance = 100
+	}
+
+	option = {
+		name = HJE_latin_america.4.b
+	}		
+}
+
+HJE_latin_america.5 = {			 #War of the Pacific Claims
+	type = country_event
+	placement = this
+	title = HJE_latin_america.5.t
+	flavor = HJE_latin_america.5.f
+	desc = HJE_latin_america.5.d
+	
+	duration = 3
+
+	is_popup = yes
+
+	event_image = {
+		video = "gfx/event_pictures/unspecific_military_parade.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/before_the_battle"
+
+	icon = "gfx/interface/icons/event_icons/event_map.dds"
+
+	trigger = {
+		year >= 1879
+		c:CHL = ROOT
+		exists = c:CHL
+		aggressive_diplomatic_plays_permitted = yes
+		is_diplomatic_play_committed_participant = no
+		is_diplomatic_play_initiator = no
+		is_diplomatic_play_target = no
+		NOT = { has_variable = had_war_of_the_pacific_event }
+		OR = {
+			AND = {
+				any_scope_state = { state_region = s:STATE_SANTIAGO }
+				NOT = { any_scope_state = { state_region = s:STATE_ANTOFAGASTA } }
+			}
+			AND = {
+				any_scope_state = { state_region = s:STATE_ANTOFAGASTA }
+				NOT = { any_scope_state = { state_region = s:STATE_TARAPACA } }
+			}
+		}
+	}
+	
+	immediate = {
+		set_variable = had_war_of_the_pacific_event
+		random_country = {
+			limit = { 
+				NOT = { c:CHL = THIS }
+				is_adjacent_to_country = c:CHL
+				any_scope_state = { state_region = s:STATE_ANTOFAGASTA }
+			}
+			save_scope_as = chl_antofagasta_owner
+		}
+		scope:chl_antofagasta_owner = {
+			random_scope_state = {
+				limit = { state_region = s:STATE_ANTOFAGASTA }
+				save_scope_as = chl_antofagasta
+			}
+		}
+		random_country = {
+			limit = { 
+				NOT = { c:CHL = THIS }
+				is_adjacent_to_country = c:CHL
+				any_scope_state = { state_region = s:STATE_TARAPACA }
+			}
+			save_scope_as = chl_tarapaca_owner
+		}
+		scope:chl_tarapaca_owner = {
+			random_scope_state = {
+				limit = { state_region = s:STATE_TARAPACA }
+				save_scope_as = chl_tarapaca
+			}
+		}
+	}
+
+	option = {
+		name = HJE_latin_america.5.a
+		default_option = yes
+		ai_chance = 100
+
+		s:STATE_ANTOFAGASTA = { add_claim = c:CHL }
+		s:STATE_TARAPACA = { add_claim = c:CHL }
+		if = {
+			limit = {
+				is_player = no
+			}
+			add_modifier = {
+				name = wartime_zeal
+				months = 20
+			}
+		}
+		if = {
+			limit = {
+				c:CHL = { is_player = no }
+				NOT = { any_scope_state = { state_region = s:STATE_ANTOFAGASTA } }
+			}
+			c:CHL = {
+				create_diplomatic_play = {
+	                target_country = scope:chl_antofagasta_owner
+	                type = dp_humiliation
+					war = no
+					add_war_goal = {
+						holder = c:CHL
+						type = return_state
+						target_state = scope:chl_antofagasta
+						primary_demand = yes
+					}
+				}
+			}
+			if = {
+				limit = {
+					NOT = { any_scope_state = { state_region = s:STATE_TARAPACA } }
+					scope:chl_tarapaca_owner = {
+						is_diplomatic_play_enemy_of = c:CHL
+					}
+				}
+		        random_diplomatic_play = {
+					limit = { initiator_is = c:CHL }
+					add_war_goal = {
+						holder = c:CHL
+						type = return_state
+						target_state = scope:chl_tarapaca
+						primary_demand = yes
+					}
+				}
+			}
+		}
+		if = {
+			limit = {
+				c:CHL = { is_player = no }
+				NOT = { any_scope_state = { state_region = s:STATE_TARAPACA } }
+				NOT = { 
+					scope:chl_tarapaca_owner = {
+						is_diplomatic_play_enemy_of = c:CHL
+					}
+				}
+			}
+			c:CHL = {
+				create_diplomatic_play = {
+					target_country = scope:chl_tarapaca_owner
+					type = dp_humiliation
+					war = no
+					add_war_goal = {
+						holder = c:CHL
+						type = return_state
+						target_state = scope:chl_tarapaca
+						primary_demand = yes
+					}
+				}
+			}
+		}
+	}
+
+	option = {
+		name = HJE_latin_america.5.b
+		ai_chance = 0
+		add_modifier = {
+			name = withdrew_from_colonial_incident
+			months = normal_modifier_time
+		}
+	}		
+}
+
+HJE_latin_america.6 = {
+	type = country_event
+	placement = c:BRZ
+	title = HJE_latin_america.6.t
+	flavor = HJE_latin_america.6.f
+	desc = HJE_latin_america.6.d
+
+	duration = 3
+
+	is_popup = yes
+
+	event_image = {
+		video = "gfx/event_pictures/unspecific_politicians_arguing.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/before_the_battle"
+
+	icon = "gfx/interface/icons/event_icons/event_map.dds"
+
+	trigger = {
+	}
+	
+	immediate = {
+	}
+
+	option = {
+		name = HJE_latin_america.6.a
+		ai_chance = {
+			base = 1
+		}
+
+		random_country = {
+			limit = {
+				is_adjacent_to_country = ROOT
+				has_variable = acre_revolt_tag
+			}
+			save_scope_as = acre_republic
+			change_relations = {
+				country = c:BOL
+				value = 40
+			}
+		}
+		every_diplomatic_play = {
+			limit = { initiator_is = scope:acre_republic }
+			add_initiator_backers = { ROOT }
+			add_escalation = 25
+		}
+		create_diplomatic_pact = {
+			country = scope:acre_republic
+			type = protectorate
+		}
+	}
+
+	option = {
+		name = HJE_latin_america.6.b
+		ai_chance = {
+			base = 0
+		}
+		add_modifier = {
+			name = withdrew_from_colonial_incident
+			months = normal_modifier_time
+		}
+	}		
+}
+
+HJE_latin_america.7 = {
+	type = country_event
+	placement = c:MEX
+	title = HJE_latin_america.7.t
+	desc = HJE_latin_america.7.d
+	flavor = HJE_latin_america.7.f
+
+	duration = 3
+
+	is_popup = yes
+
+	event_image = {
+		video = "gfx/event_pictures/southamerica_war_civilians.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/before_the_battle"
+
+	icon = "gfx/interface/icons/event_icons/event_map.dds"
+
+	trigger = {
+	}
+	
+	immediate = {
+	}
+
+	option = {
+		name = HJE_latin_america.7.a
+		default_option = yes
+		ai_chance = {
+			base = 9
+		}
+		add_loyalists = { value = 0.15 }
+		ig:ig_armed_forces = { remove_modifier = ig_government_betrayed }
+		set_ruling_interest_groups = { ig_armed_forces ig_landowners }
+		activate_law = law_type:law_oligarchy
+		activate_law = law_type:law_appointed_bureaucrats
+		activate_law = law_type:law_censorship
+		activate_law = law_type:law_laissez_faire
+		deactivate_law = law_type:law_serfdom
+		activate_law = law_type:law_serfdom
+		activate_law = law_type:law_national_supremacy
+		activate_law = law_type:law_state_religion
+		activate_law = law_type:law_religious_schools
+		activate_law = law_type:law_professional_army
+	}
+
+	option = {
+		name = HJE_latin_america.7.b
+		ai_chance = {
+			base = 1
+		}
+
+		add_loyalists = { value = 0.4 }
+		ig:ig_armed_forces = { remove_ruling_interest_group = yes }
+		custom_tooltip = mexican_army_revolt_tt
+		hidden_effect = {
+			ig:ig_armed_forces = { remove_modifier = ig_government_betrayed }
+			create_country = {
+				origin = c:MEX
+				state = s:STATE_MEXICO.region_state:MEX
+				state = s:STATE_VERACRUZ.region_state:MEX
+				state = s:STATE_BAJIO.region_state:MEX
+				state = s:STATE_RIO_GRANDE.region_state:MEX
+				state = s:STATE_ZACATECAS.region_state:MEX
+				state = s:STATE_DURANGO.region_state:MEX
+				state = s:STATE_SINALOA.region_state:MEX
+
+				on_created = { 
+					set_variable = military_mexico
+					add_loyalists = { value = 0.05 }
+					ig:ig_armed_forces = { remove_modifier = ig_government_betrayed }
+					set_ruling_interest_groups = { ig_armed_forces ig_landowners }
+					activate_law = law_type:law_oligarchy
+					activate_law = law_type:law_appointed_bureaucrats
+					activate_law = law_type:law_censorship
+					activate_law = law_type:law_laissez_faire
+					deactivate_law = law_type:law_serfdom
+					activate_law = law_type:law_agrarianism
+					activate_law = law_type:law_tenent_farming
+					activate_law = law_type:law_national_supremacy
+					activate_law = law_type:law_state_religion
+					activate_law = law_type:law_religious_schools
+					activate_law = law_type:law_professional_army
+					add_modifier = {
+						name = modifier_mex_porfiriato
+						months = -1
+					}
+					create_diplomatic_play = {
+						target_country = c:MEX
+						type = dp_annex_war
+						war = yes
+					}
+				}
+			}
+			random_country = {
+				limit = { has_variable = military_mexico }
+				save_scope_as = military_mexico
+				random_diplomatic_play = {
+					limit = { initiator_is = PREV }
+					remove_war_goal = {
+						who = c:MEX
+						war_goal = war_reparations
+					}
+					add_war_goal = {
+						holder = c:MEX
+						type = annex_country
+						target_country = PREV				
+						primary_demand = yes
+					}
+				}
+			}
+			every_state = {
+				limit = { has_claim_by = c:MEX }
+				this.state_region = { add_claim = scope:military_mexico }
+			}
+		}
+	}		
+}
+
+HJE_latin_america.8 = {
+	type = country_event
+	placement = c:MEX
+	title = HJE_latin_america.8.t
+	desc = HJE_latin_america.8.d
+	flavor = HJE_latin_america.8.f
+
+	duration = 3
+
+	is_popup = yes
+
+	event_image = {
+		video = "gfx/event_pictures/unspecific_politicians_arguing.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/before_the_battle"
+
+	icon = "gfx/interface/icons/event_icons/event_map.dds"
+
+	trigger = {
+	}
+	
+	immediate = {
+	}
+
+	option = {
+		name = HJE_latin_america.8.a
+		ai_chance = { base = 0 }
+
+		if = {
+			limit = { NOT = { has_technology_researched = egalitarianism } }
+			add_technology_researched = egalitarianism
+		}
+		if = {
+			limit = { NOT = { has_technology_researched = labor_movement } }
+			add_technology_researched = labor_movement
+		}
+		add_loyalists = { value = 0.15 }
+		ig:ig_intelligentsia = { remove_modifier = ig_government_betrayed }
+		set_variable = maderista_mexico
+		set_variable = faction_in_mexican_civil_war
+		add_modifier = {
+			name = mexican_civil_war
+			months = -1
+		}
+		set_ruling_interest_groups = { ig_intelligentsia ig_armed_forces }
+		ig:ig_landowners = { add_ideology = ideology:ideology_caudillismo }
+		ig:ig_armed_forces = { add_ideology = ideology:ideology_caudillismo }
+		ig:ig_intelligentsia = { add_ideology = ideology:ideology_liberal }
+		ig:ig_rural_folk = { add_ideology = ideology:ideology_proletarian }
+		ig:ig_trade_unions = { add_ideology = ideology:ideology_proletarian }
+		activate_law = law_type:law_landed_voting
+		activate_law = law_type:law_appointed_bureaucrats
+		activate_law = law_type:law_censorship
+		activate_law = law_type:law_traditionalism
+		activate_law = law_type:law_interventionism
+		activate_law = law_type:law_tenent_farming
+		activate_law = law_type:law_racial_segregation
+		activate_law = law_type:law_freedom_of_conscience
+		if = {
+			limit = {
+				NOT = {	has_modifier = modifier_mex_porfiriato }
+			}
+			add_modifier = {
+				name = modifier_mex_porfiriato
+				months = -1
+			}
+		}
+		ruler = {
+			set_ideology = ideology:ideology_reformer
+		}
+		set_global_variable = {
+			name = mexican_revolution
+			value = yes
+		}
+		custom_tooltip = mexican_civil_war_tt
+	}
+
+	option = {
+		name = HJE_latin_america.8.b
+		default_option = yes
+		ai_chance = { base = 1 }
+		activate_law = law_type:law_autocracy
+		if = {
+			limit = {
+				NOT = {	has_modifier = modifier_mex_porfiriato }
+			}
+			add_modifier = {
+				name = modifier_mex_porfiriato
+				months = -1
+			}
+		}
+
+		custom_tooltip = mexican_revolution_possible_tt
+		hidden_effect = {
+			random_list = {
+				10 = { trigger = { is_player = yes } }
+				90 = {
+					trigger_event = { id = HJE_latin_america.9 days = 30 popup = yes }
+				}
+			}
+		}
+	}		
+}
+
+HJE_latin_america.9 = {
+	type = country_event
+	placement = c:MEX
+	title = HJE_latin_america.9.t
+	desc = HJE_latin_america.9.d
+	flavor = HJE_latin_america.9.f
+
+	duration = 3
+
+	is_popup = yes
+
+	event_image = {
+		video = "gfx/event_pictures/southamerica_war_civilians.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/before_the_battle"
+
+	icon = "gfx/interface/icons/event_icons/event_map.dds"
+
+	trigger = {
+	}
+	
+	immediate = {
+		add_loyalists = { value = 0.3 }
+		if = {
+			limit = { NOT = { has_technology_researched = egalitarianism } }
+			add_technology_researched = egalitarianism
+		}
+		if = {
+			limit = { NOT = { has_technology_researched = labor_movement } }
+			add_technology_researched = labor_movement
+		}
+		ig:ig_intelligentsia = { remove_ruling_interest_group = yes }
+		ig:ig_landowners = { remove_ruling_interest_group = yes }
+		hidden_effect = {
+			set_global_variable = {
+				name = mexican_revolution
+				value = yes
+			}
+			ig:ig_intelligentsia = { remove_modifier = ig_government_betrayed }
+			create_country = {
+				origin = c:MEX
+				state = s:STATE_CHIHUAHUA.region_state:MEX
+				state = s:STATE_SONORA.region_state:MEX
+				state = s:STATE_DURANGO.region_state:MEX
+				state = s:STATE_ZACATECAS.region_state:MEX
+				state = s:STATE_BAJIO.region_state:MEX
+
+				on_created = { 
+					set_variable = maderista_mexico
+					set_variable = faction_in_mexican_civil_war
+					add_modifier = {
+						name = mexican_civil_war
+						months = -1
+					}
+					set_ruling_interest_groups = { ig_intelligentsia ig_armed_forces }
+					ig:ig_landowners = { add_ideology = ideology:ideology_caudillismo }
+					ig:ig_armed_forces = { add_ideology = ideology:ideology_caudillismo }
+					ig:ig_intelligentsia = { add_ideology = ideology:ideology_liberal }
+					ig:ig_rural_folk = { add_ideology = ideology:ideology_proletarian }
+					ig:ig_trade_unions = { add_ideology = ideology:ideology_proletarian }
+					activate_law = law_type:law_landed_voting
+					activate_law = law_type:law_appointed_bureaucrats
+					activate_law = law_type:law_censorship
+					activate_law = law_type:law_traditionalism
+					activate_law = law_type:law_interventionism
+					activate_law = law_type:law_tenent_farming
+					activate_law = law_type:law_racial_segregation
+					activate_law = law_type:law_freedom_of_conscience
+					if = {
+						limit = { NOT = { has_technology_researched = egalitarianism } }
+						add_technology_researched = egalitarianism
+					}
+					if = {
+						limit = { NOT = { has_technology_researched = labor_movement } }
+						add_technology_researched = labor_movement
+					}
+					ruler = {
+						set_ideology = ideology:ideology_reformer
+					}
+					if = {
+						limit = {
+							NOT = {	has_modifier = modifier_mex_porfiriato }
+						}
+						add_modifier = {
+							name = modifier_mex_porfiriato
+							months = -1
+						}
+					}
+					add_modifier = {
+						name = revolutionary_zeal
+						months = 9
+					}
+					create_diplomatic_play = {
+						target_country = c:MEX
+						type = dp_annex_war
+						war = yes
+					}
+				}
+			}
+			random_country = {
+				limit = { has_variable = maderista_mexico }
+				save_scope_as = maderista_mexico
+				random_diplomatic_play = {
+					limit = { initiator_is = PREV }
+					remove_war_goal = {
+						who = c:MEX
+						war_goal = war_reparations
+					}
+					add_war_goal = {
+						holder = c:MEX
+						type = annex_country
+						target_country = PREV				
+						primary_demand = yes
+					}
+				}
+			}
+			every_state = {
+				limit = { has_claim_by = c:MEX }
+				this.state_region = { add_claim = scope:maderista_mexico }
+			}
+		}
+	}
+
+	option = {
+		name = HJE_latin_america.9.a
+		ai_chance = { base = 1 }
+	}
+
+	option = {
+		name = HJE_latin_america.9.b
+		default_option = yes
+		trigger = { is_player = yes }
+		ai_chance = { base = 0 }
+		random_country = {
+			limit = { has_variable = maderista_mexico }
+			ROOT = { play_as = PREV }
+		}
+	}		
+}
+
+HJE_latin_america.10 = {
+	type = country_event
+	placement = c:MEX
+	title = HJE_latin_america.10.t
+	desc = HJE_latin_america.10.d
+	flavor = HJE_latin_america.10.f
+
+	duration = 3
+
+	is_popup = yes
+
+	event_image = {
+		video = "gfx/event_pictures/southamerica_war_civilians.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/before_the_battle"
+
+	icon = "gfx/interface/icons/event_icons/event_map.dds"
+
+	trigger = {
+	}
+	
+	immediate = {
+		add_loyalists = { value = 0.25 }
+		ig:ig_rural_folk = { remove_ruling_interest_group = yes }
+		ig:ig_trade_unions = { remove_ruling_interest_group = yes }
+		if = {
+			limit = { NOT = { has_technology_researched = anarchism } }
+			add_technology_researched = anarchism
+		}
+		if = {
+			limit = { NOT = { has_technology_researched = socialism } }
+			add_technology_researched = socialism
+		}
+		hidden_effect = {
+			create_country = {
+				origin = c:MEX
+				state = s:STATE_OAXACA.region_state:MEX
+				state = s:STATE_CHIAPAS.region_state:MEX
+				state = s:STATE_YUCATAN.region_state:MEX
+
+				on_created = { 
+					set_variable = zapatista_mexico
+					set_variable = faction_in_mexican_civil_war
+					add_modifier = {
+						name = mexican_civil_war
+						months = -1
+					}
+					if = {
+						limit = { NOT = { has_technology_researched = anarchism } }
+						add_technology_researched = anarchism
+					}
+					if = {
+						limit = { NOT = { has_technology_researched = socialism } }
+						add_technology_researched = socialism
+					}
+					set_ruling_interest_groups = { ig_rural_folk ig_trade_unions ig_devout }
+					ig:ig_landowners = { add_ideology = ideology:ideology_proletarian }
+					ig:ig_armed_forces = { add_ideology = ideology:ideology_proletarian }
+					ig:ig_intelligentsia = { add_ideology = ideology:ideology_proletarian }
+					ig:ig_rural_folk = { add_ideology = ideology:ideology_proletarian }
+					ig:ig_trade_unions = { add_ideology = ideology:ideology_proletarian }
+					ig:ig_devout = { add_ideology = ideology:ideology_proletarian }
+					activate_law = law_type:law_council_republic
+					activate_law = law_type:law_anarchy
+					activate_law = law_type:law_elected_bureaucrats
+					activate_law = law_type:law_right_of_assembly
+					activate_law = law_type:law_cooperative_ownership
+					activate_law = law_type:law_worker_protections
+					activate_law = law_type:law_multicultural
+					activate_law = law_type:law_public_health_insurance
+					ruler = {
+						set_ideology = ideology:ideology_anarchist
+						add_character_role = general
+					}
+					add_modifier = {
+						name = guerilla_warfare
+						months = 30
+					}
+					create_diplomatic_play = {
+						target_country = c:MEX
+						type = dp_annex_war
+						war = yes
+					}
+				}
+			}
+			random_country = {
+				limit = { has_variable = zapatista_mexico }
+				save_scope_as = zapatista_mexico
+				every_country = {
+					limit = { 
+						has_variable = faction_in_mexican_civil_war 
+						exists = c:MEX
+						NOT = { c:MEX = THIS }
+						NOT = { PREV = THIS }
+					}
+					create_diplomatic_play = {
+						target_country = PREV
+						type = dp_annex_war
+						war = yes
+					}
+					if = {
+						limit = { NOT = { has_technology_researched = anarchism } }
+						add_technology_researched = anarchism
+					}
+					if = {
+						limit = { NOT = { has_technology_researched = socialism } }
+						add_technology_researched = socialism
+					}
+				}
+				random_diplomatic_play = {
+					limit = { initiator_is = PREV }
+					remove_war_goal = {
+						who = c:MEX
+						war_goal = war_reparations
+					}
+					add_war_goal = {
+						holder = c:MEX
+						type = annex_country
+						target_country = PREV				
+						primary_demand = yes
+					}
+				}
+				every_diplomatic_play = {
+					limit = { target_is = PREV }
+					remove_war_goal = {
+						who = c:MEX
+						war_goal = war_reparations
+					}
+					add_war_goal = {
+						holder = PREV
+						type = annex_country
+						target_country = initiator				
+						primary_demand = yes
+					}
+				}
+			}
+			every_state = {
+				limit = { has_claim_by = c:MEX }
+				this.state_region = { add_claim = scope:zapatista_mexico }
+			}
+		}
+	}
+
+	option = {
+		name = HJE_latin_america.10.a
+		ai_chance = { base = 1 }
+	}
+
+	option = {
+		name = HJE_latin_america.10.b
+		default_option = yes
+		trigger = { is_player = yes }
+		ai_chance = { base = 0 }
+		random_country = {
+			limit = { has_variable = zapatista_mexico }
+			ROOT = { play_as = PREV }
+		}
+	}		
+}
+
+HJE_latin_america.11 = {
+	type = country_event
+	placement = c:MEX
+	title = HJE_latin_america.11.t
+	desc = HJE_latin_america.11.d
+	flavor = HJE_latin_america.11.f
+
+	duration = 3
+
+	is_popup = yes
+
+	event_image = {
+		video = "gfx/event_pictures/southamerica_public_figure_assassination.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/before_the_battle"
+
+	icon = "gfx/interface/icons/event_icons/event_map.dds"
+
+	trigger = {
+	}
+	
+	immediate = {
+		if = {
+			limit = { 
+				has_state_in_state_region = STATE_RIO_GRANDE 
+				has_state_in_state_region = STATE_ZACATECAS 
+				has_state_in_state_region = STATE_BAJIO 
+			}
+			create_country = {
+				origin = c:MEX
+				state = s:STATE_RIO_GRANDE.region_state:MEX
+				state = s:STATE_BAJIO.region_state:MEX
+				state = s:STATE_ZACATECAS.region_state:MEX
+
+				on_created = { 
+					set_variable = constitutionalist_mexico
+					set_variable = faction_in_mexican_civil_war
+					add_modifier = {
+						name = mexican_civil_war
+						months = -1
+					}
+					set_ruling_interest_groups = { ig_intelligentsia ig_rural_folk ig_trade_unions }
+					ig:ig_landowners = { add_ideology = ideology:ideology_egalitarian }
+					ig:ig_armed_forces = { add_ideology = ideology:ideology_egalitarian }
+					ig:ig_intelligentsia = { add_ideology = ideology:ideology_egalitarian }
+					ig:ig_rural_folk = { add_ideology = ideology:ideology_egalitarian }
+					ig:ig_trade_unions = { add_ideology = ideology:ideology_egalitarian }
+					activate_law = law_type:law_census_voting
+					activate_law = law_type:law_elected_bureaucrats
+					activate_law = law_type:law_national_guard
+					activate_law = law_type:law_protected_speech
+					activate_law = law_type:law_cooperative_ownership
+					activate_law = law_type:law_worker_protections
+					activate_law = law_type:law_multicultural
+					activate_law = law_type:law_public_schools
+					activate_law = law_type:law_public_health_insurance
+					add_modifier = {
+						name = guerilla_warfare
+						months = 30
+					}
+					add_modifier = {
+						name = revolutionary_zeal
+						months = 24
+					}
+					create_diplomatic_play = {
+						target_country = c:MEX
+						type = dp_annex_war
+						war = yes
+					}
+				}
+			}
+			random_country = {
+				limit = { has_variable = constitutionalist_mexico }
+				save_scope_as = constitutionalist_mexico
+
+				every_country = {
+					limit = { 
+						has_variable = faction_in_mexican_civil_war 
+						exists = c:MEX
+						NOT = { c:MEX = THIS }
+						NOT = { PREV = THIS }
+					}
+					create_diplomatic_play = {
+						target_country = PREV
+						type = dp_annex_war
+						war = yes
+					}
+				}
+				random_diplomatic_play = {
+					limit = { initiator_is = PREV }
+					remove_war_goal = {
+						who = c:MEX
+						war_goal = war_reparations
+					}
+					add_war_goal = {
+						holder = c:MEX
+						type = annex_country
+						target_country = PREV				
+						primary_demand = yes
+					}
+				}
+				every_diplomatic_play = {
+					limit = { target_is = PREV }
+					remove_war_goal = {
+						who = c:MEX
+						war_goal = war_reparations
+					}
+					add_war_goal = {
+						holder = PREV
+						type = annex_country
+						target_country = initiator				
+						primary_demand = yes
+					}
+				}
+			}
+			every_state = {
+				limit = { has_claim_by = c:MEX }
+				this.state_region = { add_claim = scope:constitutionalist_mexico }
+			}
+		}
+	}
+
+	option = {
+		name = HJE_latin_america.11.a
+		default_option = yes
+		ai_chance = {
+			base = 1
+		}
+
+		ruler = { kill_character = yes }
+		add_loyalists = { value = -0.25 }
+		set_ruling_interest_groups = { ig_armed_forces ig_landowners }
+		activate_law = law_type:law_oligarchy
+		activate_law = law_type:law_appointed_bureaucrats
+		activate_law = law_type:law_censorship
+		activate_law = law_type:law_laissez_faire
+		deactivate_law = law_type:law_serfdom
+		activate_law = law_type:law_national_supremacy
+		activate_law = law_type:law_state_religion
+		activate_law = law_type:law_religious_schools
+		activate_law = law_type:law_professional_army
+		remove_variable = maderista_mexico
+		set_variable = huertista_mexico
+	}	
+	option = {
+		name = HJE_latin_america.11.b
+		trigger = { 
+			is_player = yes 
+			any_country = {
+				has_variable = constitutionalist_mexico
+			}
+		}
+		ai_chance = { base = 0 }
+		ruler = { kill_character = yes }
+		add_loyalists = { value = -0.25 }
+		set_ruling_interest_groups = { ig_armed_forces ig_landowners }
+		activate_law = law_type:law_oligarchy
+		activate_law = law_type:law_appointed_bureaucrats
+		activate_law = law_type:law_censorship
+		activate_law = law_type:law_laissez_faire
+		deactivate_law = law_type:law_serfdom
+		activate_law = law_type:law_national_supremacy
+		activate_law = law_type:law_state_religion
+		activate_law = law_type:law_religious_schools
+		activate_law = law_type:law_professional_army
+		remove_variable = maderista_mexico
+		set_variable = huertista_mexico
+		random_country = {
+			limit = { has_variable = constitutionalist_mexico }
+			ROOT = { play_as = PREV }
+		}
+	}	
+}
+
+HJE_latin_america.12 = {
+	type = country_event
+	placement = c:MEX
+	title = HJE_latin_america.12.t
+	desc = HJE_latin_america.12.d
+	flavor = HJE_latin_america.12.f
+
+	duration = 3
+
+	is_popup = yes
+
+	event_image = {
+		video = "gfx/event_pictures/middleeast_battlefield_trenches.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/before_the_battle"
+
+	icon = "gfx/interface/icons/event_icons/event_map.dds"
+
+	trigger = {
+	}
+	
+	immediate = {
+		add_loyalists = { value = 0.25 }
+		ig:ig_rural_folk = { remove_ruling_interest_group = yes }
+		ig:ig_trade_unions = { remove_ruling_interest_group = yes }
+		if = {
+			limit = { NOT = { has_technology_researched = socialism } }
+			add_technology_researched = socialism
+		}
+		create_country = {
+			origin = c:MEX
+			state = s:STATE_SONORA.region_state:MEX
+			state = s:STATE_CHIHUAHUA.region_state:MEX
+			state = s:STATE_DURANGO.region_state:MEX
+			state = s:STATE_SINALOA.region_state:MEX
+
+			on_created = { 
+				set_variable = conventionalist_mexico
+				set_variable = faction_in_mexican_civil_war
+				add_modifier = {
+					name = mexican_civil_war
+					months = -1
+				}
+				if = {
+					limit = { NOT = { has_technology_researched = socialism } }
+					add_technology_researched = socialism
+				}
+				set_ruling_interest_groups = { ig_rural_folk ig_trade_unions ig_armed_forces }
+				ig:ig_landowners = { add_ideology = ideology:ideology_proletarian }
+				ig:ig_armed_forces = { add_ideology = ideology:ideology_proletarian }
+				ig:ig_intelligentsia = { add_ideology = ideology:ideology_proletarian }
+				ig:ig_rural_folk = { add_ideology = ideology:ideology_proletarian }
+				ig:ig_trade_unions = { add_ideology = ideology:ideology_proletarian }
+				activate_law = law_type:law_council_republic
+				activate_law = law_type:law_oligarchy
+				activate_law = law_type:law_elected_bureaucrats
+				activate_law = law_type:law_cooperative_ownership
+				activate_law = law_type:law_worker_protections
+				activate_law = law_type:law_multicultural
+				activate_law = law_type:law_public_health_insurance
+				ruler = { add_character_role = general }
+				add_modifier = {
+					name = revolutionary_zeal
+					months = 3
+				}
+				add_modifier = {
+					name = guerilla_warfare
+					months = 30
+				}
+				create_diplomatic_play = {
+					target_country = c:MEX
+					type = dp_annex_war
+					war = yes
+				}
+			}
+		}
+		random_country = {
+			limit = { has_variable = conventionalist_mexico }
+			save_scope_as = conventionalist_mexico
+			every_country = {
+				limit = { 
+					has_variable = faction_in_mexican_civil_war 
+					exists = c:MEX
+					NOT = { c:MEX = THIS }
+					NOT = { PREV = THIS }
+				}
+				create_diplomatic_play = {
+					target_country = PREV
+					type = dp_annex_war
+					war = yes
+				}
+				if = {
+					limit = { NOT = { has_technology_researched = socialism } }
+					add_technology_researched = socialism
+				}
+			}
+			random_diplomatic_play = {
+				limit = { initiator_is = PREV }
+				remove_war_goal = {
+					who = c:MEX
+					war_goal = war_reparations
+				}
+				add_war_goal = {
+					holder = c:MEX
+					type = annex_country
+					target_country = PREV				
+					primary_demand = yes
+				}
+			}
+			every_diplomatic_play = {
+				limit = { target_is = PREV }
+				remove_war_goal = {
+					who = c:MEX
+					war_goal = war_reparations
+				}
+				add_war_goal = {
+					holder = PREV
+					type = annex_country
+					target_country = initiator				
+					primary_demand = yes
+				}
+			}
+		}
+		every_state = {
+			limit = { has_claim_by = c:MEX }
+			this.state_region = { add_claim = scope:conventionalist_mexico }
+		}
+	}
+
+	option = {
+		name = HJE_latin_america.12.a
+		ai_chance = { base = 1 }
+	}
+
+	option = {
+		name = HJE_latin_america.12.b
+		default_option = yes
+		trigger = { is_player = yes }
+		ai_chance = { base = 0 }
+		random_country = {
+			limit = { has_variable = conventionalist_mexico }
+			ROOT = { play_as = PREV }
+		}
+	}		
+}
+
+HJE_latin_america.13 = {
+	type = country_event
+	placement = c:MEX
+	title = HJE_latin_america.13.t
+	desc = HJE_latin_america.13.d
+	flavor = HJE_latin_america.13.f
+
+	duration = 3
+
+	is_popup = yes
+
+	event_image = {
+		video = "gfx/event_pictures/southamerica_public_figure_assassination.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/before_the_battle"
+
+	icon = "gfx/interface/icons/event_icons/event_map.dds"
+
+	trigger = {
+	}
+	
+	immediate = {
+	}
+
+	option = {
+		name = HJE_latin_america.13.a
+		default_option = yes
+		ai_chance = {
+			base = 1
+		}
+
+		ruler = { kill_character = yes }
+		add_loyalists = { value = 0.15 }
+	}
+}
+
+HJE_latin_america.14 = {
+	type = country_event
+	placement = c:BRZ
+	title = HJE_latin_america.14.t
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = { has_law = law_type:law_slavery_banned }
+				desc = HJE_latin_america.14.d1
+			}
+			triggered_desc = {
+				trigger = { always = yes }
+				desc = HJE_latin_america.14.d2
+			}
+		}
+	}
+	flavor = {
+		first_valid = {
+			triggered_desc = {
+				trigger = { has_law = law_type:law_slavery_banned }
+				desc = HJE_latin_america.14.f1
+			}
+			triggered_desc = {
+				trigger = { always = yes }
+				desc = HJE_latin_america.14.f2
+			}
+		}
+	}
+
+	duration = 3
+
+	is_popup = yes
+
+	event_image = {
+		video = "gfx/event_pictures/unspecific_signed_contract.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/before_the_battle"
+
+	icon = "gfx/interface/icons/event_icons/event_map.dds"
+
+	trigger = {
+	}
+	
+	immediate = {
+	}
+
+	option = {
+		name = HJE_latin_america.14.a
+		default_option = yes
+		ai_chance = {
+			base = 9
+		}
+		add_loyalists = { value = -0.1 }
+
+		if = {
+			limit = { has_law = law_type:law_slavery_banned }
+			set_ruling_interest_groups = { ig_landowners ig_armed_forces }
+			ig:ig_landowners = { add_ideology = ideology:ideology_caudillismo }
+			ig:ig_armed_forces = { add_ideology = ideology:ideology_caudillismo }
+			activate_law = law_type:law_presidential_republic
+			activate_law = law_type:law_oligarchy
+			activate_law = law_type:law_landed_voting
+			activate_law = law_type:law_appointed_bureaucrats
+			activate_law = law_type:law_censorship
+			add_modifier = {
+				name = age_of_caudillos_modifier
+				months = very_long_modifier_time
+				is_decaying = yes
+			}
+		}
+		else = {
+			set_ruling_interest_groups = { ig_intelligentsia ig_petty_bourgeoisie }
+			ig:ig_intelligentsia = { add_ideology = ideology:ideology_radical }
+			ig:ig_petty_bourgeoisie = { add_ideology = ideology:ideology_radical }
+			activate_law = law_type:law_presidential_republic
+			activate_law = law_type:law_slavery_banned
+			activate_law = law_type:law_census_voting
+			activate_law = law_type:law_multicultural
+			activate_law = law_type:law_elected_bureaucrats
+			activate_law = law_type:law_right_of_assembly
+		}
+	}
+
+	option = {
+		name = HJE_latin_america.14.b
+		ai_chance = {
+			base = 1
+		}
+
+		if = {
+			limit = { has_law = law_type:law_slavery_banned }
+			add_loyalists = { value = 0.2 }
+			ig:ig_landowners = { remove_ruling_interest_group = yes }
+			ig:ig_armed_forces = { remove_ruling_interest_group = yes }
+			custom_tooltip = brazilian_army_revolt_tt
+			hidden_effect = {
+				create_country = {
+					origin = c:BRZ
+					state = s:STATE_BAHIA.region_state:BRZ
+					state = s:STATE_PERNAMBUCO.region_state:BRZ
+					state = s:STATE_PARAIBA.region_state:BRZ
+					state = s:STATE_RIO_GRANDE_DO_NORTE.region_state:BRZ
+					state = s:STATE_CEARA.region_state:BRZ
+					state = s:STATE_PIAUI.region_state:BRZ
+					state = s:STATE_MARANHAO.region_state:BRZ
+					state = s:STATE_PARA.region_state:BRZ
+					state = s:STATE_GOIAS.region_state:BRZ
+
+					on_created = { 
+						set_variable = military_brazil
+						add_loyalists = { value = 0.05 }
+						set_ruling_interest_groups = { ig_landowners ig_armed_forces }
+						ig:ig_landowners = { add_ideology = ideology:ideology_caudillismo }
+						ig:ig_armed_forces = { add_ideology = ideology:ideology_caudillismo }
+						activate_law = law_type:law_presidential_republic
+						activate_law = law_type:law_oligarchy
+						activate_law = law_type:law_appointed_bureaucrats
+						activate_law = law_type:law_censorship
+						add_modifier = {
+							name = age_of_caudillos_modifier
+							months = very_long_modifier_time
+							is_decaying = yes
+						}
+						create_diplomatic_play = {
+							target_country = c:BRZ
+							type = dp_annex_war
+							war = yes
+						}
+					}
+				}
+				random_country = {
+					limit = { has_variable = military_brazil }
+					save_scope_as = military_brazil
+					random_diplomatic_play = {
+						limit = { initiator_is = PREV }
+						remove_war_goal = {
+							who = c:BRZ
+							war_goal = war_reparations
+						}
+						add_war_goal = {
+							holder = c:BRZ
+							type = annex_country
+							target_country = PREV				
+							primary_demand = yes
+						}
+					}
+				}
+				every_state = {
+					limit = { has_claim_by = c:BRZ }
+					this.state_region = { add_claim = scope:military_brazil }
+				}
+			}
+			set_ruling_interest_groups = { ig_intelligentsia ig_petty_bourgeoisie }
+			ig:ig_intelligentsia = { add_ideology = ideology:ideology_radical }
+			ig:ig_petty_bourgeoisie = { add_ideology = ideology:ideology_radical }
+			activate_law = law_type:law_census_voting
+			activate_law = law_type:law_multicultural
+			activate_law = law_type:law_elected_bureaucrats
+			activate_law = law_type:law_right_of_assembly
+		}
+		else = {
+			add_loyalists = { value = 0.05 }
+			ig:ig_petty_bourgeoisie = { remove_ruling_interest_group = yes }
+			ig:ig_intelligentsia = { remove_ruling_interest_group = yes }
+			custom_tooltip = brazilian_radical_revolt_tt
+			hidden_effect = {
+				create_country = {
+					origin = c:BRZ
+					state = s:STATE_RIO_DE_JANEIRO.region_state:BRZ
+					state = s:STATE_MINAS_GERAIS.region_state:BRZ
+					state = s:STATE_SAO_PAULO.region_state:BRZ
+					state = s:STATE_PARANA.region_state:BRZ
+					state = s:STATE_SANTA_CATARINA.region_state:BRZ
+					state = s:STATE_RIO_GRANDE_DO_SUL.region_state:BRZ
+					state = s:STATE_MATO_GROSSO.region_state:BRZ
+					state = s:STATE_AMAZONAS.region_state:BRZ
+
+					on_created = { 
+						set_variable = radical_brazil
+						set_ruling_interest_groups = { ig_intelligentsia ig_petty_bourgeoisie }
+						ig:ig_intelligentsia = { add_ideology = ideology:ideology_radical }
+						ig:ig_petty_bourgeoisie = { add_ideology = ideology:ideology_radical }
+						activate_law = law_type:law_presidential_republic
+						activate_law = law_type:law_census_voting
+						activate_law = law_type:law_multicultural
+						activate_law = law_type:law_elected_bureaucrats
+						activate_law = law_type:law_right_of_assembly
+						add_loyalists = { value = 0.2 }
+
+						create_diplomatic_play = {
+							target_country = c:BRZ
+							type = dp_annex_war
+							war = yes
+						}
+					}
+				}
+				random_country = {
+					limit = { has_variable = radical_brazil }
+					save_scope_as = radical_brazil
+					random_diplomatic_play = {
+						limit = { initiator_is = PREV }
+						remove_war_goal = {
+							who = c:BRZ
+							war_goal = war_reparations
+						}
+						add_war_goal = {
+							holder = c:BRZ
+							type = annex_country
+							target_country = PREV				
+							primary_demand = yes
+						}
+					}
+				}
+				every_state = {
+					limit = { has_claim_by = c:BRZ }
+					this.state_region = { add_claim = scope:radical_brazil }
+				}
+			}
+			set_ruling_interest_groups = { ig_landowners ig_armed_forces }
+			ig:ig_landowners = { add_ideology = ideology:ideology_caudillismo }
+			ig:ig_armed_forces = { add_ideology = ideology:ideology_caudillismo }
+			activate_law = law_type:law_oligarchy
+			activate_law = law_type:law_appointed_bureaucrats
+			activate_law = law_type:law_censorship
+			add_modifier = {
+				name = age_of_caudillos_modifier
+				months = very_long_modifier_time
+				is_decaying = yes
+			}
+		}
+	}		
+}
+
+HJE_latin_america.15 = {
+	type = country_event
+	placement = c:BRZ
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = { has_law = law_type:law_slavery_banned }
+				desc = HJE_latin_america.15.d1
+			}
+			triggered_desc = {
+				trigger = { always = yes }
+				desc = HJE_latin_america.15.d2
+			}
+		}
+	}
+	flavor = {
+		first_valid = {
+			triggered_desc = {
+				trigger = { has_law = law_type:law_slavery_banned }
+				desc = HJE_latin_america.15.f1
+			}
+			triggered_desc = {
+				trigger = { always = yes }
+				desc = HJE_latin_america.15.f2
+			}
+		}
+	}
+
+	duration = 3
+
+	is_popup = yes
+
+	event_image = {
+		video = "gfx/event_pictures/unspecific_signed_contract.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/before_the_battle"
+
+	icon = "gfx/interface/icons/event_icons/event_map.dds"
+
+	trigger = {
+	}
+	
+	immediate = {
+	}
+
+	option = {
+		name = HJE_latin_america.15.a
+		default_option = yes
+		ai_chance = {
+			base = 6
+		}
+		add_loyalists = { value = -0.1 }
+
+		if = {
+			limit = { has_law = law_type:law_slavery_banned }
+			set_ruling_interest_groups = { ig_landowners ig_armed_forces }
+			ig:ig_landowners = { add_ideology = ideology:ideology_caudillismo }
+			ig:ig_armed_forces = { add_ideology = ideology:ideology_caudillismo }
+			activate_law = law_type:law_monarchy
+			activate_law = law_type:law_oligarchy
+			activate_law = law_type:law_appointed_bureaucrats
+			activate_law = law_type:law_censorship
+			add_modifier = {
+				name = age_of_caudillos_modifier
+				months = very_long_modifier_time
+				is_decaying = yes
+			}
+		}
+		else = {
+			set_ruling_interest_groups = { ig_intelligentsia ig_petty_bourgeoisie }
+			ig:ig_intelligentsia = { add_ideology = ideology:ideology_radical }
+			ig:ig_petty_bourgeoisie = { add_ideology = ideology:ideology_radical }
+			activate_law = law_type:law_monarchy
+			activate_law = law_type:law_slavery_banned
+			activate_law = law_type:law_census_voting
+			activate_law = law_type:law_multicultural
+			activate_law = law_type:law_elected_bureaucrats
+			activate_law = law_type:law_right_of_assembly
+		}
+	}
+
+	option = {
+		name = HJE_latin_america.15.b
+		ai_chance = {
+			base = 1
+		}
+
+		if = {
+			limit = { has_law = law_type:law_slavery_banned }
+			add_loyalists = { value = 0.2 }
+			ig:ig_landowners = { remove_ruling_interest_group = yes }
+			ig:ig_armed_forces = { remove_ruling_interest_group = yes }
+			custom_tooltip = brazilian_army_revolt_tt
+			hidden_effect = {
+				create_country = {
+					origin = c:BRZ
+					state = s:STATE_BAHIA.region_state:BRZ
+					state = s:STATE_PERNAMBUCO.region_state:BRZ
+					state = s:STATE_PARAIBA.region_state:BRZ
+					state = s:STATE_RIO_GRANDE_DO_NORTE.region_state:BRZ
+					state = s:STATE_CEARA.region_state:BRZ
+					state = s:STATE_PIAUI.region_state:BRZ
+					state = s:STATE_MARANHAO.region_state:BRZ
+					state = s:STATE_PARA.region_state:BRZ
+					state = s:STATE_GOIAS.region_state:BRZ
+
+					on_created = { 
+						set_variable = military_brazil
+						add_loyalists = { value = 0.05 }
+						set_ruling_interest_groups = { ig_landowners ig_armed_forces }
+						ig:ig_landowners = { add_ideology = ideology:ideology_caudillismo }
+						ig:ig_armed_forces = { add_ideology = ideology:ideology_caudillismo }
+						activate_law = law_type:law_monarchy
+						activate_law = law_type:law_oligarchy
+						activate_law = law_type:law_appointed_bureaucrats
+						activate_law = law_type:law_censorship
+						add_modifier = {
+							name = age_of_caudillos_modifier
+							months = very_long_modifier_time
+							is_decaying = yes
+						}
+						create_diplomatic_play = {
+							target_country = c:BRZ
+							type = dp_annex_war
+							war = yes
+						}
+					}
+				}
+				random_country = {
+					limit = { has_variable = military_brazil }
+					save_scope_as = military_brazil
+					random_diplomatic_play = {
+						limit = { initiator_is = PREV }
+						remove_war_goal = {
+							who = c:BRZ
+							war_goal = war_reparations
+						}
+						add_war_goal = {
+							holder = c:BRZ
+							type = annex_country
+							target_country = PREV				
+							primary_demand = yes
+						}
+					}
+				}
+				every_state = {
+					limit = { has_claim_by = c:BRZ }
+					this.state_region = { add_claim = scope:military_brazil }
+				}
+			}
+			set_ruling_interest_groups = { ig_intelligentsia ig_petty_bourgeoisie }
+			ig:ig_intelligentsia = { add_ideology = ideology:ideology_radical }
+			ig:ig_petty_bourgeoisie = { add_ideology = ideology:ideology_radical }
+			activate_law = law_type:law_census_voting
+			activate_law = law_type:law_multicultural
+			activate_law = law_type:law_elected_bureaucrats
+			activate_law = law_type:law_right_of_assembly
+		}
+		else = {
+			add_loyalists = { value = 0.05 }
+			ig:ig_petty_bourgeoisie = { remove_ruling_interest_group = yes }
+			ig:ig_intelligentsia = { remove_ruling_interest_group = yes }
+			custom_tooltip = brazilian_radical_revolt_tt
+			hidden_effect = {
+				create_country = {
+					origin = c:BRZ
+					state = s:STATE_RIO_DE_JANEIRO.region_state:BRZ
+					state = s:STATE_MINAS_GERAIS.region_state:BRZ
+					state = s:STATE_SAO_PAULO.region_state:BRZ
+					state = s:STATE_PARANA.region_state:BRZ
+					state = s:STATE_SANTA_CATARINA.region_state:BRZ
+					state = s:STATE_RIO_GRANDE_DO_SUL.region_state:BRZ
+					state = s:STATE_MATO_GROSSO.region_state:BRZ
+					state = s:STATE_AMAZONAS.region_state:BRZ
+
+					on_created = { 
+						set_variable = radical_brazil
+						set_ruling_interest_groups = { ig_intelligentsia ig_petty_bourgeoisie }
+						ig:ig_intelligentsia = { add_ideology = ideology:ideology_radical }
+						ig:ig_petty_bourgeoisie = { add_ideology = ideology:ideology_radical }
+						activate_law = law_type:law_monarchy
+						activate_law = law_type:law_census_voting
+						activate_law = law_type:law_multicultural
+						activate_law = law_type:law_elected_bureaucrats
+						activate_law = law_type:law_right_of_assembly
+						add_loyalists = { value = 0.2 }
+
+						create_diplomatic_play = {
+							target_country = c:BRZ
+							type = dp_annex_war
+							war = yes
+						}
+					}
+				}
+				random_country = {
+					limit = { has_variable = radical_brazil }
+					save_scope_as = radical_brazil
+					random_diplomatic_play = {
+						limit = { initiator_is = PREV }
+						remove_war_goal = {
+							who = c:BRZ
+							war_goal = war_reparations
+						}
+						add_war_goal = {
+							holder = c:BRZ
+							type = annex_country
+							target_country = PREV				
+							primary_demand = yes
+						}
+					}
+				}
+				every_state = {
+					limit = { has_claim_by = c:BRZ }
+					this.state_region = { add_claim = scope:military_brazil }
+				}
+			}
+			set_ruling_interest_groups = { ig_landowners ig_armed_forces }
+			ig:ig_landowners = { add_ideology = ideology:ideology_caudillismo }
+			ig:ig_armed_forces = { add_ideology = ideology:ideology_caudillismo }
+			activate_law = law_type:law_oligarchy
+			activate_law = law_type:law_appointed_bureaucrats
+			activate_law = law_type:law_censorship
+			add_modifier = {
+				name = age_of_caudillos_modifier
+				months = very_long_modifier_time
+				is_decaying = yes
+			}
+		}
+	}		
+}

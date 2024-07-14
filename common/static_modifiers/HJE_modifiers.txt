@@ -1,0 +1,1009 @@
+﻿modifier_rus_great_game_won = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_statue_positive.dds
+	country_prestige_mult = 0.15
+	country_society_tech_spread_mult = 0.05
+	state_radicals_from_sol_change_mult = -0.05
+	state_radicals_from_discrimination_mult = -0.05
+}
+
+modifier_gbr_great_game_won = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_statue_positive.dds
+	country_prestige_mult = 0.15
+	country_society_tech_spread_mult = 0.05
+	state_conscription_rate_add = 0.05
+}
+
+modifier_liberal_win = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_rifle_positive.dds
+	interest_group_ig_intelligentsia_approval_add = 3
+	country_law_enactment_time_mult = -0.1
+}
+
+modifier_monarch_win = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_rifle_positive.dds
+	interest_group_ig_landowners_approval_add = 5
+}
+
+ig_carlists_mad = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_negative.dds
+	interest_group_approval_add = -75
+}
+
+ig_government_betrayed = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_negative.dds
+	interest_group_approval_add = -50
+}
+
+id_linguistic_banner_discrimination = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_gear_positive.dds
+	#state_assimilation_mult = -1
+	country_expenses_add = 15000
+	unit_army_offense_mult = -0.25
+	unit_army_defense_mult = -0.25
+	#state_han_standard_of_living_add = -2
+	state_manchu_standard_of_living_add = 10
+}
+	
+id_linguistic_keju = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_documents_negative.dds
+	state_radicals_from_discrimination_mult = -0.2
+	country_society_tech_spread_mult = -0.25
+	country_expenses_add = -5000
+}
+
+modifier_autocracy_of_the_tsar = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_statue_positive.dds
+	interest_group_ig_landowners_pop_attraction_mult = 0.5
+	interest_group_ig_landowners_pol_str_mult = 0.3
+	country_law_enactment_time_mult = 0.5
+	country_prestige_mult = -0.05
+}
+
+modifier_french_demographic_crisis = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_statue_negative.dds
+	state_birth_rate_mult = -0.2
+}
+
+modifier_the_belle_epoque = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_statue_positive.dds
+	state_birth_rate_mult = 0.10
+}
+
+modifier_reforms_of_alexander = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_statue_positive.dds
+	country_law_enactment_time_mult = -0.2
+	interest_group_ig_landowners_pol_str_mult = -0.25
+}
+
+modifier_tge_peasants_reform = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_statue_positive.dds
+	state_birth_rate_mult = 0.5
+	country_production_weekly_innovation_mult = 0.75
+}
+	
+modifier_tge_russian_military_reform = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_statue_positive.dds
+	unit_army_offense_mult = 0.1
+	unit_army_defense_mult = 0.1
+	building_training_rate_mult = 0.25
+	country_military_weekly_innovation_mult = 0.75
+}
+modifier_tge_melikovs_constitution = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_statue_positive.dds
+	country_bureaucracy_mult = 0.1
+	country_influence_mult = 0.1
+	country_authority_mult = 0.1
+	country_society_weekly_innovation_mult = 0.75
+}
+
+modifier_reforms_of_alexander_legacy = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_statue_positive.dds
+	country_bureaucracy_mult = 0.1
+	building_training_rate_mult = 0.2
+	state_birth_rate_mult = 0.2
+}
+
+modifier_tge_metternich = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_statue_positive.dds
+	interest_group_ig_landowners_pol_str_mult = 0.25
+}
+
+modifier_tge_junkers_heer_krupp = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_gear_positive.dds
+	building_training_rate_mult = 0.15
+	country_production_weekly_innovation_mult = 0.05
+	country_military_weekly_innovation_mult = 0.05
+}
+
+modifier_tge_austria_in_chaos = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_rifle_negative.dds	
+	unit_army_offense_mult = -0.25
+}
+
+modifier_tge_unification_boom = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_statue_positive.dds
+	state_birth_rate_mult = 0.10
+}
+
+land_redistribution_modifier = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_documents_negative.dds
+	#Agricultural throughput reduced
+	building_group_bg_agriculture_throughput_mult = -0.05
+	building_group_bg_ranching_throughput_mult = -0.05
+	#increase bureaucracy
+	country_bureaucracy_mult = -0.1
+	#increase government costs
+	country_expenses_add = 1
+	#increase radicalism
+	#state_radicals_from_sol_change_mult = 0.2
+	#political_movement_support_add = 0.2
+}
+
+small_mexican_ces_settlement_pay = { #1 Million pounds = 5 million dollars
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_negative.dds
+	country_expenses_add = 8333
+}
+
+small_mexican_ces_settlement_recieve = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_positive.dds
+	country_tax_income_add  = 8333
+}
+
+huge_mexican_ces_settlement_pay = { #3 Million pounds = 15 million dollars
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_negative.dds
+	country_expenses_add = 25000
+}
+
+huge_mexican_ces_settlement_recieve = { #3 Million pounds = 15 million dollars
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_positive.dds
+	country_tax_income_add = 25000
+}
+
+ro_diplomacy = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_lightbulb_positive.dds
+	country_influence_mult = 0.2
+}
+
+romanian_nationalism = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_negative.dds
+	country_prestige_add = 100
+}
+
+wartime_zeal = { 
+    icon = gfx/interface/icons/timed_modifier_icons/modifier_rifle_positive.dds
+    unit_army_defense_mult = 0.6
+	unit_army_offense_mult = 0.6
+	state_conscription_rate_add = 0.3
+}
+
+revolutionary_zeal = { 			
+    icon = gfx/interface/icons/timed_modifier_icons/modifier_rifle_positive.dds
+    unit_army_defense_mult = 1
+	unit_army_offense_mult = 1
+	state_conscription_rate_add = 0.5
+}
+
+separatist_zeal = { 		
+    icon = gfx/interface/icons/timed_modifier_icons/modifier_rifle_positive.dds
+    unit_army_defense_mult = 2
+	unit_army_offense_mult = 2
+	state_conscription_rate_add = 1
+}
+
+modifier_tradition_of_militarism = { 
+    icon = gfx/interface/icons/timed_modifier_icons/modifier_rifle_positive.dds
+    unit_army_defense_mult = 0.20
+	unit_army_offense_mult = 0.30
+	country_prestige_mult = 0.25
+}
+
+modifier_prussia_of_the_americas = { 
+    icon = gfx/interface/icons/timed_modifier_icons/modifier_rifle_positive.dds
+    unit_army_defense_mult = 0.1
+	unit_army_offense_mult = 0.1
+	country_prestige_mult = 0.1
+}
+
+modifier_mex_porfiriato = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_negative.dds
+	country_private_buildings_protected = 0.9
+	country_society_weekly_innovation_mult = -0.1
+	state_radicals_from_discrimination_mult = 0.05
+	state_radicals_from_sol_change_mult = 0.1
+	country_bureaucracy_mult = -0.05
+	country_influence_mult = 0.1
+	country_authority_mult = 0.15
+	building_group_bg_agriculture_throughput_mult = 0.6
+	building_group_bg_plantations_throughput_mult = 0.6
+}
+
+modifier_state_capital_of_germany = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_negative.dds
+	country_bureaucracy_mult = 0.05
+	country_influence_mult = 0.05
+	country_authority_mult = 0.05
+}
+
+guerilla_warfare = { 
+    icon = gfx/interface/icons/timed_modifier_icons/modifier_rifle_positive.dds
+	front_enemy_advancement_speed_mult = -2
+	military_formation_movement_speed_mult = -1
+    unit_army_defense_mult = 0.5
+	state_conscription_rate_add = 0.03
+}
+
+mexican_civil_war = { 
+    icon = gfx/interface/icons/timed_modifier_icons/modifier_rifle_negative.dds
+	front_advancement_speed_mult = -0.5
+	country_war_exhaustion_casualties_mult = -1
+	country_society_weekly_innovation_mult = 0.25
+    unit_army_defense_mult = 1
+	unit_army_offense_mult = 1
+}
+
+modifier_hbc_influence = {
+    icon = gfx/interface/icons/timed_modifier_icons/modifier_statue_positive.dds
+	state_migration_pull_mult = 0.1
+	state_birth_rate_mult = 0.05
+	country_max_declared_interests_add = 2
+}
+
+modifier_fra_support_for_old_monarchy = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_documents_positive.dds
+		
+	country_legitimacy_base_add = 15
+	country_revolution_secession_speed_add = -0.25
+	interest_group_ig_landowners_pol_str_mult = -0.25
+	interest_group_ig_industrialists_pol_str_mult = 0.25
+	interest_group_ig_intelligentsia_pol_str_mult = -0.25
+	interest_group_ig_trade_unions_pol_str_mult = -0.50
+}
+
+modifier_fra_disrespect_for_kings_law = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_documents_negative.dds
+	
+	country_legitimacy_base_add = -10
+	country_revolution_secession_speed_add = 0.25
+	interest_group_ig_intelligentsia_pol_str_mult = 0.50
+	interest_group_ig_trade_unions_pol_str_mult = 0.25
+}
+
+modifier_fra_napoleon_wins_election = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_statue_positive.dds
+
+	interest_group_ig_armed_forces_approval_add = 5
+	interest_group_ig_armed_forces_pol_str_mult = 0.25
+	interest_group_ig_industrialists_pol_str_mult = -0.20
+	interest_group_ig_trade_unions_pol_str_mult = -0.20
+	interest_group_ig_landowners_pol_str_mult = -0.20
+}
+
+modifier_fra_cavaignac_wins_election = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_statue_positive.dds
+
+	interest_group_ig_industrialists_approval_add = 5
+	interest_group_ig_industrialists_pol_str_mult = 0.25
+	interest_group_ig_armed_forces_pol_str_mult = -0.20
+	interest_group_ig_trade_unions_pol_str_mult = -0.20
+	interest_group_ig_landowners_pol_str_mult = -0.20
+}
+
+modifier_fra_ledru_wins_election = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_statue_positive.dds
+
+	interest_group_ig_trade_unions_approval_add = 5
+	interest_group_ig_trade_unions_pol_str_mult = 0.25
+	interest_group_ig_industrialists_pol_str_mult = -0.20
+	interest_group_ig_armed_forces_pol_str_mult = -0.20
+	interest_group_ig_landowners_pol_str_mult = -0.20
+}
+
+modifier_fra_changarnier_wins_election = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_statue_positive.dds
+
+	interest_group_ig_landowners_approval_add = 5
+	interest_group_ig_landowners_pol_str_mult = 0.25
+	interest_group_ig_armed_forces_pol_str_mult = -0.20
+	interest_group_ig_trade_unions_pol_str_mult = -0.20
+	interest_group_ig_industrialists_pol_str_mult = -0.20
+}
+
+modifier_fra_fail_coup_etat = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_statue_negative.dds
+	
+	interest_group_ig_armed_forces_pol_str_mult = -0.50
+}
+
+modifier_ig_happy_french_revolution = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
+	interest_group_approval_add = 8
+}
+
+modifier_second_italian_war = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
+	country_prestige_mult = 0.30
+}
+
+modifier_fra_second_italian_war = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
+	country_prestige_mult = 0.10
+}
+
+modifier_second_italian_war_lost = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_negative.dds
+	country_prestige_mult = -0.10
+}
+
+usa_southern_supremacy = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_statue_positive.dds
+	interest_group_ig_landowners_pol_str_mult = 0.50
+	interest_group_ig_landowners_pop_attraction_mult = 0.50
+	interest_group_ig_intelligentsia_pop_attraction_mult = -0.10
+	interest_group_ig_intelligentsia_pol_str_mult = -0.05
+	interest_group_ig_industrialists_pol_str_mult = -0.20
+	interest_group_ig_rural_folk_pol_str_mult = -0.50
+}
+
+usa_deep_southern_supremacy = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_statue_positive.dds
+	interest_group_ig_landowners_pol_str_mult = 1
+	interest_group_ig_landowners_pop_attraction_mult = 1
+	interest_group_ig_intelligentsia_pop_attraction_mult = -0.25
+	interest_group_ig_intelligentsia_pol_str_mult = -0.10
+	interest_group_ig_industrialists_pol_str_mult = -1
+	interest_group_ig_rural_folk_pol_str_mult = -0.95
+}
+
+usa_northern_supremacy = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_statue_positive.dds
+	interest_group_ig_intelligentsia_pol_str_mult = 0.25
+	interest_group_ig_intelligentsia_pop_attraction_mult = 0.25
+	interest_group_ig_industrialists_pop_attraction_mult = 0.10
+	interest_group_ig_industrialists_pol_str_mult = 0.10
+	interest_group_ig_landowners_pol_str_mult = -1
+	interest_group_ig_landowners_pop_attraction_mult = -1
+	interest_group_ig_trade_unions_pol_str_mult = -1
+}
+
+usa_border_state = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_statue_positive.dds
+	interest_group_ig_landowners_pol_str_mult = 0.10
+	interest_group_ig_intelligentsia_pol_str_mult = 0.10
+}
+
+usa_new_england = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_statue_positive.dds
+	interest_group_ig_landowners_pol_str_mult = -1
+	interest_group_ig_landowners_pop_attraction_mult = -1
+	interest_group_ig_intelligentsia_pol_str_mult = 0.75
+	interest_group_ig_intelligentsia_pop_attraction_mult = 0.50
+	interest_group_ig_trade_unions_pol_str_mult = -0.90
+}
+
+usa_iron_belt = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_statue_positive.dds
+	interest_group_ig_industrialists_pop_attraction_mult = 0.50
+	interest_group_ig_industrialists_pol_str_mult = 0.25
+	interest_group_ig_landowners_pol_str_mult = -1
+	interest_group_ig_landowners_pop_attraction_mult = -1
+	interest_group_ig_trade_unions_pol_str_mult = -0.50
+}
+
+acw_lost_civil_war = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_statue_negative.dds
+	country_prestige_mult = -0.25
+	country_authority_mult = -0.25
+	state_radicals_from_sol_change_mult = 0.25
+}
+
+usa_reconstructed = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_statue_positive.dds
+	country_prestige_mult = 0.50
+	country_authority_mult = 0.50
+	state_radicals_from_sol_change_mult = -0.25
+}
+
+usa_house_gag_rule = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_documents_negative.dds
+	interest_group_ig_landowners_pol_str_mult = -1
+	interest_group_ig_intelligentsia_pol_str_mult = -1
+	interest_group_ig_rural_folk_pol_str_mult = 2
+}
+
+bleeding_state = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_fire_negative.dds
+	state_radicals_from_sol_change_mult = 0.2
+}
+
+denmark_national_humiliation = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_negative.dds
+	country_influence_mult = -0.1
+	country_prestige_mult = -0.2
+}
+
+denmark_focus_on_agriculture = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_documents_positive.dds
+	building_group_bg_agriculture_throughput_mult = 0.2
+	building_group_bg_ranching_throughput_mult = 0.2
+	country_expenses_add = 250
+}
+
+denmark_revanchism_modifier = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
+	state_conscription_rate_add = 0.01
+	interest_group_ig_armed_forces_approval_add = 1
+}
+
+denmark_unification_time = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
+	country_prestige_mult = 0.05
+	interest_group_in_government_approval_add = 1
+}
+
+denmark_concessions_to_holstein = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_negative.dds
+	country_prestige_mult = -0.05
+	country_law_enactment_time_mult = 0.2
+}
+
+denmark_angered_peoples_spring = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_negative.dds
+	interest_group_approval_add = -1
+	interest_group_pop_attraction_mult = 0.1
+}
+
+denmark_concessions_to_stave_off_masses = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_negative.dds
+	country_prestige_mult = -0.1
+	political_movement_support_add = 0.2
+	political_movement_radicalism_mult = -0.1
+}
+
+denmark_victory_in_first_war = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_negative.dds
+	country_prestige_add = 10
+}
+
+sweden_outdated_military = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_rifle_negative.dds
+	unit_army_offense_mult = -0.05
+	unit_army_defense_mult = -0.05
+	country_prestige_mult = -0.05
+}
+
+sweden_land_based_taxation_policies = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_positive.dds
+	tax_land_add = 0.2
+	tax_per_capita_add = -0.1
+}
+
+sweden_farmers_organising = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_documents_positive.dds
+	interest_group_pop_attraction_mult = 0.25
+}
+
+sweden_rise_of_awareness = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_documents_positive.dds
+	interest_group_pol_str_mult = 0.1
+}
+
+sweden_lantmannapartiet = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_documents_positive.dds
+	country_opposition_ig_approval_add = -1
+	interest_group_pop_attraction_mult = 0.1
+}
+
+sweden_spirit_of_free_trade = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
+	country_trade_route_competitiveness_mult = 0.25
+	country_tech_spread_mult = 0.05
+}
+
+sweden_spirit_of_protectionism = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_documents_positive.dds
+	country_authority_mult = 0.1
+	tariff_export_add = 0.05
+}
+
+sweden_compromise_over_army = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_positive.dds
+	tax_land_add = -0.2
+}
+
+sweden_unity_behind_new_policies = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_documents_positive.dds
+	interest_group_approval_add = 1
+	interest_group_pol_str_mult = 0.1
+}
+
+sweden_no_compromise_for_army = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_negative.dds
+	interest_group_approval_add = -3
+}
+
+norway_abolishment_of_new_aristocrats = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_documents_positive.dds
+	country_aristocrats_pol_str_mult = -0.1
+}
+norway_det_store_hamskiftet = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_documents_positive.dds
+	interest_group_ig_industrialists_pol_str_mult = 0.1
+	building_group_bg_light_industry_throughput_mult = 0.1
+}
+norway_det_store_hamskiftet_alt = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_documents_positive.dds
+	building_group_bg_agriculture_throughput_mult = 0.05
+	building_group_bg_light_industry_throughput_mult = 0.05
+}
+norway_support_during_changing_times = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_documents_positive.dds
+	interest_group_approval_add = 1
+}
+norway_formmanskapsdistrikt_pay = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_negative.dds
+	country_bureaucracy_add = -25
+}
+norway_formmanskapsdistrikt = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
+	interest_group_approval_add = 2
+	interest_group_pop_attraction_mult = 0.25
+}
+norway_formmanskapsdistrikt_nation = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
+	country_bureaucracy_mult = -0.05
+	country_authority_mult = 0.05
+	country_farmers_pol_str_mult = 0.25
+	country_peasants_pol_str_mult = 0.25
+	country_laborers_pol_str_mult = 0.25
+}
+norway_the_great_merchant_navy = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
+	country_influence_add = 50
+	country_prestige_mult = 0.1
+}
+
+finland_our_language_outside_courts = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_negative.dds
+	country_influence_mult = -0.2
+	country_prestige_mult = -0.1
+	state_assimilation_mult = -0.1
+}
+finland_the_strife_over_language = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_negative.dds
+	country_authority_mult = -0.2
+	state_assimilation_mult = -0.25
+	political_movement_radicalism_mult = 0.25
+}
+finland_language_question_solved = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_fist_positive.dds
+	country_society_weekly_innovation_mult = 0.25
+	state_assimilation_mult = 0.1
+}
+finland_language_question_unsolved = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_documents_negative.dds
+	state_assimilation_mult = -0.2
+	country_prestige_mult = -0.1
+	interest_group_ig_intelligentsia_approval_add = 1
+}
+finland_swedish_oppose_the_academics = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_documents_positive.dds
+	country_authority_mult = 0.05
+	state_assimilation_mult = 0.05
+	country_society_weekly_innovation_mult = -0.1
+	interest_group_ig_intelligentsia_approval_add = -1
+}
+finland_old_elite_opposition = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_documents_negative.dds
+	#country_bureaucracy_mult = -0.1
+	interest_group_ig_landowners_approval_add = -1
+	interest_group_ig_devout_approval_add = -1
+}
+finland_concessions_to_old_elite = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_documents_negative.dds
+	country_authority_mult = -0.05
+	country_bureaucracy_mult = -0.05
+	state_assimilation_mult = -0.25
+}
+
+scandinavian_monetary_union_mod = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_positive.dds
+	country_influence_mult = -0.05
+	state_loyalists_from_sol_change_mult = 0.05
+}
+
+nordic_neg_pan_nationalism_mod = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_fist_positive.dds
+	country_authority_mult = 0.05
+}
+
+nordic_pos_pan_nationalism_mod = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
+	state_loyalists_from_sol_change_mult = 0.1
+	country_influence_mult = 0.1
+	political_movement_radicalism_mult = 0.25
+}
+
+oppose_stance_on_nordic_pan_nationalism_mod = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_negative.dds
+	interest_group_approval_add = -2
+}
+support_stance_on_nordic_pan_nationalism_mod = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_fist_positive.dds
+	interest_group_approval_add = 1
+}
+
+nordic_ban_of_slavery = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_fist_positive.dds
+	country_authority_mult = -0.1
+	country_expenses_add = 500
+	interest_group_ig_intelligentsia_approval_add = 1
+}
+
+nordic_finland_integration = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_documents_negative.dds
+	country_bureaucracy_add = -50
+}
+
+usa_mormons = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_statue_positive.dds
+	interest_group_ig_devout_pol_str_mult = 1
+	interest_group_ig_devout_pop_attraction_mult = 1
+	interest_group_ig_intelligentsia_pop_attraction_mult = -0.25
+	interest_group_ig_intelligentsia_pol_str_mult = -0.25
+}
+
+federal_war_modifier = { 
+    icon = gfx/interface/icons/timed_modifier_icons/modifier_rifle_positive.dds
+	battle_defense_owned_province_mult = 0.2
+    country_war_exhaustion_casualties_mult = -1.5
+	unit_provinces_captured_mult = -0.8
+	unit_mobilization_speed_mult = -0.2
+}
+
+confederacy_war_modifier = { 
+    icon = gfx/interface/icons/timed_modifier_icons/modifier_rifle_positive.dds
+    unit_army_defense_mult = 0.3
+    unit_army_offense_mult = 0.4
+	battle_defense_owned_province_mult = 0.2
+    country_war_exhaustion_casualties_mult = -1.5
+	unit_provinces_captured_mult = -0.8
+	unit_mobilization_speed_mult = 0.4
+}
+
+free_american_war_modifier = { 
+    icon = gfx/interface/icons/timed_modifier_icons/modifier_rifle_positive.dds
+    unit_army_defense_mult = 0.15
+    unit_army_offense_mult = 0.1
+	battle_defense_owned_province_mult = 0.1
+    country_war_exhaustion_casualties_mult = -1.5
+	unit_provinces_captured_mult = -0.8
+	unit_mobilization_speed_mult = 0.6
+}
+
+otf_annex_egypt_mdf = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_negative.dds.dds
+	country_expenses_add = 30000
+}
+
+otf_diplomatic_leader = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_statue_positive.dds
+	country_prestige_mult = 0.1
+}
+
+otf_guaranteed_life = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
+	state_standard_of_living_add = 2
+}
+
+otf_hijaz_railway_mdf = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_negative.dds
+	country_expenses_add = 3000
+}
+
+otf_hijaz_railway_2_mdf = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_documents_positive.dds
+	state_infrastructure_add = 3
+}
+
+otf_armenian_local_separatism = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_negative.dds
+	state_mortality_mult = 0.1
+	state_turmoil_effects_mult = 0.25
+}
+
+otf_armenian_local_separatism_2 = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_negative.dds
+	state_mortality_mult = 0.05
+	state_turmoil_effects_mult = 0.1
+}
+
+otf_recognized_the_conference = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_statue_negative.dds
+	country_influence_add = -100
+}
+
+otf_didnt_recognize_the_conference = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_statue_positive.dds
+	country_prestige_add = 100
+}
+
+otf_foundation_hamidiye = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_negative.dds
+	country_expenses_add = 15000
+}
+
+otf_hamidiye_barracks = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_fist_positive.dds
+	state_turmoil_effects_mult = -0.3
+}
+
+otf_born_of_jon_turks_mdf = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_lightbulb_positive.dds
+	interest_group_ig_intelligentsia_pol_str_mult = 0.1
+	state_education_access_add = 0.05
+}
+
+otf_jon_turks_obey_sultan = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_documents_negative.dds
+	interest_group_ig_intelligentsia_pol_str_mult = -0.1
+	interest_group_ig_intelligentsia_approval_add = -5
+}
+
+otf_no_more_autocracy = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_documents_positive.dds
+	country_legitimacy_base_add = 10
+	interest_group_in_opposition_approval_add = 1
+}
+
+otf_freedom_for_everyone = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_statue_positive.dds
+	character_popularity_add = 25
+}
+
+otf_educated_people = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_lightbulb_positive.dds
+	state_pop_qualifications_mult = 0.1
+}
+
+otf_modern_public_administration = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_documents_positive.dds
+	country_bureaucracy_mult = 0.1
+}
+
+otf_equal_rights = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_documents_positive.dds
+	state_migration_pull_mult = 0.1
+}
+
+otf_developed_market = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_positive.dds
+	country_trade_route_competitiveness_mult = 0.25
+}
+
+otf_black_gold_mdf = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_positive.dds
+	building_output_oil_mult = 0.1
+}
+
+otf_balance_politics = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_statue_positive.dds
+	country_influence_mult = 0.05
+}
+
+otf_advanced_weapons_industry = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_rifle_positive.dds
+	building_output_artillery_mult = 0.1
+	building_output_ammunition_mult = 0.1
+	building_output_small_arms_mult = 0.1
+}
+
+otf_armenian_become_loyal = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_fist_positive.dds
+	state_loyalists_from_sol_change_mult = 0.25
+}
+
+otf_pre_otto_egypt_war_mdf = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_rifle_positive.dds
+	country_military_tech_cost_mult = -0.075
+}
+
+otf_legislate_kanuni_esasi_mdf = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
+	state_radicals_from_discrimination_mult = -0.2
+}
+
+otf_otto_egypt_war_mdf = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_fire_positive.dds
+	unit_army_offense_add = 15
+	unit_army_defense_add = 15
+}
+
+otf_peoples_empire_mdf = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
+	state_migration_pull_mult = 0.25
+}
+
+otf_modernize_army_mdf = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_rifle_positive.dds
+	interest_group_ig_ig_armed_forces_approval_add = 2
+}
+
+balkans_united_mdf = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_statue_positive.dds
+	country_prestige_add = 100
+}
+
+north_africa_united_mdf = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_statue_positive.dds
+	country_prestige_add = 100
+}
+
+otf_prevent_separatism_mdf = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_negative.dds
+	country_expenses_add = 7500
+}
+
+otf_bad_egypt = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_statue_negative.dds
+	country_prestige_mult = -0.5
+}
+
+otf_dof_islam_inf_mdf = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_statue_positive.dds
+	country_influence_mult = 0.2
+}
+
+otf_turkic_unification_mdf = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
+	state_turkic_standard_of_living_add = 2
+}
+
+paid_off_debt_to_suez_company_modifier = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_negative.dds
+	country_expenses_add = 100
+}
+
+debt_returns_from_suez_company_modifier = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_negative.dds
+	country_tax_income_add = 100
+}
+
+potato_blight_country_modifier = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_fire_negative.dds
+	building_rye_farm_throughput_mult = -1
+    state_loyalists_from_sol_change_mult = -0.2
+}
+
+potato_blight_less_country_modifier = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_negative.dds
+	country_expenses_add = 100
+	building_rye_farm_throughput_mult = -0.95
+    state_loyalists_from_sol_change_mult = -0.1
+}
+
+potato_blight_state_modifier = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_negative.dds
+	state_standard_of_living_add = -5
+}
+
+potato_blight_less_state_modifier = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_negative.dds
+	state_standard_of_living_add = -2.5
+}
+
+potato_famine_state_modifier = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_fire_negative.dds
+	state_mortality_mult = 0.2
+	state_standard_of_living_add = -10
+	state_radicals_from_sol_change_mult = -0.8
+}
+
+potato_reforms_state_modifier = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_positive.dds
+	state_mortality_mult = 0.1
+	state_standard_of_living_add = -5
+	state_construction_mult = 0.4
+	state_infrastructure_mult = 0.2
+}
+
+british_economic_zone_state_modifier = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_negative.dds
+	state_tax_capacity_mult = -0.25
+}
+
+exploiting_southern_persia_modifier = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_positive.dds
+	country_prestige_mult = 0.05
+	country_tax_income_add = 1000
+}
+
+desert_warriors = {
+    icon = gfx/interface/icons/timed_modifier_icons/modifier_rifle_positive.dds
+    unit_army_offense_mult = 0.1
+	unit_army_defense_mult = 0.25
+}
+
+gec_modifier_preventing_attrocities = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_fire_negative.dds
+    unit_army_defense_mult = -0.025
+	unit_army_offense_mult = -0.025
+	country_prestige_mult = 0.05
+}
+
+gec_modifier_encouraging_attrocities = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_fire_positive.dds
+    unit_army_defense_mult = 0.025
+	unit_army_offense_mult = 0.025
+	country_prestige_mult = -0.25
+}
+
+bosnia_modifier = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_fire_negative.dds
+    state_disallow_incorporation = yes
+}
+
+building_input_canalToll_add = {
+	good = no
+	percent = no
+}
+
+building_output_canalToll_add = {
+	good = yes
+	percent = no
+}
+
+harpers_ferry_success_mod = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_fire_negative.dds
+	interest_group_ig_landowners_approval_add = -10
+	state_turmoil_effects_mult = 0.25
+}
+
+harpers_ferry_failure_mod = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_fire_negative.dds
+	interest_group_ig_landowners_approval_add = -5
+	interest_group_ig_intelligentsia_pol_str_mult = 0.2
+	interest_group_ig_intelligentsia_pop_attraction_mult = 0.4
+}
+
+harpers_ferry_disaster_mod = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_fire_negative.dds
+	interest_group_ig_landowners_approval_add = 20
+	interest_group_ig_intelligentsia_pol_str_mult = -0.15
+	interest_group_ig_intelligentsia_pop_attraction_mult = 0.75
+}
+
+ragamuffin_war_modifier = { 
+    icon = gfx/interface/icons/timed_modifier_icons/modifier_rifle_positive.dds
+    military_formation_movement_speed_mult = -5
+}
+
+modifier_hosted_berlin_conference = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_statue_positive.dds
+	country_prestige_mult = 0.2
+}
+
+sfa_unexplored_state = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_negative.dds
+	state_non_homeland_colony_growth_speed_mult = -1
+}
+
+sfa_scramble_for_africa = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
+	state_non_homeland_colony_growth_speed_mult = 5
+}
+
+open_markets_modifier = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_positive.dds
+	country_trade_route_exports_add = 50
+	country_trade_route_imports_add = 50
+}
+
+hungarian_glory = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_statue_positive.dds
+	country_prestige_mult = 1
+}
+
+front_speed_modifier = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_negative.dds
+	unit_provinces_captured_mult = -0.9
+}

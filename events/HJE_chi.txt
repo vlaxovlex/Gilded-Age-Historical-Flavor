@@ -1,0 +1,384 @@
+﻿namespace = HJE_china
+
+HJE_china.1 = { #Suppression of the Korean rebellion
+	type = country_event
+	placement = c:KOR
+	title = HJE_china.1.t
+	desc = HJE_china.1.d
+	flavor = HJE_china.1.f
+
+	duration = 3
+
+	event_image = {
+		video = "gfx/event_pictures/southamerica_aristocrats.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/rich_and_poor"
+
+	icon = "gfx/interface/icons/event_icons/event_default.dds"
+
+	trigger = {
+	}
+	
+	immediate = {
+	}
+
+	option = {
+		name = HJE_china.1.a
+		default_option = yes
+	
+		create_incident = {
+			country = c:JAP value = 25 
+		}
+		change_relations = {
+			country = c:JAP
+			value = -70
+		} 
+		c:KOR = {
+			set_variable = chi_var
+			add_journal_entry = { type = HJ_kor }
+		}
+			
+		ai_chance = 100
+	}
+
+	option = {
+		name = HJE_china.1.b
+		
+		remove_diplomatic_pact = {
+			country = c:KOR
+			type = tributary
+		}
+		hidden_effect = {
+			remove_diplomatic_pact = {
+				country = c:KOR
+				type = vassal
+			}
+			remove_diplomatic_pact = {
+				country = c:KOR
+				type = protectorate
+			}
+			remove_diplomatic_pact = {
+				country = c:KOR
+				type = dominion
+			}
+			remove_diplomatic_pact = {
+				country = c:KOR
+				type = puppet
+			}
+		}
+		
+	}		
+}
+
+
+HJE_china.2 = { #Kim Ok-kyung's murder
+	type = country_event
+	placement = c:KOR
+	title = HJE_china.2.t
+	desc = HJE_china.2.d
+	flavor = HJE_china.2.f
+
+	duration = 3
+
+	event_image = {
+		video = "gfx/event_pictures/southamerica_aristocrats.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/rich_and_poor"
+
+	icon = "gfx/interface/icons/event_icons/event_default.dds"
+
+	trigger = {
+	}
+	
+	immediate = {
+	}
+
+	option = {
+		name = HJE_china.2.a
+		default_option = yes
+	
+		create_incident = {
+			country = c:JAP value = 25 
+		}
+		change_relations = {
+			country = c:JAP
+			value = -70
+		} 
+		c:JAP = { 
+			trigger_event = { id = HJE_japan.2 }
+			set_secret_goal = {
+				country = root
+				secret_goal = conquer
+			}
+		}
+			
+		ai_chance = 100
+	}
+
+	option = {
+		name = HJE_china.2.b
+		
+		remove_diplomatic_pact = {
+			country = c:KOR
+			type = tributary
+		}
+		hidden_effect = {
+			remove_diplomatic_pact = {
+				country = c:KOR
+				type = vassal
+			}
+			remove_diplomatic_pact = {
+				country = c:KOR
+				type = protectorate
+			}
+			remove_diplomatic_pact = {
+				country = c:KOR
+				type = dominion
+			}
+			remove_diplomatic_pact = {
+				country = c:KOR
+				type = puppet
+			}
+		}
+	}		
+}
+
+# Convention of Peking
+HJE_china.3 = {
+	type = country_event
+	placement = ROOT
+
+	title = HJE_china.3.t
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				desc = HJE_china.3.d
+				trigger = {
+					NOT = { has_global_variable = had_second_opium_war }
+					NOT = { has_global_variable = had_third_opium_war }
+					NOT = { has_global_variable = had_fourth_opium_war }
+					NOT = { has_global_variable = had_fifth_opium_war }
+					NOT = { has_global_variable = had_sixth_opium_war }
+					NOT = { has_global_variable = had_seventh_opium_war }
+				}
+			}
+			triggered_desc = {
+				desc = HJE_china.3.d2
+				trigger = {
+					always = yes
+				}
+			}
+		}
+	}
+	flavor = HJE_china.3.f
+
+	duration = 3
+
+	event_image = {
+		video = "gfx/event_pictures/europenorthamerica_capitalists_meeting.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/opium_smoker"
+
+	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
+
+	trigger = {
+		has_law = law_type:law_isolationism
+		has_variable = var_dynamic_opium_wars_victim
+		any_country = {
+			NOT = { THIS = ROOT }
+			has_journal_entry = HJ_opium_wars
+		}
+	}
+
+	immediate = {
+	}
+
+	option = {
+		name = HJE_china.3.a
+		default_option = yes
+		if = {
+			limit = { NOT = { has_law = law_type:law_free_trade } }
+			activate_law = law_type:law_free_trade
+		}
+		add_modifier = {
+			name = opium_wars_lost 		#HJE change needed for trigger
+			months = long_modifier_time
+		}
+		if = {
+			limit = { is_banning_goods = g:opium }
+			remove_banned_goods = g:opium
+		}
+		if = {
+			limit = { has_modifier = opium_ban_authority }
+			remove_modifier = opium_ban_authority
+		}
+	}
+}
+
+HJE_china.4 = {
+	type = country_event
+	hidden = yes
+	immediate = {
+		remove_global_variable = opiumwars_time_limit
+		set_global_variable = opiumwars_time_over
+	}
+}
+
+HJE_china.5 = {
+	type = country_event
+	placement = ROOT
+
+	title = HJE_china.5.t
+	desc = HJE_china.5.d
+	flavor = HJE_china.5.f
+
+	duration = 3
+
+	event_image = {
+		video = "gfx/event_pictures/europenorthamerica_capitalists_meeting.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/opium_smoker"
+
+	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
+
+	trigger = {
+		exists = c:CHI
+		exists = c:TPG
+		any_diplomatic_play = {
+	        target_is = c:CHI
+			initator_is = c:TPG
+		}
+		NOT = { has_variable = support_against_tpg_var }
+		OR = {
+			c:CHI = {
+				any_scope_war = {
+					attacker_warleader = c:TPG
+					has_war_support = { target = c:CHI value < 85 }
+				}
+			}
+			NOT = { c:CHI = { has_modifier = taiping_taiping_rebellion } }
+			NOT = { c:TPG = { has_modifier = taiping_taiping_rebellion } }
+		}
+		any_scope_state = { 
+			any_neighbouring_state = { 
+				OR = { 
+					owner = c:CHI 
+					owner = c:TPG 
+				} 
+			} 
+		}
+		country_rank >= rank_value:great_power
+	}
+
+	immediate = {
+		set_variable = support_against_tpg_var
+	}
+
+	option = {
+		name = HJE_china.5.a
+		default_option = yes
+		ai_chance = 100
+		
+		random_diplomatic_play = {
+			limit = {
+				initator_is = c:TPG
+	            target_is = c:CHI
+			}
+			add_target_backers = { ROOT }
+		}
+		change_relations = {
+			country = c:TPG
+			value = -70
+		}
+	}
+		
+	option = {
+		name = HJE_china.5.b
+		change_relations = {
+			country = c:CHI
+			value = -70
+		}
+		change_relations = {
+			country = c:TPG
+			value = 35
+		}
+	}
+}
+
+HJE_china.6 = {
+	type = country_event
+	
+	hidden = yes
+	
+	trigger = {	
+		OR = {
+			has_journal_entry = je_taiping
+			has_journal_entry = je_taiping_revolution
+		}
+	}
+		
+	immediate = {
+		if = {
+			limit = {
+				exists = c:CHI
+				exists = c:TPG 
+				c:CHI = { has_modifier = taiping_taiping_rebellion }
+				c:TPG = { has_modifier = taiping_taiping_rebellion }
+				any_scope_war = {
+					is_warleader = c:TPG
+					OR = {
+						has_war_support = { target = c:CHI value < 90 }
+						has_war_support = { target = c:TPG value < 90 }
+					}
+				}
+				NOR = {
+					c:TPG = {
+						any_scope_state = {
+							is_capital = yes
+							devastation > 0.1
+						}
+						any_scope_state = {
+							is_capital = no
+							devastation > 0.2
+						}
+					}
+					c:CHI = {
+						any_scope_state = {
+							is_capital = yes
+							devastation > 0.1
+						}
+						any_scope_state = {
+							is_capital = no
+							devastation > 0.2
+						}
+					}
+				}
+			}
+			every_scope_war = {
+				limit = {
+					is_warleader = c:TPG
+					OR = {
+						has_war_support = { target = c:CHI value < 85 }
+						has_war_support = { target = c:TPG value < 85 }
+					}
+				}
+				add_war_war_support = {
+					target = c:CHI
+					value = 15
+				}
+				add_war_war_support = {
+					target = c:TPG
+					value = 15
+				}
+			}
+		}
+	}
+}

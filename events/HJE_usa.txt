@@ -1,0 +1,5323 @@
+﻿namespace = acw_sectionalism_startup
+
+#Setup State loyalties
+acw_sectionalism_startup.1 = {
+	type = country_event
+	
+	event_image = {
+		video = "gfx/event_pictures/europenorthamerica_capitalists_meeting.bk2"
+	}
+	
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/capitalists_meeting"
+
+	icon = "gfx/interface/icons/event_icons/event_scales.dds"
+	
+	title = acw_sectionalism_startup.1.t
+	desc = acw_sectionalism_startup.1.d
+	flavor = acw_sectionalism_startup.1.f
+	
+	duration = 3
+	
+	trigger = {
+		exists = c:USA
+		c:USA = ROOT
+		NOT = { has_law = law_type:law_slavery_banned }
+		year < 1837
+		NOT = { has_variable = usa_growing_sectionalism }
+	}
+	
+	immediate = {
+		#DEEP SOUTH
+		s:STATE_LOUISIANA.region_state:USA = {
+			add_modifier = usa_deep_southern_supremacy
+		}
+		s:STATE_MISSISSIPPI.region_state:USA = {
+			add_modifier = usa_deep_southern_supremacy
+		}
+		s:STATE_ALABAMA.region_state:USA = {
+			add_modifier = usa_deep_southern_supremacy
+		}
+		s:STATE_GEORGIA.region_state:USA = {
+			add_modifier = usa_deep_southern_supremacy
+		}
+		s:STATE_FLORIDA.region_state:USA = {
+			add_modifier = usa_deep_southern_supremacy
+		}
+		s:STATE_SOUTH_CAROLINA.region_state:USA = {
+			add_modifier = usa_deep_southern_supremacy
+		}
+		s:STATE_TEXAS.region_state:TEX = {
+			add_modifier = usa_deep_southern_supremacy
+		}
+		#UPPER SOUTH
+		s:STATE_NORTH_CAROLINA.region_state:USA = {
+			add_modifier = usa_southern_supremacy
+		}
+		s:STATE_TENNESSEE.region_state:USA = {
+			add_modifier = usa_southern_supremacy
+		}
+		s:STATE_VIRGINIA.region_state:USA = {
+			add_modifier = usa_southern_supremacy
+		}
+		s:STATE_ARKANSAS.region_state:USA = {
+			add_modifier = usa_southern_supremacy
+		}
+		#BORDER STATES
+		s:STATE_WEST_VIRGINIA.region_state:USA = {
+			add_modifier = usa_border_state
+		}
+		s:STATE_MARYLAND.region_state:USA = {
+			add_modifier = usa_border_state
+		}
+		s:STATE_DELAWARE.region_state:USA = {
+			add_modifier = usa_border_state
+		}
+		s:STATE_KENTUCKY.region_state:USA = {
+			add_modifier = usa_border_state
+		}
+		s:STATE_MISSOURI.region_state:USA = {
+			add_modifier = usa_border_state
+		}
+		#NORTHERN STATES
+		s:STATE_NEW_YORK.region_state:USA = {
+			add_modifier = usa_northern_supremacy
+		}
+		s:STATE_NEW_JERSEY.region_state:USA = {
+			add_modifier = usa_northern_supremacy
+		}
+		s:STATE_PENNSYLVANIA.region_state:USA = {
+			add_modifier = usa_northern_supremacy
+		}
+		#IRON BELT
+		s:STATE_OHIO.region_state:USA = {
+			add_modifier = usa_iron_belt
+		}
+		s:STATE_ILLINOIS.region_state:USA = {
+			add_modifier = usa_iron_belt
+		}
+		s:STATE_INDIANA.region_state:USA = {
+			add_modifier = usa_iron_belt
+		}
+		s:STATE_MICHIGAN.region_state:USA = {
+			add_modifier = usa_iron_belt
+		}
+		s:STATE_WISCONSIN.region_state:USA = {
+			add_modifier = usa_iron_belt
+		}
+		s:STATE_MINNESOTA.region_state:USA = {
+			add_modifier = usa_iron_belt
+		}
+		s:STATE_IOWA.region_state:USA = {
+			add_modifier = usa_iron_belt
+		}
+		#NEW ENGLAND REGION
+		s:STATE_MAINE.region_state:USA = {
+			add_modifier = usa_new_england
+		}
+		s:STATE_NEW_HAMPSHIRE.region_state:USA = {
+			add_modifier = usa_new_england
+		}
+		s:STATE_VERMONT.region_state:USA = {
+			add_modifier = usa_new_england
+		}
+		s:STATE_MASSACHUSETTS.region_state:USA = {
+			add_modifier = usa_new_england
+		}
+		s:STATE_CONNECTICUT.region_state:USA = {
+			add_modifier = usa_new_england
+		}
+		s:STATE_RHODE_ISLAND.region_state:USA = {
+			add_modifier = usa_new_england
+		}
+		set_variable = {
+			name = usa_growing_sectionalism
+			value = yes
+		}
+	}
+	
+	option = {
+		name = acw_sectionalism_startup.1.a
+        default_option = yes
+        custom_tooltip = acw_sectionalism_startup.1.tt
+	}
+}
+
+#Dredd Scott Case Splitoff
+acw_sectionalism_startup.2 = {
+	type = country_event
+	
+	event_image = {
+		video = "gfx/event_pictures/unspecific_politicians_arguing.bk2"
+	}
+	
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/asia/politician_parliament_motion"
+
+	icon = "gfx/interface/icons/event_icons/event_scales.dds"
+	
+	title = acw_sectionalism_startup.2.t
+	desc = acw_sectionalism_startup.2.d
+	flavor = acw_sectionalism_startup.2.f
+	
+	duration = 3
+	
+	trigger = {
+		exists = c:USA
+		NOT = { has_law = law_type:law_slavery_banned }
+		NOT = { has_variable = dredd_scott_case }
+		year > 1854
+		any_scope_state = {
+			is_slave_state = no
+			is_incorporated = yes
+			any_neighbouring_state = {
+				owner = ROOT
+				is_slave_state = yes
+			}
+		}
+	}
+	
+	immediate = {
+		set_variable = {
+			name = dredd_scott_case
+			value = yes
+		}
+		random_scope_state = {
+			limit = {
+				is_slave_state = no
+				is_incorporated = yes
+				any_neighbouring_state = {
+					owner = ROOT
+					is_slave_state = yes
+				}
+			}
+			save_scope_as = free_state
+		}
+	}
+	
+	#Scott wins the case
+	option = {
+	name = acw_sectionalism_startup.2.a 
+		trigger_event = {
+			id = acw_sectionalism_startup.3
+			days = 5
+		}
+	}
+	
+	#Scott loses the case
+	option = {
+	name = acw_sectionalism_startup.2.b
+		trigger_event = {
+			id = acw_sectionalism_startup.4
+			days = 5
+		}
+	}
+}
+	
+#Dredd Scott Wins
+acw_sectionalism_startup.3 = {
+	type = country_event
+	
+	event_image = {
+		video = "gfx/event_pictures/unspecific_politicians_arguing.bk2"
+	}
+	
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/asia/politician_parliament_motion"
+
+	icon = "gfx/interface/icons/event_icons/event_scales.dds"
+	
+	title = acw_sectionalism_startup.3.t
+	desc = acw_sectionalism_startup.3.d
+	flavor = acw_sectionalism_startup.3.f
+	
+	duration = 3
+	
+	trigger = {
+		#triggered by Dredd Scott event
+	}
+	
+	immediate = {
+	}
+	
+	option = {
+	name = acw_sectionalism_startup.3.a 
+		add_radicals = {
+			culture = cu:dixie
+			value = 0.05
+		}
+	}
+}
+
+#Dredd Scott Loses
+acw_sectionalism_startup.4 = {
+	type = country_event
+	
+	event_image = {
+		video = "gfx/event_pictures/unspecific_politicians_arguing.bk2"
+	}
+	
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/asia/politician_parliament_motion"
+
+	icon = "gfx/interface/icons/event_icons/event_scales.dds"
+	
+	title = acw_sectionalism_startup.4.t
+	desc = acw_sectionalism_startup.4.d
+	flavor = acw_sectionalism_startup.4.f
+	
+	duration = 3
+	
+	trigger = {
+		#triggered by Dredd Scott event
+	}
+	
+	immediate = {
+	}
+	
+	option = {
+	name = acw_sectionalism_startup.4.a 
+		add_radicals = {
+			culture = cu:yankee
+			value = 0.05
+		}
+	}
+}
+	
+namespace = ostend
+
+#Ostend Manifesto decision event
+ostend.1 = {
+	type = country_event
+	event_image = {
+		video = "gfx/event_pictures/europenorthamerica_capitalists_meeting.bk2"
+	}
+	
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/capitalists_meeting"
+
+	icon = "gfx/interface/icons/event_icons/event_map.dds"
+	
+	title = ostend.1.t 
+	desc = ostend.1.d 
+	flavor = ostend.1.f
+	
+	duration = 3
+	
+	trigger = {
+		#triggered by decision
+	}
+	
+	immediate = {
+		c:USA = {
+			save_scope_as = united_states
+		}
+		ruler = {
+			save_scope_as = president
+		}
+		c:STATE_CUBA = {
+			owner = {
+				top_overlord = {
+					save_scope_as = cuba_owner
+				}
+			}
+			save_scope_as = cuba
+		}
+		c:MEX = {
+			save_scope_as = mexico
+		}
+		set_variable = {
+			name = ostend_manifesto_taken
+			value = yes
+		}
+	}
+	
+	option = { #Offer to purchase
+		name = ostend.1.a 
+		custom_tooltip = {
+			text = ostend_approach.tt
+			scope:cuba_owner = {
+			}
+		}
+	}
+	
+	option = { #Reset decision, nothing happens
+		name = ostend.1.b
+		custom_tooltip = {
+			text = ostend_later.tt
+			clear_variable_list = ostend_manifesto_taken
+		}
+	}
+}
+	
+namespace = acw_peace_treaty
+
+#Treaty of Appomattox, USA victory over CSA
+acw_peace_treaty.1 = {
+	type = country_event
+	placement = s:STATE_VIRGINIA.region_state:CSA
+	
+	event_image = {
+		video = "gfx/event_pictures/europenorthamerica_capitalists_meeting.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/capitalists_meeting"
+
+	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
+	
+	title = acw_peace_treaty.1.t
+	desc = acw_peace_treaty.1.d
+	flavor = acw_peace_treaty.1.f
+	
+	duration = 3
+	
+	trigger = {
+		#triggered by completing je_acw_war against csa
+	}
+	
+	immediate = {
+		c:USA = {
+			ruler = {
+				save_scope_as = president
+				set_variable = {
+					name = abraham_lincoln
+					value = yes
+				}
+			}
+		}
+	}
+	
+	option = {
+		name = acw_peace_treaty.1.a
+		trigger_event = { 
+			id = acw_je_events.2
+			days = 3
+		}
+	}
+}
+		
+
+#Treaty of Washington, CSA victory over USA
+acw_peace_treaty.2 = {
+	type = country_event
+	
+	event_image = {
+		video = "gfx/event_pictures/europenorthamerica_capitalists_meeting.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/capitalists_meeting"
+
+	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
+	
+	title = acw_peace_treaty.2.t
+	desc = acw_peace_treaty.2.d
+	flavor = acw_peace_treaty.2.f
+	
+	duration = 3
+	
+	trigger = {
+		#triggered by failing je_acw_war against csa
+	}
+	
+	immediate = {
+		c:USA = {
+			ruler = {
+				save_scope_as = president
+			}
+		}
+	}
+	
+	option = {
+		name = acw_peace_treaty.2.a
+		custom_tooltip = acw_peace_treaty.2.tt
+		add_modifier = acw_lost_civil_war
+		if = {
+			limit = { exists = c:CSA }
+			c:CSA = { set_country_type = recognized }
+		}
+		if = {
+			limit = { exists = c:FSA }
+			c:FSA = { set_country_type = recognized }
+		}
+	}
+}
+
+namespace = acw_buildup
+
+#House Gag Rule
+acw_buildup.1 = {
+	type = country_event
+	
+	event_image = {
+		video = "gfx/event_pictures/unspecific_politicians_arguing.bk2"
+	}
+	
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/asia/politician_parliament_motion"
+
+	icon = "gfx/interface/icons/event_icons/event_scales.dds"
+	
+	title = acw_buildup.1.t
+	desc = acw_buildup.1.d
+	flavor = acw_buildup.1.f
+	
+	duration = 3
+	
+	trigger = {
+		exists = c:USA
+		NOT = { has_variable = house_gag_rule }
+		NOT = { has_law = law_type:law_slavery_banned }
+		year < 1837
+	}
+	
+	immediate = {
+		set_variable = {
+			name = house_gag_rule
+			value = yes
+		}
+		random_interest_group = { #slaver group
+			limit = {
+				is_revolutionary = no
+				is_insurrectionary = no
+				is_marginal = no
+				OR = {
+					has_ideology = ideology:ideology_pro_slavery
+					leader = {
+						has_ideology = ideology:ideology_slaver
+					}
+				}
+			}
+			leader = {
+				save_scope_as = gag_representative
+			}
+		}
+	}
+	
+	option = { #Enact the gag rule
+	name = acw_buildup.1.a 
+		custom_tooltip = { 
+		set_variable = {
+			name = gag_rule_texas
+			value = yes
+			}
+		}
+		add_modifier = {
+			name = usa_house_gag_rule
+			months = 72
+			is_decaying = yes
+		}
+		every_interest_group = { #slavers happy
+			limit = {
+				OR = {
+					has_ideology = ideology:ideology_pro_slavery
+					leader = { has_ideology = ideology:ideology_slaver }
+				}
+				NOT = { has_modifier = ig_slavers_happy }
+			}
+			add_modifier = {
+				name = ig_slavers_happy
+				months = short_modifier_time
+			}
+		}
+		every_interest_group = { #abolitionists mad
+			limit = {
+				OR = {
+					has_ideology = ideology:ideology_anti_slavery
+					leader = { has_ideology = ideology:ideology_abolitionist }
+				}
+				NOT = { has_modifier = ig_abolitionists_mad }
+			}
+			add_modifier = {
+				name = ig_abolitionists_mad
+				months = short_modifier_time
+			}
+		}
+	}
+}
+
+
+#The Texas Question
+acw_buildup.2 = {
+	type = country_event
+	placement = scope:texas
+	
+	event_image = {
+		video = "gfx/event_pictures/europenorthamerica_capitalists_meeting.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/capitalists_meeting"
+
+	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
+	
+	title = acw_buildup.2.t
+	desc = acw_buildup.2.d
+	flavor = acw_buildup.2.f
+	
+	duration = 3
+	
+	trigger = {
+		#Can also be triggered by the Texan Annexation event if America annexes the Republic of Texas
+		NOT = { has_variable = tex_compromise }
+		any_scope_state = {
+			state_region = s:STATE_TEXAS
+			is_incorporated = no
+		}
+	}
+	
+	immediate = {
+		s:STATE_TEXAS.region_state:USA = {
+			save_scope_as = texas
+		}
+		set_variable = {
+			name = tex_compromise 
+			value = yes
+		}
+		c:USA = {
+			save_scope_as = united_states
+			ruler = {
+				save_scope_as = president
+			}
+		}
+	}
+	
+	option = { #slave state 
+		name = acw_buildup.2.a 
+		default_option = yes
+		ai_chance = { base = 99 }
+		custom_tooltip = { 
+			text = texas_slave_state.tt
+			scope:texas = {
+				create_pop = {
+					pop_type = slaves
+					culture = afro_american
+					size = 1000			
+				}
+				set_state_type = incorporated
+			}
+		}
+		s:STATE_TEXAS = {
+			this.state_region = { add_claim = c:USA }
+		}
+	}
+	
+	option = { #free state 
+		name = acw_buildup.2.b 
+		ai_chance = { base = 1 }
+		custom_tooltip = {
+			text = texas_free_state.tt
+			scope:texas = {
+				liberate_slaves = yes
+				set_state_type = incorporated
+			}
+		}
+		add_radicals = {
+			culture = cu:dixie
+			value = 0.25
+		}
+		s:STATE_TEXAS = {
+			this.state_region = { add_claim = c:USA }
+		}
+	}
+}
+	
+
+#Wilmot Proviso
+acw_buildup.3 = {
+	type = country_event
+	event_image = {
+		video = "gfx/event_pictures/unspecific_politicians_arguing.bk2"
+	}
+	
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/asia/politician_parliament_motion"
+
+	icon = "gfx/interface/icons/event_icons/event_map.dds"
+	
+	title = acw_buildup.3.t
+	desc = acw_buildup.3.d
+	flavor = acw_buildup.3.f
+	
+	duration = 3
+	
+	trigger = {
+		exists = c:USA
+		year < 1850
+		NOT = { has_variable = wilmot_proviso_happened }
+		NOT = { has_law = law_type:law_slavery_banned }
+		owns_entire_state_region = STATE_CALIFORNIA
+	}
+	
+	immediate = {
+		set_variable = {
+		name = wilmot_proviso_happened
+		value = yes
+		}
+		random_interest_group = {
+			limit = {
+				is_revolutionary = no
+				is_insurrectionary = no
+				is_marginal = no
+				OR = {
+					has_ideology = ideology:ideology_anti_slavery
+					leader = {
+						has_ideology = ideology:ideology_abolitionist
+					}
+				}
+			}
+			save_scope_as = wilmot_proviso_ig
+			leader = {
+				save_scope_as = wilmot_proviso_ig_leader
+			}
+		}
+		random_interest_group = { #slaver group
+			limit = {
+				is_revolutionary = no
+				is_insurrectionary = no
+				is_marginal = no
+				OR = {
+					has_ideology = ideology:ideology_pro_slavery
+					leader = {
+						has_ideology = ideology:ideology_slaver
+					}
+				}
+			}
+			leader = {
+				save_scope_as = anti_wilmot_proviso_ig_leader
+			}
+		}
+	}
+	
+	option = { #Reject proviso, popular sovereignty
+	name = acw_buildup.3.a 
+	default_option = yes
+	custom_tooltip = acw_popular_sovereignty.tt
+	set_variable = {
+		name = wilmot_proviso_compromise
+		value = yes
+		}
+	}
+	
+	option = { #Accept the proviso, abolish slavery
+	name = acw_buildup.3.b 
+	custom_tooltip = {
+		text = acw_abolish.tt
+		every_scope_state = {
+				limit = {
+					has_claim_by = c:MEX
+				}
+				liberate_slaves = yes
+			}
+		}
+	}
+	
+	option = { #Reject the treaty, spread slavery 
+	name = acw_buildup.3.c 
+	custom_tooltip = {
+		text = acw_dont_abolish.tt
+		###Revise this later####
+		}
+	}
+}
+	
+
+#Compromise of 1850
+acw_buildup.4 = {
+	type = country_event
+	event_image = {
+		video = "gfx/event_pictures/unspecific_politicians_arguing.bk2"
+	}
+	
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/asia/politician_parliament_motion"
+
+	icon = "gfx/interface/icons/event_icons/event_scales.dds"
+	
+	title = acw_buildup.4.t
+	desc = acw_buildup.4.d
+	flavor = acw_buildup.4.f
+	
+	duration = 3
+	
+	trigger = {
+		exists = c:USA
+		year = 1850
+		NOT = { has_variable = compromise_1850 }
+		NOT = { has_law = law_type:law_slavery_banned }
+		has_variable = wilmot_proviso_compromise
+		owns_entire_state_region = STATE_CALIFORNIA
+	}
+	
+	immediate = {
+		set_variable = {
+		name = compromise_1850
+		value = yes
+		}
+		c:MEX = {
+			save_scope_as = mexico
+		}
+		s:STATE_DISTRICT_OF_COLUMBIA.region_state:USA = {
+			save_scope_as = district_columbia
+		}
+		s:STATE_CALIFORNIA.region_state:USA = {
+			save_scope_as = california
+		}
+		random_interest_group = { #abolitionist group 
+			limit = {
+				is_revolutionary = no
+				is_insurrectionary = no
+				is_marginal = no
+				OR = {
+					has_ideology = ideology:ideology_anti_slavery
+					leader = {
+						has_ideology = ideology:ideology_abolitionist
+					}
+				}
+			}
+			leader = {
+				save_scope_as = north_leader
+			}
+		}
+		random_interest_group = { #slaver group
+			limit = {
+				is_revolutionary = no
+				is_insurrectionary = no
+				is_marginal = no
+				OR = {
+					has_ideology = ideology:ideology_pro_slavery
+					leader = {
+						has_ideology = ideology:ideology_slaver
+					}
+				}
+			}
+			leader = {
+				save_scope_as = south_leader
+			}
+		}
+	}
+	
+	option = {
+	name = acw_buildup.4.a
+		custom_tooltip = {
+		text = acw_buildup_california.tt
+		s:STATE_CALIFORNIA.region_state:USA = {
+			set_state_type = incorporated
+			}
+		}
+		custom_tooltip = {
+		text = acw_buildup_slave_law.tt 
+		set_variable = {
+		name = compromise_fugitive_slave_law
+		value = yes
+			}
+		}
+		custom_tooltip = {
+		text = acw_buildup_kansas_nebraska.tt 
+		set_variable = {
+		name = kansas_nebraska_upcoming
+		value = yes 
+		}
+		every_interest_group = {
+			limit = {
+				OR = {
+					has_ideology = ideology:ideology_pro_slavery
+					leader = { has_ideology = ideology:ideology_slaver }
+				}
+				NOT = { has_modifier = disappointing_compromise }
+			}
+			add_modifier = {
+				name = disappointing_compromise
+				months = short_modifier_time
+			}
+		}
+		every_interest_group = {
+			limit = {
+				OR = {
+					has_ideology = ideology:ideology_anti_slavery
+					leader = { has_ideology = ideology:ideology_abolitionist }
+				}
+				NOT = { has_modifier = disappointing_compromise }
+			}
+			add_modifier = {
+				name = disappointing_compromise
+				months = short_modifier_time
+				}
+			}
+		}
+	}
+}
+
+#The Nashville Convention, WIP
+acw_buildup.5 = {
+	type = country_event
+	placement = scope:nashville_convention
+}
+
+#Fugitive Slave Law
+acw_buildup.6 = {
+	type = country_event
+	
+	event_image = {
+		video = "gfx/event_pictures/unspecific_politicians_arguing.bk2"
+	}
+	
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/asia/politician_parliament_motion"
+
+	icon = "gfx/interface/icons/event_icons/event_scales.dds"
+	
+	title = acw_buildup.6.t
+	desc = acw_buildup.6.d 
+	flavor = acw_buildup.6.f 
+	
+	duration = 3
+	
+	trigger = {
+		year > 1849
+		has_variable = compromise_1850
+		NOT = { has_variable = fugitive_slave_act_passed }
+		NOT = { has_law = law_type:law_slavery_banned }
+	}
+	
+	immediate = {
+		set_variable = {
+		name = fugitive_slave_act_passed
+		value = yes
+		}
+	}
+	
+	option = {
+	name = acw_buildup.6.a 
+		custom_tooltip = acw_fugitive_slave_act.tt
+		custom_tooltip = {
+		text = fugitive_slave_act_pleaser.tt
+		every_scope_state = {
+			limit = {
+				OR = {
+					has_modifier = usa_southern_supremacy
+					has_modifier = usa_deep_southern_supremacy
+				}
+			}
+			add_loyalists_in_state = {
+					culture = cu:dixie
+					strata = rich
+					value = 0.05
+				}
+			}
+		every_scope_state = {
+			limit = { 
+				OR = {
+					has_modifier = usa_northern_supremacy
+					has_modifier = usa_iron_belt
+				}
+			}
+			add_radicals_in_state = {
+				culture = cu:yankee
+				strata = rich
+				value = 0.05
+			}
+			add_radicals_in_state = {
+					culture = cu:yankee
+					strata = middle
+					value = 0.05
+				}
+			}
+		}
+	}
+}
+	
+#Kansas-Nebraska Act
+acw_buildup.7 = {
+	type = country_event
+	
+	event_image = {
+		video = "gfx/event_pictures/europenorthamerica_capitalists_meeting.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/capitalists_meeting"
+
+	icon = "gfx/interface/icons/event_icons/event_map.dds"
+	
+	title = acw_buildup.7.t 
+	desc = acw_buildup.7.d 
+	flavor = acw_buildup.7.f 
+	
+	duration = 3
+	
+	trigger = {
+		#triggered by Kansas-Nebraska decision
+	}
+	
+	immediate = {
+		s:STATE_KANSAS.region_state:USA = {
+			save_scope_as = kansas 
+		}
+		s:STATE_NEBRASKA.region_state:USA = {
+			save_scope_as = nebraska
+		}
+		random_interest_group = { #slaver group
+			limit = {
+				is_revolutionary = no
+				is_insurrectionary = no
+				is_marginal = no
+				OR = {
+					has_ideology = ideology:ideology_pro_slavery
+					leader = {
+						has_ideology = ideology:ideology_slaver
+					}
+				}
+			}
+			leader = {
+				save_scope_as = south_leader
+			}
+		}
+		set_variable = {
+			name = ostend_manifesto
+			value = yes
+		}
+	}
+	
+	option = {
+		name = acw_buildup.7.a 
+		custom_tooltip = {
+			text = acw_kansas_nebraska_violence.tt 
+			set_variable = {
+				name = kansas_nebraska_happened
+				value = yes
+			}
+		}
+		remove_modifier = missouri_compromise
+		add_journal_entry = {
+			type = je_usa_western_territories
+		}
+	}
+}
+
+#Bleeding Kansas
+acw_buildup.8 = {
+	type = country_event
+	placement = scope:bleeding_kansas
+	
+	event_image = {
+		video = "gfx/event_pictures/europenorthamerica_american_civil_war.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/american_civil_war"
+
+	icon = "gfx/interface/icons/event_icons/event_fire.dds"
+
+    left_icon = scope:character_to_display_john_brown
+
+	duration = 3
+
+	is_popup = yes
+
+	trigger = {
+		year >= 1854
+		has_variable = kansas_nebraska_happened 
+		NOT = { has_law = law_type:law_slavery_banned }
+		any_scope_state = {
+			is_slave_state = no
+			is_incorporated = no
+			NOT = { has_modifier = bleeding_state }
+			any_neighbouring_state = {
+				owner = ROOT
+				has_modifier = usa_border_state
+				OR = {
+					is_incorporated = yes
+					has_modifier = bleeding_state
+				}
+			}
+		}
+	}
+	
+	immediate = {
+		set_variable = {
+			name = bleeding_kansas
+			value = yes
+		}
+		if = {
+			limit = {
+				NOT = {
+					any_scope_character = { has_variable = john_brown_var }
+				}
+			}
+			create_character = { #JOHN BROWN
+				first_name = John
+				last_name = Brown
+				historical = yes
+				culture = cu:yankee
+				interest_group = ig_rural_folk
+				ideology = ideology:ideology_abolitionist
+				birth_date = 1800.5.9
+				dna = usa_john_brown_character_template
+				traits = {
+			        reserved
+			        firebrand
+			        reckless
+					pious #HJE edit
+				}
+				on_created = {
+	                set_variable = {
+	                    name = john_brown_var #give the character a variable
+	                }
+	            }
+	        }
+		}
+        random_scope_character = {
+            limit = { has_variable = john_brown_var }
+            save_scope_as = character_to_display_john_brown
+		}
+		set_variable = {
+			name = bleeding_kansas_happened
+			value = yes
+		}
+		random_scope_state = {
+			limit = {
+				is_slave_state = no
+				is_incorporated = no
+				NOT = { has_modifier = bleeding_state }
+				any_neighbouring_state = {
+					owner = ROOT
+					has_modifier = usa_border_state
+					OR = {
+						is_incorporated = yes
+						has_modifier = bleeding_state
+					}
+				}
+			}
+			save_scope_as = bleeding_kansas
+			add_modifier = bleeding_state
+		}
+	}
+	
+	option = {
+		name = acw_buildup.8.a
+		default_option = yes
+		custom_tooltip = acw_bleeding_kansas_free.tt
+			add_radicals = {
+				culture = cu:dixie
+				strata = rich
+				value = 0.05
+			}
+			scope:bleeding_kansas = {
+				add_radicals_in_state = {
+				value = 0.25
+			}
+			state_region = {
+				add_devastation = 20
+			}
+		}
+		hidden_effect = {
+			scope:bleeding_kansas = {
+				liberate_slaves = yes
+			}
+		}
+	}
+	option = {
+		name = acw_buildup.8.b
+		custom_tooltip = acw_bleeding_kansas_slave.tt
+		scope:bleeding_kansas = {
+			add_radicals_in_state = {
+				value = 0.25
+			}
+			state_region = {
+				add_devastation = 20
+			}
+		}
+		add_radicals = {
+			culture = cu:yankee
+			value = 0.05
+		}
+		hidden_effect = {
+			scope:bleeding_kansas = {
+				create_pop = {
+					pop_type = slaves
+					culture = afro_american
+					size = 1000			
+				}
+			}
+		}
+	}
+}
+
+#Uncle Tom's Cabin WIP
+acw_buildup.9 = {
+	type = country_event
+}
+
+#Caning of Charles Sumner
+acw_buildup.10 = {
+	type = country_event
+	
+	title = acw_buildup.10.t
+	desc = acw_buildup.10.d
+	flavor = acw_buildup.10.f
+	duration = 3
+
+	event_image = {
+		video = "gfx/event_pictures/europenorthamerica_american_civil_war.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/american_civil_war"
+
+	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
+
+	left_icon = scope:preston_brooks_leader
+	right_icon = scope:charles_sumner_leader
+
+	trigger = {
+		exists = c:USA
+		c:USA = ROOT
+		year >= 1856
+		has_variable = bleeding_kansas
+		NOT = { has_law = law_type:law_slavery_banned }
+		NOT = { has_variable = charles_sumner }
+		any_interest_group = {
+			is_revolutionary = no
+			is_insurrectionary = no
+			is_marginal = no
+			OR = {
+				has_ideology = ideology:ideology_pro_slavery
+				leader = {
+					has_ideology = ideology:ideology_slaver
+				}
+			}
+		}
+		any_interest_group = {
+			is_revolutionary = no
+			is_insurrectionary = no
+			is_marginal = no
+			OR = {
+				has_ideology = ideology:ideology_anti_slavery
+				leader = {
+					has_ideology = ideology:ideology_abolitionist
+				}
+			}
+		}
+	}
+
+	immediate = {
+		set_variable = {
+			name = charles_sumner
+			value = yes
+		}
+
+		random_interest_group = {
+			limit = {
+				is_revolutionary = no
+				is_insurrectionary = no
+				is_marginal = no
+				OR = {
+					has_ideology = ideology:ideology_pro_slavery
+					leader = {
+						has_ideology = ideology:ideology_slaver
+					}
+				}
+			}
+			save_scope_as = preston_brooks_ig
+			leader = {
+				save_scope_as = preston_brooks_leader
+			}
+		}
+		random_interest_group = {
+			limit = {
+				is_revolutionary = no
+				is_insurrectionary = no
+				is_marginal = no
+				OR = {
+					has_ideology = ideology:ideology_anti_slavery
+					leader = {
+						has_ideology = ideology:ideology_abolitionist
+					}
+				}
+				NOT = {
+					has_ideology = ideology:ideology_proletarian
+					has_ideology = ideology:ideology_pious
+				}
+			}
+			save_scope_as = charles_sumner_ig
+			leader = {
+				save_scope_as = charles_sumner_leader
+			}
+		}
+	}
+
+	cancellation_trigger = {
+		NOR = {
+			exists = scope:preston_brooks_leader
+			exists = scope:charles_sumner_leader
+			has_global_variable = american_civil_war
+		}
+	}
+
+	option = {
+		name = acw_buildup.10.a
+		custom_tooltip = acw_buildup.10.a.tt
+		scope:preston_brooks_ig = {
+			add_modifier = { 
+			name = ig_gaining_support
+			months = short_modifier_time
+			}
+		}
+		default_option = yes
+		hidden_effect = {
+			scope:charles_sumner_leader = {
+				kill_character = yes
+			}
+		}
+	}
+	option = {
+		name = acw_buildup.10.b
+		custom_tooltip = acw_buildup.10.a.tt
+		custom_tooltip = acw_buildup.10.b.tt
+		scope:charles_sumner_ig = {
+			add_modifier = {
+			name = ig_gaining_support
+			months = short_modifier_time
+			}
+		}
+		hidden_effect = {
+			scope:charles_sumner_leader = {
+				kill_character = yes
+			}
+			scope:preston_brooks_leader = {
+				kill_character = yes
+			}
+		}
+	}
+}
+
+#John Brown's Raid
+acw_buildup.11 = {
+	type = country_event
+	placement = scope:john_brown_raid
+	
+	event_image = {
+		video = "gfx/event_pictures/unspecific_fire.bk2"
+	}
+	
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/american_civil_war"
+	
+	icon = "gfx/interface/icons/event_icons/event_fire.dds"
+	
+	title = acw_buildup.11.t 
+	desc = acw_buildup.11.d 
+	flavor = acw_buildup.11.f
+	
+	duration = 3
+	
+	trigger = {
+		c:USA = ROOT
+		year >= 1859
+		has_variable = bleeding_kansas
+		NOT = { has_variable = john_brown }
+		NOT = { has_global_variable = american_civil_war }
+		any_scope_state = {
+			is_incorporated = yes
+			is_slave_state = yes
+		}
+	}
+	
+	immediate = { 
+		set_variable = {
+			name = john_brown 
+			value = yes
+		}
+		random_scope_state = {
+			limit = {
+				is_incorporated = yes
+				is_slave_state = yes
+				any_neighbouring_state = {
+					owner = ROOT
+					is_incorporated = yes
+					is_slave_state = no
+				}
+			}
+			save_scope_as = john_brown_raid
+		}
+	}
+	
+	option = { #Radicalization between the north and south 
+		name = acw_buildup.11.a 
+		add_radicals = {
+			culture = cu:yankee
+			value = 0.10
+		}
+		add_radicals = {
+			culture = cu:dixie
+			value = 0.15
+		}
+	}
+}
+
+
+# Succesful Raid on Harpers Ferry
+acw_buildup.11 = {
+	type = country_event
+
+	title = acw_buildup.11.t
+	desc = acw_buildup.11.d
+	flavor = acw_buildup.11.f
+
+	event_image = {
+		video =  "gfx/event_pictures/southamerica_slave_chains.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/american_civil_war"
+
+	icon = "gfx/interface/icons/event_icons/event_fire.dds"
+
+	duration = 3
+
+	is_popup = yes
+
+	trigger = {
+		exists = c:USA
+		c:USA = ROOT
+		year >= 1859
+		NOT = { c:USA = {has_law = law_type:law_slavery_banned }}
+		NOT = { c:USA = {has_variable = harpers_raid_happened_var}}
+		any_scope_character = { has_variable = john_brown_var }
+	}
+
+	immediate = {
+        create_character = { #BASEDMAN
+			first_name = Harriet
+			last_name = Tubman
+			historical = yes
+			culture = cu:afro_american
+			female = yes
+			interest_group = ig_devout
+			ideology = ideology:ideology_abolitionist
+			birth_date = 1822.3.10
+			dna = dna_harriet_tubman
+			traits = {
+				brave
+				pious
+				meticulous
+				persistent 
+			}
+			on_created = {
+                set_variable = {
+                    name = is_harriet_tubman #give the character a variable
+                }
+            }
+        }
+         random_scope_character = {
+            limit = { has_variable = john_brown_var } #use the variable to scope to that specific character
+            save_scope_as = character_to_display_john_brown #save the scope here
+		}
+        random_scope_character = {
+            limit = { has_variable = is_harriet_tubman } #use the variable to scope to that specific character
+            save_scope_as = character_to_display_is_harriet_tubman #save the scope here
+		}
+		set_variable = {
+			name = harpers_raid_happened_var
+		}
+	}
+
+	option = {
+		 name = acw_buildup.11.a
+		s:STATE_WEST_VIRGINIA.region_state:USA  = {
+			every_scope_pop = {
+				limit = {
+					is_pop_type = slaves
+					culture = cu:afro_american
+				}
+				change_poptype = pop_type:laborers
+			}
+		}
+		s:STATE_WEST_VIRGINIA.region_state:USA  = {
+			every_scope_pop = {
+				limit = {
+					culture = cu:afro_american
+				}
+				move_pop = s:STATE_OHIO.region_state:USA
+			}
+		}
+		s:STATE_WEST_VIRGINIA.region_state:USA  = {
+			create_pop = {
+				pop_type = slaves
+				culture = afro_american
+				size = 3250
+			}
+		}
+
+		c:USA = {
+			add_radicals = {
+ 				value = 0.50
+  				culture = cu:afro_american
+  				pop_type = slaves
+   			}	
+   		}
+
+		c:USA = {
+			add_radicals = {
+ 				value = 0.05
+  				culture = cu:yankee
+   			}	
+   		}
+		c:USA = {
+			add_radicals = {
+ 				value = 0.15
+  				culture = cu:dixie
+   			}	
+   		}
+		add_modifier = { 
+			name = harpers_ferry_success_mod
+   			months = 120
+   		}
+	}
+}	
+
+acw_buildup.12 = { #Failed raid on Harper's Ferry, capture
+
+	title = acw_buildup.12.t
+	desc = acw_buildup.12.d
+	flavor = acw_buildup.12.f
+
+	event_image = {
+		video =  "gfx/event_pictures/unspecific_devastation.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/american_civil_war"
+
+	icon = "gfx/interface/icons/event_icons/event_fire.dds"
+
+	duration = 3
+
+	is_popup = yes
+
+	trigger = {
+		exists = c:USA
+		c:USA = ROOT
+		year >= 1859
+		NOT = { c:USA = {has_law = law_type:law_slavery_banned }}
+		NOT = { c:USA = {has_variable = harpers_raid_happened_var}}
+		any_scope_character = { has_variable = john_brown_var }
+	}
+
+	immediate = {
+        random_scope_character = {
+            limit = { has_variable = john_brown_var } #use the variable to scope to that specific character
+            save_scope_as = character_to_display_john_brown #save the scope here
+        
+		}
+		set_variable = {
+			name = harpers_raid_happened_var
+		}
+	}
+
+	option = {
+		name = acw_buildup.12.a
+		c:USA = {
+			add_radicals = {
+				value = 0.03
+				culture = cu:yankee
+   			}
+   			add_radicals = {
+ 				value = 0.05
+  				culture = cu:dixie
+   			}
+
+			scope:character_to_display_john_brown = { kill_character = yes }
+
+   			add_modifier = { 
+				name = harpers_ferry_failure_mod
+	   			months = 120
+   			}
+   		}
+	}
+}
+
+acw_buildup.13 = { #Failed raid on Harper's Ferry, catastrophic
+
+	title = acw_buildup.13.t
+	desc = acw_buildup.13.d
+	flavor = acw_buildup.13.f
+	placement = scope:bleeding_kansas
+
+	event_image = {
+		video =  "gfx/event_pictures/unspecific_devastation.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/american_civil_war"
+
+	icon = "gfx/interface/icons/event_icons/event_fire.dds"
+
+    left_icon = scope:character_to_display_john_brown
+
+	duration = 3
+
+	is_popup = yes
+
+	trigger = {
+		exists = c:USA
+		c:USA = ROOT
+		NOT = { c:USA = {has_law = law_type:law_slavery_banned }}
+		year >= 1859
+		NOT = { c:USA = {has_variable = harpers_raid_happened_var}}
+		any_scope_character = { has_variable = john_brown_var }
+	}
+
+	immediate = {
+        random_scope_character = {
+            limit = { has_variable = john_brown_var } #use the variable to scope to that specific character
+            save_scope_as = character_to_display_john_brown #save the scope here
+		}
+		set_variable = {
+			name = harpers_raid_happened_var
+		}
+	}
+
+	option = {
+		name = acw_buildup.13.a
+		add_radicals = {
+			value = 0.03
+			culture = cu:dixie
+		}
+		add_modifier = { 
+			name = harpers_ferry_disaster_mod
+			months = 120
+		}
+
+		scope:character_to_display_john_brown = { kill_character = yes }
+
+		random_interest_group = {
+    		limit = {
+    			is_marginal = no
+    			leader = { has_ideology = ideology:ideology_abolitionist }
+    		}
+	    	leader = {
+	    		set_ideology = ideology:ideology_moderate
+	    	}
+        }
+	}
+}
+
+namespace = acw_special_events
+
+#The Gettysburg Address
+acw_special_events.1 = {
+	type = country_event
+	placement = scope:gettysburg
+	
+	event_image = {
+		video = "gfx/event_pictures/unspecific_ruler_speaking_to_people.bk2"
+	}
+	
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/capitalists_meeting"
+	
+	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
+	
+	title = acw_special_events.1.t
+	desc = acw_special_events.1.d 
+	flavor = acw_special_events.1.f 
+	
+	duration = 3
+	
+	trigger = {
+		has_variable = won_battle_gettysburg
+		NOT = { has_variable = gettysburg_address }
+	}
+	
+	immediate = {
+		save_scope_as = united_states
+		ruler = { save_scope_as = president }
+		random_scope_war = {
+			save_scope_as = ongoing_acw
+		}
+		random_scope_state = {
+			limit = { state_region = s:STATE_PENNSYLVANIA }
+			save_scope_as = gettysburg
+		}
+		set_variable = {
+			name = gettysburg_address
+			value = yes
+		}
+	}
+	
+	option = {
+		name = acw_special_events.1.a 
+		custom_tooltip = {
+			text = acw_special_events_union.tt
+			
+			scope:ongoing_acw = {
+				add_war_war_support = {
+					target = c:USA
+					value = 25
+				}
+				add_war_war_support = {
+					target = c:CSA
+					value = 25
+				}	
+				add_war_war_support = {
+					target = c:FSA
+					value = 25
+				}		
+			}
+		}
+	}
+}
+
+#The March to the Sea (Confederacy/Georgia Owner)
+acw_special_events.2 = {
+	type = country_event
+	placement = scope:georgia
+	
+	event_image = {
+		video = "gfx/event_pictures/unspecific_fire.bk2"
+	}
+	
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/american_civil_war"
+	
+	icon = "gfx/interface/icons/event_icons/event_fire.dds"
+	
+	title = acw_special_events.2.t
+	desc = acw_special_events.2.d 
+	flavor = acw_special_events.2.f 
+	
+	duration = 3
+	
+	trigger = {
+		NOT = { has_variable = sherman_march }
+		any_scope_state = {
+			devastation > 0.05
+			OR = {
+				state_region = s:STATE_SOUTH_CAROLINA
+				state_region = s:STATE_GEORGIA
+			}
+		}
+	}
+	
+	immediate = {
+		save_scope_as = confederacy
+		random_scope_war = {
+			save_scope_as = ongoing_acw
+		}
+		random_scope_state = {
+			limit = { state_region = s:STATE_GEORGIA }
+			save_scope_as = georgia
+		}
+		random_country = {
+			limit = {
+				has_war_with = ROOT
+				NOT = { THIS = ROOT }
+				OR = {
+					has_journal_entry = je_acw_war
+					has_journal_entry = je_acw_war_csa_fsa
+				}
+			}
+			save_scope_as = union
+			ruler = { save_scope_as = president }
+			if = {
+				limit = { any_scope_general = { has_variable = is_uncle_billy } }
+				random_scope_general = {
+					limit = { has_variable = is_uncle_billy }
+					save_scope_as = sherman
+				}
+			}
+			else = {
+				random_scope_general = { save_scope_as = sherman }
+			}
+		}
+		set_variable = {
+			name = sherman_march
+			value = yes
+		}
+	}
+	
+	option = {
+		name = acw_special_events.2.a 
+		custom_tooltip = {
+			text = acw_special_events_confederacy.tt
+			
+			scope:ongoing_acw = {
+				trigger_event = { id = acw_special_events.2001 }
+				add_war_war_support = {
+					target = scope:union
+					value = 25
+				}
+			}
+		}
+	}
+}
+
+#The March to the Sea (Union/Atlanta Memer) (Uncle Billy, do it again!)
+acw_special_events.2001 = {
+	type = country_event
+	placement = scope:georgia
+	
+	event_image = {
+		video = "gfx/event_pictures/unspecific_fire.bk2"
+	}
+	
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/american_civil_war"
+	
+	icon = "gfx/interface/icons/event_icons/event_fire.dds"
+	
+	title = acw_special_events.2001.t
+	desc = acw_special_events.2001.d 
+	flavor = acw_special_events.2001.f 
+	
+	duration = 3
+	
+	trigger = {
+	}
+	
+	immediate = {
+		save_scope_as = union
+		random_scope_war = {
+			save_scope_as = ongoing_acw
+		}
+		ruler = { save_scope_as = president }
+		if = {
+			limit = { any_scope_general = { has_variable = is_uncle_billy } }
+			random_scope_general = {
+				limit = { has_variable = is_uncle_billy }
+				save_scope_as = sherman
+			}
+		}
+		else = {
+			random_scope_general = { save_scope_as = sherman }
+		}
+		random_country = {
+			limit = {
+				has_war_with = ROOT
+				NOT = { THIS = ROOT }
+				OR = {
+					has_journal_entry = je_acw_war
+					has_journal_entry = je_acw_war_csa_fsa
+				}
+			}
+			save_scope_as = confederacy
+			random_scope_state = {
+				limit = { state_region = s:STATE_GEORGIA }
+				save_scope_as = georgia
+			}
+		}
+	}
+	
+	option = {
+		name = acw_special_events.2001.a 
+		custom_tooltip = { text = acw_special_events_union.tt }
+	}
+}
+
+#The Bloodiest Day in American History
+acw_special_events.3 = {
+	type = country_event
+	placement = scope:maryland
+	
+	event_image = {
+		video = "gfx/event_pictures/europenorthamerica_american_civil_war.bk2"
+	}
+	
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/american_civil_war"
+	
+	icon = "gfx/interface/icons/event_icons/event_skull.dds"
+	
+	title = acw_special_events.3.t
+	desc = acw_special_events.3.d 
+	flavor = acw_special_events.3.f 
+	
+	duration = 3
+	
+	trigger = {
+		NOT = { set_global_variable = acw_bloodiest_day }
+		OR = {
+			has_journal_entry = je_acw_war
+			has_journal_entry = je_acw_war_csa_fsa
+		}
+		any_scope_state = {
+			state_region = s:STATE_MARYLAND
+			devastation > 0.01
+		}
+	}
+	
+	immediate = {
+		save_scope_as = union
+		random_scope_war = {
+			save_scope_as = ongoing_acw
+		}
+		random_scope_state = {
+			limit = { state_region = s:STATE_MARYLAND }
+			save_scope_as = maryland
+		}
+		random_country = {
+			limit = {
+				has_war_with = ROOT
+				NOT = { THIS = ROOT }
+				OR = {
+					has_journal_entry = je_acw_war
+					has_journal_entry = je_acw_war_csa_fsa
+				}
+			}
+			save_scope_as = confederacy
+		}
+		set_global_variable = {
+			name = acw_bloodiest_day
+			value = yes
+		}
+	}
+	
+	option = {
+		name = acw_special_events.3.a 
+		custom_tooltip = {
+			text = acw_special_events_confederacy.tt
+			
+			scope:ongoing_acw = {
+				add_war_war_support = {
+					target = root
+					value = 10
+				}
+				add_war_war_support = {
+					target = scope:confederacy
+					value = 25
+				}
+			}
+		}
+	}
+}
+
+#The First Battle of Bull Run
+acw_special_events.4 = {
+	type = country_event
+	placement = scope:virginia
+	
+	event_image = {
+		video = "gfx/event_pictures/europenorthamerica_american_civil_war.bk2"
+	}
+	
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/american_civil_war"
+	
+	icon = "gfx/interface/icons/event_icons/event_skull.dds"
+	
+	title = acw_special_events.4.t
+	desc = acw_special_events.4.d 
+	flavor = acw_special_events.4.f 
+	
+	duration = 3
+	
+	trigger = {
+		NOT = { has_global_variable = bull_run }
+		OR = {
+			has_journal_entry = je_acw_war
+			has_journal_entry = je_acw_war_csa_fsa
+		}
+		any_scope_state = {
+			state_region = s:STATE_VIRGINIA
+			devastation > 0.01
+		}
+	}
+	
+	immediate = {
+		save_scope_as = confederacy
+		random_scope_war = {
+			save_scope_as = ongoing_acw
+		}
+		random_scope_state = {
+			limit = { state_region = s:STATE_VIRGINIA }
+			save_scope_as = virginia
+		}
+		random_country = {
+			limit = {
+				has_war_with = ROOT
+				NOT = { THIS = ROOT }
+				OR = {
+					has_journal_entry = je_acw_war
+					has_journal_entry = je_acw_war_csa_fsa
+				}
+			}
+			save_scope_as = union
+		}
+		set_global_variable = {
+			name = bull_run
+			value = yes
+		}
+	}
+	
+	option = {
+		name = acw_special_events.4.a 
+		custom_tooltip = {
+			text = acw_special_events_union.tt
+			
+			scope:ongoing_acw = {
+				add_war_war_support = {
+					target = root
+					value = 30
+				}
+			}
+		}
+	}
+}
+
+#The Victory at Chancellorsville
+acw_special_events.5 = {
+	type = country_event
+	placement = scope:virginia
+	
+	event_image = {
+		video = "gfx/event_pictures/europenorthamerica_american_civil_war.bk2"
+	}
+	
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/american_civil_war"
+	
+	icon = "gfx/interface/icons/event_icons/event_fire.dds"
+	
+	title = acw_special_events.5.t
+	desc = acw_special_events.5.d 
+	flavor = acw_special_events.5.f 
+	
+	duration = 3
+	
+	trigger = {
+		exists = c:USA
+		c:USA = { NOT = { has_variable = acw_has_fought_less_than_2_years } }
+		NOT = { has_global_variable = chancellorsville }
+		OR = {
+			has_journal_entry = je_acw_war
+			has_journal_entry = je_acw_war_csa_fsa
+		}
+		any_scope_state = {
+			state_region = s:STATE_VIRGINIA
+			devastation > 0.01
+		}
+	}
+	
+	immediate = {
+		save_scope_as = confederacy
+		random_scope_war = {
+			save_scope_as = ongoing_acw
+		}
+		random_scope_state = {
+			limit = { state_region = s:STATE_VIRGINIA }
+			save_scope_as = virginia
+		}
+		if = {
+			limit = { any_scope_general = { has_variable = is_stonewall_jackson } }
+			random_scope_general = {
+				limit = { has_variable = is_stonewall_jackson }
+				save_scope_as = stonewall_jackson_scope
+			}
+		}
+		else = {
+			random_scope_general = { save_scope_as = stonewall_jackson_scope }
+		}
+		random_country = {
+			limit = {
+				has_war_with = ROOT
+				NOT = { THIS = ROOT }
+				OR = {
+					has_journal_entry = je_acw_war
+					has_journal_entry = je_acw_war_csa_fsa
+				}
+			}
+			save_scope_as = union
+		}
+		set_global_variable = {
+			name = chancellorsville
+			value = yes
+		}
+	}
+	
+	option = {
+		name = acw_special_events.5.a 
+
+		scope:stonewall_jackson_scope = { kill_character = yes }
+
+		custom_tooltip = {
+			text = acw_special_events_union.tt
+			
+			scope:ongoing_acw = {
+				add_war_war_support = {
+					target = root
+					value = 50
+				}
+			}
+		}
+	}
+}
+
+#The Battle of Vicksburg
+acw_special_events.6 = {
+	type = country_event
+	placement = scope:vicksburg
+	
+	event_image = {
+		video = "gfx/event_pictures/europenorthamerica_american_civil_war.bk2"
+	}
+	
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/american_civil_war"
+	
+	icon = "gfx/interface/icons/event_icons/event_fire.dds"
+	
+	title = acw_special_events.6.t
+	desc = acw_special_events.6.d 
+	flavor = acw_special_events.6.f 
+	
+	duration = 3
+	
+	trigger = {
+		exists = c:USA
+		c:USA = { NOT = { has_variable = acw_has_fought_less_than_2_years } }
+		NOT = { has_global_variable = battle_vicksburg }
+		OR = {
+			has_journal_entry = je_acw_war
+			has_journal_entry = je_acw_war_csa_fsa
+		}
+		any_country = {
+			has_war_with = ROOT
+			NOT = { THIS = ROOT }
+			OR = {
+				has_journal_entry = je_acw_war
+				has_journal_entry = je_acw_war_csa_fsa
+			}
+			any_scope_state = {
+				state_region = s:STATE_MISSISSIPPI
+				devastation > 0.01
+			}
+		}
+	}
+	
+	immediate = {
+		save_scope_as = union
+		random_scope_war = {
+			save_scope_as = ongoing_acw
+		}
+		random_country = {
+			limit = {
+				has_war_with = ROOT
+				NOT = { THIS = ROOT }
+				OR = {
+					has_journal_entry = je_acw_war
+					has_journal_entry = je_acw_war_csa_fsa
+				}
+			}
+			save_scope_as = confederacy
+			random_scope_state = {
+				limit = { state_region = s:STATE_MISSISSIPPI }
+				save_scope_as = vicksburg
+			}
+		}
+		set_global_variable = {
+			name = battle_vicksburg
+			value = yes
+		}
+	}
+
+	option = {
+		name = acw_special_events.6.a 
+			custom_tooltip = {
+			text = acw_special_events_union.tt
+			
+			scope:ongoing_acw = {
+				add_war_war_support = {
+					target = root
+					value = 25
+				}
+				add_war_war_support = {
+					target = scope:confederacy
+					value = 15
+				}
+			}
+		}
+	}
+}
+
+#Emancipation Proclamation
+acw_special_events.7 = {
+	type = country_event
+	
+	event_image = {
+		video = "gfx/event_pictures/unspecific_ruler_speaking_to_people.bk2"
+	}
+	
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/capitalists_meeting"
+	
+	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
+	
+	title = acw_special_events.7.t
+	desc = acw_special_events.7.d
+	flavor = acw_special_events.7.f
+	
+	duration = 3
+	
+	trigger = {
+		NOT = { has_variable = emancipation_proclaimed }
+		NOT = { has_law = law_type:law_slavery_banned }
+		ruler = { NOT = { has_ideology = ideology:ideology_slaver } }
+		NOT = { any_interest_group = { has_modifier = delayed_emancipation } }
+		any_country = {
+			has_war_with = ROOT
+			NOT = { THIS = ROOT }
+			NOT = { has_law = law_type:law_slavery_banned }
+			OR = {
+				has_journal_entry = je_acw_war
+				has_journal_entry = je_acw_war_csa_fsa
+			}
+		}
+		OR = {
+			has_variable = won_battle_gettysburg
+			NOT = { has_variable = acw_has_fought_less_than_2_years }
+			AND = {
+				is_player = no
+				NOT = { has_variable = acw_has_fought_less_than_1_year }
+			}
+		}
+	}
+	
+	immediate = {
+		ruler = { save_scope_as = president }
+		random_scope_war = {
+			save_scope_as = ongoing_acw
+		}
+		set_variable = {
+			name = emancipation_proclaimed 
+			value = yes
+		}
+	}
+	
+	option = {
+		name = acw_special_events.7.a
+		custom_tooltip = {
+			text = acw_special_events.7.tt
+			set_variable = {
+				name = emancipation_proclamation
+				value = yes
+			}
+			scope:ongoing_acw = {
+				add_war_war_support = {
+					target = c:USA
+					value = 25
+				}
+				add_war_war_support = {
+					target = c:CSA
+					value = 25
+				}
+				add_war_war_support = {
+					target = c:FSA
+					value = 25
+				}
+			}
+		}
+		every_interest_group = {
+			limit = {
+				law_stance = {
+					law = law_type:law_slavery_banned
+					value > neutral
+				}
+			}
+			add_modifier = {
+				name = enacted_emancipation # +1 opinion
+				months = normal_modifier_time
+			}
+		}
+		every_country = {
+			limit = {
+				has_war_with = ROOT
+				NOT = { THIS = ROOT }
+				OR = {
+					has_journal_entry = je_acw_war
+					has_journal_entry = je_acw_war_csa_fsa
+				}
+			}
+			trigger_event = { id = acw_special_events.7001 }
+		}
+	}
+}
+
+#Reaction to the Emancipation Proclamation
+acw_special_events.7001 = {
+	type = country_event
+	placement = c:USA
+	
+	event_image = {
+		video = "gfx/event_pictures/unspecific_ruler_speaking_to_people.bk2"
+	}
+	
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/capitalists_meeting"
+	
+	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
+	
+	title = acw_special_events.7001.t
+	desc = acw_special_events.7001.d 
+	flavor = acw_special_events.7001.f 
+	
+	duration = 3
+	
+	trigger = {
+	}
+	
+	immediate = {
+		save_scope_as = confederacy
+		random_scope_war = {
+			save_scope_as = ongoing_acw
+		}
+		random_country = {
+			limit = {
+				has_war_with = ROOT
+				NOT = { THIS = ROOT }
+				OR = {
+					has_journal_entry = je_acw_war
+					has_journal_entry = je_acw_war_csa_fsa
+				}
+			}
+			save_scope_as = union
+			ruler = { save_scope_as = president }
+		}
+	}
+	
+	option = {
+		name = acw_special_events.7001.a 
+		trigger = { NOT = { has_law = law_type:law_slavery_banned } }
+		custom_tooltip = { text = acw_special_events_union.tt }
+	}
+
+	option = {
+		name = acw_special_events.7001.b 
+		trigger = { has_law = law_type:law_slavery_banned }
+		play_as = c:USA
+		c:USA = { annex = scope:confederacy }
+	}
+}
+
+#The Battle of Gettysburg
+acw_special_events.12 = {
+	type = country_event
+	placement = scope:pennsylvania
+	
+	event_image = {
+		video = "gfx/event_pictures/europenorthamerica_american_civil_war.bk2"
+	}
+	
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/american_civil_war"
+	
+	icon = "gfx/interface/icons/event_icons/event_fire.dds"
+	
+	title = acw_special_events.12.t
+	desc = acw_special_events.12.d 
+	flavor = acw_special_events.12.f 
+	
+	duration = 3
+	
+	trigger = {
+		NOT = { has_global_variable = battle_gettysburg }
+		OR = {
+			has_journal_entry = je_acw_war
+			has_journal_entry = je_acw_war_csa_fsa
+		}
+		any_scope_state = {
+			state_region = s:STATE_PENNSYLVANIA
+			devastation > 0.01
+		}
+	}
+	
+	immediate = {
+		random_scope_war = {
+			save_scope_as = ongoing_acw
+		}
+		random_scope_state = {
+			limit = { state_region = s:STATE_PENNSYLVANIA }
+			save_scope_as = pennsylvania
+		}
+		random_country = {
+			limit = {
+				has_war_with = ROOT
+				NOT = { THIS = ROOT }
+				OR = {
+					has_journal_entry = je_acw_war
+					has_journal_entry = je_acw_war_csa_fsa
+				}
+			}
+			save_scope_as = confederacy
+		}
+		set_global_variable = {
+			name = battle_gettysburg
+			value = yes
+		}
+	}
+	
+	option = {
+		name = acw_special_events.12.a 
+		set_variable = won_battle_gettysburg
+		custom_tooltip = {
+			text = acw_special_events_union.tt
+			
+			scope:ongoing_acw = {
+				add_war_war_support = {
+					target = scope:confederacy
+					value = 10
+				}
+				add_war_war_support = {
+					target = ROOT
+					value = 30
+				}		
+			}
+		}
+	}
+}
+
+#Constant Skirmishes
+acw_special_events.14 = {
+	type = country_event
+	placement = scope:skirmish_state
+	
+	event_image = {
+		video = "gfx/event_pictures/europenorthamerica_american_civil_war.bk2"
+	}
+	
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/american_civil_war"
+	
+	icon = "gfx/interface/icons/event_icons/event_fire.dds"
+	
+	title = acw_special_events.14.t
+	desc = acw_special_events.14.d 
+	flavor = acw_special_events.14.f 
+	
+	duration = 3
+	
+	trigger = {
+		any_scope_state = {
+			devastation > 0.01
+		}
+	}
+	
+	immediate = {
+		random_scope_state = {
+			limit = {
+				devastation > 0.01
+			}
+			save_scope_as = skirmish_state
+		}
+		random_scope_war = {
+			save_scope_as = ongoing_acw
+		}
+	}
+	
+	option = {
+		name = acw_special_events.14.a 
+		custom_tooltip = {
+			text = acw_special_events_skirmish_state.tt
+			
+			scope:ongoing_acw = {
+				add_war_war_support = {
+					target = c:CSA
+					value = 35
+				}
+				add_war_war_support = {
+					target = c:USA
+					value = 35
+				}
+				add_war_war_support = {
+					target = c:FSA
+					value = 35
+				}		
+			}
+		}
+	}
+}
+
+namespace = acw_secession_crisis
+
+#SOUTHERN SECESSION CRISIS
+#Deep South secedes first
+acw_secession_crisis.1 = {
+	type = country_event
+	event_image = {
+		video = "gfx/event_pictures/europenorthamerica_capitalists_meeting.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/capitalists_meeting"
+
+	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
+	
+	title = acw_secession_crisis.1.t
+	desc = acw_secession_crisis.1.d
+	flavor = acw_secession_crisis.1.f
+	
+	duration = 3
+	
+	trigger = {
+		#triggered by event
+	}
+	
+	immediate = {
+		c:USA = {
+			every_scope_state = {
+				if = { 
+					limit = {
+						OR = {
+							is_slave_state = yes
+							state_region = s:STATE_TEXAS
+						}
+						OR = {
+							state_region = s:STATE_TEXAS
+							has_modifier = usa_deep_southern_supremacy
+						}
+					}
+					set_state_owner = c:CSA	
+				}
+			}
+		}
+		s:STATE_GEORGIA.region_state:CSA = {
+			create_building={
+				building="building_barracks"
+				add_ownership={
+					country={
+						country="root"
+						levels=2
+					}
+				}
+				reserves=1
+				activate_production_methods={ "pm_no_organization" }
+			}
+		}
+		s:STATE_LOUISIANA.region_state:CSA = {
+			create_building={
+				building="building_barracks"
+				add_ownership={
+					country={
+						country="root"
+						levels=2
+					}
+				}
+				reserves=1
+				activate_production_methods={ "pm_no_organization" }
+			}
+		}
+		s:STATE_SOUTH_CAROLINA.region_state:CSA = {
+			save_scope_as = south_carolina
+
+			create_building={
+				building="building_barracks"
+				add_ownership={
+					country={
+						country="root"
+						levels=2
+					}
+				}
+				reserves=1
+				activate_production_methods={ "pm_no_organization" }
+			}
+		}
+		s:STATE_ALABAMA.region_state:CSA = {
+			save_scope_as = alabama
+
+			create_building={
+				building="building_barracks"
+				add_ownership={
+					country={
+						country="root"
+						levels=1
+					}
+				}
+				reserves=1
+				activate_production_methods={ "pm_no_organization" }
+			}
+		}
+		s:STATE_MISSISSIPPI.region_state:CSA = {
+			save_scope_as = mississippi
+
+			create_building={
+				building="building_barracks"
+				add_ownership={
+					country={
+						country="root"
+						levels=1
+					}
+				}
+				reserves=1
+				activate_production_methods={ "pm_no_organization" }
+			}
+		}
+		c:USA = {
+			save_scope_as = united_states
+		}
+		set_variable = csa_will_spawn_var
+	}
+	
+	option = { 
+		name = acw_secession_crisis.1.a 
+		default_option = yes
+		custom_tooltip = {
+			text = acw_secession_crisis.1.tt
+			c:USA = {
+				trigger_event = {
+				id = acw_secession_crisis.3
+				days = 30
+				}
+			}
+			c:CSA = {
+				every_scope_state = {
+					if = {
+						limit = {
+							has_modifier = usa_deep_southern_supremacy
+						}
+						set_state_type = incorporated
+					}
+				}
+			}
+		}
+	}
+}
+
+#NORTHERN SECESSION CRISIS
+#Far North secedes first
+acw_secession_crisis.1001 = {
+	type = country_event
+	event_image = {
+		video = "gfx/event_pictures/europenorthamerica_capitalists_meeting.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/capitalists_meeting"
+
+	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
+	
+	title = acw_secession_crisis.1001.t
+	desc = acw_secession_crisis.1001.d
+	flavor = acw_secession_crisis.1001.f
+	
+	duration = 3
+	
+	trigger = {
+		#triggered by event
+	}
+	
+	immediate = {
+		c:USA = {
+			every_scope_state = {
+				if = { 
+					limit = {
+						OR = {
+							THIS = s:STATE_MAINE.region_state:USA
+							THIS = s:STATE_NEW_HAMPSHIRE.region_state:USA
+							THIS = s:STATE_VERMONT.region_state:USA
+							THIS = s:STATE_MASSACHUSETTS.region_state:USA
+							THIS = s:STATE_RHODE_ISLAND.region_state:USA
+							THIS = s:STATE_CONNECTICUT.region_state:USA
+							THIS = s:STATE_PENNSYLVANIA.region_state:USA
+							THIS = s:STATE_OHIO.region_state:USA
+							THIS = s:STATE_MICHIGAN.region_state:USA
+							THIS = s:STATE_MINNESOTA.region_state:USA
+							THIS = s:STATE_WISCONSIN.region_state:USA
+						}
+					}
+					set_state_owner = c:FSA	
+				}
+			}
+		}
+		s:STATE_NEW_YORK.region_state:FSA = {
+			save_scope_as = new_york
+		}
+		s:STATE_OHIO.region_state:FSA = {
+			save_scope_as = ohio
+		}
+		s:STATE_MASSACHUSETTS.region_state:FSA = {
+			save_scope_as = massachusetts
+		}
+		c:USA = {
+			save_scope_as = united_states
+		}
+	}
+	
+	option = { 
+		name = acw_secession_crisis.1001.a 
+		default_option = yes
+		custom_tooltip = {
+			text = acw_secession_crisis.1001.tt
+			c:USA = {
+				trigger_event = {
+					id = acw_secession_crisis.3001
+					days = 30
+				}
+			}
+			c:FSA = {
+				every_scope_state = {
+					set_state_type = incorporated
+				}
+			}
+		}
+	}
+}
+
+#The War begins
+acw_secession_crisis.2 = {
+	type = country_event
+	event_image = {
+		video = "gfx/event_pictures/europenorthamerica_capitalists_meeting.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/capitalists_meeting"
+
+	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
+	
+	title = acw_secession_crisis.2.t
+	desc = acw_secession_crisis.2.d
+	flavor = acw_secession_crisis.2.f
+	
+	duration = 3
+	
+	trigger = {
+		#triggered by event
+	}
+	
+	immediate = {
+		c:USA = {
+			every_scope_state = {
+				if = { 
+					limit = {
+						is_slave_state = yes
+						OR = {
+							has_modifier = usa_deep_southern_supremacy
+							has_modifier = usa_southern_supremacy
+						}
+					}
+					set_state_owner = c:CSA	
+				}
+			}
+			s:STATE_WEST_VIRGINIA.region_state:USA = {
+				set_state_owner = c:CSA
+			}
+			ruler = {
+				save_scope_as = president
+			}
+		}
+		s:STATE_VIRGINIA.region_state:CSA = {
+			save_scope_as = virginia
+		}
+		random_scope_character = {
+			limit = { has_variable = is_a_retard }
+			add_commander_rank = 1
+		}
+		random_scope_character = {
+			limit = { has_variable = is_unconditional_surrender_grant }
+			add_commander_rank = 1
+			add_modifier = {
+				name = garibaldi_popularity
+			}
+		}
+		every_interest_group = {
+			limit = { leader = { has_ideology = ideology:ideology_slaver } }
+	    	leader = { kill_character = yes }
+		}
+		every_interest_group = {
+			limit = { leader = { has_ideology = ideology:ideology_slaver } }
+			leader = { set_ideology = ideology:ideology_traditionalist }
+		}
+		ig:ig_devout = {
+			add_ideology = ideology:ideology_anti_slavery
+			leader = { set_ideology = ideology:ideology_abolitionist }
+		}
+		hidden_effect = {
+			every_country = {
+				limit = { 
+					NOT = { THIS = ROOT }
+					country_rank = rank_value:great_power 
+					has_diplomatic_pact = {
+						who = ROOT
+						type = alliance
+					}
+				}
+				remove_diplomatic_pact = {
+					country = ROOT
+					type = alliance
+				}
+			}
+		}
+
+		if = {
+			limit = { year <= 1876 }
+			create_character = {
+				first_name = David
+				last_name = Hunter
+				historical = yes
+				is_general = yes
+				interest_group = ig_petty_bourgeoisie
+				female = no
+				culture = cu:yankee
+				birth_date = 1802.7.21
+				ideology = ideology:ideology_abolitionist
+				traits = {
+					experienced_offensive_planner
+					imperious
+					ambitious
+					brave
+				}
+				on_created = { set_variable = ACW_is_based }
+			}
+		}
+		random_list = {
+			50 = { }
+			50 = {
+				random_scope_character = {
+					limit = { has_variable = is_unconditional_surrender_grant }
+					kill_character = yes
+				}
+				create_character = {
+					first_name = Ulysses
+					last_name = Grant
+					historical = yes
+					is_general = yes
+					interest_group = ig_petty_bourgeoisie
+					female = no
+					culture = cu:yankee
+					birth_date = 1822.1.21
+					dna = dna_ulysses_grant
+					ideology = ideology:ideology_reformer
+					traits = {
+						experienced_offensive_planner
+						basic_defensive_strategist
+						charismatic
+						persistent
+						alcoholic
+					}
+					on_created = { 
+						add_commander_rank = 2
+						set_variable = is_unconditional_surrender_grant 
+						add_modifier = {
+							name = garibaldi_popularity
+						}
+					}
+				}
+			}
+		}
+		c:CSA = {
+			set_capital = STATE_VIRGINIA
+			save_scope_as = confederate_states
+			if = {
+				limit = {
+					NOT = { has_law = law_type:law_legacy_slavery }
+				}
+				activate_law = law_type:law_legacy_slavery
+				every_scope_state = {
+					enslave_discriminated_farm_workers = yes
+				}
+			}
+			if = {
+				limit = { year <= 1871 }
+				create_character = {
+					first_name = Jefferson
+					last_name = Davis
+					historical = yes
+					culture = cu:dixie
+					ig_leader = yes
+					interest_group = ig_landowners
+					ideology = ideology:ideology_slaver
+    				birth_date = 1808.6.3
+					dna = dna_jeff_davis
+					traits = {
+						bigoted
+						demagogue
+						expert_political_operator
+					}
+				}
+			}
+			ig:ig_landowners = { party = { add_momentum = momentum_very_large } }
+			if = {
+				limit = { 
+					year > 1841
+					year <= 1877 
+				}
+				create_character = {
+					first_name = Nathan
+					last_name = Bedford_Forrest
+					historical = yes
+					is_general = yes
+					interest_group = ig_rural_folk
+					female = no
+					culture = cu:dixie
+					birth_date = 1821.7.13
+					ideology = ideology:ideology_slaver
+					traits = {
+						pillager
+						plains_commander
+						experienced_offensive_planner
+						reckless
+						bigoted
+						cruel
+					}
+					on_created = { set_variable = is_klansman_asshole }
+				}
+			}
+			if = {
+				limit = { year <= 1883 }
+				create_character = {
+					first_name = Pierre
+					last_name = GT_Beauregard
+					historical = yes
+					is_general = yes
+					interest_group = ig_landowners
+					female = no
+					culture = cu:cajun
+					birth_date = 1818.2.20
+					ideology = ideology:ideology_moderate
+					traits = {
+						experienced_offensive_planner
+						arrogant
+						brave
+						cruel
+					}
+					on_created = { set_variable = is_pt_beauregard }
+				}
+			}
+			ig:ig_landowners = { 
+				set_interest_group_name = ig_southern_planters
+				remove_ideology = ideology:ideology_paternalistic
+				add_ideology = ideology:ideology_republican_paternalistic
+				add_ideology = ideology:ideology_pro_slavery
+				leader = { set_ideology = ideology:ideology_slaver }
+		        add_modifier = {
+		            name = ig_party_prospers
+		            months = long_modifier_time
+		        }
+			}
+
+			ig:ig_devout = {
+				set_interest_group_name = ig_evangelicals
+				add_ideology = ideology:ideology_pro_slavery
+				leader = { set_ideology = ideology:ideology_slaver }
+			}
+
+			ig:ig_armed_forces = {
+				add_ideology = ideology:ideology_pro_slavery
+				leader = { set_ideology = ideology:ideology_slaver }
+			}
+
+			ig:ig_rural_folk = {
+				add_ideology = ideology:ideology_pro_slavery
+				leader = { set_ideology = ideology:ideology_slaver }
+			}
+
+			add_loyalists = {
+				culture = cu:dixie
+				value = 0.75
+			}
+			every_scope_state = {
+				set_variable = state_seceded_from_union
+			}
+		}
+		s:STATE_KENTUCKY = { add_claim = c:CSA }
+		s:STATE_OKLAHOMA = { add_claim = c:CSA }
+		s:STATE_ARIZONA = { add_claim = c:CSA }
+		s:STATE_NEW_MEXICO = { add_claim = c:CSA }
+		if = {
+			limit = {
+				any_scope_character = { has_variable = is_robert_e_lee }
+			}
+			random_scope_character = {
+				limit = { has_variable = is_robert_e_lee }
+				kill_character = yes
+			}
+			c:CSA = {
+				create_character = {
+					first_name = Robert_E
+					last_name = Lee
+					historical = yes
+					is_general = yes
+					interest_group = ig_landowners
+					female = no
+					culture = cu:dixie
+					birth_date = 1807.1.19
+					dna = dna_robert_e_lee
+					ideology = ideology:ideology_traditionalist
+					commander_rank = commander_rank_2
+					traits = {
+						plains_commander
+						basic_defensive_strategist
+						experienced_offensive_planner
+						innovative
+						direct
+					}
+					on_created = { 
+						set_variable = is_robert_e_lee 
+						add_commander_rank = 1
+						add_modifier = {
+							name = garibaldi_popularity
+						}
+					}
+				}
+			}
+		}
+		if = {
+			limit = {
+				any_scope_character = { has_variable = is_joe_johnston }
+			}
+			random_scope_character = {
+				limit = { has_variable = is_joe_johnston }
+				kill_character = yes
+			}
+			c:CSA = {
+				create_character = {
+					first_name = Joseph_E
+					last_name = Johnston
+					historical = yes
+					is_general = yes
+					interest_group = ig_petty_bourgeoisie
+					female = no
+					culture = cu:dixie
+					birth_date = 1807.2.3
+					dna = dna_joe_johnston
+					ideology = ideology:ideology_moderate
+					traits = {
+						expert_defensive_strategist
+						experienced_offensive_planner
+						persistent
+						cautious
+					}
+					on_created = { set_variable = is_joe_johnston }
+				}
+			}
+		}
+		if = {
+			limit = {
+				any_scope_character = { has_variable = is_stonewall_jackson }
+			}
+			random_scope_character = {
+				limit = { has_variable = is_stonewall_jackson }
+				kill_character = yes
+			}
+			c:CSA = {
+				create_character = {
+					first_name = Thomas_Stonewall
+					last_name = Jackson
+					historical = yes
+					is_general = yes
+					interest_group = ig_rural_folk
+					female = no
+					culture = cu:dixie
+					birth_date = 1824.1.21
+					dna = dna_stonewall_jackson
+					ideology = ideology:ideology_slaver
+					traits = {
+						stalwart_defender
+						surveyor
+						reserved
+						brave
+						pious
+					}
+					on_created = { set_variable = is_stonewall_jackson }
+				}
+			}
+		}
+		set_global_variable = {
+			name = american_civil_war
+			value = yes
+		}
+	}
+	
+	option = { 
+		name = acw_secession_crisis.2.a 
+		default_option = yes
+		custom_tooltip = {
+			text = acw_secession_crisis.2.tt
+			c:USA = {
+				set_variable = union_side_acw
+				create_diplomatic_play = {
+					name = american_civil_war_name
+			
+					target_country = c:CSA
+					type = dp_annex_war
+				}
+			}
+			set_global_variable = {
+				name = american_civil_war
+				value = yes
+			} 
+			#change_infamy = -100
+			add_modifier = {
+				name = federal_war_modifier
+				months = 65
+			}
+			c:CSA = {
+				add_modifier = {
+					name = confederacy_war_modifier
+					months = 50
+				}
+				every_scope_state = {
+					set_state_type = incorporated
+					this.state_region = { add_claim = c:USA }
+				}
+				add_journal_entry = {
+					type = je_acw_war_csa_fsa
+					target = root
+				}
+				#change_infamy = -75
+				add_treasury = 3000000
+				change_institution_investment_level = { institution = institution_schools investment = -5 }
+				change_institution_investment_level = { institution = institution_police investment = -5 }
+				change_institution_investment_level = { institution = institution_colonial_affairs investment = -5 }
+				change_institution_investment_level = { institution = institution_social_security investment = -5 }
+				change_institution_investment_level = { institution = institution_home_affairs investment = -5 }
+				change_institution_investment_level = { institution = institution_health_system investment = -5 }
+				change_institution_investment_level = { institution = institution_workplace_safety investment = -5 }
+			}
+			set_global_variable = {
+				name = upper_south_seceded
+				value = yes
+			}
+		}
+		remove_modifier = missouri_compromise
+		add_journal_entry = {
+			type = je_acw_war
+			target = scope:csa_scope
+		}
+		set_variable = {
+			name = csa_will_spawn_var
+			value = yes
+		}
+		custom_tooltip = {
+			text = bleeding_state_end.tt
+			every_scope_state = {
+				limit = {
+					has_modifier = bleeding_state 
+				}
+				remove_modifier = bleeding_state 
+			}
+		}
+	}
+	option = { 
+		name = acw_secession_crisis.2.b
+		custom_tooltip = {
+			text = acw_secession_crisis.2.tt
+			c:USA = {
+				add_journal_entry = {
+					type = je_acw_war
+					target = scope:csa_scope
+				}
+			}
+			c:USA = {
+				set_variable = union_side_acw
+				create_diplomatic_play = {
+					name = american_civil_war_name
+		
+					target_country = c:CSA
+					type = dp_annex_war
+				}
+			}
+			c:CSA = {
+				add_treasury = 3000000
+				#change_infamy = -75
+				change_institution_investment_level = { institution = institution_schools investment = -5 }
+				change_institution_investment_level = { institution = institution_police investment = -5 }
+				change_institution_investment_level = { institution = institution_colonial_affairs investment = -5 }
+				change_institution_investment_level = { institution = institution_social_security investment = -5 }
+				change_institution_investment_level = { institution = institution_home_affairs investment = -5 }
+				change_institution_investment_level = { institution = institution_health_system investment = -5 }
+				change_institution_investment_level = { institution = institution_workplace_safety investment = -5 }
+				add_journal_entry = {
+					type = je_acw_war_csa_fsa
+					target = root
+				}
+			}
+			set_global_variable = {
+				name = american_civil_war
+				value = yes
+			}
+			#change_infamy = -100
+			add_modifier = {
+				name = federal_war_modifier
+				months = 65
+			}
+			c:CSA = {
+				set_capital = STATE_VIRGINIA
+				add_modifier = {
+					name = confederacy_war_modifier
+					months = 50
+				}
+				every_scope_state = {
+					set_state_type = incorporated
+					this.state_region = { add_claim = c:USA }
+				}
+				#change_infamy = -75
+			}
+			set_global_variable = {
+				name = upper_south_seceded
+				value = yes
+			}
+		}
+		remove_modifier = missouri_compromise
+		custom_tooltip = {
+		text = bleeding_state_end.tt
+		every_scope_state = {
+			limit = {
+				has_modifier = bleeding_state 
+			}
+			remove_modifier = bleeding_state 
+			}
+		}
+		play_as = c:CSA
+	}
+}
+
+#The War begins
+acw_secession_crisis.2001 = {
+	type = country_event
+	event_image = {
+		video = "gfx/event_pictures/europenorthamerica_capitalists_meeting.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/capitalists_meeting"
+
+	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
+	
+	title = acw_secession_crisis.2001.t
+	desc = acw_secession_crisis.2001.d
+	flavor = acw_secession_crisis.2001.f
+	
+	duration = 3
+	
+	trigger = {
+		#triggered by event
+	}
+	
+	immediate = {
+		c:USA = {
+			every_scope_state = {
+				if = { 
+					limit = {
+						OR = {
+							THIS = s:STATE_NEW_JERSEY.region_state:USA
+							THIS = s:STATE_DELAWARE.region_state:USA
+							THIS = s:STATE_INDIANA.region_state:USA
+							THIS = s:STATE_ILLINOIS.region_state:USA
+							THIS = s:STATE_IOWA.region_state:USA
+							THIS = s:STATE_NORTH_DAKOTA.region_state:USA
+						}
+					}
+					set_state_owner = c:FSA	
+				}
+			}
+			ruler = {
+				save_scope_as = president
+			}
+		}
+		s:STATE_PENNSYLVANIA.region_state:FSA = {
+			save_scope_as = pennsylvania
+		}
+		random_scope_character = {
+			limit = { has_variable = is_robert_e_lee }
+			add_commander_rank = 1
+			add_modifier = {
+				name = garibaldi_popularity
+			}
+		}
+		every_interest_group = {
+			limit = { leader = { has_ideology = ideology:ideology_abolitionist } }
+	    	leader = { set_ideology = ideology:ideology_moderate }
+		}
+		hidden_effect = {
+			every_country = {
+				limit = { 
+					NOT = { THIS = ROOT }
+					country_rank = rank_value:great_power 
+					has_diplomatic_pact = {
+						who = ROOT
+						type = alliance
+					}
+				}
+				remove_diplomatic_pact = {
+					country = ROOT
+					type = alliance
+				}
+			}
+		}
+		c:FSA = {
+			set_capital = STATE_PENNSYLVANIA
+			save_scope_as = free_states
+			every_scope_state = {
+				limit = {
+					this.state_region = {
+						NOT = { is_homeland = cu:afro_american }
+					}
+				}
+				this.state_region = { add_homeland = cu:afro_american }
+			}
+			if = {
+				limit = {
+					NOT = { has_law = law_type:law_slavery_banned }
+				}
+				activate_law = law_type:law_slavery_banned
+			}
+			if = {
+				limit = { year <= 1880 }
+				create_character = {
+					first_name = Benjamin
+					last_name = Wade
+					historical = yes
+					culture = cu:yankee
+					ruler = yes
+					ig_leader = yes
+					interest_group = ig_intelligentsia
+					ideology = ideology:ideology_radical
+    				birth_date = 1800.10.27
+					traits = {
+						demagogue
+						expert_political_operator
+					}
+				}
+			}
+			if = {
+				limit = { year <= 1876 }
+				create_character = {
+					first_name = David
+					last_name = Hunter
+					historical = yes
+					is_general = yes
+					interest_group = ig_petty_bourgeoisie
+					female = no
+					culture = cu:yankee
+					birth_date = 1802.7.21
+					ideology = ideology:ideology_abolitionist
+					traits = {
+						experienced_offensive_planner
+						imperious
+						ambitious
+						brave
+					}
+					on_created = { set_variable = ACW_is_based }
+				}
+			}
+			ig:ig_intelligentsia = { 
+		        add_modifier = {
+		            name = ig_party_prospers
+		            months = long_modifier_time
+		        }
+			}
+
+			ig:ig_devout = {
+				set_interest_group_name = ig_evangelicals
+				add_ideology = ideology:ideology_anti_slavery
+				leader = { set_ideology = ideology:ideology_abolitionist }
+			}
+
+			ig:ig_armed_forces = {
+				add_ideology = ideology:ideology_anti_slavery
+				leader = { set_ideology = ideology:ideology_abolitionist }
+			}
+
+			ig:ig_rural_folk = {
+				add_ideology = ideology:ideology_anti_slavery
+				leader = { set_ideology = ideology:ideology_abolitionist }
+			}
+
+			add_loyalists = {
+				culture = cu:yankee
+				value = 0.75
+			}
+			every_scope_state = {
+				set_variable = state_seceded_from_union
+			}
+		}
+		s:STATE_MARYLAND = { add_claim = c:FSA }
+		s:STATE_WEST_VIRGINIA = { add_claim = c:FSA }
+		s:STATE_SOUTH_DAKOTA = { add_claim = c:FSA }
+		s:STATE_MONTANA = { add_claim = c:FSA }
+		if = {
+			limit = { any_scope_character = { has_variable = john_brown_var } }
+			random_scope_character = {
+				limit = { has_variable = john_brown_var }
+				kill_character = yes
+			}
+			c:FSA = {
+				create_character = { #JOHN BROWN
+					first_name = John
+					last_name = Brown
+					historical = yes
+					is_general = yes
+					culture = cu:yankee
+					interest_group = ig_rural_folk
+					ideology = ideology:ideology_abolitionist
+					birth_date = 1800.5.9
+					dna = usa_john_brown_character_template
+					traits = {
+						basic_offensive_planner
+				        reserved
+				        firebrand
+				        reckless
+						pious #HJE edit
+					}
+
+					on_created = {
+		                set_variable = {
+		                    name = john_brown_var #give the character a variable
+		                }
+		            }
+		        }
+			}
+		}
+		if = {
+			limit = {
+				any_scope_character = { has_variable = is_unconditional_surrender_grant }
+			}
+			random_list = {
+				50 = { }
+				50 = {
+					random_scope_character = {
+						limit = { has_variable = is_unconditional_surrender_grant }
+						kill_character = yes
+					}
+					create_character = {
+						first_name = Ulysses
+						last_name = Grant
+						historical = yes
+						is_general = yes
+						interest_group = ig_petty_bourgeoisie
+						female = no
+						culture = cu:yankee
+						birth_date = 1822.1.21
+						dna = dna_ulysses_grant
+						ideology = ideology:ideology_reformer
+						traits = {
+							experienced_offensive_planner
+							basic_defensive_strategist
+							charismatic
+							persistent
+							alcoholic
+						}
+						on_created = { 
+							add_commander_rank = 2
+							set_variable = is_unconditional_surrender_grant 
+							add_modifier = {
+								name = garibaldi_popularity
+							}
+						}
+					}
+				}
+			}
+		}
+		set_global_variable = {
+			name = american_civil_war
+			value = yes
+		}
+	}
+	
+	option = { 
+		name = acw_secession_crisis.2001.a 
+		default_option = yes
+		custom_tooltip = {
+			text = acw_secession_crisis.2001.tt
+			c:USA = {
+				set_variable = union_side_acw
+				create_diplomatic_play = {
+					name = american_civil_war_name
+			
+					target_country = c:FSA
+					type = dp_annex_war
+				}
+			}
+			set_global_variable = {
+				name = american_civil_war
+				value = yes
+			} 
+			#change_infamy = -100
+			add_modifier = {
+				name = federal_war_modifier
+				months = 50
+			}
+			c:FSA = {
+				add_modifier = {
+					name = free_american_war_modifier
+					months = 65
+				}
+				#change_infamy = -75
+				add_treasury = 3000000
+				change_institution_investment_level = { institution = institution_schools investment = -5 }
+				change_institution_investment_level = { institution = institution_police investment = -5 }
+				change_institution_investment_level = { institution = institution_colonial_affairs investment = -5 }
+				change_institution_investment_level = { institution = institution_social_security investment = -5 }
+				change_institution_investment_level = { institution = institution_home_affairs investment = -5 }
+				change_institution_investment_level = { institution = institution_health_system investment = -5 }
+				change_institution_investment_level = { institution = institution_workplace_safety investment = -5 }
+				add_journal_entry = {
+					type = je_acw_war_csa_fsa
+					target = root
+				}
+			}
+			set_global_variable = {
+				name = lower_north_seceded
+				value = yes
+			}
+		}
+		remove_modifier = missouri_compromise
+		add_journal_entry = {
+			type = je_acw_war
+			target = scope:fsa_scope
+		}
+		custom_tooltip = {
+			text = bleeding_state_end.tt
+			every_scope_state = {
+				limit = {
+					has_modifier = bleeding_state 
+				}
+				remove_modifier = bleeding_state 
+			}
+		}
+	}
+	option = { 
+		name = acw_secession_crisis.2001.b
+		custom_tooltip = {
+			text = acw_secession_crisis.2001.tt
+			c:USA = {
+				set_variable = union_side_acw
+				add_journal_entry = {
+					type = je_acw_war
+					target = scope:fsa_scope
+				}
+				create_diplomatic_play = {
+					name = american_civil_war_name
+			
+					target_country = c:FSA
+					type = dp_annex_war
+				}
+			}
+			c:FSA = {
+				add_treasury = 3000000
+				#change_infamy = -75
+				change_institution_investment_level = { institution = institution_schools investment = -5 }
+				change_institution_investment_level = { institution = institution_police investment = -5 }
+				change_institution_investment_level = { institution = institution_colonial_affairs investment = -5 }
+				change_institution_investment_level = { institution = institution_social_security investment = -5 }
+				change_institution_investment_level = { institution = institution_home_affairs investment = -5 }
+				change_institution_investment_level = { institution = institution_health_system investment = -5 }
+				change_institution_investment_level = { institution = institution_workplace_safety investment = -5 }
+				add_journal_entry = {
+					type = je_acw_war_csa_fsa
+					target = root
+				}
+			}
+			set_global_variable = {
+				name = american_civil_war
+				value = yes
+			}
+			#change_infamy = -100
+			add_modifier = {
+				name = federal_war_modifier
+				months = 50
+			}
+			c:FSA = {
+				set_capital = STATE_PENNSYLVANIA
+				add_modifier = {
+					name = free_american_war_modifier
+					months = 65
+				}
+				#change_infamy = -75
+			}
+			set_global_variable = {
+				name = lower_north_seceded
+				value = yes
+			}
+		}
+		remove_modifier = missouri_compromise
+		custom_tooltip = {
+		text = bleeding_state_end.tt
+		every_scope_state = {
+			limit = {
+				has_modifier = bleeding_state 
+			}
+			remove_modifier = bleeding_state 
+			}
+		}
+		play_as = c:FSA
+	}
+}
+
+#Attack on Fort Sumter
+acw_secession_crisis.3 = {
+	type = country_event
+	placement = s:STATE_SOUTH_CAROLINA.region_state:CSA
+	event_image = {
+		video = "gfx/event_pictures/europenorthamerica_american_civil_war.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/american_civil_war"
+
+	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
+	
+	title = acw_secession_crisis.3.t
+	desc = acw_secession_crisis.3.d
+	flavor = acw_secession_crisis.3.f
+	
+	duration = 3
+	
+	trigger = {
+	}
+	
+	immediate = {
+		ruler = {
+			save_scope_as = president
+		}
+		s:STATE_SOUTH_CAROLINA.region_state:CSA = {
+			save_scope_as = south_carolina
+		}
+		random_interest_group = {
+			limit = {
+				has_ideology = ideology:ideology_jingoist
+			}
+			leader = {
+				save_scope_as = fort_sumter
+			}
+		}
+	}
+	
+	option = {
+		name = acw_secession_crisis.3.a 
+		default_option = yes
+		custom_tooltip = { 
+		text = acw_secession_crisis.3.tt
+		c:USA = {
+			trigger_event = {
+				id = acw_secession_crisis.2
+				days = 20
+				}
+			}
+		}
+	}
+}
+
+#Attack on Fort Jay
+acw_secession_crisis.3001 = {
+	type = country_event
+	placement = s:STATE_NEW_YORK.region_state:FSA
+	event_image = {
+		video = "gfx/event_pictures/europenorthamerica_american_civil_war.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/american_civil_war"
+
+	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
+	
+	title = acw_secession_crisis.3001.t
+	desc = acw_secession_crisis.3001.d
+	flavor = acw_secession_crisis.3001.f
+	
+	duration = 3
+	
+	trigger = {
+	}
+	
+	immediate = {
+		ruler = {
+			save_scope_as = president
+		}
+		s:STATE_NEW_YORK.region_state:FSA = {
+			save_scope_as = new_york
+		}
+		random_interest_group = {
+			limit = {
+				has_ideology = ideology:ideology_jingoist
+			}
+			leader = {
+				save_scope_as = fort_jay
+			}
+		}
+	}
+	
+	option = {
+		name = acw_secession_crisis.3001.a 
+		default_option = yes
+		custom_tooltip = { 
+		text = acw_secession_crisis.3001.tt
+		c:USA = {
+			trigger_event = {
+				id = acw_secession_crisis.2001
+				days = 20
+				}
+			}
+		}
+	}
+}
+
+#West Virginia Secedes
+acw_secession_crisis.4 = {
+	type = country_event
+	placement = s:STATE_WEST_VIRGINIA.region_state:CSA
+	event_image = {
+		video = "gfx/event_pictures/europenorthamerica_capitalists_meeting.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/capitalists_meeting"
+
+	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
+	
+	title = acw_secession_crisis.4.t
+	desc = acw_secession_crisis.4.d
+	flavor = acw_secession_crisis.4.f
+	
+	duration = 3
+	
+	trigger = {
+		has_global_variable = american_civil_war
+		has_variable = union_side_acw
+		exists = c:CSA
+		s:STATE_WEST_VIRGINIA.region_state:CSA = {
+			devastation > 0.01
+		}
+	}
+	
+	immediate = {
+		ruler = {
+			save_scope_as = president
+		}
+		c:USA = {
+			save_scope_as = america
+		}
+		c:CSA = {
+			save_scope_as = confederacy 
+		}
+		s:STATE_WEST_VIRGINIA.region_state:CSA = {
+			save_scope_as = west_virginia
+		}
+		random_scope_war = {
+			save_scope_as = ongoing_acw
+		}
+	}
+	
+	option = {
+		name = acw_secession_crisis.4.a 
+		default_option = yes
+		custom_tooltip = {
+			text = acw_secession_crisis.4.a.tt
+			s:STATE_WEST_VIRGINIA.region_state:CSA = {
+				set_state_owner = c:USA
+				set_state_type = incorporated
+			}
+			s:STATE_WEST_VIRGINIA = {
+				remove_variable = usa_state_flag_block
+			}
+			scope:ongoing_acw = {
+				add_war_war_support = {
+					target = c:CSA
+					value = 25
+				}
+			}
+		}
+	}
+	option = {
+		name = acw_secession_crisis.4.b
+		custom_tooltip = acw_secession_crisis.4.b.tt
+		ai_chance = { base = 0 }
+	}
+}	
+
+namespace = HJE_usa
+
+HJE_usa.2 = {
+	type = country_event
+	placement = c:USA
+	title = HJE_usa.2.t
+	desc = HJE_usa.2.d
+	flavor = HJE_usa.2.f
+
+	duration = 3
+
+	event_image = {
+		video = "gfx/event_pictures/europenorthamerica_american_civil_war.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/before_the_battle"
+
+	icon = "gfx/interface/icons/event_icons/event_map.dds"
+
+	trigger = {
+	}
+	
+	immediate = {
+	}
+
+	option = {
+		name = HJE_usa.2.a
+		default_option = yes
+		add_radicals = {
+			value = 0.4
+			culture = cu:dixie
+		}
+		ig:ig_landowners = { 
+			remove_ruling_interest_group = yes
+			add_modifier = {
+				name = ig_government_betrayed
+				months = long_modifier_time
+			}
+		}
+			
+		ai_chance = 100
+	}		
+}
+
+HJE_usa.3 = {
+	type = country_event
+	placement = c:USA
+	title = HJE_usa.3.t
+	desc = HJE_usa.3.d
+	flavor = HJE_usa.3.f
+
+	duration = 3
+
+	event_image = {
+		video = "gfx/event_pictures/europenorthamerica_american_civil_war.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/before_the_battle"
+
+	icon = "gfx/interface/icons/event_icons/event_map.dds"
+
+	trigger = {
+	}
+	
+	immediate = {
+	}
+
+	option = {
+		name = HJE_usa.3.a
+		default_option = yes
+		add_radicals = {
+			value = 0.3
+			culture = cu:yankee
+		}
+		every_interest_group = {
+			limit = {
+				OR = {
+					has_ideology = ideology:ideology_anti_slavery
+					leader = { has_ideology = ideology:ideology_abolitionist }
+				}
+			}
+			remove_ruling_interest_group = yes
+			add_modifier = {
+				name = ig_government_betrayed
+				months = long_modifier_time
+			}
+		}
+			
+		ai_chance = 100
+	}		
+}
+
+
+HJE_usa.4 = {
+	type = country_event
+	placement = this
+	title = HJE_usa.4.t
+	desc = HJE_usa.4.d
+	flavor = HJE_usa.4.f
+
+	duration = 3
+
+	event_image = {
+		video = "gfx/event_pictures/unspecific_politicians_arguing.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/before_the_battle"
+
+	icon = "gfx/interface/icons/event_icons/event_map.dds"
+
+	trigger = {
+	}
+	
+	immediate = {
+	}
+
+	option = {
+		name = HJE_usa.4.a
+		default_option = yes
+		ai_chance = {
+			base = 1
+		}
+
+		set_strategy = ai_strategy_maintain_power_balance
+		add_modifier = {
+			name = veiled_influence
+			months = short_modifier_time
+		}
+		random_country = {
+			limit = { has_variable = monroe_doctrine_victim }
+			save_scope_as = monroe_doctrine_requester
+		}	
+		every_country = {
+			limit = { is_diplomatic_play_enemy_of = scope:monroe_doctrine_requester }
+			change_relations = {
+				country = c:USA
+				value = -10
+			}
+		}
+        every_diplomatic_play = {
+			limit = {
+				initiator_is = scope:monroe_doctrine_requester
+				any_country = {
+					country_rank >= rank_value:minor_power
+					is_diplomatic_play_enemy_of = scope:monroe_doctrine_requester
+					NOT = {
+						any_scope_state = {
+							is_capital = yes
+							state_is_in_americas = yes
+						}
+					}
+				}
+			}
+			add_initiator_backers = { ROOT }
+			add_escalation = 25
+		}
+        every_diplomatic_play = {
+			limit = {
+				target_is = scope:monroe_doctrine_requester
+				any_country = {
+					country_rank >= rank_value:minor_power
+					is_diplomatic_play_enemy_of = scope:monroe_doctrine_requester
+					NOT = {
+						any_scope_state = {
+							is_capital = yes
+							state_is_in_americas = yes
+						}
+					}
+				}
+			}
+			add_target_backers = { ROOT }
+			add_escalation = 25
+		}
+		scope:monroe_doctrine_requester = {
+			add_modifier = {
+				name = working_with_the_great_powers
+				months = normal_modifier_time
+			}
+			change_relations = {
+				country = c:USA
+				value = 15
+			}
+		}
+		scope:monroe_doctrine_requester = {
+			remove_variable = monroe_doctrine_victim
+		}
+	}
+	option = {
+		name = HJE_usa.4.b
+		ai_chance = {
+			base = 0
+		}
+
+		add_modifier = {
+			name = withdrew_from_colonial_incident
+			months = short_modifier_time
+		}
+		random_country = {
+			limit = { has_variable = monroe_doctrine_victim }
+			save_scope_as = monroe_doctrine_requester
+		}
+		every_country = {
+			limit = {
+				any_scope_state = {
+					is_capital = yes
+					state_is_in_americas = yes
+				}
+				NOT = { THIS = scope:monroe_doctrine_requester }
+				NOT = { is_country_type = decentralized }
+				NOT = { is_country_type = unrecognized }
+			}
+			change_relations = {
+				country = c:USA
+				value = -5
+			}
+		}
+		scope:monroe_doctrine_requester = {
+			remove_variable = monroe_doctrine_victim
+			change_relations = {
+				country = c:USA
+				value = -15
+			}
+		}
+		random_country = {
+			limit = {
+				country_rank >= rank_value:minor_power
+				is_diplomatic_play_enemy_of = scope:monroe_doctrine_requester
+				NOT = {
+					any_scope_state = {
+						is_capital = yes
+						state_is_in_americas = yes
+					}
+				}
+			}
+			change_relations = {
+				country = c:USA
+				value = 5
+			}
+		}
+	}		
+}
+
+HJE_usa.5 = {
+	type = country_event
+	placement = scope:california_event_state
+	title = HJE_usa.5.t
+	desc = HJE_usa.5.d
+	flavor = HJE_usa.5.f
+
+	duration = 3
+
+	event_image = {
+		video = "gfx/event_pictures/europenorthamerica_gold_prospectors.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/gold_prospectors"
+
+	icon = "gfx/interface/icons/event_icons/event_trade.dds"
+
+	trigger = {
+	}
+	
+	immediate = {
+		set_global_variable = yankee_california_overflow
+		random_scope_state = {
+			limit = { state_region = s:STATE_CALIFORNIA }
+			save_scope_as = california_event_state
+		}
+	}
+
+	option = {
+		name = HJE_usa.5.a
+		default_option = yes
+		s:STATE_CALIFORNIA = { 
+			if = {
+				limit = { NOT = { cu:yankee = { has_homeland = s:STATE_CALIFORNIA } } }
+				add_homeland = cu:yankee
+			}
+			create_mass_migration = {
+				origin = c:USA
+				culture = cu:yankee
+			}
+			create_mass_migration = {
+				origin = c:USA
+				culture = cu:dixie
+			}
+		}
+		if = {
+			limit = {
+				exists = c:USA
+				NOT = { c:USA = THIS }
+				c:USA = { country_rank >= rank_value:major_power }
+			}
+            s:STATE_CALIFORNIA = { add_claim = c:USA }
+		}
+		random_state = {
+			limit = {
+				is_incorporated = yes
+				state_population > 25000
+				cu:yankee = { has_homeland = PREV }
+				any_scope_pop = { culture = cu:yankee }
+			}
+			random_scope_pop = {
+				limit = { culture = cu:yankee }
+				move_pop = scope:california_event_state
+			}
+		}
+		random_state = {
+			limit = {
+				is_incorporated = yes
+				state_population > 25000
+				cu:yankee = { has_homeland = PREV }
+				any_scope_pop = { culture = cu:yankee }
+			}
+			random_scope_pop = {
+				limit = { culture = cu:yankee }
+				move_pop = scope:california_event_state
+			}
+		}
+		random_state = {
+			limit = {
+				is_incorporated = yes
+				state_population > 25000
+				cu:yankee = { has_homeland = PREV }
+				any_scope_pop = { culture = cu:yankee }
+			}
+			random_scope_pop = {
+				limit = { culture = cu:yankee }
+				move_pop = scope:california_event_state
+			}
+		}
+		random_state = {
+			limit = {
+				is_incorporated = yes
+				state_population > 25000
+				cu:yankee = { has_homeland = PREV }
+				any_scope_pop = { culture = cu:yankee }
+			}
+			random_scope_pop = {
+				limit = { culture = cu:yankee }
+				move_pop = scope:california_event_state
+			}
+		}
+		random_state = {
+			limit = {
+				is_incorporated = yes
+				state_population > 25000
+				cu:dixie = { has_homeland = PREV }
+				any_scope_pop = { culture = cu:dixie }
+			}
+			random_scope_pop = {
+				limit = { culture = cu:dixie }
+				move_pop = scope:california_event_state
+			}
+		}
+		random_state = {
+			limit = {
+				is_incorporated = yes
+				state_population > 25000
+				cu:dixie = { has_homeland = PREV }
+				any_scope_pop = { culture = cu:dixie }
+			}
+			random_scope_pop = {
+				limit = { culture = cu:dixie }
+				move_pop = scope:california_event_state
+			}
+		}
+			
+		ai_chance = 100
+	}		
+}
+
+HJE_usa.6 = {
+	type = country_event
+	placement = scope:mormon_event_state
+	title = HJE_usa.6.t
+	desc = HJE_usa.6.d
+	flavor = HJE_usa.6.f
+
+	duration = 3
+
+	event_image = {
+		video = "gfx/event_pictures/southamerica_christianity.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/southamerica/christianity"
+
+	icon = "gfx/interface/icons/event_icons/event_trade.dds"
+
+	trigger = {
+	}
+	
+	immediate = {
+		set_global_variable = utah_mormons
+		random_scope_state = {
+			limit = { state_region = s:STATE_UTAH }
+			save_scope_as = mormon_event_state
+		}
+	}
+
+	option = {
+		name = HJE_usa.6.a
+		default_option = yes
+		s:STATE_UTAH = { 
+			if = {
+				limit = { NOT = { cu:yankee = { has_homeland = s:STATE_UTAH } } }
+				add_homeland = cu:yankee
+			}
+			create_mass_migration = {
+				origin = c:USA
+				culture = cu:yankee
+			}
+			create_mass_migration = {
+				origin = c:USA
+				culture = cu:dixie
+			}
+		}
+		scope:mormon_event_state = {
+			add_modifier = {
+				name = usa_mormons
+				months = -1
+			}
+		}
+		random_state = {
+			limit = {
+				is_incorporated = yes
+				state_population > 25000
+				cu:yankee = { has_homeland = PREV }
+				any_scope_pop = { culture = cu:yankee }
+			}
+			random_scope_pop = {
+				limit = { culture = cu:yankee }
+				move_pop = scope:mormon_event_state
+			}
+		}
+		random_state = {
+			limit = {
+				is_incorporated = yes
+				state_population > 25000
+				cu:yankee = { has_homeland = PREV }
+				any_scope_pop = { culture = cu:yankee }
+			}
+			random_scope_pop = {
+				limit = { culture = cu:yankee }
+				move_pop = scope:mormon_event_state
+			}
+		}
+		random_state = {
+			limit = {
+				is_incorporated = yes
+				state_population > 25000
+				cu:yankee = { has_homeland = PREV }
+				any_scope_pop = { culture = cu:yankee }
+			}
+			random_scope_pop = {
+				limit = { culture = cu:yankee }
+				move_pop = scope:mormon_event_state
+			}
+		}
+			
+		ai_chance = 100
+	}		
+}
+
+# 1836 USA Election (Andrew Jackson supports Martin Van Buren as his successor)
+HJE_usa.7 = {
+	type = country_event
+    placement = root
+
+	title = HJE_usa.7.t
+	desc = HJE_usa.7.d
+	flavor = HJE_usa.7.f
+
+    duration = 3
+
+	gui_window = event_window_1char_tabloid
+
+	left_icon = scope:van_buren_scope
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/misc/1Character_Banner"
+
+	icon = "gfx/interface/icons/event_icons/event_portrait.dds"
+
+	trigger = {
+        year < 1837
+        exists = c:USA
+		c:USA = ROOT
+		in_election_campaign = yes
+        NOT = { has_global_variable = USA_van_buren_nominated }
+		ig:ig_rural_folk = { has_party = yes }
+    }
+	
+	immediate = {
+        set_global_variable = USA_van_buren_nominated
+		create_character = {
+            first_name = Martin
+            last_name = Van_Buren
+			historical = yes
+            culture = cu:yankee
+            female = no
+            religion = protestant
+            ideology = ideology:ideology_moderate
+            interest_group = ig_rural_folk
+            ig_leader = yes
+            birth_date = 1782.12.5
+            dna = dna_van_buren
+            traits = {
+                meticulous
+                experienced_political_operator
+                tactful
+            } 
+			on_created = {
+				set_variable = {
+					name = democratic_party_founder
+				}				
+			}
+		}
+		ig:ig_rural_folk = {
+			leader = { save_scope_as = van_buren_scope }
+		}
+	}
+
+	option = { #Nominate Van Buren as your successor
+		name = HJE_usa.7.a
+		default_option = yes
+		ig:ig_intelligentsia = { party = { add_momentum = momentum_small_decrease } }
+		show_as_tooltip = {
+			create_character = {
+				first_name = Martin
+				last_name = Van_Buren
+				historical = yes
+				ig_leader = yes
+				interest_group = ig_rural_folk
+				female = no
+           		birth_date = 1782.12.5
+				ideology = ideology:ideology_moderate
+				traits = {
+	                meticulous
+	                experienced_political_operator
+	                tactful
+				}
+			}
+		}
+	}
+}
+
+# 1844 USA Election (Polk, the Dark Horse)
+HJE_usa.8 = {
+	type = country_event
+    placement = root
+
+	title = HJE_usa.8.t
+	desc = HJE_usa.8.d
+	flavor = HJE_usa.8.f
+
+    duration = 3
+
+	gui_window = event_window_1char_tabloid
+
+	left_icon = scope:polk_scope
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/misc/1Character_Banner"
+
+	icon = "gfx/interface/icons/event_icons/event_portrait.dds"
+
+	trigger = {
+        year >= 1842
+        year < 1850
+        exists = c:USA
+		c:USA = ROOT
+		in_election_campaign = yes
+        NOT = { has_global_variable = USA_polk_nominated }
+		ig:ig_landowners = { has_party = yes }
+    }
+	
+	immediate = {
+        set_global_variable = USA_polk_nominated
+		create_character = {
+            first_name = James_K
+            last_name = Polk
+			historical = yes
+            culture = cu:dixie
+            female = no
+            religion = protestant
+            ideology = ideology:ideology_jingoist
+            interest_group = ig_landowners
+            ig_leader = yes
+    		birth_date = 1795.9.2
+            dna = dna_james_k_polk
+            traits = {
+		        charismatic
+		        persistent
+		        tactful
+            } 
+			on_created = { set_variable = james_k_polk }
+		}
+		ig:ig_landowners = {
+			leader = { save_scope_as = polk_scope }
+		}
+	}
+
+	option = { #Will Polk run away with this election?
+		name = HJE_usa.8.a
+		default_option = yes
+		ig:ig_landowners = { 
+	        add_modifier = {
+	            name = ig_party_prospers
+	            months = short_modifier_time
+	        }
+		}
+		show_as_tooltip = {
+			create_character = {
+				first_name = James_K
+				last_name = Polk
+				historical = yes
+				ig_leader = yes
+				interest_group = ig_landowners
+				female = no
+    			birth_date = 1795.9.2
+				ideology = ideology:ideology_jingoist
+				traits = {
+			        charismatic
+			        persistent
+			        tactful
+				}
+			}
+		}
+	}
+}
+
+# Polk retires the election after Manifest Destiny is achieved
+HJE_usa.9 = {
+	type = country_event
+    placement = root
+
+	title = HJE_usa.9.t
+	desc = HJE_usa.9.d
+	flavor = HJE_usa.9.f
+
+    duration = 3
+
+	gui_window = event_window_1char_tabloid
+
+	left_icon = ruler
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/misc/1Character_Banner"
+
+	icon = "gfx/interface/icons/event_icons/event_portrait.dds"
+
+	trigger = {
+        exists = c:USA
+		c:USA = ROOT
+		in_election_campaign = yes
+		ruler = { has_variable = james_k_polk }
+        NOT = { has_global_variable = USA_polk_retired }
+        OR = {
+        	year >= 1855
+        	AND = {
+				NOT = {
+					any_country = {
+						NOT = { THIS = c:USA }
+						has_state_in_state_region = STATE_WASHINGTON
+						NOR = {
+							is_country_type = unrecognized
+							is_country_type = decentralized
+						}
+					}
+				}
+				NOT = {
+					any_country = {
+						NOT = { THIS = c:USA }
+						has_state_in_state_region = STATE_CALIFORNIA
+						NOR = {
+							is_country_type = unrecognized
+							is_country_type = decentralized
+						}
+					}
+				}
+				NOT = {
+					any_country = {
+						NOT = { THIS = c:USA }
+						has_state_in_state_region = STATE_OREGON
+						NOR = {
+							is_country_type = unrecognized
+							is_country_type = decentralized
+						}
+					}
+				}
+				NOT = {
+					any_country = {
+						NOT = { THIS = c:USA }
+						has_state_in_state_region = STATE_TEXAS
+						NOR = {
+							is_country_type = unrecognized
+							is_country_type = decentralized
+						}
+					}
+				}
+        	}
+        }
+    }
+	
+	immediate = {
+        set_global_variable = USA_polk_retired
+		ig:ig_landowners = { 
+			if = {
+				limit = { year < 1850 }
+		        add_modifier = {
+		            name = ig_party_prospers
+		            months = long_modifier_time
+		        }
+			}
+			else_if = {
+				limit = { year < 1855 }
+		        add_modifier = {
+		            name = ig_party_prospers
+		            months = medium_modifier_time
+		        }
+			}
+			else_if = {
+				limit = { year < 1860 }
+		        add_modifier = {
+		            name = ig_party_prospers
+		            months = short_modifier_time
+		        }
+			}
+		}
+		create_character = {
+            first_name = Franklin
+            last_name = Pierce
+			historical = yes
+            culture = cu:yankee
+            female = no
+            religion = protestant
+            ideology = ideology:ideology_slaver
+            interest_group = ig_landowners
+            ig_leader = yes
+			birth_date = 1804.11.23
+            traits = {
+		        charismatic
+		        alcoholic
+       			wrathful
+            }
+		}
+	}
+
+	option = { #He has done great things for this nation
+		name = HJE_usa.9.a
+		default_option = yes
+	}
+}
+
+# 1856 USA Election (Buchanan, the Old Public Functionary)
+HJE_usa.9001 = {
+	type = country_event
+    placement = root
+
+	title = HJE_usa.9001.t
+	desc = HJE_usa.9001.d
+	flavor = HJE_usa.9001.f
+
+    duration = 3
+
+	gui_window = event_window_1char_tabloid
+
+	left_icon = scope:james_buchanan_scope
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/misc/1Character_Banner"
+
+	icon = "gfx/interface/icons/event_icons/event_portrait.dds"
+
+	trigger = {
+        exists = c:USA
+		c:USA = ROOT
+        year >= 1850
+        year < 1860
+        OR = {
+       		year >= 1855
+        	ruler = { has_ideology = ideology:ideology_abolitionist }
+        }
+		in_election_campaign = yes
+        NOT = { has_global_variable = USA_buchanan_nominated }
+		ig:ig_landowners = { has_party = yes }
+    }
+	
+	immediate = {
+        set_global_variable = USA_buchanan_nominated
+		create_character = {
+            first_name = James
+            last_name = Buchanan
+			historical = yes
+            culture = cu:yankee
+            female = no
+            religion = protestant
+            ideology = ideology:ideology_slaver
+            interest_group = ig_landowners
+            ig_leader = yes
+    		birth_date = 1791.4.23
+            dna = dna_james_buchanan
+            traits = {
+		        experienced_political_operator
+		        demagogue
+		        arrogant
+		        bigoted
+            }
+			on_created = { set_variable = is_james_buchanan }
+		}
+		ig:ig_landowners = {
+			leader = { save_scope_as = james_buchanan_scope }
+		}
+	}
+
+	option = { #The People agree with Buchanan!
+		name = HJE_usa.9001.a
+		default_option = yes
+		random_interest_group = {
+			limit = {
+				has_party = yes
+				is_marginal = no
+				has_ideology = ideology:ideology_anti_slavery
+				NOT = { is_member_of_party = owner.py:conservative_party }
+			}
+			party = { add_momentum = momentum_medium_decrease } 
+		}
+		show_as_tooltip = {
+			create_character = {
+				first_name = James
+				last_name = Buchanan
+				historical = yes
+				ig_leader = yes
+				interest_group = ig_landowners
+				female = no
+    			birth_date = 1791.4.23
+           	 	ideology = ideology:ideology_slaver
+				traits = {
+			        experienced_political_operator
+			        demagogue
+				}
+			}
+		}
+	}
+}
+
+# 1860 USA Election (Honest Abe)
+HJE_usa.10 = {
+	type = country_event
+    placement = root
+
+	title = HJE_usa.10.t
+	desc = HJE_usa.10.d
+	flavor = HJE_usa.10.f
+
+    duration = 3
+
+	gui_window = event_window_1char_tabloid
+
+	left_icon = scope:lincoln_scope
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/misc/1Character_Banner"
+
+	icon = "gfx/interface/icons/event_icons/event_portrait.dds"
+
+	trigger = {
+        year >= 1858
+        year < 1868
+        exists = c:USA
+		c:USA = ROOT
+		in_election_campaign = yes
+        NOT = { has_global_variable = USA_lincoln_nominated }
+        any_interest_group = {
+			has_party = yes
+			is_marginal = no
+			OR = {
+				is_member_of_party = owner.py:liberal_party
+				has_ideology = ideology:ideology_anti_slavery
+			}
+        }
+    }
+	
+	immediate = {
+        set_global_variable = USA_lincoln_nominated
+		ordered_interest_group = {
+			limit = {
+				has_party = yes
+				is_marginal = no
+				OR = {
+					is_member_of_party = owner.py:liberal_party
+					has_ideology = ideology:ideology_anti_slavery
+				}
+			}
+			order_by = ig_clout
+			position = 0
+
+			save_scope_as = lincoln_ig_scope
+		}
+		create_character = {
+            first_name = Abraham
+            last_name = Lincoln
+			historical = yes
+            culture = cu:yankee
+            female = no
+            religion = protestant
+            ideology = ideology:ideology_abolitionist
+            interest_group = scope:lincoln_ig_scope
+            ig_leader = yes
+    		birth_date = 1809.2.12
+            dna = dna_abraham_lincoln
+            traits = {
+		        experienced_political_operator
+		        inspirational_orator
+		        tactful
+            } 
+			on_created = { 
+				set_variable = is_honest_abe 
+		        if = {
+		            limit = { owner = { NOT = { has_law = law_type:law_slavery_banned } } }
+		            set_ideology = ideology:ideology_abolitionist
+		        }
+		        else_if = {
+		            limit = {
+		                owner = {
+		                	has_technology_researched = socialism
+		                	OR = {
+			                    has_law = law_type:law_no_workers_rights
+			                    NOT = { has_law = law_type:law_universal_suffrage }
+			                }
+		                }
+		            }
+		            set_ideology = ideology:ideology_social_democrat
+		        }
+		        else = { set_ideology = ideology:ideology_moderate }
+			}
+		}
+		scope:lincoln_ig_scope = {
+			leader = { save_scope_as = lincoln_scope }
+			party = { add_momentum = momentum_very_large }
+			party = { add_momentum = momentum_very_large }
+	        add_modifier = {
+	            name = ig_party_prospers
+	            months = long_modifier_time
+	        }
+		}
+	}
+
+	option = { #These are certainly interesting times...
+		name = HJE_usa.10.a
+		default_option = yes
+		show_as_tooltip = {
+			create_character = {
+				first_name = Abraham
+				last_name = Lincoln
+				historical = yes
+				ig_leader = yes
+				interest_group = scope:lincoln_ig_scope
+				female = no
+    			birth_date = 1809.2.12
+				traits = {
+			        experienced_political_operator
+			        inspirational_orator
+			        tactful
+				}
+			}
+		}
+		random_interest_group = {
+			limit = {
+				has_party = yes
+				is_marginal = no
+				has_ideology = ideology:ideology_pro_slavery
+				NOT = { is_member_of_party = owner.py:liberal_party }
+			}
+			party = { add_momentum = momentum_very_large_decrease }
+		}
+	}
+}
+
+# Generals of the Civil War
+HJE_usa.11 = {
+	type = country_event
+	placement = ROOT
+
+	title = HJE_usa.11.t
+	desc = HJE_usa.11.d
+	flavor = HJE_usa.11.f
+
+	event_image = {
+		video = "gfx/event_pictures/unspecific_military_parade.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/american_civil_war"
+	
+	icon = "gfx/interface/icons/event_icons/event_portrait.dds"
+
+	duration = 3
+
+	trigger = {
+		year >= 1849
+		exists = c:USA
+		c:USA = ROOT
+		NOT = { has_variable = got_civil_war_generals }
+	}
+
+	immediate = {
+		set_variable = got_civil_war_generals
+		random_scope_general = { kill_character = yes }
+		random_scope_general = { kill_character = yes }
+		random_scope_general = { kill_character = yes }
+		random_scope_general = { kill_character = yes }
+		random_scope_general = { kill_character = yes }
+	}
+
+	option = {
+		name = HJE_usa.11.a
+		ai_chance = { base = 1 }
+		create_character = {
+			first_name = George
+			last_name = Meade
+			historical = yes
+			is_general = yes
+			interest_group = ig_armed_forces
+			female = no
+			culture = cu:dixie
+			birth_date = 1815.12.31
+			dna = dna_george_meade
+			ideology = ideology:ideology_traditionalist
+			traits = {
+				expert_defensive_strategist
+				pious
+				cautious
+				persistent
+				innovative
+			}
+			on_created = { set_variable = is_snapping_turtle }
+		}
+		create_character = {
+			first_name = William
+			last_name = Sherman
+			historical = yes
+			is_general = yes
+			interest_group = ig_petty_bourgeoisie
+			female = no
+			culture = cu:yankee
+			birth_date = 1820.2.8
+			dna = dna_william_t_sherman
+			ideology = ideology:ideology_moderate
+			traits = {
+				expert_offensive_planner
+				resupply_commander
+				pillager
+				direct
+			}
+			on_created = { set_variable = is_uncle_billy }
+		}
+		create_character = {
+			first_name = George
+			last_name = McClellan
+			historical = yes
+			is_general = yes
+			interest_group = ig_landowners
+			female = no
+			culture = cu:yankee
+			birth_date = 1826.12.3
+			dna = dna_george_mcclellan
+			ideology = ideology:ideology_traditionalist
+			traits = {
+				basic_defensive_strategist
+				arrogant
+				cautious
+				ambitious
+			}
+			on_created = { set_variable = is_a_retard }
+		}
+		if = {
+			limit = { exists = c:CSA }
+			c:CSA = {
+				create_character = {
+					first_name = Robert_E
+					last_name = Lee
+					historical = yes
+					is_general = yes
+					interest_group = ig_landowners
+					female = no
+					culture = cu:dixie
+					birth_date = 1807.1.19
+					dna = dna_robert_e_lee
+					ideology = ideology:ideology_traditionalist
+					traits = {
+						plains_commander
+						basic_defensive_strategist
+						experienced_offensive_planner
+						innovative
+						direct
+					}
+					on_created = { set_variable = is_robert_e_lee }
+				}
+			}
+		}
+		else = {
+			create_character = {
+				first_name = Robert_E
+				last_name = Lee
+				historical = yes
+				is_general = yes
+				interest_group = ig_landowners
+				female = no
+				culture = cu:dixie
+				birth_date = 1807.1.19
+				dna = dna_robert_e_lee
+				ideology = ideology:ideology_traditionalist
+				traits = {
+					plains_commander
+					basic_defensive_strategist
+					experienced_offensive_planner
+					innovative
+					direct
+				}
+				on_created = { set_variable = is_robert_e_lee }
+			}
+		}
+		if = {
+			limit = { exists = c:CSA }
+			c:CSA = {
+				create_character = {
+					first_name = Joseph_E
+					last_name = Johnston
+					historical = yes
+					is_general = yes
+					interest_group = ig_petty_bourgeoisie
+					female = no
+					culture = cu:dixie
+					birth_date = 1807.2.3
+					dna = dna_joe_johnston
+					ideology = ideology:ideology_moderate
+					traits = {
+						expert_defensive_strategist
+						experienced_offensive_planner
+						persistent
+						cautious
+					}
+					on_created = { set_variable = is_joe_johnston }
+				}
+			}
+		}
+		else = {
+			create_character = {
+				first_name = Joseph_E
+				last_name = Johnston
+				historical = yes
+				is_general = yes
+				interest_group = ig_petty_bourgeoisie
+				female = no
+				culture = cu:dixie
+				birth_date = 1807.2.3
+				dna = dna_joe_johnston
+				ideology = ideology:ideology_moderate
+				traits = {
+					expert_defensive_strategist
+					experienced_offensive_planner
+					persistent
+					cautious
+				}
+				on_created = { set_variable = is_joe_johnston }
+			}
+		}
+		if = {
+			limit = { exists = c:CSA }
+			c:CSA = {
+				create_character = {
+					first_name = Thomas_Stonewall
+					last_name = Jackson
+					historical = yes
+					is_general = yes
+					interest_group = ig_rural_folk
+					female = no
+					culture = cu:dixie
+					birth_date = 1824.1.21
+					dna = dna_stonewall_jackson
+					ideology = ideology:ideology_slaver
+					traits = {
+						stalwart_defender
+						surveyor
+						reserved
+						brave
+						pious
+					}
+					on_created = { set_variable = is_stonewall_jackson }
+				}
+			}
+		}
+		else = {
+			create_character = {
+				first_name = Thomas
+				last_name = Jackson
+				historical = yes
+				is_general = yes
+				interest_group = ig_rural_folk
+				female = no
+				culture = cu:dixie
+				birth_date = 1824.1.21
+				dna = dna_stonewall_jackson
+				ideology = ideology:ideology_slaver
+				traits = {
+					stalwart_defender
+					surveyor
+					reserved
+					brave
+					pious
+				}
+				on_created = { set_variable = is_stonewall_jackson }
+			}
+		}
+		if = {
+			limit = { exists = c:FSA }
+			random_list = {
+				50 = {
+					create_character = {
+						first_name = Ulysses
+						last_name = Grant
+						historical = yes
+						is_general = yes
+						interest_group = ig_petty_bourgeoisie
+						female = no
+						culture = cu:yankee
+						birth_date = 1822.1.21
+						dna = dna_ulysses_grant
+						ideology = ideology:ideology_reformer
+						traits = {
+							experienced_offensive_planner
+							basic_defensive_strategist
+							charismatic
+							persistent
+							alcoholic
+						}
+						on_created = { set_variable = is_unconditional_surrender_grant }
+					}
+				}
+				50 = {
+					FSA = {
+						create_character = {
+							first_name = Ulysses
+							last_name = Grant
+							historical = yes
+							is_general = yes
+							interest_group = ig_petty_bourgeoisie
+							female = no
+							culture = cu:yankee
+							birth_date = 1822.1.21
+							dna = dna_ulysses_grant
+							ideology = ideology:ideology_reformer
+							traits = {
+								experienced_offensive_planner
+								basic_defensive_strategist
+								charismatic
+								persistent
+								alcoholic
+							}
+							on_created = { set_variable = is_unconditional_surrender_grant }
+						}
+					}
+				}
+			}
+		}
+		else = {
+			create_character = {
+				first_name = Ulysses
+				last_name = Grant
+				historical = yes
+				is_general = yes
+				interest_group = ig_petty_bourgeoisie
+				female = no
+				culture = cu:yankee
+				birth_date = 1822.1.21
+				dna = dna_ulysses_grant
+				ideology = ideology:ideology_reformer
+				traits = {
+					experienced_offensive_planner
+					basic_defensive_strategist
+					charismatic
+					persistent
+					alcoholic
+				}
+				on_created = { set_variable = is_unconditional_surrender_grant }
+			}
+		}
+	}
+}
+
+namespace = gadsden_purchase
+
+gadsden_purchase.1 = { #USA offers to buy territory from MEX
+	type = country_event
+	placement = root
+	
+	title = gadsden_purchase.1.t
+	desc = gadsden_purchase.1.d
+	flavor = gadsden_purchase.1.f
+	
+	event_image = {
+		video = "gfx/event_pictures/unspecific_signed_contract.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/unspecific/signed_contract"
+
+	icon = "gfx/interface/icons/event_icons/event_trade.dds"
+	
+	duration = 3
+	
+    trigger = {
+	}
+
+	immediate = {
+        c:USA = {
+			save_scope_as = usa_scope
+		}
+		c:MEX = {
+			save_scope_as = mexico_scope
+		}
+		s:STATE_NEW_MEXICO.region_state:MEX = {
+			save_scope_as = new_mexico_scope
+		}
+        s:STATE_ARIZONA.region_state:MEX = {
+			save_scope_as = arizona_scope
+		}
+	}
+
+	option = { #send the offer to Mexico
+		name = gadsden_purchase.1.a
+		default_option = yes
+		c:MEX = {
+			trigger_event = { id = gadsden_purchase.2 days = 0 popup = yes }
+		}
+		show_as_tooltip = {
+			s:STATE_NEW_MEXICO.region_state:MEX = {
+				set_state_owner = c:USA
+			}
+            s:STATE_ARIZONA.region_state:MEX = {
+				set_state_owner = c:USA
+			}
+		}
+        custom_tooltip = {
+            text = gadsden_purchase.1.a.tt
+            add_treasury = -1000000 #pay now, get back if MEX refuses
+        }
+		ai_chance = {
+			base = 1
+		}
+	}
+	option = {#Another time
+		name = gadsden_purchase.1.b
+        c:USA = {
+            remove_variable = gadsden_purchase
+        }
+        custom_tooltip = {
+            text = gadsden_purchase_tt2
+        } 
+		ai_chance = {
+			base = 0
+		}
+	}
+}
+
+gadsden_purchase.2 = { #MEX gets offer
+	type = country_event
+	placement = ROOT
+
+	title = gadsden_purchase.2.t
+	desc = gadsden_purchase.2.d
+	flavor = gadsden_purchase.2.f
+
+	duration = 3
+
+	event_image = {
+		video = "gfx/event_pictures/unspecific_signed_contract.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/unspecific/signed_contract"
+
+	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
+
+	trigger = {
+	}
+
+	immediate = {
+		c:USA = {
+			save_scope_as = usa_scope
+		}
+		s:STATE_NEW_MEXICO.region_state:MEX = {
+			save_scope_as = new_mexico_scope
+		}
+        s:STATE_ARIZONA.region_state:MEX = {
+			save_scope_as = arizona_scope
+		}
+	}
+
+	option = { #Mexico Accepts
+		name = gadsden_purchase.2.a
+		default_option = yes
+        s:STATE_NEW_MEXICO.region_state:MEX = {
+            set_state_owner = c:USA
+        }
+        s:STATE_ARIZONA.region_state:MEX = {
+            set_state_owner = c:USA
+        }
+        custom_tooltip = {
+            text = gadsden_purchase.2.a.tt
+            add_treasury = 1000000 #MEX gets money because they accept
+        }
+        c:USA = {
+			trigger_event = { id = gadsden_purchase.3 days = 0 popup = yes }
+		}
+        ai_chance = {
+			base = 1 #why wouldn't they?
+		}
+	}
+    option = { #Mexico Refuses
+        name = gadsden_purchase.2.b
+        show_as_tooltip = {
+            s:STATE_ARIZONA = {  
+                if = {
+                    limit = {
+                        any_scope_state = {
+                            owner = c:MEX
+                        }
+                    }
+                    add_claim = c:USA 
+                }
+            }
+            s:STATE_NEW_MEXICO = {
+                if = {
+                    limit = {
+                        any_scope_state = {
+                            owner = c:MEX
+                        }
+                    }
+                    add_claim = c:USA 
+                }
+            }
+        }  
+        c:USA = {
+			trigger_event = { id = gadsden_purchase.4 days = 0 popup = yes }
+		}
+        ai_chance = {
+            base = 0 #would just give the USA an excuse...
+        }
+    }
+}
+
+gadsden_purchase.3 = { #MEX accepted the offer
+	type = country_event
+	placement = ROOT
+
+	title = gadsden_purchase.3.t
+	desc = gadsden_purchase.3.d
+	flavor = gadsden_purchase.3.f
+
+	duration = 3
+
+	event_image = {
+		video = "gfx/event_pictures/unspecific_signed_contract.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/unspecific/signed_contract"
+
+	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
+
+	trigger = {
+	}
+
+	immediate = {
+		c:MEX = {
+			save_scope_as = mexico_scope
+		}
+        s:STATE_NEW_MEXICO.region_state:USA = {
+            save_scope_as = new_mexico_scope
+        }
+        s:STATE_ARIZONA.region_state:USA = {
+            save_scope_as = arizona_scope
+        }
+	}
+
+	option = {
+        name = gadsden_purchase.3.a
+		default_option = yes
+        custom_tooltip = {
+            text = gadsden_purchase_tt3
+        }
+        change_relations = {
+            country = c:MEX
+            value = 50
+        }
+        hidden_effect = {
+			set_mutual_secret_goal = {
+				country = c:MEX
+				secret_goal = reconcile
+			}
+        }
+
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+gadsden_purchase.4 = { #MEX refused the offer
+	type = country_event
+	placement = ROOT
+
+	title = gadsden_purchase.4.t
+	desc = gadsden_purchase.4.d
+	flavor = gadsden_purchase.4.f
+
+	duration = 3
+
+	event_image = {
+		video = "gfx/event_pictures/unspecific_signed_contract.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/unspecific/signed_contract"
+
+	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
+
+	trigger = {
+	}
+
+	immediate = {
+		c:MEX = {
+			save_scope_as = mexico_scope
+		}
+        s:STATE_NEW_MEXICO.region_state:USA = {
+            save_scope_as = new_mexico_scope
+        }
+        s:STATE_ARIZONA.region_state:USA = {
+            save_scope_as = arizona_scope
+        }
+	}
+
+	option = {
+        name = gadsden_purchase.4.a
+		default_option = yes
+        s:STATE_ARIZONA = {  
+            if = {
+                limit = {
+                    any_scope_state = {
+                        owner = c:MEX
+                    }
+                }
+                add_claim = ROOT 
+            }
+        }
+        s:STATE_NEW_MEXICO = {
+            if = {
+                limit = {
+                    any_scope_state = {
+                        owner = c:MEX
+                    }
+                }
+                add_claim = ROOT 
+            }
+        }
+        custom_tooltip = {
+            text = gadsden_purchase_tt4
+            add_treasury = 1000000 #USA gets their money back
+        }
+        change_relations = {
+            country = c:MEX
+            value = -25
+        }
+        hidden_effect = {
+			set_mutual_secret_goal = {
+				country = c:MEX
+				secret_goal = antagonize
+			}
+        }
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+

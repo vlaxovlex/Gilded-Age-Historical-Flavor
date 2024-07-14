@@ -1,0 +1,247 @@
+﻿je_scramble_for_africa = {
+
+	icon = "gfx/interface/icons/event_icons/event_map.dds"
+
+	group = je_group_foreign_affairs
+
+	is_shown_when_inactive = {
+		aggressive_diplomatic_plays_permitted = yes						#HJE edit start
+		country_rank >= rank_value:major_power
+		NOT = { has_variable = SFA_did_not_attend_berlin_conference }	#HJE edit end
+	}
+
+	possible = {
+		custom_tooltip = {										#HJE edit start
+			text = sfa_accepted_tt
+			OR = {
+				has_variable = berlin_conference_host
+				has_variable = SFA_attended_berlin_conference
+			}
+		}														#HJE edit end
+	}
+
+	immediate = {
+		if = {	#HJE edit start
+			limit = { NOT = { has_global_variable = berlin_conference_happened } }
+			set_global_variable = berlin_conference_happened
+			set_global_variable = {
+				name = berlin_conference_ongoing
+				days = 320
+			}
+		}
+		custom_tooltip = {
+			text = sfa_subsaharan_africa_explored_tt
+			every_state = {
+				limit = { has_modifier = sfa_unexplored_state }
+				remove_modifier = sfa_unexplored_state
+			}
+			every_state = {
+				limit = { state_is_in_africa = yes NOT = { has_modifier = sfa_scramble_for_africa } }
+				add_modifier = sfa_scramble_for_africa
+			}
+		}	#HJE edit end
+		trigger_event = {
+			id = africa_colonial_events.1
+			days = 0
+			popup = yes
+		}
+		save_scope_as = scramble_for_africa_self
+	}
+
+	complete = {
+		custom_tooltip = {
+			text = scramble_for_africa_complete_tt
+			any_scope_state = {
+				is_incorporated = no
+				state_in_africa = yes
+				count >= 7
+			}
+		}
+		custom_tooltip = {
+			text = scramble_for_africa_complete_2_tt
+			any_state_region = {
+				filter = {
+					OR = {
+						region = sr:region_nile_basin
+						region = sr:region_ethiopia
+						region = sr:region_north_africa
+						region = sr:region_senegal
+						region = sr:region_niger
+						region = sr:region_congo
+						region = sr:region_southern_africa
+						region = sr:region_zanj		
+					}
+				}
+				NOT = {
+					any_scope_state = {
+						owner = {
+							country_is_in_africa = yes
+							OR = {
+								is_country_type = decentralized
+								is_country_type = unrecognized
+							}
+							is_subject = no
+						}
+					}
+				}
+				percent >= 0.95
+			}
+		}
+	}
+
+	on_complete = {
+		trigger_event = {
+			id = africa_colonial_events.2
+			days = 0
+			popup = yes
+		}
+	}
+
+	fail = {
+		custom_tooltip = {
+			text = scramble_for_africa_fail_tt
+			NOT = {
+				any_scope_state = {
+					is_incorporated = no
+					state_in_africa = yes
+				}
+			}
+		}
+	}
+
+	#on_fail = {
+	#	trigger_event = {
+	#		id = africa_colonial_events.3
+	#		days = 0
+	#		popup = yes
+	#	}
+	#}
+
+	status_desc = {
+		first_valid = {
+			triggered_desc = {
+				desc = scramble_for_africa_6_states
+				trigger = {
+					any_scope_state = {
+						count >= 6
+						is_incorporated = no
+						state_in_africa = yes
+					}
+				}
+			}
+			triggered_desc = {
+				desc = scramble_for_africa_4_states
+				trigger = {
+					any_scope_state = {
+						count >= 4
+						is_incorporated = no
+						state_in_africa = yes
+					}
+				}
+			}
+			triggered_desc = {
+				desc = scramble_for_africa_3_states
+				trigger = {
+					any_scope_state = {
+						count >= 1
+						is_incorporated = no
+						state_in_africa = yes
+					}
+				}
+			}
+			triggered_desc = {
+				desc = scramble_for_africa_0_states
+			}
+		}
+	}
+
+	on_weekly_pulse = {	#HJE edit start
+		random_events = {
+			100 = 0
+			20 = HJE_colonial.1001			#End
+					## REGIONS THAT SHOULD BE CLAIMED ALREADY ##
+			60 = HJE_colonial.2 			#South Africa
+			60 = HJE_colonial.3 			#Angola
+			60 = HJE_colonial.9 			#Gabon
+			60 = HJE_colonial.10 			#Nigeria
+			60 = HJE_colonial.12 			#Togo
+			60 = HJE_colonial.13 			#Ghana
+
+							## DISPUTED REGIONS ##
+			30 = HJE_colonial.4 			#Bostwana/Zambia
+			30 = HJE_colonial.16 			#Eritrea/Djibouti
+			30 = HJE_colonial.18 			#Somalia/Somaliland
+			45 = HJE_colonial.20 			#Congo (GP Option, lots of Infamy)
+			60 = HJE_colonial.21 			#Congo (GP Decision to give it to a lesser power)
+
+						## NEW CLAIMS ON REGIONS ##
+			40 = HJE_colonial.5 			#Namibia
+			10 = HJE_colonial.5001 			#Namibia (if Germany is not relevant)
+			40 = HJE_colonial.6 			#Tanzania
+			10 = HJE_colonial.6001 			#Tanzania (if Germany is not relevant)
+			40 = HJE_colonial.7 			#Uganda/Equatoria
+			10 = HJE_colonial.7001 			#Uganda/Equatoria (if Britain is not relevant)
+			40 = HJE_colonial.8 			#Kamerun
+			10 = HJE_colonial.8001 			#Kamerun (if Germany is not relevant)
+			40 = HJE_colonial.11 			#Dahomey
+			10 = HJE_colonial.11001 		#Dahomey (if France is not relevant)
+			40 = HJE_colonial.14 			#Libya
+			10 = HJE_colonial.14001 		#Libya (if Italy is not relevant)
+			40 = HJE_colonial.15 			#Madagascar
+			10 = HJE_colonial.15001 		#Madagascar (if France is not relevant)
+		}
+	}	#HJE edit end
+
+	# No timeout. Imperialism never ends.
+	# timeout = 7300
+
+	#on_timeout = {
+	#
+	#}
+
+	on_monthly_pulse = {
+		random_events = {
+			100 = 0
+			1 = africa_colonial_events.4	#HJE edit 10
+			1 = africa_colonial_events.5	#HJE edit 10
+			1 = africa_colonial_events.6	#HJE edit 10
+			5 = africa_colonial_events.7
+			10 = patagonia.2
+			10 = amazon.2
+
+			1 = africa_colonial_events.40	#HJE edit 10
+			1 = africa_colonial_events.41	#HJE edit 10
+			1 = africa_colonial_events.51	#HJE edit 10
+			1 = africa_colonial_events.53	#HJE edit 10
+			1 = africa_colonial_events.54	#HJE edit 10
+		}
+	}
+
+	weight = 200
+	should_be_pinned_by_default = yes
+
+	# 30 years	
+	timeout = 10950		#HJE edit start
+
+	on_timeout = {
+		if = {
+			limit = {
+				any_scope_state = {
+					is_incorporated = no
+					state_is_in_africa = yes
+				}
+			}
+			trigger_event = {
+				id = africa_colonial_events.2
+				days = 0
+				popup = yes
+			}
+		}
+		hidden_effect = {
+			every_state = {
+				limit = { has_modifier = sfa_scramble_for_africa }
+				remove_modifier = sfa_scramble_for_africa
+			}
+		}
+	}					#HJE edit end
+}

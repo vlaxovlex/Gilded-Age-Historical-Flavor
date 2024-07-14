@@ -1,0 +1,3 @@
+﻿concept_colonial_administration = {
+	texture = "gfx/interface/icons/lens_toolbar_icons/hje_colonial_administration.dds"
+}

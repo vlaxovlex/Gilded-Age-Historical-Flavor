@@ -1,0 +1,695 @@
+﻿namespace = peoples_springtime
+
+# The Spark
+# Country has a revolution including Radicals
+peoples_springtime.1 = {
+	type = country_event
+	event_image = {
+		video = "europenorthamerica_springtime_of_nations"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_protest.dds"
+
+	title = peoples_springtime.1.t
+	desc = peoples_springtime.1.d
+	flavor = peoples_springtime.1.f
+
+	trigger = {
+		NOT = { has_global_variable = peoples_springtime_happening }
+		NOT = { has_global_variable = peoples_springtime_happened }
+		country_is_in_europe = yes
+		#has_technology_researched = egalitarianism
+		#country_rank >= rank_value:minor_power	#HJE edit start
+		capital = {
+			OR = {
+				#region = sr:region_england
+				#region = sr:region_north_sea_coast
+				region = sr:region_iberia
+				region = sr:region_france
+				region = sr:region_occitania
+				region = sr:region_rhine
+				region = sr:region_balkans
+				#region = sr:region_greece
+				#region = sr:region_low_countries
+				region = sr:region_north_germany
+				region = sr:region_south_germany
+				#region = sr:region_alpine
+				#region = sr:region_north_italy
+				#region = sr:region_italy
+				region = sr:region_baltic
+				region = sr:region_danubia
+				region = sr:region_poland
+				#region = sr:region_prussia
+				#region = sr:region_baltics_ruthenia
+				#region = sr:region_russia
+				#region = sr:region_belarus
+				#region = sr:region_dnieper
+			}
+		}
+		NOR = {
+			has_variable = already_had_scripted_revolution
+			country_has_primary_culture = cu:north_italian
+			country_has_primary_culture = cu:south_italian
+			AND = {
+				exists = c:AUS
+				c:AUS = THIS
+				any_scope_state = { cu:hungarian = { has_homeland = PREV } }
+			}
+			AND = {
+				exists = c:FRA
+				c:FRA = THIS
+			}
+		}
+		year >= 1846
+		year < 1850
+		OR = {
+			any_interest_group = {
+				OR = {
+					leader = { has_ideology = ideology:ideology_radical }
+					any_scope_character = {
+						has_role = agitator
+						has_ideology = ideology:ideology_radical
+					}
+				}
+			}
+			any_country = {	
+				OR = {
+					is_adjacent_to_country = ROOT
+					THIS = ROOT
+				}
+				OR = {
+					has_technology_researched = nationalism
+					has_journal_entry = je_first_presidential_election 		#france had a revolution
+					has_journal_entry = je_future_of_the_republic 			#france had a revolution 
+					has_journal_entry = je_springtime_of_the_peoples 		#random neighbour had springtime (very unlikely ROOT has this journal)
+					has_journal_entry = HJ_italian_1848_revolutions 		#italian neighbour had a italy revolution
+					has_journal_entry = je_tge_hungarianrevolution	 		#italian neighbour had a hungary revolution
+				}
+			}
+			AND = {
+				any_scope_state = { turmoil > 0.4 }
+				OR = {
+					has_law = law_type:law_autocracy
+					has_law = law_type:law_oligarchy
+					has_law = law_type:law_landed_voting
+				}
+				any_interest_group = {
+					OR = {
+						ig_approval < -10 # ANGERY
+						is_insurrectionary = yes
+					}
+					OR = {
+						leader = { has_ideology = ideology:ideology_radical }
+						any_scope_character = {
+							has_role = agitator
+							has_ideology = ideology:ideology_radical
+						}
+					}
+				}
+			}
+		}	#HJE edit end
+	}
+
+	immediate = {
+		if = {	#HJE edit start
+			limit = {
+				NOT = {
+					any_interest_group = {
+						leader = { has_ideology = ideology:ideology_radical }
+					}
+				}
+			}
+			random_interest_group = {
+				limit = {
+					is_marginal = no
+					leader = { NOT = { has_ideology = ideology:ideology_radical } }
+					OR = {
+						is_interest_group_type = ig_rural_folk
+						is_interest_group_type = ig_intelligentsia
+						is_interest_group_type = ig_trade_unions
+						is_interest_group_type = ig_petty_bourgeoisie
+						is_interest_group_type = ig_industrialists
+					}
+				}
+		    	leader = { set_ideology = ideology:ideology_radical }
+			}
+		}	#HJE edit end		
+		set_global_variable = {
+			name = peoples_springtime_happening
+		}
+		set_global_variable = {
+			name = peoples_springtime_recent
+			months = normal_modifier_time
+		}
+		random_interest_group = {
+			limit = {
+				OR = {
+					is_insurrectionary = yes
+					ig_approval < -10 # ANGERY
+				}
+				OR = {
+					leader = { has_ideology = ideology:ideology_radical }
+					any_scope_character = {
+						has_role = agitator
+						has_ideology = ideology:ideology_radical
+					}
+				}
+			}
+			leader = { save_scope_as = radical_ig_leader }
+		}
+	}
+
+	duration = 3
+
+	option = {
+		name = peoples_springtime.1.a
+		scope:radical_ig_leader = {
+			add_modifier = {
+				name = revolutionary_hero
+				months = normal_modifier_time
+			}
+		}
+	}
+
+    option = {
+		name = peoples_springtime.1.b
+        default_option = yes
+        scope:radical_ig_leader = {
+        	add_modifier = {
+        		name = treasonous_traitor
+        		months = normal_modifier_time
+        	}
+        }
+	}
+}
+
+# The Spread
+# Neighboring country has the Journal Entry
+peoples_springtime.2 = {
+	type = country_event
+	event_image = {
+		video = "europenorthamerica_political_extremism"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_protest.dds"
+
+	title = peoples_springtime.2.t
+	desc = peoples_springtime.2.d
+	flavor = peoples_springtime.2.f
+
+	trigger = {
+		# Triggered by peoples_springtime.4
+	}
+
+	duration = 3
+
+	cooldown = { months = short_modifier_time }
+
+	immediate = {
+		random_interest_group = {
+			limit = {
+				is_marginal = no
+				OR = {
+					is_interest_group_type = ig_rural_folk
+					is_interest_group_type = ig_intelligentsia
+					is_interest_group_type = ig_trade_unions
+					is_interest_group_type = ig_petty_bourgeoisie
+					is_interest_group_type = ig_industrialists
+				}
+				leader = {
+					NOR = { 
+						has_ideology = ideology:ideology_radical
+						has_ideology = ideology:ideology_communist
+						has_ideology = ideology:ideology_anarchist
+						has_ideology = ideology:ideology_vanguardist
+					}
+				}
+			}
+			save_scope_as = radical_ig
+		}
+	}
+
+	option = {
+		name = peoples_springtime.2.a
+		scope:radical_ig = {
+			leader = { 
+				set_ideology = ideology:ideology_radical 
+				add_modifier = {
+					name = revolutionary_hero
+					months = normal_modifier_time
+				}
+			}
+		}
+	}
+
+    option = {
+		name = peoples_springtime.2.b
+        default_option = yes
+        scope:radical_ig = {
+        	leader = { 
+				set_ideology = ideology:ideology_radical
+				add_modifier = {
+					name = treasonous_traitor
+					months = normal_modifier_time
+				}
+		 	}
+        }
+	}
+}
+
+# More Radical Leaders
+# Once you have the Journal Entry, more IGs want in on the action
+peoples_springtime.3 = {
+	type = country_event
+	event_image = {
+		video = "votp_agitator_speaking"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_protest.dds"
+
+	title = peoples_springtime.3.t
+	desc = peoples_springtime.3.d
+	flavor = peoples_springtime.3.f
+
+	trigger = {
+		NOT = { has_variable = PRU_chose_to_slightly_liberalize }	#HJE edit
+		OR = {														#HJE edit
+			has_journal_entry = je_springtime_of_the_peoples
+			has_journal_entry = HJ_italian_1848_revolutions			#HJE edit
+		}															#HJE edit
+		#has_technology_researched = egalitarianism
+
+		any_interest_group = {
+			OR = {
+				is_interest_group_type = ig_rural_folk
+				is_interest_group_type = ig_intelligentsia
+				is_interest_group_type = ig_trade_unions
+				is_interest_group_type = ig_petty_bourgeoisie
+				is_interest_group_type = ig_industrialists
+			}
+			leader = {
+				NOT = { has_ideology = ideology:ideology_radical }
+			}
+		}
+		empty_agitator_slots >= 1
+	}
+
+	immediate = {
+		random_interest_group = {
+			limit = {
+				OR = {
+					is_interest_group_type = ig_rural_folk
+					is_interest_group_type = ig_intelligentsia
+					is_interest_group_type = ig_trade_unions
+					is_interest_group_type = ig_petty_bourgeoisie
+					is_interest_group_type = ig_industrialists
+				}
+				leader = {
+					NOT = { has_ideology = ideology:ideology_radical }
+				}
+			}
+			save_scope_as = radical_ig
+		}
+	}
+
+	duration = 3
+
+	cooldown = { months = short_modifier_time }
+
+	option = {
+		name = peoples_springtime.3.a
+		ai_chance = {
+			base = 25
+		}
+		custom_tooltip = {
+			text = peoples_springtime.3.a.tt
+			create_character = {
+				ig_leader = yes
+				ideology = ideology_radical
+				interest_group = scope:radical_ig
+			}
+		}
+	}
+
+	option = {
+		name = peoples_springtime.3.b
+		ai_chance = {
+			base = 75
+			modifier = {
+				trigger = {
+					scope:radical_ig = {
+						ig_approval < -5
+					}
+				}
+				add = -50
+			}
+		}
+		scope:radical_ig = {
+			add_modifier = {
+				name = dissident_radical_faction
+				months = short_modifier_time
+			}
+		}
+		create_character = {
+			is_agitator = yes
+			ideology = ideology_radical
+			interest_group = scope:radical_ig
+		}
+		default_option = yes
+	}
+}
+
+# Propagation
+# Deliberately spread Radicalism to neighbor
+peoples_springtime.4 = {
+	type = country_event
+	event_image = {
+		video = "europenorthamerica_political_extremism"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_protest.dds"
+
+	title = peoples_springtime.4.t
+	desc = peoples_springtime.4.d
+	flavor = peoples_springtime.4.f
+
+	trigger = {
+		has_journal_entry = je_springtime_of_the_peoples
+		any_neighbouring_state = {
+			owner = {
+				country_is_in_europe = yes		#HJE edit 
+				NOT = { THIS = ROOT }			#HJE edit
+				NOT = { is_subject_of = ROOT }	#HJE edit
+				#has_technology_researched = egalitarianism
+				any_interest_group = {
+					is_powerful = yes
+					OR = {
+						is_interest_group_type = ig_rural_folk
+						is_interest_group_type = ig_intelligentsia
+						is_interest_group_type = ig_trade_unions
+						is_interest_group_type = ig_petty_bourgeoisie
+						is_interest_group_type = ig_industrialists
+					}
+					leader = {
+						NOR = { 
+							has_ideology = ideology:ideology_radical
+							has_ideology = ideology:ideology_communist
+							has_ideology = ideology:ideology_anarchist
+							has_ideology = ideology:ideology_vanguardist
+						}
+					}
+				}
+			}
+		}
+		any_interest_group = {
+			leader = { has_ideology = ideology:ideology_radical }
+		}
+	}
+
+	duration = 3
+
+	cooldown = { months = normal_modifier_time }
+
+	option = {
+		name = peoples_springtime.4.a
+		random_neighbouring_state = {
+			limit = {
+				owner = {
+					country_is_in_europe = yes	#HJE edit start
+					NOT = { THIS = ROOT }
+					NOT = { is_subject_of = ROOT }
+					NOR = {
+						has_variable = already_had_scripted_revolution
+						country_has_primary_culture = cu:north_italian
+						country_has_primary_culture = cu:south_italian
+						AND = {
+							exists = c:AUS
+							c:AUS = THIS
+							any_scope_state = { cu:hungarian = { has_homeland = PREV } }
+						}
+					}							#HJE edit end
+					#has_technology_researched = egalitarianism
+					any_interest_group = {
+						is_powerful = yes
+						OR = {
+							is_interest_group_type = ig_rural_folk
+							is_interest_group_type = ig_intelligentsia
+							is_interest_group_type = ig_trade_unions
+							is_interest_group_type = ig_petty_bourgeoisie
+							is_interest_group_type = ig_industrialists
+						}
+						leader = {
+							NOR = { 
+								has_ideology = ideology:ideology_radical
+								has_ideology = ideology:ideology_communist
+								has_ideology = ideology:ideology_anarchist
+								has_ideology = ideology:ideology_vanguardist
+							}
+						}
+					}
+				}
+			}
+			owner = {
+				trigger_event = {
+					id = peoples_springtime.2
+					days = 0
+				}
+			}
+		}
+		every_interest_group = {
+			limit = {
+				leader = { has_ideology = ideology:ideology_radical }
+			}
+			add_modifier = {
+				name = spread_the_revolution
+				months = short_modifier_time
+			}
+		}
+	}
+
+	option = {
+		name = peoples_springtime.4.b
+		every_interest_group = {
+			limit = {
+				leader = { has_ideology = ideology:ideology_radical }
+			}
+			add_modifier = {
+				name = constrained_the_revolution
+				months = short_modifier_time
+			}
+		}
+		default_option = yes
+	}
+}
+
+# Low-key Revolutionary activity causes Turmoil
+peoples_springtime.5 = {
+	type = country_event
+	event_image = {
+		video = "votp_agitators_sneaking"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_protest.dds"
+
+	title = peoples_springtime.5.t
+	desc = peoples_springtime.5.d
+	flavor = peoples_springtime.5.f
+
+	trigger = {
+		country_rank >= rank_value:minor_power					#HJE edit
+		OR = {													#HJE edit
+			has_journal_entry = je_springtime_of_the_peoples
+			has_journal_entry = HJ_italian_1848_revolutions		#HJE edit
+		}														#HJE edit
+		any_interest_group = {
+			leader = { has_ideology = ideology:ideology_radical }
+			ig_approval <= unhappy
+		}
+	}
+
+	duration = 3
+
+	cooldown = { months = short_modifier_time }
+
+	option = {
+		name = peoples_springtime.5.a
+		trigger = {
+			any_scope_state = {
+				is_incorporated = yes
+				is_capital = no
+			}
+		}
+		random_scope_state = {
+			limit = {
+				is_incorporated = yes
+				is_capital = no
+			}
+			add_radicals_in_state = {
+				value = very_large_radicals
+			}
+		}
+	}
+
+	option = {
+		name = peoples_springtime.5.b
+		capital = {
+			add_radicals_in_state = {
+				value = very_large_radicals
+			}
+		}
+		default_option = yes
+	}
+}
+
+# End of the Springtime of the Peoples
+peoples_springtime.6 = {
+	type = country_event
+	event_image = {
+		video = "europenorthamerica_political_extremism"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_protest.dds"
+
+	title = peoples_springtime.6.t
+	desc = peoples_springtime.6.d
+	flavor = peoples_springtime.6.f
+
+	trigger = {
+		OR = {
+			has_variable = completed_peoples_stringtime
+			has_journal_entry = je_springtime_of_the_peoples
+		}
+		has_global_variable = peoples_springtime_happening
+		NOT = { has_global_variable = peoples_springtime_recent }
+		NOT = {
+			any_country = {
+				has_variable = completed_peoples_stringtime_recent
+			}
+		}
+
+	}
+
+	duration = 3
+
+	option = {
+		name = peoples_springtime.6.a
+		custom_tooltip = peoples_springtime.6.a.tt
+		hidden_effect = {
+			if = {
+				limit = {
+					NOT = { has_global_variable = peoples_springtime_happened }
+				}
+				every_country = {
+					limit = {
+						OR = {
+							has_journal_entry = je_springtime_of_the_peoples
+							has_variable = completed_peoples_stringtime
+						}
+						NOT = { this = root }
+					}
+					trigger_event = {
+						id = peoples_springtime.6
+						days = 1
+					}
+				}
+			}
+			set_global_variable = {
+				name = peoples_springtime_happened
+				value = yes
+			}
+		}
+		default_option = yes
+	}
+}
+
+# The Revolution Victorious
+peoples_springtime.7 = {
+	type = country_event
+
+	event_image = {
+		video = "votp_barricade"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_protest.dds"
+
+	title = peoples_springtime.7.t
+	desc = peoples_springtime.7.d
+	flavor = peoples_springtime.7.f
+
+	duration = 3
+
+	immediate = {
+		random_interest_group = {
+			limit = {
+				is_in_government = yes
+				leader = { has_ideology = ideology:ideology_radical }
+			}
+			save_scope_as = radical_ig
+		}
+	}
+
+	option = {
+		name = peoples_springtime.7.a
+		add_modifier = {
+			name = post_revolutionary_fervor
+			months = normal_modifier_time
+		}
+	}
+
+	option = {
+		name = peoples_springtime.7.b
+		default_option = yes
+		add_loyalists = {
+			value = 0.1
+		}
+	}
+}
+
+# The Revolution Vanquished
+peoples_springtime.8 = {
+	type = country_event
+
+	event_image = {
+		video = "middleeast_police_breaking_door"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_protest.dds"
+
+	title = peoples_springtime.8.t
+	desc = peoples_springtime.8.d
+	flavor = peoples_springtime.8.f
+
+	duration = 3
+
+	option = {
+		name = peoples_springtime.8.a
+		add_modifier = {
+			name = counter_revolutionary_fervor
+			months = normal_modifier_time
+		}
+	}
+
+	option = {
+		name = peoples_springtime.8.b
+		default_option = yes
+		add_loyalists = {
+			value = 0.1
+		}
+	}
+}

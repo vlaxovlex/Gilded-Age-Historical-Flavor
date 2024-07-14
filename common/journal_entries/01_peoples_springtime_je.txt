@@ -1,0 +1,203 @@
+﻿je_springtime_of_the_peoples = {
+	icon = "gfx/interface/icons/event_icons/waving_flag.dds"
+
+	group = je_group_crises
+
+	is_shown_when_inactive = { #HJE edit start
+		year <= 1852
+		country_is_in_europe = yes
+		capital = {
+			OR = {
+				#region = sr:region_england
+				#region = sr:region_north_sea_coast
+				region = sr:region_iberia
+				region = sr:region_france
+				region = sr:region_occitania
+				region = sr:region_rhine
+				region = sr:region_balkans
+				#region = sr:region_greece
+				#region = sr:region_low_countries
+				region = sr:region_north_germany
+				region = sr:region_south_germany
+				#region = sr:region_alpine
+				#region = sr:region_north_italy
+				#region = sr:region_italy
+				region = sr:region_baltic
+				region = sr:region_danubia
+				region = sr:region_poland
+				#region = sr:region_russia
+				#region = sr:region_belarus
+				#region = sr:region_dnieper
+				#region = sr:region_baltics_ruthenia
+			}
+		}
+		NOR = {	
+			has_variable = already_had_scripted_revolution
+			country_has_primary_culture = cu:north_italian
+			country_has_primary_culture = cu:south_italian
+			AND = {
+				exists = c:AUS
+				c:AUS = THIS
+				any_scope_state = { cu:hungarian = { has_homeland = PREV } }
+			}
+			AND = {
+				exists = c:FRA
+				c:FRA = THIS
+			}
+		}
+	}	#HJE edit end
+
+	possible = {
+		year >= 1846	#HJE edit
+		any_interest_group = {
+			OR = {
+				is_powerful = yes
+				is_insurrectionary = yes
+			}
+			leader = { has_ideology = ideology:ideology_radical }
+		}
+	}
+
+	immediate = {
+		trigger_event = { id = 1848.4 }
+	}
+
+	complete = {
+		is_at_war = no
+		has_revolution = no
+		is_revolutionary = no
+		has_insurrectionary_interest_groups = no
+		OR = {
+			custom_tooltip = {
+				text = je_springtime_of_the_peoples_tt_1
+				always = no
+			}
+			AND = {
+				any_interest_group = {
+					is_in_government = yes
+					leader = { has_ideology = ideology:ideology_radical }
+				}
+				NOT = { has_law = law_type:law_monarchy }
+				OR = {
+					has_law = law_type:law_census_voting
+					has_law = law_type:law_universal_suffrage
+				}
+			}
+			custom_tooltip = {
+				text = je_springtime_of_the_peoples_tt_2
+				always = no
+			}
+			NOT = {
+				any_interest_group = {
+					leader = { has_ideology = ideology:ideology_radical }
+					is_marginal = no
+				}
+			}
+		}		
+	}
+
+	on_complete = {
+		set_variable = {
+			name = completed_peoples_stringtime
+		}
+		set_variable = {
+			name = completed_peoples_stringtime_recent
+			months = short_modifier_time
+		}
+		custom_tooltip = je_springtime_of_the_peoples_tt_3
+		hidden_effect = {
+			if = {
+				limit = {
+					any_interest_group = {
+						is_in_government = yes
+						leader = { has_ideology = ideology:ideology_radical }
+					}
+					NOT = { has_law = law_type:law_monarchy }
+					OR = {
+						has_law = law_type:law_wealth_voting
+						has_law = law_type:law_census_voting
+						has_law = law_type:law_universal_suffrage
+					}
+				}
+				trigger_event = { id = peoples_springtime.7 }
+			}
+		}
+		custom_tooltip = je_springtime_of_the_peoples_tt_4
+		hidden_effect = {
+			if = {
+				limit = {
+					NOT = {
+						any_interest_group = {
+							leader = { has_ideology = ideology:ideology_radical }
+							is_marginal = no
+						}
+					}
+				}
+				trigger_event = { id = peoples_springtime.8 }
+			}
+		}
+	}
+
+	on_monthly_pulse = {
+		events = {
+			1848.5
+		}
+		random_events = {
+			100 = 0
+			25 = peoples_springtime.3								#HJE edit 10
+			50 = peoples_springtime.4								#HJE edit 10
+			25 = peoples_springtime.5								#HJE edit 10
+			15 = peoples_springtime.100
+			10 = peoples_springtime.110								#HJE edit
+			10 = peoples_springtime.120								#HJE edit
+			25 = peoples_springtime_den.1 	#danish concessions		#HJE edit
+			10 = 1848.7 					#prussian constitution	#HJE edit
+		}
+		effect = {	#HJE edit start
+			if = {
+				limit = {
+					has_law = law_type:law_monarchy
+					NOT = { has_variable = PRU_constitution_event }
+					has_law = law_type:law_landed_voting
+					NOT = {
+						any_country = {
+							NOT = { THIS = ROOT }
+							country_definition = root.country_definition
+						}
+					}
+					OR = {
+						AND = {
+							exists = c:PRU
+							c:PRU = THIS
+						}
+						AND = {
+							exists = c:NGF
+							c:NGF = THIS
+						}
+						AND = {
+							exists = c:GER
+							c:GER = THIS
+						}
+					}
+				}
+				trigger_event = { id = 1848.7 }
+			}
+		}	#HJE edit end
+	}
+
+	invalid = {
+		OR = {			#HJE edit
+			has_variable = already_had_scripted_revolution	#HJE edit
+			has_global_variable = peoples_springtime_happened
+			year > 1852	#HJE edit
+		}				#HJE edit
+	}
+
+	weight = 10000
+	should_be_pinned_by_default = yes
+
+	transferable = no
+	can_revolution_inherit = no
+
+	timeout = 3650
+}

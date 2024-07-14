@@ -1,0 +1,1089 @@
+﻿namespace = manifest_destiny
+
+# Completed Mexico JE
+manifest_destiny.1 = {
+	type = country_event
+	placement = ROOT
+
+	event_image = {
+		video = "europenorthamerica_capitalists_meeting"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_military.dds"
+	
+	title = manifest_destiny.1.t
+	desc = manifest_destiny.1.d
+	flavor = manifest_destiny.1.f
+	
+	duration = 3
+	
+	trigger = {
+	}
+	
+	option = {
+		name = manifest_destiny.1.a
+		default_option = yes
+		s:STATE_CALIFORNIA = { 
+			add_homeland = cu:yankee
+			remove_claim = c:MEX
+		}
+		s:STATE_NEVADA = { 
+			add_homeland = cu:yankee
+			remove_claim = c:MEX
+		}
+		s:STATE_UTAH = { 
+			add_homeland = cu:yankee
+			remove_claim = c:MEX
+		}
+		s:STATE_ARIZONA = { 
+			add_homeland = cu:dixie
+			remove_claim = c:MEX
+		}
+		s:STATE_NEW_MEXICO = { 
+			add_homeland = cu:dixie
+			remove_claim = c:MEX
+		}
+	}
+}
+
+# Completed Natives JE
+manifest_destiny.2 = {
+	type = country_event
+	placement = ROOT
+
+	event_image = {
+		video = "europenorthamerica_native_american"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_map.dds"
+	
+	title = manifest_destiny.2.t
+	desc = manifest_destiny.2.d
+	flavor = manifest_destiny.2.f
+	
+	duration = 3
+	
+	trigger = {
+	}
+	
+	option = {
+		name = manifest_destiny.1.a
+		default_option = yes
+		if = {
+			limit = {
+				exists = c:SEQ
+				c:SEQ = { 
+					is_subject_of = ROOT 
+					is_player = no
+				}
+			}
+			annex = c:SEQ
+		}
+		s:STATE_OKLAHOMA = { 
+			add_homeland = cu:dixie
+		}
+		s:STATE_MONTANA = { 
+			add_homeland = cu:yankee
+		}
+		s:STATE_WYOMING = { 
+			add_homeland = cu:yankee
+		}
+		s:STATE_COLORADO = { 
+			add_homeland = cu:yankee
+		}
+		s:STATE_NORTH_DAKOTA = { 
+			add_homeland = cu:yankee
+		}
+		s:STATE_SOUTH_DAKOTA = { 
+			add_homeland = cu:yankee
+		}
+		s:STATE_NEBRASKA = { 
+			add_homeland = cu:yankee 
+		}
+		s:STATE_KANSAS = { 
+			add_homeland = cu:yankee 
+		}
+	}
+}
+
+# Bison Hunting
+manifest_destiny.3 = {
+	type = country_event
+	placement = scope:bison_state
+	
+	title = manifest_destiny.3.t
+	desc = manifest_destiny.3.d
+	flavor = manifest_destiny.3.f
+	
+	event_image = {
+		video = "europenorthamerica_native_american"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_skull.dds"
+	
+	duration = 3
+	
+	trigger = {
+		NOT = { has_variable = bison_hunting_var }
+		institution_investment_level = {
+			institution = institution_colonial_affairs
+			value >= 2
+		}
+		any_scope_state = {
+			OR = {
+				region = sr:region_pacific_coast
+				region = sr:region_great_plains
+				region = sr:region_the_midwest
+				region = sr:region_dixie
+				region = sr:region_western_canada		#HJE edit
+				region = sr:region_american_frontier	#HJE edit
+				region = sr:region_west_dixie			#HJE edit
+			}
+			state_region = {
+				any_scope_state = {
+					owner = {
+						is_country_type = decentralized
+					}
+				}
+			}
+			NOR = {
+				has_modifier = commercial_bison_hunting
+				has_modifier = military_bison_hunting
+			}
+		}
+	}
+
+	immediate = {
+		set_variable = {
+			name = bison_hunting_var
+			months = short_modifier_time
+		}
+		random_scope_state = {
+			limit = {
+				OR = {
+					region = sr:region_pacific_coast
+					region = sr:region_great_plains
+					region = sr:region_the_midwest
+					region = sr:region_dixie
+					region = sr:region_western_canada		#HJE edit
+					region = sr:region_american_frontier	#HJE edit
+					region = sr:region_west_dixie			#HJE edit
+				}
+				state_region = {
+					any_scope_state = {
+						owner = {
+							is_country_type = decentralized
+						}
+					}
+				}
+				NOR = {
+					has_modifier = commercial_bison_hunting
+					has_modifier = military_bison_hunting
+				}
+			}
+			save_scope_as = bison_state
+			state_region = {
+				random_scope_state = {
+					limit = {
+						owner = {
+							is_country_type = decentralized
+						}
+					}
+					save_scope_as = native_american_state
+					owner = {
+						save_scope_as = native_american_country
+					}
+				}
+			}
+		}
+	}
+
+	option = { # Promote private hunting
+		name = manifest_destiny.3.a
+		default_option = yes
+		trigger = {
+			scope:bison_state = {
+				any_scope_building = {
+					is_building_type = building_livestock_ranch
+				}
+			}
+		}
+		scope:bison_state = {
+			add_modifier = { # ranch throughput and colony speed
+				name = commercial_bison_hunting
+				months = normal_modifier_time
+			}
+		}
+		scope:native_american_state = {
+			add_modifier = {
+				name = bison_hunting_subsistence
+				months = normal_modifier_time
+			}
+		}
+		scope:native_american_country = {
+			change_tension = {
+				country = ROOT
+				value = 15
+			}
+		}
+	}
+
+	option = { # have the army slaughter bison
+		name = manifest_destiny.3.b
+		scope:bison_state = {
+			add_modifier = { # more colonization speed but no throughput
+				name = military_bison_hunting
+				months = normal_modifier_time
+			}
+		}
+		scope:native_american_state = {
+			add_modifier = {
+				name = bison_hunting_subsistence
+				months = normal_modifier_time
+				multiplier = 2
+			}
+		}
+		scope:native_american_country = {
+			change_tension = {
+				country = ROOT
+				value = 30
+			}
+		}
+	}
+
+	option = {
+		name = manifest_destiny.3.c
+		if = {
+			limit = {
+				scope:bison_state = {
+					any_scope_pop = {
+						is_pop_type = farmers
+					}
+				}
+			}
+			scope:bison_state = {
+				add_radicals_in_state = {
+					pop_type = farmers
+					value = large_radicals
+				}
+			}
+		}
+		scope:native_american_country = {
+			change_tension = {
+				country = ROOT
+				value = -30
+			}
+		}
+	}
+}
+
+#Mexican-American War - Scripted by CalvinPoints from his Norton's Flavor Mod (https://steamcommunity.com/sharedfiles/filedetails/?id=2882805006)
+
+manifest_destiny.4 = {	#HJE edit start
+	type = country_event
+
+	title = manifest_destiny.4.t
+	desc = manifest_destiny.4.d
+	flavor = manifest_destiny.4.f
+
+	event_image = {
+		video = "gfx/event_pictures/southamerica_war_civilians.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/southamerica/war_civilians"
+
+	icon = "gfx/interface/icons/event_icons/event_military.dds"
+
+	duration = 3
+
+	is_popup = yes
+
+	trigger = {
+		exists = c:USA
+		c:USA = ROOT
+		exists = c:MEX
+		has_truce_with = c:MEX
+		NOT = { has_variable = mexican_american_war_lost }
+		NOT = { has_variable = mexican_american_war_peace }
+	}
+
+	immediate = {
+		c:USA = { set_variable = mexican_american_war_lost }
+	}
+
+	option = {
+		name = manifest_destiny.4.a
+		default_option = yes
+		custom_tooltip = manifest_destiny_mexican_war_lost_tt
+	}
+} 
+
+manifest_destiny.6 = {
+	type = country_event
+	placement = c:USA
+
+	event_image = {
+		video = "gfx/event_pictures/europenorthamerica_capitalists_meeting.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/capitalists_meeting"
+
+	icon = "gfx/interface/icons/event_icons/event_military.dds"
+	
+	title = manifest_destiny.6.t
+	desc = manifest_destiny.6.d
+	flavor = manifest_destiny.6.f
+	
+	duration = 3
+	
+	trigger = {
+		exists = c:USA
+		c:USA = ROOT
+		exists = c:MEX
+		has_truce_with = c:MEX
+		NOT = { has_variable = mexican_american_war_lost }
+		NOT = { has_variable = mexican_american_war_peace }
+		owns_entire_state_region = STATE_CALIFORNIA
+		any_scope_state = { state_region = s:STATE_TEXAS }
+	}
+	immediate = {
+		set_variable = mexican_american_war_peace
+	}
+
+	option = { #North of Rio Grande
+		name = manifest_destiny.6.a
+		default_option = yes
+
+		if = {
+			limit = {
+				s:STATE_CALIFORNIA = {
+					any_scope_state = {
+						owner = c:MEX
+					}
+				}
+			}
+			s:STATE_CALIFORNIA.region_state:MEX = {
+			
+				set_state_owner = c:USA
+			}
+		}
+		if = {
+			limit = {
+				s:STATE_NEVADA = {
+					any_scope_state = {
+						owner = c:MEX
+					}
+				}
+			}
+			s:STATE_NEVADA.region_state:MEX = {
+			
+				set_state_owner = c:USA
+			}
+		}
+		if = {
+			limit = {
+				s:STATE_UTAH = {
+					any_scope_state = {
+						owner = c:MEX
+					}
+				}
+			}
+			s:STATE_UTAH.region_state:MEX = {
+			
+				set_state_owner = c:USA
+			}
+		}
+		if = {
+			limit = {
+				s:STATE_ARIZONA = {
+					any_scope_state = {
+						owner = c:MEX
+					}
+				}
+			}
+			s:STATE_ARIZONA.region_state:MEX = {
+			
+				set_state_owner = c:USA
+			}
+		}
+		if = {
+			limit = {
+				s:STATE_COLORADO = {
+					any_scope_state = {
+						owner = c:MEX
+					}
+				}
+			}
+			s:STATE_COLORADO.region_state:MEX = {
+				set_state_owner = c:USA
+			}
+		}
+		if = {
+			limit = {
+				s:STATE_NEW_MEXICO = {
+					any_scope_state = {
+						owner = c:MEX
+					}
+				}
+			}
+			s:STATE_NEW_MEXICO.region_state:MEX = {
+			
+				set_state_owner = c:USA
+			}
+		}
+		if = {
+			limit = {
+				s:STATE_KANSAS = {
+					any_scope_state = {
+						owner = c:MEX
+					}
+				}
+			}
+			s:STATE_KANSAS.region_state:MEX = {
+			
+				set_state_owner = c:USA
+			}
+		}
+		if = {
+			limit = {
+				s:STATE_OKLAHOMA = {
+					any_scope_state = {
+						owner = c:MEX
+					}
+				}
+			}
+			s:STATE_OKLAHOMA.region_state:MEX = {
+			
+				set_state_owner = c:USA
+			}
+		}
+		if = {
+			limit = {
+				s:STATE_TEXAS = {
+					any_scope_state = {
+						owner = c:MEX
+					}
+				}
+			}
+			s:STATE_TEXAS.region_state:MEX = {
+			
+				set_state_owner = c:USA
+			}
+		}
+		if = {
+			limit = {
+				s:STATE_WYOMING = {
+					any_scope_state = {
+						owner = c:MEX
+					}
+				}
+			}
+			s:STATE_WYOMING.region_state:MEX = {
+			
+				set_state_owner = c:USA
+			}
+		}
+		custom_tooltip = {
+			text = mexican_american_war_tt3
+
+			s:STATE_NEW_MEXICO = {
+				set_owner_of_provinces = {
+					country = c:MEX
+					provinces = { x46C455 xB6EC9A xB566BA xC03080}
+				}
+				set_owner_of_provinces = {
+					country = c:USA
+					provinces = { x17660E }
+				}
+			}
+			s:STATE_ARIZONA = {
+				set_owner_of_provinces = {
+					country = c:MEX
+					provinces = {
+						xD08000
+						x67A8BE
+						x1BDEB7
+						x949C3F
+						x8755F3
+						xC96399
+						x8737CC
+						xBB6368
+						x39AEE1
+						x48A4E7
+						x022AE2
+						x44CC50
+						xBF471B
+						x2392B7
+						xC28CA0
+						xD331E1
+						x1A06C1
+						xA8531A
+						x77EF15
+
+					}
+				}
+				set_owner_of_provinces = {
+					country = c:USA
+					provinces = {
+						x104080
+						xC98675
+						x078B25
+						xE857ED
+					}
+				}
+			}
+		}
+		
+		
+		
+		create_incident = { country = root value = 20 }
+		c:USA = {
+			trigger_event = { id = manifest_destiny.7 days = 0 popup = yes }
+		}
+		ai_chance = {
+			base = 60
+   		}
+	}
+
+	option = { #North of Rio Grande, AND Baja
+		name = manifest_destiny.6.e
+		default_option = no
+
+		
+		if = {
+			limit = {
+				s:STATE_CALIFORNIA = {
+					any_scope_state = {
+						owner = c:MEX
+					}
+				}
+			}
+			s:STATE_CALIFORNIA.region_state:MEX = {
+			
+				set_state_owner = c:USA
+			}
+		}
+		if = {
+			limit = {
+				s:STATE_BAJA_CALIFORNIA = {
+					any_scope_state = {
+						owner = c:MEX
+					}
+				}
+			}
+			s:STATE_BAJA_CALIFORNIA.region_state:MEX = {
+				set_state_owner = c:USA
+			}
+		}
+		if = {
+			limit = {
+				s:STATE_NEVADA = {
+					any_scope_state = {
+						owner = c:MEX
+					}
+				}
+			}
+			s:STATE_NEVADA.region_state:MEX = {
+			
+				set_state_owner = c:USA
+			}
+		}
+		if = {
+			limit = {
+				s:STATE_UTAH = {
+					any_scope_state = {
+						owner = c:MEX
+					}
+				}
+			}
+			s:STATE_UTAH.region_state:MEX = {
+			
+				set_state_owner = c:USA
+			}
+		}
+		if = {
+			limit = {
+				s:STATE_ARIZONA = {
+					any_scope_state = {
+						owner = c:MEX
+					}
+				}
+			}
+			s:STATE_ARIZONA.region_state:MEX = {
+			
+				set_state_owner = c:USA
+			}
+		}
+		if = {
+			limit = {
+				s:STATE_COLORADO = {
+					any_scope_state = {
+						owner = c:MEX
+					}
+				}
+			}
+			s:STATE_COLORADO.region_state:MEX = {
+				set_state_owner = c:USA
+			}
+		}
+		if = {
+			limit = {
+				s:STATE_NEW_MEXICO = {
+					any_scope_state = {
+						owner = c:MEX
+					}
+				}
+			}
+			s:STATE_NEW_MEXICO.region_state:MEX = {
+			
+				set_state_owner = c:USA
+			}
+		}
+		if = {
+			limit = {
+				s:STATE_KANSAS = {
+					any_scope_state = {
+						owner = c:MEX
+					}
+				}
+			}
+			s:STATE_KANSAS.region_state:MEX = {
+			
+				set_state_owner = c:USA
+			}
+		}
+		if = {
+			limit = {
+				s:STATE_OKLAHOMA = {
+					any_scope_state = {
+						owner = c:MEX
+					}
+				}
+			}
+			s:STATE_OKLAHOMA.region_state:MEX = {
+			
+				set_state_owner = c:USA
+			}
+		}
+		if = {
+			limit = {
+				s:STATE_TEXAS = {
+					any_scope_state = {
+						owner = c:MEX
+					}
+				}
+			}
+			s:STATE_TEXAS.region_state:MEX = {
+			
+				set_state_owner = c:USA
+			}
+		}
+		if = {
+			limit = {
+				s:STATE_WYOMING = {
+					any_scope_state = {
+						owner = c:MEX
+					}
+				}
+			}
+			s:STATE_WYOMING.region_state:MEX = {
+			
+				set_state_owner = c:USA
+			}
+		}
+		custom_tooltip = {
+			text = mexican_american_war_tt3
+
+			s:STATE_NEW_MEXICO = {
+				set_owner_of_provinces = {
+					country = c:MEX
+					provinces = { x46C455 xB6EC9A xB566BA xC03080}
+				}
+				set_owner_of_provinces = {
+					country = c:USA
+					provinces = { x17660E }
+				}
+				remove_claim = c:USA
+				remove_claim = c:MEX
+			}
+			s:STATE_ARIZONA = {
+				set_owner_of_provinces = {
+					country = c:MEX
+					provinces = {
+						xD08000
+						x67A8BE
+						x1BDEB7
+						x949C3F
+						x8755F3
+						xC96399
+						x8737CC
+						xBB6368
+						x39AEE1
+						x48A4E7
+						x022AE2
+						x44CC50
+						xBF471B
+						x2392B7
+						xC28CA0
+						xD331E1
+						x1A06C1
+						xA8531A
+						x77EF15
+
+					}
+				}
+				set_owner_of_provinces = {
+					country = c:USA
+					provinces = {
+						x104080
+						xC98675
+						x078B25
+						xE857ED
+					}
+				}
+				remove_claim = c:USA
+				remove_claim = c:MEX
+			}
+		}
+		
+		
+		
+		create_incident = { country = root value = 40 }
+		c:USA = {
+			trigger_event = { id = manifest_destiny.7 days = 0 popup = yes }
+		}
+		ai_chance = {
+			base = 0
+   		}
+	}
+
+	option = { #North of Rio Grande AND northern mexico.
+		name = manifest_destiny.6.b
+		default_option = no
+		if = {
+			limit = {
+				s:STATE_CALIFORNIA = {
+					any_scope_state = {
+						owner = c:MEX
+					}
+				}
+			}
+			s:STATE_CALIFORNIA.region_state:MEX = {
+			
+				set_state_owner = c:USA
+			}
+		}
+		if = {
+			limit = {
+				s:STATE_NEVADA = {
+					any_scope_state = {
+						owner = c:MEX
+					}
+				}
+			}
+			s:STATE_NEVADA.region_state:MEX = {
+			
+				set_state_owner = c:USA
+			}
+		}
+		if = {
+			limit = {
+				s:STATE_UTAH = {
+					any_scope_state = {
+						owner = c:MEX
+					}
+				}
+			}
+			s:STATE_UTAH.region_state:MEX = {
+			
+				set_state_owner = c:USA
+			}
+		}
+		if = {
+			limit = {
+				s:STATE_ARIZONA = {
+					any_scope_state = {
+						owner = c:MEX
+					}
+				}
+			}
+			s:STATE_ARIZONA.region_state:MEX = {
+			
+				set_state_owner = c:USA
+			}
+		}
+		if = {
+			limit = {
+				s:STATE_COLORADO = {
+					any_scope_state = {
+						owner = c:MEX
+					}
+				}
+			}
+			s:STATE_COLORADO.region_state:MEX = {
+			
+				set_state_owner = c:USA
+			}
+		}
+		if = {
+			limit = {
+				s:STATE_NEW_MEXICO = {
+					any_scope_state = {
+						owner = c:MEX
+					}
+				}
+			}
+			s:STATE_NEW_MEXICO.region_state:MEX = {
+			
+				set_state_owner = c:USA
+			}
+		}
+		if = {
+			limit = {
+				s:STATE_KANSAS = {
+					any_scope_state = {
+						owner = c:MEX
+					}
+				}
+			}
+			s:STATE_KANSAS.region_state:MEX = {
+			
+				set_state_owner = c:USA
+			}
+		}
+		if = {
+			limit = {
+				s:STATE_OKLAHOMA = {
+					any_scope_state = {
+						owner = c:MEX
+					}
+				}
+			}
+			s:STATE_OKLAHOMA.region_state:MEX = {
+			
+				set_state_owner = c:USA
+			}
+		}
+		if = {
+			limit = {
+				s:STATE_TEXAS = {
+					any_scope_state = {
+						owner = c:MEX
+					}
+				}
+			}
+			s:STATE_TEXAS.region_state:MEX = {
+			
+				set_state_owner = c:USA
+			}
+		}
+		if = {
+			limit = {
+				s:STATE_BAJA_CALIFORNIA = {
+					any_scope_state = {
+						owner = c:MEX
+					}
+				}
+			}
+			s:STATE_BAJA_CALIFORNIA.region_state:MEX = {
+			
+				set_state_owner = c:USA
+			}
+		}
+		if = {
+			limit = {
+				s:STATE_CHIHUAHUA = {
+					any_scope_state = {
+						owner = c:MEX
+					}
+				}
+			}
+			s:STATE_CHIHUAHUA.region_state:MEX = {
+			
+				set_state_owner = c:USA
+			}
+		}
+		if = {
+			limit = {
+				s:STATE_RIO_GRANDE = {
+					any_scope_state = {
+						owner = c:MEX
+					}
+				}
+			}
+			s:STATE_RIO_GRANDE.region_state:MEX = {
+			
+				set_state_owner = c:USA
+			}
+		}
+		if = {
+			limit = {
+				s:STATE_SONORA = {
+					any_scope_state = {
+						owner = c:MEX
+					}
+				}
+			}
+			s:STATE_SONORA.region_state:MEX = {
+			
+				set_state_owner = c:USA
+			}
+		}
+		if = {
+			limit = {
+				s:STATE_WYOMING = {
+					any_scope_state = {
+						owner = c:MEX
+					}
+				}
+			}
+			s:STATE_WYOMING.region_state:MEX = {
+			
+				set_state_owner = c:USA
+			}
+		}
+		create_incident = { country = root value = 60 }
+		c:USA = {
+			trigger_event = { id = manifest_destiny.7 days = 0 popup = yes }
+		}
+   		ai_chance = 0
+	}
+}
+
+manifest_destiny.7 = { #Mexican Settlement
+	type = country_event
+	placement = ROOT
+
+	title = manifest_destiny.7.t
+	desc = manifest_destiny.7.d
+	flavor = manifest_destiny.7.f
+
+	duration = 3
+
+	event_image = {
+		video = "gfx/event_pictures/unspecific_signed_contract.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/unspecific/signed_contract"
+
+	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
+
+	trigger = {
+
+	}
+
+	immediate = {
+
+	}
+
+	option = { #No Settlement
+		name = manifest_destiny.7.a
+		custom_tooltip = mexican_american_7_tt1
+		default_option = no
+		c:USA = {
+			create_incident = { country = prev value = 20 }
+			set_secret_goal = {
+				country = c:MEX
+				secret_goal = antagonize
+			}
+			change_relations = { 
+				country = c:MEX
+				value = -75
+			}
+		}
+		c:MEX = {
+			set_secret_goal = {
+				country = c:USA
+				secret_goal = antagonize
+			}
+		}
+		ai_chance = {
+			base = 1
+		}
+	}
+
+	option = { #Modest Settlement
+		name = manifest_destiny.7.b
+		custom_tooltip = mexican_american_7_tt2
+		default_option = yes
+		ai_chance = {
+			base = 20
+		}
+		c:USA = {
+			change_infamy = -15
+			set_secret_goal = {
+				country = c:MEX
+				secret_goal = none
+			}
+			change_relations = { 
+				country = c:MEX
+				value = 50
+			}
+			add_modifier = {
+				name = small_mexican_ces_settlement_pay
+				months = 120
+			}
+		}
+		c:MEX = {
+			add_modifier = {
+				name = small_mexican_ces_settlement_recieve
+				months = 120
+			}
+			set_secret_goal = {
+				country = c:USA
+				secret_goal = none
+			}
+		}
+	}
+	option = { #Huge Settlement
+		name = manifest_destiny.7.c
+		custom_tooltip = mexican_american_7_tt3
+		default_option = no
+		c:USA = {
+			change_infamy = -30
+			set_secret_goal = {
+				country = c:MEX
+				secret_goal = befriend
+			}
+			change_relations = { 
+				country = c:MEX
+				value = 100
+			}
+			add_modifier = {
+				name = huge_mexican_ces_settlement_pay
+				months = 120
+			}
+		}
+		c:MEX = {
+			add_modifier = {
+				name = huge_mexican_ces_settlement_recieve
+				months = 120
+			}
+			set_secret_goal = {
+				country = c:USA
+				secret_goal = befriend
+			}
+		}
+		ai_chance = {
+			base = 5
+			modifier = {
+				gold_reserves > 3000000
+				add = 10
+			}
+			modifier = {
+				gold_reserves > 4000000
+				add = 10
+			}
+		}
+	}
+}	#HJE edit end
+

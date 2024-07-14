@@ -1,0 +1,510 @@
+﻿je_acw_countdown = {
+	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
+
+	group = je_group_historical_content
+
+	immediate = {
+		set_variable = {
+			name = acw_progress_var
+			value = 0
+		}
+	}
+
+	complete = {
+		scope:journal_entry = {
+			is_goal_complete = yes
+		}
+		has_law = law_type:law_slavery_banned
+	}
+
+	on_complete = {
+		set_variable = je_acw_countdown_complete
+		remove_modifier = missouri_compromise
+		trigger_event = { id = slavery_law_events.7 days = 0 popup = yes }
+	}
+
+	fail = {
+		OR = {	#HJE edit start
+			# CSA via outlawing slavery
+			custom_tooltip = {
+				text = acw_outlawing_slavery
+				c:USA = { is_enacting_law = law_type:law_slavery_banned }
+			}
+			# CSA via abolitionist president past 1855 OR dictatorship
+			custom_tooltip = {
+				text = acw_abolitionist_president
+				NOT = { has_law = law_type:law_slavery_banned }
+				ruler = { has_ideology = ideology:ideology_abolitionist } 
+				OR = {
+					country_has_voting_franchise = no
+					AND = {
+						year >= 1855
+						in_election_campaign = no
+						has_variable = had_elections_in_last_year
+					}
+				}
+			}
+			# FSA via slaver president past 1865 OR dictatorship
+			custom_tooltip = {
+				text = acw_slaver_president
+				NOT = { has_law = law_type:law_slavery_banned }
+				ig:ig_landowners = { is_in_government = yes }
+				ruler = { has_ideology = ideology:ideology_slaver } 
+				OR = {
+					country_has_voting_franchise = no
+					AND = {
+						year >= 1865
+						in_election_campaign = no
+						has_variable = had_elections_in_last_year
+					}
+				}
+			}
+			# FSA via slavery inaction
+			custom_tooltip = {
+				text = acw_slavery_kept
+				year >= 1875
+				NOT = { has_law = law_type:law_slavery_banned }
+			}
+		}	#HJE edit end		
+	}
+
+	on_fail = {
+		if = {
+			limit = {
+				any_country = {
+					is_revolutionary = yes
+					country_definition = root.country_definition
+					ig:ig_landowners = {
+						is_in_government = yes
+					}				
+				}
+			}
+			set_variable = csa_will_spawn_var
+		}
+		custom_tooltip = {
+			text = acw_will_happen_tt
+			trigger_event = { id = acw_je_events.1 days = 7 }
+			if = {	#HJE edit start
+				limit = {
+					OR = {
+						c:USA = { is_enacting_law = law_type:law_slavery_banned }
+						AND = {
+							year >= 1856
+							NOT = { has_law = law_type:law_slavery_banned }
+							c:USA = { ruler = { has_ideology = ideology:ideology_abolitionist } }
+						}
+					}
+				}
+				set_variable = csa_will_spawn_var
+			}		#HJE edit end
+		}
+	}
+
+	on_monthly_pulse = {
+		effect = {
+			if = {
+				limit = {
+					has_law = law_type:law_slavery_banned
+				}
+				change_variable = {
+					name = acw_progress_var
+					add = 1
+				}
+			}
+		}
+		random_events = {
+			# American Civil War buildup
+			200 = 0
+			10 = acw_events.1 # The Abolitionist's Martyrdom
+			10 = acw_events.3 # The Wilmot Proviso
+			100 = acw_sectionalism_startup.1 #Growing Sectionalism	#HJE edit start
+			20 = acw_sectionalism_startup.2 #Dredd Scott Case
+			75 = acw_buildup.1 #House Gag Rule
+			100 = acw_buildup.2 #Texas Question
+			40 = acw_buildup.3 #Wilmot Proviso
+			20 = acw_buildup.4 #Compromise of 1850
+			20 = acw_buildup.6 #Fugitive Slave Act of 1850
+			50 = acw_buildup.12 #Failed Harper's Ferry
+			25 = acw_buildup.13 #Catastrophic Harper's Ferry
+			15 = acw_buildup.11 #Succesful Harper's Ferry			#HJE edit end
+		}
+	}
+	on_yearly_pulse = {
+		random_events = {
+			40 = 0
+			20 = acw_events.2 # The Fugitive Slave
+			20 = acw_events.5 # Bleeding Kansas
+			20 = acw_events.6 # The Caning of Charles Sumner
+		}
+	}
+
+	current_value = {
+		value = root.var:acw_progress_var
+	}
+
+	goal_add_value = {
+		value = 120
+	}
+
+	progressbar = yes
+
+	weight = 100
+
+	should_be_pinned_by_default = yes
+}
+
+je_acw_war = {
+	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
+
+	group = je_group_historical_content
+	
+	immediate = {	#HJE edit start
+		ruler = { set_variable = abraham_lincoln }
+		set_variable = {
+			name = acw_has_fought_less_than_1_year
+			days = 365
+		}
+		set_variable = {
+			name = acw_has_fought_less_than_2_years
+			days = 730
+		}
+		set_variable = {
+			name = acw_has_fought_less_than_3_years
+			days = 1095
+		}
+	}	#HJE edit end
+
+	complete = {
+		custom_tooltip = {
+			text = acw_war_tt_complete
+			scope:target = { is_country_alive = no }
+		}
+	}
+
+	on_complete = {
+		trigger_event = { id = acw_je_events.2 }
+		if = {
+			limit = { 
+				has_variable = csa_will_spawn_var
+			}
+			ruler = {
+				set_variable = abraham_lincoln
+			}
+		}
+		trigger_event = { id = acw_peace_treaty.1 } #Appomattox #HJE edit
+	}
+	
+	fail = {	#HJE edit start
+		custom_tooltip = {
+			text = acw_rebel_victory
+					
+			OR = {
+				AND = {
+					exists = c:CSA
+					NOT = { has_global_variable = { name = acw_no_war } } 
+					NOT = { root = { is_diplomatic_play_enemy_of = c:CSA } }
+				}
+				AND = {
+					exists = c:FSA
+					NOT = { has_global_variable = { name = acw_no_war } } 
+					NOT = { root = { is_diplomatic_play_enemy_of = c:FSA } }
+				}
+			}
+		}
+	}
+	
+	on_fail = {
+		trigger_event = { id = acw_peace_treaty.2 } #Washington
+	}			#HJE edit end
+	
+
+	on_monthly_pulse = {
+		events = {
+			acw_je_events.4
+		}
+		random_events = {	#HJE edit start
+			35 = 0
+			45 = acw_secession_crisis.4 #West Virginia secession
+			40 = acw_special_events.1 #The Gettysburg Address
+			40 = acw_special_events.2 #Sherman's March to the Sea
+			15 = acw_special_events.7 #Emancipation Proclamation
+			30 = acw_special_events.14 #Generic Skirmishes
+			10 = acw_events.8 #Great Locomotive Chase
+		}					#HJE edit end
+	}
+
+	should_be_pinned_by_default = yes
+	
+	can_revolution_inherit = no
+
+	# acw_events.7 fires for the FSA or CSA, but requires the je_acw_war journal to be active
+	# acw_events.8 fires for the USA, FSA or CSA, but requires the je_acw_war journal to be active
+}
+
+je_acw_reconstruction = {
+	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
+
+	group = je_group_historical_content
+
+	on_monthly_pulse = {	#HJE edit start
+		random_events = {
+			100 = 0
+			100 = acw_followup_events.1 #President Assasinated
+			50 = acw_followup_events.2 #President Survives
+			25 = acw_followup_events.3 #President Kicks Booth's Ass
+		}
+	}						#HJE edit end
+	complete = {
+		scope:journal_entry = {
+			is_goal_complete = yes
+		}
+	}
+
+	on_complete = {
+		trigger_event = { id = acw_je_events.3 }
+		hidden_effect = { # sanity check just in case something somehow falls through the cracks
+			every_scope_state = {
+				limit = { has_modifier = unreconstructed_state }
+				remove_modifier = unreconstructed_state
+			}
+		}
+	}
+
+	current_value = {
+		value = var:reconstruction_var
+	}
+
+	goal_add_value = {
+		add = 3
+	}
+
+	timeout = 4380
+
+	should_be_pinned_by_default = yes
+
+	on_timeout = {
+		trigger_event = { id = acw_je_events.3 }
+	}
+}
+
+je_acw_reincorporate = {
+	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
+
+	group = je_group_historical_content
+
+	complete = {
+		NOT = {
+			any_scope_state = {
+				state_region = {
+					is_homeland = cu:dixie
+				}
+				loyalist_fraction = {
+					value < 0.2
+					culture = cu:dixie
+				}
+				has_modifier = unreconstructed_state	#HJE edit start
+				OR = {
+					devastation > 0.05
+					loyalist_fraction = {
+						value < 0.15
+						culture = cu:dixie
+					}
+					loyalist_fraction = {
+						value < 0.15
+						culture = cu:yankee
+					}
+				}	#HJE edit end
+			}
+		}
+	}
+
+	on_complete = {
+		if = {												#HJE edit 
+			limit = { has_variable = csa_will_spawn_var }	#HJE edit
+			custom_tooltip = {
+				text = dont_lose_dixie_culture
+				set_variable = acw_keep_dixie
+			}
+		}	#HJE edit start
+		else = {
+			custom_tooltip = {
+				text = dont_lose_yankee_culture
+				set_variable = acw_keep_yankee
+			}
+		}	#HJE edit end
+		custom_tooltip = {
+			text = reconstruction_progress
+			change_variable = {
+				name = reconstruction_var
+				add = 1
+			}
+		}
+	}
+
+	on_monthly_pulse = {
+		random_events = {
+			50 = 0		#HJE edit 180
+			20 = acw_followup_events.6
+			20 = acw_followup_events.7
+			20 = acw_followup_events.8
+		}
+	}
+
+	invalid = {
+		NOT = {
+			any_scope_state = {
+				state_region = {
+					is_homeland = cu:dixie
+				}
+			}
+		}
+		NOT = { any_scope_state = { has_modifier = unreconstructed_state } }	#HJE edit
+	}
+
+	timeout = 4380
+}
+
+je_acw_equality = {
+	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
+
+	group = je_group_historical_content
+
+	complete = {
+		custom_tooltip = {
+			text = acw_african_american_culture_complete_tt
+			cu:afro_american = {
+				NOT = { culture_is_discriminated_in = ROOT }
+			}
+			has_law = law_type:law_slavery_banned	#HJE edit
+		}
+	}
+
+	on_complete = {
+		custom_tooltip = {
+			text = acw_african_american_culture
+			set_variable = acw_gain_african_american
+		}
+		custom_tooltip = {
+			text = reconstruction_progress
+			change_variable = {
+				name = reconstruction_var
+				add = 1
+			}
+		}
+	}
+
+	on_monthly_pulse = {
+		random_events = {
+			90 = 0		#HJE edit 180
+			20 = acw_followup_events.4 # Forty Acres and a Mule
+			20 = acw_followup_events.5 # Supremacist Violence
+			20 = acw_followup_events.6 # Redeemers
+		}
+	}
+
+	timeout = 4380
+
+	invalid = {
+		NOT = {
+			any_scope_state = {
+				state_region = {
+					is_homeland = cu:afro_american
+				}
+			}
+		}
+	}
+}
+
+je_acw_wild_wild_west = {
+	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
+
+	group = je_group_historical_content
+
+	complete = {
+		scope:journal_entry = {
+			is_goal_complete = yes
+		}
+		NOT = {
+			any_scope_state = {
+				state_region = {
+					OR = {
+						is_homeland = cu:dixie
+						is_homeland = cu:yankee
+					}
+				}
+				devastation > 0.1
+				turmoil > 0.1
+			}
+		}
+	}
+
+	on_complete = {
+		custom_tooltip = {
+			text = acw_no_outlaw_crisis
+		}
+		custom_tooltip = {
+			text = reconstruction_progress
+			change_variable = {
+				name = reconstruction_var
+				add = 1
+			}
+		}
+	}
+
+	on_monthly_pulse = {
+		random_events = {
+			100 = 0
+			10 = crime_events.1 # train robbery
+			10 = wild_west.1 # bank robberies
+			10 = wild_west.2 # Raids on the Iron Horse
+			10 = wild_west.3 # Gunfight at the Corral
+		}
+		effect = {
+			if = {
+				limit = {
+					NOT = {
+						any_scope_state = {
+							state_region = {
+								OR = {
+									is_homeland = cu:dixie
+									is_homeland = cu:yankee
+								}
+							}
+							devastation > 0.1
+							turmoil > 0.1
+						}
+					}
+				}
+				change_variable = {
+					name = je_acw_wild_west_var
+					add = 1
+				}
+			}
+		}
+	}
+
+	invalid = {
+		NOT = {
+			any_scope_state = {
+				state_region = {
+					OR = {
+						is_homeland = cu:dixie
+						is_homeland = cu:yankee
+					}
+				}
+			}
+		}
+	}
+
+	current_value = {
+		value = var:je_acw_wild_west_var
+	}
+	
+	goal_add_value = {
+		add = 60
+	}
+
+	progressbar = yes
+
+	timeout = 4380
+}

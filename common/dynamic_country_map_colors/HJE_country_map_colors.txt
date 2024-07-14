@@ -1,0 +1,42 @@
+﻿austria_hungary_hje = {
+	color = "aus_hun"
+
+	possible = {
+		exists = c:AUS
+		THIS = c:AUS
+		has_game_rule = make_aushun_whitish_orange
+		country_has_primary_culture = cu:hungarian
+	}
+}
+
+austria_hungary_rust = {
+	color = "kuk_rust"
+
+	possible = {
+		exists = c:AUS
+		THIS = c:AUS
+		has_game_rule = make_aushun_rust
+		country_has_primary_culture = cu:hungarian
+	}
+}
+
+austria_hungary_yellow = {
+	color = "yellow_light"
+
+	possible = {
+		exists = c:AUS
+		THIS = c:AUS
+		has_game_rule = keep_aushun_yellow
+		country_has_primary_culture = cu:hungarian
+	}
+}
+
+ottomans = {
+	color = "osmanoglu"
+	possible = {
+		exists = c:TUR
+		THIS = c:TUR
+		has_game_rule = make_ottomans_red
+		has_law = law_type:law_monarchy
+	}
+}

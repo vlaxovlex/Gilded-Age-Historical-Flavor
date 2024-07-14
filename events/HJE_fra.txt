@@ -1,0 +1,1627 @@
+﻿#localize this shit lmao
+
+namespace = TGE_france
+
+TGE_france.1 = {
+	type = country_event
+	placement = root
+	title = TGE_france.1.t
+	desc = TGE_france.1.d
+	flavor = TGE_france.1.f
+
+	duration = 3
+
+	event_image = {
+		video = "gfx/event_pictures/europenorthamerica_rich_and_poor.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/rich_and_poor"
+
+	icon = "gfx/interface/icons/event_icons/event_default.dds"
+
+	trigger = {
+	}
+	
+	immediate = {
+		set_variable = {
+			name = french_demographic_var
+			value = 0
+		}
+		every_state = {
+			limit = {
+				is_homeland_of_country_cultures = ROOT
+			}
+			add_modifier = modifier_french_demographic_crisis
+		}
+	}
+
+	option = {
+		name = TGE_france.1.a
+		default_option = yes
+		add_journal_entry = {
+			type = je_french_demographic_crisis
+		}
+		add_journal_entry = {
+			type = je_french_demographic_crisis_military
+		}
+		add_journal_entry = {
+			type = je_french_demographic_crisis_pacifist
+		}
+	}
+}
+
+TGE_france.2 = {
+	type = country_event
+	placement = root
+	title = TGE_france.2.t
+	desc = TGE_france.2.d
+	flavor = TGE_france.2.f
+
+	duration = 3
+	
+	event_image = {
+		video = "gfx/event_pictures/unspecific_world_fair.bk2"
+		}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/unspecific/world_fair"
+
+	icon = "gfx/interface/icons/event_icons/event_default.dds"
+	
+		trigger = {
+	}
+	
+	option = {
+		name = TGE_france.2.a
+		default_option = yes
+		set_variable = french_demographic_crisis_complete
+		every_state = {
+			limit = {
+				is_homeland_of_country_cultures = ROOT
+			}
+			remove_modifier = modifier_french_demographic_crisis
+			add_modifier = {
+				name = modifier_the_belle_epoque
+				months = 120
+			}
+			add_loyalists_in_state = {
+				value = large_radicals
+			}
+		}
+	}
+}
+
+TGE_france.3 = {
+	type = country_event
+	placement = root
+	title = TGE_france.3.t
+	desc = TGE_france.3.d
+	flavor = TGE_france.3.f
+
+	duration = 3
+	
+	event_image = {
+		video = "gfx/event_pictures/unspecific_factory_closed.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/unspecific/factory_closed"
+
+	icon = "gfx/interface/icons/event_icons/event_skull.dds"
+
+	trigger = {
+	}
+	
+	option = {
+		name = TGE_france.3.a
+		default_option = yes
+		set_variable = french_demographic_crisis_complete
+		every_state = {
+			limit = {
+				is_homeland_of_country_cultures = ROOT
+			}
+			add_radicals_in_state = {
+				value = large_radicals
+			}
+		}
+	}
+}
+
+
+
+namespace = HJE_france
+
+HJE_france.5 = {			 #French intervention in Mexico
+	type = country_event
+	placement = c:MEX
+	title = HJE_france.5.t
+	flavor = HJE_france.5.f
+	desc = HJE_france.5.d
+
+	duration = 3
+
+	cooldown = { months = 120 }
+
+	is_popup = yes
+
+	event_image = {
+		video = "gfx/event_pictures/southamerica_aristocrats.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/before_the_battle"
+
+	icon = "gfx/interface/icons/event_icons/event_map.dds"
+
+	trigger = {
+		exists = c:FRA
+		c:FRA = ROOT
+		NOT = { has_global_variable = FRA_got_option_to_invade_mexico }
+		has_law = law_type:law_monarchy
+		aggressive_diplomatic_plays_permitted = yes
+		NOT = {
+			any_country = {
+				country_rank >= rank_value:major_power
+				is_diplomatic_play_enemy_of = ROOT
+			}
+		}
+		exists = c:MEX
+		c:MEX = { NOT = { has_law = law_type:law_monarchy } }
+		OR = {
+			AND = {
+				year >= 1861
+				OR = {
+					NOT = { exists = c:USA }
+					AND = {
+						exists = c:USA
+						c:USA = { country_rank < rank_value:major_power }
+					}
+				}
+			}
+			AND = {
+				exists = c:USA
+				#c:USA = { NOT = { has_variable = acw_has_fought_less_than_1_year } }
+				any_country = {
+					has_war_with = c:USA
+					OR = {
+						AND = {
+							exists = c:CSA
+							c:CSA = THIS
+						}
+						AND = {
+							exists = c:FSA
+							c:FSA = THIS
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	immediate = {
+		set_global_variable = FRA_got_option_to_invade_mexico
+	}
+
+	option = {
+		name = HJE_france.5.a
+		default_option = yes
+		ai_chance = 100
+
+		c:MEX = { trigger_event = { id = HJE_france.6 } }
+		if = {
+			limit = { 
+				exists = c:USA
+				c:USA = { country_rank >= rank_value:major_power }
+			}
+			c:USA = {
+				change_relations = {
+					country = ROOT
+					value = -50
+				}
+			}
+		}
+	}
+
+	option = {
+		name = HJE_france.5.b
+		ai_chance = 0
+		add_modifier = {
+			name = withdrew_from_colonial_incident
+			months = normal_modifier_time
+		}
+	}		
+}
+
+HJE_france.6 = {
+	type = country_event
+	placement = c:FRA
+	title = HJE_france.6.t
+	desc = HJE_france.6.d
+	flavor = HJE_france.6.f
+
+	duration = 3
+
+	is_popup = yes
+
+	event_image = {
+		video = "gfx/event_pictures/europenorthamerica_american_civil_war.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/before_the_battle"
+
+	icon = "gfx/interface/icons/event_icons/event_map.dds"
+
+	trigger = {
+	}
+	
+	immediate = {
+		add_loyalists = { value = 0.15 }
+		ig:ig_devout = { remove_ruling_interest_group = yes }
+		create_country = {
+			origin = c:MEX
+			state = s:STATE_VERACRUZ.region_state:MEX
+
+			on_created = { 
+				set_variable = second_mexican_empire
+				set_ruling_interest_groups = { ig_landowners ig_devout ig_armed_forces }
+				ig:ig_landowners = { add_ideology = ideology:ideology_royalist }
+				ig:ig_armed_forces = { add_ideology = ideology:ideology_royalist }
+				ig:ig_intelligentsia = { add_ideology = ideology:ideology_royalist }
+				ig:ig_rural_folk = { add_ideology = ideology:ideology_royalist }
+				ig:ig_trade_unions = { add_ideology = ideology:ideology_royalist }
+				activate_law = law_type:law_monarchy
+				activate_law = law_type:law_oligarchy
+				activate_law = law_type:law_appointed_bureaucrats
+				create_diplomatic_play = {
+				target_country = c:MEX
+				type = dp_revolution
+				}
+			}
+		}
+		random_country = {
+			limit = { has_variable = second_mexican_empire }
+			save_scope_as = second_mexican_empire
+		}
+		c:FRA = {
+			create_diplomatic_pact = {
+				country = scope:second_mexican_empire
+				type = dominion
+			}
+		}
+		c:MEX = {
+			set_variable = MEX_independence_war_against_france
+		}
+		every_state = {
+			limit = { has_claim_by = c:MEX }
+			this.state_region = { add_claim = scope:second_mexican_empire }
+		}
+		if = {
+			limit = { country_rank < rank_value:minor_power }
+			add_modifier = {
+				name = guerilla_warfare
+				months = 40
+			}
+		}
+		if = {
+			limit = {
+				is_player = no
+			}
+			add_modifier = {
+				name = wartime_zeal
+				months = 20
+			}
+		}
+	}
+
+	option = {
+		name = HJE_france.6.a
+		ai_chance = { base = 1 }
+	}
+
+	option = {
+		name = HJE_france.6.b
+		default_option = yes
+		trigger = { is_player = yes }
+		ai_chance = { base = 0 }
+		random_country = {
+			limit = { has_variable = second_mexican_empire }
+			ROOT = { play_as = PREV }
+		}
+	}		
+}
+
+HJE_france.7 = {
+
+	type = country_event
+
+	event_image = {
+		video = "gfx/event_pictures/europenorthamerica_political_extremism.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/political_extremism"
+
+	icon = "gfx/interface/icons/event_icons/event_protest.dds"
+
+	title = HJE_france.7.t
+	desc = HJE_france.7.d
+	flavor = HJE_france.7.f
+
+	duration = 3
+
+	trigger = {
+	}
+
+	immediate = {
+		if = {
+			limit = {
+				year = 1836								
+			}
+			set_next_election_date = 1841.01.01
+		}
+		else_if = {
+			limit = {
+				year = 1837
+			}
+			set_next_election_date = 1841.01.01
+		}	
+		else_if = {
+			limit = {
+				year = 1838
+			}
+			set_next_election_date = 1842.01.01
+		}	
+		else_if = {
+			limit = {
+				year = 1839
+			}
+			set_next_election_date = 1843.01.01
+		}	
+		else_if = {
+			limit = {
+				year = 1840
+			}
+			set_next_election_date = 1844.01.01
+		}	
+		else_if = {
+			limit = {
+				year = 1841
+			}
+			set_next_election_date = 1845.01.01
+		}	
+		else_if = {
+			limit = {
+				year = 1842
+			}
+			set_next_election_date = 1846.01.01
+		}	
+		else_if = {
+			limit = {
+				year = 1843
+			}
+			set_next_election_date = 1847.01.01
+		}	
+		else_if = {
+			limit = {
+				year = 1844
+			}
+			set_next_election_date = 1848.01.01
+		}	
+		else_if = {
+			limit = {
+				year = 1845
+			}
+			set_next_election_date = 1849.01.01
+		}
+		else_if = {
+			limit = {
+				year = 1846
+			}
+			set_next_election_date = 1850.01.01
+		}
+		else_if = {
+			limit = {
+				year = 1847
+			}
+			set_next_election_date = 1851.01.01
+		}
+		else_if = {
+			limit = {
+				year = 1848
+			}
+			set_next_election_date = 1852.01.01
+		}
+		else_if = {
+			limit = {
+				year = 1849
+			}
+			set_next_election_date = 1853.01.01
+		}
+		else_if = {
+			limit = {
+				year = 1850
+			}
+			set_next_election_date = 1854.01.01
+		}
+		else_if = {
+			limit = {
+				year = 1851
+			}
+			set_next_election_date = 1855.01.01
+		}
+		else_if = {
+			limit = {
+				year = 1852
+			}
+			set_next_election_date = 1856.01.01
+		}
+		else_if = {
+			limit = {
+				year = 1853
+			}
+			set_next_election_date = 1857.01.01
+		}
+	}
+
+
+	option = {
+		name = HJE_france.7.a
+		hidden_effect = {
+			set_variable = already_had_scripted_revolution
+			every_interest_group = {
+				limit = { is_in_government = yes }
+				remove_ruling_interest_group = yes
+			}
+			ig:ig_industrialists = {
+				add_ruling_interest_group = yes
+			}
+			every_interest_group = {
+				limit = {
+					has_party = yes
+					party = {
+						is_party_type = liberal_party
+					}
+				}
+				add_ruling_interest_group = yes
+			}
+			every_interest_group = {
+				limit = {
+					has_party = no
+					is_interest_group_type = ig_intelligentsia
+				}
+				add_ruling_interest_group = yes
+			}
+			ig:ig_armed_forces = {
+				remove_ruling_interest_group = yes
+			}
+			if = {
+				limit = {
+					NOT = { has_law = law_type:law_presidential_republic }
+				}
+				activate_law = law_type:law_presidential_republic
+				trigger_event = { id = HJE_france.8 days = 1 }
+			}
+			if = {
+				limit = {
+					NOT = { has_law = law_type:law_universal_suffrage }
+				}
+				activate_law = law_type:law_universal_suffrage
+			}
+			ig:ig_industrialists = {
+				add_modifier = {
+					name = modifier_ig_happy_french_revolution
+					months = short_modifier_time
+				}
+			}
+			if = {
+				limit = {
+					has_law = law_type:law_presidential_republic
+				}
+				create_character = {
+					first_name = Francois
+					last_name = Arago
+					historical = yes
+					culture = cu:french
+					ruler = yes
+					ig_leader = yes
+					female = no
+					religion = catholic
+					ideology = ideology:ideology_republican_leader
+					interest_group = ig_industrialists
+					birth_date = 1786.2.26
+					traits = {
+						meticulous
+						basic_political_operator
+						innovative
+					}
+				}
+			}
+			if = {
+				limit = { NOT = { any_scope_character = { has_variable = is_louis_napoleon } } }
+				create_character = {
+					first_name = Louis-Napoleon
+					last_name = Bonaparte
+					historical = yes
+					culture = cu:french
+					ig_leader = yes
+					interest_group = ig_armed_forces
+					female = no
+					birth_date = 1808.4.20
+					dna = dna_emperor_napoleon_03
+					ideology = ideology:ideology_royalist
+					traits = {
+						ambitious
+						demagogue
+						charismatic
+					}
+					on_created = {
+						set_variable = is_louis_napoleon
+					}
+				}
+			}
+			create_character = {
+				first_name = Alexandre
+				last_name = Ledru-Rollin
+				historical = yes
+				ig_leader = yes
+				culture = cu:french
+				female = no
+				religion = catholic
+				ideology = ideology:ideology_radical
+				interest_group = ig_trade_unions
+				birth_date = 1807.2.2
+				traits = {
+					experienced_political_operator
+					demagogue
+					direct
+				}
+				on_created = {
+					set_variable = is_ledru_rollin
+				}
+			}		
+			create_character = {
+				first_name = Eugene
+				last_name = Cavaignac
+				historical = yes
+				culture = cu:french
+				is_general = yes
+				female = no
+				religion = catholic
+				ideology = ideology:ideology_moderate
+				commander_rank = default
+				interest_group = ig_industrialists
+				birth_date = 1802.10.15
+				traits = {
+					celebrity_commander
+					surveyor
+					wrathful
+					brave
+				}
+				on_created = {
+					set_variable = is_eugene_cavaignac
+				}
+			}	
+			create_character = {
+				first_name = Nicolas
+				last_name = Changarnier
+				historical = yes
+				culture = cu:french
+				ig_leader = yes
+				is_general = yes
+				female = no
+				religion = catholic
+				ideology = ideology:ideology_traditionalist
+				commander_rank = default
+				interest_group = ig_landowners
+				birth_date = 1793.4.26
+				traits = {
+					experienced_offensive_planner
+					cruel
+				}
+				on_created = {
+					set_variable = is_nicolas_changarnier
+				}
+			}
+			create_character = {
+				first_name = Alphonse
+				last_name = de_Lamartine
+				historical = yes
+				culture = cu:french
+				ig_leader = yes
+				female = no
+				religion = catholic
+				ideology = ideology:ideology_republican_leader
+				interest_group = ig_intelligentsia
+				birth_date = 1790.10.21
+				traits = {
+					firebrand
+					direct
+					romantic
+					basic_political_operator
+				}
+			}
+			create_character = {
+				first_name = Adolphe
+				last_name = Thiers
+				historical = yes
+				birth_date = 1797.4.15
+				ig_leader = yes
+				interest_group = ig_petty_bourgeoisie
+				ideology = ideology:ideology_royalist
+				traits = {
+					charismatic
+				}
+				on_created = {
+					set_variable = is_adolphe_thiers_right
+				}
+			}
+		}
+		add_journal_entry = { type = je_first_presidential_election }
+	}
+}
+
+HJE_france.8 = {
+	type = country_event
+	hidden = yes
+	immediate = {
+		create_character = {
+			first_name = Francois
+			last_name = Arago
+			historical = yes
+			culture = cu:french
+			ruler = yes
+			ig_leader = yes
+			female = no
+			religion = catholic
+			ideology = ideology:ideology_republican_leader
+			interest_group = ig_industrialists
+			birth_date = 1786.2.26
+			traits = {
+				meticulous
+				basic_political_operator
+				innovative
+			}
+		}
+	}
+}
+
+HJE_france.9 = {
+
+	type = country_event
+
+	event_image = {
+		video = "gfx/event_pictures/europenorthamerica_capitalists_meeting.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/london_center"
+
+	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
+
+	title = HJE_france.9.t
+	desc = HJE_france.9.d
+	flavor = HJE_france.9.f
+
+	duration = 3
+
+	trigger = {
+	}
+
+	option = {
+		name = HJE_france.9.a
+		default_option = yes
+		trigger_event = { id = HJE_france.7 days = 10 popup = yes }	
+		ai_chance = {
+			base = 1
+		}
+	}
+	
+	option = {
+		name = HJE_france.9.b
+		add_modifier = {
+            name = modifier_fra_disrespect_for_kings_law
+            months = 61
+        }
+		ai_chance = {
+			base = 0
+		}
+	}
+}
+
+HJE_france.10 = {
+
+	type = country_event
+	
+	event_image = {
+		video = "gfx/event_pictures/unspecific_signed_contract.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/unspecific/world_fair"
+
+	icon = "gfx/interface/icons/event_icons/event_portrait.dds"
+
+	title = HJE_france.10.t
+	desc = HJE_france.10.d
+	flavor = HJE_france.10.f
+
+	duration = 3
+
+	trigger = {
+	}
+
+	option = {
+		name = HJE_france.10.a
+		default_option = yes
+		add_modifier = {
+            name = modifier_fra_support_for_old_monarchy
+            months = 180
+        }
+	}
+}
+
+HJE_france.11 = {
+
+	type = country_event
+	
+	event_image = {
+		video = "gfx/event_pictures/unspecific_ruler_speaking_to_people.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/unspecific/leader_speaking_to_a_group_of_people"
+
+	icon = "gfx/interface/icons/event_icons/event_election.dds"
+
+	title = HJE_france.11.t
+	desc = HJE_france.11.d
+	flavor = HJE_france.11.f
+
+	duration = 3
+
+	trigger = {
+	}
+
+	option = {
+		name = HJE_france.11.a
+		capital = {
+			add_radicals_in_state = {
+				value = medium_radicals
+			}
+		}
+	}
+}
+
+HJE_france.12 = {
+
+	type = country_event
+
+	event_image = {
+		video = "gfx/event_pictures/unspecific_factory_closed.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/unspecific/factory_closed"
+
+	icon = "gfx/interface/icons/event_icons/event_industry.dds"
+
+	title = HJE_france.12.t
+	desc = HJE_france.12.d
+	flavor = HJE_france.12.f
+
+	duration = 3
+
+	trigger = {
+	}
+
+	option = {
+		name = HJE_france.12.a
+		default_option = yes
+		set_variable = national_workshops_dissolved
+		trigger_event = { id = HJE_france.13 days = 2 popup = yes }
+		ai_chance = {
+			base = 1
+		}
+	}
+	
+	option = {
+		name = HJE_france.12.b
+		trigger_event = { id = HJE_france.14 days = 2 popup = yes }
+		ai_chance = {
+			base = 0
+		}
+	}
+}
+
+HJE_france.13 = {
+
+	type = country_event
+
+	event_image = {
+		video = "gfx/event_pictures/europenorthamerica_springtime_of_nations.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/springtime_of_nation"
+
+	icon = "gfx/interface/icons/event_icons/event_skull.dds"
+
+	title = HJE_france.13.t
+	desc = HJE_france.13.d
+	flavor = HJE_france.13.f
+
+	duration = 3
+
+	trigger = {
+	}
+
+	immediate = {
+		random_scope_character = {
+			limit = { has_variable = is_eugene_cavaignac }
+			save_scope_as = cavaignac_leader
+		}
+		ig:ig_petty_bourgeoisie = {
+			leader = {
+				save_scope_as = bourgeoisie_leader
+			}
+		}
+	}
+
+	option = {
+		name = HJE_france.13.a
+		custom_tooltip = HJE_france.13.a.tt
+		if = {
+			limit = {
+				NOT = { has_ruling_interest_group = ig_industrialists }
+			}
+			ig:ig_industrialists = { add_ruling_interest_group = yes }
+		}
+		add_modifier = {
+			name = suppressing_radicals
+			months = short_modifier_time
+		}
+		add_loyalists = {
+			strata = rich
+			value = very_large_radicals
+		}
+		add_radicals = {
+			value = medium_radicals
+			strata = middle
+		}
+		add_radicals = {
+			value = medium_radicals
+			strata = poor
+		}
+		hidden_effect = {
+			every_scope_character = {
+				limit = { has_variable = is_eugene_cavaignac }
+				kill_character = yes
+			}
+			create_character = {
+				first_name = Eugene
+				last_name = Cavaignac
+				historical = yes
+				ruler = yes
+				culture = cu:french
+				ig_leader = yes
+				female = no
+				religion = catholic
+				ideology = ideology:ideology_moderate
+				interest_group = ig_industrialists
+				birth_date = 1802.10.15
+				traits = {
+					celebrity_commander
+					surveyor
+					wrathful
+					brave
+				}
+				on_created = {
+					set_variable = is_eugene_cavaignac
+				}
+			}	
+		}
+	}
+}
+
+HJE_france.14 = {
+
+	type = country_event
+
+	event_image = {
+		video = "gfx/event_pictures/unspecific_vandalized_storefront.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/unspecific/vandalized_storefront"
+
+	icon = "gfx/interface/icons/event_icons/event_protest.dds"
+
+	title = HJE_france.13.t
+	desc = HJE_france.14.d
+	flavor = HJE_france.14.f
+
+	duration = 3
+
+	trigger = {
+	}
+
+	immediate = {	
+		ig:ig_trade_unions = {
+			leader = {
+				save_scope_as = union_leader
+			}
+		}
+	}
+
+	option = {
+		name = HJE_france.13.a
+		custom_tooltip = HJE_france.14.a.tt
+		if = {
+			limit = {
+				NOT = { has_ruling_interest_group = ig_trade_unions }
+			}
+			ig:ig_trade_unions = { add_ruling_interest_group = yes }
+		}
+		random_interest_group = {
+			limit = {
+				is_interest_group_type = ig_trade_unions
+			}
+			leader = {
+				add_modifier = {
+					name = 1848_popular_radical
+				}
+			}
+		}
+		add_radicals = {
+			value = medium_radicals
+		}
+		hidden_effect = {
+			every_scope_character = {
+				limit = { has_variable = is_ledru_rollin }
+				kill_character = yes
+			}
+			create_character = {
+				first_name = Alexandre
+				last_name = Ledru-Rollin
+				historical = yes
+				ruler = yes
+				ig_leader = yes
+				culture = cu:french
+				female = no
+				religion = catholic
+				ideology = ideology:ideology_radical
+				interest_group = ig_trade_unions
+				birth_date = 1807.2.2
+				traits = {
+					experienced_political_operator
+					demagogue
+					direct
+				}
+				on_created = {
+					set_variable = is_ledru_rollin
+					add_modifier = {
+						name = 1848_popular_radical
+					}
+				}
+			}
+		}
+	}
+}
+
+HJE_france.15 = {
+
+	type = country_event
+	
+	event_image = {
+		video = "gfx/event_pictures/unspecific_politicians_arguing.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/unspecific/leader_speaking_to_a_group_of_people"
+
+	icon = "gfx/interface/icons/event_icons/event_portrait.dds"
+
+	title = HJE_france.15.t
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					has_variable = national_workshops_dissolved
+				}
+				desc = HJE_france.15.d
+			}
+			triggered_desc = {
+				trigger = {
+					NOT = { has_variable = national_workshops_dissolved }
+				}
+				desc = HJE_france.15.d_2
+			}
+		}
+	}
+	flavor = HJE_france.15.f
+
+	duration = 3
+
+	trigger = {
+	}
+
+	immediate = {	
+		ig:ig_armed_forces = {
+			leader = {
+				save_scope_as = forces_leader
+			}
+		}	
+	}
+
+	option = {
+		name = HJE_france.15.a
+		custom_tooltip = HJE_france.15.a.tt
+		trigger = {
+			has_variable = national_workshops_dissolved
+		}
+	}
+	
+	option = {
+		name = HJE_france.15.b
+		custom_tooltip = HJE_france.15.b.tt
+		trigger = {
+			NOT = { has_variable = national_workshops_dissolved }
+		}
+	}
+}
+
+HJE_france.16 = {
+
+	type = country_event
+
+	event_image = {
+		video = "gfx/event_pictures/southamerica_election.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/southamerica/election"
+
+	icon = "gfx/interface/icons/event_icons/event_election.dds"
+
+	title = HJE_france.16.t
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					has_variable = national_workshops_dissolved
+				}
+				desc = HJE_france.16.d
+			}
+			triggered_desc = {
+				trigger = {
+					NOT = { has_variable = national_workshops_dissolved }
+				}
+				desc = HJE_france.16.d_2
+			}
+		}
+	}
+	flavor = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					has_variable = national_workshops_dissolved
+				}
+				desc = HJE_france.16.f
+			}
+			triggered_desc = {
+				trigger = {
+					NOT = { has_variable = national_workshops_dissolved }
+				}
+				desc = HJE_france.16.f_2
+			}
+		}
+	}
+
+	duration = 3
+
+	trigger = {
+	}
+
+	immediate = {
+		ig:ig_industrialists = {
+			leader = {
+				save_scope_as = industrialists_leader
+			}
+		}
+		ig:ig_armed_forces = {
+			leader = {
+				save_scope_as = forces_leader
+			}
+		}		
+		ig:ig_trade_unions = {
+			leader = {
+				save_scope_as = union_leader
+			}
+		}	
+		ig:ig_landowners = {
+			leader = {
+				save_scope_as = landowners_leader
+			}
+		}
+	}
+
+	option = {
+		name = HJE_france.16.a
+		default_option = yes
+		trigger = {
+			has_variable = national_workshops_dissolved
+		}
+		hidden_effect = {
+			every_interest_group = {
+				limit = { is_in_government = yes }
+				remove_ruling_interest_group = yes
+			}
+			create_character = {
+				first_name = Louis-Napoleon
+				last_name = Bonaparte
+				historical = yes
+				ruler = yes
+				culture = cu:french
+				ig_leader = yes
+				interest_group = ig_armed_forces
+				female = no
+				birth_date = 1808.4.20
+				dna = dna_emperor_napoleon_03
+				ideology = ideology:ideology_royalist
+				traits = {
+					ambitious
+					demagogue
+					charismatic
+				}
+				on_created = {
+					set_variable = is_louis_napoleon
+				}
+			}
+			if = {
+				limit = { has_modifier = suppressing_radicals }
+				remove_modifier = suppressing_radicals
+			}
+		}
+		add_journal_entry = { type = je_future_of_the_republic }
+		add_modifier = {
+            name = modifier_fra_napoleon_wins_election
+            months = 18
+        }
+		ig:ig_armed_forces = {
+			add_ruling_interest_group = yes
+		}
+		ai_chance = {
+			base = 90
+		}
+	}
+	
+	option = {
+		name = HJE_france.16.b
+		trigger = {
+			has_variable = national_workshops_dissolved
+		}
+		add_journal_entry = { type = je_future_of_the_republic_antibonapartist }
+		add_modifier = {
+            name = modifier_fra_cavaignac_wins_election
+            months = 18
+        }
+		if = {
+			limit = {
+				NOT = { has_ruling_interest_group = ig_industrialists }
+			}
+			ig:ig_industrialists = { add_ruling_interest_group = yes }
+		}
+		ai_chance = {
+			base = 5
+		}
+	}
+	
+	option = {
+		name = HJE_france.16.dd
+		trigger = {
+			NOT = { has_variable = national_workshops_dissolved }
+		}
+		hidden_effect = {
+			every_interest_group = {
+				limit = { is_in_government = yes }
+				remove_ruling_interest_group = yes
+			}
+			every_scope_character = {
+				limit = { has_variable = is_nicolas_changarnier }
+				kill_character = yes
+			}
+			create_character = {
+				first_name = Nicolas
+				last_name = Changarnier
+				historical = yes
+				ruler = yes
+				culture = cu:french
+				ig_leader = yes
+				female = no
+				religion = catholic
+				ideology = ideology:ideology_traditionalist
+				interest_group = ig_landowners
+				birth_date = 1793.4.26
+				traits = {
+					experienced_offensive_planner
+					cruel
+				}
+				on_created = {
+					set_variable = is_nicolas_changarnier
+				}
+			}
+		}
+		add_journal_entry = { type = je_future_of_the_republic_antibonapartist }
+		add_modifier = {
+            name = modifier_fra_changarnier_wins_election
+            months = 18
+        }
+		ig:ig_landowners = {
+			add_ruling_interest_group = yes
+		}
+		ai_chance = {
+			base = 5
+		}
+	}
+	
+	option = {
+		name = HJE_france.16.c
+		trigger = {
+			NOT = { has_variable = national_workshops_dissolved }
+		}
+		add_journal_entry = { type = je_future_of_the_republic_antibonapartist }
+		add_modifier = {
+            name = modifier_fra_ledru_wins_election
+            months = 18
+        }
+		if = {
+			limit = {
+				NOT = { has_ruling_interest_group = ig_trade_unions }
+			}
+			ig:ig_trade_unions = { add_ruling_interest_group = yes }
+		}
+		ai_chance = {
+			base = 5
+		}
+	}
+}
+
+HJE_france.17 = {
+
+	type = country_event
+
+	event_image = {
+		video = "gfx/event_pictures/europenorthamerica_political_extremism.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/political_extremism"
+
+	icon = "gfx/interface/icons/event_icons/event_portrait.dds"
+
+	title = HJE_france.17.t
+	desc = HJE_france.17.d
+	flavor = HJE_france.17.f
+
+	duration = 3
+
+	trigger = {
+	}
+
+	immediate = {
+		
+	}
+
+	option = {
+		name = HJE_france.17.a
+		add_journal_entry = { type = je_creating_a_second_empire }
+		set_variable = fra_presidential_dictatorship
+		activate_law = law_type:law_oligarchy
+		hidden_effect = {
+			every_scope_character = {
+				limit = { has_variable = is_louis_napoleon }
+				kill_character = yes
+			}
+			trigger_event = { id = HJE_france.18 days = 1 }
+		}
+	}
+}
+
+HJE_france.18 = {
+	type = country_event
+	hidden = yes
+	immediate = {
+		create_character = {
+			first_name = Louis-Napoleon
+			last_name = Bonaparte
+			historical = yes
+			culture = cu:french
+			ruler = yes		
+			interest_group = ig_armed_forces
+			female = no
+			birth_date = 1808.4.20
+			dna = dna_emperor_napoleon_03
+			ideology = ideology:ideology_royalist
+			traits = {
+				ambitious
+				demagogue
+				charismatic
+			}
+			on_created = {
+				set_variable = is_bonapartist
+				set_variable = is_louis_napoleon
+			}
+		}
+	}
+}
+
+HJE_france.19 = {
+
+	type = country_event
+	
+	event_image = {
+		video = "gfx/event_pictures/middleeast_police_breaking_door.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	on_opened_soundeffect = "event:/SFX/Events/unspecific/world_fair"
+
+	icon = "gfx/interface/icons/event_icons/event_portrait.dds"
+
+	title = HJE_france.19.t
+	desc = HJE_france.19.d
+	flavor = HJE_france.19.f
+
+	duration = 3
+
+	trigger = {
+	}
+
+	immediate = {
+		every_scope_character = {
+			limit = { has_variable = is_louis_napoleon }
+			kill_character = yes
+		}
+	}
+
+	option = {
+		name = HJE_france.19.a
+		add_modifier = {
+            name = modifier_fra_fail_coup_etat
+            months = 12
+        }
+		hidden_effect = {
+			if = {
+				limit = {
+					any_scope_character = { is_ruler = yes has_ideology = ideology:ideology_traditionalist }
+				}
+				every_interest_group = {
+					limit = { is_interest_group_type = ig_armed_forces }
+					leader = { set_ideology = ideology:ideology_traditionalist }
+				}	
+			}
+			if = {
+				limit = {
+					any_scope_character = { is_ruler = yes has_ideology = ideology:ideology_moderate }
+				}
+				every_interest_group = {
+					limit = { is_interest_group_type = ig_armed_forces }
+					leader = { set_ideology = ideology:ideology_moderate }
+				}	
+			}
+			if = {
+				limit = {
+					any_scope_character = { is_ruler = yes has_ideology = ideology:ideology_radical }
+				}
+				every_interest_group = {
+					limit = { is_interest_group_type = ig_armed_forces }
+					leader = { set_ideology = ideology:ideology_radical }
+				}	
+			}
+		}
+	}
+}
+
+HJE_france.20 = {
+
+	type = country_event
+
+	event_image = {
+		video = "gfx/event_pictures/unspecific_military_parade.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/london_center"
+
+	icon = "gfx/interface/icons/event_icons/event_portrait.dds"
+
+	title = HJE_france.20.t
+	desc = HJE_france.20.d
+	flavor = HJE_france.20.f
+
+	duration = 3
+
+	trigger = {
+	}
+
+	option = {
+		name = HJE_france.20.a
+		activate_law = law_type:law_monarchy
+		hidden_effect = {
+			if = {
+				limit = {
+					owns_entire_state_region = STATE_ALSACE_LORRAINE
+				}
+				set_variable = french_empire_alsace_lorraine
+			}
+			if = {
+				limit = { any_scope_character = { has_variable = is_louis_napoleon } }
+				every_scope_character = {
+					limit = { has_variable = is_louis_napoleon }
+					kill_character = yes
+				}
+			}
+			remove_variable = fra_presidential_dictatorship
+			set_variable = french_empire_created
+			trigger_event = { id = HJE_france.21 days = 1 }
+		}
+	}
+}
+
+HJE_france.21 = {
+	type = country_event
+	hidden = yes
+	immediate = {
+		remove_variable = french_empire_created
+		create_character = {
+			first_name = Louis-Napoleon
+			last_name = Bonaparte
+			historical = yes
+			culture = cu:french
+			ruler = yes		
+			interest_group = ig_armed_forces
+			female = no
+			birth_date = 1808.4.20
+			dna = dna_emperor_napoleon_03
+			ideology = ideology:ideology_royalist
+			traits = {
+				ambitious
+				demagogue
+				charismatic
+			}
+			on_created = {
+				set_variable = is_bonapartist
+				set_variable = is_louis_napoleon
+			}
+		}
+	}
+}
+
+HJE_france.22 = {
+	type = country_event
+	placement = ROOT
+
+	event_image = {
+		video = "gfx/event_pictures/europenorthamerica_springtime_of_nations.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/springtime_of_nation"
+
+	icon = "gfx/interface/icons/event_icons/event_protest.dds"
+	
+	title = HJE_france.22.t
+	desc = HJE_france.22.d
+	flavor = HJE_france.22.f
+
+	duration = 3
+	
+	trigger = {
+	}
+	
+	immediate = {
+	}
+	
+	option = {
+		name = HJE_france.22.a
+		hidden_effect = {
+			remove_variable = french_empire_alsace_lorraine
+			activate_law = law_type:law_parliamentary_republic
+			activate_law = law_type:law_universal_suffrage
+		}
+	}
+}
+
+HJE_france.23 = {
+	type = country_event
+	placement = ROOT
+
+	event_image = {
+		video = "gfx/event_pictures/europenorthamerica_springtime_of_nations.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/springtime_of_nation"
+
+	icon = "gfx/interface/icons/event_icons/event_protest.dds"
+	
+	title = HJE_france.22.t
+	desc = HJE_france.22.d
+	flavor = HJE_france.22.f
+
+	duration = 3
+
+	cooldown = { months = normal_modifier_time }
+	
+	trigger = {
+        exists = c:FRA
+        c:FRA = ROOT
+		has_law = law_type:law_monarchy
+		OR = {
+			is_enacting_law = law_type:law_presidential_republic
+			is_enacting_law = law_type:law_parliamentary_republic
+			is_enacting_law = law_type:law_council_republic
+		}
+	}
+	
+	immediate = {
+	}
+	
+	option = {
+		name = HJE_france.22.a
+		hidden_effect = {
+			remove_variable = french_empire_alsace_lorraine
+		}
+	}
+}
+
+HJE_france.24 = {
+
+	type = country_event
+
+	event_image = {
+		video = "gfx/event_pictures/unspecific_military_parade.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/london_center"
+
+	icon = "gfx/interface/icons/event_icons/event_portrait.dds"
+
+	title = HJE_france.24.t
+	desc = HJE_france.24.d
+	flavor = HJE_france.24.f
+
+	duration = 3
+
+	trigger = {
+	}
+	
+	immediate = {
+		set_variable = napoleon_eugene_born
+		create_character = {
+			first_name = Napoleon-Eugene
+			last_name = Bonaparte
+			historical = yes
+			culture = cu:french
+			age = 0
+			heir = yes		
+			interest_group = ig_armed_forces
+			female = no
+			ideology = ideology:ideology_royalist
+			on_created = {
+				set_variable = is_bonapartist
+			}
+		}
+		heir = {
+			save_scope_as = napoleon_eugene_ruler
+		}
+	}
+
+	option = {
+		name = HJE_france.24.a
+	}
+}

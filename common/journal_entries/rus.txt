@@ -1,0 +1,620 @@
+﻿je_autocracy_of_the_tsar = {
+	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
+	
+	group = je_group_historical_content
+	
+	complete = {
+		custom_tooltip = {
+			text = nicholas_died
+			ruler = {
+				NOT = { has_variable = is_nicholas_1 }
+			}
+		}
+	}
+	
+	on_complete = {
+		trigger_event = {
+			id = TGE_russia.2
+		}
+	}
+	timeout = 6935
+	on_timeout = {
+		trigger_event = {
+			id = TGE_russia.2
+		}
+	}
+	
+	on_monthly_pulse = {
+		effect = {
+			if = {
+				limit = {
+					exists = c:RUS
+					c:RUS = ROOT
+					has_variable = tge_nicholas_lost_war
+					ruler = { has_variable = is_nicholas_1 }
+				}
+				random_list = {
+					11 = { }
+					1 = {
+						ruler = { kill_character = yes }
+					}
+				}
+			}
+		}
+	}
+
+
+	weight = 10000
+	should_be_pinned_by_default = yes
+}
+
+je_reforms_of_alexander = {
+	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
+	
+	group = je_group_historical_content
+	
+	complete = {
+		scope:journal_entry = {
+			is_goal_complete = yes
+		}
+	}
+	
+	on_complete = {
+		trigger_event = {
+			id = TGE_russia.3
+		}
+	}
+	on_timeout = {
+		trigger_event = {
+			id = TGE_russia.4
+		}
+	}
+
+	current_value = {
+		value = var:alexander_reform_var
+	}
+
+	goal_add_value = {
+		add = 3
+	}
+	
+	progressbar = yes
+	timeout = 9490
+
+	weight = 10000
+	should_be_pinned_by_default = yes
+}
+
+je_tge_peasants_reform = {
+	icon = "gfx/interface/icons/event_icons/event_industry.dds"
+		
+	group = je_group_technology	
+		
+	complete = {
+		AND = {
+			has_law = law_type:law_slavery_banned
+			NOT = { has_law = law_type:law_serfdom }
+			NOT = { has_law = law_type:law_traditionalism }
+		}
+	}
+	on_complete = {
+		if = {
+			limit = {
+				NOT = {
+					has_variable = polish_uprising
+				}
+			}
+			hidden_effect = {
+				add_journal_entry = { type = HJ_polish_uprising }
+				change_relations = {
+					country = c:POL
+					value = -60
+				}
+			}
+		}
+		custom_tooltip = je_reforms_of_alexander_advance
+		change_variable = {
+			name = alexander_reform_var
+			add = 1
+		}
+		add_modifier = { 
+			name = modifier_tge_peasants_reform
+			months = 120
+		}
+	}
+	invalid = {
+		custom_tooltip = {
+			text = finished_reforms_of_alexander
+			has_variable = reforms_of_alexander_complete
+		}
+	}
+
+	inheritable = no
+
+	weight = 5000
+}
+
+je_tge_military_reform = {
+	icon = "gfx/interface/icons/event_icons/event_military.dds"
+		
+	group = je_group_technology		
+		
+	complete = {
+		AND = {
+			has_law = law_type:law_professional_army
+			has_law = law_type:law_national_guard
+			army_size >= 300
+		}
+	}
+			
+	on_complete = {
+		if = {
+			limit = {
+				NOT = {
+					has_variable = polish_uprising
+				}
+			}
+			hidden_effect = {
+				add_journal_entry = { type = HJ_polish_uprising }
+				change_relations = {
+					country = c:POL
+					value = -60
+				}
+			}
+		}
+		custom_tooltip = je_reforms_of_alexander_advance
+		change_variable = {
+			name = alexander_reform_var
+			add = 1
+		}
+			
+		add_modifier = { 
+			name = modifier_tge_russian_military_reform
+			months = 120
+		}
+	}
+	invalid = {
+		custom_tooltip = {
+			text = finished_reforms_of_alexander
+			has_variable = reforms_of_alexander_complete
+		}
+	}
+
+	inheritable = no
+
+	weight = 5000
+}
+
+je_tge_melikovs_constitution = {
+	icon = "gfx/interface/icons/event_icons/event_scales.dds"
+	
+	group = je_group_technology	
+	
+	complete = {
+		has_law = law_type:law_elected_bureaucrats
+		has_law = law_type:law_wealth_voting
+		NOT = {
+			has_law = law_type:law_censorship
+		}
+	}
+	
+	on_complete = {
+		if = {
+			limit = {
+				NOT = {
+					has_variable = polish_uprising
+				}
+			}
+			hidden_effect = {
+				add_journal_entry = { type = HJ_polish_uprising }
+				change_relations = {
+					country = c:POL
+					value = -60
+				}
+			}
+		}
+		custom_tooltip = je_reforms_of_alexander_advance
+		change_variable = {
+			name = alexander_reform_var
+			add = 1
+		}
+		add_modifier = { 
+			name = modifier_tge_melikovs_constitution
+			months = 120
+		}
+	}
+	invalid = {
+		custom_tooltip = {
+			text = finished_reforms_of_alexander
+			has_variable = reforms_of_alexander_complete
+		}
+	}
+
+	inheritable = no
+
+	weight = 5000
+}
+
+HJ_russia_the_great_game = { #THE GREAT TRIAL HAS BEGUN nah just kidding
+	icon = "gfx/interface/icons/event_icons/event_military.dds"
+	
+	group = je_group_historical_content
+	
+	immediate = {
+		set_variable = RUS_tgg_got_caucasus_claims
+		set_variable = RUS_tgg_got_kazakh_claims
+		s:STATE_KUBAN = { add_claim = ROOT }
+		s:STATE_DAGESTAN = { add_claim = ROOT }
+		s:STATE_SAKHALIN = { add_claim = ROOT }
+	}
+	
+	on_monthly_pulse = {
+		random_events = {
+			65 = 0
+			35 = HJE_russia.3 #Turkestan Claims
+			35 = HJE_russia.4 #Chinese Claims
+			65 = HJE_russia.5 #Constantinople Claim (Crimean War)
+		}
+	}
+
+	complete = {
+		OR = {
+			hidden_trigger = { has_global_variable = RUS_won_the_great_game }
+			calc_true_if = {
+				amount >= 6
+				custom_tooltip = {
+					text = tgg_conquered_caucasus_tt
+					owns_entire_state_region = STATE_KUBAN
+					owns_entire_state_region = STATE_DAGESTAN
+				}
+				custom_tooltip = {
+					text = tgg_conquered_kazakhs_tt
+					NOT = {
+						any_country = {
+							NOT = {
+								OR = {
+									this = root
+									this = { is_subject_of = root }
+								}
+							}
+							has_state_in_state_region = STATE_AKMOLINSK
+						}
+					}
+					country_or_subject_owns_entire_state_region = STATE_AKTOBE
+					OR = {
+						root = { has_state_in_state_region = STATE_KHIVA }
+						any_country = { is_subject_of = root has_state_in_state_region = STATE_KHIVA }
+					}
+					country_or_subject_owns_entire_state_region = STATE_SEMIRECHE
+					OR = {
+						root = { has_state_in_state_region = STATE_SYRDARYA }
+						any_country = { is_subject_of = root has_state_in_state_region = STATE_SYRDARYA }
+					}
+					OR = {
+						root = { has_state_in_state_region = STATE_URALSK }
+						any_country = { is_subject_of = root has_state_in_state_region = STATE_URALSK }
+					}
+					NOT = {
+						any_country = {
+							NOT = {
+								OR = {
+									this = root
+									this = { is_subject_of = root }
+								}
+							}
+							has_state_in_state_region = STATE_CHELYABINSK
+						}
+					}
+					NOT = {
+						any_country = {
+							NOT = {
+								OR = {
+									this = root
+									this = { is_subject_of = root }
+								}
+							}
+							has_state_in_state_region = STATE_SAMARA
+						}
+					}
+				}
+				custom_tooltip = {
+					text = tgg_conquered_central_asia_tt
+					calc_true_if = {
+						amount >= 6
+						NOT = {
+							any_country = {
+								NOT = {
+									OR = {
+										this = root
+										this = { is_subject_of = root }
+									}
+								}
+								has_state_in_state_region = STATE_KHIVA
+							}
+						}
+						NOT = {
+							any_country = {
+								NOT = {
+									OR = {
+										this = root
+										this = { is_subject_of = root }
+									}
+								}
+								has_state_in_state_region = STATE_MERZ
+							}
+						}
+						NOT = {
+							any_country = {
+								NOT = {
+									OR = {
+										this = root
+										this = { is_subject_of = root }
+									}
+								}	
+								has_state_in_state_region = STATE_TURKMENIA
+							}
+						}
+						NOT = {
+							any_country = {
+								NOT = {
+									OR = {
+										this = root
+										this = { is_subject_of = root }
+									}
+								}
+								has_state_in_state_region = STATE_TAJIKISTAN
+							}
+						}
+						NOT = {
+							any_country = {
+								NOT = {
+									OR = {
+										this = root
+										this = { is_subject_of = root }
+									}
+								}
+								has_state_in_state_region = STATE_UZBEKIA	
+							}
+						}
+						NOT = {
+							any_country = {
+								NOT = {
+									OR = {
+										this = root
+										this = { is_subject_of = root }
+									}
+								}
+								has_state_in_state_region = STATE_FERGANA
+							}
+						}				
+					}				
+				}
+				custom_tooltip = {
+					text = tgg_conquered_chinese_frontier_tt
+					calc_true_if = {
+						amount >= 3
+						country_or_subject_owns_entire_state_region = STATE_TOMSK
+						country_or_subject_owns_entire_state_region = STATE_JETISY
+						country_or_subject_owns_entire_state_region = STATE_KIRGHIZIA
+						country_or_subject_owns_entire_state_region = STATE_OUTER_MANCHURIA
+						country_or_subject_owns_entire_state_region = STATE_ALTAI
+						country_or_subject_owns_entire_state_region = STATE_AMUR
+					}
+				}
+				custom_tooltip = {
+					text = tgg_took_or_subjugated_afghanistan_tt
+					NOT = {
+						any_country = {
+							NOT = { is_subject_of = root }
+							is_afghan_nation = yes
+						}
+					}
+				}
+				custom_tooltip = {
+					text = tgg_took_or_subjugated_north_india_tt
+					calc_true_if = {
+						amount >= 3
+						country_or_subject_owns_entire_state_region = STATE_KASHMIR
+						country_or_subject_owns_entire_state_region = STATE_PASHTUNISTAN
+						country_or_subject_owns_entire_state_region = STATE_PUNJAB
+						country_or_subject_owns_entire_state_region = STATE_BALUCHISTAN
+						country_or_subject_owns_entire_state_region = STATE_SINDH
+					}
+				}
+				custom_tooltip = {
+					text = tgg_took_or_subjugated_persia_tt
+					calc_true_if = {
+						amount >= 6
+						country_or_subject_owns_entire_state_region = STATE_FARS
+						country_or_subject_owns_entire_state_region = STATE_LARISTAN
+						country_or_subject_owns_entire_state_region = STATE_IRAKAJEMI
+						country_or_subject_owns_entire_state_region = STATE_ISFAHAN
+						country_or_subject_owns_entire_state_region = STATE_KERMAN
+						country_or_subject_owns_entire_state_region = STATE_KHORASAN
+						country_or_subject_owns_entire_state_region = STATE_LURISTAN	
+						country_or_subject_owns_entire_state_region = STATE_PERSIAN_KURDISTAN	
+						country_or_subject_owns_entire_state_region = STATE_SEMNAN
+						country_or_subject_owns_entire_state_region = STATE_TABRIZ	
+						country_or_subject_owns_entire_state_region = STATE_URMIA
+					}
+				}
+				custom_tooltip = {
+					text = tgg_took_or_subjugated_constantinople_tt
+					country_or_subject_owns_entire_state_region = STATE_EASTERN_THRACE
+				}
+			}
+		}
+	}
+	
+	on_complete = {
+		if = {
+			limit = { NOT = { has_global_variable = GBR_won_the_great_game } }
+			trigger_event = { id = HJE_russia.2 }
+		}
+	}
+
+	timeout = 21535
+	on_timeout = {
+		show_as_tooltip = {
+			trigger_event = { id = HJE_britain.11 }
+		}
+	}
+
+
+	invalid = {
+		OR = {
+			custom_tooltip = {
+				text = TGG_anglo_russian_agreement_tt
+				has_global_variable = TGG_anglo_russian_agreement
+			}
+			has_journal_entry = je_great_game_control
+		}
+	}
+
+	fail = {
+		OR = {
+			hidden_trigger = { has_global_variable = GBR_won_the_great_game }
+			is_subject = yes
+			global_country_ranking > 8
+			NOT = { any_scope_state = { state_is_in_central_asia = yes } }
+		}
+	}
+	on_fail = {
+		if = { 
+			limit = { NOT = { has_global_variable = GBR_won_the_great_game } } 
+			c:GBR = { trigger_event = { id = HJE_britain.10 } }
+		}
+	}
+
+
+	weight = 1000
+	should_be_pinned_by_default = yes
+}
+
+HJ_crimean_war = {
+	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
+	should_be_pinned_by_default = yes
+	weight = 90000
+
+	group = je_group_crises
+
+	is_shown_when_inactive = {
+		exists = c:RUS
+		exists = c:GBR
+		exists = c:TUR
+		NOT = { has_global_variable = TGG_crimean_war_is_over }
+		OR = {
+			THIS = c:RUS
+			THIS = c:GBR
+			THIS = c:TUR
+			country_is_in_europe = yes
+			any_subject_or_below = { country_is_in_europe = yes }
+			any_overlord_or_above = { country_is_in_europe = yes }
+			any_country = {
+				country_is_in_europe = yes
+				OR = {
+					is_in_customs_union_with = ROOT
+					has_diplomatic_pact = {
+						who = ROOT
+						type = defensive_pact
+					}
+					has_diplomatic_pact = {
+						who = ROOT
+						type = alliance
+					}
+				}
+			}
+		}
+	}
+
+	possible = {
+		custom_tooltip = {
+			text = tgg_crimean_has_begun_tt
+			has_global_variable = TGG_crimean_war_has_escalated
+		}
+	}
+
+	on_weekly_pulse = { 		#I have more flavour events planned, that's why this is a seperate journal
+		random_events = {
+			80 = 0
+			30 = HJE_russia.6 				#Russian allies (and/or Austria) decide whether or not it's worth it
+			15 = HJE_britain.16 			#Western GPs (and Sardinia) get an opportunity to join alliance against Russia
+			# Liberation of Romania (only if Romanian states don't exist, historically feasible)
+			# Charge of the Light Brigade
+			# Nightingale and Seacole
+		}
+	}
+
+	complete = {
+		custom_tooltip = {
+			text = tgg_crimean_war_is_over_tt
+			any_country = {
+				has_variable = TGG_crimean_war_initiator
+				is_diplomatic_play_committed_participant = no
+			}
+		}
+	}
+	on_complete = {
+		set_global_variable = TGG_crimean_war_is_over
+		if = {
+			limit = { c:RUS = ROOT NOT = { any_scope_state = { state_region = s:STATE_EASTERN_THRACE } } }
+			s:STATE_EASTERN_THRACE = { remove_claim = ROOT }
+		}
+	}
+}
+
+HJ_polish_uprising = {
+	icon = "gfx/interface/icons/event_icons/event_fire.dds"
+	
+	group = je_group_crises
+	
+	immediate = {
+		set_variable = polish_uprising
+	}
+	
+	complete = {
+		c:POL = { relations:root >= relations_threshold:amicable }
+	}
+	
+	on_complete = {
+		add_loyalists = { value = 0.3 culture = cu:polish }
+	}
+	
+	on_fail = {
+		c:POL = { 
+			create_diplomatic_play = {
+	            target_country = c:RUS
+	            type = dp_independence
+				war = no
+				add_war_goal = {
+					holder = c:RUS
+					type = annex_country
+					target_country = c:POL		
+					primary_demand = yes
+				}
+			}
+		}
+	}
+	
+	on_timeout = {
+		c:POL = { 
+			create_diplomatic_play = {
+	            target_country = c:RUS
+	            type = dp_independence
+				war = no
+				add_war_goal = {
+					holder = c:RUS
+					type = annex_country
+					target_country = c:POL		
+					primary_demand = yes
+				}
+			}
+		}
+	}
+	
+	timeout = 730
+
+	weight = 10000
+	should_be_pinned_by_default = yes
+	
+}

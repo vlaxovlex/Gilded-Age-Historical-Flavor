@@ -1,0 +1,25 @@
+﻿COUNTRIES = {
+	c:CHI = {
+		activate_law = law_type:law_isolationism
+		
+		ig:ig_landowners = { 
+			set_interest_group_name = ig_ird_eight_banners
+			remove_ideology = ideology_paternalistic
+			add_ideology = ideology_moralist
+			add_ideology = ideology_isolationist
+		}
+		
+		ig:ig_intelligentsia = { 
+			set_interest_group_name = ig_literati
+			remove_ideology = ideology_anti_clerical
+			add_ideology = ideology_confucian
+		}
+		
+		ig:ig_devout = {
+			set_interest_group_name = ig_scholar_officials
+			remove_ideology = ideology_pious
+			remove_ideology = ideology_moralist
+			add_ideology = ideology_scholar_paternalistic
+		}
+	}
+}

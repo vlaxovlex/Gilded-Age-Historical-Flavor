@@ -1,0 +1,66 @@
+We proudly present our mod, “Gilded Era”, which adds a considerable amount of historical flavor for many nations, and also makes changes to the AI, modifying its behavior to be more competent and provide a more competitive experience.
+
+
+[h1]Features:[/h1]
+-About 90 new journal entries
+-About 280 new events
+-Changes and improvements to content from the base game
+-Improved AI
+-Beautiful borders (see screenshots)
+-Historical wars, domestic and foreign policy (see details below)
+
+[b]Content:[/b]
+-The Carlist Wars
+-War of the (Peruvian-Bolivian) Confederation
+-The Great Game (separate from Sphere of Influence)
+-More Accurate British Dominions (New Zealand)
+-Treaty of Guadalupe Hidalgo
+-Great Famine in Ireland
+-Second French Empire (separate from Voice of the People)
+-Revolutions of 1848
+-The Perry Expedition to Japan
+-Crimean War
+-Second Opium War (A Third Opium War is also potentially possible)
+-Historical unification of Italy and Germany
+-Historical reworking of the American Civil War
+-French intervention in Mexico
+-Second Schleswig War
+-Seven Week War
+-Franco-Prussian War
+-Second Pacific War
+-Russian-Turkish War of 1877
+-British Protectorate in Egypt
+-Historical diplomacy between great powers
+-Berlin Conference
+-New claims for historical colonization
+-Sino-Japanese War
+(and much more!)
+(currently content for the game is made before the 1890s, in the future it is planned to expand the time period to 1936)
+
+
+[b]Compatibility and Performance:[/b]
+-The mod has good compatibility with global mods, it is highly recommended to load below all other mods
+-One year runs about 3 minutes in early game and about 3 minutes and 30 seconds in late game on my i7-13620H, overall performance is about 70% of base game
+-Please report any bugs you find
+
+
+[h1]List of updates:[/h1]
+-04.07.24 Release
+
+
+[h1]Content Credit:[/h1]
+[url=https://steamcommunity.com/sharedfiles/filedetails/?id=2899973887]Content for Russia and Prussia[/url]
+[url=https://steamcommunity.com/sharedfiles/filedetails/?id=2884270621]Content for Scandinavian countries[/url]
+[url=https://steamcommunity.com/sharedfiles/filedetails/?id=2930839768]Ottoman Empire content[/url]
+[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3213294110]Optimization[/url]
+
+
+[b]Localization:[/b]
+-Russian
+-English
+-Spanish (Thanks to Unión Soviética)
+(for other languages the default is English)
+
+
+[b]Links:[/b]
+[url=https://discord.gg/kagHUtjr]Victoria 3 Mod Co-op[/url]

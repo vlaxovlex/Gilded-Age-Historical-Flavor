@@ -1,0 +1,2890 @@
+﻿namespace = HJE_main
+
+HJE_main.1 = {			 #Capital Decider
+	type = country_event
+	placement = this
+	title = HJE_main.1.t
+	flavor = HJE_main.1.f
+	desc = HJE_main.1.d
+
+	duration = 3
+
+	is_popup = yes
+
+	event_image = {
+		video = "gfx/event_pictures/unspecific_military_parade.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/before_the_battle"
+
+	icon = "gfx/interface/icons/event_icons/event_map.dds"
+
+	trigger = {
+	}
+	
+	immediate = {
+	}
+
+	option = {
+		name = HJE_main.1.a #Reset decision event
+		default_option = yes
+		ai_chance = { base = 0 }
+	}
+	option = {
+		name = HJE_main.1.b #Keep Capital Where it is
+		ai_chance = { base = 1 }
+		set_variable = capital_decided_variable
+	}
+	option = {
+		name = HJE_main.1.original_german_capital # State with "German Capital" modifier
+		ai_chance = { base = 100 }
+		trigger = {
+			exists = c:GER
+			c:GER = ROOT
+			any_scope_state = {
+				has_modifier = modifier_state_capital_of_germany
+				is_capital = no
+			}
+		}
+		set_variable = capital_decided_variable
+		random_scope_state = {
+			limit = {
+				has_modifier = modifier_state_capital_of_germany
+				is_capital = no
+			}
+			save_scope_as = german_capital_state
+		}
+		set_capital = scope:german_capital_state
+	}
+	option = {
+		name = HJE_main.1.berlin
+		ai_chance = { 
+			base = 100 
+			modifier = {
+				factor = 0
+				exists = c:GER
+				c:GER = ROOT
+				any_scope_state = {
+					has_modifier = modifier_state_capital_of_germany
+					is_capital = no
+				}
+			}
+		}
+		trigger = {
+			owns_entire_state_region = STATE_BRANDENBURG
+			any_scope_state = { 
+				state_region = s:STATE_BRANDENBURG 
+				OR = {
+					NOT = { has_modifier = modifier_state_capital_of_germany }
+					NAND = {
+						exists = c:GER
+						c:GER = ROOT
+					}
+				}
+			}
+			OR = {
+				AND = {
+					exists = c:PRU
+					c:PRU = ROOT
+				}
+				AND = {
+					exists = c:NGF
+					c:NGF = ROOT
+				}
+				AND = {
+					exists = c:GER
+					c:GER = ROOT
+				}
+			}
+		}
+		set_variable = capital_decided_variable
+		set_capital = STATE_BRANDENBURG
+		if = {
+			limit = { 
+				exists = c:GER
+				c:GER = ROOT
+				NOT = { any_state = { has_modifier = modifier_state_capital_of_germany } } 
+			}
+			random_scope_state = {
+				limit = { is_capital = yes }
+				add_modifier = {
+					name = modifier_state_capital_of_germany
+					months = -1
+				}
+			}
+		}
+	}
+	option = {
+		name = HJE_main.1.munich
+		ai_chance = { 
+			base = 100 
+			modifier = {
+				factor = 0
+				exists = c:GER
+				c:GER = ROOT
+				any_scope_state = {
+					has_modifier = modifier_state_capital_of_germany
+					is_capital = no
+				}
+			}
+		}
+		trigger = {
+			owns_entire_state_region = STATE_BAVARIA
+			any_scope_state = { 
+				state_region = s:STATE_BAVARIA 
+				OR = {
+					NOT = { has_modifier = modifier_state_capital_of_germany }
+					NAND = {
+						exists = c:GER
+						c:GER = ROOT
+					}
+				}
+				AND = {
+					exists = c:BAV
+					c:BAV = ROOT
+				}
+				AND = {
+					exists = c:SGF
+					c:SGF = ROOT
+				}
+				AND = {
+					exists = c:GER
+					c:GER = ROOT
+				}
+			}
+		}
+		set_variable = capital_decided_variable
+		set_capital = STATE_BAVARIA
+		if = {
+			limit = { 
+				exists = c:GER
+				c:GER = ROOT
+				NOT = { any_state = { has_modifier = modifier_state_capital_of_germany } } 
+			}
+			random_scope_state = {
+				limit = { is_capital = yes }
+				add_modifier = {
+					name = modifier_state_capital_of_germany
+					months = -1
+				}
+			}
+		}
+	}
+	option = {
+		name = HJE_main.1.frankfurt
+		ai_chance = { 
+			base = 1
+			modifier = {
+				factor = 0
+				exists = c:GER
+				c:GER = ROOT
+				any_scope_state = {
+					has_modifier = modifier_state_capital_of_germany
+					is_capital = no
+				}
+			}
+		}
+		trigger = {
+			owns_entire_state_region = STATE_HESSE
+			any_scope_state = {
+				state_region = s:STATE_HESSE
+				is_capital = no
+			}
+			OR = {
+				AND = {
+					exists = c:PRU
+					c:PRU = ROOT
+				}
+				AND = {
+					exists = c:NGF
+					c:NGF = ROOT
+				}
+				AND = {
+					exists = c:BAV
+					c:BAV = ROOT
+				}
+				AND = {
+					exists = c:SGF
+					c:SGF = ROOT
+				}
+				AND = {
+					exists = c:GER
+					c:GER = ROOT
+				}
+			}
+		}
+		set_variable = capital_decided_variable
+		set_capital = STATE_HESSE
+	}
+	option = {
+		name = HJE_main.1.hamburg
+		ai_chance = { 
+			base = 1
+			modifier = {
+				factor = 0
+				exists = c:GER
+				c:GER = ROOT
+				any_scope_state = {
+					has_modifier = modifier_state_capital_of_germany
+					is_capital = no
+				}
+			}
+		}
+		trigger = {
+			owns_entire_state_region = STATE_ELBE
+			any_scope_state = {
+				state_region = s:STATE_ELBE
+				is_capital = no
+			}
+			OR = {
+				AND = {
+					exists = c:PRU
+					c:PRU = ROOT
+				}
+				AND = {
+					exists = c:NGF
+					c:NGF = ROOT
+				}
+				AND = {
+					exists = c:BAV
+					c:BAV = ROOT
+				}
+				AND = {
+					exists = c:SGF
+					c:SGF = ROOT
+				}
+				AND = {
+					exists = c:GER
+					c:GER = ROOT
+				}
+			}
+		}
+		set_variable = capital_decided_variable
+		set_capital = STATE_ELBE
+	}
+	option = {
+		name = HJE_main.1.london
+		ai_chance = { 
+			base = 100
+		}
+		trigger = {
+			any_scope_state = {
+				state_region = s:STATE_HOME_COUNTIES
+				is_capital = no
+			}
+			OR = {
+				AND = {
+					exists = c:GBR
+					c:GBR = ROOT
+				}
+				AND = {
+					exists = c:ENG
+					c:ENG = ROOT
+				}
+			}
+		}
+		set_variable = capital_decided_variable
+		set_capital = STATE_HOME_COUNTIES
+	}
+	option = {
+		name = HJE_main.1.bristol
+		ai_chance = { 
+			base = 1
+		}
+		trigger = {
+			owns_entire_state_region = STATE_WEST_COUNTRY
+			any_scope_state = {
+				state_region = s:STATE_WEST_COUNTRY
+				is_capital = no
+			}
+			OR = {
+				AND = {
+					exists = c:GBR
+					c:GBR = ROOT
+				}
+				AND = {
+					exists = c:ENG
+					c:ENG = ROOT
+				}
+			}
+		}
+		set_variable = capital_decided_variable
+		set_capital = STATE_WEST_COUNTRY
+	}
+	option = {
+		name = HJE_main.1.birmingham
+		ai_chance = { 
+			base = 1
+		}
+		trigger = {
+			owns_entire_state_region = STATE_MIDLANDS
+			any_scope_state = {
+				state_region = s:STATE_MIDLANDS
+				is_capital = no
+			}
+			OR = {
+				AND = {
+					exists = c:GBR
+					c:GBR = ROOT
+				}
+				AND = {
+					exists = c:ENG
+					c:ENG = ROOT
+				}
+			}
+		}
+		set_variable = capital_decided_variable
+		set_capital = STATE_MIDLANDS
+	}
+	option = {
+		name = HJE_main.1.manchester
+		ai_chance = { 
+			base = 1
+		}
+		trigger = {
+			owns_entire_state_region = STATE_LANCASHIRE
+			any_scope_state = {
+				state_region = s:STATE_LANCASHIRE
+				is_capital = no
+			}
+			OR = {
+				AND = {
+					exists = c:GBR
+					c:GBR = ROOT
+				}
+				AND = {
+					exists = c:ENG
+					c:ENG = ROOT
+				}
+			}
+		}
+		set_variable = capital_decided_variable
+		set_capital = STATE_LANCASHIRE
+	}
+	option = {
+		name = HJE_main.1.york
+		ai_chance = { 
+			base = 1
+		}
+		trigger = {
+			owns_entire_state_region = STATE_YORKSHIRE
+			any_scope_state = {
+				state_region = s:STATE_YORKSHIRE
+				is_capital = no
+			}
+			OR = {
+				AND = {
+					exists = c:GBR
+					c:GBR = ROOT
+				}
+				AND = {
+					exists = c:ENG
+					c:ENG = ROOT
+				}
+			}
+		}
+		set_variable = capital_decided_variable
+		set_capital = STATE_YORKSHIRE
+	}
+	option = {
+		name = HJE_main.1.edinburgh
+		ai_chance = { 
+			base = 100
+			modifier = {
+				factor = 0
+				exists = c:GBR
+				c:GBR = ROOT
+				any_scope_character = {
+					is_ruler = yes
+					NOT = { has_culture = cu:scottish }
+				}
+			}
+		}
+		trigger = {
+			owns_entire_state_region = STATE_LOWLANDS
+			any_scope_state = {
+				state_region = s:STATE_LOWLANDS
+				is_capital = no
+			}
+			OR = {
+				AND = {
+					exists = c:GBR
+					c:GBR = ROOT
+				}
+				AND = {
+					exists = c:SCO
+					c:SCO = ROOT
+				}
+			}
+		}
+		set_variable = capital_decided_variable
+		set_capital = STATE_LOWLANDS
+	}
+	option = {
+		name = HJE_main.1.paris
+		ai_chance = { 
+			base = 100
+		}
+		trigger = {
+			owns_entire_state_region = STATE_ILE_DE_FRANCE
+			exists = c:FRA
+			c:FRA = ROOT
+			any_scope_state = {
+				state_region = s:STATE_ILE_DE_FRANCE
+				is_capital = no
+			}
+		}
+		set_variable = capital_decided_variable
+		set_capital = STATE_ILE_DE_FRANCE
+	}
+	option = {
+		name = HJE_main.1.petrograd
+		ai_chance = { 
+			base = 100
+			modifier = {
+				factor = 0
+				OR = {
+					has_law = law_type:law_council_republic
+					NOT = { country_or_subject_owns_entire_state_region = STATE_UUSIMAA }
+				}
+			}
+		}
+		trigger = {
+			owns_entire_state_region = STATE_INGRIA
+			any_scope_state = {
+				state_region = s:STATE_INGRIA
+				is_capital = no
+			}
+			OR = {
+				AND = {
+					exists = c:RUS
+					c:RUS = ROOT
+				}
+			}
+		}
+		set_variable = capital_decided_variable
+		set_capital = STATE_INGRIA
+	}
+	option = {
+		name = HJE_main.1.moscow
+		ai_chance = { 
+			base = 100
+			modifier = {
+				factor = 0
+				NOT = { has_law = law_type:law_council_republic }
+				country_or_subject_owns_entire_state_region = STATE_UUSIMAA
+			}
+		}
+		trigger = {
+			owns_entire_state_region = STATE_MOSCOW
+			any_scope_state = {
+				state_region = s:STATE_MOSCOW
+				is_capital = no
+			}
+			OR = {
+				AND = {
+					exists = c:RUS
+					c:RUS = ROOT
+				}
+			}
+		}
+		set_variable = capital_decided_variable
+		set_capital = STATE_MOSCOW
+	}
+	option = {
+		name = HJE_main.1.novgorod
+		ai_chance = { 
+			base = 1
+		}
+		trigger = {
+			owns_entire_state_region = STATE_NOVGOROD
+			any_scope_state = {
+				state_region = s:STATE_NOVGOROD
+				is_capital = no
+			}
+			OR = {
+				AND = {
+					exists = c:RUS
+					c:RUS = ROOT
+				}
+			}
+		}
+		set_variable = capital_decided_variable
+		set_capital = STATE_NOVGOROD
+	}
+	option = {
+		name = HJE_main.1.smolensk
+		ai_chance = { 
+			base = 1
+		}
+		trigger = {
+			owns_entire_state_region = STATE_SMOLENSK
+			any_scope_state = {
+				state_region = s:STATE_SMOLENSK
+				is_capital = no
+			}
+			OR = {
+				AND = {
+					exists = c:RUS
+					c:RUS = ROOT
+				}
+			}
+		}
+		set_variable = capital_decided_variable
+		set_capital = STATE_SMOLENSK
+	}
+	option = {
+		name = HJE_main.1.stockholm
+		ai_chance = { 
+			base = 100
+		}
+		trigger = {
+			owns_entire_state_region = STATE_SVEALAND
+			any_scope_state = {
+				state_region = s:STATE_SVEALAND
+				is_capital = no
+			}
+			OR = {
+				AND = {
+					exists = c:SCA
+					c:SCA = ROOT
+				}
+				AND = {
+					exists = c:SWE
+					c:SWE = ROOT
+				}
+			}
+		}
+		set_variable = capital_decided_variable
+		set_capital = STATE_SVEALAND
+	}
+	option = {
+		name = HJE_main.1.copenhagen
+		ai_chance = { 
+			base = 100
+		}
+		trigger = {
+			owns_entire_state_region = STATE_ZEALAND
+			any_scope_state = {
+				state_region = s:STATE_ZEALAND
+				is_capital = no
+			}
+			OR = {
+				AND = {
+					exists = c:SCA
+					c:SCA = ROOT
+				}
+				AND = {
+					exists = c:DEN
+					c:DEN = ROOT
+				}
+			}
+		}
+		set_variable = capital_decided_variable
+		set_capital = STATE_ZEALAND
+	}
+	option = {
+		name = HJE_main.1.oslo
+		ai_chance = { 
+			base = 50
+		}
+		trigger = {
+			owns_entire_state_region = STATE_EASTERN_NORWAY
+			any_scope_state = {
+				state_region = s:STATE_EASTERN_NORWAY
+				is_capital = no
+			}
+			OR = {
+				AND = {
+					exists = c:SCA
+					c:SCA = ROOT
+				}
+				AND = {
+					exists = c:NOR
+					c:NOR = ROOT
+				}
+			}
+		}
+		set_variable = capital_decided_variable
+		set_capital = STATE_EASTERN_NORWAY
+	}
+	option = {
+		name = HJE_main.1.brussels
+		ai_chance = { 
+			base = 100
+		}
+		trigger = {
+			owns_entire_state_region = STATE_FLANDERS
+			any_scope_state = {
+				state_region = s:STATE_FLANDERS
+				is_capital = no
+			}
+			OR = {
+				AND = {
+					exists = c:BEL
+					c:BEL = ROOT
+				}
+				AND = {
+					exists = c:FLA
+					c:FLA = ROOT
+				}
+			}
+		}
+		set_variable = capital_decided_variable
+		set_capital = STATE_FLANDERS
+	}
+	option = {
+		name = HJE_main.1.liege
+		ai_chance = { 
+			base = 50
+		}
+		trigger = {
+			owns_entire_state_region = STATE_WALLONIA
+			any_scope_state = {
+				state_region = s:STATE_WALLONIA
+				is_capital = no
+			}
+			OR = {
+				AND = {
+					exists = c:BEL
+					c:BEL = ROOT
+				}
+				AND = {
+					exists = c:WLL
+					c:WLL = ROOT
+				}
+			}
+		}
+		set_variable = capital_decided_variable
+		set_capital = STATE_WALLONIA
+	}
+	option = {
+		name = HJE_main.1.mexico
+		ai_chance = { 
+			base = 50
+		}
+		trigger = {
+			owns_entire_state_region = STATE_MEXICO
+			any_scope_state = {
+				state_region = s:STATE_MEXICO
+				is_capital = no
+			}
+			OR = {
+				AND = {
+					exists = c:MEX
+					c:MEX = ROOT
+				}
+			}
+		}
+		set_variable = capital_decided_variable
+		set_capital = STATE_MEXICO
+	}
+	option = {
+		name = HJE_main.1.dublin
+		ai_chance = { 
+			base = 50
+		}
+		trigger = {
+			owns_entire_state_region = STATE_LEINSTER
+			any_scope_state = {
+				state_region = s:STATE_LEINSTER
+				is_capital = no
+			}
+			OR = {
+				AND = {
+					country_has_primary_culture = cu:irish
+					exists = c:GBR
+					c:GBR = ROOT
+				}
+				AND = {
+					exists = c:IRE
+					c:IRE = ROOT
+				}
+			}
+		}
+		set_variable = capital_decided_variable
+		set_capital = STATE_LEINSTER
+	}
+	option = {
+		name = HJE_main.1.lisbon
+		ai_chance = { 
+			base = 50
+		}
+		trigger = {
+			owns_entire_state_region = STATE_ESTREMADURA
+			any_scope_state = {
+				state_region = s:STATE_ESTREMADURA
+				is_capital = no
+			}
+			OR = {
+				AND = {
+					exists = c:POR
+					c:POR = ROOT
+				}
+				AND = {
+					exists = c:IBE
+					c:IBE = ROOT
+				}
+			}
+		}
+		set_variable = capital_decided_variable
+		set_capital = STATE_ESTREMADURA
+	}
+	option = {
+		name = HJE_main.1.madrid
+		ai_chance = { 
+			base = 50
+		}
+		trigger = {
+			owns_entire_state_region = STATE_TOLEDO
+			any_scope_state = {
+				state_region = s:STATE_TOLEDO
+				is_capital = no
+			}
+			OR = {
+				AND = {
+					exists = c:CAS
+					c:CAS = ROOT
+				}
+				AND = {
+					exists = c:POR
+					c:POR = ROOT
+				}
+				AND = {
+					exists = c:IBE
+					c:IBE = ROOT
+				}
+			}
+		}
+		set_variable = capital_decided_variable
+		set_capital = STATE_TOLEDO
+	}
+	option = {
+		name = HJE_main.1.rome
+		ai_chance = { 
+			base = 50
+		}
+		trigger = {
+			owns_entire_state_region = STATE_LAZIO
+			any_scope_state = {
+				state_region = s:STATE_LAZIO
+				is_capital = no
+			}
+			OR = {
+				AND = {
+					exists = c:PAP
+					c:PAP = ROOT
+				}
+				AND = {
+					exists = c:ITA
+					c:ITA = ROOT
+				}
+			}
+		}
+		set_variable = capital_decided_variable
+		set_capital = STATE_LAZIO
+	}
+	option = {
+		name = HJE_main.1.turin
+		ai_chance = { 
+			base = 50
+			modifier = {
+				factor = 0.02
+				exists = c:ITA
+				c:ITA = ROOT
+			}
+		}
+		trigger = {
+			owns_entire_state_region = STATE_PIEDMONT
+			any_scope_state = {
+				state_region = s:STATE_PIEDMONT
+				is_capital = no
+			}
+			OR = {
+				AND = {
+					exists = c:SAR
+					c:SAR = ROOT
+				}
+				AND = {
+					exists = c:ITA
+					c:ITA = ROOT
+				}
+			}
+		}
+		set_variable = capital_decided_variable
+		set_capital = STATE_PIEDMONT
+	}
+	option = {
+		name = HJE_main.1.naples
+		ai_chance = { 
+			base = 50
+			modifier = {
+				factor = 0.02
+				exists = c:ITA
+				c:ITA = ROOT
+			}
+		}
+		trigger = {
+			owns_entire_state_region = STATE_CAMPANIA
+			any_scope_state = {
+				state_region = s:STATE_CAMPANIA
+				is_capital = no
+			}
+			OR = {
+				AND = {
+					exists = c:SIC
+					c:SIC = ROOT
+				}
+				AND = {
+					exists = c:ITA
+					c:ITA = ROOT
+				}
+			}
+		}
+		set_variable = capital_decided_variable
+		set_capital = STATE_CAMPANIA
+	}
+	option = {
+		name = HJE_main.1.budapest
+		ai_chance = { 
+			base = 50
+		}
+		trigger = {
+			owns_entire_state_region = STATE_CENTRAL_HUNGARY
+			any_scope_state = {
+				state_region = s:STATE_CENTRAL_HUNGARY
+				is_capital = no
+			}
+			OR = {
+				AND = {
+					exists = c:HUN
+					c:HUN = ROOT
+				}
+			}
+		}
+		set_variable = capital_decided_variable
+		set_capital = STATE_CENTRAL_HUNGARY
+	}
+	option = {
+		name = HJE_main.1.warsaw
+		ai_chance = { 
+			base = 50
+		}
+		trigger = {
+			owns_entire_state_region = STATE_MAZOVIA
+			any_scope_state = {
+				state_region = s:STATE_MAZOVIA
+				is_capital = no
+			}
+			OR = {
+				AND = {
+					exists = c:POL
+					c:POL = ROOT
+				}
+			}
+		}
+		set_variable = capital_decided_variable
+		set_capital = STATE_MAZOVIA
+	}
+	option = {
+		name = HJE_main.1.athens
+		ai_chance = { 
+			base = 50
+		}
+		trigger = {
+			owns_entire_state_region = STATE_ATTICA
+			any_scope_state = {
+				state_region = s:STATE_ATTICA
+				is_capital = no
+			}
+			OR = {
+				AND = {
+					exists = c:GRE
+					c:GRE = ROOT
+				}
+			}
+		}
+		set_variable = capital_decided_variable
+		set_capital = STATE_ATTICA
+	}
+}
+
+HJE_main.2 = { #Spreads Quinine sooner once one power has it
+	type = country_event
+	placement = scope:quininebreakthrough_scope
+	title = HJE_main.2.t
+	desc = HJE_main.2.d
+	flavor = HJE_main.2.f
+
+	duration = 3
+
+    event_image = {
+		video = "gfx/event_pictures/unspecific_sick_in_hospital.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/rich_and_poor"
+
+	icon = "gfx/interface/icons/event_icons/event_default.dds"
+
+	trigger = {
+		NOT = { has_variable = got_quinine_spread_event }
+		OR = {
+			country_rank >= rank_value:major_power
+			any_overlord_or_above = { country_rank >= rank_value:major_power }
+		}
+		OR = {
+			AND = {
+				country_rank >= rank_value:major_power
+				has_technology_researched = quinine
+				NOT = {
+					any_country = {
+						NOT = { THIS = ROOT }
+						country_rank >= rank_value:major_power
+						has_technology_researched = quinine
+					}
+				}
+			}
+			AND = {
+				NOT = { has_technology_researched = quinine }
+				any_country = {
+					country_rank >= rank_value:major_power
+					has_technology_researched = quinine
+				}
+			}
+		}
+	}
+	
+	immediate = {
+		set_variable = got_quinine_spread_event
+		random_country = {
+			limit = {
+				country_rank >= rank_value:major_power
+				has_technology_researched = quinine
+			}
+			save_scope_as = quininebreakthrough_scope
+		}
+	}
+
+	option = {
+		name = HJE_main.2.a
+		default_option = yes	
+		
+		if = {
+			limit = { NOT = { has_technology_researched = quinine } }
+			add_technology_progress = { 
+				progress = 2000 
+				technology = quinine 
+			}
+		}
+
+		##### THESE CLAIMS SHOULD BE FRENCH #################
+		if = {
+			limit = { 
+				exists = c:FRA
+				c:FRA = ROOT
+				country_rank >= rank_value:major_power 
+				NOT = { any_country = { has_variable = quinine_sahara_claimant } }
+				OR = {
+					has_law = law_type:law_colonial_resettlement
+					has_law = law_type:law_colonial_exploitation
+				}
+				OR = {
+					any_scope_state = { state_region = s:STATE_ALGIERS }
+					any_scope_state = { state_region = s:STATE_TLEMCEN }
+					any_scope_state = { state_region = s:STATE_CONSTANTINE }
+					NOT = {
+						any_country = {
+							NOT = { THIS = ROOT }
+							country_rank >= rank_value:major_power 
+							OR = {
+								has_law = law_type:law_colonial_resettlement
+								has_law = law_type:law_colonial_exploitation
+							}
+							OR = {
+								any_scope_state = { state_region = s:STATE_ALGIERS }
+								any_scope_state = { state_region = s:STATE_TLEMCEN }
+								any_scope_state = { state_region = s:STATE_CONSTANTINE }
+							}
+						}
+					}
+				}
+			}
+			set_variable = quinine_sahara_claimant
+			create_incident = { country = root value = 15 }
+			s:STATE_ALGIERS = { add_claim = ROOT }
+			s:STATE_TLEMCEN = { add_claim = ROOT }
+			s:STATE_CONSTANTINE = { add_claim = ROOT }
+			s:STATE_INNER_MAURITANIA = { add_claim = ROOT }
+			s:STATE_SAHARA = { add_claim = ROOT }
+			s:STATE_TIMBUKTU = { add_claim = ROOT }
+			s:STATE_WESTERN_MALI = { add_claim = ROOT }
+			s:STATE_EASTERN_MALI = { add_claim = ROOT }
+			s:STATE_OUTER_HAUSALAND = { add_claim = ROOT }
+			s:STATE_EAST_SAHARA = { add_claim = ROOT }
+			s:STATE_NIGER = { add_claim = ROOT }
+			s:STATE_CHAD = { add_claim = ROOT }
+			s:STATE_WADDAI = { add_claim = ROOT }
+			s:STATE_UBANGI_SHARI = { add_claim = ROOT }
+			every_state = {
+				limit = {
+					OR = {
+						state_region = s:STATE_ALGIERS
+						state_region = s:STATE_TLEMCEN
+						state_region = s:STATE_CONSTANTINE
+						state_region = s:STATE_INNER_MAURITANIA
+						state_region = s:STATE_SAHARA
+						state_region = s:STATE_TIMBUKTU
+						state_region = s:STATE_WESTERN_MALI
+						state_region = s:STATE_EASTERN_MALI
+						state_region = s:STATE_OUTER_HAUSALAND
+						state_region = s:STATE_EAST_SAHARA
+						state_region = s:STATE_NIGER
+						state_region = s:STATE_CHAD
+						state_region = s:STATE_WADDAI
+					}
+					owner = {
+						is_ai = yes
+						NOT = { is_country_type = decentralized }
+						NOT = { is_country_type = unrecognized }
+						NOR = {
+							THIS = ROOT
+							is_subject_of = ROOT
+						}
+					}
+				}
+				set_state_owner = ROOT
+			}
+		}
+		else_if = {
+			limit = {
+				country_rank >= rank_value:major_power 
+				NOT = { any_country = { has_variable = quinine_sahara_claimant } }
+				OR = {
+					any_scope_state = { state_region = s:STATE_ALGIERS }
+					any_scope_state = { state_region = s:STATE_TLEMCEN }
+					any_scope_state = { state_region = s:STATE_CONSTANTINE }
+				}
+				OR = {
+					NOT = { exists = c:FRA }
+					AND = {
+						exists = c:FRA
+						NOT = { c:FRA = ROOT }
+						c:FRA = {
+							NOR = {
+								any_scope_state = { state_region = s:STATE_ALGIERS }
+								any_scope_state = { state_region = s:STATE_TLEMCEN }
+								any_scope_state = { state_region = s:STATE_CONSTANTINE }
+							}
+							OR = {
+								country_rank < rank_value:major_power 
+								NOR = {
+									has_law = law_type:law_colonial_resettlement
+									has_law = law_type:law_colonial_exploitation
+								}
+							}
+						}
+					}
+				}
+			}
+			set_variable = quinine_sahara_claimant
+			create_incident = { country = root value = 15 }
+			s:STATE_ALGIERS = { add_claim = ROOT }
+			s:STATE_TLEMCEN = { add_claim = ROOT }
+			s:STATE_CONSTANTINE = { add_claim = ROOT }
+			s:STATE_INNER_MAURITANIA = { add_claim = ROOT }
+			s:STATE_SAHARA = { add_claim = ROOT }
+			s:STATE_TIMBUKTU = { add_claim = ROOT }
+			s:STATE_WESTERN_MALI = { add_claim = ROOT }
+			s:STATE_EASTERN_MALI = { add_claim = ROOT }
+			s:STATE_OUTER_HAUSALAND = { add_claim = ROOT }
+			s:STATE_EAST_SAHARA = { add_claim = ROOT }
+			s:STATE_NIGER = { add_claim = ROOT }
+			s:STATE_CHAD = { add_claim = ROOT }
+			s:STATE_WADDAI = { add_claim = ROOT }
+			s:STATE_UBANGI_SHARI = { add_claim = ROOT }
+			every_state = {
+				limit = {
+					OR = {
+						state_region = s:STATE_ALGIERS
+						state_region = s:STATE_TLEMCEN
+						state_region = s:STATE_CONSTANTINE
+						state_region = s:STATE_INNER_MAURITANIA
+						state_region = s:STATE_SAHARA
+						state_region = s:STATE_TIMBUKTU
+						state_region = s:STATE_WESTERN_MALI
+						state_region = s:STATE_EASTERN_MALI
+						state_region = s:STATE_OUTER_HAUSALAND
+						state_region = s:STATE_EAST_SAHARA
+						state_region = s:STATE_NIGER
+						state_region = s:STATE_CHAD
+						state_region = s:STATE_WADDAI
+					}
+					owner = {
+						is_ai = yes
+						NOT = { is_country_type = decentralized }
+						NOT = { is_country_type = unrecognized }
+						NOR = {
+							THIS = ROOT
+							is_subject_of = ROOT
+						}
+					}
+				}
+				set_state_owner = ROOT
+			}
+		}
+		else_if = {
+			limit = {
+				country_rank >= rank_value:major_power 
+				NOT = { any_country = { has_variable = quinine_sahara_claimant } }
+				NOT = {
+					any_country = {
+						OR = {
+							country_rank >= rank_value:major_power
+							any_overlord_or_above = { country_rank >= rank_value:major_power }
+						}
+						OR = {
+							any_scope_state = { state_region = s:STATE_ALGIERS }
+							any_scope_state = { state_region = s:STATE_TLEMCEN }
+							any_scope_state = { state_region = s:STATE_CONSTANTINE }
+						}
+					}
+				}
+			}
+			random_list = {
+				80 = {  }
+				20 = {
+					set_variable = quinine_sahara_claimant
+					create_incident = { country = root value = 15 }
+					s:STATE_ALGIERS = { add_claim = ROOT }
+					s:STATE_TLEMCEN = { add_claim = ROOT }
+					s:STATE_CONSTANTINE = { add_claim = ROOT }
+					s:STATE_INNER_MAURITANIA = { add_claim = ROOT }
+					s:STATE_SAHARA = { add_claim = ROOT }
+					s:STATE_TIMBUKTU = { add_claim = ROOT }
+					s:STATE_WESTERN_MALI = { add_claim = ROOT }
+					s:STATE_EASTERN_MALI = { add_claim = ROOT }
+					s:STATE_OUTER_HAUSALAND = { add_claim = ROOT }
+					s:STATE_EAST_SAHARA = { add_claim = ROOT }
+					s:STATE_NIGER = { add_claim = ROOT }
+					s:STATE_CHAD = { add_claim = ROOT }
+					s:STATE_WADDAI = { add_claim = ROOT }
+					s:STATE_UBANGI_SHARI = { add_claim = ROOT }
+					every_state = {
+						limit = {
+							OR = {
+								state_region = s:STATE_ALGIERS
+								state_region = s:STATE_TLEMCEN
+								state_region = s:STATE_CONSTANTINE
+								state_region = s:STATE_INNER_MAURITANIA
+								state_region = s:STATE_SAHARA
+								state_region = s:STATE_TIMBUKTU
+								state_region = s:STATE_WESTERN_MALI
+								state_region = s:STATE_EASTERN_MALI
+								state_region = s:STATE_OUTER_HAUSALAND
+								state_region = s:STATE_EAST_SAHARA
+								state_region = s:STATE_NIGER
+								state_region = s:STATE_CHAD
+								state_region = s:STATE_WADDAI
+							}
+							owner = {
+								is_ai = yes
+								NOT = { is_country_type = decentralized }
+								NOT = { is_country_type = unrecognized }
+								NOR = {
+									THIS = ROOT
+									is_subject_of = ROOT
+								}
+							}
+						}
+						set_state_owner = ROOT
+					}
+				}
+			}
+		}
+		if = {
+			limit = { 
+				exists = c:FRA
+				c:FRA = ROOT
+				country_rank >= rank_value:major_power 
+				NOT = { any_country = { has_variable = quinine_senegal_claimant } }
+				OR = {
+					has_law = law_type:law_colonial_resettlement
+					has_law = law_type:law_colonial_exploitation
+				}
+				OR = {
+					any_scope_state = { state_region = s:STATE_MAURITANIA }
+					any_scope_state = { state_region = s:STATE_SENEGAL }
+					NOT = {
+						any_country = {
+							NOT = { THIS = ROOT }
+							country_rank >= rank_value:major_power 
+							OR = {
+								has_law = law_type:law_colonial_resettlement
+								has_law = law_type:law_colonial_exploitation
+							}
+							OR = {
+								any_scope_state = { state_region = s:STATE_MAURITANIA }
+								any_scope_state = { state_region = s:STATE_SENEGAL }
+							}
+						}
+					}
+				}
+			}
+			set_variable = quinine_senegal_claimant
+			create_incident = { country = root value = 3 }
+			s:STATE_MAURITANIA = { add_claim = ROOT }
+			s:STATE_SENEGAL = { add_claim = ROOT }
+			every_state = {
+				limit = {
+					OR = {
+						state_region = s:STATE_MAURITANIA
+						state_region = s:STATE_SENEGAL
+					}
+					owner = {
+						is_ai = yes
+						NOT = { is_country_type = decentralized }
+						NOT = { is_country_type = unrecognized }
+						NOR = { THIS = ROOT }
+					}
+				}
+				set_state_owner = ROOT
+			}
+		}
+		else_if = {
+			limit = {
+				country_rank >= rank_value:major_power 
+				NOT = { any_country = { has_variable = quinine_senegal_claimant } }
+				OR = {
+					any_scope_state = { state_region = s:STATE_MAURITANIA }
+					any_scope_state = { state_region = s:STATE_SENEGAL }
+				}
+				OR = {
+					NOT = { exists = c:FRA }
+					AND = {
+						exists = c:FRA
+						NOT = { c:FRA = ROOT }
+						c:FRA = {
+							NOR = {
+								any_scope_state = { state_region = s:STATE_MAURITANIA }
+								any_scope_state = { state_region = s:STATE_SENEGAL }
+							}
+							OR = {
+								country_rank < rank_value:major_power 
+								NOR = {
+									has_law = law_type:law_colonial_resettlement
+									has_law = law_type:law_colonial_exploitation
+								}
+							}
+						}
+					}
+				}
+			}
+			set_variable = quinine_senegal_claimant
+			create_incident = { country = root value = 3 }
+			s:STATE_MAURITANIA = { add_claim = ROOT }
+			s:STATE_SENEGAL = { add_claim = ROOT }
+			every_state = {
+				limit = {
+					OR = {
+						state_region = s:STATE_MAURITANIA
+						state_region = s:STATE_SENEGAL
+					}
+					owner = {
+						is_ai = yes
+						NOT = { is_country_type = decentralized }
+						NOT = { is_country_type = unrecognized }
+						NOR = { THIS = ROOT }
+					}
+				}
+				set_state_owner = ROOT
+			}
+		}
+		else_if = {
+			limit = {
+				country_rank >= rank_value:major_power 
+				NOT = { any_country = { has_variable = quinine_senegal_claimant } }
+				NOT = {
+					any_country = {
+						OR = {
+							country_rank >= rank_value:major_power
+							any_overlord_or_above = { country_rank >= rank_value:major_power }
+						}
+						OR = {
+							any_scope_state = { state_region = s:STATE_MAURITANIA }
+							any_scope_state = { state_region = s:STATE_SENEGAL }
+						}
+					}
+				}
+			}
+			random_list = {
+				80 = {  }
+				20 = {
+					set_variable = quinine_senegal_claimant
+					create_incident = { country = root value = 3 }
+					s:STATE_MAURITANIA = { add_claim = ROOT }
+					s:STATE_SENEGAL = { add_claim = ROOT }
+					every_state = {
+						limit = {
+							OR = {
+								state_region = s:STATE_MAURITANIA
+								state_region = s:STATE_SENEGAL
+							}
+							owner = {
+								is_ai = yes
+								NOT = { is_country_type = decentralized }
+								NOT = { is_country_type = unrecognized }
+								NOR = { THIS = ROOT }
+							}
+						}
+						set_state_owner = ROOT
+					}
+				}
+			}
+		}
+		if = {
+			limit = { 
+				exists = c:FRA
+				c:FRA = ROOT
+				country_rank >= rank_value:major_power 
+				NOT = { any_country = { has_variable = quinine_ivory_coast_claimant } }
+				OR = {
+					has_law = law_type:law_colonial_resettlement
+					has_law = law_type:law_colonial_exploitation
+				}
+				OR = {
+					any_scope_state = { state_region = s:STATE_GUINEA }
+					any_scope_state = { state_region = s:STATE_WINDWARD_COAST }
+					any_scope_state = { state_region = s:STATE_IVORY_COAST }
+					NOT = {
+						any_country = {
+							NOT = { THIS = ROOT }
+							country_rank >= rank_value:major_power 
+							OR = {
+								has_law = law_type:law_colonial_resettlement
+								has_law = law_type:law_colonial_exploitation
+							}
+							OR = {
+								any_scope_state = { state_region = s:STATE_GUINEA }
+								any_scope_state = { state_region = s:STATE_WINDWARD_COAST }
+								any_scope_state = { state_region = s:STATE_IVORY_COAST }
+							}
+						}
+					}
+				}
+			}
+			set_variable = quinine_ivory_coast_claimant
+			create_incident = { country = root value = 3 }
+			s:STATE_GUINEA = { add_claim = ROOT }
+			s:STATE_WINDWARD_COAST = { add_claim = ROOT }
+			s:STATE_IVORY_COAST = { add_claim = ROOT }
+			every_state = {
+				limit = {
+					OR = {
+						state_region = s:STATE_GUINEA
+						state_region = s:STATE_WINDWARD_COAST
+						state_region = s:STATE_IVORY_COAST
+					}
+					owner = {
+						is_ai = yes
+						NOT = { is_country_type = decentralized }
+						NOT = { is_country_type = unrecognized }
+						NOR = {
+							THIS = ROOT
+							is_subject_of = ROOT
+						}
+					}
+				}
+				set_state_owner = ROOT
+			}
+		}
+		else_if = {
+			limit = {
+				country_rank >= rank_value:major_power 
+				NOT = { any_country = { has_variable = quinine_ivory_coast_claimant } }
+				OR = {
+					any_scope_state = { state_region = s:STATE_GUINEA }
+					any_scope_state = { state_region = s:STATE_WINDWARD_COAST }
+					any_scope_state = { state_region = s:STATE_IVORY_COAST }
+				}
+				OR = {
+					NOT = { exists = c:FRA }
+					AND = {
+						exists = c:FRA
+						NOT = { c:FRA = ROOT }
+						c:FRA = {
+							NOR = {
+								any_scope_state = { state_region = s:STATE_GUINEA }
+								any_scope_state = { state_region = s:STATE_WINDWARD_COAST }
+								any_scope_state = { state_region = s:STATE_IVORY_COAST }
+							}
+							OR = {
+								country_rank < rank_value:major_power 
+								NOR = {
+									has_law = law_type:law_colonial_resettlement
+									has_law = law_type:law_colonial_exploitation
+								}
+							}
+						}
+					}
+				}
+			}
+			set_variable = quinine_ivory_coast_claimant
+			create_incident = { country = root value = 3 }
+			s:STATE_GUINEA = { add_claim = ROOT }
+			s:STATE_WINDWARD_COAST = { add_claim = ROOT }
+			s:STATE_IVORY_COAST = { add_claim = ROOT }
+			every_state = {
+				limit = {
+					OR = {
+						state_region = s:STATE_GUINEA
+						state_region = s:STATE_WINDWARD_COAST
+						state_region = s:STATE_IVORY_COAST
+					}
+					owner = {
+						is_ai = yes
+						NOT = { is_country_type = decentralized }
+						NOT = { is_country_type = unrecognized }
+						NOR = {
+							THIS = ROOT
+							is_subject_of = ROOT
+						}
+					}
+				}
+				set_state_owner = ROOT
+			}
+		}
+		else_if = {
+			limit = {
+				country_rank >= rank_value:major_power 
+				NOT = { any_country = { has_variable = quinine_ivory_coast_claimant } }
+				NOT = {
+					any_country = {
+						OR = {
+							country_rank >= rank_value:major_power
+							any_overlord_or_above = { country_rank >= rank_value:major_power }
+						}
+						OR = {
+							any_scope_state = { state_region = s:STATE_GUINEA }
+							any_scope_state = { state_region = s:STATE_WINDWARD_COAST }
+							any_scope_state = { state_region = s:STATE_IVORY_COAST }
+						}
+					}
+				}
+			}
+			random_list = {
+				80 = {  }
+				20 = {
+					set_variable = quinine_ivory_coast_claimant
+					create_incident = { country = root value = 3 }
+					s:STATE_GUINEA = { add_claim = ROOT }
+					s:STATE_WINDWARD_COAST = { add_claim = ROOT }
+					s:STATE_IVORY_COAST = { add_claim = ROOT }
+					every_state = {
+						limit = {
+							OR = {
+								state_region = s:STATE_GUINEA
+								state_region = s:STATE_WINDWARD_COAST
+								state_region = s:STATE_IVORY_COAST
+							}
+							owner = {
+								is_ai = yes
+								NOT = { is_country_type = decentralized }
+								NOT = { is_country_type = unrecognized }
+								NOR = {
+									THIS = ROOT
+									is_subject_of = ROOT
+								}
+							}
+						}
+						set_state_owner = ROOT
+					}
+				}
+			}
+		}
+		if = {
+			limit = { 
+				exists = c:FRA
+				c:FRA = ROOT
+				country_rank >= rank_value:major_power 
+				NOT = { any_country = { has_variable = quinine_gabon_claimant } }
+				OR = {
+					has_law = law_type:law_colonial_resettlement
+					has_law = law_type:law_colonial_exploitation
+				}
+				OR = {
+					is_player = no
+					any_scope_state = { state_region = s:STATE_GABON }
+					any_scope_state = { state_region = s:STATE_CONGO }
+					NOT = {
+						any_country = {
+							NOT = { THIS = ROOT }
+							country_rank >= rank_value:major_power 
+							OR = {
+								has_law = law_type:law_colonial_resettlement
+								has_law = law_type:law_colonial_exploitation
+							}
+							OR = {
+								any_scope_state = { state_region = s:STATE_GABON }
+								any_scope_state = { state_region = s:STATE_CONGO }
+							}
+						}
+					}
+				}
+			}
+			set_variable = quinine_gabon_claimant
+			create_incident = { country = root value = 3 }
+			s:STATE_GABON = { add_claim = ROOT }
+			s:STATE_CONGO = { add_claim = ROOT }
+			every_state = {
+				limit = {
+					OR = {
+						state_region = s:STATE_GABON
+						state_region = s:STATE_CONGO
+					}
+					owner = {
+						is_ai = yes
+						NOT = { is_country_type = decentralized }
+						NOT = { is_country_type = unrecognized }
+						NOR = {
+							THIS = ROOT
+							is_subject_of = ROOT
+						}
+					}
+				}
+				set_state_owner = ROOT
+			}
+		}
+		else_if = {
+			limit = {
+				country_rank >= rank_value:major_power 
+				NOT = { any_country = { has_variable = quinine_gabon_claimant } }
+				OR = {
+					any_scope_state = { state_region = s:STATE_GABON }
+					any_scope_state = { state_region = s:STATE_CONGO }
+				}
+				OR = {
+					NOT = { exists = c:FRA }
+					AND = {
+						exists = c:FRA
+						NOT = { c:FRA = ROOT }
+						c:FRA = {
+							NOR = {
+								any_scope_state = { state_region = s:STATE_GABON }
+								any_scope_state = { state_region = s:STATE_CONGO }
+							}
+							OR = {
+								country_rank < rank_value:major_power 
+								NOR = {
+									has_law = law_type:law_colonial_resettlement
+									has_law = law_type:law_colonial_exploitation
+								}
+							}
+						}
+					}
+				}
+			}
+			set_variable = quinine_gabon_claimant
+			create_incident = { country = root value = 3 }
+			s:STATE_GABON = { add_claim = ROOT }
+			s:STATE_CONGO = { add_claim = ROOT }
+			every_state = {
+				limit = {
+					OR = {
+						state_region = s:STATE_GABON
+						state_region = s:STATE_CONGO
+					}
+					owner = {
+						is_ai = yes
+						NOT = { is_country_type = decentralized }
+						NOT = { is_country_type = unrecognized }
+						NOR = {
+							THIS = ROOT
+							is_subject_of = ROOT
+						}
+					}
+				}
+				set_state_owner = ROOT
+			}
+		}
+		else_if = {
+			limit = {
+				country_rank >= rank_value:major_power 
+				NOT = { any_country = { has_variable = quinine_gabon_claimant } }
+				NOT = {
+					any_country = {
+						OR = {
+							country_rank >= rank_value:major_power
+							any_overlord_or_above = { country_rank >= rank_value:major_power }
+						}
+						OR = {
+							any_scope_state = { state_region = s:STATE_GABON }
+							any_scope_state = { state_region = s:STATE_CONGO }
+						}
+					}
+				}
+				OR = {
+					is_player = yes
+					trigger_if = {
+						limit = {
+							exists = c:FRA
+							NOT = { c:FRA = ROOT }
+							c:FRA = {
+								NOR = {
+									any_scope_state = { state_region = s:STATE_GABON }
+									any_scope_state = { state_region = s:STATE_CONGO }
+								}
+								OR = {
+									country_rank < rank_value:major_power 
+									NOR = {
+										has_law = law_type:law_colonial_resettlement
+										has_law = law_type:law_colonial_exploitation
+									}
+								}
+							}
+						}
+						c:FRA = { has_variable = got_quinine_spread_event }
+					}
+				}
+			}
+			random_list = {
+				80 = {  }
+				20 = {
+					set_variable = quinine_gabon_claimant
+					create_incident = { country = root value = 3 }
+					s:STATE_GABON = { add_claim = ROOT }
+					s:STATE_CONGO = { add_claim = ROOT }
+					every_state = {
+						limit = {
+							OR = {
+								state_region = s:STATE_GABON
+								state_region = s:STATE_CONGO
+							}
+							owner = {
+								is_ai = yes
+								NOT = { is_country_type = decentralized }
+								NOT = { is_country_type = unrecognized }
+								NOR = {
+									THIS = ROOT
+									is_subject_of = ROOT
+								}
+							}
+						}
+						set_state_owner = ROOT
+					}
+				}
+			}
+		}
+
+		##### THESE CLAIMS SHOULD BE GERMAN #################
+		if = {
+			limit = { 
+				country_rank >= rank_value:major_power
+				NOT = { any_country = { has_variable = quinine_togo_claimant } }
+				OR = {
+					AND = {
+						exists = c:PRU
+						c:PRU = ROOT
+					}
+					AND = {
+						NOT = { exists = c:PRU }
+						exists = c:NGF
+						c:NGF = ROOT
+					}
+					AND = {
+						NOT = { exists = c:PRU }
+						NOT = { exists = c:NGF }
+						exists = c:GER
+						c:GER = ROOT
+					}
+				}
+			}
+			set_variable = quinine_togo_claimant
+			create_incident = { country = root value = 3 }
+			s:STATE_TOGO = { 
+				add_claim = ROOT 
+				set_variable = quinine_german_claim
+			}
+			every_state = {
+				limit = {
+					state_region = s:STATE_TOGO
+					owner = {
+						is_ai = yes
+						NOT = { is_country_type = decentralized }
+						NOT = { is_country_type = unrecognized }
+						NOR = {
+							THIS = ROOT
+							is_subject_of = ROOT
+						}
+					}
+				}
+				set_state_owner = ROOT
+			}
+		}
+		else_if = {
+			limit = {
+				country_rank >= rank_value:major_power 
+				NOT = { any_country = { has_variable = quinine_togo_claimant } }
+				NOT = {
+					any_country = {
+						any_scope_state = { state_region = s:STATE_TOGO }
+						OR = {
+							country_rank >= rank_value:major_power
+							any_overlord_or_above = { country_rank >= rank_value:major_power }
+						}
+					}
+				}
+			}
+			random_list = {
+				80 = {  }
+				20 = {
+					set_variable = quinine_togo_claimant
+					create_incident = { country = root value = 3 }
+					s:STATE_TOGO = { 
+						add_claim = ROOT 
+						set_variable = quinine_german_claim
+					}
+					every_state = {
+						limit = {
+							state_region = s:STATE_TOGO
+							owner = {
+								is_ai = yes
+								NOT = { is_country_type = decentralized }
+								NOT = { is_country_type = unrecognized }
+								NOR = {
+									THIS = ROOT
+									is_subject_of = ROOT
+								}
+							}
+						}
+						set_state_owner = ROOT
+					}
+				}
+			}
+		}
+		if = {
+			limit = { 
+				country_rank >= rank_value:major_power
+				NOT = { any_country = { has_variable = quinine_zanzibar_claimant } }
+				OR = {
+					AND = {
+						exists = c:PRU
+						c:PRU = ROOT
+					}
+					AND = {
+						NOT = { exists = c:PRU }
+						exists = c:NGF
+						c:NGF = ROOT
+					}
+					AND = {
+						NOT = { exists = c:PRU }
+						NOT = { exists = c:NGF }
+						exists = c:GER
+						c:GER = ROOT
+					}
+				}
+			}
+			set_variable = quinine_zanzibar_claimant
+			create_incident = { country = root value = 3 }
+			s:STATE_ZANZIBAR = { 
+				add_claim = ROOT 
+				set_variable = quinine_german_claim
+			}
+			every_state = {
+				limit = {
+					state_region = s:STATE_ZANZIBAR
+					owner = {
+						is_ai = yes
+						NOT = { is_country_type = decentralized }
+						NOT = { is_country_type = unrecognized }
+						NOR = {
+							THIS = ROOT
+							is_subject_of = ROOT
+						}
+					}
+				}
+				set_state_owner = ROOT
+			}
+		}
+		else_if = {
+			limit = {
+				country_rank >= rank_value:major_power 
+				NOT = { any_country = { has_variable = quinine_zanzibar_claimant } }
+				NOT = {
+					any_country = {
+						country_rank >= rank_value:major_power 
+						OR = {
+							AND = {
+								exists = c:PRU
+								c:PRU = THIS
+							}
+							AND = {
+								NOT = { exists = c:PRU }
+								exists = c:NGF
+								c:NGF = THIS
+							}
+							AND = {
+								NOT = { exists = c:PRU }
+								NOT = { exists = c:NGF }
+								exists = c:GER
+								c:GER = THIS
+							}
+						}
+					}
+				}
+				NOT = {
+					any_country = {
+						any_scope_state = { state_region = s:STATE_ZANZIBAR }
+						OR = {
+							country_rank >= rank_value:major_power
+							any_overlord_or_above = { country_rank >= rank_value:major_power }
+						}
+					}
+				}
+			}
+			random_list = {
+				80 = {  }
+				20 = {
+					set_variable = quinine_zanzibar_claimant
+					create_incident = { country = root value = 3 }
+					s:STATE_ZANZIBAR = { 
+						add_claim = ROOT 
+						set_variable = quinine_german_claim
+					}
+					every_state = {
+						limit = {
+							state_region = s:STATE_ZANZIBAR
+							owner = {
+								is_ai = yes
+								NOT = { is_country_type = decentralized }
+								NOT = { is_country_type = unrecognized }
+								NOR = {
+									THIS = ROOT
+									is_subject_of = ROOT
+								}
+							}
+						}
+						set_state_owner = ROOT
+					}
+				}
+			}
+		}
+		if = {
+			limit = { 
+				country_rank >= rank_value:major_power
+				NOT = { any_country = { has_variable = quinine_cameroon_claimant } }
+				OR = {
+					AND = {
+						exists = c:PRU
+						c:PRU = ROOT
+					}
+					AND = {
+						NOT = { exists = c:PRU }
+						exists = c:NGF
+						c:NGF = ROOT
+					}
+					AND = {
+						NOT = { exists = c:PRU }
+						NOT = { exists = c:NGF }
+						exists = c:GER
+						c:GER = ROOT
+					}
+				}
+			}
+			set_variable = quinine_cameroon_claimant
+			create_incident = { country = root value = 3 }
+			s:STATE_SOUTH_CAMEROON = { 
+				add_claim = ROOT 
+				set_variable = quinine_german_claim
+			}
+			every_state = {
+				limit = {
+					state_region = s:STATE_SOUTH_CAMEROON
+					owner = {
+						is_ai = yes
+						NOT = { is_country_type = decentralized }
+						NOT = { is_country_type = unrecognized }
+						NOR = {
+							THIS = ROOT
+							is_subject_of = ROOT
+						}
+					}
+				}
+				set_state_owner = ROOT
+			}
+		}
+		else_if = {
+			limit = {
+				country_rank >= rank_value:major_power 
+				NOT = { any_country = { has_variable = quinine_cameroon_claimant } }
+				NOT = {
+					any_country = {
+						country_rank >= rank_value:major_power 
+						OR = {
+							AND = {
+								exists = c:PRU
+								c:PRU = THIS
+							}
+							AND = {
+								NOT = { exists = c:PRU }
+								exists = c:NGF
+								c:NGF = THIS
+							}
+							AND = {
+								NOT = { exists = c:PRU }
+								NOT = { exists = c:NGF }
+								exists = c:GER
+								c:GER = THIS
+							}
+						}
+					}
+				}
+				NOT = {
+					any_country = {
+						any_scope_state = { state_region = s:STATE_SOUTH_CAMEROON }
+						OR = {
+							country_rank >= rank_value:major_power
+							any_overlord_or_above = { country_rank >= rank_value:major_power }
+						}
+					}
+				}
+			}
+			random_list = {
+				80 = {  }
+				20 = {
+					set_variable = quinine_cameroon_claimant
+					create_incident = { country = root value = 3 }
+					s:STATE_SOUTH_CAMEROON = { 
+						add_claim = ROOT 
+						set_variable = quinine_german_claim
+					}
+					every_state = {
+						limit = {
+							state_region = s:STATE_SOUTH_CAMEROON
+							owner = {
+								is_ai = yes
+								NOT = { is_country_type = decentralized }
+								NOT = { is_country_type = unrecognized }
+								NOR = {
+									THIS = ROOT
+									is_subject_of = ROOT
+								}
+							}
+						}
+						set_state_owner = ROOT
+					}
+				}
+			}
+		}
+		if = {
+			limit = { 
+				country_rank >= rank_value:major_power
+				OR = {
+					AND = {
+						exists = c:PRU
+						c:PRU = ROOT
+					}
+					AND = {
+						NOT = { exists = c:PRU }
+						exists = c:NGF
+						c:NGF = ROOT
+					}
+					AND = {
+						NOT = { exists = c:PRU }
+						NOT = { exists = c:NGF }
+						exists = c:GER
+						c:GER = ROOT
+					}
+				}
+			}
+			create_incident = { country = root value = 3 }
+			s:STATE_EASTERN_NEW_GUINEA = { 
+				add_claim = ROOT 
+				set_variable = quinine_german_claim
+			}
+			s:STATE_BOUGAINVILLE = { 
+				add_claim = ROOT 
+				set_variable = quinine_german_claim
+			}
+			every_state = {
+				limit = {
+					state_region = s:STATE_BOUGAINVILLE
+					owner = {
+						is_ai = yes
+						NOT = { is_country_type = decentralized }
+						NOT = { is_country_type = unrecognized }
+						NOR = {
+							THIS = ROOT
+							is_subject_of = ROOT
+						}
+					}
+				}
+				set_state_owner = ROOT
+			}
+		}
+		else_if = {
+			limit = {
+				country_rank >= rank_value:major_power 
+				NOT = {
+					any_country = {
+						country_rank >= rank_value:major_power 
+						OR = {
+							AND = {
+								exists = c:PRU
+								c:PRU = THIS
+							}
+							AND = {
+								NOT = { exists = c:PRU }
+								exists = c:NGF
+								c:NGF = THIS
+							}
+							AND = {
+								NOT = { exists = c:PRU }
+								NOT = { exists = c:NGF }
+								exists = c:GER
+								c:GER = THIS
+							}
+						}
+					}
+				}
+				NOT = {
+					any_country = {
+						OR = {
+							any_scope_state = { state_region = s:STATE_EASTERN_NEW_GUINEA }
+							any_scope_state = { state_region = s:STATE_BOUGAINVILLE }
+						}
+						OR = {
+							country_rank >= rank_value:major_power
+							any_overlord_or_above = { country_rank >= rank_value:major_power }
+						}
+					}
+				}
+			}
+			random_list = {
+				80 = {  }
+				20 = {
+					create_incident = { country = root value = 3 }
+					s:STATE_EASTERN_NEW_GUINEA = { 
+						add_claim = ROOT 
+						set_variable = quinine_german_claim
+					}
+					s:STATE_BOUGAINVILLE = { 
+						add_claim = ROOT 
+						set_variable = quinine_german_claim
+					}
+					every_state = {
+						limit = {
+							state_region = s:STATE_BOUGAINVILLE
+							owner = {
+								is_ai = yes
+								NOT = { is_country_type = decentralized }
+								NOT = { is_country_type = unrecognized }
+								NOR = {
+									THIS = ROOT
+									is_subject_of = ROOT
+								}
+							}
+						}
+						set_state_owner = ROOT
+					}
+				}
+			}
+		}
+
+		##### THESE CLAIMS SHOULD BE BRITISH #################
+		if = {
+			limit = { 
+				OR = {
+					AND = {
+						exists = c:ENG
+						c:ENG = ROOT
+					}
+					AND = {
+						NOT = { exists = c:ENG }
+						exists = c:GBR
+						c:GBR = ROOT
+					}
+				}
+				NOT = { any_country = { has_variable = quinine_ghana_claimant } }
+				country_rank >= rank_value:major_power 
+				OR = {
+					has_law = law_type:law_colonial_resettlement
+					has_law = law_type:law_colonial_exploitation
+				}
+				OR = {
+					any_scope_state = { state_region = s:STATE_GHANA }
+					NOT = {
+						any_country = {
+							NOT = { THIS = ROOT }
+							country_rank >= rank_value:major_power 
+							any_scope_state = { state_region = s:STATE_GHANA }
+							OR = {
+								has_law = law_type:law_colonial_resettlement
+								has_law = law_type:law_colonial_exploitation
+							}
+						}
+					}
+				}
+			}
+			set_variable = quinine_ghana_claimant
+			create_incident = { country = root value = 3 }
+			s:STATE_GHANA = { add_claim = ROOT }
+			every_state = {
+				limit = {
+					state_region = s:STATE_GHANA
+					owner = {
+						is_ai = yes
+						NOT = { is_country_type = decentralized }
+						NOT = { is_country_type = unrecognized }
+						NOR = {
+							THIS = ROOT
+							is_subject_of = ROOT
+						}
+					}
+				}
+				set_state_owner = ROOT
+			}
+		}
+		else_if = {
+			limit = {
+				country_rank >= rank_value:major_power 
+				any_scope_state = { state_region = s:STATE_GHANA }
+				NOT = { any_country = { has_variable = quinine_ghana_claimant } }
+				OR = {
+					AND = {
+						NOT = { exists = c:ENG }
+						NOT = { exists = c:GBR }
+					}
+					any_country = {
+						NOR = { any_scope_state = { state_region = s:STATE_GHANA } }
+						country_rank < rank_value:major_power
+						NOT = { THIS = ROOT }
+						OR = {
+							AND = {
+								exists = c:ENG
+								c:ENG = THIS
+							}
+							AND = {
+								NOT = { exists = c:ENG }
+								exists = c:GBR
+								c:GBR = THIS
+							}
+						}
+					}
+				}
+			}
+			set_variable = quinine_ghana_claimant
+			create_incident = { country = root value = 3 }
+			s:STATE_GHANA = { add_claim = ROOT }
+			every_state = {
+				limit = {
+					state_region = s:STATE_GHANA
+					owner = {
+						is_ai = yes
+						NOT = { is_country_type = decentralized }
+						NOT = { is_country_type = unrecognized }
+						NOR = {
+							THIS = ROOT
+							is_subject_of = ROOT
+						}
+					}
+				}
+				set_state_owner = ROOT
+			}
+		}
+		else_if = {
+			limit = {
+				country_rank >= rank_value:major_power 
+				NOT = { any_country = { has_variable = quinine_ghana_claimant } }
+				NOT = {
+					any_country = {
+						any_scope_state = { state_region = s:STATE_GHANA }
+						OR = {
+							country_rank >= rank_value:major_power
+							any_overlord_or_above = { country_rank >= rank_value:major_power }
+						}
+					}
+				}
+			}
+			random_list = {
+				80 = {  }
+				20 = {
+					set_variable = quinine_ghana_claimant
+					create_incident = { country = root value = 3 }
+					s:STATE_GHANA = { add_claim = ROOT }
+					every_state = {
+						limit = {
+							state_region = s:STATE_GHANA
+							owner = {
+								is_ai = yes
+								NOT = { is_country_type = decentralized }
+								NOT = { is_country_type = unrecognized }
+								NOR = {
+									THIS = ROOT
+									is_subject_of = ROOT
+								}
+							}
+						}
+						set_state_owner = ROOT
+					}
+				}
+			}
+		}
+		if = {
+			limit = { 
+				OR = {
+					AND = {
+						exists = c:ENG
+						c:ENG = ROOT
+					}
+					AND = {
+						NOT = { exists = c:ENG }
+						exists = c:GBR
+						c:GBR = ROOT
+					}
+				}
+				NOT = { any_country = { has_variable = quinine_nigeria_claimant } }
+				country_rank >= rank_value:major_power 
+				OR = {
+					has_law = law_type:law_colonial_resettlement
+					has_law = law_type:law_colonial_exploitation
+				}
+				OR = {
+					is_player = no
+					any_scope_state = { state_region = s:STATE_YORUBA_STATES }
+					any_scope_state = { state_region = s:STATE_BENIN }
+					any_scope_state = { state_region = s:STATE_HAUSALAND }
+					any_scope_state = { state_region = s:STATE_EAST_HAUSALAND }
+					any_scope_state = { state_region = s:STATE_NIGER_DELTA }
+					any_scope_state = { state_region = s:STATE_BORNU }
+					any_scope_state = { state_region = s:STATE_NIGERIA }
+					NOT = {
+						any_country = {
+							NOT = { THIS = ROOT }
+							country_rank >= rank_value:major_power 
+							OR = {
+								any_scope_state = { state_region = s:STATE_YORUBA_STATES }
+								any_scope_state = { state_region = s:STATE_BENIN }
+								any_scope_state = { state_region = s:STATE_HAUSALAND }
+								any_scope_state = { state_region = s:STATE_EAST_HAUSALAND }
+								any_scope_state = { state_region = s:STATE_NIGER_DELTA }
+								any_scope_state = { state_region = s:STATE_BORNU }
+								any_scope_state = { state_region = s:STATE_NIGERIA }
+							}
+							OR = {
+								has_law = law_type:law_colonial_resettlement
+								has_law = law_type:law_colonial_exploitation
+							}
+						}
+					}
+				}
+			}
+			set_variable = quinine_nigeria_claimant
+			create_incident = { country = root value = 6 }
+			s:STATE_YORUBA_STATES = { add_claim = ROOT }
+			s:STATE_BENIN = { add_claim = ROOT }
+			s:STATE_HAUSALAND = { add_claim = ROOT }
+			s:STATE_EAST_HAUSALAND = { add_claim = ROOT }
+			s:STATE_NIGER_DELTA = { add_claim = ROOT }
+			s:STATE_BORNU = { add_claim = ROOT }
+			s:STATE_NIGERIA = { add_claim = ROOT }
+			every_state = {
+				limit = {
+					OR = {
+						state_region = s:STATE_YORUBA_STATES
+						state_region = s:STATE_BENIN
+						state_region = s:STATE_HAUSALAND
+						state_region = s:STATE_EAST_HAUSALAND
+						state_region = s:STATE_NIGER_DELTA
+						state_region = s:STATE_BORNU
+						state_region = s:STATE_NIGERIA
+					}
+					owner = {
+						is_ai = yes
+						NOT = { is_country_type = decentralized }
+						NOT = { is_country_type = unrecognized }
+						NOR = {
+							THIS = ROOT
+							is_subject_of = ROOT
+						}
+					}
+				}
+				set_state_owner = ROOT
+			}
+		}
+		else_if = {
+			limit = {
+				country_rank >= rank_value:major_power 
+				NOT = { any_country = { has_variable = quinine_nigeria_claimant } }
+				OR = {
+					any_scope_state = { state_region = s:STATE_YORUBA_STATES }
+					any_scope_state = { state_region = s:STATE_BENIN }
+					any_scope_state = { state_region = s:STATE_HAUSALAND }
+					any_scope_state = { state_region = s:STATE_EAST_HAUSALAND }
+					any_scope_state = { state_region = s:STATE_NIGER_DELTA }
+					any_scope_state = { state_region = s:STATE_BORNU }
+					any_scope_state = { state_region = s:STATE_NIGERIA }
+				}
+				OR = {
+					AND = {
+						NOT = { exists = c:ENG }
+						NOT = { exists = c:GBR }
+					}
+					any_country = {
+						NOR = {
+							any_scope_state = { state_region = s:STATE_YORUBA_STATES }
+							any_scope_state = { state_region = s:STATE_BENIN }
+							any_scope_state = { state_region = s:STATE_HAUSALAND }
+							any_scope_state = { state_region = s:STATE_EAST_HAUSALAND }
+							any_scope_state = { state_region = s:STATE_NIGER_DELTA }
+							any_scope_state = { state_region = s:STATE_BORNU }
+							any_scope_state = { state_region = s:STATE_NIGERIA }
+						}
+						NOT = { THIS = ROOT }
+						country_rank < rank_value:major_power
+						OR = {
+							AND = {
+								exists = c:ENG
+								c:ENG = THIS
+							}
+							AND = {
+								NOT = { exists = c:ENG }
+								exists = c:GBR
+								c:GBR = THIS
+							}
+						}
+					}
+				}
+			}
+			set_variable = quinine_nigeria_claimant
+			create_incident = { country = root value = 6 }
+			s:STATE_YORUBA_STATES = { add_claim = ROOT }
+			s:STATE_BENIN = { add_claim = ROOT }
+			s:STATE_HAUSALAND = { add_claim = ROOT }
+			s:STATE_EAST_HAUSALAND = { add_claim = ROOT }
+			s:STATE_NIGER_DELTA = { add_claim = ROOT }
+			s:STATE_BORNU = { add_claim = ROOT }
+			s:STATE_NIGERIA = { add_claim = ROOT }
+			every_state = {
+				limit = {
+					OR = {
+						state_region = s:STATE_YORUBA_STATES
+						state_region = s:STATE_BENIN
+						state_region = s:STATE_HAUSALAND
+						state_region = s:STATE_EAST_HAUSALAND
+						state_region = s:STATE_NIGER_DELTA
+						state_region = s:STATE_BORNU
+						state_region = s:STATE_NIGERIA
+					}
+					owner = {
+						is_ai = yes
+						NOT = { is_country_type = decentralized }
+						NOT = { is_country_type = unrecognized }
+						NOR = {
+							THIS = ROOT
+							is_subject_of = ROOT
+						}
+					}
+				}
+				set_state_owner = ROOT
+			}
+		}
+		else_if = {
+			limit = {
+				country_rank >= rank_value:major_power 
+				NOT = { any_country = { has_variable = quinine_nigeria_claimant } }
+				NOT = {
+					any_country = {
+						OR = {
+							any_scope_state = { state_region = s:STATE_YORUBA_STATES }
+							any_scope_state = { state_region = s:STATE_BENIN }
+							any_scope_state = { state_region = s:STATE_HAUSALAND }
+							any_scope_state = { state_region = s:STATE_EAST_HAUSALAND }
+							any_scope_state = { state_region = s:STATE_NIGER_DELTA }
+							any_scope_state = { state_region = s:STATE_BORNU }
+							any_scope_state = { state_region = s:STATE_NIGERIA }
+						}
+						OR = {
+							country_rank >= rank_value:major_power
+							any_overlord_or_above = { country_rank >= rank_value:major_power }
+						}
+					}
+				}
+				OR = {
+					is_player = yes
+					trigger_if = {
+						limit = {
+							any_country = {
+								NOR = {
+									any_scope_state = { state_region = s:STATE_YORUBA_STATES }
+									any_scope_state = { state_region = s:STATE_BENIN }
+									any_scope_state = { state_region = s:STATE_HAUSALAND }
+									any_scope_state = { state_region = s:STATE_EAST_HAUSALAND }
+									any_scope_state = { state_region = s:STATE_NIGER_DELTA }
+									any_scope_state = { state_region = s:STATE_BORNU }
+									any_scope_state = { state_region = s:STATE_NIGERIA }
+								}
+								country_rank < rank_value:major_power
+								NOT = { THIS = ROOT }
+								OR = {
+									AND = {
+										exists = c:ENG
+										c:ENG = THIS
+									}
+									AND = {
+										NOT = { exists = c:ENG }
+										exists = c:GBR
+										c:GBR = THIS
+									}
+								}
+							}
+						}
+						any_country = {
+							has_variable = got_quinine_spread_event
+							NOR = {
+								any_scope_state = { state_region = s:STATE_YORUBA_STATES }
+								any_scope_state = { state_region = s:STATE_BENIN }
+								any_scope_state = { state_region = s:STATE_HAUSALAND }
+								any_scope_state = { state_region = s:STATE_EAST_HAUSALAND }
+								any_scope_state = { state_region = s:STATE_NIGER_DELTA }
+								any_scope_state = { state_region = s:STATE_BORNU }
+								any_scope_state = { state_region = s:STATE_NIGERIA }
+							}
+							country_rank < rank_value:major_power
+							NOT = { THIS = ROOT }
+							OR = {
+								AND = {
+									exists = c:ENG
+									c:ENG = THIS
+								}
+								AND = {
+									NOT = { exists = c:ENG }
+									exists = c:GBR
+									c:GBR = THIS
+								}
+							}
+						}
+					}
+				}
+			}
+			random_list = {
+				80 = {  }
+				20 = {
+					set_variable = quinine_nigeria_claimant
+					create_incident = { country = root value = 6 }
+					s:STATE_YORUBA_STATES = { add_claim = ROOT }
+					s:STATE_BENIN = { add_claim = ROOT }
+					s:STATE_HAUSALAND = { add_claim = ROOT }
+					s:STATE_EAST_HAUSALAND = { add_claim = ROOT }
+					s:STATE_NIGER_DELTA = { add_claim = ROOT }
+					s:STATE_BORNU = { add_claim = ROOT }
+					s:STATE_NIGERIA = { add_claim = ROOT }
+					every_state = {
+						limit = {
+							OR = {
+								state_region = s:STATE_YORUBA_STATES
+								state_region = s:STATE_BENIN
+								state_region = s:STATE_HAUSALAND
+								state_region = s:STATE_EAST_HAUSALAND
+								state_region = s:STATE_NIGER_DELTA
+								state_region = s:STATE_BORNU
+								state_region = s:STATE_NIGERIA
+							}
+							owner = {
+								is_ai = yes
+								NOT = { is_country_type = decentralized }
+								NOT = { is_country_type = unrecognized }
+								NOR = {
+									THIS = ROOT
+									is_subject_of = ROOT
+								}
+							}
+						}
+						set_state_owner = ROOT
+					}
+				}
+			}
+		}
+		if = {
+			limit = { 
+				OR = {
+					AND = {
+						exists = c:ENG
+						c:ENG = ROOT
+					}
+					AND = {
+						NOT = { exists = c:ENG }
+						exists = c:GBR
+						c:GBR = ROOT
+					}
+				}
+				country_rank >= rank_value:major_power 
+				NOT = { any_country = { has_variable = quinine_kenya_claimant } }
+				OR = {
+					has_law = law_type:law_colonial_resettlement
+					has_law = law_type:law_colonial_exploitation
+				}
+				OR = {
+					any_scope_state = { state_region = s:STATE_KENYA }
+					NOT = {
+						any_country = {
+							NOT = { THIS = ROOT }
+							country_rank >= rank_value:major_power 
+							any_scope_state = { state_region = s:STATE_KENYA }
+							OR = {
+								has_law = law_type:law_colonial_resettlement
+								has_law = law_type:law_colonial_exploitation
+							}
+						}
+					}
+				}
+			}
+			set_variable = quinine_kenya_claimant
+			create_incident = { country = root value = 3 }
+			s:STATE_KENYA = { add_claim = ROOT }
+			every_state = {
+				limit = {
+					state_region = s:STATE_KENYA
+					owner = {
+						is_ai = yes
+						NOT = { is_country_type = decentralized }
+						NOT = { is_country_type = unrecognized }
+						NOR = {
+							THIS = ROOT
+							is_subject_of = ROOT
+						}
+					}
+				}
+				set_state_owner = ROOT
+			}
+		}
+		else_if = {
+			limit = {
+				country_rank >= rank_value:major_power 
+				any_scope_state = { state_region = s:STATE_KENYA }
+				NOT = { any_country = { has_variable = quinine_kenya_claimant } }
+				OR = {
+					AND = {
+						NOT = { exists = c:ENG }
+						NOT = { exists = c:GBR }
+					}
+					any_country = {
+						NOR = { any_scope_state = { state_region = s:STATE_KENYA } }
+						country_rank < rank_value:major_power
+						NOT = { THIS = ROOT }
+						OR = {
+							AND = {
+								exists = c:ENG
+								c:ENG = THIS
+							}
+							AND = {
+								NOT = { exists = c:ENG }
+								exists = c:GBR
+								c:GBR = THIS
+							}
+						}
+					}
+				}
+			}
+			set_variable = quinine_kenya_claimant
+			create_incident = { country = root value = 3 }
+			s:STATE_KENYA = { add_claim = ROOT }
+			every_state = {
+				limit = {
+					state_region = s:STATE_KENYA
+					owner = {
+						is_ai = yes
+						NOT = { is_country_type = decentralized }
+						NOT = { is_country_type = unrecognized }
+						NOR = {
+							THIS = ROOT
+							is_subject_of = ROOT
+						}
+					}
+				}
+				set_state_owner = ROOT
+			}
+		}
+		else_if = {
+			limit = {
+				country_rank >= rank_value:major_power 
+				NOT = { any_country = { has_variable = quinine_kenya_claimant } }
+				NOT = {
+					any_country = {
+						any_scope_state = { state_region = s:STATE_KENYA }
+						OR = {
+							country_rank >= rank_value:major_power
+							any_overlord_or_above = { country_rank >= rank_value:major_power }
+						}
+					}
+				}
+				OR = {
+					is_player = yes
+					trigger_if = {
+						limit = {
+							any_country = {
+								NOR = { any_scope_state = { state_region = s:STATE_KENYA } }
+								country_rank < rank_value:major_power
+								NOT = { THIS = ROOT }
+								OR = {
+									AND = {
+										exists = c:ENG
+										c:ENG = THIS
+									}
+									AND = {
+										NOT = { exists = c:ENG }
+										exists = c:GBR
+										c:GBR = THIS
+									}
+								}
+							}
+						}
+						any_country = {
+							has_variable = got_quinine_spread_event
+							NOR = { any_scope_state = { state_region = s:STATE_KENYA } }
+							country_rank < rank_value:major_power
+							NOT = { THIS = ROOT }
+							OR = {
+								AND = {
+									exists = c:ENG
+									c:ENG = THIS
+								}
+								AND = {
+									NOT = { exists = c:ENG }
+									exists = c:GBR
+									c:GBR = THIS
+								}
+							}
+						}
+					}
+				}
+			}
+			random_list = {
+				80 = {  }
+				20 = {
+					set_variable = quinine_kenya_claimant
+					create_incident = { country = root value = 3 }
+					s:STATE_KENYA = { add_claim = ROOT }
+					every_state = {
+						limit = {
+							state_region = s:STATE_KENYA
+							owner = {
+								is_ai = yes
+								NOT = { is_country_type = decentralized }
+								NOT = { is_country_type = unrecognized }
+								NOR = {
+									THIS = ROOT
+									is_subject_of = ROOT
+								}
+							}
+						}
+						set_state_owner = ROOT
+					}
+				}
+			}
+		}
+
+		##### THESE CLAIMS SHOULD BE SOUTH AFRICAN #################
+		if = {
+			limit = {
+				NOT = { any_country = { has_variable = quinine_cape_claimant } }
+				OR = {
+					any_scope_state = { state_region = s:STATE_CAPE_COLONY }
+					any_scope_state = { state_region = s:STATE_EASTERN_CAPE }
+					any_scope_state = { state_region = s:STATE_NORTHERN_CAPE }
+				}
+			}
+			set_variable = quinine_cape_claimant
+			create_incident = { country = root value = 6 }
+			s:STATE_CAPE_COLONY = { add_claim = ROOT }
+			s:STATE_EASTERN_CAPE = { add_claim = ROOT }
+			s:STATE_NORTHERN_CAPE = { add_claim = ROOT }
+			s:STATE_TRANSVAAL = { add_claim = ROOT }
+			s:STATE_VRYSTAAT = { add_claim = ROOT }
+			s:STATE_ZULULAND = { add_claim = ROOT }
+		}
+		else_if = {
+			limit = {
+				country_rank >= rank_value:major_power
+				NOT = { any_country = { has_variable = quinine_cape_claimant } }
+				OR = {
+					has_law = law_type:law_colonial_resettlement
+					has_law = law_type:law_colonial_exploitation
+				}
+				NOT = {
+					any_country = {
+						OR = {
+							country_rank >= rank_value:major_power
+							any_overlord_or_above = { country_rank >= rank_value:major_power }
+						}
+						OR = {
+							any_scope_state = { state_region = s:STATE_CAPE_COLONY }
+							any_scope_state = { state_region = s:STATE_EASTERN_CAPE }
+							any_scope_state = { state_region = s:STATE_NORTHERN_CAPE }
+						}
+					}
+				}
+			}
+			random_list = {
+				80 = {  }
+				20 = {
+					set_variable = quinine_cape_claimant
+					create_incident = { country = root value = 6 }
+					s:STATE_CAPE_COLONY = { add_claim = ROOT }
+					s:STATE_EASTERN_CAPE = { add_claim = ROOT }
+					s:STATE_NORTHERN_CAPE = { add_claim = ROOT }
+					s:STATE_TRANSVAAL = { add_claim = ROOT }
+					s:STATE_VRYSTAAT = { add_claim = ROOT }
+					s:STATE_ZULULAND = { add_claim = ROOT }
+				}
+			}
+		}
+
+		##### THESE CLAIMS SHOULD BE AUSTRALIAN #################
+		if = {
+			limit = {
+				any_scope_state = { state_region = s:STATE_QUEENSLAND }
+			}
+			create_incident = { country = root value = 3 }
+			s:STATE_EASTERN_NEW_GUINEA = { 
+				add_claim = ROOT 
+				set_variable = quinine_australian_claim
+			}
+		}
+		else_if = {
+			limit = {
+				country_rank >= rank_value:major_power
+				OR = {
+					has_law = law_type:law_colonial_resettlement
+					has_law = law_type:law_colonial_exploitation
+				}
+				NOT = {
+					any_country = {
+						any_scope_state = { state_region = s:STATE_QUEENSLAND }
+						OR = {
+							country_rank >= rank_value:major_power
+							any_overlord_or_above = { country_rank >= rank_value:major_power }
+						}
+					}
+				}
+			}
+			random_list = {
+				80 = {  }
+				20 = {
+					create_incident = { country = root value = 3 }
+					s:STATE_EASTERN_NEW_GUINEA = { add_claim = ROOT }
+				}
+			}
+		}
+
+		ai_chance = 100
+	}
+}
+
+HJE_main.3 = { #Spreads Malaria Prevention sooner once one power has it
+	type = country_event
+	placement = scope:malaria_preventionbreakthrough_scope
+	title = HJE_main.3.t
+	desc = HJE_main.3.d
+	flavor = HJE_main.3.f
+
+	duration = 3
+
+    event_image = {
+		video = "gfx/event_pictures/unspecific_sick_in_hospital.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/rich_and_poor"
+
+	icon = "gfx/interface/icons/event_icons/event_default.dds"
+
+	trigger = {
+		NOT = { has_variable = got_malaria_prevention_spread_event }
+		NOT = { has_technology_researched = malaria_prevention }
+		any_country = {
+			country_rank >= rank_value:major_power
+			has_technology_researched = malaria_prevention
+		}
+		OR = {
+			country_rank >= rank_value:major_power
+			any_overlord_or_above = { country_rank >= rank_value:major_power }
+		}
+	}
+	
+	immediate = {
+		set_variable = got_malaria_prevention_spread_event
+		random_country = {
+			limit = {
+				country_rank >= rank_value:major_power
+				has_technology_researched = malaria_prevention
+			}
+			save_scope_as = malaria_preventionbreakthrough_scope
+		}
+	}
+
+	option = {
+		name = HJE_main.3.a
+		default_option = yes	
+	
+		add_technology_progress = { 
+			progress = 2000 
+			technology = malaria_prevention 
+		}
+
+		ai_chance = 100
+	}
+}
+
+HJE_main.4 = { #Spreads Multilateral Alliances sooner once one power has it
+	type = country_event
+	placement = scope:lategamealliancebreakthrough_scope
+	title = HJE_main.4.t
+	desc = HJE_main.4.d
+	flavor = HJE_main.4.f
+
+	duration = 3
+
+	event_image = {
+		video = "gfx/event_pictures/unspecific_signed_contract.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/rich_and_poor"
+
+	icon = "gfx/interface/icons/event_icons/event_default.dds"
+
+	trigger = {
+		country_rank >= rank_value:major_power
+		NOT = { has_technology_researched = multilateral_alliances }
+		NOT = { has_variable = got_malaria_prevention_spread_event }
+		any_country = {
+			country_rank >= rank_value:major_power
+			has_technology_researched = multilateral_alliances
+		}
+	}
+	
+	immediate = {
+		set_variable = got_malaria_prevention_spread_event
+		random_country = {
+			limit = {
+				country_rank >= rank_value:major_power
+				has_technology_researched = multilateral_alliances
+			}
+			save_scope_as = lategamealliancebreakthrough_scope
+		}
+	}
+
+	option = {
+		name = HJE_main.4.a
+		default_option = yes	
+	
+		add_technology_progress = { 
+			progress = 2000 
+			technology = multilateral_alliances 
+		}
+
+		ai_chance = 100
+	}
+}

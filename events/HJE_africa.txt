@@ -1,0 +1,3753 @@
+﻿namespace = HJE_mideast
+
+HJE_mideast.1 = {
+	type = country_event
+	placement = ROOT
+	title = HJE_mideast.1.t
+	flavor = HJE_mideast.1.f
+	desc = HJE_mideast.1.d
+
+	duration = 3
+
+	is_popup = yes
+
+	event_image = {
+		video = "gfx/event_pictures/unspecific_politicians_arguing.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/before_the_battle"
+
+	icon = "gfx/interface/icons/event_icons/event_map.dds"
+
+	trigger = {
+	}
+	
+	immediate = {
+		s:STATE_LOWER_EGYPT = { 
+			region_state:EGY={
+				remove_building = building_naval_base 
+			}
+		}
+		s:STATE_EASTERN_THRACE={
+			region_state:TUR={
+				create_building={
+					building="building_naval_base"
+					level=20
+					reserves=1
+					activate_production_methods={ "pm_no_naval_theory" }
+				}
+			}
+		}
+		s:STATE_HUDAVENDIGAR={
+			region_state:TUR={
+				create_building={
+					building="building_naval_base"
+					level=20
+					reserves=1
+					activate_production_methods={ "pm_no_naval_theory" }
+				}
+			}
+		}
+		if = {
+			limit = {
+				s:STATE_CRETE = {
+					any_scope_state = { owner = c:EGY }
+				}
+			}
+			s:STATE_CRETE.region_state:EGY = { set_state_owner = c:TUR }
+		}
+		s:STATE_CRETE = { remove_claim = ROOT }
+		if = {
+			limit = {
+				s:STATE_ADANA = {
+					any_scope_state = { owner = c:EGY }
+				}
+			}
+			s:STATE_ADANA.region_state:EGY = { set_state_owner = c:TUR }
+		}
+		s:STATE_ADANA = { remove_claim = ROOT }
+		if = {
+			limit = {
+				s:STATE_ALEPPO = {
+					any_scope_state = { owner = c:EGY }
+				}
+			}
+			s:STATE_ALEPPO.region_state:EGY = { set_state_owner = c:TUR }
+		}
+		s:STATE_ALEPPO = { remove_claim = ROOT }
+		if = {
+			limit = {
+				s:STATE_SYRIA = {
+					any_scope_state = { owner = c:EGY }
+				}
+			}
+			s:STATE_SYRIA.region_state:EGY = { set_state_owner = c:TUR }
+		}
+		s:STATE_SYRIA = { remove_claim = ROOT }
+		if = {
+			limit = {
+				s:STATE_LEBANON = {
+					any_scope_state = { owner = c:EGY }
+				}
+			}
+			s:STATE_LEBANON.region_state:EGY = { set_state_owner = c:TUR }
+		}
+		s:STATE_LEBANON = { remove_claim = ROOT }
+		if = {
+			limit = {
+				s:STATE_TRANSJORDAN = {
+					any_scope_state = { owner = c:EGY }
+				}
+			}
+			s:STATE_TRANSJORDAN.region_state:EGY = { set_state_owner = c:TUR }
+		}
+		s:STATE_TRANSJORDAN = { remove_claim = ROOT }
+		if = {
+			limit = {
+				s:STATE_PALESTINE = {
+					any_scope_state = { owner = c:EGY }
+				}
+			}
+			s:STATE_PALESTINE.region_state:EGY = { set_state_owner = c:TUR }
+		}
+		s:STATE_PALESTINE = { remove_claim = ROOT }
+		if = {
+			limit = {
+				exists = c:HDJ
+				c:HDJ = { is_subject_of = ROOT }
+			}
+			c:TUR = {
+				create_diplomatic_pact = {
+					country = c:HDJ
+					type = dominion
+				}
+			}
+		}
+	}
+
+	option = {
+		name = HJE_mideast.1.a
+		default_option = yes
+		ai_chance = {
+			base = 1
+		}
+
+		c:TUR = {
+			create_diplomatic_pact = {
+				country = ROOT
+				type = protectorate
+			}
+		}
+	}
+
+	option = {
+		name = HJE_mideast.1.b
+		ai_chance = {
+			base = 0
+		}
+	
+		create_incident = { country = root value = 100 }
+	}		
+}
+
+HJE_mideast.2 = {			 #(Insert Tea-Drinking Empire here) offers to build the Suez Canal for you!
+	type = country_event
+	placement = scope:gp_suez_scope
+	title = HJE_mideast.2.t
+	flavor = HJE_mideast.2.f
+	desc = HJE_mideast.2.d
+
+	duration = 5
+
+	event_image = {
+		video = "gfx/event_pictures/africa_desert_expedition.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/africa/desert_expedition"
+
+	icon = "gfx/interface/icons/event_icons/event_map.dds"
+
+	trigger = {
+	}
+	
+	immediate = {
+		set_variable = is_original_owner_of_suez
+		random_country = {
+			limit = { has_variable = GP_offering_to_build_suez_canal }
+			save_scope_as = gp_suez_scope
+		}
+	}
+
+	option = {
+		name = HJE_mideast.2.a
+		default_option = yes
+		ai_chance = {
+			base = 9
+			modifier = {
+				factor = 0.1
+				exists = c:GBR
+				NOT = { scope:gp_suez_scope = c:GBR }
+			}
+			modifier = {
+				factor = 0
+				OR = {
+					has_variable = survey_suez_taken 
+					has_variable = suez_survey_complete
+				}
+			}
+		}
+
+		scope:gp_suez_scope = {
+			add_journal_entry = { type = HJ_suez_canal_lease }
+			change_relations = {
+				country = ROOT
+				value = 25
+			}
+		}
+		change_relations = {
+			country = scope:gp_suez_scope
+			value = 75
+		}
+		s:STATE_SINAI = {
+			set_owner_of_provinces = {
+				country = scope:gp_suez_scope
+				provinces = {
+					xC01060
+					x8ED45E
+				}
+			}
+		}
+		hidden_effect ={
+			scope:gp_suez_scope = {
+				random_scope_state = {
+					limit = { state_region = s:STATE_SINAI }
+					save_scope_as = gp_suez_occupied_canal_scope
+				}
+			}
+			if = {
+				limit = {
+					scope:gp_suez_occupied_canal_scope = {
+						NOT = { has_building = building_port }
+					}
+				}
+				scope:gp_suez_occupied_canal_scope = {
+					create_building={
+						building="building_port"
+						level=2
+						reserves=1
+						activate_production_methods={ "pm_basic_port" }
+					}
+				}
+			}
+			if = {
+				limit = {
+					scope:gp_suez_occupied_canal_scope = {
+						state_population < 25000
+					}
+				}
+				scope:gp_suez_occupied_canal_scope = {
+					create_pop = {
+						pop_type = capitalists
+						culture = misri
+						size = 100
+					}
+					create_pop = {
+						pop_type = capitalists
+						culture = north_italian
+						size = 200
+					}
+					create_pop = {
+						pop_type = clerks
+						culture = misri
+						size = 500
+					}
+					create_pop = {
+						pop_type = clerks
+						culture = north_italian
+						size = 500
+					}
+					create_pop = {
+						pop_type = machinists
+						culture = misri
+						size = 1000
+					}
+					create_pop = {
+						pop_type = machinists
+						culture = north_italian
+						size = 500
+					}
+				}
+			}
+		}
+	}
+
+	option = {
+		name = HJE_mideast.2.b
+		ai_chance = 1
+		add_modifier = {
+			name = withdrew_from_colonial_incident
+			months = short_modifier_time
+		}
+		scope:gp_suez_scope = {
+			remove_variable = GP_offering_to_build_suez_canal
+			if = {
+				limit = { is_player = no NOT = { has_variable = already_asked_bint_to_bend_over } }
+				set_variable = { 
+					name = already_asked_bint_to_bend_over 
+					days = 730
+				}
+			}
+		}
+	}		
+}
+
+HJE_mideast.3 = {			 #Anglo-Egyptian War
+	type = country_event
+	placement = scope:EGY_anglo_egyptian_victim
+	title = HJE_mideast.3.t
+	flavor = HJE_mideast.3.f
+	desc = HJE_mideast.3.d
+
+	duration = 3
+
+	is_popup = yes
+
+	event_image = {
+		video = "gfx/event_pictures/middleeast_battlefield_trenches.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/before_the_battle"
+
+	icon = "gfx/interface/icons/event_icons/event_map.dds"
+
+	trigger = {
+	}
+	
+	immediate = {
+		save_scope_as = GBR_anglo_egyptian_colonizer
+		random_country = {
+			limit = { has_variable = EGY_wheres_my_money_bitch }
+			remove_variable = EGY_wheres_my_money_bitch
+			save_scope_as = EGY_anglo_egyptian_victim
+		}
+		scope:EGY_anglo_egyptian_victim = {
+			make_independent = yes
+			random_scope_state = {
+				limit = { state_region = s:STATE_SINAI }
+				save_scope_as = EGY_anglo_egyptian_suez_state
+			}
+		}
+	}
+
+	option = {
+		name = HJE_mideast.3.a
+		default_option = yes
+		ai_chance = 100
+		
+		create_diplomatic_play = {
+            target_country = scope:EGY_anglo_egyptian_victim
+            type = dp_make_protectorate
+			war = no
+			add_war_goal = {
+				holder = ROOT
+				type = conquer_state
+				target_state = scope:EGY_anglo_egyptian_suez_state
+				primary_demand = yes
+			}
+		}
+	}
+
+	option = {
+		name = HJE_mideast.3.b
+		ai_chance = 0
+		add_modifier = {
+			name = withdrew_from_colonial_incident
+			months = long_modifier_time
+		}
+	}		
+}
+
+namespace = HJE_colonial
+
+HJE_colonial.1 = { 			### ATTENDING THE BERLIN CONFERENCE? ###
+	type = country_event
+	placement = scope:berlin_conference_host_scope
+	title = HJE_colonial.1.t
+	desc = HJE_colonial.1.d
+	flavor = HJE_colonial.1.f
+
+	duration = 3
+
+ 
+	event_image = {
+		video = "gfx/event_pictures/europenorthamerica_capitalists_meeting.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/capitalists_meeting"
+
+	icon = "gfx/interface/icons/event_icons/event_map.dds"
+	
+	trigger = {
+	}
+	
+	immediate = {
+		random_country = {
+			limit = { has_variable = berlin_conference_host }
+			save_scope_as = berlin_conference_host_scope
+		}
+	}
+
+	option = {
+		name = HJE_colonial.1.a
+		default_option = yes
+	
+		set_variable = SFA_attended_berlin_conference
+		if = {
+			limit = {
+				is_ai = yes
+				has_law = law_type:law_no_colonial_affairs
+			}
+			activate_law = law_type:law_colonial_exploitation
+		}
+
+		ai_chance = 100
+	}
+
+	option = {
+		name = HJE_colonial.1.b
+
+		set_variable = SFA_did_not_attend_berlin_conference
+
+		ai_chance = 0
+	}		
+}
+
+HJE_colonial.1001 = { 			### END OF THE BERLIN CONFERENCE ###
+	type = country_event
+	placement = scope:berlin_conference_host_scope
+	title = HJE_colonial.1001.t
+	desc = HJE_colonial.1001.d
+	flavor = HJE_colonial.1001.f
+
+	duration = 3
+ 
+	event_image = {
+		video = "gfx/event_pictures/europenorthamerica_capitalists_meeting.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/capitalists_meeting"
+
+	icon = "gfx/interface/icons/event_icons/event_map.dds"
+	
+	trigger = {
+		has_global_variable = berlin_conference_happened
+		has_variable = SFA_attended_berlin_conference
+		NOT = { has_global_variable = berlin_conference_ongoing }
+		NOT = { has_variable = SFA_got_last_conference_event }
+	}
+	
+	immediate = {
+		random_country = {
+			limit = { has_variable = berlin_conference_host }
+			save_scope_as = berlin_conference_host_scope
+		}
+	}
+
+	option = {
+		name = HJE_colonial.1001.a
+		default_option = yes
+
+		set_variable = SFA_got_last_conference_event
+	
+		ai_chance = 100
+	}	
+}
+
+HJE_colonial.2 = { 			### SOUTH AFRICA (IF IT'S NOT COLONIZED ALREADY) ###
+	type = country_event
+	placement = scope:berlin_conference_host_scope
+	title = HJE_colonial.2.t
+	desc = HJE_colonial.2.d
+	flavor = HJE_colonial.2.f
+
+	duration = 3
+
+	cooldown = { months = 360 }
+ 
+	event_image = {
+		video = "gfx/event_pictures/unspecific_signed_contract.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/rich_and_poor"
+
+	icon = "gfx/interface/icons/event_icons/event_default.dds"
+
+	trigger = {
+		has_global_variable = berlin_conference_ongoing
+		has_global_variable = berlin_conference_happened
+		NOT = { has_global_variable = sfa_cape_claimed }
+		OR = {
+			AND = {
+				any_state = {
+					owner = {
+						OR = {
+							this = ROOT
+							is_subject_of = ROOT
+						}
+					}
+					OR = {
+						state_region = s:STATE_CAPE_COLONY
+						state_region = s:STATE_EASTERN_CAPE
+						state_region = s:STATE_NORTHERN_CAPE
+						state_region = s:STATE_TRANSVAAL
+						state_region = s:STATE_VRYSTAAT
+						state_region = s:STATE_ZULULAND
+					}
+				}
+				NOT = {
+					any_state = {
+						owner = {
+							has_variable = quinine_cape_claimant
+							OR = {
+								this = ROOT
+								is_subject_of = ROOT
+							}
+						}
+						OR = {
+							state_region = s:STATE_CAPE_COLONY
+							state_region = s:STATE_EASTERN_CAPE
+							state_region = s:STATE_NORTHERN_CAPE
+							state_region = s:STATE_TRANSVAAL
+							state_region = s:STATE_VRYSTAAT
+							state_region = s:STATE_ZULULAND
+						}
+					}
+				}
+			}
+			AND = {
+				country_rank = rank_value:great_power
+				NOT = {
+					any_state = {
+						owner = {
+							OR = {
+								has_variable = SFA_attended_berlin_conference
+								any_overlord_or_above = { has_variable = SFA_attended_berlin_conference }
+							}
+						}
+						OR = {
+							state_region = s:STATE_CAPE_COLONY
+							state_region = s:STATE_EASTERN_CAPE
+							state_region = s:STATE_NORTHERN_CAPE
+							state_region = s:STATE_TRANSVAAL
+							state_region = s:STATE_VRYSTAAT
+							state_region = s:STATE_ZULULAND
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	immediate = {
+		if = {
+			limit = { NOT = { has_global_variable = sfa_cape_claimed } }
+			set_global_variable = sfa_cape_claimed
+		}
+		random_country = {
+			limit = { has_variable = berlin_conference_host }
+			save_scope_as = berlin_conference_host_scope
+		}
+	}
+
+	option = {
+		name = HJE_colonial.2.a
+		default_option = yes
+	
+		create_incident = { country = root value = 7 }
+
+		s:STATE_CAPE_COLONY = { add_claim = ROOT }
+		s:STATE_EASTERN_CAPE = { add_claim = ROOT }
+		s:STATE_NORTHERN_CAPE = { add_claim = ROOT }
+		s:STATE_TRANSVAAL = { add_claim = ROOT }
+		s:STATE_VRYSTAAT = { add_claim = ROOT }
+		s:STATE_ZULULAND = { add_claim = ROOT }
+
+		ai_chance = 100
+	}	
+
+	option = {
+		name = HJE_colonial.2.b
+		if = {
+			limit = { has_global_variable = sfa_cape_claimed }
+			remove_global_variable = sfa_cape_claimed
+		}
+	}		
+}
+
+HJE_colonial.3 = { 			### ANGOLA (IF IT'S NOT COLONIZED ALREADY) ###
+	type = country_event
+	placement = scope:berlin_conference_host_scope
+	title = HJE_colonial.3.t
+	desc = HJE_colonial.3.d
+	flavor = HJE_colonial.3.f
+
+	duration = 3
+
+	cooldown = { months = 360 }
+
+	event_image = {
+		video = "gfx/event_pictures/unspecific_signed_contract.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/rich_and_poor"
+
+	icon = "gfx/interface/icons/event_icons/event_default.dds"
+
+	trigger = {
+		has_global_variable = berlin_conference_ongoing
+		has_global_variable = berlin_conference_happened
+		NOT = { has_global_variable = sfa_angola_claimed }
+		OR = {
+			any_state = {
+				owner = {
+					OR = {
+						this = ROOT
+						is_subject_of = ROOT
+					}
+				}
+				OR = {
+					state_region = s:STATE_NORTH_ANGOLA
+					state_region = s:STATE_SOUTH_ANGOLA
+					state_region = s:STATE_EAST_ANGOLA
+				}
+			}
+			NOT = {
+				any_state = {
+					owner = {
+						OR = {
+							has_variable = SFA_attended_berlin_conference
+							any_overlord_or_above = { has_variable = SFA_attended_berlin_conference }
+						}
+					}
+					OR = {
+						state_region = s:STATE_NORTH_ANGOLA
+						state_region = s:STATE_SOUTH_ANGOLA
+						state_region = s:STATE_EAST_ANGOLA
+					}
+				}
+			}
+		}
+	}
+	
+	immediate = {
+		if = {
+			limit = { NOT = { has_global_variable = sfa_angola_claimed } }
+			set_global_variable = sfa_angola_claimed
+		}
+		random_country = {
+			limit = { has_variable = berlin_conference_host }
+			save_scope_as = berlin_conference_host_scope
+		}
+	}
+
+	option = {
+		name = HJE_colonial.3.a
+		default_option = yes
+
+		create_incident = { country = root value = 5 }
+
+		s:STATE_NORTH_ANGOLA = { add_claim = ROOT }
+		s:STATE_SOUTH_ANGOLA = { add_claim = ROOT }
+		s:STATE_EAST_ANGOLA = { add_claim = ROOT }
+
+		ai_chance = 100
+	}	
+
+	option = {
+		name = HJE_colonial.3.b
+		if = {
+			limit = { has_global_variable = sfa_angola_claimed }
+			remove_global_variable = sfa_angola_claimed
+		}
+	}		
+}
+
+HJE_colonial.4 = { 			### BOTSWANA, ZAMBIA, ###
+	type = country_event
+	placement = scope:berlin_conference_host_scope
+	title = HJE_colonial.4.t
+	desc = HJE_colonial.4.d
+	flavor = HJE_colonial.4.f
+
+	duration = 3
+
+	cooldown = { months = 360 }
+ 
+	event_image = {
+		video = "gfx/event_pictures/unspecific_signed_contract.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/rich_and_poor"
+
+	icon = "gfx/interface/icons/event_icons/event_default.dds"
+
+	trigger = {
+		has_global_variable = berlin_conference_ongoing
+		has_global_variable = berlin_conference_happened
+		NOT = { has_variable = sfa_got_botswana_claim }
+		any_state = {
+			owner = {
+				OR = {
+					this = ROOT
+					is_subject_of = ROOT
+				}
+			}
+			OR = {
+				state_region = s:STATE_NORTHERN_CAPE
+				state_region = s:STATE_LOURENCO_MARQUES
+				state_region = s:STATE_EAST_ANGOLA
+			}
+		}
+	}
+	
+	immediate = {
+		random_country = {
+			limit = { has_variable = berlin_conference_host }
+			save_scope_as = berlin_conference_host_scope
+		}
+	}
+
+	option = {
+		name = HJE_colonial.4.a
+		default_option = yes
+	
+		set_variable = sfa_got_botswana_claim
+		create_incident = { country = root value = 5 }
+
+		s:STATE_ZAMBEZI = { add_claim = ROOT }
+		s:STATE_KAZEMBE = { add_claim = ROOT }
+		s:STATE_BOTSWANA = { add_claim = ROOT }
+		s:STATE_ZAMBIA = { add_claim = ROOT }
+		if = {
+			limit = {
+				any_state = {
+					state_region = s:STATE_NORTHERN_CAPE
+					owner = {
+						OR = {
+							this = ROOT
+							is_subject_of = ROOT
+						}
+					}
+				}
+				NOT = {
+					any_scope_state = {
+						OR = {
+							state_region = s:STATE_ZAMBEZI
+							state_region = s:STATE_KAZEMBE
+							state_region = s:STATE_BOTSWANA
+							state_region = s:STATE_ZAMBIA
+						}
+					}
+				}
+			}
+			every_state = {
+				limit = { 
+					state_region = s:STATE_BOTSWANA
+					owner = {
+						NOT = { is_country_type = decentralized }
+						NOT = { is_country_type = unrecognized }
+						OR = {
+							has_variable = SFA_attended_berlin_conference
+							any_overlord_or_above = { has_variable = SFA_attended_berlin_conference }
+						}
+					}
+				}
+				set_state_owner = ROOT
+			}
+		}
+		if = {
+			limit = {
+				any_state = {
+					state_region = s:STATE_LOURENCO_MARQUES
+					owner = {
+						OR = {
+							this = ROOT
+							is_subject_of = ROOT
+						}
+					}
+				}
+				any_state = {
+					state_region = s:STATE_EAST_ANGOLA
+					owner = {
+						OR = {
+							this = ROOT
+							is_subject_of = ROOT
+						}
+					}
+				}
+				NOT = {
+					any_scope_state = {
+						OR = {
+							state_region = s:STATE_ZAMBEZI
+							state_region = s:STATE_KAZEMBE
+							state_region = s:STATE_BOTSWANA
+							state_region = s:STATE_ZAMBIA
+						}
+					}
+				}
+			}
+			every_state = {
+				limit = { 
+					state_region = s:STATE_ZAMBIA
+					owner = {
+						NOT = { is_country_type = decentralized }
+						NOT = { is_country_type = unrecognized }
+						OR = {
+							has_variable = SFA_attended_berlin_conference
+							any_overlord_or_above = { has_variable = SFA_attended_berlin_conference }
+						}
+					}
+				}
+				set_state_owner = ROOT
+			}
+		}
+
+		ai_chance = 100
+	}	
+
+	option = {
+		name = HJE_colonial.4.b
+	}		
+}
+
+HJE_colonial.5 = { 			### NAMIBIA ###
+	type = country_event
+	placement = scope:berlin_conference_host_scope
+	title = HJE_colonial.5.t
+	desc = HJE_colonial.5.d
+	flavor = HJE_colonial.5.f
+
+	duration = 3
+
+	cooldown = { months = 360 }
+ 
+	event_image = {
+		video = "gfx/event_pictures/unspecific_signed_contract.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/rich_and_poor"
+
+	icon = "gfx/interface/icons/event_icons/event_default.dds"
+
+	trigger = {
+		has_global_variable = berlin_conference_ongoing
+		has_global_variable = berlin_conference_happened
+		NOT = { has_global_variable = sfa_namibia_claimed }
+		OR = {
+			AND = {
+				exists = c:PRU
+				c:PRU = ROOT
+			}
+			AND = {
+				NOT = { exists = c:PRU }
+				exists = c:NGF
+				c:NGF = ROOT
+			}
+			AND = {
+				NOT = { exists = c:PRU }
+				NOT = { exists = c:NGF }
+				exists = c:GER
+				c:GER = ROOT
+			}
+			AND = {
+				is_player = yes
+				country_is_in_africa = no
+				any_state = {
+					owner = {
+						OR = {
+							this = ROOT
+							is_subject_of = ROOT
+						}
+					}
+					OR = {
+						state_region = s:STATE_HEREROLAND
+						state_region = s:STATE_NAMAQUALAND
+					}
+				}
+			}
+		}
+	}
+	
+	immediate = {
+		if = {
+			limit = { NOT = { has_global_variable = sfa_namibia_claimed } }
+			set_global_variable = sfa_namibia_claimed
+		}
+		random_country = {
+			limit = { has_variable = berlin_conference_host }
+			save_scope_as = berlin_conference_host_scope
+		}
+	}
+
+	option = {
+		name = HJE_colonial.5.a
+		default_option = yes
+
+		create_incident = { country = root value = 3 }
+
+		s:STATE_HEREROLAND = { add_claim = ROOT }
+		s:STATE_NAMAQUALAND = { add_claim = ROOT }
+		every_state = {
+			limit = {
+				OR = {
+					state_region = s:STATE_HEREROLAND
+					state_region = s:STATE_NAMAQUALAND
+				}
+				owner = {
+					NOT = { is_country_type = decentralized }
+					NOT = { is_country_type = unrecognized }
+					OR = {
+						has_variable = SFA_attended_berlin_conference
+						any_overlord_or_above = { has_variable = SFA_attended_berlin_conference }
+					}
+				}
+			}
+			set_state_owner = ROOT
+		}
+
+		ai_chance = 100
+	}	
+
+	option = {
+		name = HJE_colonial.5.b
+		if = {
+			limit = { has_global_variable = sfa_namibia_claimed }
+			remove_global_variable = sfa_namibia_claimed
+		}
+	}		
+}
+
+HJE_colonial.5001 = { 			### NAMIBIA (if Germany is not relevant) ###
+	type = country_event
+	placement = scope:berlin_conference_host_scope
+	title = HJE_colonial.5.t
+	desc = HJE_colonial.5.d
+	flavor = HJE_colonial.5.f
+
+	duration = 3
+
+	cooldown = { months = 360 }
+ 
+	event_image = {
+		video = "gfx/event_pictures/unspecific_signed_contract.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/rich_and_poor"
+
+	icon = "gfx/interface/icons/event_icons/event_default.dds"
+
+	trigger = {
+		has_global_variable = berlin_conference_ongoing
+		has_global_variable = berlin_conference_happened
+		NOT = { has_global_variable = sfa_namibia_claimed }
+		any_state = {
+			owner = {
+				OR = {
+					this = ROOT
+					is_subject_of = ROOT
+				}
+			}
+			OR = {
+				state_region = s:STATE_HEREROLAND
+				state_region = s:STATE_NAMAQUALAND
+			}
+		}
+		NOT = {
+			any_country = {
+				has_variable = SFA_attended_berlin_conference
+				OR = {
+					AND = {
+						exists = c:PRU
+						c:PRU = THIS
+					}
+					AND = {
+						NOT = { exists = c:PRU }
+						exists = c:NGF
+						c:NGF = THIS
+					}
+					AND = {
+						NOT = { exists = c:PRU }
+						NOT = { exists = c:NGF }
+						exists = c:GER
+						c:GER = THIS
+					}
+					AND = {
+						is_player = yes
+						any_state = {
+							owner = {
+								OR = {
+									this = PREV
+									is_subject_of = PREV
+								}
+							}
+							OR = {
+								state_region = s:STATE_HEREROLAND
+								state_region = s:STATE_NAMAQUALAND
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	immediate = {
+		if = {
+			limit = { NOT = { has_global_variable = sfa_namibia_claimed } }
+			set_global_variable = sfa_namibia_claimed
+		}
+		random_country = {
+			limit = { has_variable = berlin_conference_host }
+			save_scope_as = berlin_conference_host_scope
+		}
+	}
+
+	option = {
+		name = HJE_colonial.5.a
+		default_option = yes
+
+		create_incident = { country = root value = 3 }
+
+		s:STATE_HEREROLAND = { add_claim = ROOT }
+		s:STATE_NAMAQUALAND = { add_claim = ROOT }
+		every_state = {
+			limit = {
+				OR = {
+					state_region = s:STATE_HEREROLAND
+					state_region = s:STATE_NAMAQUALAND
+				}
+				owner = {
+					NOT = { is_country_type = decentralized }
+					NOT = { is_country_type = unrecognized }
+					OR = {
+						has_variable = SFA_attended_berlin_conference
+						any_overlord_or_above = { has_variable = SFA_attended_berlin_conference }
+					}
+				}
+			}
+			set_state_owner = ROOT
+		}
+
+		ai_chance = 100
+	}	
+
+	option = {
+		name = HJE_colonial.5.b
+		if = {
+			limit = { has_global_variable = sfa_namibia_claimed }
+			remove_global_variable = sfa_namibia_claimed
+		}
+	}		
+}
+
+HJE_colonial.6 = { 			### TANZANIA ###
+	type = country_event
+	placement = scope:berlin_conference_host_scope
+	title = HJE_colonial.6.t
+	desc = HJE_colonial.6.d
+	flavor = HJE_colonial.6.f
+
+	duration = 3
+
+	cooldown = { months = 360 }
+ 
+	event_image = {
+		video = "gfx/event_pictures/unspecific_signed_contract.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/rich_and_poor"
+
+	icon = "gfx/interface/icons/event_icons/event_default.dds"
+
+	trigger = {
+		has_global_variable = berlin_conference_ongoing
+		has_global_variable = berlin_conference_happened
+		NOT = { has_global_variable = sfa_tanzania_claimed }
+		OR = {
+			AND = {
+				exists = c:PRU
+				c:PRU = ROOT
+			}
+			AND = {
+				NOT = { exists = c:PRU }
+				exists = c:NGF
+				c:NGF = ROOT
+			}
+			AND = {
+				NOT = { exists = c:PRU }
+				NOT = { exists = c:NGF }
+				exists = c:GER
+				c:GER = ROOT
+			}
+			AND = {
+				is_player = yes
+				country_is_in_africa = no
+				any_state = {
+					owner = {
+						OR = {
+							this = ROOT
+							is_subject_of = ROOT
+						}
+					}
+					OR = {
+						state_region = s:STATE_ZANZIBAR
+						state_region = s:STATE_TANGANYIKA
+						state_region = s:STATE_LINDI
+					}
+				}
+			}
+		}
+	}
+	
+	immediate = {
+		if = {
+			limit = { NOT = { has_global_variable = sfa_tanzania_claimed } }
+			set_global_variable = sfa_tanzania_claimed
+		}
+		random_country = {
+			limit = { has_variable = berlin_conference_host }
+			save_scope_as = berlin_conference_host_scope
+		}
+	}
+
+	option = {
+		name = HJE_colonial.6.a
+		default_option = yes
+
+		create_incident = { country = root value = 5 }
+
+		s:STATE_ZANZIBAR = { add_claim = ROOT }
+		s:STATE_TANGANYIKA = { add_claim = ROOT }
+		s:STATE_LINDI = { add_claim = ROOT }
+		every_state = {
+			limit = {
+				OR = {
+					state_region = s:STATE_ZANZIBAR
+					state_region = s:STATE_TANGANYIKA
+					state_region = s:STATE_LINDI
+				}
+				owner = {
+					NOT = { is_country_type = decentralized }
+					NOT = { is_country_type = unrecognized }
+					OR = {
+						has_variable = SFA_attended_berlin_conference
+						any_overlord_or_above = { has_variable = SFA_attended_berlin_conference }
+					}
+				}
+			}
+			set_state_owner = ROOT
+		}
+
+		ai_chance = 100
+	}	
+
+	option = {
+		name = HJE_colonial.6.b
+		if = {
+			limit = { has_global_variable = sfa_tanzania_claimed }
+			remove_global_variable = sfa_tanzania_claimed
+		}
+	}		
+}
+
+HJE_colonial.6001 = { 			### TANZANIA (if Germany is not relevant) ###
+	type = country_event
+	placement = scope:berlin_conference_host_scope
+	title = HJE_colonial.6.t
+	desc = HJE_colonial.6.d
+	flavor = HJE_colonial.6.f
+
+	duration = 3
+
+	cooldown = { months = 360 }
+ 
+	event_image = {
+		video = "gfx/event_pictures/unspecific_signed_contract.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/rich_and_poor"
+
+	icon = "gfx/interface/icons/event_icons/event_default.dds"
+
+	trigger = {
+		has_global_variable = berlin_conference_ongoing
+		has_global_variable = berlin_conference_happened
+		NOT = { has_global_variable = sfa_tanzania_claimed }
+		any_state = {
+			owner = {
+				OR = {
+					this = ROOT
+					is_subject_of = ROOT
+				}
+			}
+			OR = {
+				state_region = s:STATE_ZANZIBAR
+				state_region = s:STATE_TANGANYIKA
+				state_region = s:STATE_LINDI
+			}
+		}
+		NOT = {
+			any_country = {
+				has_variable = SFA_attended_berlin_conference
+				OR = {
+					AND = {
+						exists = c:PRU
+						c:PRU = THIS
+					}
+					AND = {
+						NOT = { exists = c:PRU }
+						exists = c:NGF
+						c:NGF = THIS
+					}
+					AND = {
+						NOT = { exists = c:PRU }
+						NOT = { exists = c:NGF }
+						exists = c:GER
+						c:GER = THIS
+					}
+					AND = {
+						is_player = yes
+						any_state = {
+							owner = {
+								OR = {
+									this = PREV
+									is_subject_of = PREV
+								}
+							}
+							OR = {
+								state_region = s:STATE_ZANZIBAR
+								state_region = s:STATE_TANGANYIKA
+								state_region = s:STATE_LINDI
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	immediate = {
+		if = {
+			limit = { NOT = { has_global_variable = sfa_tanzania_claimed } }
+			set_global_variable = sfa_tanzania_claimed
+		}
+		random_country = {
+			limit = { has_variable = berlin_conference_host }
+			save_scope_as = berlin_conference_host_scope
+		}
+	}
+
+	option = {
+		name = HJE_colonial.6.a
+		default_option = yes
+
+		create_incident = { country = root value = 5 }
+
+		s:STATE_ZANZIBAR = { add_claim = ROOT }
+		s:STATE_TANGANYIKA = { add_claim = ROOT }
+		s:STATE_LINDI = { add_claim = ROOT }
+		every_state = {
+			limit = {
+				OR = {
+					state_region = s:STATE_ZANZIBAR
+					state_region = s:STATE_TANGANYIKA
+					state_region = s:STATE_LINDI
+				}
+				owner = {
+					NOT = { is_country_type = decentralized }
+					NOT = { is_country_type = unrecognized }
+					OR = {
+						has_variable = SFA_attended_berlin_conference
+						any_overlord_or_above = { has_variable = SFA_attended_berlin_conference }
+					}
+				}
+			}
+			set_state_owner = ROOT
+		}
+
+		ai_chance = 100
+	}	
+
+	option = {
+		name = HJE_colonial.6.b
+		if = {
+			limit = { has_global_variable = sfa_tanzania_claimed }
+			remove_global_variable = sfa_tanzania_claimed
+		}
+	}		
+}
+
+HJE_colonial.7 = { 			### UGANDA AND EQUATORIA ###
+	type = country_event
+	placement = scope:berlin_conference_host_scope
+	title = HJE_colonial.7.t
+	desc = HJE_colonial.7.d
+	flavor = HJE_colonial.7.f
+
+	duration = 3
+
+	cooldown = { months = 360 }
+ 
+	event_image = {
+		video = "gfx/event_pictures/unspecific_signed_contract.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/rich_and_poor"
+
+	icon = "gfx/interface/icons/event_icons/event_default.dds"
+
+	trigger = {
+		has_global_variable = berlin_conference_ongoing
+		has_global_variable = berlin_conference_happened
+		NOT = { has_global_variable = sfa_kenya_claimed }
+		OR = {
+			AND = {
+				exists = c:ENG
+				c:ENG = ROOT
+			}
+			AND = {
+				NOT = { exists = c:ENG }
+				exists = c:GBR
+				c:GBR = ROOT
+			}
+			AND = {
+				is_player = yes
+				country_is_in_africa = no
+				any_state = {
+					owner = {
+						OR = {
+							this = ROOT
+							is_subject_of = ROOT
+						}
+					}
+					OR = {
+						state_region = s:STATE_KENYA
+						state_region = s:STATE_EQUATORIA
+						state_region = s:STATE_UGANDA
+					}
+				}
+			}
+		}
+	}
+	
+	immediate = {
+		if = {
+			limit = { NOT = { has_global_variable = sfa_kenya_claimed } }
+			set_global_variable = sfa_kenya_claimed
+		}
+		random_country = {
+			limit = { has_variable = berlin_conference_host }
+			save_scope_as = berlin_conference_host_scope
+		}
+	}
+
+	option = {
+		name = HJE_colonial.7.a
+		default_option = yes
+
+		create_incident = { country = root value = 5 }
+
+		s:STATE_KENYA = { add_claim = ROOT }
+		s:STATE_EQUATORIA = { add_claim = ROOT }
+		s:STATE_UGANDA = { add_claim = ROOT }
+		s:STATE_RIFT_VALLEY = { add_claim = ROOT }
+		every_state = {
+			limit = {
+				OR = {
+					state_region = s:STATE_KENYA
+					state_region = s:STATE_EQUATORIA
+					state_region = s:STATE_UGANDA
+				}
+				owner = {
+					NOT = { is_country_type = decentralized }
+					NOT = { is_country_type = unrecognized }
+					OR = {
+						has_variable = SFA_attended_berlin_conference
+						any_overlord_or_above = { has_variable = SFA_attended_berlin_conference }
+					}
+				}
+			}
+			set_state_owner = ROOT
+		}
+
+		ai_chance = 100
+	}	
+
+	option = {
+		name = HJE_colonial.7.b
+		if = {
+			limit = { has_global_variable = sfa_kenya_claimed }
+			remove_global_variable = sfa_kenya_claimed
+		}
+	}		
+}
+
+HJE_colonial.7001 = { 			### UGANDA AND EQUATORIA (if Britain is not relevant) ###
+	type = country_event
+	placement = scope:berlin_conference_host_scope
+	title = HJE_colonial.7.t
+	desc = HJE_colonial.7.d
+	flavor = HJE_colonial.7.f
+
+	duration = 3
+
+	cooldown = { months = 360 }
+ 
+	event_image = {
+		video = "gfx/event_pictures/unspecific_signed_contract.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/rich_and_poor"
+
+	icon = "gfx/interface/icons/event_icons/event_default.dds"
+
+	trigger = {
+		has_global_variable = berlin_conference_ongoing
+		has_global_variable = berlin_conference_happened
+		NOT = { has_global_variable = sfa_kenya_claimed }
+		any_state = {
+			owner = {
+				OR = {
+					this = ROOT
+					is_subject_of = ROOT
+				}
+			}
+			OR = {
+				state_region = s:STATE_KENYA
+				state_region = s:STATE_EQUATORIA
+				state_region = s:STATE_UGANDA
+			}
+		}
+		NOT = {
+			any_country = {
+				has_variable = SFA_attended_berlin_conference
+				OR = {
+					AND = {
+						exists = c:ENG
+						c:ENG = THIS
+					}
+					AND = {
+						NOT = { exists = c:PRU }
+						exists = c:GBR
+						c:GBR = THIS
+					}
+					AND = {
+						is_player = yes
+						any_state = {
+							owner = {
+								OR = {
+									this = PREV
+									is_subject_of = PREV
+								}
+							}
+							OR = {
+								state_region = s:STATE_KENYA
+								state_region = s:STATE_EQUATORIA
+								state_region = s:STATE_UGANDA
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	immediate = {
+		if = {
+			limit = { NOT = { has_global_variable = sfa_kenya_claimed } }
+			set_global_variable = sfa_kenya_claimed
+		}
+		random_country = {
+			limit = { has_variable = berlin_conference_host }
+			save_scope_as = berlin_conference_host_scope
+		}
+	}
+
+	option = {
+		name = HJE_colonial.7.a
+		default_option = yes
+
+		create_incident = { country = root value = 5 }
+
+		s:STATE_KENYA = { add_claim = ROOT }
+		s:STATE_EQUATORIA = { add_claim = ROOT }
+		s:STATE_UGANDA = { add_claim = ROOT }
+		every_state = {
+			limit = {
+				OR = {
+					state_region = s:STATE_KENYA
+					state_region = s:STATE_EQUATORIA
+					state_region = s:STATE_UGANDA
+				}
+				owner = {
+					NOT = { is_country_type = decentralized }
+					NOT = { is_country_type = unrecognized }
+					OR = {
+						has_variable = SFA_attended_berlin_conference
+						any_overlord_or_above = { has_variable = SFA_attended_berlin_conference }
+					}
+				}
+			}
+			set_state_owner = ROOT
+		}
+
+		ai_chance = 100
+	}	
+
+	option = {
+		name = HJE_colonial.7.b
+		if = {
+			limit = { has_global_variable = sfa_kenya_claimed }
+			remove_global_variable = sfa_kenya_claimed
+		}
+	}		
+}
+
+HJE_colonial.8 = { 			### KAMERUN ###
+	type = country_event
+	placement = scope:berlin_conference_host_scope
+	title = HJE_colonial.8.t
+	desc = HJE_colonial.8.d
+	flavor = HJE_colonial.8.f
+
+	duration = 3
+
+	cooldown = { months = 360 }
+ 
+	event_image = {
+		video = "gfx/event_pictures/unspecific_signed_contract.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/rich_and_poor"
+
+	icon = "gfx/interface/icons/event_icons/event_default.dds"
+
+	trigger = {
+		has_global_variable = berlin_conference_ongoing
+		has_global_variable = berlin_conference_happened
+		NOT = { has_global_variable = sfa_kamerun_claimed }
+		OR = {
+			AND = {
+				exists = c:PRU
+				c:PRU = ROOT
+			}
+			AND = {
+				NOT = { exists = c:PRU }
+				exists = c:NGF
+				c:NGF = ROOT
+			}
+			AND = {
+				NOT = { exists = c:PRU }
+				NOT = { exists = c:NGF }
+				exists = c:GER
+				c:GER = ROOT
+			}
+			AND = {
+				is_player = yes
+				country_is_in_africa = no
+				any_state = {
+					owner = {
+						OR = {
+							this = ROOT
+							is_subject_of = ROOT
+						}
+					}
+					OR = {
+						state_region = s:STATE_SOUTH_CAMEROON
+						state_region = s:STATE_NORTH_CAMEROON
+					}
+				}
+			}
+		}
+	}
+	
+	immediate = {
+		if = {
+			limit = { NOT = { has_global_variable = sfa_kamerun_claimed } }
+			set_global_variable = sfa_kamerun_claimed
+		}
+		random_country = {
+			limit = { has_variable = berlin_conference_host }
+			save_scope_as = berlin_conference_host_scope
+		}
+	}
+
+	option = {
+		name = HJE_colonial.8.a
+		default_option = yes
+
+		create_incident = { country = root value = 5 }
+
+		s:STATE_SOUTH_CAMEROON = { add_claim = ROOT }
+		s:STATE_NORTH_CAMEROON = { add_claim = ROOT }
+		every_state = {
+			limit = {
+				OR = {
+					state_region = s:STATE_SOUTH_CAMEROON
+					state_region = s:STATE_NORTH_CAMEROON
+				}
+				owner = {
+					NOT = { is_country_type = decentralized }
+					NOT = { is_country_type = unrecognized }
+					OR = {
+						has_variable = SFA_attended_berlin_conference
+						any_overlord_or_above = { has_variable = SFA_attended_berlin_conference }
+					}
+				}
+			}
+			set_state_owner = ROOT
+		}
+
+		ai_chance = 100
+	}	
+
+	option = {
+		name = HJE_colonial.8.b
+		if = {
+			limit = { has_global_variable = sfa_kamerun_claimed }
+			remove_global_variable = sfa_kamerun_claimed
+		}
+	}		
+}
+
+HJE_colonial.8001 = { 			### KAMERUN (if Germany is not relevant) ###
+	type = country_event
+	placement = scope:berlin_conference_host_scope
+	title = HJE_colonial.8.t
+	desc = HJE_colonial.8.d
+	flavor = HJE_colonial.8.f
+
+	duration = 3
+
+	cooldown = { months = 360 }
+ 
+	event_image = {
+		video = "gfx/event_pictures/unspecific_signed_contract.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/rich_and_poor"
+
+	icon = "gfx/interface/icons/event_icons/event_default.dds"
+
+	trigger = {
+		has_global_variable = berlin_conference_ongoing
+		has_global_variable = berlin_conference_happened
+		NOT = { has_global_variable = sfa_kamerun_claimed }
+		any_state = {
+			owner = {
+				OR = {
+					this = ROOT
+					is_subject_of = ROOT
+				}
+			}
+			OR = {
+				state_region = s:STATE_SOUTH_CAMEROON
+				state_region = s:STATE_NORTH_CAMEROON
+			}
+		}
+		NOT = {
+			any_country = {
+				has_variable = SFA_attended_berlin_conference
+				OR = {
+					AND = {
+						exists = c:PRU
+						c:PRU = THIS
+					}
+					AND = {
+						NOT = { exists = c:PRU }
+						exists = c:NGF
+						c:NGF = THIS
+					}
+					AND = {
+						NOT = { exists = c:PRU }
+						NOT = { exists = c:NGF }
+						exists = c:GER
+						c:GER = THIS
+					}
+					AND = {
+						is_player = yes
+						any_state = {
+							owner = {
+								OR = {
+									this = PREV
+									is_subject_of = PREV
+								}
+							}
+							OR = {
+								state_region = s:STATE_SOUTH_CAMEROON
+								state_region = s:STATE_NORTH_CAMEROON
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	immediate = {
+		if = {
+			limit = { NOT = { has_global_variable = sfa_kamerun_claimed } }
+			set_global_variable = sfa_kamerun_claimed
+		}
+		random_country = {
+			limit = { has_variable = berlin_conference_host }
+			save_scope_as = berlin_conference_host_scope
+		}
+	}
+
+	option = {
+		name = HJE_colonial.8.a
+		default_option = yes
+
+		create_incident = { country = root value = 5 }
+
+		s:STATE_SOUTH_CAMEROON = { add_claim = ROOT }
+		s:STATE_NORTH_CAMEROON = { add_claim = ROOT }
+		every_state = {
+			limit = {
+				OR = {
+					state_region = s:STATE_SOUTH_CAMEROON
+					state_region = s:STATE_NORTH_CAMEROON
+				}
+				owner = {
+					NOT = { is_country_type = decentralized }
+					NOT = { is_country_type = unrecognized }
+					OR = {
+						has_variable = SFA_attended_berlin_conference
+						any_overlord_or_above = { has_variable = SFA_attended_berlin_conference }
+					}
+				}
+			}
+			set_state_owner = ROOT
+		}
+
+		ai_chance = 100
+	}	
+
+	option = {
+		name = HJE_colonial.8.b
+		if = {
+			limit = { has_global_variable = sfa_kamerun_claimed }
+			remove_global_variable = sfa_kamerun_claimed
+		}
+	}		
+}
+
+HJE_colonial.9 = { 			### GABON/NORTH CONGO (IF IT'S NOT COLONIZED ALREADY) ###
+	type = country_event
+	placement = scope:berlin_conference_host_scope
+	title = HJE_colonial.9.t
+	desc = HJE_colonial.9.d
+	flavor = HJE_colonial.9.f
+
+	duration = 3
+
+	cooldown = { months = 360 }
+ 
+	event_image = {
+		video = "gfx/event_pictures/unspecific_signed_contract.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/rich_and_poor"
+
+	icon = "gfx/interface/icons/event_icons/event_default.dds"
+
+	trigger = {
+		has_global_variable = berlin_conference_ongoing
+		has_global_variable = berlin_conference_happened
+		NOT = { has_global_variable = sfa_gabon_claimed }
+		OR = {
+			any_state = {
+				owner = {
+					NOT = { has_variable = quinine_gabon_claimant }
+					OR = {
+						this = ROOT
+						is_subject_of = ROOT
+					}
+				}
+				OR = {
+					state_region = s:STATE_GABON
+					state_region = s:STATE_CONGO
+				}
+			}
+			AND = {
+				country_rank = rank_value:great_power
+				NOT = {
+					any_state = {
+						owner = {
+							OR = {
+								has_variable = SFA_attended_berlin_conference
+								any_overlord_or_above = { has_variable = SFA_attended_berlin_conference }
+							}
+						}
+						OR = {
+							state_region = s:STATE_GABON
+							state_region = s:STATE_CONGO
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	immediate = {
+		if = {
+			limit = { NOT = { has_global_variable = sfa_gabon_claimed } }
+			set_global_variable = sfa_gabon_claimed
+		}
+		random_country = {
+			limit = { has_variable = berlin_conference_host }
+			save_scope_as = berlin_conference_host_scope
+		}
+	}
+
+	option = {
+		name = HJE_colonial.9.a
+		default_option = yes
+
+		create_incident = { country = root value = 3 }
+
+		s:STATE_GABON = { add_claim = ROOT }
+		s:STATE_CONGO = { add_claim = ROOT }
+		s:STATE_UBANGI_SHARI = { add_claim = ROOT }
+
+		ai_chance = 100
+	}	
+
+	option = {
+		name = HJE_colonial.2.b
+		if = {
+			limit = { has_global_variable = sfa_gabon_claimed }
+			remove_global_variable = sfa_gabon_claimed
+		}
+	}		
+}
+
+HJE_colonial.10 = { 			### NIGERIA (IF IT'S NOT COLONIZED ALREADY) ###
+	type = country_event
+	placement = scope:berlin_conference_host_scope
+	title = HJE_colonial.10.t
+	desc = HJE_colonial.10.d
+	flavor = HJE_colonial.10.f
+
+	duration = 3
+
+	cooldown = { months = 360 }
+ 
+	event_image = {
+		video = "gfx/event_pictures/unspecific_signed_contract.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/rich_and_poor"
+
+	icon = "gfx/interface/icons/event_icons/event_default.dds"
+
+	trigger = {
+		has_global_variable = berlin_conference_ongoing
+		has_global_variable = berlin_conference_happened
+		NOT = { has_global_variable = sfa_nigeria_claimed }
+		OR = {
+			any_state = {
+				owner = {
+					NOT = { has_variable = quinine_nigeria_claimant }
+					OR = {
+						this = ROOT
+						is_subject_of = ROOT
+					}
+				}
+				OR = {
+					state_region = s:STATE_YORUBA_STATES
+					state_region = s:STATE_BENIN
+					state_region = s:STATE_HAUSALAND
+					state_region = s:STATE_EAST_HAUSALAND
+					state_region = s:STATE_NIGER_DELTA
+					state_region = s:STATE_BORNU
+					state_region = s:STATE_NIGERIA
+				}
+			}
+			AND = {
+				country_rank = rank_value:great_power
+				NOT = {
+					any_state = {
+						owner = {
+							OR = {
+								has_variable = SFA_attended_berlin_conference
+								any_overlord_or_above = { has_variable = SFA_attended_berlin_conference }
+							}
+						}
+						OR = {
+							state_region = s:STATE_YORUBA_STATES
+							state_region = s:STATE_BENIN
+							state_region = s:STATE_HAUSALAND
+							state_region = s:STATE_EAST_HAUSALAND
+							state_region = s:STATE_NIGER_DELTA
+							state_region = s:STATE_BORNU
+							state_region = s:STATE_NIGERIA
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	immediate = {
+		if = {
+			limit = { NOT = { has_global_variable = sfa_nigeria_claimed } }
+			set_global_variable = sfa_nigeria_claimed
+		}
+		random_country = {
+			limit = { has_variable = berlin_conference_host }
+			save_scope_as = berlin_conference_host_scope
+		}
+	}
+
+	option = {
+		name = HJE_colonial.10.a
+		default_option = yes
+
+		create_incident = { country = root value = 6 }
+
+		s:STATE_YORUBA_STATES = { add_claim = ROOT }
+		s:STATE_BENIN = { add_claim = ROOT }
+		s:STATE_HAUSALAND = { add_claim = ROOT }
+		s:STATE_EAST_HAUSALAND = { add_claim = ROOT }
+		s:STATE_NIGER_DELTA = { add_claim = ROOT }
+		s:STATE_BORNU = { add_claim = ROOT }
+		s:STATE_NIGERIA = { add_claim = ROOT }
+
+		ai_chance = 100
+	}	
+
+	option = {
+		name = HJE_colonial.10.b
+		if = {
+			limit = { has_global_variable = sfa_nigeria_claimed }
+			remove_global_variable = sfa_nigeria_claimed
+		}
+	}		
+}
+
+HJE_colonial.11 = { 			### DAHOMEY / VOLTA ###
+	type = country_event
+	placement = scope:berlin_conference_host_scope
+	title = HJE_colonial.11.t
+	desc = HJE_colonial.11.d
+	flavor = HJE_colonial.11.f
+
+	duration = 3
+
+	cooldown = { months = 360 }
+ 
+	event_image = {
+		video = "gfx/event_pictures/unspecific_signed_contract.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/rich_and_poor"
+
+	icon = "gfx/interface/icons/event_icons/event_default.dds"
+
+	trigger = {
+		has_global_variable = berlin_conference_ongoing
+		has_global_variable = berlin_conference_happened
+		NOT = { has_global_variable = sfa_volta_claimed }
+		OR = {
+			AND = {
+				exists = c:FRA
+				c:FRA = ROOT
+			}
+			AND = {
+				is_player = yes
+				country_is_in_africa = no
+				any_state = {
+					owner = {
+						OR = {
+							this = ROOT
+							is_subject_of = ROOT
+						}
+					}
+					OR = {
+						state_region = s:STATE_DAHOMEY
+						state_region = s:STATE_VOLTA
+					}
+				}
+			}
+		}
+	}
+	
+	immediate = {
+		if = {
+			limit = { NOT = { has_global_variable = sfa_volta_claimed } }
+			set_global_variable = sfa_volta_claimed
+		}
+		random_country = {
+			limit = { has_variable = berlin_conference_host }
+			save_scope_as = berlin_conference_host_scope
+		}
+	}
+
+	option = {
+		name = HJE_colonial.11.a
+		default_option = yes
+
+		create_incident = { country = root value = 5 }
+
+		s:STATE_DAHOMEY = { add_claim = ROOT }
+		s:STATE_VOLTA = { add_claim = ROOT }
+		every_state = {
+			limit = {
+				OR = {
+					state_region = s:STATE_DAHOMEY
+					state_region = s:STATE_VOLTA
+				}
+				owner = {
+					NOT = { is_country_type = decentralized }
+					NOT = { is_country_type = unrecognized }
+					OR = {
+						has_variable = SFA_attended_berlin_conference
+						any_overlord_or_above = { has_variable = SFA_attended_berlin_conference }
+					}
+				}
+			}
+			set_state_owner = ROOT
+		}
+
+		ai_chance = 100
+	}	
+
+	option = {
+		name = HJE_colonial.11.b
+		if = {
+			limit = { has_global_variable = sfa_volta_claimed }
+			remove_global_variable = sfa_volta_claimed
+		}
+	}		
+}
+
+HJE_colonial.11001 = { 			### DAHOMEY / VOLTA (if France is not relevant) ###
+	type = country_event
+	placement = scope:berlin_conference_host_scope
+	title = HJE_colonial.11.t
+	desc = HJE_colonial.11.d
+	flavor = HJE_colonial.11.f
+
+	duration = 3
+
+	cooldown = { months = 360 }
+ 
+	event_image = {
+		video = "gfx/event_pictures/unspecific_signed_contract.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/rich_and_poor"
+
+	icon = "gfx/interface/icons/event_icons/event_default.dds"
+
+	trigger = {
+		has_global_variable = berlin_conference_ongoing
+		has_global_variable = berlin_conference_happened
+		NOT = { has_global_variable = sfa_volta_claimed }
+		any_state = {
+			owner = {
+				OR = {
+					this = ROOT
+					is_subject_of = ROOT
+				}
+			}
+			OR = {
+				state_region = s:STATE_DAHOMEY
+				state_region = s:STATE_VOLTA
+			}
+		}
+		NOT = {
+			any_country = {
+				has_variable = SFA_attended_berlin_conference
+				OR = {
+					AND = {
+						exists = c:FRA
+						c:FRA = THIS
+					}
+					AND = {
+						is_player = yes
+						any_state = {
+							owner = {
+								OR = {
+									this = PREV
+									is_subject_of = PREV
+								}
+							}
+							OR = {
+								state_region = s:STATE_DAHOMEY
+								state_region = s:STATE_VOLTA
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	immediate = {
+		if = {
+			limit = { NOT = { has_global_variable = sfa_volta_claimed } }
+			set_global_variable = sfa_volta_claimed
+		}
+		random_country = {
+			limit = { has_variable = berlin_conference_host }
+			save_scope_as = berlin_conference_host_scope
+		}
+	}
+
+	option = {
+		name = HJE_colonial.11.a
+		default_option = yes
+
+		create_incident = { country = root value = 5 }
+
+		s:STATE_DAHOMEY = { add_claim = ROOT }
+		s:STATE_VOLTA = { add_claim = ROOT }
+		every_state = {
+			limit = {
+				OR = {
+					state_region = s:STATE_DAHOMEY
+					state_region = s:STATE_VOLTA
+				}
+				owner = {
+					NOT = { is_country_type = decentralized }
+					NOT = { is_country_type = unrecognized }
+					OR = {
+						has_variable = SFA_attended_berlin_conference
+						any_overlord_or_above = { has_variable = SFA_attended_berlin_conference }
+					}
+				}
+			}
+			set_state_owner = ROOT
+		}
+
+		ai_chance = 100
+	}	
+
+	option = {
+		name = HJE_colonial.11.b
+		if = {
+			limit = { has_global_variable = sfa_volta_claimed }
+			remove_global_variable = sfa_volta_claimed
+		}
+	}		
+}
+
+HJE_colonial.12 = { 			### TOGO (IF IT'S NOT COLONIZED ALREADY) ###
+	type = country_event
+	placement = scope:berlin_conference_host_scope
+	title = HJE_colonial.12.t
+	desc = HJE_colonial.12.d
+	flavor = HJE_colonial.12.f
+
+	duration = 3
+
+	cooldown = { months = 360 }
+ 
+	event_image = {
+		video = "gfx/event_pictures/unspecific_signed_contract.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/rich_and_poor"
+
+	icon = "gfx/interface/icons/event_icons/event_default.dds"
+
+	trigger = {
+		has_global_variable = berlin_conference_ongoing
+		has_global_variable = berlin_conference_happened
+		NOT = { has_global_variable = sfa_togo_claimed }
+		OR = {
+			any_state = {
+				state_region = s:STATE_TOGO
+				owner = {
+					NOT = { has_variable = quinine_togo_claimant }
+					OR = {
+						this = ROOT
+						is_subject_of = ROOT
+					}
+				}
+			}
+			AND = {
+				country_rank = rank_value:great_power
+				NOT = {
+					any_state = {
+						state_region = s:STATE_TOGO
+						owner = {
+							OR = {
+								has_variable = SFA_attended_berlin_conference
+								any_overlord_or_above = { has_variable = SFA_attended_berlin_conference }
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	immediate = {
+		if = {
+			limit = { NOT = { has_global_variable = sfa_togo_claimed } }
+			set_global_variable = sfa_togo_claimed
+		}
+		random_country = {
+			limit = { has_variable = berlin_conference_host }
+			save_scope_as = berlin_conference_host_scope
+		}
+	}
+
+	option = {
+		name = HJE_colonial.12.a
+		default_option = yes
+
+		create_incident = { country = root value = 6 }
+
+		s:STATE_TOGO = { add_claim = ROOT }
+
+		ai_chance = 100
+	}	
+
+	option = {
+		name = HJE_colonial.12.b
+		if = {
+			limit = { has_global_variable = sfa_togo_claimed }
+			remove_global_variable = sfa_togo_claimed
+		}
+	}		
+}
+
+HJE_colonial.13 = { 			### GHANA (IF IT'S NOT COLONIZED ALREADY) ###
+	type = country_event
+	placement = scope:berlin_conference_host_scope
+	title = HJE_colonial.13.t
+	desc = HJE_colonial.13.d
+	flavor = HJE_colonial.13.f
+
+	duration = 3
+
+	cooldown = { months = 360 }
+ 
+	event_image = {
+		video = "gfx/event_pictures/unspecific_signed_contract.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/rich_and_poor"
+
+	icon = "gfx/interface/icons/event_icons/event_default.dds"
+
+	trigger = {
+		has_global_variable = berlin_conference_ongoing
+		has_global_variable = berlin_conference_happened
+		NOT = { has_global_variable = sfa_ghana_claimed }
+		OR = {
+			any_state = {
+				state_region = s:STATE_GHANA
+				owner = {
+					NOT = { has_variable = quinine_ghana_claimant }
+					OR = {
+						this = ROOT
+						is_subject_of = ROOT
+					}
+				}
+			}
+			AND = {
+				country_rank = rank_value:great_power
+				NOT = {
+					any_state = {
+						state_region = s:STATE_GHANA
+						owner = {
+							OR = {
+								has_variable = SFA_attended_berlin_conference
+								any_overlord_or_above = { has_variable = SFA_attended_berlin_conference }
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	immediate = {
+		if = {
+			limit = { NOT = { has_global_variable = sfa_ghana_claimed } }
+			set_global_variable = sfa_ghana_claimed
+		}
+		random_country = {
+			limit = { has_variable = berlin_conference_host }
+			save_scope_as = berlin_conference_host_scope
+		}
+	}
+
+	option = {
+		name = HJE_colonial.13.a
+		default_option = yes
+
+		create_incident = { country = root value = 6 }
+
+		s:STATE_GHANA = { add_claim = ROOT }
+
+		ai_chance = 100
+	}	
+
+	option = {
+		name = HJE_colonial.13.b
+		if = {
+			limit = { has_global_variable = sfa_ghana_claimed }
+			remove_global_variable = sfa_ghana_claimed
+		}
+	}		
+}
+
+HJE_colonial.14 = { 			### LIBYA ###
+	type = country_event
+	placement = scope:berlin_conference_host_scope
+	title = HJE_colonial.14.t
+	desc = HJE_colonial.14.d
+	flavor = HJE_colonial.14.f
+
+	duration = 3
+
+	cooldown = { months = 360 }
+ 
+	event_image = {
+		video = "gfx/event_pictures/unspecific_signed_contract.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/rich_and_poor"
+
+	icon = "gfx/interface/icons/event_icons/event_default.dds"
+
+	trigger = {
+		has_global_variable = berlin_conference_ongoing
+		has_global_variable = berlin_conference_happened
+		NOT = { has_global_variable = sfa_libya_claimed }
+		OR = {
+			AND = {
+				exists = c:ITA
+				c:ITA = ROOT
+			}
+			AND = {
+				is_player = yes
+				country_is_in_africa = no
+				any_state = {
+					owner = {
+						OR = {
+							this = ROOT
+							is_subject_of = ROOT
+						}
+					}
+					OR = {
+						state_region = s:STATE_LIBYA
+						state_region = s:STATE_TRIPOLI
+						state_region = s:STATE_LIBYAN_DESERT
+					}
+				}
+			}
+		}
+	}
+	
+	immediate = {
+		if = {
+			limit = { NOT = { has_global_variable = sfa_libya_claimed } }
+			set_global_variable = sfa_libya_claimed
+		}
+		random_country = {
+			limit = { has_variable = berlin_conference_host }
+			save_scope_as = berlin_conference_host_scope
+		}
+	}
+
+	option = {
+		name = HJE_colonial.14.a
+		default_option = yes
+
+		create_incident = { country = root value = 5 }
+
+		s:STATE_LIBYA = { add_claim = ROOT }
+		s:STATE_TRIPOLI = { add_claim = ROOT }
+		s:STATE_LIBYAN_DESERT = { add_claim = ROOT }
+		every_state = {
+			limit = {
+				OR = {
+					state_region = s:STATE_LIBYA
+					state_region = s:STATE_TRIPOLI
+					state_region = s:STATE_LIBYAN_DESERT
+				}
+				owner = {
+					NOT = { is_country_type = decentralized }
+					NOT = { is_country_type = unrecognized }
+					OR = {
+						has_variable = SFA_attended_berlin_conference
+						any_overlord_or_above = { has_variable = SFA_attended_berlin_conference }
+					}
+				}
+			}
+			set_state_owner = ROOT
+		}
+
+		ai_chance = 100
+	}	
+
+	option = {
+		name = HJE_colonial.14.b
+		if = {
+			limit = { has_global_variable = sfa_libya_claimed }
+			remove_global_variable = sfa_libya_claimed
+		}
+	}		
+}
+
+HJE_colonial.14001 = { 			### LIBYA (if Italy is not relevant) ###
+	type = country_event
+	placement = scope:berlin_conference_host_scope
+	title = HJE_colonial.14.t
+	desc = HJE_colonial.14.d
+	flavor = HJE_colonial.14.f
+
+	duration = 3
+
+	cooldown = { months = 360 }
+ 
+	event_image = {
+		video = "gfx/event_pictures/unspecific_signed_contract.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/rich_and_poor"
+
+	icon = "gfx/interface/icons/event_icons/event_default.dds"
+
+	trigger = {
+		has_global_variable = berlin_conference_ongoing
+		has_global_variable = berlin_conference_happened
+		NOT = { has_global_variable = sfa_libya_claimed }
+		any_state = {
+			owner = {
+				OR = {
+					this = ROOT
+					is_subject_of = ROOT
+				}
+			}
+			OR = {
+				state_region = s:STATE_LIBYA
+				state_region = s:STATE_TRIPOLI
+				state_region = s:STATE_LIBYAN_DESERT
+			}
+		}
+		NOT = {
+			any_country = {
+				has_variable = SFA_attended_berlin_conference
+				OR = {
+					AND = {
+						exists = c:ITA
+						c:ITA = THIS
+					}
+					AND = {
+						is_player = yes
+						any_state = {
+							owner = {
+								OR = {
+									this = PREV
+									is_subject_of = PREV
+								}
+							}
+							OR = {
+								state_region = s:STATE_LIBYA
+								state_region = s:STATE_TRIPOLI
+								state_region = s:STATE_LIBYAN_DESERT
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	immediate = {
+		if = {
+			limit = { NOT = { has_global_variable = sfa_libya_claimed } }
+			set_global_variable = sfa_libya_claimed
+		}
+		random_country = {
+			limit = { has_variable = berlin_conference_host }
+			save_scope_as = berlin_conference_host_scope
+		}
+	}
+
+	option = {
+		name = HJE_colonial.14.a
+		default_option = yes
+
+		create_incident = { country = root value = 5 }
+
+		s:STATE_LIBYA = { add_claim = ROOT }
+		s:STATE_TRIPOLI = { add_claim = ROOT }
+		s:STATE_LIBYAN_DESERT = { add_claim = ROOT }
+		every_state = {
+			limit = {
+				OR = {
+					state_region = s:STATE_LIBYA
+					state_region = s:STATE_TRIPOLI
+					state_region = s:STATE_LIBYAN_DESERT
+				}
+				owner = {
+					NOT = { is_country_type = decentralized }
+					NOT = { is_country_type = unrecognized }
+					OR = {
+						has_variable = SFA_attended_berlin_conference
+						any_overlord_or_above = { has_variable = SFA_attended_berlin_conference }
+					}
+				}
+			}
+			set_state_owner = ROOT
+		}
+
+		ai_chance = 100
+	}	
+
+	option = {
+		name = HJE_colonial.14.b
+		if = {
+			limit = { has_global_variable = sfa_libya_claimed }
+			remove_global_variable = sfa_libya_claimed
+		}
+	}		
+}
+
+HJE_colonial.15 = { 			### MADAGASCAR ###
+	type = country_event
+	placement = scope:berlin_conference_host_scope
+	title = HJE_colonial.15.t
+	desc = HJE_colonial.15.d
+	flavor = HJE_colonial.15.f
+
+	duration = 3
+
+	cooldown = { months = 360 }
+ 
+	event_image = {
+		video = "gfx/event_pictures/unspecific_signed_contract.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/rich_and_poor"
+
+	icon = "gfx/interface/icons/event_icons/event_default.dds"
+
+	trigger = {
+		has_global_variable = berlin_conference_ongoing
+		has_global_variable = berlin_conference_happened
+		NOT = { has_global_variable = sfa_madagascar_claimed }
+		OR = {
+			AND = {
+				exists = c:FRA
+				c:FRA = ROOT
+			}
+			AND = {
+				is_player = yes
+				country_is_in_africa = no
+				any_state = {
+					owner = {
+						OR = {
+							this = ROOT
+							is_subject_of = ROOT
+						}
+					}
+					OR = {
+						state_region = s:STATE_SOUTH_MADAGASCAR
+						state_region = s:STATE_NORTH_MADAGASCAR
+					}
+				}
+			}
+		}
+	}
+	
+	immediate = {
+		if = {
+			limit = { NOT = { has_global_variable = sfa_madagascar_claimed } }
+			set_global_variable = sfa_madagascar_claimed
+		}
+		random_country = {
+			limit = { has_variable = berlin_conference_host }
+			save_scope_as = berlin_conference_host_scope
+		}
+	}
+
+	option = {
+		name = HJE_colonial.15.a
+		default_option = yes
+
+		create_incident = { country = root value = 5 }
+
+		s:STATE_SOUTH_MADAGASCAR = { add_claim = ROOT }
+		s:STATE_NORTH_MADAGASCAR = { add_claim = ROOT }
+		every_state = {
+			limit = {
+				OR = {
+					state_region = s:STATE_SOUTH_MADAGASCAR
+					state_region = s:STATE_NORTH_MADAGASCAR
+				}
+				owner = {
+					NOT = { is_country_type = decentralized }
+					NOT = { is_country_type = unrecognized }
+					OR = {
+						has_variable = SFA_attended_berlin_conference
+						any_overlord_or_above = { has_variable = SFA_attended_berlin_conference }
+					}
+				}
+			}
+			set_state_owner = ROOT
+		}
+
+		ai_chance = 100
+	}	
+
+	option = {
+		name = HJE_colonial.15.b
+		if = {
+			limit = { has_global_variable = sfa_madagascar_claimed }
+			remove_global_variable = sfa_madagascar_claimed
+		}
+	}		
+}
+
+HJE_colonial.15001 = { 			### MADAGASCAR (if France is not relevant) ###
+	type = country_event
+	placement = scope:berlin_conference_host_scope
+	title = HJE_colonial.15.t
+	desc = HJE_colonial.15.d
+	flavor = HJE_colonial.15.f
+
+	duration = 3
+
+	cooldown = { months = 360 }
+ 
+	event_image = {
+		video = "gfx/event_pictures/unspecific_signed_contract.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/rich_and_poor"
+
+	icon = "gfx/interface/icons/event_icons/event_default.dds"
+
+	trigger = {
+		has_global_variable = berlin_conference_ongoing
+		has_global_variable = berlin_conference_happened
+		NOT = { has_global_variable = sfa_madagascar_claimed }
+		any_state = {
+			owner = {
+				OR = {
+					this = ROOT
+					is_subject_of = ROOT
+				}
+			}
+			OR = {
+				state_region = s:STATE_SOUTH_MADAGASCAR
+				state_region = s:STATE_NORTH_MADAGASCAR
+			}
+		}
+		NOT = {
+			any_country = {
+				has_variable = SFA_attended_berlin_conference
+				OR = {
+					AND = {
+						exists = c:FRA
+						c:FRA = THIS
+					}
+					AND = {
+						is_player = yes
+						any_state = {
+							owner = {
+								OR = {
+									this = PREV
+									is_subject_of = PREV
+								}
+							}
+							OR = {
+								state_region = s:STATE_SOUTH_MADAGASCAR
+								state_region = s:STATE_NORTH_MADAGASCAR
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	immediate = {
+		if = {
+			limit = { NOT = { has_global_variable = sfa_madagascar_claimed } }
+			set_global_variable = sfa_madagascar_claimed
+		}
+		random_country = {
+			limit = { has_variable = berlin_conference_host }
+			save_scope_as = berlin_conference_host_scope
+		}
+	}
+
+	option = {
+		name = HJE_colonial.15.a
+		default_option = yes
+
+		create_incident = { country = root value = 5 }
+
+		s:STATE_SOUTH_MADAGASCAR = { add_claim = ROOT }
+		s:STATE_NORTH_MADAGASCAR = { add_claim = ROOT }
+		every_state = {
+			limit = {
+				OR = {
+					state_region = s:STATE_SOUTH_MADAGASCAR
+					state_region = s:STATE_NORTH_MADAGASCAR
+				}
+				owner = {
+					NOT = { is_country_type = decentralized }
+					NOT = { is_country_type = unrecognized }
+					OR = {
+						has_variable = SFA_attended_berlin_conference
+						any_overlord_or_above = { has_variable = SFA_attended_berlin_conference }
+					}
+				}
+			}
+			set_state_owner = ROOT
+		}
+
+		ai_chance = 100
+	}	
+
+	option = {
+		name = HJE_colonial.15.b
+		if = {
+			limit = { has_global_variable = sfa_madagascar_claimed }
+			remove_global_variable = sfa_madagascar_claimed
+		}
+	}		
+}
+
+HJE_colonial.16 = { 			### ERITREA DISPUTE (split between France and Italy) ###
+	type = country_event
+	placement = scope:berlin_conference_host_scope
+	title = HJE_colonial.16.t
+	flavor = HJE_colonial.16.f
+	desc = HJE_colonial.16.d
+
+	duration = 3
+
+	cooldown = { months = 360 }
+ 
+	is_popup = yes
+
+	event_image = {
+		video = "gfx/event_pictures/unspecific_signed_contract.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/rich_and_poor"
+
+	icon = "gfx/interface/icons/event_icons/event_default.dds"
+
+	trigger = {
+		has_global_variable = berlin_conference_ongoing
+		has_global_variable = berlin_conference_happened
+		is_subject = no
+		NOT = { has_global_variable = sfa_eritrea_split }
+		global_country_ranking < 5
+		trigger_if = {
+			limit = {
+				exists = c:ITA
+				c:ITA = { 
+					global_country_ranking < 5 
+					has_variable = SFA_attended_berlin_conference
+				}
+			}
+			c:ITA = ROOT
+		}
+		trigger_else_if = {
+			limit = {
+				exists = c:FRA
+				c:FRA = { 
+					global_country_ranking < 5 
+					has_variable = SFA_attended_berlin_conference
+				}
+			}
+			c:FRA = ROOT
+		}
+	}
+	
+	immediate = {
+		random_country = {
+			limit = { has_variable = berlin_conference_host }
+			save_scope_as = berlin_conference_host_scope
+		}
+		if = {
+			limit = { NOT = { has_global_variable = sfa_eritrea_split } }
+			set_global_variable = sfa_eritrea_split
+			set_variable = eritrea_france_equivalent_variable
+		}
+		if = {
+			limit = {
+				exists = c:ITA
+				c:ITA = {
+					is_subject = no
+					NOT = { THIS = ROOT }
+					global_country_ranking >= 5
+					country_rank >= rank_value:major_power
+					has_variable = SFA_attended_berlin_conference
+				}
+			}
+			c:ITA = { save_scope_as = eritrea_italy_equivalent_scope }
+		}
+		else_if = {
+			limit = {
+				OR = {
+					NOT = { exists = c:ITA }
+					AND = {
+						exists = c:ITA
+						NOT = { c:ITA = ROOT }
+						c:ITA = {
+							OR = {
+								is_subject = yes
+								country_rank < rank_value:major_power
+								NOT = { has_variable = SFA_attended_berlin_conference }
+							}
+						}
+					}
+				}
+			}
+			random_country = {
+				limit = {
+					is_subject = no
+					global_country_ranking >= 5
+					country_rank >= rank_value:major_power
+					has_variable = SFA_attended_berlin_conference
+				}
+				save_scope_as = eritrea_italy_equivalent_scope
+			}
+		}
+	}
+
+	option = {
+		name = HJE_colonial.16.a
+		default_option = yes
+		ai_chance = { base = 1 }
+		trigger = { exists = scope:eritrea_italy_equivalent_scope }
+
+		s:STATE_ERITREA = { add_claim = ROOT }
+		create_incident = { country = root value = 40 }
+		every_state = {
+			limit = { 
+				state_region = s:STATE_ERITREA 
+				OWNER = {
+					is_player = no
+					OR = { is_country_type = unrecognized is_country_type = decentralized }
+				}
+			}
+			set_state_owner = THIS
+		}
+	}
+
+	option = {
+		name = HJE_colonial.16.b
+		default_option = yes
+		ai_chance = 100
+		
+		if = {
+			limit = { exists = scope:eritrea_italy_equivalent_scope }
+			scope:eritrea_italy_equivalent_scope = { 
+				trigger_event = { id = HJE_colonial.17 } 
+			}
+		}
+	
+		s:STATE_ERITREA = { add_claim = ROOT }
+		create_incident = { country = root value = 15 }
+
+		every_state = {
+			limit = { 
+				state_region = s:STATE_ERITREA 
+				OWNER = {
+					is_player = no
+					OR = { is_country_type = unrecognized is_country_type = decentralized }
+				}
+			}
+			set_state_owner = THIS
+		}
+	}
+
+	option = {
+		name = HJE_colonial.16.c
+		ai_chance = { base = 0 }
+		if = {
+			limit = { has_global_variable = sfa_eritrea_split }
+			remove_global_variable = sfa_eritrea_split
+		}
+		if = {
+			limit = { has_variable = eritrea_france_equivalent_variable }
+			remove_variable = eritrea_france_equivalent_variable
+		}
+	}		
+}
+
+HJE_colonial.17 = {
+	type = country_event
+	placement = scope:berlin_conference_host_scope
+	title = HJE_colonial.17.t
+	flavor = HJE_colonial.17.f
+	desc = HJE_colonial.17.d
+
+	duration = 3
+
+	cooldown = { months = 360 }
+ 
+	is_popup = yes
+
+	event_image = {
+		video = "gfx/event_pictures/europenorthamerica_capitalists_meeting.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/capitalists_meeting"
+
+	icon = "gfx/interface/icons/event_icons/event_map.dds"
+
+	trigger = {
+	}
+	
+	immediate = {
+		random_country = {
+			limit = { has_variable = berlin_conference_host }
+			save_scope_as = berlin_conference_host_scope
+		}
+		random_country = {
+			limit = { has_variable = eritrea_france_equivalent_variable }
+			save_scope_as = eritrea_france_equivalent_scope
+		}
+	}
+
+	option = {
+		name = HJE_colonial.17.a
+		default_option = yes
+		ai_chance = { base = 1 }
+
+		scope:eritrea_france_equivalent_scope = {
+			change_relations = {
+				country = ROOT
+				value = 15
+			}
+		}
+		create_incident = { country = root value = 15 }
+		s:STATE_ERITREA = {
+			add_claim = ROOT
+			set_owner_of_provinces = {
+				country = ROOT
+				provinces = {
+					x9970A0 
+					x48573C 
+					x64B77C 
+					x409D6F 
+					x7090A0 
+					xE64992 
+					x140193 
+					x0EBF6B 
+					xE00AC4 
+					xF786F9 
+					x593F30 
+					x035501 
+					x03442D 
+					x9E4472 
+					x59AB39 
+					x569C7E 
+					xEC9D04 
+					x70A072 
+					xEB1C6A 
+					xC5D429 
+					x5D45FC 
+					x66F6C3 
+					x1B0B1E
+				}
+			}
+		}
+	}
+
+	option = {
+		name = HJE_colonial.17.b
+		ai_chance = { base = 0 }
+		scope:eritrea_france_equivalent_scope = {
+			create_incident = { country = prev value = 20 }
+			change_relations = {
+				country = ROOT
+				value = -30
+			}
+		}
+	}		
+}
+
+HJE_colonial.18 = { 			### SOMALIA DISPUTE (split between Britain and Italy) ###
+	type = country_event
+	placement = scope:berlin_conference_host_scope
+	title = HJE_colonial.18.t
+	flavor = HJE_colonial.18.f
+	desc = HJE_colonial.18.d
+
+	duration = 3
+
+	cooldown = { months = 360 }
+ 
+	is_popup = yes
+
+	event_image = {
+		video = "gfx/event_pictures/unspecific_signed_contract.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/rich_and_poor"
+
+	icon = "gfx/interface/icons/event_icons/event_default.dds"
+
+	trigger = {
+		has_global_variable = berlin_conference_ongoing
+		has_global_variable = berlin_conference_happened
+		is_subject = no
+		NOT = { has_global_variable = sfa_somalia_split }
+		global_country_ranking < 5
+		trigger_if = {
+			limit = {
+				exists = c:ITA
+				c:ITA = { 
+					global_country_ranking < 5 
+					has_variable = SFA_attended_berlin_conference
+				}
+			}
+			c:ITA = ROOT
+		}
+		trigger_else_if = {
+			limit = {
+				exists = c:GBR
+				c:GBR = { 
+					global_country_ranking < 5 
+					has_variable = SFA_attended_berlin_conference
+				}
+			}
+			c:GBR = ROOT
+		}
+	}
+	
+	immediate = {
+		random_country = {
+			limit = { has_variable = berlin_conference_host }
+			save_scope_as = berlin_conference_host_scope
+		}
+		if = {
+			limit = { NOT = { has_global_variable = sfa_somalia_split } }
+			set_global_variable = sfa_somalia_split
+			set_variable = somalia_britain_equivalent_variable
+		}
+		if = {
+			limit = {
+				exists = c:ITA
+				c:ITA = {
+					is_subject = no
+					NOT = { THIS = ROOT }
+					global_country_ranking >= 5
+					country_rank >= rank_value:major_power
+					has_variable = SFA_attended_berlin_conference
+				}
+			}
+			c:ITA = { save_scope_as = somalia_italy_equivalent_scope }
+		}
+		else_if = {
+			limit = {
+				OR = {
+					NOT = { exists = c:ITA }
+					AND = {
+						exists = c:ITA
+						NOT = { c:ITA = ROOT }
+						c:ITA = {
+							OR = {
+								is_subject = yes
+								country_rank < rank_value:major_power
+								NOT = { has_variable = SFA_attended_berlin_conference }
+							}
+						}
+					}
+				}
+			}
+			random_country = {
+				limit = {
+					is_subject = no
+					global_country_ranking >= 5
+					country_rank >= rank_value:major_power
+					has_variable = SFA_attended_berlin_conference
+				}
+				save_scope_as = somalia_italy_equivalent_scope
+			}
+		}
+	}
+
+	option = {
+		name = HJE_colonial.18.a
+		default_option = yes
+		ai_chance = { base = 1 }
+		trigger = { exists = scope:somalia_italy_equivalent_scope }
+
+		s:STATE_SOMALILAND = { add_claim = ROOT }
+		create_incident = { country = root value = 40 }
+		every_state = {
+			limit = { 
+				state_region = s:STATE_SOMALILAND 
+				OWNER = {
+					is_player = no
+					OR = { is_country_type = unrecognized is_country_type = decentralized }
+				}
+			}
+			set_state_owner = THIS
+		}
+	}
+
+	option = {
+		name = HJE_colonial.18.b
+		default_option = yes
+		ai_chance = 100
+		
+		if = {
+			limit = { exists = scope:somalia_italy_equivalent_scope }
+			scope:somalia_italy_equivalent_scope = { 
+				trigger_event = { id = HJE_colonial.19 } 
+			}
+		}
+	
+		s:STATE_SOMALILAND = { add_claim = ROOT }
+		create_incident = { country = root value = 15 }
+
+		every_state = {
+			limit = { 
+				state_region = s:STATE_SOMALILAND 
+				OWNER = {
+					is_player = no
+					OR = { is_country_type = unrecognized is_country_type = decentralized }
+				}
+			}
+			set_state_owner = THIS
+		}
+	}
+
+	option = {
+		name = HJE_colonial.18.c
+		ai_chance = { base = 0 }
+		if = {
+			limit = { has_global_variable = sfa_somalia_split }
+			remove_global_variable = sfa_somalia_split
+		}
+		if = {
+			limit = { has_variable = somalia_britain_equivalent_variable }
+			remove_variable = somalia_britain_equivalent_variable
+		}
+	}		
+}
+
+HJE_colonial.19 = {
+	type = country_event
+	placement = scope:berlin_conference_host_scope
+	title = HJE_colonial.19.t
+	flavor = HJE_colonial.19.f
+	desc = HJE_colonial.19.d
+
+	duration = 3
+
+	cooldown = { months = 360 }
+ 
+	is_popup = yes
+
+	event_image = {
+		video = "gfx/event_pictures/europenorthamerica_capitalists_meeting.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/capitalists_meeting"
+
+	icon = "gfx/interface/icons/event_icons/event_map.dds"
+
+	trigger = {
+	}
+	
+	immediate = {
+		random_country = {
+			limit = { has_variable = berlin_conference_host }
+			save_scope_as = berlin_conference_host_scope
+		}
+		random_country = {
+			limit = { has_variable = somalia_britain_equivalent_variable }
+			save_scope_as = somalia_britain_equivalent_scope
+		}
+	}
+
+	option = {
+		name = HJE_colonial.19.a
+		default_option = yes
+		ai_chance = { base = 1 }
+
+		scope:somalia_britain_equivalent_scope = {
+			change_relations = {
+				country = ROOT
+				value = 15
+			}
+		}
+		create_incident = { country = root value = 15 }
+		s:STATE_SOMALILAND = {
+			add_claim = ROOT
+			set_owner_of_provinces = {
+				country = ROOT
+				provinces = {
+					x560238
+					x0C544E
+					x42DA4F
+					xD0FF66
+					xB19FD2 
+					xB9F779 
+					xEF3903 
+					x2D75F4 
+					x132465 
+					xF70163 
+					xA0E090 
+					x4BED76 
+					x854A91 
+					xA6E128 
+					x995FB2 
+					xED2D92 
+					x281ECB 
+					xD97AC4 
+					xB72AFB 
+					x326FD1 
+					x2CA298
+					xE585C3 
+					x1D4F93 
+					x324717 
+					xCB3B07 
+					x6BA02C 
+					x6D66A6 
+					xFE3534
+					x60EAC8 
+					xDDF9DB 
+					xE4636A 
+					x76595D 
+					x83A1A3 
+					x58307A 
+					xB64D3E 
+					x049442 
+					xF5E822 
+					x73FE30 
+					xA05C39 
+					x6D0680 
+					x469B34 
+					xA2A857 
+					x529552 
+					x2D75F4
+					xF30A4D 
+					x625125 
+					x337D01 
+					xF26F4C 
+					xAFF79D 
+					x1CE5E9 
+					x5BF703 
+					x3587B8 
+					x815D01 
+					x3D5BE3 
+					xCEE8F8 
+					x5B7C30 
+					x2F6BB1 
+					x45FEEC 
+					xF4A328 
+					x46250C 
+					x1017C5 
+					xBFE050 
+					xBC0D72 
+					x1D4152 
+					xDF6111 
+					x407408 
+					x212090 
+					xAABDBD 
+					x508D8F 
+					xBF3A7A 
+					xEDC612 
+					x30521C 
+					x6EFA28 
+					x354629 
+					xE44897 
+					xD0BA96 
+					x5DAE68 
+					x3DE547 
+					x992BFC 
+					xA1A21B 
+					x10CF18 
+					x72DC5E 
+					xE65D19 
+					x894078 
+					x0085FA 
+					xF0C31D 
+					x606011 
+					x655F7E 
+					x0F9944 
+					xD191E8
+				}
+			}
+		}
+	}
+
+	option = {
+		name = HJE_colonial.19.b
+		ai_chance = { base = 0 }
+		scope:somalia_britain_equivalent_scope = {
+			create_incident = { country = prev value = 20 }
+			change_relations = {
+				country = ROOT
+				value = -30
+			}
+		}
+	}		
+}
+
+HJE_colonial.20 = { 			### CONGO (GP option, lots of infamy) ###
+	type = country_event
+	placement = scope:berlin_conference_host_scope
+	title = HJE_colonial.20.t
+	desc = HJE_colonial.20.d
+	flavor = HJE_colonial.20.f
+
+	duration = 3
+
+ 
+	event_image = {
+		video = "gfx/event_pictures/unspecific_signed_contract.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/rich_and_poor"
+
+	icon = "gfx/interface/icons/event_icons/event_default.dds"
+
+	trigger = {
+		has_global_variable = berlin_conference_ongoing
+		is_subject = no
+		NOT = { has_global_variable = sfa_congo_claimed }
+		NOT = { has_variable = sfa_got_congo_claim_option }
+		NOT = { has_global_variable = sfa_congo_gift_event_open }
+		OR = {
+			NOT = { has_global_variable = sfa_nobody_wanted_congo_infamy }
+			has_variable = sfa_minor_congo_option_variable
+		}
+	}
+	
+	immediate = {
+		set_global_variable = sfa_nobody_wanted_congo_infamy
+		set_variable = sfa_got_congo_claim_option
+		random_country = {
+			limit = { has_variable = berlin_conference_host }
+			save_scope_as = berlin_conference_host_scope
+		}
+		if = {
+			limit = { NOT = { has_global_variable = sfa_congo_claimed } }
+			set_global_variable = sfa_congo_claimed
+		}
+		if = {
+			limit = {
+				NOT = { has_global_variable = sfa_nobody_wanted_congo_infamy }
+				NOT = {
+					any_country = {
+						is_subject = no
+						has_variable = SFA_attended_berlin_conference
+						NOT = { has_variable = sfa_got_congo_claim_option }
+					}
+				}
+			}
+			set_global_variable = sfa_nobody_wanted_congo_infamy
+		}
+		every_country = {
+			limit = { has_variable = sfa_minor_congo_option_variable }
+			remove_variable = sfa_minor_congo_option_variable
+		}
+	}
+
+	option = {
+		name = HJE_colonial.20.a
+	
+		add_journal_entry = je_free_state
+		#activate_journal_entry = je_free_state
+		#set_variable = scramble_for_africa_complete
+		if = {
+			limit = {
+				country_rank >= rank_value:major_power
+				has_variable = SFA_attended_berlin_conference
+			}
+			create_incident = { country = root value = 50 }
+		}
+		else = {
+			create_incident = { country = root value = 15 }
+		}
+
+		if = {
+			limit = { NOT = { has_law = law_type:law_colonial_exploitation } }
+			activate_law = law_type:law_colonial_exploitation
+			change_institution_investment_level = { institution = institution_colonial_affairs investment = 4 }
+		}
+
+		s:STATE_BAS_CONGO = { add_claim = ROOT }
+		s:STATE_KASAI = { add_claim = ROOT }
+		s:STATE_KATANGA = { add_claim = ROOT }
+		s:STATE_EQUATEUR = { add_claim = ROOT }
+		s:STATE_CONGO_ORIENTALE = { add_claim = ROOT }
+		every_state = {
+			limit = { 
+				owner = { is_player = no }
+				state_region = s:STATE_BAS_CONGO 
+			}
+			set_state_owner = ROOT
+		}
+		every_state = {
+			limit = { 
+				owner = {
+					OR = {
+						has_variable = SFA_attended_berlin_conference
+						any_overlord_or_above = { has_variable = SFA_attended_berlin_conference }
+					}
+					NOR = { is_country_type = unrecognized is_country_type = decentralized }
+				}
+				OR = {
+					state_region = s:STATE_KASAI 
+					state_region = s:STATE_KATANGA 
+					state_region = s:STATE_EQUATEUR 
+					state_region = s:STATE_CONGO_ORIENTALE 
+				}
+			}
+			set_state_owner = ROOT
+		}
+		if = {
+			limit = { has_global_variable = sfa_nobody_wanted_congo_infamy }
+			remove_global_variable = sfa_nobody_wanted_congo_infamy
+		}
+
+		ai_chance = 1
+	}	
+
+	option = {
+		name = HJE_colonial.20.b
+		default_option = yes
+		if = {
+			limit = { has_global_variable = sfa_congo_claimed }
+			remove_global_variable = sfa_congo_claimed
+		}
+
+		ai_chance = {
+			base = 99
+			modifier = {
+				factor = 0
+				OR = {
+					NOT = { has_variable = SFA_attended_berlin_conference }
+					AND = {
+						exists = c:BEL
+						c:BEL = ROOT
+					}
+				}
+			}
+		}
+	}		
+}
+
+HJE_colonial.21 = { 			### CONGO (GP decides which minor power to offer it to) ###
+	type = country_event
+	placement = scope:berlin_conference_host_scope
+	title = HJE_colonial.21.t
+	desc = HJE_colonial.21.d
+	flavor = HJE_colonial.21.f
+
+	duration = 3
+
+ 
+	event_image = {
+		video = "gfx/event_pictures/unspecific_signed_contract.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/rich_and_poor"
+
+	icon = "gfx/interface/icons/event_icons/event_default.dds"
+
+	trigger = {
+		has_global_variable = berlin_conference_ongoing
+		has_global_variable = berlin_conference_happened
+		is_subject = no
+		country_rank = rank_value:great_power
+		has_global_variable = sfa_nobody_wanted_congo_infamy
+		NOT = { has_variable = opted_out_of_minor_congo_decision }
+		NOT = { has_global_variable = sfa_congo_claimed }
+		NOT = { has_global_variable = sfa_congo_gift_event_open }
+	}
+	
+	immediate = {
+		random_country = {
+			limit = { has_variable = berlin_conference_host }
+			save_scope_as = berlin_conference_host_scope
+		}
+		if = {
+			limit = { NOT = { has_global_variable = sfa_congo_gift_event_open } }
+			set_global_variable = sfa_congo_gift_event_open
+		}
+		if = {
+			limit = {
+				exists = c:BEL
+				c:BEL = {
+					country_rank <= rank_value:major_power
+					NOT = { has_variable = SFA_attended_berlin_conference }
+					NOT = { has_variable = sfa_minor_congo_option_variable }
+				}
+			}
+			c:BEL = { 
+				set_variable = sfa_minor_congo_option_variable
+				save_scope_as = sfa_minor_congo_option_1 
+			}
+		}
+		else = {
+			random_country = {
+				limit = {
+					is_subject = no
+					country_is_in_europe = yes
+					country_rank <= rank_value:major_power
+					NOT = { has_variable = SFA_attended_berlin_conference }
+					NOT = { has_variable = sfa_minor_congo_option_variable }
+					any_scope_state = { is_coastal = yes }
+				}
+				set_variable = sfa_minor_congo_option_variable
+				save_scope_as = sfa_minor_congo_option_1
+			}
+		}
+		random_country = {
+			limit = {
+				is_subject = no
+				country_is_in_europe = yes
+				country_rank <= rank_value:major_power
+				NOT = { has_variable = SFA_attended_berlin_conference }
+				NOT = { has_variable = sfa_minor_congo_option_variable }
+				any_scope_state = { is_coastal = yes }
+			}
+			set_variable = sfa_minor_congo_option_variable
+			save_scope_as = sfa_minor_congo_option_2
+		}
+		random_country = {
+			limit = {
+				is_subject = no
+				country_is_in_europe = yes
+				country_rank <= rank_value:major_power
+				NOT = { has_variable = SFA_attended_berlin_conference }
+				NOT = { has_variable = sfa_minor_congo_option_variable }
+				any_scope_state = { is_coastal = yes }
+			}
+			set_variable = sfa_minor_congo_option_variable
+			save_scope_as = sfa_minor_congo_option_3
+		}
+	}
+
+	option = {
+		name = HJE_colonial.21.a
+		default_option = yes
+		hidden_effect = {
+			if = {
+				limit = { has_global_variable = sfa_congo_gift_event_open }
+				remove_global_variable = sfa_congo_gift_event_open
+			}
+		}
+
+		scope:sfa_minor_congo_option_1 = {
+			trigger_event = { id = HJE_colonial.20 }
+		}
+
+
+		ai_chance = 95
+	}	
+
+	option = {
+		name = HJE_colonial.21.b
+		hidden_effect = {
+			if = {
+				limit = { has_global_variable = sfa_congo_gift_event_open }
+				remove_global_variable = sfa_congo_gift_event_open
+			}
+		}
+
+		scope:sfa_minor_congo_option_2 = {
+			trigger_event = { id = HJE_colonial.20 }
+		}
+
+
+		ai_chance = 3
+	}	
+
+	option = {
+		name = HJE_colonial.21.c
+		hidden_effect = {
+			if = {
+				limit = { has_global_variable = sfa_congo_gift_event_open }
+				remove_global_variable = sfa_congo_gift_event_open
+			}
+		}
+
+		scope:sfa_minor_congo_option_3 = {
+			trigger_event = { id = HJE_colonial.20 }
+		}
+
+
+		ai_chance = 2
+	}	
+
+	option = {
+		name = HJE_colonial.21.e
+		trigger_event = { id = HJE_colonial.21 }
+		hidden_effect = {
+			every_country = {
+				limit = { has_variable = sfa_minor_congo_option_variable }
+				remove_variable = sfa_minor_congo_option_variable
+			}
+		}
+
+		ai_chance = 0
+	}
+	option = {
+		name = HJE_colonial.21.g
+		hidden_effect = {
+			set_variable = opted_out_of_minor_congo_decision
+			if = {
+				limit = { has_global_variable = sfa_congo_gift_event_open }
+				remove_global_variable = sfa_congo_gift_event_open
+			}
+			every_country = {
+				limit = { has_variable = sfa_minor_congo_option_variable }
+				remove_variable = sfa_minor_congo_option_variable
+			}
+		}
+
+		ai_chance = 0
+	}
+}
+
+HJE_colonial.99 = { 			
+	type = country_event
+	placement = root
+	title = HJE_colonial.99.t
+	desc = HJE_colonial.99.d
+	flavor = HJE_colonial.99.f
+
+	duration = 3
+	
+	event_image = {
+		video = "gfx/event_pictures/unspecific_signed_contract.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/rich_and_poor"
+
+	icon = "gfx/interface/icons/event_icons/event_default.dds"
+
+	trigger = {
+	}
+	
+	immediate = {
+	}
+
+	option = {
+		name = HJE_colonial.99.a
+		default_option = yes
+	
+
+
+		every_state = {
+			limit = {
+				has_claim_by = scope:colonial_claims_scope
+				state_is_in_africa = yes
+				owner = root
+				NOT = { has_claim_by = root }
+				NOT = {
+					any_neighbouring_state = { 
+						has_claim_by = root
+					}
+				}
+			}
+			set_state_owner = scope:colonial_claims_scope
+		}
+		hidden_effect = {
+			trigger_event = { id = HJE_colonial.99001 days = 5 }
+		}
+		
+		ai_chance = {
+			base = 1
+		}
+
+	}	
+
+	option = {
+		name = HJE_colonial.99.b
+		set_variable = colonial_claims_var
+		create_incident = { country = scope:colonial_claims_scope value = 15 }
+		change_relations = {
+			country = scope:colonial_claims_scope
+			value = -30
+		}
+		hidden_effect = {
+			set_mutual_secret_goal = {
+				country = scope:colonial_claims_scope
+				secret_goal = antagonize
+			}	
+			trigger_event = { id = HJE_colonial.99001 days = 5 }
+		}
+		hidden_effect = {
+			set_variable = {
+				name = colonial_claimant
+				days = 1825
+			}		
+		}
+		
+		ai_chance = {
+			base = 0
+		}
+		
+		
+	}		
+}
+
+HJE_colonial.99001 = { 			
+	type = country_event
+	hidden = yes
+	immediate = {
+		scope:colonial_claims_scope = { clear_saved_scope = colonial_claims_scope }
+	}
+}

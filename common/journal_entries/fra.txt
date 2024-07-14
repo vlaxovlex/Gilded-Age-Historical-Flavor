@@ -1,0 +1,540 @@
+﻿#localize this shit lmao
+
+je_french_demographic_crisis = {
+	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
+	
+	group = je_group_crises
+	
+	complete = {
+		scope:journal_entry = {
+			is_goal_complete = yes
+		}
+	}
+	
+	on_complete = {
+		trigger_event = {
+			id = TGE_france.2
+		}
+	}
+	timeout = 12410
+	on_timeout = {
+		trigger_event = {
+			id = TGE_france.3
+		}
+	}
+
+	current_value = {
+		value = var:french_demographic_var
+	}
+
+	goal_add_value = {
+		add = 2
+	}
+	
+	progressbar = yes
+
+	weight = 10000
+	should_be_pinned_by_default = yes
+}
+
+je_french_demographic_crisis_military = {
+	icon = "gfx/interface/icons/event_icons/event_industry.dds"
+
+	group = je_group_crises
+		
+	complete = {
+		calc_true_if = {
+			amount >= 4
+			owns_entire_state_region = STATE_PROVENCE
+			owns_entire_state_region = STATE_SAVOY
+			owns_entire_state_region = STATE_WEST_SWITZERLAND
+			owns_entire_state_region = STATE_BADEN
+			owns_entire_state_region = STATE_RHINELAND
+			owns_entire_state_region = STATE_WALLONIA
+		}
+	}
+
+	on_complete = {
+		custom_tooltip = je_french_demographic_crisis_advance
+		change_variable = {
+			name = french_demographic_var
+			add = 1
+		}
+	}
+	
+	timeout = 12410
+	invalid = {
+		custom_tooltip = {
+			text = finished_french_demographic_crisis
+			has_variable = french_demographic_crisis_complete
+		}
+	}
+
+	weight = 5000
+}
+
+je_french_demographic_crisis_pacifist = {
+	icon = "gfx/interface/icons/event_icons/event_industry.dds"
+
+	group = je_group_crises
+		
+	complete = {
+		AND = {
+			ig:ig_devout = {
+				is_powerful = yes
+			}
+			NOT = { 
+				any_scope_state = { 
+					is_incorporated = yes 
+					average_sol < 8
+				}
+			}
+		}
+	}
+
+	on_complete = {
+		custom_tooltip = je_french_demographic_crisis_advance
+		change_variable = {
+			name = french_demographic_var
+			add = 1
+		}
+	}
+	
+	timeout = 12410
+	invalid = {
+		custom_tooltip = {
+			text = finished_french_demographic_crisis
+			has_variable = french_demographic_crisis_complete
+		}
+	}
+
+	weight = 5000
+}
+
+je_end_of_orleans_monarchy = {
+	
+	icon = "gfx/interface/icons/event_icons/event_protest.dds"
+	
+	group = je_group_historical_content
+	
+	immediate = {}
+	
+	timeout = 5840
+	
+	on_timeout = { trigger_event = { id = HJE_france.10 popup = yes } }
+	
+	weight = 1000
+	
+	progressbar = no
+	
+	should_be_pinned_by_default = yes
+	
+	on_complete = {
+		custom_tooltip = je_end_of_orleans_monarchy_end
+		hidden_effect = {
+			if = {
+				limit = {
+					has_law = law_type:law_presidential_republic
+				}
+				trigger_event = { id = HJE_france.7 popup = yes }
+			}	
+			else_if = {
+				limit = {
+					year >= 1846 
+					NOT = { year > 1851 }
+					ig:ig_intelligentsia = {
+						OR = {
+							is_in_government = yes
+							is_powerful = yes
+						}
+					}	
+				}
+				trigger_event = { id = HJE_france.9 popup = yes }
+			}
+			else_if = {
+				limit = {
+					AND = {
+						is_player = no
+						year >= 1849
+					}
+				}
+				trigger_event = { id = HJE_france.9 popup = yes }
+			}
+		}
+	}	
+	
+	complete = {
+		exists = c:FRA	
+		c:FRA = ROOT
+		NOT = { any_interest_group = { is_insurrectionary = yes } }	
+		OR = { 
+			has_law = law_type:law_presidential_republic
+			custom_tooltip = {
+				text = je_end_of_orleans_monarchy_goal.1
+				year >= 1846 
+				NOT = { year > 1851 }
+				ig:ig_intelligentsia = {
+					OR = {
+						is_in_government = yes
+						is_powerful = yes
+					}
+				}
+			}
+			hidden_trigger = {
+				AND = {
+	                is_player = no
+					year >= 1849
+	            }
+            }	
+		}
+	}
+	
+	invalid = {
+		OR = {
+			has_law = law_type:law_universal_suffrage
+			AND = {
+				NOT = { has_law = law_type:law_monarchy }
+				any_scope_character = { is_ruler = yes NOT = { has_variable = is_orleanist } }
+			}
+			AND = {
+				NOT = { has_law = law_type:law_monarchy }
+				NOT = { has_law = law_type:law_presidential_republic }
+			}
+		}
+	}
+}
+
+je_first_presidential_election = {
+	
+	icon = "gfx/interface/icons/event_icons/event_election.dds"
+	
+	group = je_group_historical_content
+	
+	immediate = {
+		set_variable = {
+			name = first_election_timer
+			value = 0
+		}
+	}
+	
+	on_monthly_pulse = {
+		effect = {
+			change_variable = {
+				name = first_election_timer
+				add = 1
+			}
+			if = {
+				limit = {
+					root.var:first_election_timer = 2
+				}
+				trigger_event = { id = HJE_france.11 popup = yes }
+			}
+			if = {
+				limit = {
+					root.var:first_election_timer = 4
+				}
+				trigger_event = { id = HJE_france.12 days = 2 popup = yes }
+			}
+			if = {
+				limit = {
+					root.var:first_election_timer = 8
+				}
+				trigger_event = { id = HJE_france.15 days = 5 popup = yes }
+			}
+		}
+	}
+
+	on_complete = {
+		hidden_effect = {
+			if = {
+				limit = { any_scope_character = { has_variable = is_louis_napoleon } }
+				every_scope_character = {
+					limit = { has_variable = is_louis_napoleon }
+					kill_character = yes
+				}
+			}
+		}
+		trigger_event = { id = HJE_france.16 popup = yes }
+	}
+	
+	current_value = {
+		value = root.var:first_election_timer
+	}
+	
+	goal_add_value = {
+		value = 10
+	}
+
+	weight = 1000
+	
+	progressbar = yes
+
+	should_be_pinned_by_default = yes
+	
+	complete = {
+		scope:journal_entry = {
+			is_goal_complete = yes
+		}
+	}
+	
+	invalid = {
+		NOT = { has_law = law_type:law_presidential_republic }
+	}
+	
+	inheritable = yes
+}
+
+je_future_of_the_republic = {
+	
+	icon = "gfx/interface/icons/event_icons/event_scales.dds"
+	
+	group = je_group_crises
+	
+	immediate = {
+		set_variable = {
+			name = future_of_the_republic_timer
+			value = 0
+		}
+		random_scope_character = {
+			limit = {
+				has_variable = is_louis_napoleon
+			}
+			save_scope_as = louis_napoleon_leader
+		}
+	}
+	
+	on_monthly_pulse = {
+		effect = {
+			change_variable = {
+				name = future_of_the_republic_timer
+				add = 1
+			}
+		}
+	}
+	
+	timeout = 2191
+	
+	on_timeout = { trigger_event = { id = HJE_france.19 popup = yes } }
+	
+	weight = 1000
+	
+	progressbar = no
+	
+	should_be_pinned_by_default = yes
+	
+	on_complete = {
+		trigger_event = { id = HJE_france.17 popup = yes }
+	}	
+	
+	complete = {
+		exists = c:FRA	
+		c:FRA = ROOT
+		is_at_war = no
+		#NOT = { any_interest_group = { is_insurrectionary = yes } }	
+		OR = { 
+			custom_tooltip = {
+				text = je_future_of_the_republic_goal.1
+				#root.var:future_of_the_republic_timer >= 24				
+				AND = {
+					ig:ig_armed_forces = { 
+						is_in_government = yes
+						is_powerful = yes
+					}
+					ruler = {
+						has_variable = is_louis_napoleon
+					}
+					#NOT = { root.var:future_of_the_republic_timer >= 49	}
+				}
+			}
+			custom_tooltip = {
+				text = je_future_of_the_republic_goal.2 
+				AND ={ 
+					ig:ig_intelligentsia = { 
+						is_marginal = yes
+					}
+					ig:ig_trade_unions = {
+						is_marginal = yes
+					}
+					ruler = {
+						has_variable = is_louis_napoleon
+					}
+				}
+			}	
+			hidden_trigger = {
+				AND = {
+	                is_player = no
+					#root.var:future_of_the_republic_timer >= 24	
+					#NOT = { root.var:future_of_the_republic_timer >= 49	}
+					ruler = {
+						has_variable = is_louis_napoleon
+					}
+	            }
+            }	
+		}
+	}
+	
+	invalid = {
+		OR = {
+			NOT = { has_law = law_type:law_presidential_republic }
+			NOT = { any_scope_character = { has_variable = is_louis_napoleon } }
+		}
+	}
+	
+	inheritable = yes
+}
+
+je_future_of_the_republic_antibonapartist = {
+	
+	icon = "gfx/interface/icons/event_icons/event_scales.dds"
+	
+	group = je_group_crises
+
+	immediate = {
+		set_variable = {
+			name = future_of_the_republic_timer
+			value = 0
+		}
+		random_scope_character = {
+			limit = {
+				has_variable = is_louis_napoleon
+			}
+			save_scope_as = louis_napoleon_leader
+		}
+	}
+	
+	on_monthly_pulse = {
+		effect = {
+			change_variable = {
+				name = future_of_the_republic_timer
+				add = 1
+			}
+		}
+	}
+	
+	timeout = 2191
+	
+	on_timeout = { }
+	
+	weight = 1000
+	
+	progressbar = no
+	
+	should_be_pinned_by_default = yes
+	
+	on_complete = {
+		trigger_event = { id = HJE_france.19 days = 5 popup = yes }
+	}	
+	
+	complete = {
+		exists = c:FRA	
+		c:FRA = ROOT
+		is_at_war = no
+		#NOT = { any_interest_group = { is_insurrectionary = yes } }	
+		OR = { 
+			custom_tooltip = {
+				text = je_future_of_the_republic_antibonapartist_goal.1	
+				ig:ig_armed_forces = { 
+					is_in_government = no
+					is_powerful = no
+					leader = {
+						has_variable = is_louis_napoleon
+					}
+				}
+				#root.var:future_of_the_republic_timer >= 24		
+				#NOT = { root.var:future_of_the_republic_timer >= 49	}	
+			}
+			custom_tooltip = {
+				text = je_future_of_the_republic_antibonapartist_goal.2 
+				NOT = { has_law = law_type:law_presidential_republic }
+				ig:ig_armed_forces = { 
+					leader = {
+						has_variable = is_louis_napoleon
+					}
+				}
+			}	
+			hidden_trigger = {
+				AND = {
+	                is_player = no
+					#root.var:future_of_the_republic_timer >= 24	
+					#NOT = { root.var:future_of_the_republic_timer >= 49	}
+					ig:ig_armed_forces = { 
+						leader = {
+							has_variable = is_louis_napoleon
+						}
+					}
+	            }
+            }	
+		}
+	}
+	
+	invalid = {
+		OR = {
+			NOT = { any_scope_character = { has_variable = is_louis_napoleon } }
+			ruler = { has_variable = is_louis_napoleon }
+		}
+	}
+	
+	inheritable = yes
+}
+
+je_creating_a_second_empire = {
+
+	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
+	
+	group = je_group_historical_content
+	
+	immediate = {
+		if = {
+			limit = {
+				exists = c:FRA
+				c:FRA = { is_player = no }
+			}
+			activate_law = law_type:law_monarchy
+		}
+		set_variable = {
+			name = preparation_timer
+			value = 0
+		}
+	}
+	
+	on_monthly_pulse = {
+		effect = {
+			change_variable = {
+				name = preparation_timer
+				add = 1
+			}
+		}
+	}
+	
+	on_complete = {
+		trigger_event = { id = HJE_france.20 popup = yes }
+	}
+	
+	current_value = {
+		value = root.var:preparation_timer
+	}
+	
+	goal_add_value = {
+		value = 12					
+	}
+	
+	complete = {
+		scope:journal_entry = {
+			is_goal_complete = yes
+		}
+	}
+	
+	weight = 1000
+	
+	progressbar = yes
+	
+	should_be_pinned_by_default = yes
+	
+	invalid = {
+		OR = {
+			#NOT = { has_law = law_type:law_presidential_republic }
+			any_scope_character = { is_ruler = yes NOT = { has_variable = is_louis_napoleon } }
+		}
+	}
+	
+}

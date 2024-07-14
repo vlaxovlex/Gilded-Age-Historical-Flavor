@@ -1,0 +1,499 @@
+﻿# Decide National Capital Decision
+decide_capital_decision = {
+
+	is_shown = {
+		aggressive_diplomatic_plays_permitted = yes
+		NOT = { is_country_type = decentralized }
+		NOT = { has_variable = capital_decided_variable }
+		any_scope_state = { count >= 2 }
+		NOT = {
+			any_country = {
+				NOT = { THIS = ROOT }
+				country_definition = root.country_definition
+			}
+		}
+		OR = {
+			AND = {
+				exists = c:GER
+				c:GER = ROOT
+				OR = {
+					NOT = { any_state = { has_modifier = modifier_state_capital_of_germany } }
+					any_scope_state = {
+						has_modifier = modifier_state_capital_of_germany
+						is_capital = no
+					}
+				}
+			}
+			AND = {
+				exists = c:PRU
+				c:PRU = ROOT
+				owns_entire_state_region = STATE_BRANDENBURG
+				any_scope_state = {
+					state_region = s:STATE_BRANDENBURG
+					is_capital = no
+				}
+			}
+			AND = {
+				exists = c:NGF
+				c:NGF = ROOT
+				owns_entire_state_region = STATE_BRANDENBURG
+				any_scope_state = {
+					state_region = s:STATE_BRANDENBURG
+					is_capital = no
+				}
+			}
+			AND = {
+				exists = c:BAV
+				c:BAV = ROOT
+				owns_entire_state_region = STATE_BAVARIA
+				any_scope_state = {
+					state_region = s:STATE_BAVARIA
+					is_capital = no
+				}
+			}
+			AND = {
+				exists = c:SGF
+				c:SGF = ROOT
+				owns_entire_state_region = STATE_BAVARIA
+				any_scope_state = {
+					state_region = s:STATE_BAVARIA
+					is_capital = no
+				}
+			}
+			AND = {
+				exists = c:GBR
+				c:GBR = ROOT
+				owns_entire_state_region = STATE_HOME_COUNTIES
+				any_scope_state = {
+					state_region = s:STATE_HOME_COUNTIES
+					is_capital = no
+				}
+			}
+			AND = {
+				exists = c:ENG
+				c:ENG = ROOT
+				owns_entire_state_region = STATE_HOME_COUNTIES
+				any_scope_state = {
+					state_region = s:STATE_HOME_COUNTIES
+					is_capital = no
+				}
+			}
+			AND = {
+				exists = c:SCO
+				c:SCO = ROOT
+				owns_entire_state_region = STATE_LOWLANDS
+				any_scope_state = {
+					state_region = s:STATE_LOWLANDS
+					is_capital = no
+				}
+			}
+			AND = {
+				exists = c:FRA
+				c:FRA = ROOT
+				owns_entire_state_region = STATE_ILE_DE_FRANCE
+				any_scope_state = {
+					state_region = s:STATE_ILE_DE_FRANCE
+					is_capital = no
+				}
+			}
+			AND = {
+				exists = c:RUS
+				c:RUS = ROOT
+				owns_entire_state_region = STATE_INGRIA
+				any_scope_state = {
+					state_region = s:STATE_INGRIA
+					is_capital = no
+				}
+				owns_entire_state_region = STATE_MOSCOW
+				any_scope_state = {
+					state_region = s:STATE_MOSCOW
+					is_capital = no
+				}
+			}
+			AND = {
+				exists = c:SCA
+				c:SCA = ROOT
+				owns_entire_state_region = STATE_SVEALAND
+				any_scope_state = {
+					state_region = s:STATE_SVEALAND
+					is_capital = no
+				}
+				owns_entire_state_region = STATE_ZEALAND
+				any_scope_state = {
+					state_region = s:STATE_ZEALAND
+					is_capital = no
+				}
+				owns_entire_state_region = STATE_EASTERN_NORWAY
+				any_scope_state = {
+					state_region = s:STATE_EASTERN_NORWAY
+					is_capital = no
+				}
+			}
+			AND = {
+				exists = c:SWE
+				c:SWE = ROOT
+				owns_entire_state_region = STATE_SVEALAND
+				any_scope_state = {
+					state_region = s:STATE_SVEALAND
+					is_capital = no
+				}
+			}
+			AND = {
+				exists = c:DEN
+				c:DEN = ROOT
+				owns_entire_state_region = STATE_ZEALAND
+				any_scope_state = {
+					state_region = s:STATE_ZEALAND
+					is_capital = no
+				}
+			}
+			AND = {
+				exists = c:NOR
+				c:NOR = ROOT
+				owns_entire_state_region = STATE_EASTERN_NORWAY
+				any_scope_state = {
+					state_region = s:STATE_EASTERN_NORWAY
+					is_capital = no
+				}
+			}
+			AND = {
+				exists = c:BEL
+				c:BEL = ROOT
+				owns_entire_state_region = STATE_FLANDERS
+				any_scope_state = {
+					state_region = s:STATE_FLANDERS
+					is_capital = no
+				}
+				owns_entire_state_region = STATE_WALLONIA
+				any_scope_state = {
+					state_region = s:STATE_WALLONIA
+					is_capital = no
+				}
+			}
+			AND = {
+				exists = c:FLA
+				c:FLA = ROOT
+				owns_entire_state_region = STATE_FLANDERS
+				any_scope_state = {
+					state_region = s:STATE_FLANDERS
+					is_capital = no
+				}
+			}
+			AND = {
+				exists = c:WLL
+				c:WLL = ROOT
+				owns_entire_state_region = STATE_WALLONIA
+				any_scope_state = {
+					state_region = s:STATE_WALLONIA
+					is_capital = no
+				}
+			}
+			AND = {
+				exists = c:MEX
+				c:MEX = ROOT
+				owns_entire_state_region = STATE_MEXICO
+				any_scope_state = {
+					state_region = s:STATE_MEXICO
+					is_capital = no
+				}
+			}
+			AND = {
+				exists = c:IRE
+				c:IRE = ROOT
+				owns_entire_state_region = STATE_LEINSTER
+				any_scope_state = {
+					state_region = s:STATE_LEINSTER
+					is_capital = no
+				}
+			}
+			AND = {
+				exists = c:NET
+				c:NET = ROOT
+				owns_entire_state_region = STATE_HOLLAND
+				any_scope_state = {
+					state_region = s:STATE_HOLLAND
+					is_capital = no
+				}
+			}
+			AND = {
+				exists = c:POR
+				c:POR = ROOT
+				owns_entire_state_region = STATE_ESTREMADURA
+				any_scope_state = {
+					state_region = s:STATE_ESTREMADURA
+					is_capital = no
+				}
+			}
+			AND = {
+				exists = c:CAS
+				c:CAS = ROOT
+				owns_entire_state_region = STATE_TOLEDO
+				any_scope_state = {
+					state_region = s:STATE_TOLEDO
+					is_capital = no
+				}
+			}
+			AND = {
+				exists = c:SPA
+				c:SPA = ROOT
+				owns_entire_state_region = STATE_TOLEDO
+				any_scope_state = {
+					state_region = s:STATE_TOLEDO
+					is_capital = no
+				}
+			}
+			AND = {
+				exists = c:IBE
+				c:IBE = ROOT
+				owns_entire_state_region = STATE_TOLEDO
+				any_scope_state = {
+					state_region = s:STATE_TOLEDO
+					is_capital = no
+				}
+				owns_entire_state_region = STATE_ESTREMADURA
+				any_scope_state = {
+					state_region = s:STATE_ESTREMADURA
+					is_capital = no
+				}
+			}
+			AND = {
+				exists = c:PAP
+				c:PAP = ROOT
+				owns_entire_state_region = STATE_LAZIO
+				any_scope_state = {
+					state_region = s:STATE_LAZIO
+					is_capital = no
+				}
+			}
+			AND = {
+				exists = c:ITA
+				c:ITA = ROOT
+				owns_entire_state_region = STATE_LAZIO
+				any_scope_state = {
+					state_region = s:STATE_LAZIO
+					is_capital = no
+				}
+			}
+			AND = {
+				exists = c:SAR
+				c:SAR = ROOT
+				owns_entire_state_region = STATE_PIEDMONT
+				any_scope_state = {
+					state_region = s:STATE_PIEDMONT
+					is_capital = no
+				}
+			}
+			AND = {
+				exists = c:SIC
+				c:SIC = ROOT
+				owns_entire_state_region = STATE_CAMPANIA
+				any_scope_state = {
+					state_region = s:STATE_CAMPANIA
+					is_capital = no
+				}
+			}
+			AND = {
+				exists = c:HUN
+				c:HUN = ROOT
+				owns_entire_state_region = STATE_CENTRAL_HUNGARY
+				any_scope_state = {
+					state_region = s:STATE_CENTRAL_HUNGARY
+					is_capital = no
+				}
+			}
+			AND = {
+				exists = c:POL
+				c:POL = ROOT
+				owns_entire_state_region = STATE_MAZOVIA
+				any_scope_state = {
+					state_region = s:STATE_MAZOVIA
+					is_capital = no
+				}
+			}
+			AND = {
+				exists = c:GRE
+				c:GRE = ROOT
+				owns_entire_state_region = STATE_ATTICA
+				any_scope_state = {
+					state_region = s:STATE_ATTICA
+					is_capital = no
+				}
+			}
+		}
+	}
+
+	possible = {
+		is_at_war = no
+	}
+
+	when_taken = {
+		root = { trigger_event = { id = HJE_main.1 } }
+	}
+	
+	ai_chance = {
+		base = 100
+	}
+}
+
+berlin_conference = {
+	is_shown = {
+		country_is_in_europe = yes 
+		country_rank = rank_value:great_power
+		NOT = { has_global_variable = berlin_conference_happened }
+		NOT = { any_country = { has_variable = berlin_conference_host } }
+		any_country = {
+			has_technology_researched = quinine
+		}
+	}
+
+	possible = {
+		OR = {
+			year >= 1884
+			custom_tooltip = {
+				text = every_great_power_in_europe_has_malaria_prevention_tt
+				NOT = {
+					any_country = {
+						country_is_in_europe = yes 
+						country_rank = rank_value:great_power
+						NOT = { has_technology_researched = malaria_prevention }
+					}
+				}
+			}
+		}
+	}
+
+	when_taken = {
+		set_variable = SFA_attended_berlin_conference
+		set_variable = berlin_conference_host
+		add_modifier = {
+			name = modifier_hosted_berlin_conference
+			months = 240
+		}
+		custom_tooltip = {
+			text = every_great_power_will_recieve_invitation_to_berlin_conference_tt
+			every_country = {
+				limit = { 
+					OR = {
+						is_player = yes
+						country_is_in_europe = yes
+					}
+					NOT = { THIS = ROOT }
+					is_subject = no
+					OR = {
+						country_rank >= rank_value:major_power 
+						AND = {
+							country_is_in_europe = yes 
+							NOT = { has_law = law_type:law_no_colonial_affairs }
+						}
+					}
+				}
+				trigger_event = { id = HJE_colonial.1 }
+			}
+		}
+	}
+
+	ai_chance = {
+		base = 90
+		modifier = {
+			factor = 0.1
+			NOR = {
+				AND = {
+					exists = c:NGF
+					c:NGF = ROOT
+				}
+				AND = {
+					exists = c:ITA
+					c:ITA = ROOT
+				}
+				AND = {
+					exists = c:GER
+					c:GER = ROOT
+				}
+			}
+		}
+	}
+}
+
+colonial_claims = {
+	is_shown = {
+		#is_ai = yes
+		any_country = {
+			NOR = {
+				this = root
+				is_country_type = unrecognized
+				is_country_type = decentralized
+				
+			}
+			any_scope_state = { 
+				state_is_in_africa = yes
+				has_claim_by = root 
+				NOT = { has_claim_by = prev }
+				NOT = {
+					any_neighbouring_state = { 
+						has_claim_by = prev
+					}
+				}
+			}
+		}
+	}
+	
+	possible = {
+		custom_tooltip = {
+			text = colonial_claims_tt
+			NOT = { exists = scope:colonial_claims_scope }
+			any_country = {
+				NOT = { has_variable = colonial_claimant }
+				NOR = {
+					this = root
+					is_country_type = unrecognized
+					is_country_type = decentralized
+				}
+				any_scope_state = { 
+					state_is_in_africa = yes
+					has_claim_by = root 
+					NOT = { has_claim_by = prev }
+					NOT = {
+						any_neighbouring_state = { 
+							has_claim_by = prev
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	when_taken = {
+		save_scope_as = colonial_claims_scope
+		random_country = {
+			limit = {
+				NOT = { has_variable = colonial_claimant }
+				NOR = {
+					this = root
+					is_country_type = unrecognized
+					is_country_type = decentralized
+				}
+				any_scope_state = { 
+					state_is_in_africa = yes
+					has_claim_by = root 
+					NOT = { has_claim_by = prev }
+					NOT = {
+						any_neighbouring_state = { 
+							has_claim_by = prev
+						}
+					}
+				}
+			}
+			trigger_event = { id = HJE_colonial.99 popup = yes }
+		}
+	}
+	
+	ai_chance = {
+		base = 3
+		modifier = {
+			trigger = {
+				has_global_variable = berlin_conference_happened
+			}
+			add = 90
+		}
+	}
+}

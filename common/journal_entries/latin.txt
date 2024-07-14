@@ -1,0 +1,1774 @@
+﻿HJ_legitimacy_of_the_second_mexican_empire = {
+	icon = "gfx/interface/icons/event_icons/event_military.dds"
+
+	group = je_group_crises
+
+	is_shown_when_inactive = {
+		has_variable = second_mexican_empire
+	}
+
+	immediate = {
+		set_variable = {
+			name = second_mexican_empire_progress_var
+			value = 0
+		}
+	}
+
+	complete = {
+		scope:journal_entry = { is_goal_complete = yes }
+		owns_entire_state_region = STATE_MEXICO
+		NOT = { exists = c:MEX }
+	}
+
+	on_monthly_pulse = {
+		effect = {
+			if = {
+				limit = {
+					owns_entire_state_region = STATE_MEXICO
+					NOT = { exists = c:MEX }
+				}
+				change_variable = {
+					name = second_mexican_empire_progress_var
+					add = 1
+				}
+			}
+		}
+	}
+
+	on_complete = {
+		change_tag = MEX
+		set_capital = STATE_MEXICO
+		#change_infamy = -200
+		add_loyalists = { value = 0.1 }
+	}
+
+	current_value = {
+		value = root.var:second_mexican_empire_progress_var
+	}
+
+	goal_add_value = {
+		value = 3
+	}
+
+	progressbar = yes
+
+	weight = 100
+
+	should_be_pinned_by_default = yes
+}
+
+HJ_dominican_revolution = {
+	icon = "gfx/interface/icons/event_icons/event_fire.dds"
+
+	group = je_group_crises
+
+	should_be_pinned_by_default = yes
+
+	is_shown_when_inactive = {
+		OR = {
+			AND = {
+				NOT = { exists = c:DOM }
+				any_scope_state = { state_region = s:STATE_SANTO_DOMINGO }
+			}
+			AND = {
+				NOT = { exists = c:HAI }
+				any_scope_state = { state_region = s:STATE_HAITI }
+			}
+		}
+	}
+
+	possible = {
+		year >= 1843
+		hidden_trigger = { NOT = { has_variable = already_had_hispanola_revolt } }
+		trigger_if = {
+			limit = {
+				NOR = {
+					country_has_primary_culture = cu:caribeno
+					country_has_primary_culture = cu:afro_caribeno
+				}
+			}
+			any_scope_state = { state_region = s:STATE_SANTO_DOMINGO }
+			NOT = { exists = c:DOM }
+		}
+		trigger_if = {
+			limit = {
+				NOR = { country_has_primary_culture = cu:afro_antillean }
+			}
+			any_scope_state = { state_region = s:STATE_HAITI }
+			NOT = { exists = c:HAI }
+		}
+	}
+
+	immediate = {
+		set_variable = already_had_hispanola_revolt
+		if = {
+			limit = { 
+				any_scope_state = { state_region = s:STATE_SANTO_DOMINGO } 
+				NOR = {
+					country_has_primary_culture = cu:caribeno
+					country_has_primary_culture = cu:afro_caribeno
+				}
+			}
+			random_scope_state = {
+				limit = { state_region = s:STATE_SANTO_DOMINGO }
+				save_scope_as = santo_domingo_scope
+			}
+			scope:santo_domingo_scope = {
+				add_radicals_in_state = {
+					value = 0.8
+					culture = cu:caribeno
+				}
+				add_radicals_in_state = {
+					value = 0.8
+					culture = cu:afro_caribeno
+				}
+			}
+		}
+		if = {
+			limit = { 
+				any_scope_state = { state_region = s:STATE_HAITI } 
+				NOT = { country_has_primary_culture = cu:afro_antillean }
+			}
+			random_scope_state = {
+				limit = { state_region = s:STATE_HAITI }
+				save_scope_as = haiti_scope
+			}
+			scope:haiti_scope = {
+				add_radicals_in_state = {
+					value = 0.8
+					culture = cu:afro_antillean
+				}
+			}
+		}
+	}
+
+	complete = {
+		hidden_trigger = { has_variable = hispanola_revolt_can_be_completed }
+		trigger_if = {
+			limit = {
+				NOR = {
+					country_has_primary_culture = cu:caribeno
+					country_has_primary_culture = cu:afro_caribeno
+				}
+			}
+			NOT = { exists = c:DOM }
+			any_scope_state = { 
+				state_region = s:STATE_SANTO_DOMINGO 
+				turmoil < 0.25
+			}
+		}
+		trigger_if = {
+			limit = {
+				NOR = { country_has_primary_culture = cu:afro_antillean }
+			}
+			NOT = { exists = c:HAI }
+			any_scope_state = { 
+				state_region = s:STATE_HAITI 
+				turmoil < 0.25
+			}
+		}
+	}
+
+	on_complete = {
+		if = {
+			limit = { 
+				any_scope_state = { state_region = s:STATE_SANTO_DOMINGO } 
+				NOR = {
+					country_has_primary_culture = cu:caribeno
+					country_has_primary_culture = cu:afro_caribeno
+				}
+			}
+			random_scope_state = {
+				limit = { state_region = s:STATE_SANTO_DOMINGO }
+				save_scope_as = santo_domingo_scope
+			}
+			scope:santo_domingo_scope = {
+				add_radicals_in_state = {
+					value = -0.4
+					culture = cu:caribeno
+				}
+				add_radicals_in_state = {
+					value = -0.4
+					culture = cu:afro_caribeno
+				}
+				add_loyalists_in_state = {
+					value = 0.1
+					culture = cu:caribeno
+				}
+				add_loyalists_in_state = {
+					value = 0.1
+					culture = cu:afro_caribeno
+				}
+			}
+		}
+		if = {
+			limit = { 
+				any_scope_state = { state_region = s:STATE_HAITI } 
+				NOT = { country_has_primary_culture = cu:afro_antillean }
+			}
+			random_scope_state = {
+				limit = { state_region = s:STATE_HAITI }
+				save_scope_as = haiti_scope
+			}
+			scope:haiti_scope = {
+				add_radicals_in_state = {
+					value = -0.4
+					culture = cu:afro_antillean
+				}
+				add_loyalists_in_state = {
+					value = 0.1
+					culture = cu:afro_antillean
+				}
+			}
+		}
+	}
+
+	on_monthly_pulse = {
+		effect = {
+			if = {
+				limit = { NOT = { has_variable = hispanola_revolt_can_be_completed } }
+				set_variable = hispanola_revolt_can_be_completed
+			}
+		}
+	}
+
+	timeout = 423
+	on_timeout = {
+		save_scope_as = hispanola_owner_scope
+		if = {
+			limit = { 
+				any_scope_state = { state_region = s:STATE_SANTO_DOMINGO } 
+				NOR = {
+					country_has_primary_culture = cu:caribeno
+					country_has_primary_culture = cu:afro_caribeno
+				}
+			}
+			random_scope_state = {
+				limit = { state_region = s:STATE_SANTO_DOMINGO }
+				save_scope_as = santo_domingo_scope
+			}
+			custom_tooltip = {
+				text = dominican_revolt_tt
+				create_country = {
+					tag = DOM
+					origin = this
+					state = scope:santo_domingo_scope
+					on_created = { 
+						set_variable = dominican_republic
+						add_loyalists = { value = 0.8 }
+						add_primary_culture = cu:caribeno
+						add_primary_culture = cu:afro_caribeno
+						activate_law = law_type:law_landed_voting
+						add_modifier = {
+							name = separatist_zeal
+							months = 12
+						}
+					}
+				}
+				scope:santo_domingo_scope = {
+					create_building={
+						building="building_barracks"
+						add_ownership={
+							country={
+								country="root"
+								levels=2
+							}
+						}
+						reserves=1
+						activate_production_methods={ "pm_no_organization" }
+					}
+				}
+				random_country = {
+					limit = { has_variable = dominican_republic }
+					save_scope_as = dominican_republic_scope
+				}
+				create_diplomatic_play = {
+		            target_country = scope:dominican_republic_scope
+		            type = dp_annex_war
+					war = no
+				}
+			}
+		}
+		if = {
+			limit = { 
+				any_scope_state = { state_region = s:STATE_HAITI } 
+				NOT = { country_has_primary_culture = cu:afro_antillean }
+			}
+			random_scope_state = {
+				limit = { state_region = s:STATE_HAITI }
+				save_scope_as = haiti_scope
+			}
+			custom_tooltip = {
+				text = haitain_revolt_tt
+				create_country = {
+					tag = HAI
+					origin = this
+					state = scope:haiti_scope
+					on_created = { 
+						set_variable = hatian_republic
+						add_loyalists = { value = 0.8 }
+						add_primary_culture = cu:afro_antillean
+						activate_law = law_type:law_landed_voting
+						add_modifier = {
+							name = revolutionary_zeal
+							months = 12
+						}
+					}
+				}
+				scope:haiti_scope = {
+					create_building={
+						building="building_barracks"
+						add_ownership={
+							country={
+								country="root"
+								levels=2
+							}
+						}
+						reserves=1
+						activate_production_methods={ "pm_no_organization" }
+					}
+				}
+				random_country = {
+					limit = { has_variable = hatian_republic }
+					save_scope_as = haitian_republic_scope
+				}
+				create_diplomatic_play = {
+		            target_country = scope:haitian_republic_scope
+		            type = dp_annex_war
+					war = no
+				}
+			}
+		}
+	}
+}
+
+HJ_brazil_countdown_to_coup_or_cw = {
+	icon = "gfx/interface/icons/event_icons/event_skull.dds"
+
+	grou = je_group_crises
+
+	is_shown_when_inactive = {
+		year >= 1879
+		NOT = { has_global_variable = brz_finished_countdown }
+		exists = c:BRZ
+		c:BRZ = ROOT
+	}
+
+	immediate = {
+		set_variable = {
+			name = brazil_countdown_progress_var
+			value = 0
+		}
+	}
+
+	fail = {
+		has_law = law_type:law_slavery_banned
+	}
+	
+	on_fail = {
+		set_global_variable = brz_finished_countdown
+		hidden_effect = {
+			if = {
+				limit = { has_law = law_type:law_monarchy }
+				c:BRZ = { trigger_event = { id = HJE_latin_america.14 } }
+			}
+			else = {
+				c:BRZ = { trigger_event = { id = HJE_latin_america.15 } }
+			}
+		}
+	}
+
+	complete = {
+		scope:journal_entry = { is_goal_complete = yes }
+		NOT = { has_law = law_type:law_slavery_banned }
+	}
+
+	on_monthly_pulse = {
+		effect = {
+			if = {
+				limit = { NOT = { has_law = law_type:law_slavery_banned } }
+				change_variable = {
+					name = brazil_countdown_progress_var
+					add = 1
+				}
+			}
+		}
+	}
+
+	on_complete = {
+		if = {
+			limit = { has_law = law_type:law_monarchy }
+			c:BRZ = { trigger_event = { id = HJE_latin_america.14 } }
+		}
+		else = {
+			c:BRZ = { trigger_event = { id = HJE_latin_america.15 } }
+		}
+	}
+
+	current_value = {
+		value = root.var:brazil_countdown_progress_var
+	}
+
+	goal_add_value = {
+		value = 240
+	}
+
+	progressbar = yes
+
+	weight = 100
+
+	should_be_pinned_by_default = yes
+}
+
+HJ_a_new_brazil = {
+	icon = "gfx/interface/icons/event_icons/event_military.dds"
+
+	group = je_group_internal_affairs
+
+	is_shown_when_inactive = {
+		OR = {
+			has_variable = military_brazil
+			has_variable = radical_brazil
+		}
+	}
+
+	immediate = {
+		set_variable = {
+			name = new_brazil_progress_var
+			value = 0
+		}
+	}
+
+	complete = {
+		scope:journal_entry = { is_goal_complete = yes }
+		owns_entire_state_region = STATE_RIO_DE_JANEIRO
+		NOT = { exists = c:BRZ }
+	}
+
+	on_monthly_pulse = {
+		effect = {
+			if = {
+				limit = {
+					owns_entire_state_region = STATE_RIO_DE_JANEIRO
+					NOT = { exists = c:BRZ }
+				}
+				change_variable = {
+					name = new_brazil_progress_var
+					add = 1
+				}
+			}
+		}
+	}
+
+	on_complete = {
+		change_tag = BRZ
+		set_capital = STATE_RIO_DE_JANEIRO
+		#change_infamy = -200
+		add_loyalists = { value = 0.1 }
+	}
+
+	current_value = {
+		value = root.var:new_brazil_progress_var
+	}
+
+	goal_add_value = {
+		value = 3
+	}
+
+	progressbar = yes
+
+	weight = 100
+
+	should_be_pinned_by_default = yes
+}
+
+HJ_brazilian_settlers_in_acre = {
+	icon = "gfx/interface/icons/event_icons/event_protest.dds"
+
+	should_be_pinned_by_default = yes
+
+	group = je_group_historical_content
+
+	is_shown_when_inactive = {
+		year >= 1877
+		any_scope_state = { state_region = s:STATE_ACRE }
+		exists = c:BRZ
+		NOT = { c:BRZ = ROOT }
+		c:BRZ = {
+			is_adjacent_to_country = ROOT
+		}
+	}
+
+	possible = {
+		year >= 1887
+		has_state_in_state_region = STATE_ACRE
+		exists = c:BRZ
+		NOT = { c:BRZ = ROOT }
+		c:BRZ = {
+			is_adjacent_to_country = ROOT
+		}
+	}
+
+	immediate = {
+	}
+
+	complete = {
+		OR = {
+			NOT = { has_state_in_state_region = STATE_ACRE }
+			AND = {
+				hidden_trigger = { is_player = yes }
+				c:BRZ = { has_truce_with = ROOT }
+			}
+		}
+	}
+
+	on_complete = {
+		add_loyalists = { value = 0.05 }
+	}
+
+	timeout = 4380
+	
+	progressbar = yes
+	
+	on_timeout = {
+		if = {
+			limit = {
+				exists = c:BOL
+				c:BOL = ROOT
+			}
+			custom_tooltip = {
+				text = acre_revolt_tt
+				create_country = {
+					tag = AMZ
+					origin = c:BOL
+					state = s:STATE_ACRE.region_state:BOL
+					state = s:STATE_AMAZONAS.region_state:BOL
+					on_created = { 
+						add_loyalists = { value = 0.8 }
+						set_state_religion = rel:catholic
+						add_primary_culture = cu:brazilian
+						add_primary_culture = cu:afro_brazilian
+						activate_law = law_type:law_landed_voting
+						set_variable = acre_revolt_tag
+						add_modifier = {
+							name = revolutionary_zeal
+							months = 12
+						}
+						create_diplomatic_play = {
+							target_country = c:BOL
+							type = dp_humiliation
+							war = yes
+							add_war_goal = {
+								holder = c:BOL
+								type = annex_country
+								target_country = this
+								primary_demand = yes
+							}
+						}
+					}
+				}
+			}
+		}
+		if = {
+			limit = {
+				exists = c:PEU
+				c:PEU = ROOT
+			}
+			custom_tooltip = {
+				text = acre_revolt_tt
+				create_country = {
+					tag = AMZ
+					origin = c:PEU
+					state = s:STATE_ACRE.region_state:PEU
+					state = s:STATE_AMAZONAS.region_state:PEU
+					on_created = { 
+						add_loyalists = { value = 0.8 }
+						set_state_religion = rel:catholic
+						add_primary_culture = cu:brazilian
+						add_primary_culture = cu:afro_brazilian
+						activate_law = law_type:law_landed_voting
+						set_variable = acre_revolt_tag
+						add_modifier = {
+							name = revolutionary_zeal
+							months = 12
+						}
+						create_diplomatic_play = {
+							target_country = c:PEU
+							type = dp_humiliation
+							war = yes
+							add_war_goal = {
+								holder = c:PEU
+								type = annex_country
+								target_country = this
+								primary_demand = yes
+							}
+						}
+					}
+				}
+			}
+		}
+		if = {
+			limit = {
+				exists = c:CHL
+				c:CHL = ROOT
+			}
+			custom_tooltip = {
+				text = acre_revolt_tt
+				create_country = {
+					tag = AMZ
+					origin = c:CHL
+					state = s:STATE_ACRE.region_state:CHL
+					state = s:STATE_AMAZONAS.region_state:CHL
+					on_created = { 
+						add_loyalists = { value = 0.8 }
+						set_state_religion = rel:catholic
+						add_primary_culture = cu:brazilian
+						add_primary_culture = cu:afro_brazilian
+						activate_law = law_type:law_landed_voting
+						set_variable = acre_revolt_tag
+						add_modifier = {
+							name = revolutionary_zeal
+							months = 12
+						}
+						create_diplomatic_play = {
+							target_country = c:CHL
+							type = dp_humiliation
+							war = yes
+							add_war_goal = {
+								holder = c:CHL
+								type = annex_country
+								target_country = this
+								primary_demand = yes
+							}
+						}
+					}
+				}
+			}
+		}
+		if = {
+			limit = {
+				exists = c:ARG
+				c:ARG = ROOT
+			}
+			custom_tooltip = {
+				text = acre_revolt_tt
+				create_country = {
+					tag = AMZ
+					origin = c:ARG
+					state = s:STATE_ACRE.region_state:ARG
+					state = s:STATE_AMAZONAS.region_state:ARG
+					on_created = { 
+						add_loyalists = { value = 0.8 }
+						set_state_religion = rel:catholic
+						add_primary_culture = cu:brazilian
+						add_primary_culture = cu:afro_brazilian
+						activate_law = law_type:law_landed_voting
+						set_variable = acre_revolt_tag
+						add_modifier = {
+							name = revolutionary_zeal
+							months = 12
+						}
+						create_diplomatic_play = {
+							target_country = c:ARG
+							type = dp_humiliation
+							war = yes
+							add_war_goal = {
+								holder = c:ARG
+								type = annex_country
+								target_country = this
+								primary_demand = yes
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+#HJ_mexico_1876_military_coup = {
+	icon = "gfx/interface/icons/event_icons/event_skull.dds"
+
+	should_be_pinned_by_default = yes
+
+	group = je_group_historical_content
+
+	is_shown_when_inactive = {
+		year >= 1865
+		exists = c:MEX
+		c:MEX = ROOT
+		OR = {
+			ig:ig_armed_forces = {
+				is_in_government = no
+			}
+			NOR = {
+				has_law = law_type:law_oligarchy
+				has_law = law_type:law_autocracy
+			}
+		}
+	}
+
+	possible = {
+		year >= 1875
+		exists = c:MEX
+		c:MEX = ROOT
+		OR = {
+			ig:ig_armed_forces = { is_in_government = no }
+			NOR = {
+				has_law = law_type:law_oligarchy
+				has_law = law_type:law_autocracy
+			}
+		}
+	}
+
+	immediate = {
+		ig:ig_armed_forces = { 
+			add_modifier = {
+				name = ig_government_betrayed
+				months = long_modifier_time
+				is_decaying = yes
+			}
+		}
+	}
+
+	complete = {
+		ig:ig_armed_forces = {
+			is_powerful = yes
+			is_in_government = yes
+		}
+		OR = {
+			has_law = law_type:law_oligarchy
+			has_law = law_type:law_autocracy
+		}
+	}
+
+	on_complete = {
+		add_loyalists = { value = 0.15 }
+		ig:ig_armed_forces = { remove_modifier = ig_government_betrayed }
+		add_modifier = {
+			name = modifier_mex_porfiriato
+			months = -1
+		}
+	}
+
+	fail = {
+		year >= 1876
+	}
+	
+	on_fail = {
+		c:MEX = { trigger_event = { id = HJE_latin_america.7 } }
+	}
+#}
+
+HJ_victory_of_porfiristas = {
+	icon = "gfx/interface/icons/event_icons/event_military.dds"
+
+	is_shown_when_inactive = {
+		has_variable = military_mexico
+	}
+
+	immediate = {
+		set_variable = {
+			name = profiriato_progress_var
+			value = 0
+		}
+	}
+
+	complete = {
+		scope:journal_entry = { is_goal_complete = yes }
+		owns_entire_state_region = STATE_MEXICO
+		NOT = { exists = c:MEX }
+	}
+
+	on_monthly_pulse = {
+		effect = {
+			if = {
+				limit = {
+					owns_entire_state_region = STATE_MEXICO
+					NOT = { exists = c:MEX }
+				}
+				change_variable = {
+					name = profiriato_progress_var
+					add = 1
+				}
+			}
+		}
+	}
+
+	on_complete = {
+		change_tag = MEX
+		set_capital = STATE_MEXICO
+		#change_infamy = -200
+		add_loyalists = { value = 0.1 }
+		if = {
+			limit = { has_modifier = guerilla_warfare }
+			remove_modifier = guerilla_warfare
+		}
+	}
+
+	current_value = {
+		value = root.var:profiriato_progress_var
+	}
+
+	goal_add_value = {
+		value = 3
+	}
+
+	progressbar = yes
+
+	weight = 100
+
+	should_be_pinned_by_default = yes
+}
+
+HJ_mexican_election_of_1910 = {
+	icon = "gfx/interface/icons/event_icons/event_protest.dds"
+
+	should_be_pinned_by_default = yes
+
+	is_shown_when_inactive = {
+		year >= 1900
+		exists = c:MEX
+		c:MEX = ROOT
+		OR = {
+			has_law = law_type:law_oligarchy
+			has_law = law_type:law_autocracy
+		}
+	}
+
+	possible = {
+		year >= 1910
+		exists = c:MEX
+		c:MEX = ROOT
+		OR = {
+			has_law = law_type:law_oligarchy
+			has_law = law_type:law_autocracy
+		}
+	}
+
+	immediate = {
+		ig:ig_intelligentsia = { 
+			add_modifier = {
+				name = ig_government_betrayed
+				months = long_modifier_time
+				is_decaying = yes
+			}
+		}
+	}
+
+	complete = {
+		NOR = {
+			has_law = law_type:law_oligarchy
+			has_law = law_type:law_autocracy
+		}
+	}
+
+	on_complete = {
+		add_loyalists = { value = 0.15 }
+		ig:ig_intelligentsia = { remove_modifier = ig_government_betrayed }
+		set_global_variable = {
+			name = mexican_revolution_avoided
+			value = yes
+		}
+	}
+
+	fail = {
+		year >= 1911
+	}
+	
+	on_fail = {
+		c:MEX = { trigger_event = { id = HJE_latin_america.8 } }
+	}
+}
+
+HJ_maderista_becomes_mexico_tag = {
+	icon = "gfx/interface/icons/event_icons/event_scales.dds"
+
+	is_shown_when_inactive = {
+		has_variable = maderista_mexico
+		NAND = {  
+			exists = c:MEX
+			c:MEX = THIS
+		}
+	}
+
+	immediate = {
+		set_variable = {
+			name = maderista_mcw_progress_var
+			value = 0
+		}
+	}
+
+	complete = {
+		scope:journal_entry = { is_goal_complete = yes }
+		owns_entire_state_region = STATE_MEXICO
+		NOT = { exists = c:MEX }
+	}
+
+	on_monthly_pulse = {
+		effect = {
+			if = {
+				limit = {
+					owns_entire_state_region = STATE_MEXICO
+					NOT = { exists = c:MEX }
+				}
+				change_variable = {
+					name = maderista_mcw_progress_var
+					add = 1
+				}
+			}
+		}
+	}
+
+	on_complete = {
+		change_tag = MEX
+		set_capital = STATE_MEXICO
+		#change_infamy = -200
+		add_loyalists = { value = 0.1 }
+		if = {
+			limit = { has_modifier = guerilla_warfare }
+			remove_modifier = guerilla_warfare
+		}
+	}
+
+	current_value = {
+		value = root.var:maderista_mcw_progress_var
+	}
+
+	goal_add_value = {
+		value = 3
+	}
+
+	progressbar = yes
+
+	weight = 100
+
+	should_be_pinned_by_default = yes
+}
+
+HJ_maderista_victory_in_the_mexican_civil_war = {
+	icon = "gfx/interface/icons/event_icons/event_military.dds"
+
+	is_shown_when_inactive = {
+		has_variable = maderista_mexico
+		has_global_variable = mexican_revolution
+		NOT = { has_global_variable = mexican_civil_war_over }
+	}
+
+	immediate = {
+		set_variable = {
+			name = maderista_mcw_end_progress_var
+			value = 0
+		}
+	}
+
+	complete = {
+		scope:journal_entry = { is_goal_complete = yes }
+		custom_tooltip = not_fighting_any_faction_in_mexico_tt
+		hidden_trigger = {
+			NOT = {
+				any_country = {
+					has_war_with = ROOT
+					OR = {
+						has_variable = faction_in_mexican_civil_war 
+						AND = {
+							is_revolutionary = yes
+							country_definition = root.country_definition
+						}
+					}
+				}
+			}
+		}
+	}
+
+	on_monthly_pulse = {
+		effect = {
+			if = {
+				limit = {
+					NOT = {
+						any_country = {
+							has_war_with = ROOT
+							OR = {
+								has_variable = faction_in_mexican_civil_war 
+								AND = {
+									is_revolutionary = yes
+									country_definition = root.country_definition
+								}
+							}
+						}
+					}
+				}
+				change_variable = {
+					name = maderista_mcw_end_progress_var
+					add = 1
+				}
+			}
+		}
+	}
+
+	on_complete = {
+		custom_tooltip = mexican_civil_war_will_end_tt
+		remove_modifier = mexican_civil_war
+		hidden_effect = {
+			set_global_variable = {
+				name = mexican_civil_war_over
+				value = yes
+			}
+		}
+	}
+
+	current_value = {
+		value = root.var:maderista_mcw_end_progress_var
+	}
+
+	goal_add_value = {
+		value = 12
+	}
+
+	progressbar = yes
+
+	weight = 100
+
+	should_be_pinned_by_default = yes
+}
+
+HJ_huertista_becomes_mexico_tag = {
+	icon = "gfx/interface/icons/event_icons/event_scales.dds"
+
+	is_shown_when_inactive = {
+		has_variable = huertista_mexico
+		NAND = {  
+			exists = c:MEX
+			c:MEX = THIS
+		}
+	}
+
+	immediate = {
+		set_variable = {
+			name = huertista_mcw_progress_var
+			value = 0
+		}
+	}
+
+	complete = {
+		scope:journal_entry = { is_goal_complete = yes }
+		owns_entire_state_region = STATE_MEXICO
+		NOT = { exists = c:MEX }
+	}
+
+	on_monthly_pulse = {
+		effect = {
+			if = {
+				limit = {
+					owns_entire_state_region = STATE_MEXICO
+					NOT = { exists = c:MEX }
+				}
+				change_variable = {
+					name = huertista_mcw_progress_var
+					add = 1
+				}
+			}
+		}
+	}
+
+	on_complete = {
+		change_tag = MEX
+		set_capital = STATE_MEXICO
+		#change_infamy = -200
+		add_loyalists = { value = 0.1 }
+		if = {
+			limit = { has_modifier = guerilla_warfare }
+			remove_modifier = guerilla_warfare
+		}
+	}
+
+	current_value = {
+		value = root.var:huertista_mcw_progress_var
+	}
+
+	goal_add_value = {
+		value = 3
+	}
+
+	progressbar = yes
+
+	weight = 100
+
+	should_be_pinned_by_default = yes
+}
+
+HJ_huertista_victory_in_the_mexican_civil_war = {
+	icon = "gfx/interface/icons/event_icons/event_military.dds"
+
+	is_shown_when_inactive = {
+		has_variable = huertista_mexico
+		has_global_variable = mexican_revolution
+		NOT = { has_global_variable = mexican_civil_war_over }
+	}
+
+	immediate = {
+		set_variable = {
+			name = huertista_mcw_end_progress_var
+			value = 0
+		}
+	}
+
+	complete = {
+		scope:journal_entry = { is_goal_complete = yes }
+		custom_tooltip = not_fighting_any_faction_in_mexico_tt
+		hidden_trigger = {
+			NOT = {
+				any_country = {
+					has_war_with = ROOT
+					OR = {
+						has_variable = faction_in_mexican_civil_war 
+						AND = {
+							is_revolutionary = yes
+							country_definition = root.country_definition
+						}
+					}
+				}
+			}
+		}
+	}
+
+	on_monthly_pulse = {
+		effect = {
+			if = {
+				limit = {
+					NOT = {
+						any_country = {
+							has_war_with = ROOT
+							OR = {
+								has_variable = faction_in_mexican_civil_war 
+								AND = {
+									is_revolutionary = yes
+									country_definition = root.country_definition
+								}
+							}
+						}
+					}
+				}
+				change_variable = {
+					name = huertista_mcw_end_progress_var
+					add = 1
+				}
+			}
+		}
+	}
+
+	on_complete = {
+		custom_tooltip = mexican_civil_war_will_end_tt
+		remove_modifier = mexican_civil_war
+		hidden_effect = {
+			set_global_variable = {
+				name = mexican_civil_war_over
+				value = yes
+			}
+		}
+	}
+
+	current_value = {
+		value = root.var:huertista_mcw_end_progress_var
+	}
+
+	goal_add_value = {
+		value = 12
+	}
+
+	progressbar = yes
+
+	weight = 100
+
+	should_be_pinned_by_default = yes
+}
+
+HJ_zapatista_uprising = {
+	icon = "gfx/interface/icons/event_icons/event_skull.dds"
+
+	is_shown_when_inactive = {
+		exists = c:MEX
+		c:MEX = ROOT
+		has_global_variable = mexican_revolution
+		NOT = { has_global_variable = mexican_civil_war_over }
+		NOT = { has_global_variable = zapatista_uprising }
+	}
+
+	immediate = {
+		set_variable = {
+			name = zapatista_uprising_progress_var
+			value = 0
+		}
+	}
+
+	complete = {
+		scope:journal_entry = { is_goal_complete = yes }
+		OR = {
+			has_state_in_state_region = STATE_OAXACA
+			has_state_in_state_region = STATE_CHIAPAS
+			has_state_in_state_region = STATE_YUCATAN
+		}
+	}
+
+	on_monthly_pulse = {
+		effect = {
+			if = {
+				limit = { 
+					OR = {
+						has_state_in_state_region = STATE_OAXACA
+						has_state_in_state_region = STATE_CHIAPAS
+						has_state_in_state_region = STATE_YUCATAN
+					}
+				}
+				change_variable = {
+					name = zapatista_uprising_progress_var
+					add = 1
+				}
+			}
+		}
+	}
+
+	on_complete = {
+		trigger_event = { id = HJE_latin_america.10 }
+		set_global_variable = {
+			name = zapatista_uprising
+			value = yes
+		}
+	}
+
+	current_value = {
+		value = root.var:zapatista_uprising_progress_var
+	}
+
+	goal_add_value = {
+		value = 4
+	}
+
+	progressbar = yes
+
+	weight = 100
+
+	should_be_pinned_by_default = yes
+}
+
+HJ_zapatista_becomes_mexico_tag = {
+	icon = "gfx/interface/icons/event_icons/event_scales.dds"
+
+	is_shown_when_inactive = {
+		has_variable = zapatista_mexico
+		NAND = {  
+			exists = c:MEX
+			c:MEX = THIS
+		}
+	}
+
+	immediate = {
+		set_variable = {
+			name = zapatista_mcw_progress_var
+			value = 0
+		}
+	}
+
+	complete = {
+		scope:journal_entry = { is_goal_complete = yes }
+		owns_entire_state_region = STATE_MEXICO
+		NOT = { exists = c:MEX }
+	}
+
+	on_monthly_pulse = {
+		effect = {
+			if = {
+				limit = {
+					owns_entire_state_region = STATE_MEXICO
+					NOT = { exists = c:MEX }
+				}
+				change_variable = {
+					name = zapatista_mcw_progress_var
+					add = 1
+				}
+			}
+		}
+	}
+
+	on_complete = {
+		change_tag = MEX
+		set_capital = STATE_MEXICO
+		#change_infamy = -200
+		add_loyalists = { value = 0.1 }
+		if = {
+			limit = { has_modifier = guerilla_warfare }
+			remove_modifier = guerilla_warfare
+		}
+	}
+
+	current_value = {
+		value = root.var:zapatista_mcw_progress_var
+	}
+
+	goal_add_value = {
+		value = 3
+	}
+
+	progressbar = yes
+
+	weight = 100
+
+	should_be_pinned_by_default = yes
+}
+
+HJ_zapatista_victory_in_the_mexican_civil_war = {
+	icon = "gfx/interface/icons/event_icons/event_military.dds"
+
+	is_shown_when_inactive = {
+		has_variable = zapatista_mexico
+		has_global_variable = mexican_revolution
+		NOT = { has_global_variable = mexican_civil_war_over }
+	}
+
+	immediate = {
+		set_variable = {
+			name = zapatista_mcw_end_progress_var
+			value = 0
+		}
+	}
+
+	complete = {
+		scope:journal_entry = { is_goal_complete = yes }
+		custom_tooltip = not_fighting_any_faction_in_mexico_tt
+		hidden_trigger = {
+			NOT = {
+				any_country = {
+					has_war_with = ROOT
+					OR = {
+						has_variable = faction_in_mexican_civil_war 
+						AND = {
+							is_revolutionary = yes
+							country_definition = root.country_definition
+						}
+					}
+				}
+			}
+		}
+	}
+
+	on_monthly_pulse = {
+		effect = {
+			if = {
+				limit = {
+					NOT = {
+						any_country = {
+							has_war_with = ROOT
+							OR = {
+								has_variable = faction_in_mexican_civil_war 
+								AND = {
+									is_revolutionary = yes
+									country_definition = root.country_definition
+								}
+							}
+						}
+					}
+				}
+				change_variable = {
+					name = zapatista_mcw_end_progress_var
+					add = 1
+				}
+			}
+		}
+	}
+
+	on_complete = {
+		custom_tooltip = mexican_civil_war_will_end_tt
+		remove_modifier = mexican_civil_war
+		hidden_effect = {
+			set_global_variable = {
+				name = mexican_civil_war_over
+				value = yes
+			}
+		}
+	}
+
+	current_value = {
+		value = root.var:zapatista_mcw_end_progress_var
+	}
+
+	goal_add_value = {
+		value = 12
+	}
+
+	progressbar = yes
+
+	weight = 100
+
+	should_be_pinned_by_default = yes
+}
+
+HJ_constitutionalist_becomes_mexico_tag = {
+	icon = "gfx/interface/icons/event_icons/event_scales.dds"
+
+	is_shown_when_inactive = {
+		has_variable = constitutionalist_mexico
+		NAND = {  
+			exists = c:MEX
+			c:MEX = THIS
+		}
+	}
+
+	immediate = {
+		set_variable = {
+			name = constitutionalist_mcw_progress_var
+			value = 0
+		}
+	}
+
+	complete = {
+		scope:journal_entry = { is_goal_complete = yes }
+		owns_entire_state_region = STATE_MEXICO
+		NOT = { exists = c:MEX }
+	}
+
+	on_monthly_pulse = {
+		effect = {
+			if = {
+				limit = {
+					owns_entire_state_region = STATE_MEXICO
+					NOT = { exists = c:MEX }
+				}
+				change_variable = {
+					name = constitutionalist_mcw_progress_var
+					add = 1
+				}
+			}
+		}
+	}
+
+	on_complete = {
+		change_tag = MEX
+		set_capital = STATE_MEXICO
+		#change_infamy = -200
+		add_loyalists = { value = 0.1 }
+		if = {
+			limit = { has_modifier = guerilla_warfare }
+			remove_modifier = guerilla_warfare
+		}
+	}
+
+	current_value = {
+		value = root.var:constitutionalist_mcw_progress_var
+	}
+
+	goal_add_value = {
+		value = 3
+	}
+
+	progressbar = yes
+
+	weight = 100
+
+	should_be_pinned_by_default = yes
+}
+
+HJ_constitutionalist_victory_in_the_mexican_civil_war = {
+	icon = "gfx/interface/icons/event_icons/event_military.dds"
+
+	is_shown_when_inactive = {
+		has_variable = constitutionalist_mexico
+		has_global_variable = mexican_revolution
+		NOT = { has_global_variable = mexican_civil_war_over }
+	}
+
+	immediate = {
+		set_variable = {
+			name = constitutionalist_mcw_end_progress_var
+			value = 0
+		}
+	}
+
+	complete = {
+		scope:journal_entry = { is_goal_complete = yes }
+		custom_tooltip = not_fighting_any_faction_in_mexico_tt
+		hidden_trigger = {
+			NOT = {
+				any_country = {
+					has_war_with = ROOT
+					OR = {
+						has_variable = faction_in_mexican_civil_war 
+						AND = {
+							is_revolutionary = yes
+							country_definition = root.country_definition
+						}
+					}
+				}
+			}
+		}
+	}
+
+	on_monthly_pulse = {
+		effect = {
+			if = {
+				limit = {
+					NOT = {
+						any_country = {
+							has_war_with = ROOT
+							OR = {
+								has_variable = faction_in_mexican_civil_war 
+								AND = {
+									is_revolutionary = yes
+									country_definition = root.country_definition
+								}
+							}
+						}
+					}
+				}
+				change_variable = {
+					name = constitutionalist_mcw_end_progress_var
+					add = 1
+				}
+			}
+		}
+	}
+
+	on_complete = {
+		custom_tooltip = mexican_civil_war_will_end_tt
+		remove_modifier = mexican_civil_war
+		hidden_effect = {
+			set_global_variable = {
+				name = mexican_civil_war_over
+				value = yes
+			}
+		}
+	}
+
+	current_value = {
+		value = root.var:constitutionalist_mcw_end_progress_var
+	}
+
+	goal_add_value = {
+		value = 12
+	}
+
+	progressbar = yes
+
+	weight = 100
+
+	should_be_pinned_by_default = yes
+}
+
+HJ_conventionalist_uprising = {
+	icon = "gfx/interface/icons/event_icons/event_skull.dds"
+
+	is_shown_when_inactive = {
+		exists = c:MEX
+		c:MEX = ROOT
+		has_variable = huertista_mexico
+		has_global_variable = mexican_revolution
+		NOT = { has_global_variable = mexican_civil_war_over }
+		NOT = { has_global_variable = conventionalist_uprising }
+	}
+
+	immediate = {
+		set_variable = {
+			name = conventionalist_uprising_progress_var
+			value = 0
+		}
+	}
+
+	complete = {
+		scope:journal_entry = { is_goal_complete = yes }
+		OR = {
+			has_state_in_state_region = STATE_SONORA
+			has_state_in_state_region = STATE_DURANGO
+			has_state_in_state_region = STATE_CHIHUAHUA
+		}
+	}
+
+	on_monthly_pulse = {
+		effect = {
+			if = {
+				limit = { 
+					OR = {
+						has_state_in_state_region = STATE_SONORA
+						has_state_in_state_region = STATE_DURANGO
+						has_state_in_state_region = STATE_CHIHUAHUA
+					}
+				}
+				change_variable = {
+					name = conventionalist_uprising_progress_var
+					add = 1
+				}
+			}
+		}
+	}
+
+	on_complete = {
+		trigger_event = { id = HJE_latin_america.12 }
+		set_global_variable = {
+			name = conventionalist_uprising
+			value = yes
+		}
+	}
+
+	current_value = {
+		value = root.var:conventionalist_uprising_progress_var
+	}
+
+	goal_add_value = {
+		value = 2
+	}
+
+	progressbar = yes
+
+	weight = 100
+
+	should_be_pinned_by_default = yes
+}
+
+HJ_conventionalist_becomes_mexico_tag = {
+	icon = "gfx/interface/icons/event_icons/event_scales.dds"
+
+	is_shown_when_inactive = {
+		has_variable = conventionalist_mexico
+		NAND = {  
+			exists = c:MEX
+			c:MEX = THIS
+		}
+	}
+
+	immediate = {
+		set_variable = {
+			name = conventionalist_mcw_progress_var
+			value = 0
+		}
+	}
+
+	complete = {
+		scope:journal_entry = { is_goal_complete = yes }
+		owns_entire_state_region = STATE_MEXICO
+		NOT = { exists = c:MEX }
+	}
+
+	on_monthly_pulse = {
+		effect = {
+			if = {
+				limit = {
+					owns_entire_state_region = STATE_MEXICO
+					NOT = { exists = c:MEX }
+				}
+				change_variable = {
+					name = conventionalist_mcw_progress_var
+					add = 1
+				}
+			}
+		}
+	}
+
+	on_complete = {
+		change_tag = MEX
+		set_capital = STATE_MEXICO
+		#change_infamy = -200
+		add_loyalists = { value = 0.1 }
+		if = {
+			limit = { has_modifier = guerilla_warfare }
+			remove_modifier = guerilla_warfare
+		}
+	}
+
+	current_value = {
+		value = root.var:conventionalist_mcw_progress_var
+	}
+
+	goal_add_value = {
+		value = 3
+	}
+
+	progressbar = yes
+
+	weight = 100
+
+	should_be_pinned_by_default = yes
+}
+
+HJ_conventionalist_victory_in_the_mexican_civil_war = {
+	icon = "gfx/interface/icons/event_icons/event_military.dds"
+
+	is_shown_when_inactive = {
+		has_variable = conventionalist_mexico
+		has_global_variable = mexican_revolution
+		NOT = { has_global_variable = mexican_civil_war_over }
+	}
+
+	immediate = {
+		set_variable = {
+			name = conventionalist_mcw_end_progress_var
+			value = 0
+		}
+	}
+
+	complete = {
+		scope:journal_entry = { is_goal_complete = yes }
+		custom_tooltip = not_fighting_any_faction_in_mexico_tt
+		hidden_trigger = {
+			NOT = {
+				any_country = {
+					has_war_with = ROOT
+					OR = {
+						has_variable = faction_in_mexican_civil_war 
+						AND = {
+							is_revolutionary = yes
+							country_definition = root.country_definition
+						}
+					}
+				}
+			}
+		}
+	}
+
+	on_monthly_pulse = {
+		effect = {
+			if = {
+				limit = {
+					NOT = {
+						any_country = {
+							has_war_with = ROOT
+							OR = {
+								has_variable = faction_in_mexican_civil_war 
+								AND = {
+									is_revolutionary = yes
+									country_definition = root.country_definition
+								}
+							}
+						}
+					}
+				}
+				change_variable = {
+					name = conventionalist_mcw_end_progress_var
+					add = 1
+				}
+			}
+		}
+	}
+
+	on_complete = {
+		custom_tooltip = mexican_civil_war_will_end_tt
+		remove_modifier = mexican_civil_war
+		hidden_effect = {
+			set_global_variable = {
+				name = mexican_civil_war_over
+				value = yes
+			}
+		}
+	}
+
+	current_value = {
+		value = root.var:conventionalist_mcw_end_progress_var
+	}
+
+	goal_add_value = {
+		value = 12
+	}
+
+	progressbar = yes
+
+	weight = 100
+
+	should_be_pinned_by_default = yes
+}

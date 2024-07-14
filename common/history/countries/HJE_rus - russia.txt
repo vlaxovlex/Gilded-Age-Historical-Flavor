@@ -1,0 +1,6 @@
+﻿COUNTRIES = {
+	c:RUS = {
+		trigger_event = { id = TGE_russia.1 }
+		trigger_event = { id = HJE_russia.1 }
+	}
+}

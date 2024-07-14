@@ -1,0 +1,598 @@
+﻿HJ_china_humiliation = { #https://www.youtube.com/watch?v=hH_Aq1mZ3BE
+	icon = "gfx/interface/icons/event_icons/event_scales.dds"
+	
+	group = je_group_historical_content
+	
+	immediate = {
+		set_variable = var_dynamic_opium_wars_victim
+		if = {
+			limit = { NOT = { has_global_variable = globvar_dynamic_opium_wars } }
+			set_global_variable = globvar_dynamic_opium_wars
+		}
+	}
+	
+	on_monthly_pulse = {
+		effect = {
+			if = {
+				limit = {
+					has_global_variable = had_first_opium_war
+
+					any_country = { has_journal_entry = HJ_opium_wars }
+					NOT = { has_global_variable = had_second_opium_war }
+					has_global_variable = opiumwars_someone_opened_opiumwar2
+
+					has_global_variable = opiumwars_time_over
+					is_diplomatic_play_committed_participant = no
+				}
+				remove_global_variable = opiumwars_time_over
+				set_global_variable = had_second_opium_war
+			}
+			if = {
+				limit = {
+					has_global_variable = had_second_opium_war
+
+					any_country = { has_journal_entry = HJ_opium_wars_unhistorical }
+					NOT = { has_global_variable = had_third_opium_war }
+					has_global_variable = opiumwars_someone_opened_opiumwar3
+
+					has_global_variable = opiumwars_time_over
+					is_diplomatic_play_committed_participant = no
+				}
+				remove_global_variable = opiumwars_time_over
+				set_global_variable = had_third_opium_war
+			}
+		}
+	}
+
+	complete = {
+		OR = {
+			is_country_type = recognized
+			custom_tooltip = {
+				text = chihumiliation_no_gp_treaty_ports_tt
+				NOT = {
+					is_at_war = yes
+					is_revolutionary = yes							
+					has_revolution = yes 
+					any_country = {
+						country_rank = rank_value:great_power
+						any_scope_state = {
+							is_treaty_port = yes
+							state_region = {
+								any_scope_state = {
+									is_treaty_port = no
+									owner = {
+										OR = {
+											THIS = ROOT
+											is_subject_of = ROOT
+											AND = {
+												exists = c:TPG
+												c:TPG = THIS
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	on_complete = {
+		remove_variable = var_dynamic_opium_wars_victim
+		remove_global_variable = globvar_dynamic_opium_wars
+		if = {
+			limit = { NOT = { is_country_type = recognized } } 	#this should probably be made an event at some point
+			set_country_type = recognized
+		}
+	}
+
+	timeout = 18250
+	on_timeout = {
+		remove_variable = var_dynamic_opium_wars_victim
+		remove_global_variable = globvar_dynamic_opium_wars
+	}
+
+	weight = 1000
+	should_be_pinned_by_default = yes
+}
+
+HJ_opium_wars = {
+	icon = "gfx/interface/icons/event_icons/event_map.dds"
+	should_be_pinned_by_default = yes
+	weight = 90000
+
+	group = je_group_crises
+
+	is_shown_when_inactive = {
+		has_global_variable = globvar_dynamic_opium_wars
+
+		has_global_variable = had_first_opium_war
+		NOT = { has_global_variable = had_second_opium_war }
+
+		country_rank >= rank_value:major_power
+		any_country = {
+			NOT = { THIS = ROOT }
+			has_variable = var_dynamic_opium_wars_victim
+			any_scope_state = { is_coastal = yes }
+		}
+	}
+
+	possible = {
+		custom_tooltip = {
+			text = opiumwars_chi_has_closed_markets_tt
+			any_country = {
+				NOT = { THIS = ROOT }
+				has_variable = var_dynamic_opium_wars_victim
+				any_scope_state = { is_coastal = yes }
+				has_law = law_type:law_isolationism
+				NOT = {
+					any_country = {
+						has_diplomatic_pact = { who = PREV type = foreign_investment_agreement }	
+						OR = {
+							THIS = ROOT
+							country_rank = rank_value:great_power
+						}
+					}
+				}
+			}
+		}
+		OR = {
+			custom_tooltip = {
+				text = opiumwars_has_treaty_port_tt
+				any_scope_state = {
+					is_treaty_port = yes
+					state_region = {
+						any_scope_state = {
+							is_treaty_port = no
+							owner = { has_variable = var_dynamic_opium_wars_victim }
+						}
+					}
+				}
+			}
+			custom_tooltip = {
+				text = opiumwars_gp_with_treaty_port_started_war_tt
+				any_country = {
+					NOT = { THIS = ROOT }
+					has_journal_entry = HJ_opium_wars
+					any_scope_state = {
+						is_treaty_port = yes
+						state_region = {
+							any_scope_state = {
+								is_treaty_port = no
+								owner = { has_variable = var_dynamic_opium_wars_victim }
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	immediate = {
+		custom_tooltip = opiumwars_timelimit_tt
+		hidden_effect = {
+			every_country = {
+				limit = { has_variable = var_dynamic_opium_wars_victim }
+				set_secret_goal = {
+					country = ROOT
+					secret_goal = antagonize			
+				}			
+				ROOT = {
+					set_secret_goal = {
+						country = PREV
+						secret_goal = antagonize			
+					}
+				}
+			}
+			if = {
+				limit = { NOT = { has_global_variable = opiumwars_someone_opened_opiumwar2 } }
+				set_global_variable = opiumwars_someone_opened_opiumwar2
+				set_global_variable = opiumwars_time_limit
+				trigger_event = { id = HJE_china.4 days = 730 }
+			}
+			if = {
+				limit = {
+					country_is_in_europe = yes
+					NOT = {
+						any_scope_state = {
+							is_treaty_port = yes
+							state_region = {
+								any_scope_state = {
+									is_treaty_port = no
+									owner = { has_variable = var_dynamic_opium_wars_victim }
+								}
+							}
+						}
+					}
+				}
+				set_variable = opiumwars_treatyport_goal
+			}
+		}
+	}
+
+	complete = {
+		custom_tooltip = {
+			text = opiumwars_not_war_with_chi_tt
+			has_global_variable = had_second_opium_war
+		}
+		custom_tooltip = {
+			text = opiumwars_chi_has_been_forced_to_reopen_markets_tt
+			NOT = {
+				any_country = {
+					NOT = { THIS = ROOT }
+					has_variable = var_dynamic_opium_wars_victim
+					any_scope_state = { is_coastal = yes }
+					has_law = law_type:law_isolationism
+					NOT = {
+						any_country = {
+							has_diplomatic_pact = { who = PREV type = foreign_investment_agreement }	
+							OR = {
+								THIS = ROOT
+								country_rank = rank_value:great_power
+							}
+						}
+					}
+				}
+			}
+		}
+		trigger_if = {
+			limit = { has_variable = opiumwars_treatyport_goal }
+			custom_tooltip = {
+				text = opiumwars_has_taken_treaty_port_in_china_tt
+				any_scope_state = {
+					is_treaty_port = yes
+					state_region = {
+						any_scope_state = {
+							is_treaty_port = no
+							owner = { has_variable = var_dynamic_opium_wars_victim }
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	on_complete = {
+		remove_variable = opiumwars_treatyport_goal
+		add_modifier = {
+			name = opium_wars_export_modifier
+			months = normal_modifier_time
+		}
+		hidden_effect = {
+			every_country = {
+				limit = { has_variable = var_dynamic_opium_wars_victim }		
+				ROOT = {
+					set_secret_goal = {
+						country = PREV
+						secret_goal = antagonize
+					}
+				}
+			}
+		}
+	}
+
+	fail = {
+		custom_tooltip = {
+			text = opiumwars_not_war_with_chi_tt
+			has_global_variable = had_second_opium_war
+		}
+		OR = {
+			custom_tooltip = {
+				text = opiumwars_chi_has_not_been_forced_to_reopen_markets_tt
+				any_country = {
+					NOT = { THIS = ROOT }
+					has_variable = var_dynamic_opium_wars_victim
+					any_scope_state = { is_coastal = yes }
+					has_law = law_type:law_isolationism
+					NOT = {
+						any_country = {
+							has_diplomatic_pact = { who = PREV type = foreign_investment_agreement }	
+							OR = {
+								THIS = ROOT
+								country_rank = rank_value:great_power
+							}
+						}
+					}
+				}
+			}
+
+			trigger_if = {
+				limit = { has_variable = opiumwars_treatyport_goal }
+				custom_tooltip = {
+					text = opiumwars_has_not_taken_treaty_port_in_china_tt
+					NOT = {
+						any_scope_state = {
+							is_treaty_port = yes
+							state_region = {
+								any_scope_state = {
+									is_treaty_port = no
+									owner = { has_variable = var_dynamic_opium_wars_victim }
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	on_fail = {
+		remove_variable = opiumwars_treatyport_goal
+		add_modifier = {
+			name = withdrew_from_colonial_incident
+			months = normal_modifier_time
+		}
+		hidden_effect = {
+			every_country = {
+				limit = { has_variable = var_dynamic_opium_wars_victim }		
+				ROOT = {
+					set_secret_goal = {
+						country = PREV
+						secret_goal = none
+					}
+				}
+			}
+		}
+	}
+	
+	invalid = {
+		NOT = {
+			any_country = {
+				has_variable = var_dynamic_opium_wars_victim
+				any_scope_state = { is_coastal = yes }
+			}
+		}
+	}
+				
+}
+
+HJ_opium_wars_unhistorical = {
+	icon = "gfx/interface/icons/event_icons/event_map.dds"
+	should_be_pinned_by_default = yes
+	weight = 90000
+
+	group = je_group_historical_content
+
+	is_shown_when_inactive = {
+		has_global_variable = globvar_dynamic_opium_wars
+
+		has_global_variable = had_second_opium_war
+		NOT = { has_global_variable = had_third_opium_war }
+
+		country_rank >= rank_value:major_power
+		any_country = {
+			NOT = { THIS = ROOT }
+			has_variable = var_dynamic_opium_wars_victim
+			any_scope_state = { is_coastal = yes }
+		}
+	}
+
+	possible = {
+		custom_tooltip = {
+			text = opiumwars_chi_has_closed_markets_tt
+			any_country = {
+				NOT = { THIS = ROOT }
+				has_variable = var_dynamic_opium_wars_victim
+				any_scope_state = { is_coastal = yes }
+				has_law = law_type:law_isolationism
+				NOT = {
+					any_country = {
+						has_diplomatic_pact = { who = PREV type = foreign_investment_agreement }	
+						OR = {
+							THIS = ROOT
+							country_rank = rank_value:great_power
+						}
+					}
+				}
+			}
+		}
+		OR = {
+			custom_tooltip = {
+				text = opiumwars_has_treaty_port_tt
+				any_scope_state = {
+					is_treaty_port = yes
+					state_region = {
+						any_scope_state = {
+							is_treaty_port = no
+							owner = { has_variable = var_dynamic_opium_wars_victim }
+						}
+					}
+				}
+			}
+			custom_tooltip = {
+				text = opiumwars_gp_with_treaty_port_started_war_tt
+				any_country = {
+					NOT = { THIS = ROOT }
+					has_journal_entry = HJ_opium_wars_unhistorical
+					any_scope_state = {
+						is_treaty_port = yes
+						state_region = {
+							any_scope_state = {
+								is_treaty_port = no
+								owner = { has_variable = var_dynamic_opium_wars_victim }
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	immediate = {
+		custom_tooltip = opiumwars_timelimit_tt
+		hidden_effect = {
+			every_country = {
+				limit = { has_variable = var_dynamic_opium_wars_victim }
+				set_secret_goal = {
+					country = ROOT
+					secret_goal = antagonize			
+				}			
+				ROOT = {
+					set_secret_goal = {
+						country = PREV
+						secret_goal = antagonize			
+					}
+				}
+			}
+			if = {
+				limit = { NOT = { has_global_variable = opiumwars_someone_opened_opiumwar3 } }
+				set_global_variable = opiumwars_someone_opened_opiumwar3
+				set_global_variable = opiumwars_time_limit
+				trigger_event = { id = HJE_china.4 days = 730 }
+			}
+			if = {
+				limit = {
+					country_is_in_europe = yes
+					NOT = {
+						any_scope_state = {
+							is_treaty_port = yes
+							state_region = {
+								any_scope_state = {
+									is_treaty_port = no
+									owner = { has_variable = var_dynamic_opium_wars_victim }
+								}
+							}
+						}
+					}
+				}
+				set_variable = opiumwars_treatyport_goal
+			}
+		}
+	}
+
+	complete = {
+		custom_tooltip = {
+			text = opiumwars_not_war_with_chi_tt
+			has_global_variable = had_third_opium_war
+		}
+		custom_tooltip = {
+			text = opiumwars_chi_has_been_forced_to_reopen_markets_tt
+			NOT = {
+				any_country = {
+					NOT = { THIS = ROOT }
+					has_variable = var_dynamic_opium_wars_victim
+					any_scope_state = { is_coastal = yes }
+					has_law = law_type:law_isolationism
+					NOT = {
+						any_country = {
+							has_diplomatic_pact = { who = PREV type = foreign_investment_agreement }	
+							OR = {
+								THIS = ROOT
+								country_rank = rank_value:great_power
+							}
+						}
+					}
+				}
+			}
+		}
+		trigger_if = {
+			limit = { has_variable = opiumwars_treatyport_goal }
+			custom_tooltip = {
+				text = opiumwars_has_taken_treaty_port_in_china_tt
+				any_scope_state = {
+					is_treaty_port = yes
+					state_region = {
+						any_scope_state = {
+							is_treaty_port = no
+							owner = { has_variable = var_dynamic_opium_wars_victim }
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	on_complete = {
+		remove_variable = opiumwars_treatyport_goal
+		add_modifier = {
+			name = opium_wars_export_modifier
+			months = normal_modifier_time
+		}
+		hidden_effect = {
+			every_country = {
+				limit = { has_variable = var_dynamic_opium_wars_victim }		
+				ROOT = {
+					set_secret_goal = {
+						country = PREV
+						secret_goal = antagonize
+					}
+				}
+			}
+		}
+	}
+
+	fail = {
+		custom_tooltip = {
+			text = opiumwars_not_war_with_chi_tt
+			has_global_variable = had_third_opium_war
+		}
+		OR = {
+			custom_tooltip = {
+				text = opiumwars_chi_has_not_been_forced_to_reopen_markets_tt
+				any_country = {
+					NOT = { THIS = ROOT }
+					has_variable = var_dynamic_opium_wars_victim
+					any_scope_state = { is_coastal = yes }
+					has_law = law_type:law_isolationism
+					NOT = {
+						any_country = {
+							has_diplomatic_pact = { who = PREV type = foreign_investment_agreement }	
+							OR = {
+								THIS = ROOT
+								country_rank = rank_value:great_power
+							}
+						}
+					}
+				}
+			}
+
+			trigger_if = {
+				limit = { has_variable = opiumwars_treatyport_goal }
+				custom_tooltip = {
+					text = opiumwars_has_not_taken_treaty_port_in_china_tt
+					NOT = {
+						any_scope_state = {
+							is_treaty_port = yes
+							state_region = {
+								any_scope_state = {
+									is_treaty_port = no
+									owner = { has_variable = var_dynamic_opium_wars_victim }
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	on_fail = {
+		remove_variable = opiumwars_treatyport_goal
+		add_modifier = {
+			name = withdrew_from_colonial_incident
+			months = normal_modifier_time
+		}
+		hidden_effect = {
+			every_country = {
+				limit = { has_variable = var_dynamic_opium_wars_victim }		
+				ROOT = {
+					set_secret_goal = {
+						country = PREV
+						secret_goal = none
+					}
+				}
+			}
+		}
+	}
+	
+	invalid = {
+		NOT = {
+			any_country = {
+				has_variable = var_dynamic_opium_wars_victim
+				any_scope_state = { is_coastal = yes }
+			}
+		}
+	}
+}

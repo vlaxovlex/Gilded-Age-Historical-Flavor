@@ -1,0 +1,50 @@
+﻿# Strategic Regions in South America
+
+region_brazil = {
+	graphical_culture = "latin"
+	capital_province = x7600E6
+	map_color = { 0.222 1 0.362 }
+	states = { STATE_SAO_PAULO STATE_RIO_DE_JANEIRO STATE_MINAS_GERAIS STATE_BAHIA STATE_PERNAMBUCO STATE_RIO_GRANDE_DO_NORTE STATE_CEARA STATE_PIAUI STATE_PARAIBA }
+}
+
+region_andes = {
+	graphical_culture = "latin"
+	capital_province = x40E12A
+	map_color = { 0 1 0 }
+	states = { STATE_LIMA STATE_ICA STATE_CAJAMARCA STATE_AREQUIPA STATE_SANTA_CRUZ STATE_LA_PAZ STATE_ECUADOR STATE_PASTAZA }
+}
+
+region_la_plata = {
+	graphical_culture = "latin"
+	capital_province = x708090
+	map_color = { 0 0.8 0.4 }
+	states = { STATE_PARANA STATE_URUGUAY STATE_RIO_GRANDE_DO_SUL STATE_SANTA_CATARINA STATE_RIO_NEGRO STATE_LA_PAMPA STATE_SANTA_FE STATE_CORRIENTES STATE_CHACO STATE_BUENOS_AIRES STATE_ALTO_PARAGUAY STATE_BAJO_PARAGUAY }
+}
+
+region_gran_colombia = {
+	graphical_culture = "latin"
+	capital_province = xA00111
+	map_color = { 0.4 0.3 0.2 }
+	states = { STATE_BOLIVAR STATE_GUAYANA STATE_MIRANDA STATE_ANTIOQUIA STATE_ZULIA STATE_GUAVIARE STATE_CAUCA STATE_CUNDINAMARCA }
+}
+
+region_amazonas = {	#HJE edit start
+	graphical_culture = "latin"
+	capital_province = x40E12A
+	map_color = { 0.6996 0.9669 0.42069 }
+	states = { STATE_ACRE STATE_MATO_GROSSO STATE_MARANHAO STATE_GOIAS STATE_AMAZONAS STATE_PARA }
+}
+
+region_patagonia = {
+	graphical_culture = "latin"
+	capital_province = x708090
+	map_color = { 0.420 0.69 0.42069 }
+	states = { STATE_ARAUCANIA STATE_PATAGONIA STATE_SOUTH_ATLANTIC_ISLANDS }
+}
+
+region_south_andes = {
+	graphical_culture = "latin"
+	capital_province = x708090
+	map_color = { 0.69 0.8 0.420 }
+	states = { STATE_LOS_RIOS STATE_SANTIAGO STATE_ANTOFAGASTA STATE_POTOSI STATE_JUJUY STATE_TARAPACA STATE_TUCUMAN }
+}	#HJE edit end

@@ -1,0 +1,605 @@
+﻿HJ_the_sultans_tuberculosis = {
+	icon = "gfx/interface/icons/event_icons/event_skull.dds"
+
+	group = je_group_historical_content
+
+	is_shown_when_inactive = {
+		year >= 1851
+		exists = c:TUR
+		c:TUR = ROOT
+		has_law = law_type:law_monarchy
+		ruler = { has_variable = is_abdulmecid_2 }
+	}
+
+	possible = {
+		year >= 1861
+		has_law = law_type:law_monarchy
+		ruler = { has_variable = is_abdulmecid_2 }
+	}
+
+	immediate = {
+		set_variable = {
+			name = abdulmecid_death_progress_var
+			value = 0
+		}
+	}
+
+	on_monthly_pulse = {
+		effect = {
+			change_variable = {
+				name = abdulmecid_death_progress_var
+				add = 1
+			}
+			random_list = {
+				80 = { }
+				20 = {
+					set_variable = abdulmecid_died_of_tuberculosis
+					ruler = { kill_character = yes }
+				}
+			}
+		}
+	}
+
+	complete = {
+		OR = {
+			custom_tooltip = {
+				text = abdulmecid_died_of_tuberculosis_tt
+				has_variable = abdulmecid_died_of_tuberculosis
+			}
+			hidden_trigger = {
+				scope:journal_entry = { is_goal_complete = yes }
+			}
+		}
+	}
+
+	current_value = {
+		value = root.var:abdulmecid_death_progress_var
+	}
+
+	goal_add_value = {
+		value = 12
+	}
+
+	progressbar = yes
+
+	weight = 100
+
+	should_be_pinned_by_default = yes
+}
+
+otf_armenian_integration_je = {
+	icon = "gfx/interface/icons/event_icons/event_default.dds"
+	
+	group = je_group_internal_affairs
+	
+	complete = {
+		scope:journal_entry = {
+			is_goal_complete = yes
+		}
+	}
+	on_complete = {
+		trigger_event = {
+			id = HJE_turkey.4
+		}
+	}
+	current_value = {
+		value = var:armenian_integration_var
+	}
+	goal_add_value = {
+		add = 20
+	}
+	fail = {
+		has_variable = completed_anti_armenian_policy
+	}
+	weight = 10000
+	progressbar = yes
+	should_be_pinned_by_default = yes
+}
+
+otf_anti_armenian_policy_je = {
+	icon = "gfx/interface/icons/event_icons/event_skull.dds"
+	
+	group = je_group_internal_affairs
+	
+	on_monthly_pulse = {
+		random_events = {
+			40 = HJE_turkey.5			#Local Rebellion
+			15 = HJE_turkey.6			#Diaspora
+			15 = HJE_turkey.7			#Assasination
+			30 = HJE_turkey.8			#Kurd vs Armenian Rebel
+		}
+	}
+	complete = {
+		scope:journal_entry = {
+			is_goal_complete = yes
+		}
+	}
+	on_complete = {
+		trigger_event = {
+			id = HJE_turkey.9
+		}
+	}
+	current_value = {
+		value = var:anti_armenian_policy_var
+	}
+	goal_add_value = {
+		add = 20
+	}
+	fail = {
+		has_variable = completed_armeninan_integration
+	}
+	weight = 10000
+	progressbar = yes
+	should_be_pinned_by_default = yes
+}
+
+HJ_herzegovina_uprising = {
+	icon = "gfx/interface/icons/event_icons/event_fire.dds"
+
+	should_be_pinned_by_default = yes
+	
+	group = je_group_crises
+
+	is_shown_when_inactive = {
+		grefm_is_active = no
+		exists = c:TUR
+		c:TUR = ROOT
+		country_or_subject_owns_entire_state_region = STATE_BOSNIA
+		NOT = { has_global_variable = GEC_has_begun }
+		NOT = { has_global_variable = GEC_is_over }
+		OR = {
+			year >= 1865
+			NOT = { any_scope_state = { state_region = s:STATE_EASTERN_THRACE } }
+		}
+		OR = {
+			NOT = { exists = c:BOS }
+			AND = {
+				exists = c:BOS
+				c:BOS = { is_subject_of = ROOT }
+			}
+		}
+	}
+
+	possible = {
+		country_or_subject_owns_entire_state_region = STATE_BOSNIA
+		OR = {
+			year >= 1875
+			NOT = { any_scope_state = { state_region = s:STATE_EASTERN_THRACE } }
+		}
+		NAND = {
+			is_country_type = recognized
+			has_law = law_type:law_multicultural
+			OR = {
+				has_law = law_type:law_landed_voting
+				has_law = law_type:law_census_voting
+				has_law = law_type:law_universal_suffrage
+			}
+		}
+	}
+
+	immediate = {
+		add_modifier = {
+			name = front_speed_modifier
+			months = 36
+		}
+		random_state = {
+			limit = { state_region = s:STATE_BOSNIA }
+			save_scope_as = bosnia_scope
+		}
+		scope:bosnia_scope = {
+			add_radicals_in_state = {
+				value = 0.8
+				culture = cu:serb
+			}
+			add_radicals_in_state = {
+				value = 0.8
+				culture = cu:croat
+			}
+			add_radicals_in_state = {
+				value = 0.8
+				culture = cu:bosniak
+			}
+		}
+	}
+
+	complete = {
+		hidden_trigger = { has_variable = bosnia_revolt_can_be_completed }
+		NOT = { exists = c:BOS }
+		NOT = {
+			any_state = {
+				state_region = s:STATE_BOSNIA
+				turmoil > 0.25
+			}
+		}
+	}
+
+	on_complete = {
+		random_state = {
+			limit = { state_region = s:STATE_BOSNIA }
+			save_scope_as = bosnia_scope
+		}
+		scope:bosnia_scope = {
+			add_radicals_in_state = {
+				value = -0.4
+				culture = cu:serb
+			}
+			add_radicals_in_state = {
+				value = -0.4
+				culture = cu:croat
+			}
+			add_radicals_in_state = {
+				value = -0.4
+				culture = cu:bosniak
+			}
+			add_loyalists_in_state = {
+				value = 0.1
+				culture = cu:serb
+			}
+			add_loyalists_in_state = {
+				value = 0.1
+				culture = cu:croat
+			}
+			add_loyalists_in_state = {
+				value = 0.1
+				culture = cu:bosniak
+			}		
+		}
+	}
+
+	on_monthly_pulse = {
+		effect = {
+			if = {
+				limit = { NOT = { has_variable = bosnia_revolt_can_be_completed } }
+				set_variable = bosnia_revolt_can_be_completed
+			}
+		}
+	}
+
+	timeout = 195
+	on_timeout = {
+		set_global_variable = BOS_already_revolted
+		save_scope_as = bosnia_owner_scope
+		random_state = {
+			limit = { state_region = s:STATE_BOSNIA }
+			save_scope_as = bosnia_scope
+		}
+		custom_tooltip = {
+			text = revolt_in_bosnia_and_herzegovina_tt
+			create_country = {
+				tag = BOS
+				origin = this
+				state = scope:bosnia_scope
+				on_created = { 
+					set_variable = GEC_potential_turk_warcrime_target
+					set_variable = herzegovina_uprising
+					add_loyalists = { value = 0.8 }
+					activate_law = law_type:law_parliamentary_republic
+					activate_law = law_type:law_oligarchy
+					add_modifier = {
+						name = separatist_zeal
+						months = 15
+					}
+				}
+			}
+			random_country = {
+				limit = { has_variable = herzegovina_uprising }
+				save_scope_as = herzegovina_uprising_scope
+			}
+			create_diplomatic_play = {
+	            target_country = scope:herzegovina_uprising_scope
+	            type = dp_annex_war
+				war = yes
+			}
+		}
+		if = {
+			limit = { 
+				NOT = { has_global_variable = GEC_has_begun }
+				NOT = { has_global_variable = GEC_is_over }
+			}
+			custom_tooltip = {
+				text = GEC_has_begun_tt
+				set_global_variable = GEC_has_begun
+				set_variable = GEC_crisis_haver
+			}
+		}
+	}
+}
+
+HJ_sofia_uprising = {	#In case the Ottomans don't own Bosnia
+	icon = "gfx/interface/icons/event_icons/event_fire.dds"
+
+	should_be_pinned_by_default = yes
+	
+	group = je_group_crises
+
+	is_shown_when_inactive = {
+		grefm_is_active = no
+		exists = c:TUR
+		c:TUR = ROOT
+		country_or_subject_owns_entire_state_region = STATE_BULGARIA
+		NOT = { country_or_subject_owns_entire_state_region = STATE_BOSNIA }
+		NOT = { has_global_variable = GEC_has_begun }
+		NOT = { has_global_variable = GEC_is_over }
+		OR = {
+			year >= 1865
+			NOT = { any_scope_state = { state_region = s:STATE_EASTERN_THRACE } }
+		}
+		OR = {
+			NOT = { exists = c:BUL }
+			AND = {
+				exists = c:BUL
+				c:BUL = { is_subject_of = ROOT }
+			}
+		}
+	}
+
+	possible = {
+		country_or_subject_owns_entire_state_region = STATE_BULGARIA
+		hidden_trigger = {
+			NOT = { has_global_variable = GEC_has_begun }
+			NOT = { has_global_variable = GEC_is_over }
+		}
+		OR = {
+			year >= 1875
+			NOT = { any_scope_state = { state_region = s:STATE_EASTERN_THRACE } }
+		}
+		NAND = {
+			is_country_type = recognized
+			has_law = law_type:law_multicultural
+			OR = {
+				has_law = law_type:law_landed_voting
+				has_law = law_type:law_census_voting
+				has_law = law_type:law_universal_suffrage
+			}
+		}
+		OR = {
+			NOT = { exists = c:BUL }
+			AND = {
+				exists = c:BUL
+				c:BUL = { is_subject_of = ROOT }
+			}
+		}
+	}
+
+	immediate = {
+		random_state = {
+			limit = { state_region = s:STATE_BULGARIA }
+			save_scope_as = sofia_scope
+		}
+		scope:sofia_scope = {
+			add_radicals_in_state = {
+				value = 0.8
+				culture = cu:bulgarian
+			}
+		}
+	}
+
+	complete = {
+		hidden_trigger = { has_variable = sofia_revolt_can_be_completed }
+		NOT = { exists = c:BUL }
+		NOT = {
+			any_state = {
+				state_region = s:STATE_BULGARIA
+				turmoil > 0.25
+			}
+		}
+	}
+
+	on_complete = {
+		random_state = {
+			limit = { state_region = s:STATE_BULGARIA }
+			save_scope_as = sofia_scope
+		}
+		scope:sofia_scope = {
+			add_radicals_in_state = {
+				value = -0.4
+				culture = cu:bulgarian
+			}
+			add_loyalists_in_state = {
+				value = 0.1
+				culture = cu:bulgarian
+			}
+		}
+	}
+
+	on_monthly_pulse = {
+		effect = {
+			if = {
+				limit = { NOT = { has_variable = sofia_revolt_can_be_completed } }
+				set_variable = sofia_revolt_can_be_completed
+			}
+		}
+	}
+
+	timeout = 195
+	on_timeout = {
+		set_global_variable = BUL_already_revolted
+		save_scope_as = sofia_owner_scope
+		random_state = {
+			limit = { state_region = s:STATE_BULGARIA }
+			save_scope_as = sofia_scope
+		}
+		custom_tooltip = {
+			text = revolt_in_buglaria_tt
+			create_country = {
+				tag = BUL
+				origin = this
+				state = scope:sofia_scope
+				on_created = { 
+					set_variable = GEC_potential_turk_warcrime_target
+					set_variable = sofia_uprising
+					add_loyalists = { value = 0.8 }
+					add_modifier = {
+						name = revolutionary_zeal
+						months = 12
+					}
+				}
+			}
+			random_country = {
+				limit = { has_variable = sofia_uprising }
+				save_scope_as = sofia_uprising_scope
+			}
+			create_diplomatic_play = {
+	            target_country = scope:sofia_uprising_scope
+	            type = dp_annex_war
+				war = yes
+			}
+		}
+		custom_tooltip = {
+			text = GEC_has_begun_tt
+			set_global_variable = GEC_has_begun
+			set_variable = GEC_crisis_haver
+		}
+	}
+}
+
+HJ_great_eastern_crisis = {
+	icon = "gfx/interface/icons/event_icons/event_map.dds"
+	should_be_pinned_by_default = yes
+	weight = 90000
+
+	group = je_group_crises
+
+	is_shown_when_inactive = {
+		exists = c:TUR
+		exists = c:RUS
+		NOT = { has_global_variable = GEC_is_over }
+		OR = {
+			THIS = c:TUR
+			THIS = c:RUS
+			country_is_in_europe = yes
+			any_subject_or_below = { country_is_in_europe = yes }
+			any_overlord_or_above = { country_is_in_europe = yes }
+			any_country = {
+				country_is_in_europe = yes
+				OR = {
+					is_in_customs_union_with = ROOT
+					has_diplomatic_pact = {
+						who = ROOT
+						type = defensive_pact
+					}
+					has_diplomatic_pact = {
+						who = ROOT
+						type = alliance
+					}
+				}
+			}
+		}
+	}
+
+	possible = {
+		custom_tooltip = {
+			text = GEC_has_begun_tt
+			has_global_variable = GEC_has_begun
+		}
+	}
+
+	immediate = {
+		if = {
+			limit = { exists = c:TUR c:TUR = ROOT }
+			s:STATE_CYPRUS = { add_claim = c:GBR }
+			s:STATE_BOSNIA = { add_claim = c:AUS }
+			s:STATE_KARS = { add_claim = c:RUS }
+			hidden_effect = {
+				every_scope_state = {
+					limit = {
+						is_capital = no
+						OR = {
+							cu:greek = { has_homeland = PREV }
+							cu:serb = { has_homeland = PREV }
+							cu:croat = { has_homeland = PREV }
+							cu:bulgarian = { has_homeland = PREV }
+							cu:albanian = { has_homeland = PREV }
+							cu:romanian = { has_homeland = PREV }
+							cu:hungarian = { has_homeland = PREV }
+						}
+					}
+					add_radicals_in_state = {
+						value = 0.25
+						culture = cu:greek
+					}
+					add_radicals_in_state = {
+						value = 0.25
+						culture = cu:serb
+					}
+					add_radicals_in_state = {
+						value = 0.25
+						culture = cu:croat
+					}
+					add_radicals_in_state = {
+						value = 0.25
+						culture = cu:bulgarian
+					}
+					add_radicals_in_state = {
+						value = 0.25
+						culture = cu:albanian
+					}
+					add_radicals_in_state = {
+						value = 0.25
+						culture = cu:romanian
+					}
+					add_radicals_in_state = {
+						value = 0.25
+						culture = cu:hungarian
+					}
+				}
+			}
+		}
+	}
+
+	on_weekly_pulse = {
+		random_events = {
+			100 = 0
+
+			200 = HJE_balkan.1 			#Variable setter for events below
+			20 = HJE_balkan.8			#Austro-Hungarian Elayet Revolt
+			19 = HJE_balkan.7			#Croatian Elayet Revolt
+			18 = HJE_balkan.9 			#Romanian Elayet Revolt
+			17 = HJE_balkan.2 			#Greek Elayet Revolt
+			16 = HJE_balkan.4			#Serbian Elayet Revolt
+			15 = HJE_balkan.5			#Montenegrin Elayet Revolt
+			14 = HJE_balkan.6 			#Bosnian Elayet Revolt
+			13 = HJE_balkan.3 			#Bulgarian Elayet Revolt
+
+			20 = HJE_balkan.10 			#Balkan free/vassal country wars
+			90 = HJE_balkan.12			#Turk War Crimes Event
+			90 = HJE_russia.7 			#Russia (or other gp) Intervenes
+
+			45 = HJE_britain.17 		#GBR takes Cyprus
+			45 = HJE_austria.1  		#AUS takes Bosnia
+		}
+	}
+
+	complete = {
+		custom_tooltip = {
+			text = GEC_is_over_tt
+			any_country = {
+				has_variable = GEC_crisis_haver
+				is_diplomatic_play_committed_participant = no
+			}
+		}
+	}
+	
+	on_complete = {
+		set_global_variable = GEC_is_over
+		if = {
+			limit = {
+				exists = c:BUL 
+			}
+			s:STATE_NORTHERN_THRACE = {
+				every_scope_state = {
+					limit = {
+						owner = c:TUR
+					}
+				}
+				set_owner = c:BUL
+			}
+			c:TUR = {
+				create_diplomatic_pact = {
+					country = c:BUL
+					type = protectorate
+				}
+			}
+		}
+	}
+}

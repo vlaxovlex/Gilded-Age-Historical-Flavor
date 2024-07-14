@@ -1,0 +1,86 @@
+﻿DIPLOMACY = {
+	c:GBR = {
+		create_diplomatic_pact = {
+			country = c:NEP
+			type = protectorate
+		}
+		remove_diplomatic_pact = {
+			country = c:SAF	
+			type = puppet	
+		}	
+		create_diplomatic_pact = {
+			country = c:SAF	
+			type = hje_colonial_administration
+		}			
+	}
+	c:CHL = {
+		create_diplomatic_pact = {
+			country = c:ARG
+			type = alliance
+		}
+		change_relations = {
+			country = c:ARG
+			value = 60
+		}
+	}
+	c:TUR = {
+		create_diplomatic_pact = {
+			country = c:JAB
+			type = protectorate
+		}
+	}
+	c:RUS = {
+		create_diplomatic_pact = {
+			country = c:AUS
+			type = defensive_pact
+		}
+		change_relations = {
+			country = c:AUS
+			value = 60
+		}
+	}
+	c:AUS = {
+		create_diplomatic_pact = {
+			country = c:PAP
+			type = defensive_pact
+		}
+		change_relations = {
+			country = c:PAP
+			value = 45
+		}
+	}
+	c:SPA = {
+		remove_diplomatic_pact = {
+			country = c:PHI	
+			type = puppet	
+		}	
+		create_diplomatic_pact = {
+			country = c:PHI	
+			type = hje_colonial_administration
+		}
+		remove_diplomatic_pact = {
+			country = c:CUB	
+			type = puppet	
+		}	
+		create_diplomatic_pact = {
+			country = c:CUB	
+			type = hje_colonial_administration
+		}		
+	}
+	c:NET = {
+		remove_diplomatic_pact = {
+			country = c:DEI	
+			type = dominion	
+		}	
+		create_diplomatic_pact = {
+			country = c:DEI	
+			type = hje_colonial_administration
+		}	
+	}
+	c:USA = {
+		create_diplomatic_pact = {
+			country = c:TEX	
+			type = protectorate
+		}	
+	}
+}

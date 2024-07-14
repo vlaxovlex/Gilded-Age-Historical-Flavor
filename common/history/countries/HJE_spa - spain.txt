@@ -1,0 +1,12 @@
+﻿COUNTRIES = {
+	c:SPA = {
+		add_journal_entry = { 
+			type = HJ_isab_victory		
+		}
+		
+		set_variable = {
+			name = is_carlos_5
+			value = yes
+		}
+	}
+}

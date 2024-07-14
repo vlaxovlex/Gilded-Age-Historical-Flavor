@@ -1,0 +1,66 @@
+Nos enorgullece presentar nuestro mod, "Gilded Era", el cual añade una considerable cantidad de sabor histórico para muchas naciones, además de modificar el comportamiento de la inteligencia artificial para que sea más competente y ofrezca una experiencia más competitiva.
+
+
+[h1]Características:[/h1]
+- Cerca de 90 nuevas entradas de diario
+- Aproximadamente 280 nuevos eventos
+- Cambios y mejoras al contenido del juego base
+- Mejora en la inteligencia artificial
+- Fronteras más estéticas (ver capturas de pantalla)
+- Guerras históricas, política doméstica y exterior (detalles abajo)
+
+[b]Contenido:[/b]
+- Guerras Carlistas
+- Guerra de la Confederación Peruano-Boliviana
+- El Gran Juego (independiente de la Esfera de Influencia)
+- Dominios Británicos más precisos (Nueva Zelanda)
+- Tratado de Guadalupe Hidalgo
+- Gran Hambruna en Irlanda
+- Segundo Imperio Francés (independiente de Voz del Pueblo)
+- Revoluciones de 1848
+- Expedición Perry a Japón
+- Guerra de Crimea
+- Segunda Guerra del Opio (una Tercera Guerra del Opio también es potencialmente posible)
+- Unificación histórica de Italia y Alemania
+- Reestructuración histórica de la Guerra Civil Americana
+- Intervención francesa en México
+- Segunda Guerra de Schleswig
+- Guerra de las Siete Semanas
+- Guerra Franco-Prusiana
+- Segunda Guerra del Pacífico
+- Guerra Ruso-Turca de 1877
+- Protectorado Británico en Egipto
+- Diplomacia histórica entre grandes potencias
+- Conferencia de Berlín
+- Nuevas reclamaciones para la colonización histórica
+- Guerra Sino-Japonesa
+¡Y mucho más!
+(Actualmente el contenido del juego abarca hasta la década de 1890; en el futuro se planea expandir el período temporal hasta 1936)
+
+
+[b]Compatibilidad y rendimiento:[/b]
+- El mod es compatible con otros mods globales; se recomienda cargarlo debajo de todos los demás mods
+- Un año en el juego dura aproximadamente 3 minutos en la fase inicial y alrededor de 3 minutos y 30 segundos en la fase tardía en mi i7-13620H; el rendimiento global es aproximadamente el 70% del juego base
+- Por favor, informa cualquier error que encuentres
+
+
+[h1]Lista de Actualizaciones:[/h1]
+-04.07.24 Lanzamiento
+
+
+[h1]Crédito de contenido:[/h1]
+[url=https://steamcommunity.com/sharedfiles/filedetails/?id=2899973887]Contenido para Rusia y Prusia[/url]
+[url=https://steamcommunity.com/sharedfiles/filedetails/?id=2884270621]Contenido para los países escandinavos[/url]
+[url=https://steamcommunity.com/sharedfiles/filedetails/?id=2930839768]Contenido para el Imperio Otomano[/url]
+[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3213294110]Optimización[/url]
+
+
+[b]Localización:[/b]
+-Ruso
+-Inglés
+-Español (Gracias a Unión Soviética)
+(para otros idiomas el valor por defecto es Inglés)
+
+
+[b]Enlaces:[/b]
+[url=https://discord.gg/kagHUtjr]Victoria 3 Mod Co-op[/url]

@@ -1,0 +1,518 @@
+﻿namespace = TGE_austria
+
+TGE_austria.1 = {
+	type = country_event
+	placement = root
+	title = TGE_austria.1.t
+	desc = TGE_austria.1.d
+	flavor = TGE_austria.1.f
+
+	duration = 3
+	
+	event_image = {
+	video = "gfx/event_pictures/europenorthamerica_political_extremism.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/political_extremism"
+
+	icon = "gfx/interface/icons/event_icons/event_portrait.dds"
+	
+	trigger = {
+		exists = c:AUS
+		c:AUS = THIS
+		any_scope_state = { cu:hungarian = { has_homeland = PREV } }
+		year >= 1846
+		has_journal_entry = je_dual_monarchy
+		any_country = {
+			OR = {
+				is_adjacent_to_country = ROOT
+				THIS = ROOT
+			}
+			OR = {
+				has_technology_researched = nationalism
+				has_journal_entry = je_first_presidential_election 		#france had a revolution
+				has_journal_entry = je_future_of_the_republic 			#france had a revolution 
+				has_journal_entry = je_springtime_of_the_peoples 		#random neighbour had springtime (very unlikely ROOT has this journal)
+				has_journal_entry = HJ_italian_1848_revolutions 		#italian neighbour had a italy revolution
+			}
+		}
+	}
+	
+	option = {
+		name = TGE_austria.1.a
+		ai_chance = { base = 1 }
+
+		remove_modifier = modifier_tge_metternich
+		
+		if = {
+			limit = {
+				is_ai = yes
+			}
+			deactivate_law = law_type:law_serfdom
+			activate_law = law_type:law_wealth_voting
+			activate_law = law_type:law_right_of_assembly
+		}
+		
+		add_radicals = {
+			value = 0.2
+			culture = cu:hungarian
+		}
+		
+		if = {
+			limit = {
+				ruler = { has_variable = ferdinand_von_habsburg }
+			}
+			ruler = { kill_character = yes }
+		}
+		trigger_event = {
+			id = TGE_austria.2
+		}
+	}
+
+	option = {
+		name = TGE_austria.1.b
+		default_option = yes
+		ai_chance = { base = 9 }
+
+		remove_modifier = modifier_tge_metternich
+			
+		if = {
+			limit = {
+				is_ai = yes
+			}
+			deactivate_law = law_type:law_serfdom
+			activate_law = law_type:law_wealth_voting
+			activate_law = law_type:law_right_of_assembly
+		}
+			
+		add_radicals = {
+			value = 0.4
+			culture = cu:hungarian
+		}
+			
+		if = {
+			limit = {
+				ruler = { has_variable = ferdinand_von_habsburg }
+			}
+			ruler = { kill_character = yes }
+		}
+		trigger_event = {
+			id = TGE_austria.2
+		}
+	}
+		
+	option = {
+		name = TGE_austria.1.c
+		ai_chance = { base = 0 }
+
+		#there is no reason to ever press this button.
+		remove_modifier = modifier_tge_metternich
+		
+		add_radicals = {
+			value = 0.6
+			culture = cu:hungarian
+		}
+		trigger_event = {
+			id = TGE_austria.2
+		}
+	}
+}
+	
+TGE_austria.2 = {
+	type = country_event
+	placement = root
+	title = TGE_austria.2.t
+	desc = TGE_austria.2.d
+	flavor = TGE_austria.2.f
+
+	duration = 1
+		
+	event_image = {
+		video = "gfx/event_pictures/europenorthamerica_political_extremism.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/political_extremism"
+
+	icon = "gfx/interface/icons/event_icons/event_portrait.dds"
+		
+	trigger = {
+	}
+		
+	immediate = {
+		set_variable = already_had_scripted_revolution
+		create_country = {
+			tag = HUN
+			origin = c:AUS
+			state = s:STATE_CENTRAL_HUNGARY.region_state:AUS
+			state = s:STATE_TRANSDANUBIA.region_state:AUS
+			state = s:STATE_BANAT.region_state:AUS
+			state = s:STATE_BEKES.region_state:AUS
+			state = s:STATE_DELVIDEK.region_state:AUS
+			state = s:STATE_EAST_SLOVAKIA.region_state:AUS
+			state = s:STATE_NORTHERN_TRANSYLVANIA.region_state:AUS
+			state = s:STATE_SOUTHERN_TRANSYLVANIA.region_state:AUS
+			state = s:STATE_TRANSDANUBIA.region_state:AUS
+			state = s:STATE_WEST_SLOVAKIA.region_state:AUS
+			
+			
+			on_created = {	
+				every_scope_state = {
+					limit = { is_homeland_of_country_cultures = c:HUN }
+					set_state_owner = c:HUN
+					set_state_type = incorporated			
+				}
+				if = {
+					limit = {
+						NOT = { has_ruling_interest_group = ig_intelligentsia }
+					}
+					ig:ig_intelligentsia = {
+						add_ruling_interest_group = yes
+					}
+				}
+			}
+		}	
+		add_modifier = {
+			name = modifier_tge_austria_in_chaos
+			months = 20
+		}
+		if = {
+			limit = {
+				is_ai = yes
+			}
+			add_modifier = {
+				name = wartime_zeal
+				months = 12
+			}
+		}
+	    c:HUN = {
+            activate_law = law_type:law_monarchy
+            activate_law = law_type:law_census_voting
+            activate_law = law_type:law_right_of_assembly
+            deactivate_law = law_type:law_serfdom
+			activate_law = law_type:law_slavery_banned
+            activate_law = law_type:law_professional_army
+			activate_law = law_type:law_appointed_bureaucrats
+			activate_law = law_type:law_no_colonial_affairs
+			activate_law = law_type:law_national_supremacy
+			
+			add_loyalists = {
+				value = 0.33
+				culture = cu:hungarian
+			}			
+				
+			create_character = {
+				first_name = "lajos_kossuth_first_name"			
+				last_name = "lajos_kossuth_last_name"
+				historical = yes
+				birth_date = 1802.9.19
+				culture = cu:hungarian
+				ig_leader = yes
+				religion = catholic
+				interest_group = ig_intelligentsia
+				ideology = ideology:ideology_radical
+				traits = { 
+					charismatic
+					innovative
+				}
+			}
+			create_character = {
+				first_name = "artur_gorgei_first_name"			
+				last_name = "artur_gorgei_last_name"
+				historical = yes
+				birth_date = 1818.1.30 
+				culture = cu:hungarian
+				is_general = yes
+				religion = catholic
+				interest_group = ig_intelligentsia
+				ideology = ideology:ideology_radical
+				traits = { 
+					stalwart_defender 
+					experienced_artillery_commander 
+					meticulous
+				}
+			}
+			create_diplomatic_play = {
+				war = no
+				type = dp_conquer_state
+				target_state = s:STATE_SLAVONIA.region_state:AUS
+				add_war_goal = {
+					holder = c:HUN
+					type = conquer_state
+					target_state = s:STATE_CROATIA.region_state:AUS
+				}
+				add_war_goal = {
+					holder = c:HUN
+					type = conquer_state
+					target_state = s:STATE_DALMATIA.region_state:AUS
+				}
+				add_war_goal = {
+					holder = c:AUS
+					type = annex_country
+					target_country = c:HUN
+				}
+			}
+		}
+		every_scope_state = {
+			limit = { 
+				is_homeland_of_country_cultures = c:HUN
+			}
+			set_state_owner = c:HUN
+			set_state_type = incorporated
+			
+		}
+	}
+		
+	
+	option = {
+		name = TGE_austria.2.a
+		default_option = yes
+
+		add_journal_entry = {
+			type = je_tge_hungarianrevolution
+		}
+	}
+
+	option = {
+		name = TGE_austria.2.b
+
+		add_journal_entry = {
+			type = je_tge_hungarianrevolution
+		}
+		
+		play_as = c:HUN
+		
+		ai_chance = 0
+			
+	}
+}
+	
+TGE_austria.3 = {			
+		
+	type = country_event
+	placement = root
+	title = TGE_austria.3.t
+	desc = TGE_austria.3.d
+
+	duration = 1
+	
+	event_image = {
+		video = "gfx/event_pictures/unspecific_military_parade.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/unspecific/military_parade"
+
+	icon = "gfx/interface/icons/event_icons/event_portrait.dds"
+	
+	trigger = {
+	}
+		
+	option = {
+		name = TGE_austria.3.a
+		default_option = yes
+
+		add_journal_entry = {
+			type = je_tge_the_hungarian_question
+		}	
+		add_radicals = {
+			culture = cu:hungarian
+			value = 0.15
+		}
+		add_loyalists = {
+			value = 0.1
+		}
+		
+		every_scope_state = {
+			limit = { region = sr:region_danubia }
+			set_state_type = incorporated
+		}
+	}
+}
+
+namespace = HJE_austria
+
+#Great Eastern Crisis: Austrian Occupation of Bosnia?
+HJE_austria.1 = {
+	type = country_event
+	placement = c:TUR
+	
+	event_image = {
+		video = "gfx/event_pictures/unspecific_fire.bk2"
+	}
+	
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/american_civil_war"
+	
+	icon = "gfx/interface/icons/event_icons/event_fire.dds"
+	
+	title = HJE_austria.1.t
+	desc = HJE_austria.1.d 
+	flavor = HJE_austria.1.f 
+	
+	duration = 3
+	
+	trigger = {
+		exists = c:TUR
+		OR = {
+			exists = c:AUS
+			AND = {
+				NOT = { exists = c:AUS }
+				exists = c:GER
+			}
+		}
+		OR = {
+			c:AUS ?= ROOT
+			c:GER ?= ROOT
+		}
+		country_rank = rank_value:great_power
+		c:TUR = { has_variable = GEC_tur_did_a_little_trolling }
+		any_state = {
+			owner = { OR = { ROOT = THIS is_subject_of = ROOT } }
+			OR = {
+				state_region = s:STATE_CROATIA
+				state_region = s:STATE_SLAVONIA
+				state_region = s:STATE_DALMATIA
+				state_region = s:STATE_SLOVENIA
+				state_region = s:STATE_ISTRIA
+			}
+		}
+		OR = {
+			AND = {
+				exists = c:BOS
+				c:BOS = { has_variable = herzegovina_uprising }
+			}
+			AND = {
+				NOT = { exists = c:BOS }
+				any_state = {
+					owner = { OR = { c:TUR = THIS is_subject_of = c:TUR } }
+					state_region = s:STATE_BOSNIA
+				}
+			}
+		}
+	}
+	
+	immediate = {
+		if = {
+			limit = { 
+				NOT = { exists = c:BOS }
+				any_state = {
+					owner = { OR = { c:TUR = THIS is_subject_of = c:TUR } }
+					state_region = s:STATE_BOSNIA
+				} 
+			}
+			random_state = {
+				limit = {
+					owner = { OR = { c:TUR = THIS is_subject_of = c:TUR } }
+					state_region = s:STATE_BOSNIA
+				}
+				save_scope_as = ottoman_bosnia_state_scope
+			}
+		}
+	}
+	
+	option = {
+		name = HJE_austria.1.a
+		default_option = yes
+		ai_chance = { base = 1 }
+		if = {
+			limit = { 
+				NOT = { exists = c:BOS }
+				any_state = {
+					owner = { OR = { c:TUR = THIS is_subject_of = c:TUR } }
+					state_region = s:STATE_BOSNIA
+				} 
+			}
+			custom_tooltip = {
+				text = revolt_in_state_tt
+				create_country = {
+					tag = BOS
+					origin = this
+					state = scope:ottoman_bosnia_state_scope
+					on_created = { set_variable = austrian_bosnia }
+				}
+				random_country = {
+					limit = { has_variable = austrian_bosnia }
+					save_scope_as = austrian_bosnia_scope
+				}
+			}
+			if = {
+				limit = { c:TUR = { is_country_type = recognized } }
+				c:TUR = { trigger_event = { id = HJE_austria.2 days = 1 } }
+			}
+		}
+		else = {
+			c:BOS = { save_scope_as = austrian_bosnia_scope }
+		}
+		every_state = {
+			limit = { owner = scope:austrian_bosnia_scope }
+			state_region = {
+				add_modifier = {
+					name = bosnia_modifier
+					months = 360
+				}
+			}
+			add_modifier = {
+				name = bosnia_modifier
+				months = 360
+			}
+		}
+		annex = scope:austrian_bosnia_scope
+	}
+	option = {
+		name = HJE_austria.1.b
+		ai_chance = { base = 0 }
+		add_modifier = {
+			name = withdrew_from_colonial_incident
+			months = long_modifier_time
+		}
+	}
+}
+
+HJE_austria.2 = {
+	type = country_event
+	placement = c:AUS
+	title = HJE_austria.2.t
+	flavor = HJE_austria.2.f
+	desc = HJE_austria.2.d
+
+	duration = 3
+
+	is_popup = yes
+
+	event_image = {
+		video = "gfx/event_pictures/unspecific_politicians_arguing.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/before_the_battle"
+
+	icon = "gfx/interface/icons/event_icons/event_map.dds"
+
+	trigger = {
+	}
+	
+	immediate = {
+	}
+
+	option = {
+		name = HJE_austria.2.a
+		default_option = yes
+		ai_chance = { base = 0 }
+		create_diplomatic_play = {
+			target_state = s:STATE_BOSNIA.region_state:ottoman_bosnia_state_scope.owner
+            type = dp_return_state
+			war = no
+		}
+	}
+
+	option = {
+		name = HJE_austria.2.b
+		ai_chance = { base = 1 }
+		add_modifier = {
+			name = withdrew_from_colonial_incident
+			months = short_modifier_time
+		}
+	}	
+}

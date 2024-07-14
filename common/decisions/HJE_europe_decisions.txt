@@ -1,0 +1,536 @@
+﻿formally_end_slavery_in_nordic_country = {
+	is_shown = {
+		OR = {
+			AND = {
+				exists = c:DEN
+				c:DEN = THIS
+			}
+			AND = {
+				exists = c:SWE
+				c:SWE = THIS
+			}
+		}
+		OR = {
+			has_law = law_type:law_debt_slavery
+			has_law = law_type:law_slave_trade
+			has_law = law_type:law_legacy_slavery
+		}
+		NOT = { has_variable = nordic_banning_of_slavery }
+	}
+	
+	possible = {	# Add more later
+		NOR = {
+			is_enacting_law = law_type:law_debt_slavery
+			is_enacting_law = law_type:law_slave_trade
+			is_enacting_law = law_type:law_legacy_slavery
+		}
+		in_default = no
+		ig:ig_intelligentsia = {
+			OR = {
+				is_powerful = yes
+				is_in_government = yes
+			}
+			ig_clout >= 0.15
+		}
+	}
+	
+	when_taken = {
+		set_variable = nordic_banning_of_slavery
+		activate_law = law_type:law_slavery_banned
+		add_modifier = {
+			name = nordic_ban_of_slavery
+			months = short_modifier_time
+		}
+	}
+
+	ai_chance = {
+		base = 0
+		modifier = {
+			trigger = {
+				has_strategy = ai_strategy_colonial_expansion
+			}
+			add = -10
+		}
+		modifier = {
+			trigger = {
+				OR = {
+					has_strategy = ai_strategy_progressive_agenda
+					has_strategy = ai_strategy_egalitarian_agenda
+				}
+			}
+			add = 10
+		}
+		modifier = {
+			trigger = {
+				is_enacting_law = law_type:law_slavery_banned
+			}
+			add = 10
+		}
+		modifier = {
+			trigger = {
+				OR = {
+					AND = {
+						c:DEN = THIS
+						any_diplomatic_play = {
+							is_war = no
+							is_diplomatic_play_type = dp_ban_slavery
+							target_is = c:DEN
+						}
+					}
+					AND = {
+						c:SWE = THIS
+						any_diplomatic_play = {
+							is_war = no
+							is_diplomatic_play_type = dp_ban_slavery
+							target_is = c:SWE
+						}
+					}
+				}
+			}
+			add = 100
+		}
+	}
+}
+
+the_norway_formannskapsdistrikt = {
+	is_shown = {
+		exists = c:NOR
+		c:NOR = THIS
+		NOT = { has_variable = norway_formannskapsdistrikt }
+	}
+	
+	possible = {	# Add more later
+		bureaucracy >= 25
+		ig:ig_rural_folk = {
+			OR = {
+				is_powerful = yes
+				is_in_government = yes
+			}
+		}
+	}
+	
+	when_taken = {
+		set_variable = norway_formannskapsdistrikt
+		add_modifier = {
+			name = norway_formmanskapsdistrikt_pay
+			months = short_modifier_time
+		}
+		add_modifier = {
+			name = norway_formmanskapsdistrikt_nation
+			months = -1
+		}
+		ig:ig_rural_folk = {
+			add_modifier = {
+				name = norway_formmanskapsdistrikt
+				months = long_modifier_time
+			}
+		}
+	}
+
+	ai_chance = {
+		base = 0.1
+		modifier = {
+			trigger = {
+				bureaucracy < 40
+			}
+			add = -100
+		}
+		modifier = {
+			trigger = {
+				NOT = { has_strategy = ai_strategy_conservative_agenda }
+			}
+			add = 10
+		}
+	}
+}
+
+promote_finnish_as_primary_language_in_official_affairs = {
+	is_shown = {
+		exists = c:FIN
+		c:FIN = THIS
+		has_modifier = finland_our_language_outside_courts
+	}
+
+	possible = {
+		is_at_war = no
+		is_subject = no
+		has_technology_researched = dialectics
+	}
+
+	when_taken = {
+		remove_modifier = finland_our_language_outside_courts
+	}
+
+	ai_chance = {
+		base = 100
+		modifier = {
+			is_diplomatic_play_committed_participant = yes
+			add = -1000
+		}
+	}
+}
+
+promote_finnish_as_primary_language_in_official_affairs_in_finland = {
+	is_shown = {
+		exists = c:FIN
+		exists = c:RUS
+		c:RUS = THIS
+		c:FIN = {
+			is_subject_of = c:RUS
+			has_modifier = finland_our_language_outside_courts
+		}
+	}
+
+	possible = {
+		is_at_war = no
+		c:FIN = {
+			is_subject_of = c:RUS
+			has_technology_researched = dialectics
+			relations:root >= relations_threshold:cordial
+		}
+	}
+
+	when_taken = {
+		c:FIN = {
+			show_as_tooltip = { remove_modifier = finland_our_language_outside_courts }
+			trigger_event = {
+				id = finland_flavor.6
+				days = 0
+				popup = yes
+			}
+		}
+	}
+
+	ai_chance = {
+		base = 0
+		modifier = {
+			add = 100
+			ig:ig_intelligentsia = {
+				OR = {
+					is_powerful = yes
+					is_in_government = yes
+				}
+			}
+		}
+		modifier = {
+			is_diplomatic_play_committed_participant = yes
+			add = -1000
+		}
+	}
+}
+
+integrate_finland_into_scandinavia = {
+	is_shown = {
+		OR = {
+			country_has_primary_culture = cu:swedish
+			country_has_primary_culture = cu:danish
+			country_has_primary_culture = cu:norwegian
+			country_has_primary_culture = cu:icelandic
+		}
+		exists = c:SCA
+		c:SCA = THIS
+		NOT = {
+			country_has_primary_culture = cu:finnish
+		}
+	}
+
+	possible = {
+		is_at_war = no
+		is_subject = no
+		bureaucracy >= 50
+		has_technology_researched = pan-nationalism
+		OR = {
+			AND = {
+				exists = c:FIN
+				c:FIN = { is_subject_of = ROOT }
+			}
+			AND = {
+				owns_entire_state_region = STATE_UUSIMAA
+				owns_entire_state_region = STATE_WEST_KARELIA
+				owns_entire_state_region = STATE_OSTROBOTHNIA
+				owns_entire_state_region = STATE_KUOPIO
+				owns_entire_state_region = STATE_OULU	
+				owns_entire_state_region = STATE_ALAND	
+			}
+		}
+	}
+	
+	when_taken = {
+		add_modifier = {
+			name = nordic_finland_integration
+			months = long_modifier_time
+		}
+		add_primary_culture = cu:finnish
+		if = {
+			limit = {
+				exists = c:FIN
+				c:FIN = {
+					is_subject_of = ROOT
+				}
+			}
+			annex = c:FIN
+		}
+	}
+
+	ai_chance = {
+		base = 100
+		modifier = {
+			is_diplomatic_play_committed_participant = yes
+			add = -100
+		}
+		modifier = {
+			has_law = law_type:law_ethnostate
+			add = -100
+		}
+	}
+}
+
+
+
+# British decision to force NSW to release NZL
+charter_for_erecting_colony_of_nzl = {
+
+	is_shown = {
+		exists = c:GBR
+		c:GBR = THIS
+		exists = c:NSW
+		NOT = { exists = c:NZL }
+		c:NSW = { is_subject_of = root }
+		NOT = { has_variable = already_spawned_kiwis }
+		c:NSW = {
+			any_scope_state = {
+				is_capital = no
+				OR = {
+					state_region = s:STATE_NORTH_ISLAND
+					state_region = s:STATE_SOUTH_ISLAND
+				}
+			}
+		}
+
+	}
+
+	possible = {
+		year >= 1841
+		is_at_war = no
+	}
+
+	when_taken = {
+		c:NSW = { trigger_event = { id = HJE_britain.4 } }
+		set_variable = already_spawned_kiwis
+	}
+	ai_chance = {
+		base = 100
+	}
+}
+
+# Repeat offer to Build Suez Canal if rejected the first time
+repeat_offer_to_build_suez_canal = {
+
+	is_shown = {
+		has_variable = suez_survey_complete
+		NOT = { has_global_variable = suez_canal_complete }
+		NOT = { has_variable = already_asked_bint_to_bend_over }
+		NOT = { p:xC01060.state.owner = { THIS = ROOT } }
+		NOT = { any_country = { has_variable = GP_offering_to_build_suez_canal } }
+		p:xC01060.state.owner = {
+			NOT = { THIS = ROOT }
+			country_rank < rank_value:major_power
+		}
+	}
+
+	possible = {
+		always = yes
+	}
+
+	when_taken = {
+		set_variable = { 
+			name = already_asked_bint_to_bend_over 
+			days = 730
+		}
+		set_variable = GP_offering_to_build_suez_canal
+		scope:suez_owner = {
+			trigger_event = { id = HJE_mideast.2 }
+		}
+	}
+	ai_chance = {
+		base = 100
+	}
+}
+
+pay_off_suez_company_debts = { #this may need to be balanced in future
+	is_shown = {
+		has_variable = EGY_wheres_my_money_bitch
+		any_country = { has_variable = GBR_wheres_my_money_bitch }
+		NOT = { has_variable = EGY_paid_off_suez_company_debt }
+	}
+
+	possible = {
+		in_default = no
+		taking_loans = no
+		root.gdp > 20000000
+	}
+
+	when_taken = {
+		set_variable = {
+			name = EGY_paid_off_suez_company_debt
+			value = yes
+		}
+		add_modifier = {
+			name = paid_off_debt_to_suez_company_modifier
+			months = 60
+			is_decaying = no
+		}
+		random_country = { 
+			limit = { has_variable = GBR_wheres_my_money_bitch } 
+			add_modifier = {
+				name = debt_returns_from_suez_company_modifier
+				months = 60
+				is_decaying = no
+			}
+		}
+	}
+
+	ai_chance = {
+		base = 0	
+		modifier = {
+			trigger = { gold_reserves > 5000000 }
+			add = 10
+		}		
+		modifier = {
+			trigger = { 
+				gold_reserves > 0
+				weekly_net_fixed_income > 100000
+			}
+			add = 10
+		}
+	}
+}
+
+viktoria_luise_heir = {
+	is_shown = {
+		year >= 1893
+		has_law = law_type:law_monarchy
+		ruler = { has_variable = is_hohenzollern }
+		has_global_variable = wilhelm_1_von_preusen_born
+		has_global_variable = friedrich_3_von_preusen_born
+		has_global_variable = wilhelm_2_von_preusen_born
+		has_global_variable = wilhelm_3_von_preusen_born
+		NOR = { 
+			has_global_variable = louis_ferdinand_von_preusen_born 
+			has_global_variable = viktoria_luise_von_preusen_born 
+		}
+		OR = {
+			AND = { 
+				exists = c:PRU
+				c:PRU = ROOT
+            }
+            AND = { 
+				NOT = { exists = c:PRU }
+				exists = c:GER
+				c:GER = ROOT
+				c:GER = { owns_entire_state_region = STATE_BRANDENBURG }
+            }
+			AND = { 
+				NOT = { exists = c:PRU }
+				exists = c:NGF
+				c:NGF = ROOT
+				c:NGF = { owns_entire_state_region = STATE_BRANDENBURG }
+            }
+        }
+	}
+	
+	possible = {
+		has_law = law_type:law_monarchy	
+	}
+
+	ai_chance = {
+		base = 0
+	}
+
+	when_taken = {
+		set_global_variable = viktoria_luise_von_preusen_born
+		create_character = {
+			first_name = Viktoria_Luise
+			last_name = von_Hohenzollern
+			historical = yes
+			female = yes
+			heir = yes
+			birth_date = 1892.9.13
+			dna = dna_viktoria_luise
+			interest_group = ig_landowners
+			ideology = ideology_moderate
+			traits = {
+				romantic
+			}
+			on_created = {
+				set_variable = is_viktoria_luise
+				set_variable = is_hohenzollern
+			}
+		}
+	}
+}
+
+louis_ferdinand_heir = {
+	is_shown = {
+		year >= 1908
+		has_law = law_type:law_monarchy
+		ruler = { has_variable = is_hohenzollern }
+		has_global_variable = wilhelm_1_von_preusen_born
+		has_global_variable = friedrich_3_von_preusen_born
+		has_global_variable = wilhelm_2_von_preusen_born
+		has_global_variable = wilhelm_3_von_preusen_born
+		NOR = { 
+			has_global_variable = louis_ferdinand_von_preusen_born 
+			has_global_variable = viktoria_luise_von_preusen_born 
+		}
+		OR = {
+			AND = { 
+				exists = c:PRU
+				c:PRU = ROOT
+            }
+            AND = { 
+				NOT = { exists = c:PRU }
+				exists = c:GER
+				c:GER = ROOT
+				c:GER = { owns_entire_state_region = STATE_BRANDENBURG }
+            }
+			AND = { 
+				NOT = { exists = c:PRU }
+				exists = c:NGF
+				c:NGF = ROOT
+				c:NGF = { owns_entire_state_region = STATE_BRANDENBURG }
+            }
+        }
+	}
+	
+	possible = {
+		has_law = law_type:law_monarchy	
+	}
+
+	ai_chance = {
+		base = 0
+	}
+
+	when_taken = {
+		set_global_variable = louis_ferdinand_von_preusen_born
+		create_character = {
+			first_name = Louis_Ferdinand
+			last_name = von_Hohenzollern
+			historical = yes
+			heir = yes
+			birth_date = 1907.11.9
+			dna = dna_louis_ferdinand
+			interest_group = ig_landowners
+			ideology = ideology_moderate
+			traits = {
+				reserved
+				celebrity_commander
+			}
+			on_created = {
+				set_variable = is_louis_ferdinand
+				set_variable = is_hohenzollern
+			}
+		}
+	}
+}
+

@@ -1,0 +1,13 @@
+﻿COUNTRIES = {
+	c:PRU = {
+		add_journal_entry = {
+			type = je_ruhr_boom
+		}
+		add_journal_entry = {
+			type = je_north_german_unification
+		}
+		ruler = {
+			 set_variable = is_hohenzollern
+		}			
+	}
+}

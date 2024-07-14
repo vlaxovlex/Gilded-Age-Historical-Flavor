@@ -1,0 +1,236 @@
+﻿l_spanish:
+ #gov_constitutional_monarchy:0 "Constitutional Monarchy"
+ #gov_constitutional_monarchy_desc:0 "This is a [concept_government_type] form where the [Concept('concept_ruler','$RULER_TITLE_KING$')] or [Concept('concept_ruler','$RULER_TITLE_QUEEN$')] is the [concept_head_of_state], but [Concept('concept_votes','$concept_voting$')] and a constitution dictates the [Concept('concept_law','$concept_laws$')]."
+
+ #BIC:0 "Raj"
+ #BIC_ADJ:0 "Indian"
+ #DEI:0 "East Indies"
+ #DEI_ADJ:0 "Indonesian"
+
+ ig_southern_planters:0 "Clase de Plantadores"
+
+ canalToll:0 "Peaje del Canal"
+ canalToll_desc:0 "Un peaje conecta desde los canales."
+ modifier_building_input_canalToll_add:0 "@canalToll! $canalToll$ de entrada por nivel"
+ modifier_building_input_canalToll_add_desc:0 "La cantidad de @canalToll! $canalToll$ utilizado por los edificios"
+ modifier_building_output_canalToll_add:0 "@canalToll! $canalToll$ de salida por nivel"
+ modifier_building_output_canalToll_add_desc:0 "La cantidad de @canalToll! $canalToll$ producido por los edificios"
+ pmg_ownership_capital_building_canals:0 "$pmg_ownership$"
+ pm_partially_privatized_building_canals:0 "Parcialmente Privatizado"
+ pm_publicly_traded_building_canals:0 "$pm_publicly_traded$"
+ pm_government_run_building_canals:0 "$pm_government_run$"
+ pm_worker_cooperative_building_canals:0 "$pm_worker_cooperative$"
+ pmg_canal_boats:0 "Mantenimiento del Canal"
+ pm_no_tugs_building_canals:0 "Sin Remolcadores"
+ pm_tugging_building_canals:0 "Flota de Remolcadores"
+
+ dyn_c_japan_shogunate:0 "Shogunato Tokugawa"
+ dyn_c_japan_shogunate_adj:0 "Tokugawa"
+
+ sick_man.3.t:0 "El Hombre Moribundo de Europa"
+
+ acw_events.1.t:0 "El Martirio del Abolicionista"
+ acw_events.1.d:0 "Un ardiente escritor abolicionista murió en un tiroteo contra una turba proesclavista que se había reunido frente a su casa. La historia se ha vuelto nacional, radicalizando a individuos que antes eran apáticos, tanto en las altas esferas como en las bajas."
+ acw_events.1.f:0 "Su amigo suspiró. El funeral había sido pequeño, por temor a que la turba apareciera nuevamente en fuerza. La lápida misma era simple, sin llamar la atención sobre sí misma. La única ornamentación que se permitió fue una inscripción sencilla:\n\n\"Aquí yace un hombre valiente: ahora respeta su tumba.\""
+ acw_events.1.a:0 "¡Horrible! ¡La violencia de los esclavistas debe ser resistida!"
+ acw_events.1.b:0 "Esta agitación abolicionista debe ser detenida."
+
+ acw_events.2.t:0 "El Esclavo Fugitivo"
+ acw_events.2.d:0 "Un esclavo perteneciente a [SCOPE.sCharacter('slaver_ig_leader').GetFullName] ha escapado de la finca de [SCOPE.sCharacter('slaver_ig_leader').GetHerHis] y ha huido a un estado libre del norte. [SCOPE.sCharacter('slaver_ig_leader').GetLastName] ha exigido su regreso, pero los abolicionistas piden que se ignoren sus demandas."
+ acw_events.2.f:1 "\"Hay pocas cosas que me importen más que la justicia. Si un hombre pierde su chaqueta, ¿no es natural que se le devuelva, verdad? Solo pido que lo mío me sea devuelto. ¿Por qué esto está causando tal alboroto?\""
+ acw_events.2.a:0 "Vamos a encontrar y devolver el esclavo fugitivo de [SCOPE.sCharacter('slaver_ig_leader').GetFullName]."
+ acw_events.2.b:0 "La tierra libre hace libre a cualquiera. [SCOPE.sCharacter('slaver_ig_leader').GetFullName] no recibirá ayuda del gobierno."
+
+ acw_events.4.t:0 "El Evento Olvidado"
+
+ acw_events.7.t:0 "El Estado Libre de [SCOPE.GetRootScope.GetCountry.GetCustom('random_free_state_of_place')]"
+ acw_events.7.d:0 "Los agitadores anti-secesionistas en [SCOPE.sState('free_state_of_county').GetName] han reunido apoyo y declarado el establecimiento de un gobierno unionista."
+ acw_events.7.f:0 "\"Desafiando a los secesionistas, nosotros, por resolución del pueblo, nos separamos de estos traidores y nos declaramos Libres e Independientes, leales aún a [SCOPE.sCountry('unionist_usa').GetName].\""
+ acw_events.7.a:0 "Una muestra de fuerza los hará rendirse."
+ acw_events.7.b:0 "No podemos permitirnos actuar contra ellos en este momento."
+
+ acw_events.8.t:0 "La Gran Persecución de la Locomotora"
+ acw_events.8.d:0 "Raiders enemigos han robado exitosamente una locomotora y destruido millas de vías y líneas telegráficas en [SCOPE.sState('great_locomotive_chase_state').GetName] antes de ser detenidos."
+ acw_events.8.f:0 "\"Los jirones de humo se hicieron cada vez más débiles con cada resoplido de su cansada locomotora, el [SCOPE.GetRootScope.GetCountry.GetCustom('random_csa_acw_locomotive')]. Los raiders se habían quedado sin combustible millas atrás, y los rieles que habían arrancado no fueron suficientes para salvarlos. A lo lejos, las columnas de humo de sus perseguidores crecían cada vez más cerca. La persecución estaba llegando a su fin.\""
+ acw_events.8.a:0 "¡Maldita sea todo lo demás, reconstruyan esas vías y líneas ahora mismo!"
+ acw_events.8.b:0 "Mantener tropas en nuestros trenes los ralentizará, pero los hará más seguros."
+ acw_events.8.c:0 "La próxima vez, capturaremos a los raiders antes de que comiencen."
+
+ acw_events_low_tt:0 "Las tensiones de la Guerra Civil aumentarán ligeramente."
+ acw_events_med_tt:0 "Las tensiones de la Guerra Civil aumentarán moderadamente."
+ acw_events_high_tt:0 "Las tensiones de la Guerra Civil aumentarán significativamente."
+
+ acw_followup_events.1.t:0 "El Intento de Asesinato de [SCOPE.sCharacter('lincoln_proxy').GetLastName]"
+ acw_followup_events.1.d:0 "Un simpatizante de la reciente rebelión ha tomado la vida de [SCOPE.sCharacter('lincoln_proxy').GetFullName]. Aunque fue capturado después del acto y sus cómplices expuestos, la muerte de [SCOPE.sCharacter('lincoln_proxy').GetLastName] sigue siendo un sombrío final para esta trágica era en la historia estadounidense."
+ acw_followup_events.1.f:0 "\"[SCOPE.sCharacter('lincoln_proxy').GetFullNameNoFormatting] fue al llamado del deber al puesto de peligro, y aunque destrozado, su vida no está perdida. La gran mancha en nuestro país, el gran estigma en nuestro carácter nacional, la gran fuente de discordia y controversia entre nuestra gente, por la valentía y fortaleza de [SCOPE.sCharacter('lincoln_proxy').GetHerHis], ha sido borrada y eliminada. El nombre de [SCOPE.sCharacter('lincoln_proxy').GetFullNameNoFormatting] se ha vuelto histórico.\""
+ acw_followup_events.1.a:0 "La nación lamentará este día."
+
+ acw_followup_events.2.t:0 "El Intento de Asesinato de [SCOPE.sCharacter('lincoln_proxy').GetLastName]"
+ acw_followup_events.2.d:0 "Un simpatizante de la reciente rebelión ha intentado asesinar a [SCOPE.sCharacter('lincoln_proxy').GetFullName]. Fue atrapado intentando entrar, y su plan y cómplices fueron expuestos. [SCOPE.sCharacter('lincoln_proxy').GetLastName] ha aprovechado la oportunidad para volver a reunir a la población a su causa."
+ acw_followup_events.2.f:0 "\"¿Cómo pueden esos tontos pensar que pueden levantarse de nuevo, cuando ni siquiera pueden disparar un solo tiro correctamente?\""
+ acw_followup_events.2.a:0 "¡Una tragedia evitada!"
+
+ acw_followup_events.3.t:0 "El Intento de Asesinato de [SCOPE.sCharacter('lincoln_proxy').GetLastName]"
+ acw_followup_events.3.d:0 "Un simpatizante de la reciente rebelión ha intentado asesinar a [SCOPE.sCharacter('lincoln_proxy').GetFullName]. El esfuerzo no salió como estaba planeado para el asesino."
+ acw_followup_events.3.f:0 "[SCOPE.sCharacter('lincoln_proxy').GetFullName] escuchó los tablones del suelo crujir detrás de [SCOPE.sCharacter('lincoln_proxy').GetHerHim]. Antes de que su agresor pudiera sacar siquiera el derringer, [SCOPE.sCharacter('lincoln_proxy').GetLastName] estaba sobre él. \"¡Canalla! ¡Perro! ¿No tienes ninguna decencia?\", gritó, cada palabra acentuada por otro golpe al aspirante a asesino de [SCOPE.sCharacter('lincoln_proxy').GetLastName] con sus puños desnudos."
+ acw_followup_events.3.a:0 "¡Así siempre a los asesinos!"
+
+ acw_followup_events.4.t:0 "Cuarenta Acres y una Mula"
+ acw_followup_events.4.d:0 "En la guerra contra los secesionistas, muchos esclavizados creían que una vez liberados, tendrían derecho a ser dueños de la tierra en la que habían sido obligados a trabajar como esclavos. La gente en [SCOPE.sState('land_redistribution_state').GetName] ha presionado el tema con las autoridades locales, que están recurriendo a nosotros para obtener orientación."
+ acw_followup_events.4.f:0 "\"¡Tierra! ¡Tierra es lo que necesitamos! No puedo alimentarme con una urna electoral; denme el pedazo de tierra en el que ya he estado trabajando para poder alimentar a mi familia.\""
+ acw_followup_events.4.a:0 "Autorizar la redistribución limitada de tierras."
+ acw_followup_events.4.b:0 "Las medidas económicas pueden causar problemas."
+
+ acw_followup_events.5.t:0 "Violencia Supremacista en [SCOPE.sState('supremacist_violence_state').GetName]"
+ acw_followup_events.5.d:0 "La violencia entre amotinados blancos y hombres liberados negros ha causado una tensión significativa en [SCOPE.sState('supremacist_violence_state').GetName]."
+ acw_followup_events.5.f:0 "\"Los amotinados pisotearon, golpearon y golpearon a otros sin piedad. Las calles se volvieron resbaladizas con la sangre de hombres inocentes. Los revólveres vacíos chocaron contra el suelo mientras los ataques se volvían demasiado frenéticos para molestarse en recargar. Solo cuando se declaró la ley marcial y las tropas marcharon, pudo regresar algún tipo de orden.\""
+ acw_followup_events.5.a:0 "Usar toda la fuerza del gobierno para proteger a los hombres liberados."
+ acw_followup_events.5.b:0 "No podemos alienar a los líderes locales con el uso de tropas."
+
+ acw_followup_events.6.t:0 "Redentores"
+ acw_followup_events.6.d:0 "Una coalición de ex Confederados y simpatizantes confederados ha ganado control sobre el gobierno estatal de [SCOPE.sState('redeemer_state').GetName] mediante medios justos y sucios, amenazando el proceso continuo de Reconstrucción."
+ acw_followup_events.6.f:0 "\"Dibuja una línea de un lado del cual ves inteligencia, virtud, autorespeto y democracia; y en el otro la absoluta supremacía política sin control de la fuerza bruta y el terror, y allí verás no una característica del gobierno libre, sino la más triste tiranía del Viejo Sur que desesperadamente araña de vuelta el poder que ha maldecido esta tierra.\""
+ acw_followup_events.6.a:0 "La reconciliación exige un acuerdo con estos hombres."
+ acw_followup_events.6.b:0 "Arrestar a estos hombres e instalar un nuevo gobierno estatal."
+
+ acw_followup_events.7.t:0 "Intimidación Paramilitar"
+ acw_followup_events.7.d:0 "Grupos políticos opuestos a la Reconstrucción han organizado unidades militantes para intimidar a los votantes en [SCOPE.sState('paramilitary_intimidation_state').GetName] y restaurar su poder."
+ acw_followup_events.7.f:0 "\"Mientras entiendo que nuestra organización causa consternación entre algunos elementos de la población, puedo asegurarles que nuestras bayonetas y rifles son únicamente para fines de exhibición.\""
+ acw_followup_events.7.a:0 "Un gobierno estatal leal es todo lo que importa."
+ acw_followup_events.7.b:0 "¡Horrendo! ¡Disuelvan estas unidades de inmediato!"
+
+ acw_followup_events.8.t:0 "Aventureros"
+ acw_followup_events.8.d:0 "Los del norte en el estado de [SCOPE.sState('carpetbagger_state').GetName] han sido blanco de locales que los denuncian como alborotadores y explotadores. Escritores y oradores en [SCOPE.sState('carpetbagger_home').GetName], sin embargo, han exigido que el gobierno proteja a estos del norte."
+ acw_followup_events.8.f:0 "\"Vine aquí para ayudar a construir algo mejor después de derrocar el poder esclavista, y seguro que no me importó hacer algo para mí en el proceso, pero ¿qué he conseguido? Estoy aquí con las manos vacías, con nada más que una letanía de difamaciones y amenazas lanzadas a mi nombre.\""
+ acw_followup_events.8.a:0 "Dejemos que la gente de [SCOPE.sState('carpetbagger_state').GetName] haga lo que quiera."
+ acw_followup_events.8.b:0 "Debemos proteger a todos los estadounidenses, incluso si eso enfurece a algunos."
+
+ wild_west.1.t:0 "Forajidos en [SCOPE.sState('bank_robbery_state').GetName]!"
+ wild_west.1.d:0 "Una banda notoria de forajidos ha estado aterrorizando los asentamientos respetables de [SCOPE.sState('bank_robbery_state').GetName]."
+ wild_west.1.f:0 "El hombre rudo enfundó su revólver, pateando el cuerpo del alguacil a un lado. \"Les dije,\" se burló, \"les dije que si alguna vez me liberaba, los [SCOPE.GetRootScope.GetCountry.GetCustom('american_outlaw_gang')] les mostrarían a todos lo que significa ser malos de verdad.\""
+ wild_west.1.a:0 "Dejemos que el alguacil local se encargue."
+ wild_west.1.b:0 "Contratemos a los Pinkertons — ellos saben cómo ser rudos."
+ wild_west.1.c:0 "Las armas de la guardia nacional detendrán a los forajidos."
+
+ wild_west.2.t:0 "Incursiones en el Caballo de Hierro"
+ wild_west.2.d:0 "Las incursiones nativas han aumentado en frecuencia, siendo los ferrocarriles un objetivo muy común. Los ciudadanos en [SCOPE.sState('raided_railroad').GetName] están exigiendo acción por parte del gobierno."
+ wild_west.2.f:0 "\"Construimos esa línea a través de tierras vírgenes, ¡pero ellos han salido a atacarnos de todos modos! ¿Cómo se supone que vamos a lograr algo mientras los trenes sigan siendo atacados y las vías sigan siendo destrozadas?\""
+ wild_west.2.a:0 "¡Envíen al ejército!"
+ wild_west.2.b:0 "No podemos permitirnos nada para ayudar."
+ wild_west.2.c:1 "Hablemos con los líderes de [SCOPE.sCulture('native_people_infringed').GetName] y lleguemos a un acuerdo."
+
+ wild_west.3.t:0 "Tiroteo en el Corral"
+ wild_west.3.d:1 "Los alguaciles en [SCOPE.sState('OK_corral_state').GetName] se han enfrentado en un tiroteo con varios vaqueros. La investigación posterior ha revelado que el tiroteo probablemente fue debido a una disputa personal entre los alguaciles estadounidenses y los ciudadanos involucrados, más que a una aplicación de la ley. La gente está exigiendo justicia — contra los alguaciles."
+ wild_west.3.f:1 "\"Vamos, ¿alguien más quiere probar su suerte? ¿Ven esta placa? ¡Significa que estoy a cargo aquí! ¡Yo soy la justicia! Ahora muévanse, no hay nada que ver aquí.\""
+ wild_west.3.a:0 "Los alguaciles son la ley, y no podemos detener la ley."
+ wild_west.3.b:0 "Recallemos temporalmente a los alguaciles de [SCOPE.sState('OK_corral_state').GetName]."
+
+ je_acw_countdown:0 "El Debate sobre la Esclavitud"
+ je_acw_countdown_reason:1 "Los esclavistas y los abolicionistas están involucrados en un debate cada vez más rancio en toda la nación. Tarde o temprano, los argumentos dejarán de hacerse con palabras y comenzarán a hacerse con balas."
+ je_acw_countdown_complete:0 "La Guerra Civil Americana ha comenzado."
+
+ ig_slavers_happy:0 "Esclavistas Satisfechos"
+ ig_slavers_mad:0 "Esclavistas Insatisfechos"
+ disappointing_compromise:0 "Compromiso Decepcionante"
+ ig_abolitionists_happy:0 "Abolicionistas Satisfechos"
+ ig_abolitionists_mad:0 "Abolicionistas Insatisfechos"
+ protected_trains:0 "Trenes Protegidos"
+ wartime_need_for_police:0 "Necesidad de Policía en Tiempos de Guerra"
+ redeemer_government:0 "Gobierno Redentor"
+ reconstruction_government:0 "Gobierno de Reconstrucción"
+ paramilitary_threats:0 "Amenazas Paramilitares"
+ paramilitaries_suppressed:0 "Paramilitares Suprimidos"
+ backing_the_law:0 "Apoyando la Ley"
+ US_marshals_recalled:0 "Marshals de EE.UU. Recuperados"
+ enacted_emancipation:0 "Emancipación Promulgada"
+ delayed_emancipation:0 "Emancipación Retardada"
+
+ custom_hounds_gang:0 "Banda de los Sabuesos"
+ custom_partisan_rangers:0 "Rangers Partidistas"
+ custom_cowboys:0 "Vaqueros"
+ custom_innocents:0 "Inocentes"
+ custom_hole_in_the_wall_gang:0 "Banda del Agujero en la Pared"
+ custom_high_fives_gang:0 "Banda de los Chocafives"
+
+ custom_general_locomotive:0 "General"
+ custom_yonah:0 "Yonah"
+ custom_texas_locomotive:0 "Texas"
+ custom_mississippi_locomotive:0 "Misisipi"
+ custom_catoosa:0 "Catoosa"
+ custom_alfred_shorter:0 "Alfred Shorter"
+ custom_acworth:0 "Acworth"
+
+ custom_jones_county:0 "Condado de Jones"
+ custom_scott_county:0 "Condado de Scott"
+ custom_robeson_county:0 "Condado de Robeson"
+ custom_irwin_county:0 "Condado de Irwin"
+ custom_loudoun_county:0 "Condado de Loudoun"
+ custom_nickajack:0 "Nickajack"
+ custom_winston_county:0 "Condado de Winston"
+ custom_springfield:0 "Springfield"
+ custom_wayne_county:0 "Condado de Wayne"
+ custom_franklin_county:0 "Condado de Franklin"
+ custom_jackson_county:0 "Condado de Jackson"
+ custom_jefferson_county:0 "Condado de Jefferson"
+
+ dont_lose_dixie_culture:0 "La cultura Dixie sigue siendo una cultura primaria de nuestra nación."
+ dont_lose_yankee_culture:0 "La cultura Yankee sigue siendo una cultura primaria de nuestra nación."
+ reconstruction_progress:0 "La Reconstrucción avanza hacia su finalización."
+ acw_no_outlaw_crisis:0 "La crisis de los forajidos en la frontera ha cesado."
+
+ je_acw_wild_wild_west_goal:0 "Lo siguiente debe ser verdad durante un total de 5 años:"
+ missouri_compromise:0 "El Compromiso de Missouri"
+ 
+ #Reconstruction Events/Journal Entries-------------------------
+ je_acw_war:0 "La Guerra Civil Americana"
+ je_acw_war_reason:0 "La Guerra entre los Estados está sobre nosotros. El sectarismo que ha dividido a la nación durante décadas ha alcanzado su punto de ebullición. Los Estados Unidos de América están ahora enfrentados con los Estados Rebeldes. Cientos de miles toman las armas por sus hogares. ¡Por la Unión!"
+ je_acw_war_csa_fsa:0 "La Guerra de la Agresión Federal"
+ je_acw_war_csa_fsa_reason:0 "La Guerra de Secesión finalmente ha llegado. La supervisión federal opresiva que ha aquejado a la nación durante décadas ha alcanzado su punto de ebullición. Nuestro hogar ha sido atacado injustamente por nuestros antiguos camaradas que ahora luchan en apoyo de la tiranía. Cientos de miles toman las armas por sus hogares. ¡Por la Libertad!"
+ acw_war_tt_complete:0 "Los Estados Unidos ganaron la Guerra Civil Americana"
+ acw_rebel_victory:0 "Los Estados Unidos perdieron la Guerra Civil Americana"
+
+ acw_reconstruction.1.t:0 "Reconstruyendo la Nación"
+ acw_reconstruction.1.d:0 "Si bien la Guerra Civil Americana ha terminado, la lucha por el alma de la nación no lo está. La Unión fue desafiada por separatistas radicales, pero no se ha desintegrado. Con la Crisis Constitucional finalizada y los últimos reductos de resistencia militar conquistados, es hora de que los Estados Unidos de América se reconstruyan bajo una nueva imagen."
+ acw_reconstruction.1.f:0 ""No espero que esta nación caiga. Bienvenida o no, ya sea que se convierta en una sola cosa o en la otra, esta nación dejará de estar dividida en cuerpo y alma.""
+ acw_reconstruction.1.a:0 "Nuestras heridas deben sanar."
+ acw_reconstruction.1.b:0 "La Unión debe reconstruirse para todos."
+ acw_reconstruction_emancipation.tt:0 "Los esclavos retenidos en todos los antiguos territorios Confederados serán liberados."
+
+ je_acw_reconstruction:0 "Reconstrucción Americana"
+ je_acw_reconstruction_status:1 "Reconstruir la nación después de la destrucción de la Guerra Civil Americana."
+ je_acw_reconstruction_reason:0 "La Guerra Civil ha terminado, y la destrucción que dejó a su paso es masiva. Cientos de miles murieron en la Guerra entre los Estados. Los Estados Leales han dejado claro su objetivo de reunir a la nación, comenzando con la readmisión de los Estados Rebeldes. La nación debe ser reconstruida, no sea que la perdamos para siempre."
+ je_acw_reconstruction_goal:0 "Reconstruir los Estados Unidos de América."
+ 
+ je_acw_reincorporate:0 "Reincorporar a los Estados Secesionistas"
+ je_acw_reincorporate_status:0 "Traer de vuelta a los antiguos estados secesionistas al pleno ámbito como estados completamente incorporados una vez más."
+ je_acw_reincorporate_reason:0 "La readmisión de los estados rebeldes a la Unión es esencial para restaurar el espíritu sacudido de la nación, y puede ayudar a establecer nuevas bases de poder para el gobierno."
+
+ je_acw_equality:0 "Las Enmiendas de la Guerra Civil"
+ je_acw_equality_status:0 "Con el fin de crear un sistema que reconozca a todos los hombres, del Norte y del Sur, negros o blancos, como verdaderos iguales en esta nuestra nación, debemos aprobar una serie de enmiendas constitucionales que aseguren la igualdad racial."
+ je_acw_equality_reason:0 "América luchó una guerra brutal sobre problemas profundos que fueron disimulados durante generaciones hasta que los problemas se hicieron demasiado grandes para ignorarlos. Debemos evitar una repetición de este desastre y abordar los problemas de frente para que no queden enquistados por otro siglo. Para hacerlo, debemos prohibir constitucionalmente la esclavitud y asegurar que la población ex esclava no sea más discriminada en nuestro país."
+ acw_african_american_culture_complete_tt:0 "La esclavitud ha sido prohibida constitucionalmente y la cultura afroamericana ya no es discriminada."
+ acw_african_american_culture:0 "La cultura afroamericana se convierte en una cultura primaria de nuestra nación."
+
+ je_acw_wild_wild_west:0 "El Salvaje Oeste"
+ je_acw_wild_wild_west_status:0 "Domar la Frontera Occidental."
+ je_acw_wild_wild_west_reason:0 "Con el Gobierno Federal completamente centrado en derrotar a los Estados rebeldes durante la Guerra Civil, nuestros territorios occidentales se convirtieron en tierras sin ley con casi ninguna aplicación de la ley adecuada. La guerra en el Este dejó la Frontera Occidental en un estado de caos absoluto; es hora de que restauremos el orden."
+
+ unreconstructed_state:0 "Estado No Reconstructado"
+
+
+ acw_reconstruction.2.t:0 "La Nación, Reconstruida"
+ acw_reconstruction.2.d:0 "Nuestra nación se ha reconstruido a sí misma, creando algo distintivo, algo nuevo y, lo más importante, algo unido. Es hora de que América forje un nuevo camino, unida bajo las Estrellas y las Barras para siempre. Los [SCOPE.sCountry('united_states').GetNameNoFlag] han emergido de su caótica guerra civil como una nación más unida y centralizada. Ahora es el momento de recoger las piezas caídas de nuestra hegemonía y reclamar nuestro lugar en el escenario global."
+ acw_reconstruction.2.f:0 ""A pesar de todos nuestros errores, hemos refundado nuestra nación y nos hemos construido un gobierno que no perecerá de la faz de la tierra.""
+ acw_reconstruction.2.a:0 "Nos mantenemos unidos una vez más."
+ usa_reconstruction_sectionalism_gone.tt:0 "El sectarismo político y regional que ha dominado la política estadounidense se desvanecerá."
+
+ opium_wars_lost:0 "Recientemente Perdida una Guerra del Opio"
+ je_opium_wars:0 "La Guerra del Opio"
+
+ #NEW TEXT:
+ opium_wars.2.t:0 "La Guerra del Opio"
+ opium_wars.4.t:0 "La Guerra del Opio: Derrota"
+ opium_wars.5.t:0 "La Guerra del Opio: Victoria"
+ 
+ #RE-WRITTEN TEXT:
+ 

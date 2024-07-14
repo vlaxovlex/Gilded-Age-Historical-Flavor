@@ -1,0 +1,393 @@
+﻿HJ_carlist_victory = {
+	icon = "gfx/interface/icons/event_icons/event_military.dds"
+
+	group = je_group_crises
+
+	is_shown_when_inactive = {
+		NOT = { has_journal_entry = je_carlist_victory }
+		exists = c:CSP
+		exists = c:SPA
+		c:CSP = ROOT
+	}
+
+
+	immediate = {
+		set_variable = {
+			name = carlist_victory_progress_var
+			value = 0
+		}
+	}
+
+	complete = {
+		scope:journal_entry = { is_goal_complete = yes }
+		owns_entire_state_region = STATE_TOLEDO
+		NOT = { exists = c:SPA }
+	}
+
+	on_monthly_pulse = {
+		effect = {
+			if = {
+				limit = {
+					owns_entire_state_region = STATE_TOLEDO
+					NOT = { exists = c:SPA }
+				}
+				change_variable = {
+					name = carlist_victory_progress_var
+					add = 1
+				}
+			}
+		}
+	}
+
+	on_complete = {
+		change_tag = SPA
+		set_capital = STATE_TOLEDO
+		add_loyalists = { value = 0.5 }
+		add_modifier = {
+			name = modifier_monarch_win
+			months = 12
+		}
+		every_scope_state = {
+			limit = {
+				owner = root
+				is_homeland_of_country_cultures = root
+			}
+			set_state_type = incorporated
+		}	
+	}
+
+	current_value = {
+		value = root.var:carlist_victory_progress_var
+	}
+
+	goal_add_value = {
+		value = 3
+	}
+
+	progressbar = yes
+
+	weight = 100
+
+	should_be_pinned_by_default = yes
+	
+	invalid = {
+		has_journal_entry = je_carlist_victory
+	}
+
+
+HJ_isab_victory = {
+
+	icon = "gfx/interface/icons/event_icons/event_military.dds"
+
+	group = je_group_crises
+
+	is_shown_when_inactive = {
+		NOT = { has_journal_entry = je_cristininos_victory }
+		exists = c:SPA
+		exists = c:CSP
+		c:SPA = ROOT
+	}
+
+	complete = {
+		is_at_war = no
+		NOT = { exists = c:CSP }
+	}
+
+	should_be_pinned_by_default = yes
+	
+	on_complete = {	
+		add_loyalists = { value = 0.15 }
+		add_modifier = {
+			name = modifier_liberal_win
+			months = 12
+		}
+	}
+	
+	invalid = {
+		has_journal_entry = je_cristininos_victory
+	}
+}
+
+
+HJ_second_carlist_war = {
+	icon = "gfx/interface/icons/event_icons/event_skull.dds"
+
+	should_be_pinned_by_default = yes
+
+	group = je_group_historical_content
+
+	is_shown_when_inactive = {
+		NOT = { exists = c:CAR }
+		NOT = { has_law = law_type:law_autocracy }
+		NOT = { exists = c:CSP }
+		exists = c:SPA
+		c:SPA = ROOT
+	}
+
+	possible = {
+		year >= 1845
+		NOT = { exists = c:CSP }
+		exists = c:SPA
+		c:SPA = ROOT
+		OR = {
+			ig:ig_landowners = { is_powerful = yes }
+			ig:ig_devout = { is_powerful = yes }
+		}
+	}
+
+	immediate = {
+		ig:ig_landowners = { 
+			add_modifier = {
+				name = ig_carlists_mad
+				months = long_modifier_time
+				is_decaying = yes
+			}
+		}
+		ig:ig_devout = { 
+			add_modifier = {
+				name = ig_carlists_mad
+				months = long_modifier_time
+				is_decaying = yes
+			}
+		}
+	}
+
+	complete = {
+		hidden_trigger = { has_variable = car2_can_be_completed }
+		OR = {
+			has_law = law_type:law_autocracy
+			AND = {
+				ig:ig_landowners = { ig_approval > 0 }
+				ig:ig_devout = { ig_approval > 0 }
+			}
+		}
+	}
+
+	on_complete = {
+		add_loyalists = { value = 0.15 }
+		ig:ig_devout = { remove_modifier = ig_carlists_mad }
+		ig:ig_landowners = { remove_modifier = ig_carlists_mad }
+		if = {
+			limit = { NOT = { has_law = law_type:law_autocracy } }
+			add_modifier = {
+				name = modifier_liberal_win
+				months = 12
+			}
+		}
+		else = {
+			add_modifier = {
+				name = modifier_monarch_win
+				months = 12
+			}
+		}
+	}
+
+	on_monthly_pulse = {
+		effect = {
+			if = {
+				limit = { NOT = { has_variable = car2_can_be_completed } }
+				set_variable = car2_can_be_completed
+			}
+		}
+	}
+
+	timeout = 182
+	
+	on_timeout = {
+		custom_tooltip = {
+			text = carlist_revolt_tt
+			create_country = {
+				tag = CSP
+				origin = this
+				state = s:STATE_NAVARRA.region_state:SPA
+				state = s:STATE_GALICIA.region_state:SPA
+				state = s:STATE_ARAGON.region_state:SPA
+				state = s:STATE_CATALONIA.region_state:SPA
+				state = s:STATE_BADAJOZ.region_state:SPA
+				on_created = { 
+					ig:ig_devout = { 
+						add_ruling_interest_group = yes
+					}
+					ig:ig_landowners = { 
+						add_ruling_interest_group = yes
+					}
+				}
+			}
+			c:SPA = {
+				create_diplomatic_play = {
+	
+					target_country = c:CSP
+					type = dp_annex_war
+
+					add_war_goal = {
+						holder = c:CSP
+						type = annex_country
+						target_country = c:SPA
+					}
+				}
+				#change_infamy = -100
+			}
+	        random_diplomatic_play = {
+				limit = {
+					initiator_is = c:SPA
+		            target_is = c:CSP
+				}
+				add_escalation = 50
+			}
+			c:CSP = {
+				activate_law = law_type:law_monarchy
+				activate_law = law_type:law_autocracy
+				#change_infamy = -100
+			}
+		}
+		hidden_effect = {
+			ig:ig_devout = { remove_modifier = ig_carlists_mad }
+			ig:ig_landowners = { remove_modifier = ig_carlists_mad }
+		}
+	}
+	
+	invalid = {
+		exists = c:CAR
+	}
+}
+
+HJ_third_carlist_war = {
+	icon = "gfx/interface/icons/event_icons/event_skull.dds"
+
+	should_be_pinned_by_default = yes
+
+	group = je_group_historical_content
+
+	is_shown_when_inactive = {
+		NOT = { exists = c:CAR }
+		year >= 1860
+		NOT = { has_law = law_type:law_autocracy }
+		NOT = { exists = c:CSP }
+		exists = c:SPA
+		c:SPA = ROOT
+	}
+
+	possible = {
+		year >= 1870
+		NOT = { exists = c:CSP }
+		exists = c:SPA
+		c:SPA = ROOT
+		OR = {
+			ig:ig_landowners = { is_powerful = yes }
+			ig:ig_devout = { is_powerful = yes }
+		}
+	}
+
+	immediate = {
+		ig:ig_landowners = { 
+			add_modifier = {
+				name = ig_carlists_mad
+				months = long_modifier_time
+				is_decaying = yes
+			}
+		}
+		ig:ig_devout = { 
+			add_modifier = {
+				name = ig_carlists_mad
+				months = long_modifier_time
+				is_decaying = yes
+			}
+		}
+	}
+
+	complete = {
+		hidden_trigger = { has_variable = car3_can_be_completed }
+		OR = {
+			has_law = law_type:law_autocracy
+			AND = {
+				ig:ig_landowners = { ig_approval > 0 }
+				ig:ig_devout = { ig_approval > 0 }
+			}
+		}
+	}
+
+	on_complete = {
+		add_loyalists = { value = 0.15 }
+		ig:ig_devout = { remove_modifier = ig_carlists_mad }
+		ig:ig_landowners = { remove_modifier = ig_carlists_mad }
+		if = {
+			limit = { NOT = { has_law = law_type:law_autocracy } }
+			add_modifier = {
+				name = modifier_liberal_win
+				months = 12
+			}
+		}
+		else = {
+			add_modifier = {
+				name = modifier_monarch_win
+				months = 12
+			}
+		}
+	}
+
+	on_monthly_pulse = {
+		effect = {
+			if = {
+				limit = { NOT = { has_variable = car3_can_be_completed } }
+				set_variable = car3_can_be_completed
+			}
+		}
+	}
+
+	timeout = 417
+	
+	on_timeout = {
+		custom_tooltip = {
+			text = carlist_revolt_tt
+			create_country = {
+				tag = CSP
+				origin = this
+				state = s:STATE_NAVARRA.region_state:SPA
+				state = s:STATE_ARAGON.region_state:SPA
+				state = s:STATE_CATALONIA.region_state:SPA
+				on_created = { 
+					ig:ig_devout = { 
+						add_ruling_interest_group = yes
+					}
+					ig:ig_landowners = { 
+						add_ruling_interest_group = yes
+					}
+				}
+			}
+			c:SPA = {
+				create_diplomatic_play = {
+				
+					target_country = c:CSP
+					type = dp_annex_war
+
+					add_war_goal = {
+						holder = c:CSP
+						type = annex_country
+						target_country = c:SPA
+					}
+				}
+				#change_infamy = -100
+			}
+	        random_diplomatic_play = {
+				limit = {
+					initiator_is = c:SPA
+		            target_is = c:CSP
+				}
+				add_escalation = 50
+			}
+			c:CSP = {
+				activate_law = law_type:law_monarchy
+				activate_law = law_type:law_autocracy
+				#change_infamy = -100
+			}
+		}
+		hidden_effect = {
+			ig:ig_devout = { remove_modifier = ig_carlists_mad }
+			ig:ig_landowners = { remove_modifier = ig_carlists_mad }
+		}
+	}
+	
+	invalid = {
+		exists = c:CAR
+	}
+}

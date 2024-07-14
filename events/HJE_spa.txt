@@ -1,0 +1,117 @@
+﻿namespace = HJE_spain
+
+HJE_spain.1 = {			 #Occupation of Santo Domingo claims
+	type = country_event
+	placement = this
+	title = HJE_spain.1.t
+	flavor = HJE_spain.1.f
+	desc = HJE_spain.1.d
+
+	duration = 3
+
+	is_popup = yes
+
+	event_image = {
+		video = "gfx/event_pictures/unspecific_military_parade.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/before_the_battle"
+
+	icon = "gfx/interface/icons/event_icons/event_map.dds"
+
+	trigger = {
+		exists = c:SPA
+		c:SPA = ROOT
+		aggressive_diplomatic_plays_permitted = yes
+		is_diplomatic_play_committed_participant = no
+		is_diplomatic_play_initiator = no
+		is_diplomatic_play_target = no
+		NOT = { has_global_variable = SPA_got_option_to_invade_dr }
+		NOT = { any_scope_state = { state_region = s:STATE_SANTO_DOMINGO } }
+		OR = {
+			AND = {
+				year >= 1861
+				NOT = { exists = c:USA }
+			}
+			AND = {
+				exists = c:USA
+				any_country = {
+					has_war_with = c:USA
+					OR = {
+						AND = {
+							exists = c:CSA
+							c:CSA = THIS
+						}
+						AND = {
+							exists = c:FSA
+							c:FSA = THIS
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	immediate = {
+		set_global_variable = SPA_got_option_to_invade_dr
+		random_country = {
+			limit = { 
+				NOT = { c:SPA = THIS }
+				any_scope_state = { state_region = s:STATE_SANTO_DOMINGO }
+			}
+			save_scope_as = santo_domingo_owner
+		}
+		scope:santo_domingo_owner = {
+			random_scope_state = {
+				limit = { state_region = s:STATE_SANTO_DOMINGO }
+				save_scope_as = spa_santo_domingo
+			}
+		}
+	}
+
+	option = {
+		name = HJE_spain.1.a
+		default_option = yes
+		ai_chance = 100
+
+		s:STATE_SANTO_DOMINGO = { add_claim = c:SPA }
+		if = {
+			limit = { is_player = no }
+		    create_diplomatic_play = {
+				target_state = scope:spa_santo_domingo
+		    	type = dp_return_state
+				war = no
+			}
+		}
+		hidden_effect = {
+			scope:santo_domingo_owner = {
+				if = {
+					limit = { country_rank < rank_value:minor_power }
+					add_modifier = {
+						name = guerilla_warfare
+						months = 40
+					}
+				}
+				if = {
+					limit = {
+						is_player = no
+					}
+					add_modifier = {
+						name = wartime_zeal
+						months = 20
+					}
+				}
+			}
+		}
+	}
+
+	option = {
+		name = HJE_spain.1.b
+		ai_chance = 0
+		add_modifier = {
+			name = withdrew_from_colonial_incident
+			months = normal_modifier_time
+		}
+	}		
+}

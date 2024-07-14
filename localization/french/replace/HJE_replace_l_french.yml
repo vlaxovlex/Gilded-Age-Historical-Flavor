@@ -1,0 +1,235 @@
+﻿l_french:
+ #gov_constitutional_monarchy:0 "Constitutional Monarchy"
+ #gov_constitutional_monarchy_desc:0 "This is a [concept_government_type] form where the [Concept('concept_ruler','$RULER_TITLE_KING$')] or [Concept('concept_ruler','$RULER_TITLE_QUEEN$')] is the [concept_head_of_state], but [Concept('concept_votes','$concept_voting$')] and a constitution dictates the [Concept('concept_law','$concept_laws$')]."
+
+ #BIC:0 "Raj"
+ #BIC_ADJ:0 "Indian"
+ #DEI:0 "East Indies"
+ #DEI_ADJ:0 "Indonesian"
+
+ ig_southern_planters:0 "Planter Class"
+
+ canalToll:0 "Canal Toll"
+ canalToll_desc:0 "A toll connect from canals."
+ modifier_building_input_canalToll_add:0 "@canalToll! $canalToll$ input per level"
+ modifier_building_input_canalToll_add_desc:0 "The amount of @canalToll! $canalToll$ used by buildings"
+ modifier_building_output_canalToll_add:0 "@canalToll! $canalToll$ output per level"
+ modifier_building_output_canalToll_add_desc:0 "The amount of @canalToll! $canalToll$ produced by buildings"
+ pmg_ownership_capital_building_canals:0 "$pmg_ownership$"
+ pm_partially_privatized_building_canals:0 "Partially Privatized"
+ pm_publicly_traded_building_canals:0 "$pm_publicly_traded$"
+ pm_government_run_building_canals:0 "$pm_government_run$"
+ pm_worker_cooperative_building_canals:0 "$pm_worker_cooperative$"
+ pmg_canal_boats:0 "Canal Maintenance"
+ pm_no_tugs_building_canals:0 "No Tugs"
+ pm_tugging_building_canals:0 "Tugboat Fleet"
+
+ dyn_c_japan_shogunate:0 "Tokugawa Shogunate"
+ dyn_c_japan_shogunate_adj:0 "Tokugawa"
+
+ sick_man.3.t:0 "The Dying Man of Europe"
+
+ acw_events.1.t:0 "The Abolitionist's Martyrdom"
+ acw_events.1.d:0 "An ardent abolitionist writer died in a firefight against a pro-slavery mob which had gathered in front of his house. The story has gone national, and radicalized previously apathetic individuals high and low."
+ acw_events.1.f:0 "His friend sighed. The funeral had been small, lest the mob appear again in force. The gravestone itself was simple, not calling attention to itself. The only embellishment that had been allowed was a simple inscription:\n\n"Here lies a brave man: now spare his grave.""
+ acw_events.1.a:0 "Ghastly! The violence of slavers must be resisted."
+ acw_events.1.b:0 "This abolitionist agitation must be stopped!"
+
+ acw_events.2.t:0 "The Fugitive Slave"
+ acw_events.2.d:0 "A slave belonging to [SCOPE.sCharacter('slaver_ig_leader').GetFullName] has escaped [SCOPE.sCharacter('slaver_ig_leader').GetHerHis] estate and fled to a northern free state. [SCOPE.sCharacter('slaver_ig_leader').GetLastName] has demanded his return, but abolitionists are calling for [SCOPE.sCharacter('slaver_ig_leader').GetHerHis] demands to be ignored."
+ acw_events.2.f:1 ""There are few things that I care more about than justice. If a man loses his jacket, it's only natural that it would be returned to him, right? I simply ask that what's mine be returned to me. Why is this causing such an uproar?""
+ acw_events.2.a:0 "We shall find and return [SCOPE.sCharacter('slaver_ig_leader').GetFullName]'s fugitive slave."
+ acw_events.2.b:0 "Free soil makes anyone free. [SCOPE.sCharacter('slaver_ig_leader').GetFullName] will get no help from the government"
+
+ acw_events.4.t:0 "The Forgotten Event"
+
+ acw_events.7.t:0 "The Free State of [SCOPE.GetRootScope.GetCountry.GetCustom('random_free_state_of_place')]"
+ acw_events.7.d:0 "Anti-secessionist agitators in [SCOPE.sState('free_state_of_county').GetName] have rallied support and declared the establishment of a unionist government."
+ acw_events.7.f:0 ""In defiance of the secessionists, we, by resolution of the people, do secede from these traitors and declare ourselves Free and Independent, loyal still to the [SCOPE.sCountry('unionist_usa').GetName].""
+ acw_events.7.a:0 "A show of strength will bring them to heel."
+ acw_events.7.b:0 "We cannot afford to move against them right now."
+
+ acw_events.8.t:0 "The Great Locomotive Chase"
+ acw_events.8.d:0 "Enemy raiders have successfully stolen a locomotive and wrecked miles of track and telegraph lines in [SCOPE.sState('great_locomotive_chase_state').GetName] before being stopped."
+ acw_events.8.f:0 "The whisps of smoke grew more and more feeble with each huff of their tired locomotive, the [SCOPE.GetRootScope.GetCountry.GetCustom('random_csa_acw_locomotive')]. The raiders had run out of fuel miles back, and the rails they had torn up hadn't been enough to save them. In the distance, plumes of smoke from their pursuers grew ever-closer. The chase was coming to an end."
+ acw_events.8.a:0 "Damn everything else, rebuild those tracks and lines now!"
+ acw_events.8.b:0 "Keeping troops on our trains will slow them down, but make them safer."
+ acw_events.8.c:0 "Next time, we'll capture the raiders before they start."
+
+ acw_events_low_tt:0 "Civil War tensions will rise slightly."
+ acw_events_med_tt:0 "Civil War tensions will rise a medium amount."
+ acw_events_high_tt:0 "Civil War tensions will rise significantly."
+
+ acw_followup_events.1.t:0 "The Attempt on [SCOPE.sCharacter('lincoln_proxy').GetLastName]'s Life"
+ acw_followup_events.1.d:0 "A sympathizer of the recent rebellion has taken the life of [SCOPE.sCharacter('lincoln_proxy').GetFullName]. Although he was captured after the deed and his co-conspirators were exposed, the death of [SCOPE.sCharacter('lincoln_proxy').GetLastName] remains a somber end to this tragic era in American history."
+ acw_followup_events.1.f:0 ""[SCOPE.sCharacter('lincoln_proxy').GetFullNameNoFormatting] went at the call of duty to the post of danger, and although wrecked, [SCOPE.sCharacter('lincoln_proxy').GetHerHis] life is by no means lost. The great blot upon our country, the great stain upon our national character, the great source of strife and contention among our people, by [SCOPE.sCharacter('lincoln_proxy').GetHerHis] courage and fortitude, has been wiped out and removed. [SCOPE.sCharacter('lincoln_proxy').GetFullNameNoFormatting]'s name has become historic.""
+ acw_followup_events.1.a:0 "The nation shall mourn this day."
+
+ acw_followup_events.2.t:0 "The Attempt on [SCOPE.sCharacter('lincoln_proxy').GetLastName]'s Life"
+ acw_followup_events.2.d:0 "A sympathizer of the recent rebellion has attempted to assassinate [SCOPE.sCharacter('lincoln_proxy').GetFullName]. He was caught attempting to break in, and his plot and co-conspirators exposed. [SCOPE.sCharacter('lincoln_proxy').GetLastName] has taken the opportunity to rally the populace once again to [SCOPE.sCharacter('lincoln_proxy').GetHerHis] cause."
+ acw_followup_events.2.f:0 ""How can those fools think they can ever rise again, when they can't even fire one shot off right?""
+ acw_followup_events.2.a:0 "A tragedy averted!"
+
+ acw_followup_events.3.t:0 "The Attempt on [SCOPE.sCharacter('lincoln_proxy').GetLastName]'s Life"
+ acw_followup_events.3.d:0 "A sympathizer of the recent rebellion has attempted to assassinate [SCOPE.sCharacter('lincoln_proxy').GetFullName]. The effort did not go as planned for the assassin."
+ acw_followup_events.3.f:0 "[SCOPE.sCharacter('lincoln_proxy').GetFullName] heard the floorboards creak behind [SCOPE.sCharacter('lincoln_proxy').GetHerHim]. Before [SCOPE.sCharacter('lincoln_proxy').GetHerHis] assailant could even finish pulling out the derringer, [SCOPE.sCharacter('lincoln_proxy').GetLastName] was upon him. "Fiend! Cur! Have you no decency?" [SCOPE.sCharacter('lincoln_proxy').GetSheHe] cried, every word punctuated by another blow to [SCOPE.sCharacter('lincoln_proxy').GetLastName]'s would-be assassin with [SCOPE.sCharacter('lincoln_proxy').GetHerHis] bare fists."
+ acw_followup_events.3.a:0 "Thus always to assassins!"
+
+ acw_followup_events.4.t:0 "Forty Acres and a Mule"
+ acw_followup_events.4.d:0 "In the war against the secessionists, many enslaved people believed that once they were freed, they would have the right to own the land they had been forced to work on as slaves. People in [SCOPE.sState('land_redistribution_state').GetName] have pressed the issue with local authorities, who are turning to us for direction."
+ acw_followup_events.4.f:0 ""Land! Land is what we need! I can't feed myself with a ballot box — give me the plot of land I've already been working on so I can feed my family.""
+ acw_followup_events.4.a:0 "Authorize the limited redistribution of land."
+ acw_followup_events.4.b:0 "Economic measures are liable to cause trouble."
+
+ acw_followup_events.5.t:0 "Supremacist Violence in [SCOPE.sState('supremacist_violence_state').GetName]"
+ acw_followup_events.5.d:0 "Violence between white rioters and black freedmen has caused significant tension in [SCOPE.sState('supremacist_violence_state').GetName]."
+ acw_followup_events.5.f:0 ""The rioters stomped, kicked, and clubbed others mercilessly. The streets grew slick with the blood of innocent men. Emptied revolvers clattered on the ground as attacks grew too frenzied to bother with reloading anymore. It was only when martial law was declared and troops marched in that even a pretence of order could return.""
+ acw_followup_events.5.a:0 "Use the full might of the government to protect freedmen."
+ acw_followup_events.5.b:0 "We cannot alienate local leaders with the use of troops."
+
+ acw_followup_events.6.t:0 "Redeemers"
+ acw_followup_events.6.d:0 "A coalition of former Confederates and Confederate sympathizers have won control of [SCOPE.sState('redeemer_state').GetName]'s state government through means fair and foul, threatening the ongoing process of Reconstruction."
+ acw_followup_events.6.f:0 ""Draw a line one side of which you see intelligence, virtue, self-respect, and democracy; and on the other the absolute unchecked political supremacy of brute force and terror, and there you will behold not one attribute of free government, but the saddest tyranny of the Old South desperately clawing back power that ever cursed this earth."" # this is an inversion of Lucius Quintus Cincinnatus Lamar II's horribe racist diatribe.
+ acw_followup_events.6.a:0 "Reconciliation demands an accord with these men."
+ acw_followup_events.6.b:0 "Arrest these men and install a new state government."
+
+ acw_followup_events.7.t:0 "Paramilitary Intimidation"
+ acw_followup_events.7.d:0 "Political groups opposed to Reconstruction have organized militant units to intimidate voters in [SCOPE.sState('paramilitary_intimidation_state').GetName] and restore themselves to power."
+ acw_followup_events.7.f:0 ""While I understand that our organization causes consternation among some elements of the population, I can assure you that our bayonets and our rifles are purely for display purposes only.""
+ acw_followup_events.7.a:0 "A loyal state government is all that matters."
+ acw_followup_events.7.b:0 "Horrendous! Disband these units at once!"
+
+ acw_followup_events.8.t:0 "Carpetbaggers"
+ acw_followup_events.8.d:0 "Northerners in the state of [SCOPE.sState('carpetbagger_state').GetName] have been targeted by locals who denounce them as troublemakers and exploiters. Writers and orators in [SCOPE.sState('carpetbagger_home').GetName], however, have demanded that the government protect these Northerners."
+ acw_followup_events.8.f:0 ""I came here to help build something better after toppling slave power, and sure I didn't mind making something for myself in the process, but what have I gotten? I'm here empty-handed, with nothing but a litany of slander and threats thrown at my name.""
+ acw_followup_events.8.a:0 "Let the people of [SCOPE.sState('carpetbagger_state').GetName] do what they will."
+ acw_followup_events.8.b:0 "We must protect all Americans, even if it angers some."
+
+ wild_west.1.t:0 "Outlaws in [SCOPE.sState('bank_robbery_state').GetName]!"
+ wild_west.1.d:0 "A notorious gang of outlaws have been terrorizing the respectable settlements of [SCOPE.sState('bank_robbery_state').GetName]."
+ wild_west.1.f:0 "The rough man holstered his resolver, kicking the deputy's body to the side. "I told them," he guffawed, "I told them that if I ever got free, the [SCOPE.GetRootScope.GetCountry.GetCustom('american_outlaw_gang')] would show them all what bad #Sreally#! means.""
+ wild_west.1.a:0 "Let the local sheriff sort it out."
+ wild_west.1.b:0 "Hire the Pinkertons — they know how to be rough."
+ wild_west.1.c:0 "The guns of the national guard will stop the outlaws."
+
+ wild_west.2.t:0 "Raids on the Iron Horse"
+ wild_west.2.d:0 "Native raids have been increasing in frequency, with railroads becoming a very common target. Citizens in [SCOPE.sState('raided_railroad').GetName] are demanding action from the government."
+ wild_west.2.f:0 ""We built that line across untouched land, but they've come out to attack us anyways! How are we supposed to get anything done while the trains keep being attacked and the rails keep getting torn up?""
+ wild_west.2.a:0 "Send in the army!"
+ wild_west.2.b:0 "We can't spare anything to help."
+ wild_west.2.c:1 "Let's talk with [SCOPE.sCulture('native_people_infringed').GetName] leaders and make a deal."
+
+ wild_west.3.t:0 "Gunfight at the Corral"
+ wild_west.3.d:1 "Lawmen in [SCOPE.sState('OK_corral_state').GetName] have engaged in a shootout with several cowboys. The following investigation has revealed that the gunfight was likely due to a personal feud between American marshals and the citizens involved, rather than a pursuit of the law. People are demanding justice — against the lawmen."
+ wild_west.3.f:1 ""Come on, does anyone else want to try their luck? See this badge? It means I'm in charge here! I'm justice! Now get moving, there's nothing to see here.""
+ wild_west.3.a:0 "The Lawmen are the Law, and we cannot stop the Law."
+ wild_west.3.b:0 "Recall the marshals from [SCOPE.sState('OK_corral_state').GetName] temporarily."
+
+ je_acw_countdown:0 "The Slavery Debate"
+ je_acw_countdown_reason:1 "Slaveholders and abolitionists are engaged in increasingly rancorous debate across the nation. Sooner or later, the arguments will stop being made with words and start being made with bullets."
+ je_acw_countdown_complete:0 "The American Civil War has begun."
+
+ ig_slavers_happy:0 "Slavers Appeased"
+ ig_slavers_mad:0 "Slavers Unappeased"
+ disappointing_compromise:0 "Disappointing Compromise"
+ ig_abolitionists_happy:0 "Abolitionists Appeased"
+ ig_abolitionists_mad:0 "Abolitionists Unappeased"
+ protected_trains:0 "Protected Trains"
+ wartime_need_for_police:0 "Wartime Need For Police"
+ redeemer_government:0 "Redeemer Government"
+ reconstruction_government:0 "Reconstruction Government"
+ paramilitary_threats:0 "Paramilitary Threats"
+ paramilitaries_suppressed:0 "Paramilitaries Suppressed"
+ backing_the_law:0 "Backing the Law"
+ US_marshals_recalled:0 "Marshals Recalled"
+ enacted_emancipation:0 "Enacted Emancipation"
+ delayed_emancipation:0 "Delayed Emancipation"
+
+ custom_hounds_gang:0 "Hounds Gang"
+ custom_partisan_rangers:0 "Partisan Rangers"
+ custom_cowboys:0 "Cowboys"
+ custom_innocents:0 "Innocents"
+ custom_hole_in_the_wall_gang:0 "Hole-in-the-Wall Gang"
+ custom_high_fives_gang:0 "High-Fives Gang"
+
+ custom_general_locomotive:0 "General"
+ custom_yonah:0 "Yonah"
+ custom_texas_locomotive:0 "Texas"
+ custom_mississippi_locomotive:0 "Mississippi"
+ custom_catoosa:0 "Catoosa"
+ custom_alfred_shorter:0 "Alfred Shorter"
+ custom_acworth:0 "Acworth"
+
+ custom_jones_county:0 "Jones"
+ custom_scott_county:0 "Scott"
+ custom_robeson_county:0 "Robeson"
+ custom_irwin_county:0 "Irwin"
+ custom_loudoun_county:0 "Loudoun"
+ custom_nickajack:0 "Nickajack"
+ custom_winston_county:0 "Winston"
+ custom_springfield:0 "Springfield"
+ custom_wayne_county:0 "Wayne"
+ custom_franklin_county:0 "Franklin"
+ custom_jackson_county:0 "Jackson"
+ custom_jefferson_county:0 "Jefferson"
+
+ dont_lose_dixie_culture:0 "Dixie culture remains a primary culture of our nation."
+ dont_lose_yankee_culture:0 "Yankee culture remains a primary culture of our nation."
+ reconstruction_progress:0 "Reconstruction progresses towards completion."
+ acw_no_outlaw_crisis:0 "The frontier's outlaw crisis ceases."
+
+ je_acw_wild_wild_west_goal:0 "The following must be true for 5 years total:"
+ missouri_compromise:0 "The Missouri Compromise"
+ 
+ #Reconstruction Events/Journal Entries-------------------------
+ je_acw_war:0 "The American Civil War"
+ je_acw_war_reason:0 "The War Between the States is upon us. The sectionalism that has been dividing the nation for decades has reached the boiling point. The United States of America are now engaged with the Rebellious States. Hundreds of thousands are picking up arms for their homes. For the Union!"
+ je_acw_war_csa_fsa:0 "The War of Federal Aggression"
+ je_acw_war_csa_fsa_reason:0 "The War of Secession is finally here. The oppressive Federal oversight that has plagued the nation for decades has reached the boiling point. Our home has been wrongfully attacked by our former comrades who now fight in support of tyranny. Hundreds of thousands are picking up arms for their homes. For Liberty!"
+ acw_war_tt_complete:0 "The United States won the American Civil War"
+ acw_rebel_victory:0 "The United States lost the American Civil War"
+ 
+ acw_reconstruction.1.t:0 "Reconstructing the Nation"
+ acw_reconstruction.1.d:0 "While the American Civil War may be over, the fight for the nation's soul is not. The Union was challenged by radical separatists, but it has not disintegrated. With the Constitutional Crisis at an end and the last pockets of military resistance conquered, it is time for the [SCOPE.sCountry('united_states').GetNameNoFlag] to reconstruct herself in a new image."
+ acw_reconstruction.1.f:0 ""I do not expect this nation to fall. Welcome or unwelcome, whether it becomes all one thing or all the other, this nation shall cease to be divided in body and soul.""
+ acw_reconstruction.1.a:0 "Our wounds must heal."
+ acw_reconstruction.1.b:0 "The Union must be rebuilt for all."
+ acw_reconstruction_emancipation.tt:0 "The slaves held in all former Confederate territories will be freed."
+ 
+ je_acw_reconstruction:0 "American Reconstruction"
+ je_acw_reconstruction_status:1 "Rebuild the nation after the destruction of the American Civil War."
+ je_acw_reconstruction_reason:0 "The Civil War has ended, and the destruction left in its wake is massive. Hundreds of thousands died in the War Between the States. The Loyalist States have made clear their goal to put the nation back together, starting with the readmission of the Rebellious States. The nation must be reconstructed, lest we lose her forever."
+ je_acw_reconstruction_goal:0 "Rebuild the United States of America."
+ 
+ je_acw_reincorporate:0 "Readmit the Secessionist States"
+ je_acw_reincorporate_status:0 "Bring the former secessionist states back into the fold as fully-fledged incorporated states once more."
+ je_acw_reincorporate_reason:0 "Readmitting the rebellious states back into the Union is essential for restoring the shaken spirit of the nation, and may help establish new powerbases for the government."
+ 
+ je_acw_equality:0 "The Civil War Amendments"
+ je_acw_equality_status:0 "In order to create a system that reconizes all men, from the North and South, Black or White, as true equals in this nation of ours, we must pass a series of constitutional amendments that ensure racial equality."
+ je_acw_equality_reason:0 "America fought a brutal war over deep issues that were papered over for generations until the problems became too big to ignore. We must avoid a repeat of this disaster, and tackle the problems head-on lest they are left to fester for another century. In order to do so, we must constitutionally ban slavery and ensure the former slave population are no longer discriminated in our country."
+ acw_african_american_culture_complete_tt:0 "Slavery has been constitutionally banned and the Afro-American culture is no longer discriminated against."
+ acw_african_american_culture:0 "Afro-American culture becomes a primary culture of our nation."
+ 
+ je_acw_wild_wild_west:0 "The Wild, Wild West"
+ je_acw_wild_wild_west_status:0 "Tame the Western Frontier."
+ je_acw_wild_wild_west_reason:0 "With the Federal Government entirely focused on defeating the rebellious States during the Civil War, our western territories became lawless lands with almost no proper law enforcement. The warring in the East left the Western Frontier in a state of absolute chaos; it is time for us to restore order."
+ 
+ unreconstructed_state:0 "Unreconstructed State"
+
+ acw_reconstruction.2.t:0 "The Nation, Reconstructed"
+ acw_reconstruction.2.d:0 "Our nation has rebuilt itself, making something distinct, something new, and most importantly, something united. It is time for America to forge a new path, united under the Stars and Stripes forever. The [SCOPE.sCountry('united_states').GetNameNoFlag] has emerged from her chaotic civil war as a more united, centralized nation. It is time, now, to pick up the fallen pieces of our hegemony, and reclaim our place on the global stage."
+ acw_reconstruction.2.f:0 ""For all our faults, we have reforged our nation, and have built ourselves a government that shall not perish from this earth.""
+ acw_reconstruction.2.a:0 "We stand united once more."
+ usa_reconstruction_sectionalism_gone.tt:0 "The political and regional sectionalism that have dominated American politics will peter out."
+ 
+ opium_wars_lost:0 "Recently Lost an Opium War"
+ je_opium_wars:0 "The Opium War"
+
+ #NEW TEXT:
+ opium_wars.2.t:0 "The Opium War"
+ opium_wars.4.t:0 "The Opium War: Defeat"
+ opium_wars.5.t:0 "The Opium War: Victory"
+ 
+ #RE-WRITTEN TEXT:
+ 

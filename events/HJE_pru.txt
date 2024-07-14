@@ -1,0 +1,1921 @@
+﻿namespace = TGE_prussia
+
+TGE_prussia.1 = {
+	type = country_event
+	placement = root
+	title = TGE_prussia.1.t
+	desc = TGE_prussia.1.d
+
+	duration = 3
+
+	event_image = {
+		video = "gfx/event_pictures/europenorthamerica_capitalists_meeting.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/capitalists_meeting"
+
+	icon = "gfx/interface/icons/event_icons/event_portrait.dds"
+
+	trigger = {
+	}
+
+	option = {
+		name = TGE_prussia.1.a
+		default_option = yes
+
+		add_journal_entry = {
+			type = je_junkers_heer_krupp
+		}
+	}
+}
+
+TGE_prussia.2 = {
+	type = country_event
+	placement = root
+	title = TGE_prussia.2.t
+	desc = TGE_prussia.2.d
+
+	duration = 3
+
+	event_image = {
+		video = "gfx/event_pictures/unspecific_military_parade.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/unspecific/military_parade"
+
+	icon = "gfx/interface/icons/event_icons/event_portrait.dds"
+	
+	trigger = {
+	}
+	
+	option = {
+		name = TGE_prussia.2.a
+		default_option = yes
+	
+		add_modifier = {
+			name = modifier_tge_junkers_heer_krupp
+			months = -1
+		}
+		add_modifier = { 
+			name = modifier_tge_unification_boom
+			months = 180
+		}
+	}
+}
+
+namespace = HJE_prussia
+
+HJE_prussia.1 = {			 #Danish attempt to annex Schleswig-Holstein
+	type = country_event
+	placement = c:HOL
+	title = HJE_prussia.1.t
+	flavor = HJE_prussia.1.f
+	desc = HJE_prussia.1.d
+
+	duration = 3
+
+	is_popup = yes
+
+	event_image = {
+		video = "gfx/event_pictures/europenorthamerica_before_the_battle.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/before_the_battle"
+
+	icon = "gfx/interface/icons/event_icons/event_map.dds"
+
+	trigger = {
+	}
+	
+	immediate = {
+		set_global_variable = DEN_schleswig_revolt_happened
+		c:GBR = {
+			set_secret_goal = {
+				country = c:DEN
+				secret_goal = none
+			}
+			set_secret_goal = {
+				country = c:SCH
+				secret_goal = none
+			}
+			set_secret_goal = {
+				country = c:HOL
+				secret_goal = none
+			}
+		}
+		c:RUS = {
+			set_secret_goal = {
+				country = c:DEN
+				secret_goal = none
+			}
+			set_secret_goal = {
+				country = c:SCH
+				secret_goal = none
+			}
+			set_secret_goal = {
+				country = c:HOL
+				secret_goal = none
+			}
+		}
+		remove_diplomatic_pact = {
+			country = c:SCH
+			type = personal_union
+		}
+		remove_diplomatic_pact = {
+			country = c:HOL
+			type = personal_union
+		}
+		c:SCH = {
+			change_relations = {
+				country = c:HOL
+				value = 50
+			}
+			if = {
+				limit = {
+					is_ai = yes
+				}
+				add_modifier = {
+					name = sepatatist_zeal
+					months = 12
+				}
+			}
+		}
+		c:HOL = {
+			create_diplomatic_pact = {
+				country = c:SCH
+				type = alliance
+			}
+			change_relations = {
+				country = c:SCH
+				value = 50
+			}
+			if = {
+				limit = {
+					is_ai = yes
+				}
+				add_modifier = {
+					name = sepatatist_zeal
+					months = 12
+				}
+			}
+		}
+	}
+
+	option = {
+		name = HJE_prussia.1.a
+		default_option = yes
+		ai_chance = 100
+
+		set_variable = den_attempt_to_eat_schleswig
+		s:STATE_SCHLESWIG_HOLSTEIN = { add_claim = ROOT }
+		random_country = {
+			limit = {
+				any_scope_state = { state_region = s:STATE_SCHLESWIG_HOLSTEIN }
+				OR = {
+					AND = {
+						exists = c:SCH
+						c:SCH = THIS
+					}
+					AND = {
+						exists = c:HOL
+						c:HOL = THIS
+					}
+				}
+			}
+			set_variable = is_schleswig_holstein
+			save_scope_as = den_initial_scwhol_victim
+		}
+		create_diplomatic_play = {
+            target_country = scope:den_initial_scwhol_victim
+            type = dp_annex_war
+			war = no
+		}
+		random_country = {
+			limit = { 
+				is_diplomatic_play_enemy_of = ROOT
+				NOT = { has_variable = is_schleswig_holstein }
+				OR = {
+					AND = {
+						exists = c:SCH
+						c:SCH = THIS
+					}
+					AND = {
+						exists = c:HOL
+						c:HOL = THIS
+					}
+				}
+			}
+			random_diplomatic_play = {
+				limit = { 
+					initiator_is = ROOT
+					OR = {
+						target_is = c:SCH 
+						target_is = c:HOL 
+					}
+				}
+				add_target_backers = { c:HOL }
+				add_target_backers = { c:SCH }
+				add_war_goal = {
+					holder = ROOT
+					type = annex_country
+					target_country = c:SCH				
+					primary_demand = yes
+				}
+				add_war_goal = {
+					holder = ROOT
+					type = annex_country
+					target_country = c:HOL				
+					primary_demand = yes
+				}
+			}
+		}
+		hidden_effect = {
+			every_country = {
+				limit = {
+					NOT = { ROOT = THIS }
+					country_rank >= rank_value:major_power
+					country_is_in_europe = yes
+					NOT = { is_diplomatic_play_enemy_of = scope:den_initial_scwhol_victim }
+					OR = {
+						country_has_primary_culture = cu:north_german
+						country_has_primary_culture = cu:south_german
+					}
+				}
+				trigger_event = { id = HJE_prussia.2 }
+			}
+		}
+	}
+
+	option = {
+		name = HJE_prussia.1.b
+		ai_chance = 0
+		create_truce = {
+			country = c:SCH
+			months = long_modifier_time
+		}
+		create_truce = {
+			country = c:HOL
+			months = long_modifier_time
+		}
+		add_modifier = {
+			name = withdrew_from_colonial_incident
+			months = long_modifier_time
+		}
+	}		
+}
+
+HJE_prussia.2 = {
+	type = country_event
+	placement = c:DEN
+	title = HJE_prussia.2.t
+	flavor = HJE_prussia.2.f
+	desc = HJE_prussia.2.d
+
+	duration = 3
+
+	is_popup = yes
+
+	event_image = {
+		video = "gfx/event_pictures/unspecific_military_parade.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/before_the_battle"
+
+	icon = "gfx/interface/icons/event_icons/event_map.dds"
+
+	trigger = {
+	}
+	
+	immediate = {
+	}
+
+	option = {
+		name = HJE_prussia.2.a
+		default_option = yes
+		ai_chance = 1
+
+		set_variable = gergp_attempted_to_protect_scwhol
+		set_secret_goal = {
+			country = c:SCH
+			secret_goal = protect
+		}
+		set_secret_goal = {
+			country = c:HOL
+			secret_goal = protect
+		}
+		random_country = {
+			limit = { has_variable = den_attempt_to_eat_schleswig }
+			save_scope_as = den_denmark_equivalent
+		}
+		set_mutual_secret_goal = {
+			country = scope:den_denmark_equivalent
+			secret_goal = antagonize
+		}
+		random_country = {
+			limit = {
+				has_variable = is_schleswig_holstein
+			}
+			save_scope_as = den_initial_scwhol_victim
+			change_relations = {
+				country = ROOT
+				value = 50
+			}
+		}
+		every_diplomatic_play = {
+			limit = { target_is = scope:den_initial_scwhol_victim }
+			add_target_backers = { ROOT }
+			add_escalation = 25
+		}
+		change_relations = {
+			country = scope:den_denmark_equivalent
+			value = -25
+		}
+		add_modifier = {
+			name = veiled_influence
+			months = short_modifier_time
+		}
+		if = {
+			limit = {
+				any_scope_state = {
+					is_capital = yes
+					region = sr:region_north_germany
+				}
+			}
+			add_modifier = {
+				name = modifier_tradition_of_militarism
+				months = 240
+			}
+			add_journal_entry = {
+				type = HJ_occupation_of_schleswig
+			}
+		}
+	}
+
+	option = {
+		name = HJE_prussia.2.b
+		ai_chance = 0
+		random_country = {
+			limit = { has_variable = den_attempt_to_eat_schleswig }
+			save_scope_as = den_denmark_equivalent
+		}
+		change_relations = {
+			country = c:SCH
+			value = -40
+		}
+		change_relations = {
+			country = c:HOL
+			value = -40
+		}
+		change_relations = {
+			country = scope:den_denmark_equivalent
+			value = 10
+		}
+		add_modifier = {
+			name = withdrew_from_colonial_incident
+			months = normal_modifier_time
+		}
+	}		
+}
+
+HJE_prussia.3 = {
+	type = country_event
+	placement = this
+	title = HJE_prussia.3.t
+	flavor = HJE_prussia.3.f
+	desc = HJE_prussia.3.d
+
+	duration = 3
+
+	is_popup = yes
+
+	event_image = {
+		video = "gfx/event_pictures/unspecific_armored_train.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/before_the_battle"
+
+	icon = "gfx/interface/icons/event_icons/event_map.dds"
+
+	trigger = {
+	}
+	
+	immediate = {
+		random_country = {
+			limit = { has_variable = den_attempt_to_eat_schleswig }
+			save_scope_as = den_denmark_equivalent
+		}
+		set_mutual_secret_goal = {
+			country = scope:den_denmark_equivalent
+			secret_goal = none
+		}
+	}
+
+	option = {
+		name = HJE_prussia.3.a
+		default_option = yes
+		ai_chance = { base = 0 }
+		trigger = {
+			any_country = {
+				NOT = { THIS = ROOT }
+				country_rank >= rank_value:major_power
+				country_is_in_europe = yes
+				OR = {
+					country_has_primary_culture = cu:north_german
+					country_has_primary_culture = cu:south_german
+				}
+				OR = {
+					has_variable = gergp_attempted_to_protect_scwhol
+					any_scope_war = {
+						is_war_participant = ROOT
+						is_war_participant = THIS
+						OR = {
+							is_warleader = c:SCH
+							is_warleader = c:HOL
+						}
+					}
+				}
+			}
+		}
+
+		s:STATE_SCHLESWIG_HOLSTEIN = { add_claim = ROOT }
+		if = {
+			limit = { exists = c:SCH }
+			annex = c:SCH
+		}
+		if = {
+			limit = { exists = c:HOL }
+			annex = c:HOL
+		}
+		change_infamy = 50
+
+		hidden_effect = {
+			every_state = {
+				limit = { state_region = s:STATE_SCHLESWIG_HOLSTEIN }
+				set_state_owner = THIS
+			}
+		}
+	}
+
+	option = {
+		name = HJE_prussia.3.b
+		default_option = yes
+		ai_chance = 100
+		
+		set_variable = schleswig_partition_suggester
+		if = {
+			limit = {
+				exists = c:AUS
+				c:AUS = {
+					NOT = { THIS = ROOT }
+					country_rank >= rank_value:major_power
+					country_is_in_europe = yes
+					OR = {
+						country_has_primary_culture = cu:north_german
+						country_has_primary_culture = cu:south_german
+					}
+				}
+				OR = {
+					has_variable = gergp_attempted_to_protect_scwhol
+					any_scope_war = {
+						is_war_participant = ROOT
+						is_war_participant = c:AUS
+						OR = {
+							is_warleader = c:SCH
+							is_warleader = c:HOL
+						}
+					}
+				}
+			}
+			c:AUS = { trigger_event = { id = HJE_prussia.4 } }
+		}
+		else = {
+			random_country = {
+				limit = {
+					NOT = { THIS = ROOT }
+					country_rank >= rank_value:major_power
+					country_is_in_europe = yes
+					OR = {
+						country_has_primary_culture = cu:north_german
+						country_has_primary_culture = cu:south_german
+					}
+					OR = {
+						has_variable = gergp_attempted_to_protect_scwhol
+						any_scope_war = {
+							is_war_participant = ROOT
+							is_war_participant = THIS
+							OR = {
+								is_warleader = c:SCH
+								is_warleader = c:HOL
+							}
+						}
+					}
+				}
+				trigger_event = { id = HJE_prussia.4 }
+			}
+		}
+	
+		s:STATE_SCHLESWIG_HOLSTEIN = { add_claim = ROOT }
+		if = {
+			limit = { exists = c:SCH }
+			annex = c:SCH
+		}
+		if = {
+			limit = { exists = c:HOL }
+			annex = c:HOL
+		}
+		change_infamy = 10
+
+		hidden_effect = {
+			every_state = {
+				limit = { state_region = s:STATE_SCHLESWIG_HOLSTEIN }
+				set_state_owner = THIS
+			}
+		}
+	}
+
+	option = {
+		name = HJE_prussia.3.c
+		ai_chance = { base = 0 }
+		add_modifier = {
+			name = veiled_influence
+			months = short_modifier_time
+		}
+	}		
+}
+
+HJE_prussia.4 = {
+	type = country_event
+	placement = c:DEN
+	title = HJE_prussia.4.t
+	flavor = HJE_prussia.4.f
+	desc = HJE_prussia.4.d
+
+	duration = 3
+
+	is_popup = yes
+
+	event_image = {
+		video = "gfx/event_pictures/europenorthamerica_capitalists_meeting.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/capitalists_meeting"
+
+	icon = "gfx/interface/icons/event_icons/event_map.dds"
+
+	trigger = {
+	}
+	
+	immediate = {
+	}
+
+	option = {
+		name = HJE_prussia.4.a
+		default_option = yes
+		ai_chance = { base = 1 }
+
+		random_country = {
+			limit = { has_variable = schleswig_partition_suggester }
+			save_scope_as = PRU_swhs_partition_1
+			change_relations = {
+				country = ROOT
+				value = 15
+			}
+		}
+		change_relations = {
+			country = scope:PRU_swhs_partition_1
+			value = 15
+		}
+		change_infamy = 10
+		s:STATE_SCHLESWIG_HOLSTEIN = {
+			add_claim = ROOT
+			set_owner_of_provinces = {
+				country = ROOT
+				provinces = {
+					x804160
+					x64824C
+					xE000A0
+				}
+			}
+		}
+	}
+
+	option = {
+		name = HJE_prussia.4.b
+		ai_chance = { base = 0 }
+		random_country = {
+			limit = { has_variable = schleswig_partition_suggester }
+			save_scope_as = PRU_swhs_partition_1
+			change_infamy = 30
+			change_relations = {
+				country = ROOT
+				value = -30
+			}
+		}
+		change_relations = {
+			country = scope:PRU_swhs_partition_1
+			value = -30
+		}
+		add_modifier = {
+			name = veiled_influence
+			months = short_modifier_time
+		}
+	}		
+}
+
+HJE_prussia.5 = {
+	type = country_event
+	placement = ROOT
+	title = HJE_prussia.5.t
+	desc = HJE_prussia.5.d
+	flavor = HJE_prussia.5.f
+
+	duration = 3
+
+	event_image = {
+		video = "gfx/event_pictures/europenorthamerica_capitalists_meeting.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/capitalists_meeting"
+
+	icon = "gfx/interface/icons/event_icons/event_map.dds"
+
+	trigger = {
+	}
+	
+	immediate = {
+		set_global_variable = ems_dispatch_scheme
+		random_country = {
+			limit = {
+				NOT = { ROOT = THIS }
+				is_adjacent_to_country = ROOT
+				aggressive_diplomatic_plays_permitted = yes
+				OR = { country_rank >= rank_value:major_power this ?= c:SWI }
+				country_or_subject_owns_entire_state_region = STATE_ALSACE_LORRAINE
+			}
+			set_variable = FRA_ems_dispatch
+			save_scope_as = FRA_fpw_aggressor
+		}
+	}
+
+	option = {
+		name = HJE_prussia.5.a
+		default_option = yes
+
+		set_variable = NGF_ems_dispatch
+		scope:FRA_fpw_aggressor = {
+			trigger_event = { id = HJE_prussia.6 }
+		}
+			
+		ai_chance = 100
+	}
+
+	option = {
+		name = HJE_prussia.5.b
+		ai_chance = 0
+		add_modifier = {
+			name = withdrew_from_colonial_incident
+			months = long_modifier_time
+		}
+	}		
+}
+
+HJE_prussia.6 = {			 #French response to Ems Dispatch insult
+	type = country_event
+	placement = root
+	title = HJE_prussia.6.t
+	flavor = HJE_prussia.6.f
+	desc = HJE_prussia.6.d
+
+	duration = 3
+
+	is_popup = yes
+
+	event_image = {
+		video = "gfx/event_pictures/europenorthamerica_before_the_battle.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/before_the_battle"
+
+	icon = "gfx/interface/icons/event_icons/event_map.dds"
+
+	trigger = {
+	}
+	
+	immediate = {
+		save_scope_as = FRA_fpw_aggressor
+		random_country = {
+			limit = { has_variable = NGF_ems_dispatch }
+			save_scope_as = NGF_fpw_antagonizer
+		}
+	}
+
+	option = {
+		name = HJE_prussia.6.a
+		default_option = yes
+		ai_chance = 100
+		
+		if = {
+			limit = {
+				scope:NGF_fpw_antagonizer = { is_ai = yes }
+			}
+			scope:NGF_fpw_antagonizer = { add_modifier = { name = wartime_zeal months = 12 } } 
+		}
+		create_diplomatic_play = {
+            target_country = scope:NGF_fpw_antagonizer
+            type = dp_humiliation
+			war = no
+		}
+		hidden_effect = { 
+			s:STATE_ALSACE_LORRAINE = { add_claim = scope:NGF_fpw_antagonizer } 
+			random_diplomatic_play = {
+				limit = { 
+					initiator_is = ROOT
+					target_is = scope:NGF_fpw_antagonizer
+				}
+				add_war_goal = {
+					holder = scope:NGF_fpw_antagonizer
+					type = humiliation
+					target_country = ROOT				
+					primary_demand = yes
+				}
+				if = {
+					limit = { exists = c:FRA c:FRA = ROOT }
+					add_war_goal = {
+						holder = scope:NGF_fpw_antagonizer
+						type = return_state
+						target_state = s:STATE_ALSACE_LORRAINE.region_state:FRA
+						primary_demand = yes
+					}
+				}
+			}
+			every_country = {
+				limit = {
+					NOT = { ROOT = THIS }
+					country_rank < rank_value:major_power
+					aggressive_diplomatic_plays_permitted = yes
+					country_is_in_europe = yes
+					OR = {
+						country_has_primary_culture = cu:north_german
+						country_has_primary_culture = cu:south_german
+					}
+				}
+				trigger_event = { id = HJE_prussia.7 }
+			}
+		}
+	}
+
+	option = {
+		name = HJE_prussia.6.b
+		ai_chance = 0
+		every_state = {
+			limit = {
+				is_homeland_of_country_cultures = ROOT
+			}
+			add_radicals_in_state = {
+				value = large_radicals
+			}
+		}
+		add_modifier = {
+			name = withdrew_from_colonial_incident
+			months = long_modifier_time
+		}
+	}		
+}
+
+HJE_prussia.7 = {
+	type = country_event
+	placement = scope:NGF_fpw_antagonizer
+	title = HJE_prussia.7.t
+	flavor = HJE_prussia.7.f
+	desc = HJE_prussia.7.d
+
+	duration = 3
+
+	is_popup = yes
+
+	event_image = {
+		video = "gfx/event_pictures/unspecific_military_parade.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/before_the_battle"
+
+	icon = "gfx/interface/icons/event_icons/event_map.dds"
+
+	trigger = {
+	}
+	
+	immediate = {
+		save_scope_as = HRE_fpw_bystander
+		random_country = {
+			limit = { has_variable = FRA_ems_dispatch }
+			save_scope_as = FRA_fpw_aggressor
+		}
+		random_country = {
+			limit = { has_variable = NGF_ems_dispatch }
+			save_scope_as = NGF_fpw_antagonizer
+		}
+	}
+
+	option = {
+		name = HJE_prussia.7.a
+		default_option = yes
+		ai_chance = { base = 1 }
+
+		scope:NGF_fpw_antagonizer = {
+			set_mutual_secret_goal = {
+				country = ROOT
+				secret_goal = befriend
+			}
+			change_relations = {
+				country = ROOT
+				value = 50
+			}
+		}
+		scope:FRA_fpw_aggressor = {
+			change_relations = {
+				country = ROOT
+				value = -50
+			}
+			set_mutual_secret_goal = {
+				country = ROOT
+				secret_goal = conquer
+			}
+		}
+		change_relations = {
+			country = scope:NGF_fpw_antagonizer
+			value = 50
+		}
+		change_relations = {
+			country = scope:FRA_fpw_aggressor
+			value = -50
+		}
+		every_diplomatic_play = {
+			limit = { target_is = scope:NGF_fpw_antagonizer }
+			add_target_backers = { ROOT }
+			add_escalation = 10
+		}
+	}
+
+	option = {
+		name = HJE_prussia.7.b
+		ai_chance = { base = 0 }
+		add_modifier = {
+			name = withdrew_from_colonial_incident
+			months = normal_modifier_time
+		}
+		every_state = {
+			limit = {
+				is_homeland_of_country_cultures = ROOT
+			}
+			add_radicals_in_state = {
+				value = large_radicals
+			}
+		}
+	}		
+}
+
+HJE_prussia.8 = {			 #GermConfed Dissolved (Prussia)
+	type = country_event
+	placement = THIS
+	title = HJE_prussia.8.t
+	flavor = HJE_prussia.8.f
+	desc = HJE_prussia.8.d
+
+	duration = 3
+
+	is_popup = yes
+
+	event_image = {
+		video = "gfx/event_pictures/unspecific_politicians_arguing.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/before_the_battle"
+
+	icon = "gfx/interface/icons/event_icons/event_map.dds"
+
+	trigger = {
+		NOT = { has_global_variable = had_brothers_war }
+		OR = {
+			any_diplomatic_play = {
+				has_play_goal = unification_leadership
+				OR = {
+					initiator_is = ROOT
+	           		target_is = ROOT
+				}
+				any_scope_play_involved = {
+					NOT = { THIS = ROOT }
+					is_diplomatic_play_enemy_of = ROOT
+					OR = {
+						country_has_primary_culture = cu:north_german
+						country_has_primary_culture = cu:south_german
+					}
+					OR = {
+						any_country = {
+							NOT = { THIS = ROOT }
+							NOT = { THIS = PREV }
+							is_supporting_unification_candidate = { 
+								country_formation = GER
+								who = PREV
+							}
+						}
+					}
+				}
+			}
+			AND = {
+				OR = {
+					any_scope_state = { state_region = s:STATE_SCHLESWIG_HOLSTEIN }
+					any_scope_state = { state_region = s:STATE_ALSACE_LORRAINE }
+				}
+				any_country = {
+					is_unification_candidate = GER
+					NOT = { THIS = ROOT }
+					NOT = {
+						any_country = {
+							NOT = { THIS = ROOT }
+							NOT = { THIS = PREV }
+							is_supporting_unification_candidate = { 
+								country_formation = GER
+								who = PREV
+							}
+						}
+					}
+				}
+				any_diplomatic_play = {
+					OR = {
+						initiator_is = ROOT
+		           		target_is = ROOT
+					}
+					any_scope_play_involved = {
+						NOT = { THIS = ROOT }
+						country_rank >= rank_value:major_power
+						is_diplomatic_play_enemy_of = ROOT
+						is_unification_candidate = GER
+						OR = {
+							country_has_primary_culture = cu:north_german
+							country_has_primary_culture = cu:south_german
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	immediate = {
+		if = {
+			limit = {
+				is_player = no
+			}
+			add_modifier = { name = wartime_zeal months = 96 }
+		}
+		set_global_variable = had_brothers_war
+		set_variable = chad_germconfed_dissolver
+		save_scope_as = PRU_equivalent_brothers_war
+		random_country = {
+			limit = {
+				is_diplomatic_play_enemy_of = ROOT
+				OR = {
+					country_has_primary_culture = cu:north_german
+					country_has_primary_culture = cu:south_german
+				}
+				OR = {
+					any_country = {
+						NOT = { THIS = ROOT }
+						NOT = { THIS = PREV }
+						is_supporting_unification_candidate = { 
+							country_formation = GER
+							who = PREV
+						}
+					}
+					AND = {
+						NOT = { THIS = ROOT }
+						country_rank >= rank_value:major_power
+						any_scope_state = { state_region = s:STATE_SCHLESWIG_HOLSTEIN }
+					}
+				}
+			}
+			set_variable = virgin_austria_hungary_enjoyer
+			save_scope_as = AUS_equivalent_brothers_war
+			trigger_event = { id = HJE_prussia.9 }
+		}
+		random_diplomatic_play = {
+			limit = {
+				OR = {
+					AND = {
+						has_play_goal = unification_leadership
+						OR = {
+							initiator_is = ROOT
+			           		target_is = ROOT
+						}
+						any_scope_play_involved = {
+							NOT = { THIS = ROOT }
+							is_diplomatic_play_enemy_of = ROOT
+							OR = {
+								country_has_primary_culture = cu:north_german
+								country_has_primary_culture = cu:south_german
+							}
+							any_country = {
+								NOT = { THIS = ROOT }
+								NOT = { THIS = PREV }
+								is_supporting_unification_candidate = { 
+									country_formation = GER
+									who = PREV
+								}
+							}
+						}
+					}
+					AND = {
+						has_play_goal = return_state
+						OR = {
+							initiator_is = ROOT
+			           		target_is = ROOT
+						}
+						any_scope_play_involved = {
+							NOT = { THIS = ROOT }
+							country_rank >= rank_value:major_power
+							is_diplomatic_play_enemy_of = ROOT
+							any_scope_state = { state_region = s:STATE_SCHLESWIG_HOLSTEIN }
+							OR = {
+								country_has_primary_culture = cu:north_german
+								country_has_primary_culture = cu:south_german
+							}
+						}
+					}
+				}
+			}
+			save_scope_as = brothers_war
+		}
+	}
+
+	option = {
+		name = HJE_prussia.8.a
+		default_option = yes
+		ai_chance = 100
+
+		if = {
+			limit = { country_has_primary_culture = cu:north_german }
+			every_country = {
+				limit = { 
+					NOT = { THIS = ROOT } 
+					NOT = { THIS = scope:AUS_equivalent_brothers_war } 
+					aggressive_diplomatic_plays_permitted = yes
+					country_has_primary_culture = cu:south_german 
+				}
+				hidden_effect = {
+					set_secret_goal = {
+						country = scope:AUS_equivalent_brothers_war
+						secret_goal = befriend
+					}
+					set_secret_goal = {
+						country = ROOT
+						secret_goal = antagonize
+					}
+				}
+		        scope:brothers_war = {
+		        	if = {
+		        		limit = { initiator_is = ROOT }
+						add_target_backers = { PREV }
+		        	}
+		        	if = {
+		        		limit = { target_is = ROOT }
+						add_initiator_backers = { PREV }
+		        	}
+					if = {
+		        		limit = { exists = c:MEC c:MEC = { is_player = no } }
+						add_initiator_backers = { c:MEC }
+		        	}
+		        }
+			}
+			if = {
+				limit = {
+					c:AUS = { is_diplomatic_play_enemy_of = ROOT }
+					scope:brothers_war = {
+						NOT = { has_play_goal = return_state }
+					}
+				}
+		        scope:brothers_war = {
+					add_war_goal = {
+						holder = ROOT
+						type = return_state
+						target_state = s:STATE_SCHLESWIG_HOLSTEIN.region_state:AUS
+						primary_demand = yes
+					}
+				}
+			}
+			hidden_effect = {
+				every_country = {
+					limit = { 
+						is_adjacent_to_country = ROOT
+						NOT = { THIS = ROOT } 
+						NOT = { THIS = scope:AUS_equivalent_brothers_war } 
+						country_has_primary_culture = cu:north_german 
+					}
+					trigger_event = { id = HJE_prussia.10 days = 5 }
+				}
+				every_country = {
+					limit = { 
+						NOT = { is_adjacent_to_country = ROOT }
+						NOT = { THIS = ROOT } 
+						NOT = { THIS = scope:AUS_equivalent_brothers_war } 
+						country_has_primary_culture = cu:north_german 
+					}
+					trigger_event = { id = HJE_prussia.10 days = 10 }
+				}
+			}
+		}
+		else_if = {
+			limit = { country_has_primary_culture = cu:south_german }
+			every_country = {
+				limit = { 
+					NOT = { THIS = ROOT } 
+					NOT = { THIS = scope:AUS_equivalent_brothers_war } 
+					aggressive_diplomatic_plays_permitted = yes
+					country_has_primary_culture = cu:north_german 
+				}
+				hidden_effect = {
+					set_secret_goal = {
+						country = scope:AUS_equivalent_brothers_war
+						secret_goal = befriend
+					}
+					set_secret_goal = {
+						country = ROOT
+						secret_goal = antagonize
+					}
+				}
+		        scope:brothers_war = {
+		        	if = {
+		        		limit = { initiator_is = ROOT }
+						add_target_backers = { PREV }
+		        	}
+		        	if = {
+		        		limit = { target_is = ROOT }
+						add_initiator_backers = { PREV }
+		        	}
+		        }
+			}
+			if = {
+				limit = {
+					c:AUS = { is_diplomatic_play_enemy_of = ROOT }
+					scope:brothers_war = {
+						NOT = { has_play_goal = return_state }
+					}
+				}
+		        scope:brothers_war = {
+					add_war_goal = {
+						holder = ROOT
+						type = return_state
+						target_state = s:STATE_SCHLESWIG_HOLSTEIN.region_state:AUS
+						primary_demand = yes
+					}
+				}
+			}
+			hidden_effect = {
+				every_country = {
+					limit = { 
+						is_adjacent_to_country = ROOT
+						NOT = { THIS = ROOT } 
+						NOT = { THIS = scope:AUS_equivalent_brothers_war } 
+						country_has_primary_culture = cu:south_german 
+					}
+					trigger_event = { id = HJE_prussia.10 days = 5 }
+				}
+				every_country = {
+					limit = { 
+						NOT = { is_adjacent_to_country = ROOT }
+						NOT = { THIS = ROOT } 
+						NOT = { THIS = scope:AUS_equivalent_brothers_war } 
+						country_has_primary_culture = cu:south_german 
+					}
+					trigger_event = { id = HJE_prussia.10 days = 10 }
+				}
+			}
+		}
+	}
+}
+
+HJE_prussia.9 = {			 #GermConfed Dissolved (Austria)
+	type = country_event
+	placement = THIS
+	title = HJE_prussia.8.t
+	flavor = HJE_prussia.9.f
+	desc = HJE_prussia.8.d
+
+	duration = 3
+
+	is_popup = yes
+
+	event_image = {
+		video = "gfx/event_pictures/europenorthamerica_before_the_battle.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/before_the_battle"
+
+	icon = "gfx/interface/icons/event_icons/event_map.dds"
+
+	trigger = {
+	}
+	
+	immediate = {
+		save_scope_as = AUS_equivalent_brothers_war
+		random_country = {
+			limit = { has_variable = chad_germconfed_dissolver }
+			save_scope_as = PRU_equivalent_brothers_war
+		}
+		random_diplomatic_play = {
+			limit = {
+				OR = {
+					AND = {
+						has_play_goal = unification_leadership
+						OR = {
+							initiator_is = ROOT
+			           		target_is = ROOT
+						}
+						any_scope_play_involved = {
+							NOT = { THIS = ROOT }
+							is_diplomatic_play_enemy_of = ROOT
+							OR = {
+								country_has_primary_culture = cu:north_german
+								country_has_primary_culture = cu:south_german
+							}
+							any_country = {
+								NOT = { THIS = ROOT }
+								NOT = { THIS = PREV }
+								is_supporting_unification_candidate = { 
+									country_formation = GER
+									who = PREV
+								}
+							}
+						}
+					}
+					AND = {
+						has_play_goal = return_state
+						OR = {
+							initiator_is = ROOT
+			           		target_is = ROOT
+						}
+						any_scope_play_involved = {
+							NOT = { THIS = ROOT }
+							country_rank >= rank_value:major_power
+							is_diplomatic_play_enemy_of = ROOT
+							any_scope_state = { state_region = s:STATE_SCHLESWIG_HOLSTEIN }
+							OR = {
+								country_has_primary_culture = cu:north_german
+								country_has_primary_culture = cu:south_german
+							}
+						}
+					}
+				}
+			}
+			save_scope_as = brothers_war
+		}
+	}
+
+	option = {
+		name = HJE_prussia.9.a
+		default_option = yes
+		ai_chance = 1
+
+        scope:brothers_war = {
+			add_escalation = 10
+			add_war_goal = {
+				holder = ROOT
+				type = contain_threat
+				target_country = scope:PRU_equivalent_brothers_war				
+				primary_demand = yes
+			}
+		}
+	}
+}
+
+HJE_prussia.10 = {			 #GermConfed Dissolved (Other Germans:Unify by force or otherwise)
+	type = country_event
+	placement = scope:PRU_equivalent_brothers_war
+	title = HJE_prussia.8.t
+	flavor = HJE_prussia.10.f
+	desc = HJE_prussia.8.d
+
+	duration = 3
+
+	is_popup = yes
+
+	event_image = {
+		video = "gfx/event_pictures/europenorthamerica_before_the_battle.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/before_the_battle"
+
+	icon = "gfx/interface/icons/event_icons/event_map.dds"
+
+	trigger = {
+	}
+	
+	immediate = {
+		random_country = {
+			limit = { has_variable = chad_germconfed_dissolver }
+			save_scope_as = PRU_equivalent_brothers_war
+		}
+		random_country = {
+			limit = { has_variable = virgin_austria_hungary_enjoyer }
+			save_scope_as = AUS_equivalent_brothers_war
+		}
+		random_diplomatic_play = {
+			limit = {
+				OR = {
+					AND = {
+						has_play_goal = unification_leadership
+						OR = {
+							initiator_is = scope:PRU_equivalent_brothers_war
+			           		target_is = scope:PRU_equivalent_brothers_war
+						}
+						any_scope_play_involved = {
+							NOT = { THIS = scope:PRU_equivalent_brothers_war }
+							is_diplomatic_play_enemy_of = scope:PRU_equivalent_brothers_war
+							OR = {
+								country_has_primary_culture = cu:north_german
+								country_has_primary_culture = cu:south_german
+							}
+							any_country = {
+								NOT = { THIS = scope:PRU_equivalent_brothers_war }
+								NOT = { THIS = PREV }
+								is_supporting_unification_candidate = { 
+									country_formation = GER
+									who = PREV
+								}
+							}
+						}
+					}
+					AND = {
+						has_play_goal = return_state
+						OR = {
+							initiator_is = scope:PRU_equivalent_brothers_war
+			           		target_is = scope:PRU_equivalent_brothers_war
+						}
+						any_scope_play_involved = {
+							NOT = { THIS = scope:PRU_equivalent_brothers_war }
+							country_rank >= rank_value:major_power
+							is_diplomatic_play_enemy_of = scope:PRU_equivalent_brothers_war
+							any_scope_state = { state_region = s:STATE_SCHLESWIG_HOLSTEIN }
+							OR = {
+								country_has_primary_culture = cu:north_german
+								country_has_primary_culture = cu:south_german
+							}
+						}
+					}
+				}
+			}
+			save_scope_as = brothers_war
+		}
+	}
+
+	option = {
+		name = HJE_prussia.10.a
+		default_option = yes
+		ai_chance = {
+			base = 1
+			modifier = {
+				factor = 0
+				OR = {
+					scope:PRU_equivalent_brothers_war = { relations:root <= relations_threshold:poor }
+					AND = {
+						any_scope_state = { count >= 2 }
+						scope:PRU_equivalent_brothers_war = { relations:root <= relations_threshold:cordial }
+					}
+				}
+			}
+		}
+
+		if = {
+			limit = { 
+				is_player = yes
+				scope:PRU_equivalent_brothers_war = { is_player = no }
+			}
+			play_as = scope:PRU_equivalent_brothers_war
+		}
+        scope:PRU_equivalent_brothers_war = { annex = ROOT }
+	}
+	option = {
+		name = HJE_prussia.10.b
+		ai_chance = {
+			base = 1
+			modifier = {
+				factor = 0
+				OR = {
+					scope:PRU_equivalent_brothers_war = { relations:root > relations_threshold:cordial }
+					AND = {
+						NOT = { any_scope_state = { count >= 2 } }
+						scope:PRU_equivalent_brothers_war = { relations:root > relations_threshold:poor }
+					}
+				}
+			}
+		}
+
+		hidden_effect = {
+			set_secret_goal = {
+				country = scope:AUS_equivalent_brothers_war
+				secret_goal = befriend
+			}
+			set_secret_goal = {
+				country = scope:PRU_equivalent_brothers_war
+				secret_goal = antagonize
+			}
+		}
+        scope:brothers_war = {
+			add_escalation = 5
+        	if = {
+        		limit = { initiator_is = scope:PRU_equivalent_brothers_war }
+				add_target_backers = { ROOT }
+        	}
+        	if = {
+        		limit = { target_is = scope:PRU_equivalent_brothers_war }
+				add_initiator_backers = { ROOT }
+        	}
+			add_war_goal = {
+				holder = scope:PRU_equivalent_brothers_war
+				type = annex_country
+				target_country = ROOT				
+				primary_demand = yes
+			}
+		}
+	}
+}
+
+HJE_prussia.11 = {			 #Loser has to give up Customs Unions
+	type = country_event
+	placement = THIS
+	title = HJE_prussia.11.t
+	flavor = HJE_prussia.11.f
+	desc = HJE_prussia.11.d
+
+	duration = 3
+
+	is_popup = yes
+
+	event_image = {
+		video = "gfx/event_pictures/europenorthamerica_capitalists_meeting.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/capitalists_meeting"
+
+	icon = "gfx/interface/icons/event_icons/event_military.dds"
+	
+	trigger = {
+		OR = {
+			has_variable = chad_germconfed_dissolver
+			has_variable = virgin_austria_hungary_enjoyer
+		}
+		any_country = {
+			NOT = { THIS = ROOT }
+			has_truce_with = ROOT
+			NOT = { has_war_with = ROOT }
+			OR = {
+				has_variable = chad_germconfed_dissolver
+				has_variable = virgin_austria_hungary_enjoyer
+			}
+		}
+	}
+	
+	immediate = {
+		random_country = {
+			limit = { 
+				NOT = { THIS = ROOT }
+				has_truce_with = ROOT
+				NOT = { has_war_with = ROOT }
+				OR = {
+					has_variable = chad_germconfed_dissolver
+					has_variable = virgin_austria_hungary_enjoyer
+				}
+			}
+			save_scope_as = brothers_war_winner
+		}
+		every_country = {
+			limit = { has_variable = chad_germconfed_dissolver }
+			remove_variable = chad_germconfed_dissolver
+		}
+		every_country = {
+			limit = { has_variable = virgin_austria_hungary_enjoyer }
+			remove_variable = virgin_austria_hungary_enjoyer
+		}
+	}
+
+	option = {
+		name = HJE_prussia.11.a
+		default_option = yes
+		ai_chance = { base = 1 }
+		
+		set_variable = ger_var
+		every_subject_or_below = {
+			limit = {
+				OR = {
+					country_has_primary_culture = cu:north_german
+					country_has_primary_culture = cu:south_german
+				}
+			}
+			make_independent = yes
+		}
+
+		every_country = {
+			limit = {
+				OR = {
+					country_has_primary_culture = cu:north_german
+					country_has_primary_culture = cu:south_german
+				}
+				country_rank < rank_value:major_power
+				is_in_same_power_bloc = scope:relevant_country = ROOT
+			}
+			hidden_effect = {
+				set_secret_goal = {
+					country = scope:brothers_war_winner
+					secret_goal = befriend
+				}
+				set_secret_goal = {
+					country = ROOT
+					secret_goal = none
+				}
+			}
+			change_relations = {
+				country = ROOT
+				value = -30
+			}
+			change_relations = {
+				country = scope:brothers_war_winner
+				value = 30
+			}	
+			#root.power_bloc = { add_leverage = { target = PREV value = -1000 } }
+			trigger_event = { id = german_unification.2 }
+			scope:brothers_war_winner = {
+				#scope:brothers_war_winner.power_bloc = { add_leverage = { target = PREV value = 1000 } } 
+				change_relations = {
+					country = PREV
+					value = 30
+				}
+				hidden_effect = {
+					set_secret_goal = {
+						country = PREV
+						secret_goal = befriend
+					}
+					set_secret_goal = {
+						country = ROOT
+						secret_goal = none
+					}
+				}
+			}
+		}
+	}
+}
+
+namespace = HJE_germany
+
+HJE_germany.3 = { #GER: Question of Austria (or equivalent)
+	type = country_event
+	placement = root
+	
+	title = HJE_germany.3.t
+	desc = HJE_germany.3.d
+	flavor = HJE_germany.3.f
+	
+	event_image = {
+		video = "gfx/event_pictures/europenorthamerica_capitalists_meeting.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/capitalists_meeting"
+
+	icon = "gfx/interface/icons/event_icons/event_default.dds"
+
+	duration = 3
+	
+	cooldown = ( months = 120 }
+	
+    trigger = {
+		OR = {
+			AND = {
+				exists = c:GER
+				c:GER = ROOT
+			}
+			AND = {
+				exists = c:NGF
+				c:NGF = ROOT
+				any_country = {
+					has_variable = ger_var	#AUS-HUNGARY
+				}
+			}
+		}
+		country_rank >= rank_value:major_power
+		NOT = { has_global_variable = ger_dual_alliance_event_globvar }
+		any_country = {
+			relations:root <= relations_threshold:cold
+			is_subject = no
+			country_rank >= rank_value:major_power
+			country_is_in_europe = yes
+			NOT = { is_diplomatic_play_enemy_of = ROOT }
+			OR = {
+				country_has_primary_culture = cu:north_german
+				country_has_primary_culture = cu:south_german
+			}
+		}
+		OR = {
+			num_alliances < 1
+		    has_technology_researched = multilateral_alliances
+		    NOT = {
+				any_country = {
+					country_rank >= rank_value:major_power
+					has_technology_researched = multilateral_alliances
+				}
+		    }
+		}
+	}
+
+	immediate = {
+		save_scope_as = kraut_scope
+		random_country = {
+			limit = {
+	    		is_subject = no
+	    		country_rank >= rank_value:major_power
+				country_is_in_europe = yes
+	    		NOT = { is_diplomatic_play_enemy_of = ROOT }
+				OR = {
+					country_has_primary_culture = cu:north_german
+					country_has_primary_culture = cu:south_german
+				}
+			}
+			set_variable = austro_german_alliance_junior_partner
+			save_scope_as = austria_scope
+		}
+	}
+
+	option = { #Propose the Alliance
+		name = HJE_germany.3.a
+		default_option = yes
+		ai_chance = { base = 1 }
+		scope:austria_scope = {
+			trigger_event = { id = HJE_germany.5 days = 15 popup = yes }
+		}
+        hidden_effect = {
+			set_secret_goal = {
+				country = scope:austria_scope
+				secret_goal = befriend
+			}
+        }
+	}
+	option = { #Their lands are rightfully German
+		name = HJE_germany.3.b
+		ai_chance = { base = 0 }
+		scope:austria_scope = {
+			trigger_event = { id = HJE_germany.4 days = 15 popup = yes }
+		}
+		every_state = {
+			limit = { 
+				NOT = { has_claim_by = ROOT }
+				NOT = { owner = ROOT }
+				OR = {
+					state_region = s:STATE_POMERANIA
+					state_region = s:STATE_ELBE
+					state_region = s:STATE_WESTPHALIA
+					state_region = s:STATE_ANHALT
+					state_region = s:STATE_RHINELAND
+					state_region = s:STATE_NORTH_RHINE
+					state_region = s:STATE_RUHR
+					state_region = s:STATE_SCHLESWIG_HOLSTEIN
+					state_region = s:STATE_HANNOVER
+					state_region = s:STATE_BRUNSWICK
+					state_region = s:STATE_SAXONY
+					state_region = s:STATE_HESSE
+					state_region = s:STATE_MECKLENBURG
+					state_region = s:STATE_SILESIA
+					state_region = s:STATE_WEST_PRUSSIA
+					state_region = s:STATE_EAST_PRUSSIA
+					state_region = s:STATE_POSEN
+					state_region = s:STATE_ALSACE_LORRAINE
+					state_region = s:STATE_WURTTEMBERG
+					state_region = s:STATE_BADEN
+					state_region = s:STATE_BAVARIA
+					state_region = s:STATE_FRANCONIA
+					state_region = s:STATE_BOHEMIA
+					state_region = s:STATE_MORAVIA
+					state_region = s:STATE_AUSTRIA
+					state_region = s:STATE_STYRIA
+					state_region = s:STATE_TYROL
+					state_region = s:STATE_SOUTH_TYROL
+					state_region = s:STATE_SLOVENIA
+				}
+			}
+			this.state_region = { add_claim = ROOT }
+		}
+        hidden_effect = {
+			set_secret_goal = {
+				country = scope:austria_scope
+				secret_goal = conquer
+			}
+        }
+	}
+}
+
+HJE_germany.4 = { #GER announces intention to unify Grosdeutschland
+	type = country_event
+	placement = ROOT
+
+	title = HJE_germany.4.t
+	desc = HJE_germany.4.d
+	flavor = HJE_germany.4.f
+
+	duration = 3
+
+	event_image = {
+		video = "gfx/event_pictures/unspecific_politicians_arguing.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/before_the_battle"
+
+	icon = "gfx/interface/icons/event_icons/event_map.dds"
+
+	trigger = {
+	}
+
+	immediate = {
+	}
+
+	option = {
+        name = HJE_germany.4.a
+		default_option = yes
+        change_relations = {
+            country = scope:kraut_scope
+            value = -150
+        }
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+HJE_germany.5 = { #Austria equivalent gets diplomatic envoy
+	type = country_event
+	placement = ROOT
+
+	title = HJE_germany.5.t
+	desc = HJE_germany.5.d
+	flavor = HJE_germany.5.f
+
+	duration = 3
+
+	event_image = {
+		video = "gfx/event_pictures/unspecific_signed_contract.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/rich_and_poor"
+
+	icon = "gfx/interface/icons/event_icons/event_default.dds"
+
+	trigger = {
+	}
+
+	immediate = {
+	}
+
+	option = { #Agree to the alliance
+		name = HJE_germany.5.a
+        ai_chance = { base = 1 }
+		default_option = yes
+        scope:kraut_scope = {
+			trigger_event = { id = HJE_germany.6 days = 5 popup = yes }
+        }
+		set_global_variable = {
+        	name = ger_dual_alliance_event_globvar
+        	days = 3650
+        }
+	}
+    option = { #Why would we ally ourselves with our inferiors?
+        name = HJE_germany.5.b
+        ai_chance = { base = 0 }
+        scope:kraut_scope = {
+			trigger_event = { id = HJE_germany.7 days = 5 popup = yes }
+        }
+    }
+}
+
+HJE_germany.6 = { #AUS agrees to Dual Alliance
+	type = country_event
+	placement = ROOT
+
+	title = HJE_germany.6.t
+	desc = HJE_germany.6.d
+	flavor = HJE_germany.6.f
+
+	event_image = {
+		video = "gfx/event_pictures/unspecific_signed_contract.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/rich_and_poor"
+
+	icon = "gfx/interface/icons/event_icons/event_default.dds"
+
+	duration = 3
+
+	trigger = {
+	}
+
+	immediate = {
+		random_country = {
+			limit = { has_variable = austro_german_alliance_junior_partner }
+			save_scope_as = austria_scope
+		}
+	}
+
+	option = {
+        name = HJE_germany.6.a
+		default_option = yes
+        change_relations = {
+            country = scope:austria_scope
+            value = 150
+        }
+        if = {
+        	limit = {
+	    		NOT = {
+	    			any_country = {
+	    				country_rank >= rank_value:major_power
+	    				has_technology_researched = multilateral_alliances
+	    			}
+	    		}
+        	}
+			add_technology_researched = multilateral_alliances
+			scope:austria_scope = { add_technology_researched = multilateral_alliances }
+        }
+		create_diplomatic_pact = {
+			country = scope:austria_scope
+			type = alliance
+		}
+        hidden_effect = {
+			set_mutual_secret_goal = {
+				country = scope:austria_scope
+				secret_goal = befriend
+			}
+        }
+		s:STATE_SCHLESWIG_HOLSTEIN = { remove_claim = scope:austria_scope }
+
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+HJE_germany.7 = { #AUS insults us for thinking we were a worthy ally
+	type = country_event
+	placement = ROOT
+
+	title = HJE_germany.7.t
+	desc = HJE_germany.7.d
+	flavor = HJE_germany.7.f
+
+	duration = 3
+
+	event_image = {
+		video = "gfx/event_pictures/unspecific_politicians_arguing.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/before_the_battle"
+
+	icon = "gfx/interface/icons/event_icons/event_map.dds"
+
+	trigger = {
+	}
+
+	immediate = {
+		random_country = {
+			limit = { has_variable = austro_german_alliance_junior_partner }
+			save_scope_as = austria_scope
+		}
+	}
+
+	option = {
+        name = HJE_germany.7.a
+		default_option = yes
+        change_relations = {
+            country = scope:austria_scope
+            value = -50
+        }
+        hidden_effect = {
+			set_mutual_secret_goal = {
+				country = scope:austria_scope
+				secret_goal = antagonize
+			}
+        }
+		ai_chance = {
+			base = 1
+		}
+	}
+}

@@ -1,0 +1,166 @@
+﻿HJ_italian_1848_revolutions = {
+	icon = "gfx/interface/icons/event_icons/event_protest.dds"
+
+	group = je_group_crises
+
+	is_shown_when_inactive = {
+		country_is_in_europe = yes
+		OR = {
+			country_has_primary_culture = cu:north_italian
+			country_has_primary_culture = cu:south_italian
+			calc_true_if = {
+				amount >= 2
+				any_scope_state = { state_region = s:STATE_LOMBARDY }
+				any_scope_state = { state_region = s:STATE_PIEDMONT }
+				any_scope_state = { state_region = s:STATE_UMBRIA }
+				any_scope_state = { state_region = s:STATE_CAMPANIA }
+				any_scope_state = { state_region = s:STATE_CALABRIA }
+				any_scope_state = { state_region = s:STATE_APULIA }
+				any_scope_state = { state_region = s:STATE_ABRUZZO }
+				any_scope_state = { state_region = s:STATE_SAVOY }
+				any_scope_state = { state_region = s:STATE_EMILIA }
+				any_scope_state = { state_region = s:STATE_TUSCANY }
+				any_scope_state = { state_region = s:STATE_ROMAGNA }
+				any_scope_state = { state_region = s:STATE_LAZIO }
+				any_scope_state = { state_region = s:STATE_VENETIA }
+				any_scope_state = { state_region = s:STATE_SICILY }
+			}
+		}
+	}
+
+	possible = {
+		year >= 1846
+		any_country = {
+			OR = {
+				is_adjacent_to_country = ROOT
+				THIS = ROOT
+			}
+			OR = {
+				has_technology_researched = nationalism
+				has_journal_entry = je_first_presidential_election 		#france had a revolution
+				has_journal_entry = je_future_of_the_republic 			#france had a revolution 
+				has_journal_entry = je_springtime_of_the_peoples 		#random neighbour had springtime (very unlikely ROOT has this journal)
+				has_journal_entry = HJ_italian_1848_revolutions 		#italian neighbour had a italy revolution
+				has_journal_entry = je_tge_hungarianrevolution	 		#italian neighbour had a hungary revolution
+			}
+		}
+	}
+
+	immediate = {
+		if = {
+			limit = { NOT = { has_global_variable = ITA_1848_revolutions_happened } }
+			set_global_variable = ITA_1848_revolutions_happened
+		}
+		every_scope_state = {
+			limit = {
+				is_capital = no
+				OR = {
+					cu:north_italian = { has_homeland = PREV }
+					cu:south_italian = { has_homeland = PREV }
+				}
+			}
+			add_radicals_in_state = {
+				value = 0.2
+				culture = cu:north_italian
+			}
+			add_radicals_in_state = {
+				value = 0.2
+				culture = cu:south_italian
+			}
+		}
+	}
+
+	on_monthly_pulse = {
+		effect = {
+			if = {
+				limit = {
+					is_player = no
+					any_country = {
+						has_war_with = ROOT
+						has_variable = ITA_current_favourite_to_unify
+					}
+					any_diplomatic_play = {
+						NOT = { any_scope_play_involved = { THIS = ROOT } }
+						OR = {
+							AND = {
+								exists = c:RSI
+								initiator_is = c:RSI
+							}
+							AND = {
+								exists = c:RPA
+								initiator_is = c:RPA
+							}
+						}
+					}
+				}
+				every_diplomatic_play = {
+					limit = {
+						NOT = { any_scope_play_involved = { THIS = ROOT } }
+						OR = {
+							AND = {
+								exists = c:RSI
+								initiator_is = c:RSI
+							}
+							AND = {
+								exists = c:RPA
+								initiator_is = c:RPA
+							}
+						}
+					}
+					add_target_backers = { ROOT }
+				}
+			}
+			if = {
+				limit = { 
+					year >= 1850
+					is_at_war = no
+				}
+				set_variable = italian_1848_revolutions_has_ended_in_THIS
+			}
+		}
+		random_events = {
+			100 = 0
+
+			60 = HJE_italy.4		#Constitution and Unify Italy promise
+			3 = HJE_italy.5			#Same as above but for anyone who matters that isn't Sardinia-Piedmont (for fun)
+			60 = HJE_italy.6		#Neighboring non-italian owned italian state wants to join us (triggers first war of independence)
+			40 = HJE_italy.2		#Sicilian Republic
+			40 = HJE_italy.3		#Roman Republic
+		}
+	}
+
+	complete = {
+		OR = {
+			custom_tooltip = {
+				text = italian_1848_revolutions_has_ended_in_THIS_tt
+				has_variable = italian_1848_revolutions_has_ended_in_THIS
+			}
+			year >= 1851
+		}	
+	}
+
+	on_complete = {
+		every_scope_state = {
+			limit = {
+				OR = {
+					cu:north_italian = { has_homeland = PREV }
+					cu:south_italian = { has_homeland = PREV }
+				}
+			}
+			add_radicals_in_state = {
+				value = -0.15
+				culture = cu:north_italian
+			}
+			add_radicals_in_state = {
+				value = -0.15
+				culture = cu:south_italian
+			}
+		}
+	}
+
+	weight = 10000
+	should_be_pinned_by_default = yes
+
+	inheritable = no
+}
+

@@ -1,0 +1,2043 @@
+﻿namespace = HJE_britain
+
+HJE_britain.4 = {
+	type = country_event
+	placement = c:GBR
+	title = HJE_britain.4.t
+	desc = HJE_britain.4.d
+	flavor = HJE_britain.4.f
+
+	duration = 3
+
+	is_popup = yes
+
+	event_image = {
+		video = "gfx/event_pictures/europenorthamerica_london_center.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/unspecific/signed_contract"
+
+	icon = "gfx/interface/icons/event_icons/event_map.dds"
+
+	trigger = {
+	}
+	
+	immediate = {
+		create_country = {
+			tag = NZL 
+			origin = c:NSW
+			state = s:STATE_NORTH_ISLAND.region_state:NSW
+			state = s:STATE_SOUTH_ISLAND.region_state:NSW
+			state = s:STATE_NORTH_ISLAND.region_state:WAS
+			state = s:STATE_SOUTH_ISLAND.region_state:WAS
+			on_created = { set_variable = new_zealand_variable }
+		}
+		c:GBR = {
+			create_diplomatic_pact = {
+				country = c:NZL
+				type = dominion 	#not historical, but for some reason NZL won't accept colonial government type, but will become dominion government
+			}
+		}
+		s:STATE_NORTH_ISLAND = { 
+			add_claim = c:NZL
+		}
+		s:STATE_SOUTH_ISLAND = { 
+			add_claim = c:NZL
+		}
+		random_country = {
+			limit = { has_variable = new_zealand_variable }
+			save_scope_as = new_zealand_scope
+		}
+		every_country = {
+			limit = {
+				is_subject_of = c:GBR
+				any_scope_state = {
+					is_capital = yes
+					OR = {
+						state_region = s:STATE_NORTH_ISLAND
+						state_region = s:STATE_SOUTH_ISLAND
+					}
+				}
+			}
+			scope:new_zealand_scope = { annex = PREV }
+		}
+	}
+
+	option = {
+		name = HJE_britain.4.a
+		default_option = yes
+		ai_chance = { base = 1 }
+		hidden_effect = { trigger_event = { id = HJE_britain.5 days = 10 } }
+		c:GBR = {
+			change_relations = {
+				country = c:NSW
+				value = 10
+			}
+		}
+	}
+
+	option = {
+		name = HJE_britain.4.b
+		ai_chance = { base = 0 }
+		change_relations = {
+			country = c:GBR
+			value = -50
+		}
+		c:GBR = {
+			change_relations = {
+				country = c:NSW
+				value = -25
+			}
+		}
+	}
+
+	option = {
+		name = HJE_britain.4.c
+		trigger = { is_player = yes }
+		ai_chance = { base = 0 }
+		random_country = {
+			limit = { has_variable = new_zealand_variable }
+			ROOT = { play_as = PREV }
+		}
+	}		
+}
+
+HJE_britain.5 = {
+	type = country_event
+	hidden = yes
+	immediate = {
+		s:STATE_NORTH_ISLAND = { 
+			remove_claim = c:NSW
+			remove_claim = c:WAS
+		}
+		s:STATE_SOUTH_ISLAND = { 
+			remove_claim = c:NSW
+			remove_claim = c:WAS
+		}
+	}
+}
+
+HJE_britain.5001 = {
+	type = country_event
+	placement = ROOT
+	title = HJE_britain.6.t
+	desc = HJE_britain.6.d
+	flavor = HJE_britain.6.f
+
+	duration = 3
+
+	is_popup = yes
+
+	event_image = {
+		video = "gfx/event_pictures/europenorthamerica_rich_and_poor.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/rich_and_poor"
+
+	icon = "gfx/interface/icons/event_icons/event_protest.dds"
+
+	trigger = {
+		year >= 1843
+		year < 1848
+		has_technology_researched = international_trade
+		NOT = { has_global_variable = potato_blight_began_variable }
+		OR = {
+			AND = {
+				exists = c:USA
+				c:USA = ROOT
+			}
+			AND = {
+				NOT = { exists = c:USA }
+				NAND = {
+					exists = c:AUS 	#they have enough to worry about in the 1840s
+					c:AUS = THIS
+				}
+				any_scope_state = {
+					OR = {
+						cu:irish = { has_homeland = PREV }
+						AND = {
+							is_incorporated = yes
+							any_scope_building = {
+								occupancy > 0.75
+								has_active_production_method = pm_potatoes
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	immediate = {
+		set_global_variable = potato_blight_began_variable
+		set_variable = already_has_blight_variable
+		random_country = {
+			limit = {
+				has_technology_researched = international_trade
+				NOT = { has_variable = already_has_blight_variable }
+				NAND = {
+					exists = c:AUS 	#they have enough to worry about in the 1840s
+					c:AUS = THIS
+				}
+				any_scope_state = {
+					OR = {
+						cu:irish = { has_homeland = PREV }
+						AND = {
+							is_incorporated = yes
+							any_scope_building = {
+								occupancy > 0.75
+								has_active_production_method = pm_potatoes
+							}
+						}
+					}
+				}
+			}
+			trigger_event = { id = HJE_britain.6 days = 45 }
+		}
+	}
+
+	option = {
+		name = HJE_britain.6.b
+		default_option = yes
+		ai_chance = { base = 2 }
+		add_modifier = {
+			name = potato_blight_country_modifier
+			months = 60
+		}
+		every_scope_state = {
+			limit = {
+				OR = {
+					cu:irish = { has_homeland = PREV }
+					AND = {
+						is_incorporated = yes
+						any_scope_building = {
+							occupancy > 0.75
+							has_active_production_method = pm_potatoes
+						}
+					}
+				}
+			}
+			add_modifier = {
+				name = potato_blight_state_modifier
+				months = 60
+			}
+		}
+	}
+
+	option = {
+		name = HJE_britain.6.c
+		ai_chance = { base = 1 }
+		add_modifier = {
+			name = potato_blight_less_country_modifier
+			months = 60
+		}
+		every_scope_state = {
+			limit = {
+				OR = {
+					cu:irish = { has_homeland = PREV }
+					AND = {
+						is_incorporated = yes
+						any_scope_building = {
+							occupancy > 0.75
+							has_active_production_method = pm_potatoes
+						}
+					}
+				}
+			}
+			add_modifier = {
+				name = potato_blight_less_state_modifier
+				months = 60
+			}
+		}
+	}
+}
+
+HJE_britain.6 = {
+	type = country_event
+	placement = scope:random_blight_state_scope
+	title = HJE_britain.6.t
+	desc = HJE_britain.6.d
+	flavor = HJE_britain.6.f
+
+	duration = 3
+
+	is_popup = yes
+
+	event_image = {
+		video = "gfx/event_pictures/europenorthamerica_rich_and_poor.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/rich_and_poor"
+
+	icon = "gfx/interface/icons/event_icons/event_protest.dds"
+
+	trigger = {
+		has_technology_researched = international_trade
+		year >= 1843
+		year < 1848
+		NOT = { has_variable = already_has_blight_variable }
+		NAND = {
+			exists = c:AUS 	#they have enough to worry about in the 1840s
+			c:AUS = THIS
+		}
+		any_scope_state = {
+			OR = {
+				cu:irish = { has_homeland = PREV }
+				AND = {
+					is_incorporated = yes
+					any_scope_building = {
+						occupancy > 0.75
+						has_active_production_method = pm_potatoes
+					}
+				}
+			}
+		}
+	}
+	
+	immediate = {
+		set_variable = already_has_blight_variable
+		random_scope_state = {
+			limit = {
+				OR = {
+					cu:irish = { has_homeland = PREV }
+					AND = {
+						is_incorporated = yes
+						any_scope_building = {
+							occupancy > 0.75
+							has_active_production_method = pm_potatoes
+						}
+					}
+				}
+			}
+			save_scope_as = random_blight_state_scope
+		}
+		random_country = {
+			limit = {
+				has_technology_researched = international_trade
+				NOT = { has_variable = already_has_blight_variable }
+				NAND = {
+					exists = c:AUS 	#they have enough to worry about in the 1840s
+					c:AUS = THIS
+				}
+				any_scope_state = {
+					OR = {
+						cu:irish = { has_homeland = PREV }
+						AND = {
+							is_incorporated = yes
+							any_scope_building = {
+								occupancy > 0.75
+								has_active_production_method = pm_potatoes
+							}
+						}
+					}
+				}
+			}
+			trigger_event = { id = HJE_britain.6 days = 45 }
+		}
+	}
+
+	option = {
+		name = HJE_britain.6.a
+		default_option = yes
+		ai_chance = { base = 97 }
+		trigger = {
+			exists = c:GBR
+			c:GBR = THIS
+			any_scope_state = {
+				cu:irish = { has_homeland = PREV }
+			}
+		}
+		add_modifier = {
+			name = potato_blight_country_modifier
+			months = 60
+		}
+		hidden_effect = {
+			random_list = {
+				95 = { trigger_event = { id = HJE_britain.7 days = 90 } }
+				5 = { trigger_event = { id = HJE_britain.8 days = 90 } }
+			}
+		}
+	}
+
+	option = {
+		name = HJE_britain.6.b
+		ai_chance = { base = 2 }
+		add_modifier = {
+			name = potato_blight_country_modifier
+			months = 60
+		}
+		every_scope_state = {
+			limit = {
+				OR = {
+					cu:irish = { has_homeland = PREV }
+					AND = {
+						is_incorporated = yes
+						any_scope_building = {
+							occupancy > 0.75
+							has_active_production_method = pm_potatoes
+						}
+					}
+				}
+			}
+			add_modifier = {
+				name = potato_blight_state_modifier
+				months = 60
+			}
+		}
+	}
+
+	option = {
+		name = HJE_britain.6.c
+		ai_chance = { base = 1 }
+		add_modifier = {
+			name = potato_blight_less_country_modifier
+			months = 60
+		}
+		every_scope_state = {
+			limit = {
+				OR = {
+					cu:irish = { has_homeland = PREV }
+					AND = {
+						is_incorporated = yes
+						any_scope_building = {
+							occupancy > 0.75
+							has_active_production_method = pm_potatoes
+						}
+					}
+				}
+			}
+			add_modifier = {
+				name = potato_blight_less_state_modifier
+				months = 60
+			}
+		}
+	}
+}
+
+HJE_britain.7 = {
+	type = country_event
+	placement = scope:random_irish_famine_state_scope
+	title = HJE_britain.7.t
+	desc = HJE_britain.7.d
+	flavor = HJE_britain.7.f
+
+	duration = 3
+
+	is_popup = yes
+
+	event_image = {
+		video = "gfx/event_pictures/europenorthamerica_russian_serfs.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/russian_serfs"
+
+	icon = "gfx/interface/icons/event_icons/event_skull.dds"
+
+	trigger = {
+	}
+	
+	immediate = {
+		random_scope_state = {
+			limit = { cu:irish = { has_homeland = PREV } }
+			save_scope_as = random_irish_famine_state_scope
+		}
+	}
+
+	option = {
+		name = HJE_britain.7.a
+		default_option = yes
+		ai_chance = { base = 1 }
+		every_scope_state = {
+			limit = {
+				OR = {
+					cu:irish = { has_homeland = PREV }
+					AND = {
+						is_incorporated = yes
+						any_scope_building = {
+							occupancy > 0.75
+							has_active_production_method = pm_potatoes
+						}
+					}
+				}
+			}
+			add_modifier = {
+				name = potato_famine_state_modifier
+				months = 60
+			}
+		}
+	}
+}
+
+HJE_britain.8 = {
+	type = country_event
+	placement = scope:random_irish_famine_state_scope
+	title = HJE_britain.8.t
+	desc = HJE_britain.8.d
+	flavor = HJE_britain.8.f
+
+	duration = 3
+
+	is_popup = yes
+
+	event_image = {
+		video = "gfx/event_pictures/europenorthamerica_london_center.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/unspecific/signed_contract"
+
+	icon = "gfx/interface/icons/event_icons/event_skull.dds"
+
+	trigger = {
+	}
+	
+	immediate = {
+		random_scope_state = {
+			limit = { cu:irish = { has_homeland = PREV } }
+			save_scope_as = random_irish_famine_state_scope
+		}
+	}
+
+	option = {
+		name = HJE_britain.8.a
+		default_option = yes
+		ai_chance = { base = 1 }
+		every_scope_state = {
+			limit = {
+				OR = {
+					cu:irish = { has_homeland = PREV }
+					AND = {
+						is_incorporated = yes
+						any_scope_building = {
+							occupancy > 0.75
+							has_active_production_method = pm_potatoes
+						}
+					}
+				}
+			}
+			add_modifier = {
+				name = potato_reforms_state_modifier
+				months = 60
+			}
+		}
+	}
+}
+
+# A Great Game is Afoot (Britain)
+HJE_britain.9 = {
+	type = country_event
+	placement = root
+	title = HJE_britain.9.t
+	desc = HJE_britain.9.d
+	flavor = HJE_britain.9.f
+
+	duration = 3
+
+	event_image = {
+		video = "gfx/event_pictures/europenorthamerica_capitalists_meeting.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/capitalists_meeting"
+
+	icon = "gfx/interface/icons/event_icons/event_military.dds"
+	
+	trigger = {
+	}
+
+	option = {
+		name = HJE_britain.9.a
+		add_journal_entry = { type = HJ_britain_the_great_game }
+	}
+}
+
+# Victory in the Great Game (Britain)
+HJE_britain.10 = {
+	type = country_event
+	placement = root
+	title = HJE_britain.10.t
+	desc = HJE_britain.10.d
+	flavor = HJE_britain.10.f
+
+	icon = "gfx/interface/icons/event_icons/event_scales.dds"
+
+	duration = 3
+
+	event_image = {
+		video = "gfx/event_pictures/europenorthamerica_london_center.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/london_center"
+
+	trigger = {
+	}
+
+	immediate = {
+		set_global_variable = GBR_won_the_great_game
+		set_mutual_secret_goal = {
+			country = c:RUS
+			secret_goal = none
+		}
+		change_relations = {
+			country = c:RUS
+			value = 40
+		}
+		c:RUS = {
+			change_relations = {
+				country = ROOT
+				value = 40
+			}
+		}
+	}
+
+	option = {
+		name = HJE_britain.10.a
+		default_option = yes
+		add_modifier = {
+			name = modifier_gbr_great_game_won
+			months = -1
+		}
+		if = {
+			limit = { 
+				exists = c:PER 
+				c:PER = {
+					OR = {
+						is_subject = no
+						is_subject_of = c:RUS
+					}
+				}
+			}
+			create_diplomatic_pact = {
+				country = c:PER
+				type = dominion
+			}
+		}
+		if = {
+			limit = { 
+				exists = c:AFG 
+				c:AFG = {
+					OR = {
+						is_subject = no
+						is_subject_of = c:RUS
+					}
+				}
+			}
+			create_diplomatic_pact = {
+				country = c:AFG
+				type = dominion
+			}
+		}
+		else_if = {
+			limit = {
+				any_country = {
+					is_afghan_nation = yes
+					OR = {
+						is_subject = no
+						is_subject_of = c:GBR
+					}
+				}
+			}
+			create_diplomatic_pact = {
+				country = PREV
+				type = dominion
+			}
+		}
+		if = {
+			limit = { exists = c:RUS }
+			c:RUS = {
+				every_subject_or_below = {
+					limit = {
+						OR = {
+							country_is_in_central_asia = yes
+							country_is_in_india = yes
+						}
+					}
+					make_independent = yes
+				}
+			}
+		}
+		every_country = {
+			limit = {
+				NOT = { THIS = c:RUS }
+				country_is_in_central_asia = yes
+				country_rank < rank_value:major_power
+				is_subject = no
+			}
+			ROOT = {
+				create_diplomatic_pact = {
+					country = PREV
+					type = protectorate
+				}
+			}
+		}
+		every_state = {
+			limit = { 
+				has_claim_by = c:RUS
+				OR = {
+					state_is_in_central_asia = yes
+					state_is_in_india = yes
+				}
+			}
+			this.state_region = { remove_claim = c:RUS }
+		}
+	}
+}
+
+# The Anglo-Russian Agreement
+HJE_britain.11 = {
+	type = country_event
+	placement = root
+	title = HJE_britain.11.t
+	desc = HJE_britain.11.d
+	flavor = HJE_britain.11.f
+
+	icon = "gfx/interface/icons/event_icons/event_scales.dds"
+
+	duration = 3
+
+	event_image = {
+		video = "gfx/event_pictures/europenorthamerica_capitalists_meeting.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/capitalists_meeting"
+
+	trigger = {
+	}
+
+	immediate = {
+		set_global_variable = TGG_anglo_russian_agreement
+		if = {
+			limit = { NOT = { has_global_variable = TGG_both_nations_got_anglo_russian_agreement_event } }
+			set_mutual_secret_goal = {
+				country = c:RUS
+				secret_goal = reconcile
+			}
+			set_secret_goal = {
+				country = c:PER
+				secret_goal = protect
+			}
+			set_secret_goal = {
+				country = c:AFG
+				secret_goal = protect
+			}
+			change_relations = {
+				country = c:RUS
+				value = 40
+			}
+			c:RUS = {
+				set_secret_goal = {
+					country = c:PER
+					secret_goal = protect
+				}
+				set_secret_goal = {
+					country = c:AFG
+					secret_goal = protect
+				}
+				change_relations = {
+					country = ROOT
+					value = 40
+				}
+			}
+		}
+	}
+
+	option = {
+		name = HJE_britain.11.a
+		default_option = yes
+		if = {
+			limit = { NOT = { has_global_variable = TGG_both_nations_got_anglo_russian_agreement_event } }
+			set_global_variable = TGG_both_nations_got_anglo_russian_agreement_event
+			c:RUS = { 
+				trigger_event = { id = HJE_britain.11 days = 1 } 
+			}
+			if = {
+				limit = { 
+					NOT = { exists = c:PER } 
+					any_country = {
+						OR = {
+							AND = {
+								exists = c:GBR
+								OR = {
+									c:GBR = THIS
+									is_subject_of = c:GBR
+								}
+							}
+							AND = {
+								exists = c:RUS
+								OR = {
+									c:RUS = THIS
+									is_subject_of = c:RUS
+								}
+							}
+						}
+						any_scope_state = {
+							OR = {
+								state_region = s:STATE_FARS
+								state_region = s:STATE_LARISTAN
+								state_region = s:STATE_IRAKAJEMI
+								state_region = s:STATE_ISFAHAN
+								state_region = s:STATE_KERMAN
+								state_region = s:STATE_KHORASAN
+								state_region = s:STATE_LURISTAN	
+								state_region = s:STATE_PERSIAN_KURDISTAN	
+								state_region = s:STATE_SEMNAN
+								state_region = s:STATE_TABRIZ	
+								state_region = s:STATE_URMIA
+							}
+						}
+					}
+				}
+				random_country = {
+					limit = {
+						OR = {
+							AND = {
+								exists = c:GBR
+								OR = {
+									c:GBR = THIS
+									is_subject_of = c:GBR
+								}
+							}
+							AND = {
+								exists = c:RUS
+								OR = {
+									c:RUS = THIS
+									is_subject_of = c:RUS
+								}
+							}
+						}
+						any_scope_state = {
+							OR = {
+								state_region = s:STATE_FARS
+								state_region = s:STATE_LARISTAN
+								state_region = s:STATE_IRAKAJEMI
+								state_region = s:STATE_ISFAHAN
+								state_region = s:STATE_KERMAN
+								state_region = s:STATE_KHORASAN
+								state_region = s:STATE_LURISTAN	
+								state_region = s:STATE_PERSIAN_KURDISTAN	
+								state_region = s:STATE_SEMNAN
+								state_region = s:STATE_TABRIZ	
+								state_region = s:STATE_URMIA
+							}
+						}
+					}
+					random_scope_state = {
+						limit = {
+							OR = {
+								state_region = s:STATE_FARS
+								state_region = s:STATE_LARISTAN
+								state_region = s:STATE_IRAKAJEMI
+								state_region = s:STATE_ISFAHAN
+								state_region = s:STATE_KERMAN
+								state_region = s:STATE_KHORASAN
+								state_region = s:STATE_LURISTAN	
+								state_region = s:STATE_PERSIAN_KURDISTAN	
+								state_region = s:STATE_SEMNAN
+								state_region = s:STATE_TABRIZ	
+								state_region = s:STATE_URMIA
+							}
+						}
+						save_scope_as = persia_spawn
+					}
+					create_country = {
+						tag = PER
+						origin = PREV
+						state = scope:persia_spawn
+						on_created = { 
+							set_variable = tgg_persia_variable
+						}
+					}
+				}
+			}
+			else = {
+				c:PER = { set_variable = tgg_persia_variable }
+			}
+			random_country = {
+				limit = { has_variable = tgg_persia_variable }
+				save_scope_as = persia_scope
+			}
+			every_state = {
+				limit = {
+					owner = {
+						OR = {
+							AND = {
+								exists = c:GBR
+								OR = {
+									c:GBR = THIS
+									is_subject_of = c:GBR
+								}
+							}
+							AND = {
+								exists = c:RUS
+								OR = {
+									c:RUS = THIS
+									is_subject_of = c:RUS
+								}
+							}
+						}
+					}
+					OR = {
+						state_region = s:STATE_FARS
+						state_region = s:STATE_LARISTAN
+						state_region = s:STATE_IRAKAJEMI
+						state_region = s:STATE_ISFAHAN
+						state_region = s:STATE_KERMAN
+						state_region = s:STATE_KHORASAN
+						state_region = s:STATE_LURISTAN	
+						state_region = s:STATE_PERSIAN_KURDISTAN	
+						state_region = s:STATE_SEMNAN
+						state_region = s:STATE_TABRIZ	
+						state_region = s:STATE_URMIA
+					}
+				}
+				set_state_owner = scope:persia_scope
+			}
+			if = {
+				limit = {
+					scope:persia_scope = {
+						is_subject = yes
+						any_overlord_or_above = {
+							OR = {
+								NOT = { is_country_type = recognized }
+								AND = {
+									exists = c:GBR
+									OR = {
+										c:GBR = THIS
+										is_subject_of = c:GBR
+									}
+								}
+								AND = {
+									exists = c:RUS
+									OR = {
+										c:RUS = THIS
+										is_subject_of = c:RUS
+									}
+								}
+							}
+						}
+					}
+				}
+				scope:persia_scope = {
+					make_independent = yes
+				}
+			}
+			c:RUS = {
+				create_diplomatic_pact = {
+					country = scope:persia_scope
+					type = protectorate
+				}
+			}
+			c:GBR = {
+				add_modifier = {
+					name = exploiting_southern_persia_modifier
+					months = -1
+				}
+			}
+			every_state = {
+				limit = {
+					OR = {
+						state_region = s:STATE_SISTAN
+						state_region = s:STATE_LARISTAN
+						state_region = s:STATE_FARS
+						state_region = s:STATE_KHUZESTAN
+					}
+				}
+				add_modifier = {
+					name = british_economic_zone_state_modifier
+					months = -1
+				}
+			}
+			if = {
+				limit = { 
+					NOT = { exists = c:AFG } 
+					any_country = {
+						OR = {
+							AND = {
+								exists = c:GBR
+								OR = {
+									c:GBR = THIS
+									is_subject_of = c:GBR
+								}
+							}
+							AND = {
+								exists = c:RUS
+								OR = {
+									c:RUS = THIS
+									is_subject_of = c:RUS
+								}
+							}
+						}
+						is_afghan_nation = yes
+					}
+				}
+				random_country = {
+					limit = {
+						OR = {
+							AND = {
+								exists = c:GBR
+								OR = {
+									c:GBR = THIS
+									is_subject_of = c:GBR
+								}
+							}
+							AND = {
+								exists = c:RUS
+								OR = {
+									c:RUS = THIS
+									is_subject_of = c:RUS
+								}
+							}
+						}
+						is_afghan_nation = yes
+					}
+					random_scope_state = {
+						save_scope_as = afghan_spawn
+					}
+					create_country = {
+						tag = AFG
+						origin = PREV
+						state = scope:afghan_spawn
+						on_created = { 
+							set_variable = tgg_afghan_variable
+						}
+					}
+				}
+			}
+			else = {
+				c:AFG = { set_variable = tgg_afghan_variable }
+			}
+			random_country = {
+				limit = { has_variable = tgg_afghan_variable }
+				save_scope_as = afghanistan_scope
+			}
+			every_state = {
+				limit = {
+					owner = {
+						OR = {
+							AND = {
+								exists = c:GBR
+								AND = { is_subject_of = c:GBR is_afghan_nation = yes }
+							}
+							AND = {
+								exists = c:RUS
+								AND = { is_subject_of = c:RUS is_afghan_nation = yes }
+							}
+						}
+					}
+				}
+				set_state_owner = scope:afghanistan_scope
+			}
+			if = {
+				limit = {
+					scope:afghanistan_scope = {
+						is_subject = yes
+						any_overlord_or_above = {
+							OR = {
+								NOT = { is_country_type = recognized }
+								AND = {
+									exists = c:GBR
+									OR = {
+										c:GBR = THIS
+										is_subject_of = c:GBR
+									}
+								}
+								AND = {
+									exists = c:RUS
+									OR = {
+										c:RUS = THIS
+										is_subject_of = c:RUS
+									}
+								}
+							}
+						}
+					}
+				}
+				scope:afghanistan_scope = {
+					make_independent = yes
+				}
+			}
+			c:GBR = {
+				create_diplomatic_pact = {
+					country = scope:afghanistan_scope
+					type = protectorate
+				}
+			}
+			every_state = {
+				limit = {
+					state_region = s:STATE_TAJIKISTAN
+					NOT = {
+						owner = {
+							exists = c:RUS
+							c:RUS = THIS
+						}
+					}
+				}
+				set_state_owner = c:RUS
+			}
+			s:STATE_TAJIKISTAN = {
+				remove_claim = c:RUS
+				set_owner_of_provinces = {
+					country = c:AFG
+					provinces = {
+						x596A90
+						xCA3319
+						xE1BF87
+						x4E989A
+						x68146B
+					}
+				}
+			}
+		}
+		else = {
+			show_as_tooltip = {
+				c:PER = { make_independent = yes }
+				c:RUS = {
+					create_diplomatic_pact = {
+						country = c:PER
+						type = protectorate
+					}
+				}
+				c:GBR = {
+					add_modifier = {
+						name = exploiting_southern_persia_modifier
+						months = -1
+					}
+				}
+				every_state = {
+					limit = {
+						OR = {
+							state_region = s:STATE_SISTAN
+							state_region = s:STATE_LARISTAN
+							state_region = s:STATE_FARS
+							state_region = s:STATE_KHUZESTAN
+						}
+					}
+					add_modifier = {
+						name = british_economic_zone_state_modifier
+						months = -1
+					}
+				}
+				c:AFG = { make_independent = yes }
+				c:GBR = {
+					create_diplomatic_pact = {
+						country = c:AFG
+						type = protectorate
+					}
+				}
+				every_state = {
+					limit = {
+						state_region = s:STATE_TAJIKISTAN
+						NOT = {
+							owner = {
+								exists = c:RUS
+								c:RUS = THIS
+							}
+						}
+					}
+					set_state_owner = c:RUS
+				}
+				s:STATE_TAJIKISTAN = {
+					remove_claim = c:RUS
+					set_owner_of_provinces = {
+						country = c:AFG
+						provinces = {
+							x596A90
+							xCA3319
+							xE1BF87
+							x4E989A
+							x68146B
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+HJE_britain.12 = {
+	type = country_event
+	placement = scope:tgg_requester
+	title = HJE_britain.12.t
+	desc = HJE_britain.12.d
+	flavor = HJE_britain.12.f
+
+	duration = 3
+
+	event_image = {
+		video = "gfx/event_pictures/unspecific_politicians_arguing.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/before_the_battle"
+
+	icon = "gfx/interface/icons/event_icons/event_map.dds"
+
+	trigger = {
+	}
+	
+	immediate = {
+		random_country = {
+			limit = { has_variable = tgg_victim }
+			save_scope_as = tgg_requester
+		}
+	}
+
+	option = {
+		name = HJE_britain.12.a
+		default_option = yes
+		ai_chance = {
+			base = 1
+		}
+
+		set_strategy = ai_strategy_maintain_power_balance
+		add_modifier = {
+			name = veiled_influence
+			months = short_modifier_time
+		}
+		every_country = {
+			limit = { is_diplomatic_play_enemy_of = scope:tgg_requester }
+			change_relations = {
+				country = ROOT
+				value = -10
+			}
+		}
+        every_diplomatic_play = {
+			limit = {
+				initiator_is = scope:tgg_requester
+				any_country = {
+					NOT = { THIS = ROOT }
+					is_diplomatic_play_enemy_of = scope:tgg_requester
+					OR = {
+						AND = {
+							exists = c:GBR
+							c:GBR = THIS
+						}
+						AND = {
+							exists = c:RUS
+							c:RUS = THIS
+						}
+					}
+				}
+			}
+			add_initiator_backers = { ROOT }
+			add_escalation = 25
+		}
+        every_diplomatic_play = {
+			limit = {
+				target_is = scope:tgg_requester
+				any_country = {
+					NOT = { THIS = ROOT }
+					is_diplomatic_play_enemy_of = scope:tgg_requester
+					OR = {
+						AND = {
+							exists = c:GBR
+							c:GBR = THIS
+						}
+						AND = {
+							exists = c:RUS
+							c:RUS = THIS
+						}
+					}
+				}
+			}
+			add_target_backers = { ROOT }
+			add_escalation = 25
+		}
+		scope:tgg_requester = {
+			add_modifier = {
+				name = working_with_the_great_powers
+				months = normal_modifier_time
+			}
+			change_relations = {
+				country = ROOT
+				value = 15
+			}
+		}
+		scope:tgg_requester = {
+			remove_variable = tgg_victim
+		}
+	}
+	option = {
+		name = HJE_britain.12.b
+		ai_chance = {
+			base = 0
+		}
+
+		add_modifier = {
+			name = withdrew_from_colonial_incident
+			months = long_modifier_time
+		}
+		scope:tgg_requester = {
+			remove_variable = tgg_victim
+			change_relations = {
+				country = ROOT
+				value = -15
+			}
+		}
+	}	
+}
+
+HJE_britain.13 = {			 #Demand Russia back down in war against the Ottomans or face a coalition
+	type = country_event
+	placement = c:RUS
+	title = HJE_britain.13.t
+	flavor = HJE_britain.13.f
+	desc = HJE_britain.13.d
+
+	duration = 3
+
+	is_popup = yes
+
+	event_image = {
+		video = "gfx/event_pictures/unspecific_military_parade.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/before_the_battle"
+
+	icon = "gfx/interface/icons/event_icons/event_map.dds"
+
+	trigger = {
+		NOT = { has_global_variable = TGG_crimean_war_has_escalated }
+		NOT = { has_global_variable = TGG_crimean_war_is_over }
+		c:RUS = { has_variable = had_crimean_war_claims_event }
+		any_country = {
+			NOT = { THIS = ROOT }
+			exists = c:RUS
+			is_diplomatic_play_enemy_of = c:RUS
+			NOT = { is_diplomatic_play_enemy_of = ROOT }
+			any_scope_state = { 
+				state_region = s:STATE_EASTERN_THRACE 
+				is_target_of_wargoal = c:RUS
+			}
+		}
+	}
+	
+	immediate = {
+		random_country = {
+			limit = {
+				NOT = { THIS = ROOT }
+				exists = c:RUS
+				is_diplomatic_play_enemy_of = c:RUS
+				NOT = { is_diplomatic_play_enemy_of = ROOT }
+				any_scope_state = { 
+					state_region = s:STATE_EASTERN_THRACE 
+					is_target_of_wargoal = c:RUS
+				}
+			}
+			save_scope_as = tgg_cw_country_turkey_scope
+		}
+	}
+
+	option = {
+		name = HJE_britain.13.a
+		default_option = yes
+		ai_chance = 100
+
+		c:RUS = { trigger_event = { id = HJE_britain.14 days = 5 } }
+	}
+
+	option = {
+		name = HJE_britain.13.b
+		ai_chance = 0
+		add_modifier = {
+			name = withdrew_from_colonial_incident
+			months = normal_modifier_time
+		}
+	}		
+}
+
+HJE_britain.14 = {
+	type = country_event
+	placement = c:GBR
+	title = HJE_britain.14.t
+	flavor = HJE_britain.14.f
+	desc = HJE_britain.14.d
+
+	duration = 3
+
+	is_popup = yes
+
+	event_image = {
+		video = "gfx/event_pictures/unspecific_politicians_arguing.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/before_the_battle"
+
+	icon = "gfx/interface/icons/event_icons/event_map.dds"
+
+	trigger = {
+	}
+	
+	immediate = {
+		save_scope_as = root_scope
+		random_country = {
+			limit = {
+				exists = c:GBR
+				NOT = { THIS = c:GBR }
+				is_diplomatic_play_enemy_of = ROOT
+				any_scope_state = { 
+					state_region = s:STATE_EASTERN_THRACE 
+					is_target_of_wargoal = c:RUS
+				}
+			}
+			save_scope_as = tgg_cw_country_turkey_scope
+		}
+		random_diplomatic_play = {
+			limit = {
+				is_war = yes
+				any_scope_play_involved = {
+					THIS = scope:tgg_cw_country_turkey_scope
+					is_diplomatic_play_enemy_of = c:RUS
+				}
+				any_scope_play_involved = {
+					exists = c:RUS
+					THIS = c:RUS
+					is_diplomatic_play_enemy_of = scope:tgg_cw_country_turkey_scope
+				}
+			}
+			save_scope_as = tgg_cw_diplomatic_play_scope
+		}
+	}
+
+	option = {
+		name = HJE_britain.14.a
+		ai_chance = {
+			base = 9
+			modifier = {
+				factor = 0
+				OR = {
+					NOT = { has_variable = had_crimean_war_claims_event }
+					has_global_variable = TGG_crimean_war_is_over
+				}
+			}
+		}
+		c:GBR = { trigger_event = { id = HJE_britain.15 days = 5 } }
+	}
+
+	option = {
+		name = HJE_britain.14.b
+		default_option = yes
+		ai_chance = {
+			base = 1
+			modifier = {
+				factor = 0
+				has_variable = had_crimean_war_claims_event
+				NOT = { has_global_variable = TGG_crimean_war_has_escalated }
+				NOT = { has_global_variable = TGG_crimean_war_is_over }
+			}
+		}
+		scope:tgg_cw_diplomatic_play_scope = {
+			end_play = yes
+		}
+		add_modifier = {
+			name = withdrew_from_colonial_incident
+			months = normal_modifier_time
+		}
+	}	
+}
+
+HJE_britain.15 = {			 #Crimean War Escalates
+	type = country_event
+	placement = c:RUS
+	title = HJE_britain.15.t
+	flavor = HJE_britain.15.f
+	desc = HJE_britain.15.d
+
+	duration = 3
+
+	is_popup = yes
+
+	event_image = {
+		video = "gfx/event_pictures/unspecific_military_parade.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/before_the_battle"
+
+	icon = "gfx/interface/icons/event_icons/event_map.dds"
+
+	trigger = {
+	}
+	
+	immediate = {
+		set_global_variable = TGG_crimean_war_has_escalated
+		c:RUS = { set_variable = TGG_crimean_war_initiator }
+		random_country = {
+			limit = {
+				NOT = { THIS = ROOT }
+				exists = c:RUS
+				is_diplomatic_play_enemy_of = c:RUS
+				any_scope_state = { 
+					state_region = s:STATE_EASTERN_THRACE 
+					is_target_of_wargoal = c:RUS
+				}
+			}
+			set_variable = crimea_country_turkey
+			save_scope_as = tgg_cw_country_turkey_scope
+		}
+		random_diplomatic_play = {
+			limit = {
+				is_war = yes
+				any_scope_play_involved = {
+					THIS = scope:tgg_cw_country_turkey_scope
+					is_diplomatic_play_enemy_of = c:RUS
+				}
+				any_scope_play_involved = {
+					exists = c:RUS
+					THIS = c:RUS
+					is_diplomatic_play_enemy_of = scope:tgg_cw_country_turkey_scope
+				}
+			}
+			save_scope_as = tgg_cw_diplomatic_play_scope
+		}
+	}
+
+	option = {
+		name = HJE_britain.15.a
+		default_option = yes
+		ai_chance = 100
+
+		custom_tooltip = tgg_crimean_has_begun_tt
+		set_variable = CRIMEA_already_offered_to_join_alles
+		if = {
+			limit = {
+				scope:tgg_cw_diplomatic_play_scope = {
+					NOT = { any_scope_play_involved = { THIS = ROOT } }
+					OR = {
+						initiator_is = scope:tgg_cw_country_turkey_scope
+						any_scope_initiator_ally = { THIS = scope:tgg_cw_country_turkey_scope }
+					}
+				}
+			}
+			scope:tgg_cw_diplomatic_play_scope = {
+				add_initiator_backers = { ROOT }
+			}
+		}
+		else_if = {
+			limit = {
+				scope:tgg_cw_diplomatic_play_scope = {
+					NOT = { any_scope_play_involved = { THIS = ROOT } }
+					OR = {
+						target_is = scope:tgg_cw_country_turkey_scope
+						any_scope_target_ally = { THIS = scope:tgg_cw_country_turkey_scope }
+					}
+				}
+			}
+			scope:tgg_cw_diplomatic_play_scope = {
+				add_target_backers = { ROOT }
+			}
+		}
+	}
+}
+
+HJE_britain.16 = {			 #France and Other Powers are drawn into the fighting
+	type = country_event
+	placement = c:RUS
+	title = HJE_britain.16.t
+	flavor = HJE_britain.16.f
+	desc = HJE_britain.16.d
+
+	duration = 3
+
+	is_popup = yes
+
+	event_image = {
+		video = "gfx/event_pictures/unspecific_military_parade.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/before_the_battle"
+
+	icon = "gfx/interface/icons/event_icons/event_map.dds"
+
+	trigger = {
+		aggressive_diplomatic_plays_permitted = yes
+		NOT = { has_variable = CRIMEA_already_offered_to_join_alles }
+		exists = c:RUS
+		exists = c:GBR
+		OR = {		 									#is relevant or Sardinia-Piedmont
+			country_rank >= rank_value:major_power
+			has_modifier = plombieres_agreement
+		}
+		any_scope_state = { 							#is from western europe
+			is_capital = yes
+			OR = {
+				region = sr:region_north_germany
+				region = sr:region_low_countries
+				region = sr:region_england
+				region = sr:region_north_sea_coast
+				region = sr:region_iberia
+				region = sr:region_france
+				region = sr:region_occitania
+				region = sr:region_rhine
+				region = sr:region_italy
+				region = sr:region_north_italy
+			}
+		}
+		NOR = {					 #Can't like Russia or hate Britain
+			c:RUS = { relations:root > relations_threshold:amicable }
+			c:GBR = { relations:root < relations_threshold:cold }
+		}
+		any_diplomatic_play = {
+			any_scope_play_involved = {
+				NOT = { THIS = ROOT }
+				has_variable = crimea_country_turkey
+				is_diplomatic_play_enemy_of = c:RUS
+				any_scope_state = { 
+					state_region = s:STATE_EASTERN_THRACE 
+					is_target_of_wargoal = c:RUS
+				}
+			}
+			any_scope_play_involved = {
+				NOT = { THIS = ROOT }
+				exists = c:GBR
+				c:GBR = THIS
+				is_diplomatic_play_enemy_of = c:RUS
+			}
+			trigger_if = {
+				limit = {
+					ROOT = { 
+						OR = {
+							has_modifier = plombieres_agreement
+						}
+					}
+				}
+				any_scope_play_involved = {
+					NOT = { THIS = ROOT }
+					exists = c:FRA
+					c:FRA = THIS
+					is_diplomatic_play_enemy_of = c:RUS
+				}
+			}
+		}
+	}
+	
+	immediate = {
+		save_scope_as = root_scope
+		set_variable = CRIMEA_already_offered_to_join_alles
+		random_country = {
+			limit = { has_variable = crimea_country_turkey }
+			save_scope_as = tgg_cw_country_turkey_scope
+		}
+		random_diplomatic_play = {
+			limit = {
+				is_war = yes
+				any_scope_play_involved = {
+					THIS = scope:tgg_cw_country_turkey_scope
+					is_diplomatic_play_enemy_of = c:RUS
+				}
+				any_scope_play_involved = {
+					exists = c:RUS
+					THIS = c:RUS
+					is_diplomatic_play_enemy_of = scope:tgg_cw_country_turkey_scope
+				}
+			}
+			save_scope_as = tgg_cw_diplomatic_play_scope
+		}
+	}
+
+	option = {
+		name = HJE_britain.16.a
+		ai_chance = { base = 5 }
+
+		if = {
+			limit = {
+				scope:tgg_cw_diplomatic_play_scope = {
+					NOT = { any_scope_play_involved = { THIS = ROOT } }
+					OR = {
+						initiator_is = scope:tgg_cw_country_turkey_scope
+						any_scope_initiator_ally = { THIS = scope:tgg_cw_country_turkey_scope }
+					}
+				}
+			}
+			scope:tgg_cw_diplomatic_play_scope = {
+				add_initiator_backers = { ROOT }
+			}
+		}
+		else_if = {
+			limit = {
+				scope:tgg_cw_diplomatic_play_scope = {
+					NOT = { any_scope_play_involved = { THIS = ROOT } }
+					OR = {
+						target_is = scope:tgg_cw_country_turkey_scope
+						any_scope_target_ally = { THIS = scope:tgg_cw_country_turkey_scope }
+					}
+				}
+			}
+			scope:tgg_cw_diplomatic_play_scope = {
+				add_target_backers = { ROOT }
+			}
+		}
+	}
+
+	option = {
+		name = HJE_britain.16.b
+		default_option = yes
+		ai_chance = {
+			base = 95
+			modifier = {
+				factor = 0
+				OR = {
+					AND = {
+						exists = c:FRA
+						c:FRA = ROOT
+					}
+					AND = {
+						exists = c:SAR
+						c:SAR = ROOT
+					}
+					AND = {
+						exists = c:ITA
+						c:ITA = ROOT
+					}
+				}
+			}
+		}
+
+		add_modifier = {
+			name = withdrew_from_colonial_incident
+			months = short_modifier_time
+		}
+	}
+}
+
+#Great Eastern Crisis: British Occupation of Cyprus?
+HJE_britain.17 = {
+	type = country_event
+	placement = c:TUR
+	
+	event_image = {
+		video = "gfx/event_pictures/unspecific_fire.bk2"
+	}
+	
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/american_civil_war"
+	
+	icon = "gfx/interface/icons/event_icons/event_fire.dds"
+	
+	title = HJE_britain.17.t
+	desc = HJE_britain.17.d 
+	flavor = HJE_britain.17.f 
+	
+	duration = 3
+	
+	trigger = {
+		exists = c:TUR
+		exists = c:GBR
+		c:GBR = ROOT
+		country_rank = rank_value:great_power
+		c:TUR = { has_variable = GEC_tur_did_a_little_trolling }
+		any_state = {
+			owner = { OR = { c:TUR = THIS is_subject_of = c:TUR } }
+			state_region = s:STATE_CYPRUS
+		}
+	}
+	
+	immediate = {
+	}
+	
+	option = {
+		name = HJE_britain.17.a
+		default_option = yes
+		ai_chance = { base = 1 }
+		every_state = {
+			limit = {
+				state_region = s:STATE_CYPRUS
+				owner = {
+					OR = {
+						c:TUR = THIS
+						is_subject_of = c:TUR
+					}
+				}
+			}
+			set_state_owner = ROOT
+		}
+		if = {
+			limit = { c:TUR = { is_country_type = recognized } }
+			c:TUR = { trigger_event = { id = HJE_britain.18 days = 1 } }
+			hidden_effect = { s:STATE_CRETE = { add_claim = c:TUR } }
+		}
+		else = {
+			if = {
+				limit = { any_state = { state_region = s:STATE_BASRA owner = { OR = { c:TUR = THIS is_subject_of = c:TUR } } } }
+				s:STATE_BASRA = {
+					set_owner_of_provinces = {
+						country = c:GBR
+						provinces = { x00F060 }
+					}
+				}
+				random_scope_state = {
+					limit = { state_region = s:STATE_BASRA }
+					set_state_type = treaty_port
+				}
+			}
+		}
+	}
+	option = {
+		name = HJE_britain.17.b
+		ai_chance = { base = 0 }
+		add_modifier = {
+			name = withdrew_from_colonial_incident
+			months = long_modifier_time
+		}
+	}
+}
+
+HJE_britain.18 = {
+	type = country_event
+	placement = c:GBR
+	title = HJE_britain.18.t
+	flavor = HJE_britain.18.f
+	desc = HJE_britain.18.d
+
+	duration = 3
+
+	is_popup = yes
+
+	event_image = {
+		video = "gfx/event_pictures/unspecific_politicians_arguing.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/before_the_battle"
+
+	icon = "gfx/interface/icons/event_icons/event_map.dds"
+
+	trigger = {
+	}
+	
+	immediate = {
+	}
+
+	option = {
+		name = HJE_britain.18.a
+		default_option = yes
+		ai_chance = { base = 0 }
+		create_diplomatic_play = {
+			target_state = s:STATE_CYPRUS.region_state:GBR
+            type = dp_return_state
+			war = no
+		}
+	}
+
+	option = {
+		name = HJE_britain.18.b
+		ai_chance = { base = 1 }
+		add_modifier = {
+			name = withdrew_from_colonial_incident
+			months = short_modifier_time
+		}
+	}	
+}
+
+HJE_britain.19 = { #GBR: Extend diplomatic hand to France?
+# (this event mainly exists to keep them from hating each other too much until they make a formal alliance after Germany forms)
+	type = country_event
+	placement = root
+	
+	title = HJE_britain.19.t
+	desc = HJE_britain.19.d
+	flavor = HJE_britain.19.f
+	
+	cooldown = ( months = 120 }
+	
+	event_image = {
+		video = "gfx/event_pictures/unspecific_signed_contract.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/rich_and_poor"
+
+	icon = "gfx/interface/icons/event_icons/event_default.dds"
+
+	duration = 3
+	
+    trigger = {
+    	year >= 1840
+		this ?= c:GBR
+    	NOT = { has_global_variable = gbr_fra_resumed_old_rivalry }
+    	exists = c:FRA
+    	c:FRA = { 
+    		country_rank = rank_value:great_power 
+    		relations:root <= relations_threshold:cold
+    		NOT = { is_diplomatic_play_enemy_of = ROOT }
+    	}
+	}
+
+	immediate = {
+		c:FRA = { save_scope_as = france_scope }
+	}
+
+	option = { #Send a diplomat to Paris to smooth relations
+		name = HJE_britain.19.a
+		default_option = yes
+		c:FRA = {
+			trigger_event = { id = HJE_britain.20 days = 15 popup = yes }
+		}
+		ai_chance = {
+			base = 99
+		}
+	}
+	option = { #I don't feel like dealing with the French
+		name = HJE_britain.19.b
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+HJE_britain.20 = { #FRA gets diplomatic envoy
+	type = country_event
+	placement = ROOT
+
+	title = HJE_britain.20.t
+	desc = HJE_britain.20.d
+	flavor = HJE_britain.20.f
+
+	duration = 3
+
+	event_image = {
+		video = "gfx/event_pictures/unspecific_signed_contract.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/rich_and_poor"
+
+	icon = "gfx/interface/icons/event_icons/event_default.dds"
+
+	trigger = {
+	}
+
+	immediate = {
+		random_country = {
+			limit = { 
+				NOT = { THIS = ROOT } 
+				has_journal_entry = HJ_britain_the_great_game 
+			}
+			save_scope_as = gbr_scope
+		}
+	}
+
+	option = { #France treats diplomats well
+		name = HJE_britain.20.a
+		default_option = yes
+        scope:gbr_scope = {
+			trigger_event = { id = HJE_britain.21 days = 5 popup = yes }
+        }
+        ai_chance = {
+			base = 99
+		}
+	}
+    option = { #France insluts diplomats
+        name = HJE_britain.20.b
+        set_global_variable = {
+        	name = gbr_fra_resumed_old_rivalry
+        	days = 3650
+        }
+        scope:gbr_scope = {
+			trigger_event = { id = HJE_britain.22 days = 5 popup = yes }
+        }
+        ai_chance = {
+            base = 1
+        }
+    }
+}
+
+HJE_britain.21 = { #FRA was polite and open to improving relations
+	type = country_event
+	placement = ROOT
+
+	title = HJE_britain.21.t
+	desc = HJE_britain.21.d
+	flavor = HJE_britain.21.f
+
+	duration = 3
+
+	event_image = {
+		video = "gfx/event_pictures/europenorthamerica_capitalists_meeting.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/capitalists_meeting"
+
+	icon = "gfx/interface/icons/event_icons/event_default.dds"
+
+	trigger = {
+	}
+
+	immediate = {
+		c:FRA = { save_scope_as = france_scope }
+	}
+
+	option = {
+        name = HJE_britain.21.a
+		default_option = yes
+        change_relations = {
+            country = c:FRA
+            value = 75
+        }
+        hidden_effect = {
+			set_mutual_secret_goal = {
+				country = c:FRA
+				secret_goal = reconcile
+			}
+        }
+
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+HJE_britain.22 = { #FRA snubbs attempt to improve relations
+	type = country_event
+	placement = ROOT
+
+	title = HJE_britain.22.t
+	desc = HJE_britain.22.d
+	flavor = HJE_britain.22.f
+
+	duration = 3
+
+	event_image = {
+		video = "gfx/event_pictures/unspecific_politicians_arguing.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/before_the_battle"
+
+	icon = "gfx/interface/icons/event_icons/event_map.dds"
+
+	trigger = {
+	}
+
+	immediate = {
+		c:FRA = { save_scope_as = france_scope }
+	}
+
+	option = {
+        name = HJE_britain.22.a
+		default_option = yes
+        change_relations = {
+            country = c:FRA
+            value = -25
+        }
+        hidden_effect = {
+			set_mutual_secret_goal = {
+				country = c:FRA
+				secret_goal = none
+			}
+        }
+		ai_chance = {
+			base = 1
+		}
+	}
+}

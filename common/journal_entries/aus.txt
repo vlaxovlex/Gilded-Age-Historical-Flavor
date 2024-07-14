@@ -1,0 +1,90 @@
+﻿je_tge_the_hungarian_question = {
+	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
+	#replacement for matter of hungary je, for almost all intents and purposes identical. times out in 20 years.
+	group = je_group_internal_affairs
+	
+	is_shown_when_inactive = {
+	}
+
+	complete = {
+		OR = {
+			cu:hungarian = {
+				NOT = { culture_is_discriminated_in = ROOT }
+			}
+			hidden_trigger = { has_variable = ger_var }
+			exists = c:NGF
+			AND = {
+				exists = c:GER
+				NOT = { root = c:GER }
+			}
+		}
+	}
+		
+	on_complete = {
+		trigger_event = {
+			id = dual_monarchy.1
+		}
+		add_modifier = {
+			name = hungarian_glory
+			months = 120
+		}
+	}
+	
+	invalid = {
+		OR = {
+			custom_tooltip = {
+				text = austria_hunary_invalid
+				is_revolutionary = no							
+				has_revolution = no 							
+				NOT = {
+					any_scope_state = {
+						state_region = {
+							is_homeland = cu:hungarian
+						}
+					}
+				}
+			}
+			NOT = {
+				this = c:AUS
+			}
+		}
+	}	
+
+	weight = 100
+	should_be_pinned_by_default = yes
+}
+
+je_tge_hungarianrevolution = {
+	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
+	
+	group = je_group_crises
+	
+	complete = {
+		NOT = { exists = c:HUN }	
+	}
+		
+	on_complete = {
+		hidden_effect = {
+			#change_infamy = -200
+		}	
+		trigger_event = {
+			id = TGE_austria.3
+		}
+	}
+	
+	timeout = 1825
+	
+	on_timeout = {
+		create_diplomatic_play = {
+            target_country = c:HUN
+            type = dp_annex_war
+			war = no
+		}
+		hidden_effect = {
+			#change_infamy = -200
+		}
+	}
+	
+	weight = 10000
+	should_be_pinned_by_default = yes
+}

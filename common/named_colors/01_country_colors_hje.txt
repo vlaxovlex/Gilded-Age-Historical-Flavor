@@ -1,0 +1,8 @@
+colors = {	
+	romania_cream = rgb { 0.78 0.75 0.5 }
+	red_square =	{ 195 10 15 }
+	osmanoglu =		{ 125 35 15 }
+	rust =			{ 140 80 70 }
+	kuk_rust =		{ 120 60 50 }
+	aus_hun =		{ 210 175 170 }
+} 

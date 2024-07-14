@@ -1,0 +1,86 @@
+﻿je_acw_secession_crisis = {
+	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
+
+	complete = {
+		custom_tooltip = {
+			text = je_acw_secession_crisis_ongoing_tt
+			OR = {
+				has_global_variable = upper_south_seceded
+				has_global_variable = lower_north_seceded
+			}
+		}
+	}
+
+	on_complete = {
+		custom_tooltip = {
+			text = je_acw_secession_crisis_over_tt
+		}
+	}
+	
+	weight = 12000
+	
+	should_be_pinned_by_default = yes
+}
+
+je_usa_western_territories = {
+	icon = "gfx/interface/icons/event_icons/event_map.dds"
+	
+	complete = {
+		custom_tooltip = {
+			text = je_usa_western_territories_organized.tt
+			has_variable = useless_variable #This journal entry is meant to time out
+		}
+	}
+	
+	on_complete = {
+		custom_tooltip = je_usa_western_territories_complete.tt
+	}
+	
+	on_monthly_pulse = {
+		random_events = {
+			80 = 0
+			20 = acw_buildup.8 #Bleeding Kansas
+			20 = acw_buildup.10 #The Caning of Charles Sumner
+		}
+		effect = {
+			random_scope_state = {
+				limit = { has_modifier = bleeding_state }
+				add_devastation = 3
+			}
+		}
+	}
+	
+	timeout = 1825
+	
+	should_be_pinned_by_default = yes
+	weight = 9000
+}
+
+je_acw_war_csa_fsa = {
+	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
+
+	immediate = {
+	}
+
+	complete = {
+		is_diplomatic_play_committed_participant = no
+	}
+
+	on_complete = {
+	}
+	
+	on_monthly_pulse = {
+		random_events = {
+			50 = 0
+			40 = acw_special_events.1 #The Gettysburg Address
+			40 = acw_special_events.2 #Sherman's March to the Sea
+			30 = acw_special_events.14 #Generic Skirmishes
+			10 = acw_events.7 #Free State of Jefferson
+			10 = acw_events.8 #Great Locomotive Chase
+		}
+	}
+	
+	weight = 10000
+
+	should_be_pinned_by_default = yes
+}

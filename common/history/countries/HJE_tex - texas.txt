@@ -1,0 +1,8 @@
+﻿COUNTRIES = {
+	c:TEX = {
+		add_modifier = {
+			name = separatist_zeal
+			months = 4
+		}
+	}
+}

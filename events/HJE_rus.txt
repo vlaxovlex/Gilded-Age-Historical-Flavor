@@ -1,0 +1,983 @@
+﻿namespace = TGE_russia
+
+TGE_russia.1 = {
+	type = country_event
+	placement = root
+	title = TGE_russia.1.t
+	desc = TGE_russia.1.d
+	flavor = TGE_russia.1.f
+
+	duration = 3
+
+	event_image = {
+		video = "gfx/event_pictures/europenorthamerica_russian_serfs.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/russian_serfs"
+
+	icon = "gfx/interface/icons/event_icons/event_portrait.dds"
+
+	trigger = {
+	}
+
+	option = {
+		name = TGE_russia.1.a
+		default_option = yes
+
+		add_journal_entry = {
+			type = je_autocracy_of_the_tsar
+		}
+		add_modifier = {
+			name = modifier_autocracy_of_the_tsar
+			months = 228
+		}
+		ruler = {
+			set_variable = is_nicholas_1 
+		}
+	}
+}
+
+#Death of Nicholas I, Alexander II becomes Tsar, Nicholas Alexandrovich as heir
+TGE_russia.2 = {
+	type = country_event
+	placement = root
+	title = TGE_russia.2.t
+	desc = TGE_russia.2.d
+	flavor = TGE_russia.2.f
+	
+	duration = 3
+	
+	event_image = {
+		video = "gfx/event_pictures/europenorthamerica_russian_serfs.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/russian_serfs"
+
+	icon = "gfx/interface/icons/event_icons/event_portrait.dds"
+
+	trigger = {
+	}
+	
+	immediate = {
+		set_variable = {
+			name = alexander_reform_var
+			value = 0
+		}
+		add_journal_entry = {
+			type = je_reforms_of_alexander
+		}
+		
+	}
+
+
+	option = {
+		name = TGE_russia.2.a
+		default_option = yes
+
+		set_strategy = ai_strategy_progressive_agenda
+		remove_modifier = modifier_autocracy_of_the_tsar
+		add_modifier = {
+			name = modifier_reforms_of_alexander
+			months = 240
+		}
+		add_journal_entry = {
+			type = je_tge_peasants_reform
+		}
+		add_journal_entry = {
+			type = je_tge_military_reform
+		}
+		add_journal_entry = {
+			type = je_tge_melikovs_constitution
+		}
+		create_character = {
+			# Alexander II of Russia
+			first_name = Aleksandr
+			last_name = Romanov
+			historical = yes
+			ruler = yes
+			birth_date = 1818.4.26
+			dna = dna_tsar_alexander_02
+			interest_group = ig_intelligentsia
+			ideology = ideology:ideology_moderate
+			traits = {
+				meticulous
+			}
+		}
+		create_character = {
+			first_name = Nikolai #move to on_actions later
+			last_name = Romanov
+			historical = yes
+			heir = yes
+			birth_date = 1843.9.20
+			interest_group = ig_industrialists
+			ideology = ideology:ideology_reformer
+			traits = {
+				innovative
+				charismatic
+			}
+		}
+		
+	}
+}
+
+TGE_russia.3 = {
+	type = country_event
+	placement = root
+	title = TGE_russia.3.t
+	desc = TGE_russia.3.d
+	
+	duration = 3
+	
+	event_image = {
+		video = "gfx/event_pictures/unspecific_military_parade.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/unspecific/military_parade"
+
+	icon = "gfx/interface/icons/event_icons/event_portrait.dds"
+
+	trigger = {
+	}
+	
+	option = {
+		name = TGE_russia.3.a
+		default_option = yes
+		
+		set_variable = reforms_of_alexander_complete
+		add_modifier = modifier_reforms_of_alexander_legacy
+		add_loyalists = {
+			value = large_radicals
+		}
+	}
+}
+
+TGE_russia.4 = {
+	type = country_event
+	placement = root
+	title = TGE_russia.4.t
+	desc = TGE_russia.4.d
+	flavor = TGE_russia.4.f
+	
+	duration = 3
+	
+	event_image = {
+		video = "gfx/event_pictures/southamerica_public_figure_assassination.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/southamerica/public_figure_assassination"
+
+	icon = "gfx/interface/icons/event_icons/event_portrait.dds"
+	
+	trigger = {
+	}
+	
+	option = {
+		name = TGE_russia.4.a
+		default_option = yes
+		
+		set_variable = reforms_of_alexander_complete
+		add_radicals = {
+			value = large_radicals
+		}
+		if = {
+			limit = {
+				is_ai = yes
+			}
+			activate_law = law_type:law_interventionism
+			activate_law = law_type:law_hereditary_bureaucrats
+			activate_law = law_type:law_censorship
+			activate_law = law_type:law_per_capita_taxation
+			activate_law = law_type:law_colonial_resettlement
+		}
+		
+		
+		create_character = {
+			# Alexander III of Russia
+			first_name = "alexander_iii_first_name"
+			last_name = "Romanov"
+			historical = yes
+			ruler = yes
+			birth_date = 1845.3.10
+			interest_group = ig_landowners
+			ideology = ideology:ideology_traditionalist
+			traits = {
+				imperious
+			}
+		}
+		create_character = {
+			# That guy who got shot by the Bolsheviks
+			first_name = "nicholas_ii_first_name" #move to on_actions later
+			last_name = "Romanov"
+			historical = yes
+			heir = yes
+			birth_date = 1868.5.18
+			dna = dna_tsar_nicolas_02
+			interest_group = ig_industrialists
+			ideology = ideology:ideology_royalist
+			traits = {
+				arrogant
+				scarred #Otsu Incident
+			}
+		}
+	}
+}	
+
+
+
+
+
+namespace = HJE_russia
+	
+
+# The Tournament of Shadows (Russian Great Game)
+HJE_russia.1 = {
+	type = country_event
+	placement = root
+	title = HJE_russia.1.t
+	desc = HJE_russia.1.d
+	flavor = HJE_russia.1.f
+
+	duration = 3
+
+	event_image = {
+		video = "gfx/event_pictures/europenorthamerica_capitalists_meeting.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/capitalists_meeting"
+
+	icon = "gfx/interface/icons/event_icons/event_military.dds"
+	
+	trigger = {
+	}
+
+	option = {
+		name = HJE_russia.1.a
+		add_journal_entry = { type = HJ_russia_the_great_game }
+		if = {
+			limit = { exists = c:GBR }
+			c:GBR = { trigger_event = { id = HJE_britain.9 } }
+		}
+	}
+}
+
+# Victory in the Tournament of Shadows (Russian Great Game)
+HJE_russia.2 = {
+	type = country_event
+	placement = root
+	title = HJE_russia.2.t
+	desc = HJE_russia.2.d
+	flavor = HJE_russia.2.f
+
+	icon = "gfx/interface/icons/event_icons/event_scales.dds"
+
+	duration = 3
+
+	event_image = {
+		video = "gfx/event_pictures/europenorthamerica_london_center.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/london_center"
+
+	trigger = {
+	}
+
+	immediate = {
+		set_global_variable = RUS_won_the_great_game
+		set_mutual_secret_goal = {
+			country = c:GBR
+			secret_goal = none
+		}
+		change_relations = {
+			country = c:GBR
+			value = 20
+		}
+		c:GBR = {
+			change_relations = {
+				country = ROOT
+				value = 20
+			}
+		}
+	}
+
+	option = {
+		name = HJE_russia.2.a
+		default_option = yes
+		add_modifier = {
+			name = modifier_rus_great_game_won
+			months = -1
+		}
+		if = {
+			limit = { 
+				exists = c:PER 
+				c:PER = {
+					OR = {
+						is_subject = no
+						is_subject_of = c:GBR
+					}
+				}
+			}
+			create_diplomatic_pact = {
+				country = c:PER
+				type = dominion
+			}
+		}
+		if = {
+			limit = { 
+				exists = c:AFG 
+				c:AFG = {
+					OR = {
+						is_subject = no
+						is_subject_of = c:GBR
+					}
+				}
+			}
+			create_diplomatic_pact = {
+				country = c:AFG
+				type = dominion
+			}
+		}
+		else_if = {
+			limit = {
+				any_country = {
+					is_afghan_nation = yes
+					OR = {
+						is_subject = no
+						is_subject_of = c:GBR
+					}
+				}
+			}
+			create_diplomatic_pact = {
+				country = PREV
+				type = dominion
+			}
+		}	
+		if = {
+			limit = { exists = c:GBR }
+			c:GBR = {
+				every_subject_or_below = {
+					limit = {
+						OR = {
+							country_is_in_central_asia = yes
+							country_is_in_india = yes
+						}
+					}
+					make_independent = yes
+				}
+			}
+		}
+		every_state = {
+			limit = { 
+				NOT = { has_claim_by = ROOT }
+				NOT = { owner = ROOT }
+				OR = {
+					state_is_in_central_asia = yes
+					state_is_in_india = yes
+				}
+			}
+			this.state_region = { add_claim = ROOT }
+		}
+	}
+}
+
+HJE_russia.3 = { #Central Asian Khanate Claims
+	type = country_event
+	placement = ROOT
+
+	event_image = {
+		video = "gfx/event_pictures/europenorthamerica_capitalists_meeting.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/capitalists_meeting"
+
+	icon = "gfx/interface/icons/event_icons/event_military.dds"
+	
+	title = HJE_russia.3.t
+	desc = HJE_russia.3.d
+	flavor = HJE_russia.3.f
+	
+	duration = 3
+	
+	trigger = {
+		year >= 1846
+		NOT = { has_variable = RUS_tgg_got_central_asia_claims }
+		calc_true_if = {
+			amount >= 6
+			NOT = {
+				any_country = {
+					NOR = {
+						this = root
+						this = { any_country = { is_subject_of = root } } 
+					}
+					has_state_in_state_region = STATE_AKMOLINSK
+				}
+			}
+			country_or_subject_owns_entire_state_region = STATE_AKTOBE
+			OR = {
+				root = { has_state_in_state_region = STATE_KHIVA }
+				any_country = { is_subject_of = root has_state_in_state_region = STATE_KHIVA }
+			}
+			country_or_subject_owns_entire_state_region = STATE_SEMIRECHE
+			OR = {
+				root = { has_state_in_state_region = STATE_SYRDARYA }
+				any_country = { is_subject_of = root has_state_in_state_region = STATE_SYRDARYA }
+			}
+			OR = {
+				root = { has_state_in_state_region = STATE_URALSK }
+				any_country = { is_subject_of = root has_state_in_state_region = STATE_URALSK }
+			}
+			NOT = {
+				any_country = {
+					NOR = {
+						this = root
+						this = { any_country = { is_subject_of = root } } 
+					}
+					has_state_in_state_region = STATE_CHELYABINSK
+				}				
+			}
+			NOT = {
+				any_country = {
+					NOR = {
+						this = root
+						this = { any_country = { is_subject_of = root } } 
+					}
+					has_state_in_state_region = STATE_SAMARA
+				}
+			}		
+		}
+	}
+	
+	option = {
+		name = HJE_russia.3.a
+		default_option = yes
+		
+		set_variable = RUS_tgg_got_central_asia_claims
+		s:STATE_KHIVA = { add_claim = ROOT }
+		s:STATE_TURKMENIA = { add_claim = ROOT }
+		s:STATE_UZBEKIA = { add_claim = ROOT }
+		s:STATE_MERZ = { add_claim = ROOT }
+		s:STATE_TAJIKISTAN = { add_claim = ROOT }
+		s:STATE_FERGANA = { add_claim = ROOT }
+		
+		hidden_effect = {
+			set_secret_goal = {
+				country = c:KHI
+				secret_goal = conquer
+			}
+			set_secret_goal = {
+				country = c:BUK
+				secret_goal = conquer
+			}
+			set_secret_goal = {
+				country = c:KOK
+				secret_goal = conquer
+			}
+		}		
+	}
+}
+
+HJE_russia.4 = { #Chinese Frontier Claims
+	type = country_event
+	placement = ROOT
+
+	event_image = {
+		video = "gfx/event_pictures/europenorthamerica_capitalists_meeting.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/capitalists_meeting"
+
+	icon = "gfx/interface/icons/event_icons/event_military.dds"
+	
+	title = HJE_russia.4.t
+	desc = HJE_russia.4.d
+	flavor = HJE_russia.4.f
+	
+	duration = 3
+	
+	trigger = {
+		year >= 1856
+		NOT = { has_variable = RUS_tgg_got_chinese_frontier_claims }
+		calc_true_if = {
+			amount >= 4
+			NOT = {
+				any_country = {
+					NOR = {
+						this = root
+						this = { any_country = { is_subject_of = root } } 
+					}
+					has_state_in_state_region = STATE_KHIVA
+				}
+			}
+			NOT = {
+				any_country = {
+					NOR = {
+						this = root
+						this = { any_country = { is_subject_of = root } } 
+					}
+					has_state_in_state_region = STATE_MERZ
+				}
+			}
+			NOT = {
+				any_country = {
+					NOR = {
+						this = root
+						this = { any_country = { is_subject_of = root } } 
+					}	
+					has_state_in_state_region = STATE_TURKMENIA
+				}
+			}
+			NOT = {
+				any_country = {
+					NOR = {
+						this = root
+						this = { any_country = { is_subject_of = root } } 
+					}
+					has_state_in_state_region = STATE_TAJIKISTAN
+				}
+			}
+			NOT = {
+				any_country = {
+					NOR = {
+						this = root
+						this = { any_country = { is_subject_of = root } } 
+					}
+					has_state_in_state_region = STATE_UZBEKIA	
+				}
+			}
+			NOT = {
+				any_country = {
+					NOR = {
+						this = root
+						this = { any_country = { is_subject_of = root } } 
+					}
+					has_state_in_state_region = STATE_FERGANA
+				}
+			}	
+		}
+	}
+	
+	option = {
+		name = HJE_russia.4.a
+		default_option = yes
+		
+		set_variable = RUS_tgg_got_chinese_frontier_claims
+		add_journal_entry = { type = je_the_eastern_border }
+		add_technology_researched = nationalism
+	}
+}
+
+HJE_russia.5 = { #Crimean War Claims
+	type = country_event
+	placement = this
+	title = HJE_russia.5.t
+	flavor = HJE_russia.5.f
+	desc = HJE_russia.5.d
+
+	duration = 3
+
+	is_popup = yes
+
+	event_image = {
+		video = "gfx/event_pictures/unspecific_military_parade.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/before_the_battle"
+
+	icon = "gfx/interface/icons/event_icons/event_map.dds"
+
+	trigger = {
+		year >= 1853
+		aggressive_diplomatic_plays_permitted = yes
+		is_diplomatic_play_committed_participant = no
+		NOT = { country_or_subject_owns_entire_state_region = STATE_EASTERN_THRACE }
+		NOT = { has_variable = had_crimean_war_claims_event }
+	}
+	
+	immediate = {
+		set_variable = had_crimean_war_claims_event
+		random_country = {
+			limit = { 
+				exists = c:RUS
+				NOT = { c:RUS = THIS }
+				any_scope_state = { state_region = s:STATE_EASTERN_THRACE }
+			}
+			save_scope_as = rus_constantinople_owner
+		}
+		scope:rus_constantinople_owner = {
+			random_scope_state = {
+				limit = { state_region = s:STATE_EASTERN_THRACE }
+				save_scope_as = rus_constantinople
+			}
+		}
+	}
+
+	option = {
+		name = HJE_russia.5.a
+		default_option = yes
+		ai_chance = 100
+
+		s:STATE_EASTERN_THRACE = { add_claim = c:RUS }
+		if = {
+			limit = { c:RUS = { is_player = no } }
+			c:RUS = {
+				create_diplomatic_play = {
+	                target_country = scope:rus_constantinople_owner
+	                type = dp_humiliation
+					war = no
+					add_war_goal = {
+						holder = c:RUS
+						type = return_state
+						target_state = scope:rus_constantinople
+						primary_demand = yes
+					}
+				}
+			}
+		}
+	}
+
+	option = {
+		name = HJE_russia.5.b
+		ai_chance = 0
+		add_modifier = {
+			name = withdrew_from_colonial_incident
+			months = normal_modifier_time
+		}
+	}		
+}
+
+HJE_russia.6 = {			 #Eastern European GPs and Russian allies decide whether or not to back Russia
+	type = country_event
+	placement = c:RUS
+	title = HJE_russia.6.t
+	flavor = HJE_russia.6.f
+	desc = HJE_russia.6.d
+
+	duration = 3
+
+	is_popup = yes
+
+	event_image = {
+		video = "gfx/event_pictures/unspecific_military_parade.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/before_the_battle"
+
+	icon = "gfx/interface/icons/event_icons/event_map.dds"
+
+	trigger = {
+		aggressive_diplomatic_plays_permitted = yes
+		NOT = { has_variable = CRIMEA_already_offered_to_leave_russia }
+		exists = c:RUS
+		exists = c:GBR
+		NOT = { c:RUS = THIS }
+		NOT = { c:GBR = THIS }
+		country_rank >= rank_value:major_power
+		OR = { 										#is from eastern europe or is Russian ally
+			has_diplomatic_pact = {
+				who = c:RUS					
+				type = alliance	
+			}
+			has_diplomatic_pact = {
+				who = c:RUS			
+				type = defensive_pact			
+			}
+			any_scope_state = {
+				is_capital = yes
+				OR = {
+					region = sr:region_south_germany
+					region = sr:region_poland
+					#region = sr:region_prussia
+					region = sr:region_danubia
+					region = sr:region_balkans
+					#region = sr:region_greece
+					region = sr:region_baltic	
+					#region = sr:region_baltics_ruthenia	
+				}
+			}
+		}
+		c:RUS = { relations:root >= relations_threshold:amicable } 	#at least tolerates Russia
+		any_diplomatic_play = {
+			any_scope_play_involved = {
+				NOT = { THIS = ROOT }
+				has_variable = crimea_country_turkey
+				is_diplomatic_play_enemy_of = c:RUS
+				any_scope_state = { 
+					state_region = s:STATE_EASTERN_THRACE 
+					is_target_of_wargoal = c:RUS
+				}
+			}
+			any_scope_play_involved = {
+				NOT = { THIS = ROOT }
+				exists = c:GBR
+				c:GBR = THIS
+				is_diplomatic_play_enemy_of = c:RUS
+			}
+			NOT = {
+				any_scope_play_involved = {
+					THIS = ROOT
+					is_diplomatic_play_enemy_of = c:RUS
+				}
+			}
+		}
+	}
+	
+	immediate = {
+		set_variable = CRIMEA_already_offered_to_leave_russia
+		save_scope_as = root_scope
+		random_country = {
+			limit = { has_variable = crimea_country_turkey }
+			save_scope_as = tgg_cw_country_turkey_scope
+		}
+		random_diplomatic_play = {
+			limit = {
+				is_war = yes
+				any_scope_play_involved = {
+					THIS = scope:tgg_cw_country_turkey_scope
+					is_diplomatic_play_enemy_of = c:RUS
+				}
+				any_scope_play_involved = {
+					exists = c:RUS
+					THIS = c:RUS
+					is_diplomatic_play_enemy_of = scope:tgg_cw_country_turkey_scope
+				}
+			}
+			save_scope_as = tgg_cw_diplomatic_play_scope
+		}
+	}
+
+	option = {
+		name = HJE_russia.6.a
+		ai_chance = { 
+			base = 1 
+			modifier = {
+				factor = 0
+				OR = {
+					AND = {
+						exists = c:AUS
+						c:AUS = ROOT
+					}
+				}
+			}
+		}
+		if = {
+			limit = {
+				scope:tgg_cw_diplomatic_play_scope = {
+					NOT = { any_scope_play_involved = { THIS = ROOT } }
+					OR = {
+						initiator_is = c:RUS
+						any_scope_initiator_ally = { THIS = c:RUS }
+					}
+				}
+			}
+			scope:tgg_cw_diplomatic_play_scope = {
+				add_initiator_backers = { ROOT }
+			}
+		}
+		else_if = {
+			limit = {
+				scope:tgg_cw_diplomatic_play_scope = {
+					NOT = { any_scope_play_involved = { THIS = ROOT } }
+					OR = {
+						target_is = c:RUS
+						any_scope_target_ally = { THIS = c:RUS }
+					}
+				}
+			}
+			scope:tgg_cw_diplomatic_play_scope = {
+				add_target_backers = { ROOT }
+			}
+		}
+		change_relations = {
+			country = c:RUS
+			value = 25
+		}
+		c:RUS = {
+			change_relations = {
+				country = ROOT
+				value = 25
+			}
+		}
+	}
+
+	option = {
+		name = HJE_russia.6.b
+		default_option = yes
+		ai_chance = {
+			base = 3
+		}
+
+		add_modifier = {
+			name = withdrew_from_colonial_incident
+			months = short_modifier_time
+		}
+		if = {
+			limit = {
+				scope:tgg_cw_diplomatic_play_scope = {
+					any_scope_play_involved = { THIS = ROOT }
+				}
+			}
+			scope:tgg_cw_diplomatic_play_scope = {
+				remove_initiator_backers = { ROOT }
+				remove_target_backers = { ROOT }
+			}
+		}
+		change_relations = {
+			country = c:RUS
+			value = -50
+		}
+		c:RUS = {
+			change_relations = {
+				country = ROOT
+				value = -50
+			}
+		}
+		hidden_effect = {
+			set_mutual_secret_goal = {
+				country = c:RUS
+				secret_goal = antagonize
+			}
+			remove_diplomatic_pact = {
+				country = c:RUS
+				type = alliance
+			}
+			remove_diplomatic_pact = {
+				country = c:RUS
+				type = defensive_pact
+			}
+		}
+	}
+}
+
+#Great Eastern Crisis: Intervention following Brutal Atrocities?
+HJE_russia.7 = {
+	type = country_event
+	placement = c:TUR
+	
+	event_image = {
+		video = "gfx/event_pictures/unspecific_fire.bk2"
+	}
+	
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/american_civil_war"
+	
+	icon = "gfx/interface/icons/event_icons/event_fire.dds"
+	
+	title = HJE_russia.7.t
+	desc = HJE_russia.7.d 
+	flavor = HJE_russia.7.f 
+	
+	duration = 3
+	
+	trigger = {
+		exists = c:TUR
+		NOT = { c:TUR = ROOT }
+		c:TUR = { has_variable = GEC_tur_did_a_little_trolling }
+		NOT = { has_global_variable = GEC_great_power_has_intervened }
+		country_rank = rank_value:great_power
+		any_country = {
+			has_variable = GEC_potential_turk_warcrime_target
+			has_war_with = c:TUR
+		}
+		OR = {
+			is_adjacent_to_country = c:TUR
+			any_subject_or_below = {
+				is_adjacent_to_country = c:TUR
+			}
+		}
+		OR = {
+			AND = {
+				exists = c:RUS
+				c:RUS = ROOT
+			}
+			AND = {
+				OR = {
+					NOT = { exists = c:RUS }
+					AND = {
+						exists = c:RUS
+						c:RUS = { country_rank < rank_value:great_power }
+					}
+				}
+			}
+		}
+	}
+	
+	immediate = {
+	}
+	
+	option = {
+		name = HJE_russia.7.a
+		default_option = yes
+		ai_chance = { base = 1 }
+		set_global_variable = GEC_great_power_has_intervened
+		every_country = {
+			limit = {
+				has_variable = GEC_potential_turk_warcrime_target
+				is_diplomatic_play_enemy_of = c:TUR
+			}
+			create_diplomatic_pact = {
+				country = ROOT
+				type = defensive_pact
+			}
+		}
+		every_diplomatic_play = {
+			limit = {
+				any_scope_play_involved = {
+					exists = c:TUR
+					THIS = c:TUR
+				}
+				initiator_is = c:TUR
+				any_scope_play_involved = {
+					has_variable = GEC_potential_turk_warcrime_target
+					is_diplomatic_play_enemy_of = c:TUR
+				}
+			}
+			add_target_backers = { ROOT }		
+		}
+		if = {
+			limit = { 
+				exists = c:RUS 
+				c:RUS = ROOT 
+				c:TUR = { 
+					OR = {
+						any_scope_state = { state_region = s:STATE_KARS }
+						any_scope_state = { state_region = s:STATE_DOBRUDJA }
+					}
+				}
+			}
+			create_diplomatic_play = {
+                target_country = c:TUR
+				type = dp_humiliation
+				war = yes
+				add_war_goal = {
+					holder = c:RUS
+					type = conquer_state
+					target_state = s:STATE_DOBRUDJA.region_state:TUR
+					primary_demand = no
+				}
+				add_war_goal = {
+					holder = c:RUS
+					type = return_state
+					target_state = s:STATE_KARS.region_state:TUR
+					primary_demand = no
+				}
+			}
+		}
+	}
+	option = {
+		name = HJE_russia.7.b
+		ai_chance = { base = 0 }
+		add_modifier = {
+			name = withdrew_from_colonial_incident
+			months = long_modifier_time
+		}
+	}
+}

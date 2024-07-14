@@ -1,0 +1,15 @@
+﻿COUNTRIES = {
+	c:FRA = {
+		trigger_event = {
+			id = TGE_france.1
+		}
+		if = {
+			limit = {
+				NOT = { has_dlc_feature = voice_of_the_people_content }
+			}
+			add_journal_entry = { 
+				type = je_end_of_orleans_monarchy		
+			}
+		}
+	}
+}

@@ -1,0 +1,88 @@
+﻿je_ruhr_boom = {
+	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
+
+	group = je_group_technology
+
+	complete = {
+		has_technology_researched = open_hearth_process
+		has_technology_researched = shift_work
+	}
+	
+	on_complete = {
+		trigger_event = {
+			id = TGE_prussia.1
+		}
+	}
+}
+
+je_junkers_heer_krupp = {
+	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
+	
+	group = je_group_foreign_affairs
+	
+	complete = {
+		owns_entire_state_region = STATE_ALSACE_LORRAINE
+	}
+	
+	on_complete = {
+		trigger_event = { id = TGE_prussia.2 }
+	}
+}
+
+HJ_occupation_of_schleswig = {
+	icon = "gfx/interface/icons/event_icons/event_military.dds"
+	should_be_pinned_by_default = yes
+	
+	group = je_group_historical_content
+	
+	complete = {
+		OR = {
+			custom_tooltip = {
+				text = denmark_is_losing_tt
+				any_country = {
+					has_variable = den_attempt_to_eat_schleswig
+					any_scope_war = {
+						is_war_participant = ROOT
+						is_war_participant = PREV
+						has_war_support = { target = PREV value < -10 }
+					}
+				}
+			}
+			AND = {
+				is_at_war = no
+				hidden_trigger = {
+					any_country = {
+						has_variable = den_attempt_to_eat_schleswig
+						is_at_war = no
+						#OR = {
+						#	has_truce_with = c:SCH
+						#	has_truce_with = c:HOL
+						#}
+					}
+				}
+				OR = {
+					AND = {
+						exists = c:SCH
+						c:SCH = { is_player = no is_subject = no }
+					}
+					AND = {
+						exists = c:HOL
+						c:HOL = { is_player = no is_subject = no }
+					}
+				}
+			}
+		}
+	}
+	
+	invalid = {
+		NOR = {
+			exists = c:SCH
+			exists = c:HOL
+		}
+	}
+
+	on_complete = {
+		trigger_event = { id = HJE_prussia.3 }
+	}
+}
+

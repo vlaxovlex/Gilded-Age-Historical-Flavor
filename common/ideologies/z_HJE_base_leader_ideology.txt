@@ -1,0 +1,81 @@
+﻿
+ideology_abolitionist = {
+	icon = "gfx/interface/icons/ideology_icons/ideology_leader/ideology_leader_abolitionist.dds"
+	
+	character_ideology = yes
+	
+	lawgroup_slavery = {
+		law_slavery_banned = strongly_approve
+		law_legacy_slavery = disapprove
+		law_debt_slavery = strongly_disapprove
+		law_slave_trade = strongly_disapprove
+	}
+
+	lawgroup_labor_rights = {		
+		law_worker_protections = neutral
+		law_regulatory_bodies = neutral
+		law_serfdom = disapprove
+	}
+	
+	# Character scope
+	possible = {
+		owner = { 
+			OR = {
+				NOT = { has_law = law_type:law_slavery_banned }
+				has_law = law_type:law_serfdom
+			}
+		}
+		scope:interest_group = { 
+			OR = {
+				is_interest_group_type = ig_trade_unions
+				is_interest_group_type = ig_intelligentsia
+				is_interest_group_type = ig_petty_bourgeoisie
+				is_interest_group_type = ig_industrialists
+				is_interest_group_type = ig_devout
+			}
+		}
+		scope:interest_group = {
+			NOR = {
+				has_variable = communist_ig_var
+				has_variable = chose_vanguardism
+				has_variable = chose_fascism
+				has_variable = chose_conservatism
+				has_variable = chose_ethno_nationalism
+			}
+		}
+	}
+	
+	leader_weight = {
+		value = 100
+		if = {
+			limit = { scope:interest_group = { is_interest_group_type = ig_trade_unions } }
+			add = 150
+		}		
+		if = {
+			limit = { has_trait = tactful }
+			add = 75
+		}
+		if = {
+			limit = {
+				exists = c:USA
+				owner = { 
+					c:USA = THIS 
+					NOT = { has_variable = csa_will_spawn_var }
+				}
+			}
+			add = 100
+		}
+		if = {
+			limit = { 
+				scope:interest_group = { is_interest_group_type = ig_landowners } 
+				exists = c:USA
+				owner = {
+					c:USA = THIS 
+					NOT = { has_law = law_type:law_slavery_banned }
+					NOT = { has_variable = csa_will_spawn_var }
+				}
+			}
+			add = -1000
+		}
+	}
+}

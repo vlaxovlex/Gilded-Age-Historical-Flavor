@@ -1,0 +1,261 @@
+﻿# Ask the US to join in diplomatic play against you from non-American
+monroe_doctrine = {
+
+	is_shown = {
+		NOT = { has_variable = already_asked_yank_for_help }
+		NOT = { any_country = { has_variable = monroe_doctrine_victim } }
+		NOT = { is_country_type = decentralized }
+		NOT = { is_country_type = unrecognized }
+		any_scope_state = {
+			is_capital = yes
+			state_is_in_americas = yes
+		}
+		country_rank < rank_value:great_power
+		NOT = { c:USA = ROOT }
+		exists = c:USA
+		c:USA = { country_rank = rank_value:great_power }
+	}
+
+	possible = {
+		exists = c:USA
+		c:USA = { is_at_war = no }
+		NOT = { is_diplomatic_play_enemy_of = c:USA }
+		OR = {
+			is_diplomatic_play_target = yes
+			hidden_trigger = { is_in_civil_war = yes }
+			AND = {
+				is_diplomatic_play_initiator = yes
+				custom_tooltip = {
+					text = this_nation_is_losing_tt
+					any_scope_war = {
+						is_warleader = ROOT
+						has_war_support = { target = ROOT value < 0 }
+					}
+				}
+			}
+		}
+		any_country = {
+			country_rank >= rank_value:minor_power
+			is_diplomatic_play_enemy_of = ROOT
+			NOT = {
+				any_scope_state = {
+					is_capital = yes
+					state_is_in_americas = yes
+				}
+			}
+		}
+	}
+
+	when_taken = {
+		c:USA = { trigger_event = { id = HJE_usa.4 } }
+		set_variable = monroe_doctrine_victim
+		set_variable = { 
+			name = already_asked_yank_for_help 
+			days = 200
+		}
+	}
+	ai_chance = {
+		base = 100
+	}
+}
+
+gadsden_purchase = {
+	is_shown = {
+		root = c:USA
+		NOT = {
+			exists = c:TEX
+		}
+		has_variable = manifested_destiny #already took Manifest Destiny decision
+		#has_variable = mexican_american_war #war already happened
+		has_variable = mexican_american_war_peace #peace with mexico
+        NOT = {
+            has_variable = gadsden_purchase
+        }
+		s:STATE_NEW_MEXICO = {
+			any_scope_state = {
+				owner = c:MEX
+			}
+		}
+		s:STATE_ARIZONA = {
+			any_scope_state = {
+				owner = c:MEX
+			}
+		}
+	}
+
+	possible = {
+        exists = c:USA
+		is_diplomatic_play_committed_participant = no
+		gold_reserves > 1000000
+		c:MEX = {
+			is_subject = no
+			NOT = { has_truce_with = c:USA }
+			OR = {
+				relations:root >= -50
+				hidden_trigger = { c:USA = { is_player = no } }
+			}
+		}
+	}
+
+	when_taken = {
+		c:USA = {
+			set_variable = gadsden_purchase
+			trigger_event = { id = gadsden_purchase.1 } 
+		}
+	}
+
+    ai_chance = {
+        base = 0
+
+        modifier = {
+            trigger = { gold_reserves > 2500000 }
+            add = 10
+        }	
+        modifier = {
+            trigger = { gold_reserves > 3000000 }
+            add = 10
+        }
+        modifier = {
+            trigger = { gold_reserves > 5000000 }
+            add = 10
+        }
+        modifier = {
+            trigger = { year >= 1854 }
+            add = 100
+        }
+    }
+}
+
+# Acre Republic seeks support from Brazil
+acre_revolt_seeks_support = {
+
+	is_shown = {
+		NOT = { has_variable = already_asked_pedro_for_help }
+		has_variable = acre_revolt_tag
+		is_adjacent_to_country = c:BRZ
+	}
+
+	possible = {
+		is_at_war = yes
+	}
+
+	when_taken = {
+		set_variable = already_asked_pedro_for_help
+		c:BRZ = { trigger_event = { id = HJE_latin_america.6 } }
+	}
+	ai_chance = {
+		base = 100
+	}
+}
+
+# Annex the Republic of Acre
+annex_republic_of_acre = {
+
+	is_shown = {
+		exists = c:BRZ
+		c:BRZ = ROOT
+		any_country = {
+			is_adjacent_to_country = ROOT
+			has_variable = acre_revolt_tag
+			is_subject_of = ROOT
+		}
+	}
+
+	possible = {
+		OR = {
+			AND = {
+				scope:acre_republic = { is_at_war = no }
+				hidden_trigger = { scope:acre_republic = { is_player = no } }
+			}
+			AND = {
+				exists = c:AMZ
+				c:AMZ = { is_at_war = no }
+				hidden_trigger = { c:AMZ = { is_player = no } }
+			}
+		}
+	}
+
+	when_taken = {
+		if = {
+			limit = {
+				scope:acre_republic = {
+					is_adjacent_to_country = ROOT
+					has_variable = acre_revolt_tag
+					is_subject_of = ROOT
+				}
+			}
+			annex = scope:acre_republic
+		}
+		if = {
+			limit = {
+				exists = c:AMZ
+				c:AMZ = {
+					is_adjacent_to_country = ROOT
+					has_variable = acre_revolt_tag
+					is_subject_of = ROOT
+				}
+			}
+			annex = c:AMZ
+		}
+	}
+	
+	ai_chance = {
+		base = 100
+	}
+}
+
+kansas_nebraska = {
+	is_shown = {
+		exists = c:USA
+		root = c:USA
+		has_variable = kansas_nebraska_upcoming
+		NOT = { has_variable = kansas_nebraska_decision_taken }
+		NOT = { has_global_variable = american_civil_war }
+	}
+
+	possible = {
+		year >= 1854
+		has_technology_researched = railways
+		owns_entire_state_region = STATE_KANSAS
+		owns_entire_state_region = STATE_NEBRASKA
+		OR = {
+			STATE_KANSAS = { is_incorporated = no }
+			STATE_NEBRASKA = { is_incorporated = no }
+		}
+	}
+	
+	when_taken = {
+		trigger_event = { id = acw_buildup.7 }
+		set_variable = {
+			name = kansas_nebraska_decision_taken 
+			value = yes
+		}
+	}
+	
+	ai_chance = {
+		base = 100
+	}
+}
+
+ostend_manifesto = {
+	is_shown = {
+		exists = c:USA
+		root = c:USA
+		NOT = { has_variable = ostend_manifesto_taken }
+		has_variable = ostend_manifesto
+	}
+	
+	possible = {
+		is_at_war = no
+		owns_entire_state_region = STATE_FLORIDA
+		has_technology_researched = monitor_tech
+		gold_reserves > 2000000
+		any_rival_country = {
+			country_or_subject_owns_entire_state_region = STATE_CUBA
+		}
+	}
+	
+	when_taken = {
+	trigger_event = { id = ostend.1 #ostend manifesto event }
+	}
+}

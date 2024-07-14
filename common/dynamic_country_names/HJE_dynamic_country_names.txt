@@ -1,0 +1,192 @@
+﻿POL = { # Poland
+	dynamic_country_name = {
+		name = dyn_c_congress_poland
+		adjective = POL_ADJ
+		
+		is_main_tag_only = yes
+		priority = 0
+		
+		trigger = {
+			exists = c:RUS
+			c:RUS = {
+				OR = {
+					has_diplomatic_pact = {
+						who = c:POL
+						type = puppet
+						is_initiator = yes
+					}
+					has_diplomatic_pact = {
+						who = c:POL
+						type = dominion
+						is_initiator = yes
+					}
+					has_diplomatic_pact = {
+						who = c:POL
+						type = personal_union
+						is_initiator = yes
+					}
+					has_diplomatic_pact = {
+						who = c:POL
+						type = protectorate
+						is_initiator = yes
+					}
+				}
+			}
+		}
+	}
+}
+
+MCH = { # Manchuria
+	dynamic_country_name = {
+		name = dyn_c_northeast_provinces
+		adjective = MCH_ADJ
+		
+		is_main_tag_only = yes
+		priority = 0
+		
+		trigger = {
+			exists = c:CHI
+			c:CHI = {
+				country_has_primary_culture = cu:manchu
+				OR = {
+					has_diplomatic_pact = {
+						who = c:MCH
+						type = vassal
+						is_initiator = yes
+					}
+					has_diplomatic_pact = {
+						who = c:MCH
+						type = puppet
+						is_initiator = yes
+					}
+					has_diplomatic_pact = {
+						who = c:MCH
+						type = dominion
+						is_initiator = yes
+					}
+					has_diplomatic_pact = {
+						who = c:MCH
+						type = personal_union
+						is_initiator = yes
+					}
+				}
+			}
+		}
+	}
+}
+
+SAF = { # South Africa
+	dynamic_country_name = {
+		name = dyn_c_south_africa
+		adjective = dyn_c_south_africa_adj
+
+		is_main_tag_only = yes
+		priority = 5
+		
+		trigger = {
+			exists = c:GBR
+			c:GBR = {
+				OR = {
+					has_diplomatic_pact = {
+						who = c:SAF
+						type = puppet
+						is_initiator = yes
+					}
+					has_diplomatic_pact = {
+						who = c:SAF
+						type = hje_colonial_administration
+						is_initiator = yes
+					}
+				}
+			}
+		}
+	}
+}
+
+MEX = { # Mainly MCW Stuff
+	dynamic_country_name = {
+		name = dyn_c_revolutionary_mexico
+		adjective = dyn_c_revolutionary_mexico_adj
+		
+		priority = 10
+		is_main_tag_only = yes
+		
+		trigger = {
+			has_global_variable = mexican_revolution
+			NOT = { has_global_variable = mexican_civil_war_over }
+			scope:actor = {
+				has_variable = faction_in_mexican_civil_war
+			}
+		}
+	}
+	dynamic_country_name = {
+		name = dyn_c_maderista_mexico
+		adjective = dyn_c_maderista_mexico_adj
+		
+		priority = 5
+		
+		trigger = {
+			has_global_variable = mexican_revolution
+			NOT = { has_global_variable = mexican_civil_war_over }
+			scope:actor = {
+				has_variable = maderista_mexico
+			}
+		}
+	}
+	dynamic_country_name = {
+		name = dyn_c_huertista_mexico
+		adjective = dyn_c_huertista_mexico_adj
+		
+		priority = 5
+		
+		trigger = {
+			has_global_variable = mexican_revolution
+			NOT = { has_global_variable = mexican_civil_war_over }
+			scope:actor = {
+				has_variable = huertista_mexico
+			}
+		}
+	}
+	dynamic_country_name = {
+		name = dyn_c_zapatista_mexico
+		adjective = dyn_c_zapatista_mexico_adj
+		
+		priority = 5
+		
+		trigger = {
+			has_global_variable = mexican_revolution
+			NOT = { has_global_variable = mexican_civil_war_over }
+			scope:actor = {
+				has_variable = zapatista_mexico
+			}
+		}
+	}
+	dynamic_country_name = {
+		name = dyn_c_constitutionalist_mexico
+		adjective = dyn_c_constitutionalist_mexico_adj
+		
+		priority = 5
+		
+		trigger = {
+			has_global_variable = mexican_revolution
+			NOT = { has_global_variable = mexican_civil_war_over }
+			scope:actor = {
+				has_variable = constitutionalist_mexico
+			}
+		}
+	}
+	dynamic_country_name = {
+		name = dyn_c_conventionalist_mexico
+		adjective = dyn_c_conventionalist_mexico_adj
+		
+		priority = 5
+		
+		trigger = {
+			has_global_variable = mexican_revolution
+			NOT = { has_global_variable = mexican_civil_war_over }
+			scope:actor = {
+				has_variable = conventionalist_mexico
+			}
+		}
+	}
+}

@@ -1,0 +1,387 @@
+﻿namespace = HJE_japan
+
+HJE_japan.1 = { #Response to the Korean request
+	type = country_event
+	placement = c:KOR
+	title = HJE_japan.1.t
+	desc = HJE_japan.1.d
+	flavor = HJE_japan.1.f
+
+	duration = 3
+
+	event_image = {
+		video = "gfx/event_pictures/southamerica_aristocrats.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/rich_and_poor"
+
+	icon = "gfx/interface/icons/event_icons/event_default.dds"
+
+	trigger = {
+	}
+	
+	immediate = {			
+	}
+
+	option = {
+		name = HJE_japan.1.a
+		default_option = yes
+		
+		if = {
+			limit = {
+				exists = c:KOR
+				exists = c:CHI
+				c:KOR = { is_subject_of = c:CHI }
+			}
+			c:CHI = {
+				trigger_event = {
+					id = HJE_china.1
+				}
+			}
+		}
+		if = {
+			limit = {
+				exists = c:KOR
+				exists = c:TPG
+				c:KOR = { is_subject_of = c:TPG }
+			}
+			c:TPG = {
+				trigger_event = {
+					id = HJE_china.1
+				}
+			}
+		}
+		set_secret_goal = {
+			country = c:KOR
+			secret_goal = protect
+		}
+		create_incident = {
+			country = c:CHI value = 15
+		}
+		c:KOR = {
+			set_secret_goal = {
+				country = c:JAP
+				secret_goal = befriend
+			}
+		}
+				
+		ai_chance = 100
+	}
+
+	option = {
+		name = HJE_japan.1.b
+	}		
+}
+
+
+HJE_japan.2 = { #Declare War on the Qing
+	type = country_event
+	placement = c:KOR
+	title = HJE_japan.2.t
+	desc = HJE_japan.2.d
+	flavor = HJE_japan.2.f
+
+	duration = 3
+
+	event_image = {
+		video = "gfx/event_pictures/southamerica_aristocrats.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/rich_and_poor"
+
+	icon = "gfx/interface/icons/event_icons/event_default.dds"
+
+	trigger = {
+	}
+	
+	immediate = {			
+	}
+
+	option = {
+		name = HJE_japan.2.a
+		default_option = yes
+		
+		s:STATE_FORMOSA = {
+			add_claim = root
+		}
+		create_diplomatic_play = {
+	            target_country = c:KOR
+	            type = dp_liberate_subject
+				add_war_goal = {
+					holder = c:JAP
+					type = return_state
+					target_state = s:STATE_FORMOSA.region_state:CHI
+					primary_demand = yes
+				}
+				add_war_goal = {
+					holder = c:JAP
+					type = return_state
+					target_state = s:STATE_FORMOSA.region_state:TPG
+					primary_demand = yes
+				}
+		}
+		change_relations = {
+			country = c:KOR
+			value = 70
+		} 
+		if = {
+			limit = {
+				is_player = no
+			}
+			add_modifier = { 
+				name = wartime_zeal
+				months = 12
+			}
+		}
+				
+		ai_chance = 100
+	}
+
+	option = {
+		name = HJE_japan.2.b
+	}		
+}
+
+HJE_japan.3 = { #USA: Prepare a 'Diplomatic' Expedition to Japan?
+	type = country_event
+	placement = root
+	
+	title = HJE_japan.3.t
+	desc = HJE_japan.3.d
+	flavor = HJE_japan.3.f
+	
+	icon = "gfx/interface/icons/event_icons/event_military.dds"
+	event_image = {
+		video = "gfx/event_pictures/asia_westerners_arriving.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/asia/westeners_arriving_in_east_asia" 
+
+	duration = 3
+	
+    trigger = {
+    	NOT = { has_variable = opted_out_of_perry_expedition }
+    	NOT = { any_country = { has_variable = current_perry_diplo_mission_event_initiator } }
+    	trigger_if = {
+    		limit = { exists = c:USA }
+	    	OR = {
+	    		c:USA = { NOT = { has_journal = HJ_end_japanese_isolationism } }
+				c:USA = { has_variable = opted_out_of_perry_expedition }
+	    		AND = {
+	    			exists = c:USA
+	    			c:USA = ROOT
+	    		}
+	    	}
+    	}
+	}
+
+	immediate = {
+		set_variable = current_perry_diplo_mission_event_initiator
+        save_scope_as = usa_scope
+		c:JAP = { save_scope_as = japan_scope }
+		if = {
+			limit = {
+				any_scope_admiral = { has_variable = is_matthew_perry }
+			}
+			random_scope_admiral = {
+				limit = { has_variable = is_matthew_perry }
+				save_scope_as = matthew_perry_scope
+				set_variable = jap_expedition_admiral
+			}
+		}
+		else = {
+			random_scope_admiral = {
+				save_scope_as = matthew_perry_scope
+				set_variable = jap_expedition_admiral
+			}
+		}
+	}
+
+	option = { #send the expedition to Japan
+		name = HJE_japan.3.a
+		default_option = yes
+		scope:matthew_perry_scope = {
+			set_character_busy = yes
+		}
+		c:JAP = {
+			trigger_event = { id = HJE_japan.4 days = 80 popup = yes }
+		}
+		ai_chance = {
+			base = 99
+		}
+	}
+	option = {#Not interested
+		name = HJE_japan.3.b
+		set_variable = opted_out_of_perry_expedition
+        remove_variable = current_perry_diplo_mission_event_initiator
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+HJE_japan.4 = { #JAP gets ultimatum
+	type = country_event
+	placement = ROOT
+
+	title = HJE_japan.4.t
+	desc = HJE_japan.4.d
+	flavor = HJE_japan.4.f
+
+	duration = 3
+
+	icon = "gfx/interface/icons/event_icons/event_military.dds"
+	event_image = {
+		video = "gfx/event_pictures/asia_westerners_arriving.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/asia/westeners_arriving_in_east_asia" 
+
+	trigger = {
+	}
+
+	immediate = {
+		random_country = {
+			limit = { has_variable = current_perry_diplo_mission_event_initiator }
+			save_scope_as = usa_scope
+			random_scope_admiral = {
+				limit = { has_variable = jap_expedition_admiral }
+				save_scope_as = matthew_perry_scope
+			}
+		}
+	}
+
+	option = { #Japan Accepts
+		name = HJE_japan.4.a
+		default_option = yes
+        activate_law = law_type:law_free_trade
+        scope:usa_scope = {
+        	set_variable = negotiated_jap_open_market
+			trigger_event = { id = HJE_japan.5 days = 0 popup = yes }
+        }
+        ai_chance = {
+			base = 9
+		}
+	}
+    option = { #Japan Refuses
+        name = HJE_japan.4.b
+        scope:usa_scope = {
+			trigger_event = { id = HJE_japan.6 days = 0 popup = yes }
+        }
+        ai_chance = {
+            base = 1
+        }
+    }
+}
+
+HJE_japan.5 = { #JAP opens its ports
+	type = country_event
+	placement = ROOT
+
+	title = HJE_japan.5.t
+	desc = HJE_japan.5.d
+	flavor = HJE_japan.5.f
+
+	duration = 3
+
+	event_image = {
+		video = "gfx/event_pictures/unspecific_signed_contract.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/unspecific/signed_contract"
+
+	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
+
+	trigger = {
+	}
+
+	immediate = {
+		random_scope_admiral = {
+			limit = { has_variable = jap_expedition_admiral }
+			save_scope_as = matthew_perry_scope
+		}
+	}
+
+	option = {
+        name = HJE_japan.5.a
+		default_option = yes
+        remove_variable = current_perry_diplo_mission_event_initiator
+        change_relations = {
+            country = c:JAP
+            value = -25
+        }
+		scope:matthew_perry_scope = {
+			set_character_busy = no
+		}
+        hidden_effect = {
+			set_mutual_secret_goal = {
+				country = c:JAP
+				secret_goal = reconcile
+			}
+        }
+
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+HJE_japan.6 = { #JAP attacks commodore Perry
+	type = country_event
+	placement = ROOT
+
+	title = HJE_japan.6.t
+	desc = HJE_japan.6.d
+	flavor = HJE_japan.6.f
+
+	duration = 3
+
+	event_image = {
+		video = "gfx/event_pictures/unspecific_politicians_arguing.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/before_the_battle"
+
+	icon = "gfx/interface/icons/event_icons/event_map.dds"
+
+	trigger = {
+	}
+
+	immediate = {
+		random_scope_admiral = {
+			limit = { has_variable = jap_expedition_admiral }
+			save_scope_as = matthew_perry_scope
+		}
+	}
+
+	option = {
+        name = HJE_japan.6.a
+		default_option = yes
+		set_variable = jap_commodore_attacked_var
+        remove_variable = current_perry_diplo_mission_event_initiator
+        change_relations = {
+            country = c:JAP
+            value = -50
+        }
+		random_list = {
+			50 = { scope:matthew_perry_scope = { set_character_busy = no } }
+			50 = { scope:matthew_perry_scope = { kill_character = yes } }
+		}
+        hidden_effect = {
+			set_mutual_secret_goal = {
+				country = c:JAP
+				secret_goal = antagonize
+			}
+        }
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+

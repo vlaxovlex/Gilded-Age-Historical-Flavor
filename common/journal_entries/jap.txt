@@ -1,0 +1,157 @@
+﻿HJ_end_japanese_isolationism = {
+	icon = "gfx/interface/icons/event_icons/event_scales.dds"
+	should_be_pinned_by_default = yes
+	weight = 90000
+
+	group = je_group_foreign_affairs
+
+	is_shown_when_inactive = {
+		year >= 1842
+		NOT = { has_global_variable = globvar_jap_market_open }
+		exists = c:JAP
+		OR = { navy_size >= 50 this ?= c:USA }
+		country_rank = rank_value:great_power
+		any_scope_state = { 
+			is_coastal = yes 
+		}
+	}
+
+	possible = {
+		year >= 1852
+		exists = c:JAP
+		c:JAP = { has_law = law_type:law_isolationism }
+	}
+
+	on_monthly_pulse = {
+		random_events = {
+			100 = 0
+			5 = HJE_japan.3 #USA, Perry Expedition?
+		}
+	}
+
+	immediate = {
+	}
+
+	complete = {
+		OR = {
+			AND = {
+				hidden_trigger = { has_variable = negotiated_jap_open_market }
+		    	c:JAP = { has_law = law_type:law_free_trade }
+			}
+			AND = {
+				has_truce_with = c:JAP
+			}
+		}
+	}
+	
+	on_complete = {
+		set_global_variable = globvar_jap_market_open
+		if = {
+			limit = { c:JAP = { NOT = { has_law = law_type:law_free_trade } } }
+			c:JAP = { activate_law = law_type:law_free_trade }
+		}
+		c:JAP = {
+			add_modifier = {
+				name = open_markets_modifier  		## replaced with better modifier
+				months = normal_modifier_time
+			}
+		}
+	}
+
+	fail = {
+		hidden_trigger = {
+			has_global_variable = globvar_jap_market_open
+			NOT = { has_variable = negotiated_jap_open_market }
+		}
+		c:JAP = { 
+			NOT = { has_truce_with = ROOT }
+			NOT = { has_law = law_type:law_isolationism }
+		}
+	}
+	on_fail = {
+		if = {
+			limit = {
+				NOT = { was_truce_with = c:JAP }
+				hidden_trigger = { c:JAP = { has_modifier = forced_market_opening } }
+				NOT = {
+					any_country = {
+						has_variable = negotiated_jap_open_market
+					}
+				}
+			}
+			add_modifier = {
+				name = withdrew_from_colonial_incident
+				months = normal_modifier_time
+			}
+		}
+	}
+}
+
+HJ_kor = { #Korean political instability
+	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
+	
+	group = je_group_historical_content
+	
+	complete = {
+		OR = {
+			AND = {
+				NOT = {	has_law = law_type:law_isolationism }
+				exists = c:CHI
+				NOT = { is_subject_of = c:CHI }
+				trigger_if = {
+					limit = {
+						exists = c:TPG
+					}
+					NOT = { is_subject_of = c:TPG }
+				}
+			}
+			AND = {
+				NOT = {	has_law = law_type:law_isolationism }
+				exists = c:TPG
+				NOT = { is_subject_of = c:TPG }
+				trigger_if = {
+					limit = {
+						exists = c:CHI
+					}
+					NOT = { is_subject_of = c:CHI }
+				}
+			}
+		}
+	}
+	
+	on_complete = {
+		remove_variable = chi_var
+	}
+	
+	on_timeout = {
+		add_radicals = { value = 0.75 strata = rich }
+		set_variable = chi_var
+		if = {
+			limit = {
+				exists = c:CHI
+				is_subject_of = c:CHI
+			}
+			c:CHI = {
+				trigger_event = {
+					id = HJE_china.2
+				}
+			}
+		}
+		if = {
+			limit = {
+				exists = c:TPG
+				is_subject_of = c:TPG
+			}
+			c:TPG = {
+				trigger_event = {
+					id = HJE_china.2
+				}
+			}
+		}
+	}
+
+	timeout = 3650
+
+	weight = 10000
+	should_be_pinned_by_default = yes
+}

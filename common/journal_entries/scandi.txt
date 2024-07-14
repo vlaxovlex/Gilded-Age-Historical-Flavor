@@ -1,0 +1,877 @@
+﻿# Scandinavian Pan-Nationalism
+scandinavian_pan_nationalism = {
+	icon = "gfx/interface/icons/event_icons/event_military.dds"
+
+	group = je_group_historical_content
+
+	is_shown_when_inactive = {
+		OR = {
+			AND = {
+				exists = c:SWE
+				c:SWE = THIS
+			}
+			AND = {
+				exists = c:DEN
+				c:DEN = THIS
+			}
+			AND = {
+				exists = c:NOR
+				c:NOR = THIS
+			}
+			AND = {
+				exists = c:FIN
+				c:FIN = THIS
+			}
+		}
+		NOT = { has_global_variable = nordic_pan_nationalism_var }
+	}
+	
+	possible = {
+		is_subject = no
+		any_scope_building = {
+			is_building_type = building_university
+		}
+	}
+	
+	complete = {
+		has_technology_researched = nationalism
+		any_scope_building = {
+			is_building_type = building_university
+			occupancy > 0.9
+			level >= 3
+		}
+	}
+	
+	on_complete = {
+		set_global_variable = nordic_pan_nationalism_var
+		c:SWE = {
+			trigger_event = { id = scandinavia_flavor.2 }
+		}
+		c:DEN = {
+			trigger_event = { id = scandinavia_flavor.2 }
+		}
+		c:NOR = {
+			trigger_event = { id = scandinavia_flavor.2 }
+		}
+		c:FIN = {
+			trigger_event = { id = scandinavia_flavor.2 }
+		}
+	}
+	
+	weight = 100
+}
+# Scandinavian Monetary Union (DEN)
+scandinavia_monetary_union = {
+	icon = "gfx/interface/icons/event_icons/event_default.dds"
+	
+	group = je_group_historical_content
+	
+	is_shown_when_inactive = {
+		exists = c:SWE
+		exists = c:DEN
+		c:DEN = THIS
+		NOT = { has_variable = scandinvia_monetary_union_var }
+	}
+	
+	possible = {
+		is_subject = no
+	}
+	
+	complete = {
+		is_subject = no
+		is_at_war = no
+		has_technology_researched = nationalism
+		NOT = { has_law = law_type:law_isolationism }
+		c:SWE = {
+			is_subject = no
+			is_at_war = no
+			relations:root >= relations_threshold:amicable
+			NOT = { has_law = law_type:law_isolationism }
+			has_technology_researched = nationalism
+		}
+	}
+	
+	on_complete = {
+		c:SWE = {
+			set_variable = scandinvia_monetary_union_var
+			trigger_event = { id = scandinavia_flavor.1 }
+		}
+		c:DEN = {
+			set_variable = scandinvia_monetary_union_var
+			trigger_event = { id = scandinavia_flavor.1 }
+		}
+		show_as_tooltip = {
+			add_modifier = {
+				name = scandinavian_monetary_union_mod
+				months = -1
+			}
+		}
+	}
+	
+	weight = 10
+}
+scandinavia_monetary_union_swe = {
+	icon = "gfx/interface/icons/event_icons/event_default.dds"
+	
+	group = je_group_historical_content
+	
+	is_shown_when_inactive = {
+		exists = c:SWE
+		exists = c:DEN
+		c:SWE = THIS
+		NOT = { has_variable = scandinvia_monetary_union_var }
+	}
+	
+	possible = {
+		is_subject = no
+	}
+	
+	complete = {
+		is_subject = no
+		is_at_war = no
+		has_technology_researched = nationalism
+		NOT = { has_law = law_type:law_isolationism }
+		c:DEN = {
+			is_subject = no
+			is_at_war = no
+			relations:root >= relations_threshold:amicable
+			has_technology_researched = nationalism
+			NOT = { has_law = law_type:law_isolationism }
+		}
+	}
+	
+	on_complete = {
+		c:SWE = {
+			set_variable = scandinvia_monetary_union_var
+			trigger_event = { id = scandinavia_flavor.1 }
+		}
+		c:DEN = {
+			set_variable = scandinvia_monetary_union_var
+			trigger_event = { id = scandinavia_flavor.1 }
+		}
+		show_as_tooltip = {
+			add_modifier = {
+				name = scandinavian_monetary_union_mod
+				months = -1
+			}
+		}
+	}
+	
+	weight = 10
+}
+# Scandinavian Monetary Union
+scandinavia_monetary_union_nor = {
+	icon = "gfx/interface/icons/event_icons/event_default.dds"
+
+	group = je_group_historical_content
+
+	is_shown_when_inactive = {
+		exists = c:NOR
+		c:NOR = THIS
+		OR = {
+			c:SWE = { has_variable = scandinvia_monetary_union_var }
+			c:DEN = { has_variable = scandinvia_monetary_union_var }
+		}
+		NOT = { has_variable = scandinvia_monetary_union_var }
+	}
+	
+	possible = {
+		is_subject = no
+		has_technology_researched = nationalism
+		c:DEN = {
+			is_subject = no
+			has_technology_researched = nationalism
+		}
+		c:SWE = {
+			is_subject = no
+			has_technology_researched = nationalism
+		}
+	}
+	
+	complete = {
+		is_subject = no
+		is_at_war = no
+		NOT = { has_law = law_type:law_isolationism }
+		c:DEN = {
+			is_at_war = no
+			relations:root >= relations_threshold:amicable
+			NOT = { has_law = law_type:law_isolationism }
+		}
+		c:SWE = {
+			is_at_war = no
+			relations:root >= relations_threshold:amicable
+			NOT = { has_law = law_type:law_isolationism }
+		}
+	}
+	
+	on_complete = {
+		set_variable = scandinvia_monetary_union_var
+		add_modifier = {
+			name = scandinavian_monetary_union_mod
+			months = -1
+		}
+	}
+	
+	weight = 10
+}
+# Lantmannapartiet
+swedish_the_rise_of_lantmanna_partiet = {
+	icon = "gfx/interface/icons/event_icons/event_election.dds"
+	
+	group = je_group_internal_affairs
+	
+	is_shown_when_inactive = {
+		exists = c:SWE
+		c:SWE = THIS
+	}
+	
+	possible = {
+		NOR = {
+			has_law = law_type:law_autocracy
+			has_law = law_type:law_oligarchy
+		}
+		ig:ig_rural_folk = {
+			is_marginal = no
+		}
+	}
+	
+	immediate = {
+		ig:ig_rural_folk = {
+			add_modifier = {
+				name = sweden_farmers_organising
+				months = long_modifier_time
+			}
+		}
+		set_variable = {
+			name = lantmanna_partiet_organisation_var
+			value = 0
+		}
+	}
+	
+	current_value = {
+		value = root.var:lantmanna_partiet_organisation_var
+	}
+	
+	goal_add_value = {
+		add = 36	# 3 years
+	}
+	
+	progressbar = yes
+	
+	complete = {
+		scope:journal_entry = { is_goal_complete = yes }
+		ig:ig_rural_folk = {
+			OR = {
+				is_powerful = yes
+				is_in_government = yes
+			}
+		}
+	}
+	on_monthly_pulse = {
+		random_events = {
+			200 = 0
+			50 = sweden_flavor.5
+			50 = sweden_flavor.6
+		}
+		effect = {
+			if = {
+				limit = {
+					ig:ig_rural_folk = {
+						is_marginal = no
+						is_being_suppressed = no
+					}
+				}
+				change_variable = {
+					name = lantmanna_partiet_organisation_var
+					add = 1
+				}
+			}
+		}
+	}
+	
+	on_complete = {
+		trigger_event = { id = sweden_flavor.2 }
+	}
+	
+	weight = 100
+	should_be_pinned_by_default = yes
+}
+
+# Schleswig-Holstein Question
+denmark_return_of_danish_dominance = {
+	icon = "gfx/interface/icons/event_icons/event_default.dds"
+	
+	group = je_group_crises
+	
+	is_shown_when_inactive = {
+		exists = c:DEN
+		c:DEN = THIS
+	}
+	
+	possible = {
+		is_subject = no
+		exists = c:HOL
+		c:HOL = { is_subject_of = c:DEN }
+	}
+	
+	complete = {
+		cu:north_german = {
+			culture_secession_progress = {
+				target = ROOT
+				value < 0.33
+			}
+		}
+		owns_entire_state_region = STATE_SCHLESWIG_HOLSTEIN
+	}
+	
+	on_complete = {
+		trigger_event = { id = denmark_flavor.2 }
+		show_as_tooltip = {
+			add_loyalists = {
+				culture = cu:danish
+				pop_type = aristocrats
+				value = 0.2
+			}
+			add_modifier = {
+				name = denmark_unification_time
+				months = normal_modifier_time
+			}
+		}
+	}
+	on_fail = {
+		trigger_event = { id = denmark_flavor.1 }
+	}
+	
+	on_monthly_pulse = {
+		random_events = {
+			500 = 0
+			100 = denmark_flavor.3
+			# Add more that occur once first leader dies
+				# These events should be about a new constitution
+		}
+	}
+	
+	fail = {
+		custom_tooltip = {
+			text = has_no_control_over_holstein_or_scania
+			#NOT = { has_variable = is_in_holstein_war }
+			NOT = {
+				any_scope_state = {
+					OR = {
+						state_region = s:STATE_SCHLESWIG_HOLSTEIN
+						#state_region = s:STATE_SCANIA
+					}
+					owner = {
+						OR = {
+							c:DEN = THIS
+							is_subject_of = c:DEN
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	weight = 100
+}
+
+je_the_kings_infection = {
+	icon = "gfx/interface/icons/event_icons/event_skull.dds"
+
+	group = je_group_historical_content
+
+	is_shown_when_inactive = {
+		year >= 1858
+		exists = c:DEN
+		c:DEN = ROOT
+	}
+
+	possible = {
+		year >= 1863
+		hidden_trigger = {
+			any_subject_or_below = {
+				is_subject_type = subject_type_personal_union
+				OR = {
+					AND = {
+						exists = c:SCH
+						c:SCH = THIS
+					}
+					AND = {
+						exists = c:HOL
+						c:HOL = THIS
+					}
+				}
+			}
+		}
+	}
+
+	immediate = {
+		set_variable = {
+			name = king_death_progress_var
+			value = 0
+		}
+	}
+
+	on_monthly_pulse = {
+		effect = {
+			change_variable = {
+				name = king_death_progress_var
+				add = 1
+			}
+			if = {
+				limit = { c:DEN = { is_player = yes } }
+				random_list = {
+					75 = { }
+					25 = {
+						set_variable = king_died_of_skin_infection
+						ruler = { kill_character = yes }
+					}
+				}
+			}
+			else = {
+				random_list = {
+					50 = { }
+					50 = {
+						set_variable = king_died_of_skin_infection
+						ruler = { kill_character = yes }
+					}
+				}
+			}
+		}
+	}
+
+	complete = {
+		OR = {
+			custom_tooltip = {
+				text = king_died_of_skin_infection_tt
+				has_variable = king_died_of_skin_infection
+			}
+			hidden_trigger = {
+				scope:journal_entry = { is_goal_complete = yes }
+			}
+		}
+	}
+	
+	on_complete = {
+		if = {
+			limit = {
+				NOT = { has_global_variable = DEN_schleswig_revolt_happened }
+			}
+			trigger_event = { id = HJE_prussia.1 popup = yes }
+		}
+	}
+
+	current_value = {
+		value = root.var:king_death_progress_var
+	}
+
+	goal_add_value = {
+		value = 12
+	}
+
+	progressbar = yes
+
+	weight = 100
+
+	should_be_pinned_by_default = yes
+}
+
+
+# National Defense Question
+# Note: can still be bypassed due to leader requirement (in theory a character in government could get jingoist while all the below are done)
+swedish_champions_of_national_defence = {
+	icon = "gfx/interface/icons/event_icons/event_scales.dds"
+	
+	group = je_group_technology
+	
+	is_shown_when_inactive = {
+		exists = c:SWE
+		c:SWE = THIS
+	}
+	
+	possible = {
+		any_interest_group = {
+			is_marginal = no
+			OR = {
+				has_ideology = ideology:ideology_particularist
+				has_ideology = ideology:ideology_jingoist
+			}
+		}
+	}
+	
+	complete = {
+		has_technology_researched = central_archives
+		NOR = {
+			has_law = law_type:law_autocracy
+			has_law = law_type:law_oligarchy
+		}
+		NOR = {
+			has_law = law_type:law_peasant_levies
+			has_law = law_type:law_land_based_taxation
+		}
+		any_interest_group = {
+			is_in_government = yes
+			OR = {
+				has_ideology = ideology:ideology_particularist
+				leader = { has_ideology = ideology:ideology_jingoist_leader }
+			}
+		}
+	}
+	
+	on_complete = {
+		trigger_event = { id = sweden_flavor.1 }
+	}
+	
+	weight = 250
+}
+
+# Protectionism vs Free Trade
+swedish_the_trade_problems = {
+	icon = "gfx/interface/icons/event_icons/event_scales.dds"
+	
+	group = je_group_technology
+	
+	is_shown_when_inactive = {
+		exists = c:SWE
+		c:SWE = THIS
+	}
+	
+	possible = {
+		NOR = {
+			has_law = law_type:law_free_trade
+			has_law = law_type:law_protectionism
+		}
+		any_interest_group = {
+			OR = {
+				is_powerful = yes
+				is_in_government = yes
+			}
+			OR = {
+				has_ideology = ideology:ideology_laissez_faire
+				leader = { has_ideology = ideology:ideology_market_liberal }
+			}
+		}
+		ig:ig_rural_folk = {
+			OR = {
+				is_powerful = yes
+				is_in_government = yes
+			}
+		}
+	}
+	
+	complete = {
+		OR = {
+			has_law = law_type:law_free_trade
+			has_law = law_type:law_protectionism
+		}
+	}
+	
+	on_complete = {
+		if = {
+			limit = { has_law = law_type:law_free_trade }
+			trigger_event = { id = sweden_flavor.3 }
+		}
+		if = {
+			limit = { has_law = law_type:law_protectionism }
+			trigger_event = { id = sweden_flavor.4 }
+		}
+		if = {	# Only for tooltip 
+			limit = {
+				NOR = {
+					has_law = law_type:law_free_trade
+					has_law = law_type:law_protectionism
+				}
+			}
+			trigger_event = { id = sweden_flavor.4 }
+		}
+	}
+	
+	weight = 250
+}
+
+# Loss of Lantmanna Partiet's relevance
+swedish_the_end_of_lantmanna_party = {
+	icon = "gfx/interface/icons/event_icons/event_election.dds"
+	
+	group = je_group_internal_affairs
+	
+	is_shown_when_inactive = {
+		exists = c:SWE
+		c:SWE = THIS
+		ig:ig_rural_folk = {
+			has_modifier = sweden_lantmannapartiet
+		}
+	}
+	
+	possible = {
+		ig:ig_rural_folk = {
+			ig_clout < 0.1
+		}
+	}
+	
+	complete = {
+		ig:ig_rural_folk = {
+			is_in_government = no
+			ig_clout < 0.2
+		}
+		OR = {
+			ig:ig_rural_folk = {
+				is_marginal = yes
+			}
+			ig:ig_petty_bourgeoisie = {
+				is_powerful = yes
+			}
+		}
+	}
+	
+	on_complete = {
+		# Add event
+		ig:ig_rural_folk = {
+			remove_modifier = sweden_lantmannapartiet
+		}
+	}
+	
+	weight = 10
+}
+
+# The recovery of the military
+swedish_restoration_of_the_military = {
+	icon = "gfx/interface/icons/event_icons/event_military.dds"
+	
+	group = je_group_technology
+	
+	is_shown_when_inactive = {
+		exists = c:SWE
+		c:SWE = THIS
+		has_modifier = sweden_outdated_military
+	}
+	
+	possible = {
+		OR = {
+			has_technology_researched = general_staff
+			has_technology_researched = logistics
+		}
+		ig:ig_armed_forces = {
+			is_marginal = no
+		}
+		custom_tooltip = {
+			text = has_completed_champions_of_national_defense
+			NOT = { has_modifier = sweden_land_based_taxation_policies }
+		}
+	}
+	
+	complete = {
+		ig:ig_armed_forces = {
+			OR = {
+				is_powerful = yes
+				is_in_government = yes
+			}
+		}
+		NOT = {
+			has_law = law_type:law_peasant_levies
+		}
+		OR = {
+			has_technology_researched = wargaming
+			AND = {
+				has_technology_researched = military_statistics
+				is_at_war = yes
+			}
+		}
+	}
+	
+	on_complete = {
+		remove_modifier = sweden_outdated_military
+	}
+	
+	weight = 50
+}
+
+# Fennoman Movement
+finland_fennoman_movement = {
+	icon = "gfx/interface/icons/event_icons/event_military.dds"
+	
+	group = je_group_technology
+	
+	is_shown_when_inactive = {
+		exists = c:FIN
+		c:FIN = THIS
+		has_modifier = finland_our_language_outside_courts
+	}
+	
+	possible = {
+		has_technology_researched = dialectics
+		OR = {
+			has_technology_researched = human_rights
+			has_technology_researched = pan-nationalism
+		}
+	}
+	
+	on_complete = {
+		trigger_event = { id = finland_flavor.1 }
+		show_as_tooltip = {
+			add_modifier = {
+				name = finland_language_question_solved
+				months = normal_modifier_time
+			}
+			add_loyalists = {
+				culture = cu:finnish
+				value = 0.1
+			}
+			remove_primary_culture = cu:swedish
+		}
+	}
+	on_fail = {
+		trigger_event = { id = finland_flavor.2 }
+		show_as_tooltip = {
+			add_radicals = {
+				culture = cu:finnish
+				value = 0.1
+			}
+		}
+	}
+	
+	immediate = {
+		trigger_event = { id = finland_flavor.100 }
+		set_variable = {
+			name = finland_language_debate_var
+			value = 0
+		}
+		set_variable = {
+			name = finland_language_debate_loss_var
+			value = 0
+		}
+	}
+	
+	current_value = {
+		value = root.var:finland_language_debate_var
+	}
+	
+	goal_add_value = {
+		add = 240	# 20 years
+	}
+	
+	progressbar = yes
+	
+	complete = {
+		scope:journal_entry = { is_goal_complete = yes }
+		NOT = { has_modifier = finland_our_language_outside_courts }
+	}
+	fail = {
+		custom_tooltip = {
+			text = has_made_too_many_concessions_to_swedes
+			var:finland_language_debate_loss_var >= 15
+		}
+	}
+	
+	on_monthly_pulse = {
+		random_events = {
+			900 = 0
+			25 = finland_flavor.3
+			25 = finland_flavor.4
+			25 = finland_flavor.5
+			25 = finland_flavor.7
+		}
+		effect = {
+			change_variable = {
+				name = finland_language_debate_var
+				add = 1
+			}
+		}
+	}
+	
+	weight = 100
+	should_be_pinned_by_default = yes
+}
+# Det store hamskiftet
+nor_the_great_transformation = {
+	icon = "gfx/interface/icons/event_icons/event_industry.dds"
+
+	group = je_group_foreign_affairs
+
+	is_shown_when_inactive = {
+		exists = c:NOR
+		c:NOR = THIS
+	}
+	
+	possible = {
+		has_industry_building = yes
+	}
+	
+	complete = {
+		any_scope_building = {
+			OR = {
+				is_building_type = building_food_industry
+				is_building_type = building_textile_mills
+				is_building_type = building_furniture_manufacturies
+				is_building_type = building_glassworks
+				is_building_type = building_paper_mills
+			}
+			occupancy > 0.9
+			level >= 3
+		}
+		OR = {
+			any_scope_building = {
+				is_building_type = building_tooling_workshops
+				occupancy > 0.9
+				level >= 2
+			}
+			capital.market = {
+				any_trade_route = {
+					importer.owner = root
+					goods = g:tools
+				}
+			}
+		}
+	}
+	
+	on_complete = {
+		trigger_event = { id = norway_flavor.2 }
+	}
+	
+	weight = 100
+}
+
+nor_the_merchant_navy = {
+	icon = "gfx/interface/icons/event_icons/event_trade.dds"
+
+	group = je_group_technology
+
+	is_shown_when_inactive = {
+		exists = c:NOR
+		c:NOR = THIS
+	}
+	
+	possible = {
+		any_scope_building = {
+			is_building_type = building_port
+		}
+	}
+	
+	complete = {
+		in_default = no
+		NOT = { has_law = law_type:law_isolationism }
+		any_scope_building = {
+			is_building_type = building_shipyards
+			occupancy > 0.9
+			level >= 2
+		}
+		any_scope_building = {	# Increase later?
+			is_building_type = building_port
+			NOT = { has_active_production_method = pm_anchorage }
+			occupancy > 0.9
+			level >= 5
+		}
+	}
+	
+	on_complete = {
+		trigger_event = { id = norway_flavor.3 }
+		show_as_tooltip = {
+			add_modifier = {
+				name = norway_the_great_merchant_navy
+				months = -1
+			}
+		}
+	}
+	
+	weight = 100
+}

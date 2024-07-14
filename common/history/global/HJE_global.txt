@@ -1,0 +1,157 @@
+﻿# This is executed last among all history
+GLOBAL = {
+	every_country = { set_variable = capital_decided_variable }
+	cu:north_german = { add_cultural_obsession = meat }
+	cu:south_german = { add_cultural_obsession = meat }
+	cu:yankee = { add_cultural_obsession = small_arms }
+	cu:dixie = { add_cultural_obsession = small_arms }
+	cu:russian = { add_cultural_obsession = liquor }
+	cu:scottish = { add_cultural_obsession = liquor }
+	cu:han = { add_cultural_obsession = opium }
+	c:HAI = { remove_primary_culture = cu:caribeno }
+	c:DEN = {
+		activate_law = law_type:law_legacy_slavery
+		ig:ig_petty_bourgeoisie = {
+			leader = {
+				set_ideology = ideology_radical
+			}
+		}
+	}
+	c:SWE = {
+		activate_law = law_type:law_wealth_voting
+		activate_law = law_type:law_legacy_slavery
+		add_modifier = {
+			name = sweden_outdated_military
+			months = -1
+		}
+		add_modifier = {
+			name = sweden_land_based_taxation_policies
+			months = -1
+		}
+	}
+	c:NOR = {
+		add_modifier = {
+			name = norway_abolishment_of_new_aristocrats
+			months = -1
+		}
+		ig:ig_rural_folk = {
+			add_modifier = {
+				name = sweden_farmers_organising
+				months = long_modifier_time
+			}
+		}
+		trigger_event = {
+			id = norway_flavor.1
+			days = 730
+		}
+	}
+	c:FIN = {
+		activate_law = law_type:law_appointed_bureaucrats
+		activate_law = law_type:law_local_police
+		activate_law = law_type:law_agrarianism
+		activate_law = law_type:law_migration_controls
+		add_modifier = {
+			name = finland_our_language_outside_courts
+			months = -1
+		}
+	}
+	# Give Sweden their small colonial empire back
+	s:STATE_WEST_INDIES = {
+		set_owner_of_provinces = {
+			country = c:SWE
+			provinces = { xECC061 }
+		}
+		region_state:SWE={
+			create_building={
+				building="building_port"
+				level=1
+				reserves=1
+				activate_production_methods={ "pm_basic_port" }
+			}
+		}
+	}
+	# Move away British from East Indies to UK
+	c:GBR = {
+		random_scope_state = {
+			limit = {
+				any_scope_pop = {
+					culture = cu:british
+				}
+			}
+			save_scope_as = english_removal_state
+		}
+		c:SWE = {
+			random_scope_state = {
+				limit = {
+					any_scope_pop = {
+						culture = cu:british
+					}
+				}
+				every_scope_pop = {
+					limit = {
+						culture = cu:british
+					}
+					move_pop = scope:english_removal_state
+				}
+			}
+		}
+	}
+	# Closer borders to the sea, still not close enough (why paradox did you do this?)
+	s:STATE_SCHLESWIG_HOLSTEIN = {
+		set_owner_of_provinces = {
+			country = c:HOL
+			provinces = { xBFCC21 }
+		}
+	}
+	# Why the fuck doesn't Spain own Guam??
+	s:STATE_WEST_MICRONESIA = {
+		set_owner_of_provinces = {
+			country = c:SPA
+			provinces = { x414170 }
+		}
+		region_state:SPA={
+			create_building={
+				building="building_port"
+				level=2
+				reserves=1
+				activate_production_methods={ "pm_basic_port" }
+			}
+		}
+	}
+	every_state = {
+		limit = {
+			NOT = { state_region = s:STATE_SENEGAL }
+			owner = {
+				OR = {
+					has_law = law_type:law_colonial_resettlement
+					has_law = law_type:law_colonial_exploitation
+				}
+			}
+			OR = {
+				region = sr:region_ethiopia
+				region = sr:region_senegal
+				region = sr:region_niger
+				region = sr:region_congo
+				region = sr:region_zambezia
+				region = sr:region_angola
+				region = sr:region_zanj
+				state_region = s:STATE_WADDAI
+				state_region = s:STATE_HEREROLAND
+				state_region = s:STATE_NAMAQUALAND
+				state_region = s:STATE_BOTSWANA
+			}
+		}
+		add_modifier = {
+			name = sfa_unexplored_state
+			months = 648
+		}
+	}
+	c:CIR = { add_modifier = { name = separatist_zeal months = 288 } }
+	c:CHC = { add_modifier = { name = separatist_zeal months = 288 } }
+	c:JAP = {
+		activate_law = law_type:law_no_colonial_affairs
+	}
+	c:UBD = {
+		remove_primary_culture = cu:north_german
+	}
+}

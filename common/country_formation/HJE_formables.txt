@@ -1,0 +1,79 @@
+﻿ROM = {
+	use_culture_states = yes
+
+	required_states_fraction = 0.125 # Romania has 8 possible homeland states total
+
+	possible = {
+		has_state_in_state_region = STATE_DOBRUDJA
+		OR = {
+			c:WAL = {
+				OR = {
+					hidden_trigger = {
+						AND = {
+							is_player = no
+							game_date >= 1866
+							c:MOL = {
+								is_player = no
+							}
+						}
+					}
+
+					AND = {
+						has_technology_researched = nationalism
+
+						exists = c:WAL
+						exists = c:MOL
+						c:WAL = ROOT
+						c:MOL = {
+							is_subject_of = ROOT
+						}
+						has_variable = drafted_constitution
+					}
+				}
+			}
+
+			c:MOL = {
+				AND = {
+					has_technology_researched = nationalism
+					has_variable = form_romanian_nation
+				}
+			}
+		}
+	}
+
+	ai_will_do = { always = yes }
+}
+
+AST = {
+	states = {
+		STATE_NEW_SOUTH_WALES
+		STATE_VICTORIA
+		STATE_QUEENSLAND
+		STATE_SOUTH_AUSTRALIA
+		STATE_WESTERN_AUSTRALIA
+		STATE_NORTHERN_TERRITORY
+	}
+
+	required_states_fraction = 0.65	
+	
+	ai_will_do = { always = yes }
+
+	possible = {
+		has_technology_researched = nationalism
+	}
+}
+
+UCI = {
+	states = {
+		STATE_EMILIA
+		STATE_TUSCANY
+		STATE_ROMAGNA
+	}
+
+	required_states_fraction = 1
+	
+	ai_will_do = { always = no }
+	possible = {
+		has_technology_researched = nationalism
+	}
+}

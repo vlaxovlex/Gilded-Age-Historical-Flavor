@@ -1,0 +1,62 @@
+﻿ottoman_colour = {
+	default = keep_base_turkey_colour
+
+	keep_base_turkey_colour = {
+	}
+
+	make_ottomans_red = {
+		flag = rule_flag_red_ottomans
+	}
+}
+
+austro_hungarian_colour = {
+	default = make_aushun_rust
+
+	make_aushun_whitish_orange = {
+		flag = rule_flag_whiteorange_aushun
+	}
+
+	make_aushun_rust = {
+		flag = rule_flag_rust_aushun
+	}
+
+	keep_aushun_yellow = {
+		flag = rule_flag_yellow_aushun
+	}
+}
+
+csa_flag = {
+	default = csa_flag_no_change
+
+	csa_flag_no_change = {
+		flag = rule_flag_csa_flag_no_change
+	}
+
+	csa_flag_1n_flag = {
+		flag = rule_flag_csa_flag_1n_flag
+	}
+
+	csa_flag_2n_flag = {
+		flag = rule_flag_csa_flag_2n_flag
+	}
+
+	csa_flag_3n_flag = {
+		flag = rule_flag_csa_flag_3n_flag
+	}
+
+	csa_flag_battleflag = {
+		flag = rule_flag_csa_flag_battleflag
+	}
+}
+
+#ultra_historical_politics_compatibility = {
+#	default = ultra_historical_politics_compatibility_no
+#
+#	ultra_historical_politics_compatibility_yes = {
+#		flag = ultra_historical_politics_compatibility_yes
+#	}
+#
+#	ultra_historical_politics_compatibility_no = {
+#	}
+#
+#}
