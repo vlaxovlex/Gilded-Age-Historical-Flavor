@@ -261,7 +261,6 @@ je_north_german_unification = {
 	group = je_group_historical_content
 	
 	immediate = {														#HJE edit start
-		set_global_variable = GER_ladies_and_gentlemen_the_main_event	
 		if = {
 			limit = {
 				year >= 1853
@@ -277,13 +276,14 @@ je_north_german_unification = {
 	}																	#HJE edit end
 	
 	complete = {
-		OR = {																					#HJE edit start											
-			owns_entire_state_region = STATE_ALSACE_LORRAINE
-			AND = {
-				has_state_in_state_region = STATE_SCHLESWIG_HOLSTEIN
-				custom_tooltip = {
-					text = the_danes_are_not_in_schwhol_tt
-					NOT = {
+		OR = {																					#HJE edit start	
+			owns_entire_state_region = STATE_ALSACE_LORRAINE	
+			owns_entire_state_region = STATE_SCHLESWIG_HOLSTEIN
+			custom_tooltip = {
+				text = je_schleswig_holstein_question_solved_trigger_desc
+				OR = {
+					has_global_variable = schleswig_holstein_question_solved
+					NOR = {
 						AND = {
 							exists = c:SCH
 							c:SCH = { has_state_in_state_region = STATE_SCHLESWIG_HOLSTEIN }
@@ -302,10 +302,6 @@ je_north_german_unification = {
 						}
 					}
 				}
-			}																					
-			custom_tooltip = {
-				has_global_variable = schleswig_holstein_question_solved
-				text = je_schleswig_holstein_question_solved_trigger_desc
 			}
 		}																						#HJE edit end
 		hidden_trigger = {
@@ -375,9 +371,8 @@ je_south_german_unification = {
 
 	group = je_group_historical_content
 
-	immediate = {														#HJE edit start
-		set_global_variable = GER_ladies_and_gentlemen_the_main_event	
-	}																	#HJE edit end
+	immediate = {
+	}
 
 	fail = {	#HJE edit start
 		hidden_trigger = {
@@ -388,10 +383,34 @@ je_south_german_unification = {
 	}			#HJE edit end
 
 	complete = {
-		custom_tooltip = {
-			has_global_variable = schleswig_holstein_question_solved
-			text = je_schleswig_holstein_question_solved_trigger_desc
-		}	
+		OR = {																					#HJE edit start	
+			owns_entire_state_region = STATE_ALSACE_LORRAINE	
+			owns_entire_state_region = STATE_SCHLESWIG_HOLSTEIN
+			custom_tooltip = {
+				text = je_schleswig_holstein_question_solved_trigger_desc
+				OR = {
+					has_global_variable = schleswig_holstein_question_solved
+					NOR = {
+						AND = {
+							exists = c:SCH
+							c:SCH = { has_state_in_state_region = STATE_SCHLESWIG_HOLSTEIN }
+						}
+						AND = {
+							exists = c:HOL
+							c:HOL = { has_state_in_state_region = STATE_SCHLESWIG_HOLSTEIN }
+						}
+						any_country = {
+							has_state_in_state_region = STATE_SCHLESWIG_HOLSTEIN
+							exists = c:DEN
+							OR = {
+								c:DEN = THIS
+								is_subject_of = c:DEN
+							}
+						}
+					}
+				}
+			}
+		}
 		hidden_trigger = {
 			has_variable = je_unification_progress
 		}	

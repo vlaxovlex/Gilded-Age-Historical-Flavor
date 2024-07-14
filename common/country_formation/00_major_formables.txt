@@ -23,58 +23,82 @@
 			NOT = {
 				exists = c:RHN
 			}
-		}	
-		OR = {																	#HJE edit start
-			country_has_primary_culture = cu:north_german			
-			country_has_primary_culture = cu:south_german			
-		}															
-		any_country = {
+		}													
+		any_country = {																	#HJE edit start
 			OR = {
 				country_has_primary_culture = cu:north_german
 				country_has_primary_culture = cu:south_german
 			}
 			has_technology_researched = nationalism
+		}	
+		trigger_if = { ### IF NORTH GERMANY OR SOUTH GERMANY EXIST AND ARE RELEVANT, THEY WILL BE THE ONLY AVAILABLE CANDIDATES ###
+			limit = { 
+				any_country = {
+					is_subject = no
+					country_rank >= rank_value:great_power
+					OR = {
+						AND = { exists = c:NGF c:NGF = THIS }
+						AND = { exists = c:SGF c:SGF = THIS }
+					}
+				}
+			}
+			OR = {
+				AND = { exists = c:NGF c:NGF = ROOT }
+				AND = { exists = c:SGF c:SGF = ROOT }
+			}
 		}
-		OR = {
-			hidden_trigger = {
-				OR = {																															
-					owns_entire_state_region = STATE_ALSACE_LORRAINE
-					AND = {
+		trigger_else = { ### OTHERWISE, YOU MUST BE A GERMAN WHO HAS AT LEAST A SMALL PART OF ALSACE OR SCHLESWIG, BROTHERS WAR TRIGGER ###
+			OR = {
+				country_has_primary_culture = cu:north_german			
+				country_has_primary_culture = cu:south_german			
+			}
+			trigger_if = {
+				limit = {  
+					any_country = {
+						is_subject = no
 						has_state_in_state_region = STATE_SCHLESWIG_HOLSTEIN
-						custom_tooltip = {
-							text = the_danes_are_not_in_schwhol_tt
-							NOT = {
-								AND = {
-									exists = c:SCH
-									c:SCH = { has_state_in_state_region = STATE_SCHLESWIG_HOLSTEIN }
-								}
-								AND = {
-									exists = c:HOL
-									c:HOL = { has_state_in_state_region = STATE_SCHLESWIG_HOLSTEIN }
-								}
-								any_country = {
-									has_state_in_state_region = STATE_SCHLESWIG_HOLSTEIN
-									exists = c:DEN
-									OR = {
-										c:DEN = THIS
-										is_subject_of = c:DEN
-									}
-								}
+						OR = {
+							country_has_primary_culture = cu:north_german			
+							country_has_primary_culture = cu:south_german			
+						}
+					}
+				}
+				OR = {
+					hidden_trigger = { year >= 1865 }
+					has_state_in_state_region = STATE_SCHLESWIG_HOLSTEIN
+					has_state_in_state_region = STATE_ALSACE_LORRAINE
+				}
+			}
+		}
+		OR = { ### YOU MUST EITHER WAIT UNTIL 1865, RESOLVE SCHLESWIG, OR TAKE ALSACE FROM FRANCE ###
+			year >= 1865
+			owns_entire_state_region = STATE_ALSACE_LORRAINE	
+			owns_entire_state_region = STATE_SCHLESWIG_HOLSTEIN
+			custom_tooltip = {
+				text = je_schleswig_holstein_question_solved_trigger_desc
+				OR = {
+					has_global_variable = schleswig_holstein_question_solved
+					NOR = {
+						AND = {
+							exists = c:SCH
+							c:SCH = { has_state_in_state_region = STATE_SCHLESWIG_HOLSTEIN }
+						}
+						AND = {
+							exists = c:HOL
+							c:HOL = { has_state_in_state_region = STATE_SCHLESWIG_HOLSTEIN }
+						}
+						any_country = {
+							has_state_in_state_region = STATE_SCHLESWIG_HOLSTEIN
+							exists = c:DEN
+							OR = {
+								c:DEN = THIS
+								is_subject_of = c:DEN
 							}
 						}
-					}																					
-					custom_tooltip = {
-						has_global_variable = schleswig_holstein_question_solved
-						text = je_schleswig_holstein_question_solved_trigger_desc
 					}
-				}																						
-				is_ai = yes
+				}
 			}
-			custom_tooltip = {
-				text = any_german_is_challenging_confederation_tt
-				has_global_variable = GER_ladies_and_gentlemen_the_main_event
-			}
-		}																		#HJE edit end
+		}																	#HJE edit end
 	}
 }
 
