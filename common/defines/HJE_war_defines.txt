@@ -6,8 +6,8 @@
 	AI_PEACE_AGREEMENT_WAR_SUPPORT_FACTOR = -2	# Each point of war support affects peace acceptance by this amount
 	AI_PEACE_AGREEMENT_WARGOAL_VALUE_BASE = 10	# How much does the AI value each wargoal (base)
 	AI_PEACE_AGREEMENT_WARGOAL_VALUE_SCALED = 0.5	# How much does the AI value each wargoal (scaled with maneuver cost)
-	AI_PEACE_AGREEMENT_ALLY_WARGOAL_MULT = 1 # For each wargoal that our allies are pressing, apply wargoal value * this
-	AI_PEACE_AGREEMENT_SELF_WARGOAL_MULT = 3 # For each wargoal we have that's being pressed, apply wargoal value * this
+	#AI_PEACE_AGREEMENT_ALLY_WARGOAL_MULT = 1 # For each wargoal that our allies are pressing, apply wargoal value * this
+	#AI_PEACE_AGREEMENT_SELF_WARGOAL_MULT = 3 # For each wargoal we have that's being pressed, apply wargoal value * this
 	AI_PEACE_AGREEMENT_ENEMY_WARGOAL_SELF_MULT = -8 # For each wargoal that the enemy is pressing against us, apply wargoal value * this
 	AI_PEACE_AGREEMENT_ENEMY_WARGOAL_ALLY_MULT = -1 # For each wargoal that's being pressed against our allies, apply wargoal value * this
 	AI_PEACE_AGREEMENT_ACHIEVABLE_ALLY_WARGOAL = -1.5 # For each wargoal our side holds that isn't being pressed where the target will run out of war support before the holder does (multiplies self/ally wargoal value)
