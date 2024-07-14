@@ -1454,6 +1454,9 @@
 			s:STATE_CAMBODIA = { 
 				add_claim = c:FRA 
 			}
+			s:STATE_HORMUZ = { 
+				add_claim = c:PER 
+			}
 			
 			set_global_variable = HJE_history
 		}
