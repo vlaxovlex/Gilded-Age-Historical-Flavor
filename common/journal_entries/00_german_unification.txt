@@ -262,6 +262,18 @@ je_north_german_unification = {
 	
 	immediate = {														#HJE edit start
 		set_global_variable = GER_ladies_and_gentlemen_the_main_event	
+		if = {
+			limit = {
+				year >= 1853
+			}
+			add_modifier = { name = modifier_tradition_of_militarism months = 240 }
+		}
+		else_if = {
+			limit = {
+				year < 1853
+			}
+			add_modifier = { name = modifier_tradition_of_militarism months = 480 }
+		}		
 	}																	#HJE edit end
 	
 	complete = {

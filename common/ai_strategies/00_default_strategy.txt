@@ -7068,6 +7068,9 @@ ai_strategy_default = {
 				}
 				add = 1000
 			}	
+			else = {
+				add = -100
+			}
 
 			#Italian Nightmare
 			if = {
@@ -7080,6 +7083,9 @@ ai_strategy_default = {
 				}
 				add = 1000
 			}	
+			else = {
+				add = -100
+			}
 		
 		}	#HJE edit end		
 

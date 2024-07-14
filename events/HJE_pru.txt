@@ -345,10 +345,6 @@ HJE_prussia.2 = {
 					region = sr:region_north_germany
 				}
 			}
-			add_modifier = {
-				name = modifier_tradition_of_militarism
-				months = 240
-			}
 			add_journal_entry = {
 				type = HJ_occupation_of_schleswig
 			}
