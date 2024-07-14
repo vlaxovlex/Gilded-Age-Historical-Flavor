@@ -190,3 +190,18 @@ MEX = { # Mainly MCW Stuff
 		}
 	}
 }
+
+GBR = { # Great Britain of United Kingdom
+	dynamic_country_name = { ## HJE ##
+		name = dyn_c_united_kingdom
+		adjective = GBR_ADJ
+
+		is_main_tag_only = yes
+		priority = 5
+		
+		trigger = {
+			coa_def_monarchy_flag_trigger = yes
+			coa_def_undemocratic_monarchy_flag_trigger = no
+		}
+	}
+}
