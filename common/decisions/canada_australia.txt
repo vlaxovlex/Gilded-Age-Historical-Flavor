@@ -117,10 +117,10 @@ canada_unite_gbr = {
 
 australia_unite_aus = {
 	is_shown = {
-		if = {
+		if = {	#HJE edit start
 			limit = { exists = c:NZL }
-			NOT = { c:NZL = THIS } ## HJE Edit ##
-		}
+			NOT = { c:NZL = THIS } 
+		}	#HJE edit end
 		OR = {
 			country_has_primary_culture = cu:australian
 			country_has_primary_culture = cu:maori
@@ -129,10 +129,10 @@ australia_unite_aus = {
 		is_subject = yes
 		any_neighbouring_state = {
 			owner = {
-				if = {
+				if = {	#HJE edit start
 					limit = { exists = c:NZL }
-					NOT = { c:NZL = THIS } ## HJE Edit ##
-				}
+					NOT = { c:NZL = THIS }
+				}	#HJE edit end
 				OR = {
 					country_has_primary_culture = cu:australian
 					country_has_primary_culture = cu:maori
@@ -160,10 +160,10 @@ australia_unite_aus = {
 			any_neighbouring_state = {
 				owner = {
 					relations:root >= relations_threshold:amicable
-					if = {
+					if = {	#HJE edit start
 						limit = { exists = c:NZL }
-						NOT = { c:NZL = THIS } ## HJE Edit ##
-					}
+						NOT = { c:NZL = THIS } 
+					}	#HJE edit end
 					OR = {
 						country_has_primary_culture = cu:australian
 						country_has_primary_culture = cu:maori
@@ -203,10 +203,10 @@ australia_unite_aus = {
 australia_unite_gbr = {
 	is_shown = {
 		any_subject_or_below = {
-			if = {
+			if = {	#HJE edit start
 				limit = { exists = c:NZL }
-				NOT = { c:NZL = THIS } ## HJE Edit ##
-			}
+				NOT = { c:NZL = THIS }
+			}	#HJE edit end	
 			OR = {
 				country_has_primary_culture = cu:australian
 				country_has_primary_culture = cu:maori
@@ -223,10 +223,10 @@ australia_unite_gbr = {
 		custom_tooltip = {
 			text = gbr_aus_relations_tt
 			any_subject_or_below = {
-				if = {
+				if = {	#HJE edit start
 					limit = { exists = c:NZL }
-					NOT = { c:NZL = THIS } ## HJE Edit ##
-				}
+					NOT = { c:NZL = THIS } 
+				}	#HJE edit end
 				OR = {
 					country_has_primary_culture = cu:australian
 					country_has_primary_culture = cu:maori
