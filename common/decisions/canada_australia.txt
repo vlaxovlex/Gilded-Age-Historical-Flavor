@@ -129,7 +129,10 @@ australia_unite_aus = {
 		is_subject = yes
 		any_neighbouring_state = {
 			owner = {
-				NOT = { exists = c:NZL c:NZL = THIS } ## HJE Edit ##
+				if = {
+					limit = { exists = c:NZL }
+					NOT = { c:NZL = THIS } ## HJE Edit ##
+				}
 				OR = {
 					country_has_primary_culture = cu:australian
 					country_has_primary_culture = cu:maori
@@ -157,7 +160,10 @@ australia_unite_aus = {
 			any_neighbouring_state = {
 				owner = {
 					relations:root >= relations_threshold:amicable
-					NOT = { exists = c:NZL c:NZL = THIS } ## HJE Edit ##
+					if = {
+						limit = { exists = c:NZL }
+						NOT = { c:NZL = THIS } ## HJE Edit ##
+					}
 					OR = {
 						country_has_primary_culture = cu:australian
 						country_has_primary_culture = cu:maori
@@ -217,7 +223,10 @@ australia_unite_gbr = {
 		custom_tooltip = {
 			text = gbr_aus_relations_tt
 			any_subject_or_below = {
-				NOT = { exists = c:NZL c:NZL = THIS } ## HJE Edit ##
+				if = {
+					limit = { exists = c:NZL }
+					NOT = { c:NZL = THIS } ## HJE Edit ##
+				}
 				OR = {
 					country_has_primary_culture = cu:australian
 					country_has_primary_culture = cu:maori
