@@ -310,8 +310,8 @@ charter_for_erecting_colony_of_nzl = {
 	}
 
 	possible = {
-		year >= 1841
 		is_at_war = no
+		has_technology_researched = nationalism
 	}
 
 	when_taken = {
