@@ -1454,7 +1454,7 @@
 			s:STATE_CAMBODIA = { 
 				add_claim = c:FRA 
 			}
-			s:STATE_HORMUZ = { 
+			s:STATE_LARISTAN = { 
 				add_claim = c:PER 
 			}
 			
