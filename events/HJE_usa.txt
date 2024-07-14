@@ -4010,6 +4010,8 @@ HJE_usa.5 = {
 				limit = { NOT = { cu:yankee = { has_homeland = s:STATE_CALIFORNIA } } }
 				add_homeland = cu:yankee
 			}
+		}
+		scope:california_event_state = {
 			create_mass_migration = {
 				origin = c:USA
 				culture = cu:yankee
@@ -4141,6 +4143,12 @@ HJE_usa.6 = {
 				limit = { NOT = { cu:yankee = { has_homeland = s:STATE_UTAH } } }
 				add_homeland = cu:yankee
 			}
+		}
+		scope:mormon_event_state = {
+			add_modifier = {
+				name = usa_mormons
+				months = -1
+			}
 			create_mass_migration = {
 				origin = c:USA
 				culture = cu:yankee
@@ -4148,12 +4156,6 @@ HJE_usa.6 = {
 			create_mass_migration = {
 				origin = c:USA
 				culture = cu:dixie
-			}
-		}
-		scope:mormon_event_state = {
-			add_modifier = {
-				name = usa_mormons
-				months = -1
 			}
 		}
 		random_state = {

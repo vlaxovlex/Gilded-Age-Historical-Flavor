@@ -196,6 +196,48 @@ HJE_britain.5001 = {
 			}
 			trigger_event = { id = HJE_britain.6 days = 45 }
 		}
+		random_country = {
+			limit = { 
+				OR = { country_has_primary_culture = cu:yankee country_has_primary_culture = cu:dixie } 
+				any_scope_state = {
+					OR = {
+						state_region = s:STATE_NEW_YORK
+						state_region = s:STATE_PENNSYLVANIA
+						state_region = s:STATE_MASSACHUSETTS
+					}
+				}
+			}
+			random_scope_state = {
+				limit = {
+					OR = {
+						state_region = s:STATE_NEW_YORK
+						state_region = s:STATE_PENNSYLVANIA
+						state_region = s:STATE_MASSACHUSETTS
+					}
+				}
+				save_scope_as = random_american_irish_city
+			}
+		}
+		random_country = {
+			limit = { 
+				OR = { country_has_primary_culture = cu:anglo_canadian } 
+				any_scope_state = { state_region = s:STATE_ONTARIO }
+			}
+			random_scope_state = {
+				limit = { state_region = s:STATE_ONTARIO }
+				save_scope_as = random_canadian_irish_city
+			}
+		}
+		random_country = {
+			limit = { 
+				OR = { country_has_primary_culture = cu:australian } 
+				any_scope_state = { state_region = s:STATE_NEW_SOUTH_WALES }
+			}
+			random_scope_state = {
+				limit = { state_region = s:STATE_NEW_SOUTH_WALES }
+				save_scope_as = random_australian_irish_city
+			}
+		}
 	}
 
 	option = {
@@ -224,6 +266,26 @@ HJE_britain.5001 = {
 				months = 60
 			}
 		}
+		hidden_effect = {
+			scope:random_american_irish_city = {
+				create_mass_migration = {
+					origin = c:GBR
+					culture = cu:irish
+				}
+			}
+			scope:random_canadian_irish_city = {
+				create_mass_migration = {
+					origin = c:GBR
+					culture = cu:irish
+				}
+			}
+			scope:random_australian_irish_city = {
+				create_mass_migration = {
+					origin = c:GBR
+					culture = cu:irish
+				}
+			}
+		}
 	}
 
 	option = {
@@ -249,6 +311,26 @@ HJE_britain.5001 = {
 			add_modifier = {
 				name = potato_blight_less_state_modifier
 				months = 60
+			}
+		}
+		hidden_effect = {
+			scope:random_american_irish_city = {
+				create_mass_migration = {
+					origin = c:GBR
+					culture = cu:irish
+				}
+			}
+			scope:random_canadian_irish_city = {
+				create_mass_migration = {
+					origin = c:GBR
+					culture = cu:irish
+				}
+			}
+			scope:random_australian_irish_city = {
+				create_mass_migration = {
+					origin = c:GBR
+					culture = cu:irish
+				}
 			}
 		}
 	}
