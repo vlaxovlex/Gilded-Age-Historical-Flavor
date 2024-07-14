@@ -37,7 +37,37 @@
 		}
 		OR = {
 			hidden_trigger = {
-				year >= 1865
+				OR = {																															
+					owns_entire_state_region = STATE_ALSACE_LORRAINE
+					AND = {
+						has_state_in_state_region = STATE_SCHLESWIG_HOLSTEIN
+						custom_tooltip = {
+							text = the_danes_are_not_in_schwhol_tt
+							NOT = {
+								AND = {
+									exists = c:SCH
+									c:SCH = { has_state_in_state_region = STATE_SCHLESWIG_HOLSTEIN }
+								}
+								AND = {
+									exists = c:HOL
+									c:HOL = { has_state_in_state_region = STATE_SCHLESWIG_HOLSTEIN }
+								}
+								any_country = {
+									has_state_in_state_region = STATE_SCHLESWIG_HOLSTEIN
+									exists = c:DEN
+									OR = {
+										c:DEN = THIS
+										is_subject_of = c:DEN
+									}
+								}
+							}
+						}
+					}																					
+					custom_tooltip = {
+						has_global_variable = schleswig_holstein_question_solved
+						text = je_schleswig_holstein_question_solved_trigger_desc
+					}
+				}																						
 				is_ai = yes
 			}
 			custom_tooltip = {
@@ -77,7 +107,7 @@ ITA = {
 		}
 		OR = {															#HJE edit start
 			hidden_trigger = {
-				year >= 1855
+				has_journal_entry = je_risorgimento
 				is_ai = yes
 			}
 			custom_tooltip = {
