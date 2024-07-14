@@ -3,9 +3,18 @@
 	c:POL = { set_strategy = ai_strategy_conservative_agenda }
 	c:FRA = { set_strategy = ai_strategy_progressive_agenda }
 	c:SPA = { set_strategy = ai_strategy_progressive_agenda }
-	c:TUR = { set_strategy = ai_strategy_progressive_agenda }
 	c:PRU = { set_strategy = ai_strategy_territorial_expansion }
 	c:GBR = { set_strategy = ai_strategy_territorial_expansion }
+	c:DEI = { set_strategy = ai_strategy_territorial_expansion }
+	c:NET = { set_strategy = ai_strategy_territorial_expansion }
+	c:PHI = { set_strategy = ai_strategy_territorial_expansion }
+	c:HER = { set_strategy = ai_strategy_territorial_expansion }
+	c:KAN = { set_strategy = ai_strategy_territorial_expansion }
+	c:KAB = { set_strategy = ai_strategy_territorial_expansion }
+	c:TUR = { 
+		set_strategy = ai_strategy_progressive_agenda 
+		set_strategy = ai_strategy_territorial_expansion
+	}
 	c:NOR = {
 		random_list = {
 			40 = { set_strategy = ai_strategy_industrial_expansion }
