@@ -131,7 +131,7 @@ ITA = {
 		}
 		OR = {															#HJE edit start
 			hidden_trigger = {
-				has_journal_entry = je_risorgimento
+				year >= 1855
 				is_ai = yes
 			}
 			custom_tooltip = {
