@@ -117,7 +117,10 @@ canada_unite_gbr = {
 
 australia_unite_aus = {
 	is_shown = {
-		NOT = { exists = c:NZL c:NZL = THIS } ## HJE Edit ##
+		if = {
+			limit = { exists = c:NZL }
+			NOT = { c:NZL = THIS } ## HJE Edit ##
+		}
 		OR = {
 			country_has_primary_culture = cu:australian
 			country_has_primary_culture = cu:maori
@@ -194,7 +197,10 @@ australia_unite_aus = {
 australia_unite_gbr = {
 	is_shown = {
 		any_subject_or_below = {
-			NOT = { exists = c:NZL c:NZL = THIS } ## HJE Edit ##
+			if = {
+				limit = { exists = c:NZL }
+				NOT = { c:NZL = THIS } ## HJE Edit ##
+			}
 			OR = {
 				country_has_primary_culture = cu:australian
 				country_has_primary_culture = cu:maori
