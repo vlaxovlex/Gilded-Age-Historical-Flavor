@@ -1457,7 +1457,20 @@
 			s:STATE_LARISTAN = { 
 				add_claim = c:PER 
 			}
-			
+			s:STATE_HERAT = { 
+				remove_claim = c:PER 
+			}
+			s:STATE_HERAT = { 
+				remove_claim = c:PER 
+			}
+			s:STATE_SISTAN = { 
+				every_scope_state = {
+					limit = {
+						owner = c:HER
+					}
+					remove_claim = c:PER 
+				}
+			}
 			set_global_variable = HJE_history
 		}
 	}

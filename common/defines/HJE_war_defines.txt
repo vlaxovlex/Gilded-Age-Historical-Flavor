@@ -1,0 +1,74 @@
+﻿NAI = {
+	# Below data is used to calculate AI's desire for peace
+	AI_PEACE_AGREEMENT_BASE_VALUE = -100
+	AI_PEACE_AGREEMENT_WHITE_PEACE_BASE = 25 # If no wargoals are being enforced on either side
+	AI_PEACE_AGREEMENT_WHITE_PEACE_WAR_DURATION = 4 # For each month the war goes on add this to the acceptance for a white peace
+	AI_PEACE_AGREEMENT_WAR_SUPPORT_FACTOR = -2	# Each point of war support affects peace acceptance by this amount
+	AI_PEACE_AGREEMENT_WARGOAL_VALUE_BASE = 10	# How much does the AI value each wargoal (base)
+	AI_PEACE_AGREEMENT_WARGOAL_VALUE_SCALED = 0.5	# How much does the AI value each wargoal (scaled with maneuver cost)
+	AI_PEACE_AGREEMENT_ALLY_WARGOAL_MULT = 1 # For each wargoal that our allies are pressing, apply wargoal value * this
+	AI_PEACE_AGREEMENT_SELF_WARGOAL_MULT = 3 # For each wargoal we have that's being pressed, apply wargoal value * this
+	AI_PEACE_AGREEMENT_ENEMY_WARGOAL_SELF_MULT = -8 # For each wargoal that the enemy is pressing against us, apply wargoal value * this
+	AI_PEACE_AGREEMENT_ENEMY_WARGOAL_ALLY_MULT = -1 # For each wargoal that's being pressed against our allies, apply wargoal value * this
+	AI_PEACE_AGREEMENT_ACHIEVABLE_ALLY_WARGOAL = -1.5 # For each wargoal our side holds that isn't being pressed where the target will run out of war support before the holder does (multiplies self/ally wargoal value)
+	AI_PEACE_AGREEMENT_ACHIEVABLE_ENEMY_WARGOAL = -0.9 # For each wargoal the enemy side holds (pressed or not) where the target will run out of war support before the holder does (multiplies self/ally enemy wargoal value)
+	AI_PEACE_AGREEMENT_WAR_SUPPORT_TO_HOLD_ON_TO_ACHIEVABLE_WARGOALS = 0 # Below this war support an AI will be much more open to ceding achievable wargoals to the enemy in a peace deal
+	AI_PEACE_AGREEMENT_PEACE_DESIRE_FACTOR = 1.0 # Peace desire is multiplied by this when added to peace agreement acceptance score
+	
+	AI_CAPITULATE_BASE_VALUE = -25
+	AI_CAPITULATE_WAR_LEADER_FACTOR = -25 # If warleader
+	AI_CAPITULATE_WAR_SUPPORT_FACTOR = -1	
+	AI_CAPITULATE_SELF_WARGOAL_FACTOR = -10 # For each wargoal we hold in the war
+	AI_CAPITULATE_ENEMY_WARGOAL_FACTOR = -30 # For each wargoal targeting us in the war
+	AI_CAPITULATE_PEACE_DESIRE_FACTOR = 0.5 # Peace desire is multiplied by this when added to capitulation score
+	
+	AI_MONTHS_OF_REDUCED_PEACE_DESIRE = 12 # Before this amount of months, reduce AI peace desire
+	AI_PEACE_DESIRE_FROM_SHORT_WAR = -100 # Subtract this amount of peace desire for the above number of months (multiplied by AI_MONTHS_OF_REDUCED_PEACE_DESIRE - months of war duration)
+	AI_PEACE_DESIRE_FROM_TURMOIL = 50 # Add this amount of peace desire at 100% radicals
+	AI_PEACE_DESIRE_FROM_DEVASTATION = 100 # Add this amount of peace desire at 100% devastation
+	AI_PEACE_DESIRE_FROM_LOYALISTS = -50 # Subtract this amount of peace desire at 100% loyalists
+	AI_PEACE_DESIRE_FROM_DEBT_LEVEL = 100 # Add this amount of peace desire at 100% debt level
+	AI_PEACE_DESIRE_FROM_BANKRUPTCY = 100 # Add this amount of peace desire when bankrupt
+	AI_PEACE_DESIRE_FROM_GOLD_RESERVES = -50 # Subtract this amount of peace desire at 100% gold reserves
+	AI_PEACE_DESIRE_FROM_FORCE_BALANCE = 50 # Up to this amount is added or subtracted from war support based on DIPLO_PLAY_FORCE_BALANCE_SCALE of the two sides
+	AI_PEACE_DESIRE_FACTOR_FROM_ANNEXATION = 0.5 # If peace will cause the country to be annexed then all positive peace desire factors will be multiplied by this value
+}
+
+NMilitary = {
+	INITIAL_MANPOWER_COST_MULTIPLIER = 10 			# there is an extra cost for training new recruits, compared to maintenence of said recruits
+	BATTLE_PLAN_ADVANCE_PROGRESS_TO_LAUNCH = 500 			# required accumulated advance progress to launch
+
+	BATTLE_RAW_MANPOWER_INFLICTED_CASUALTY_RATIO = 0.15		# applied to the number of casualties caused by raw number of troops, ie without considering Offense/Defense - increasing this makes CE less important and battles more lethal
+	BATTLE_COMBAT_EFFICIENCY_INFLICTED_CASUALTY_RATIO = 0.35	# applied to the number of casualties caused by troops with Offense/Defense also factored in - incre
+	BASE_MORALE_RECOVERED_PER_DAY = 0.005			# Default morale recovered is 3% per day
+	BASE_MORALE_LOST_PER_DAY = 0.01					# Default morale lost when out of supply is 5%
+	MANPOWER_LOST_DUE_TO_ATTRITION_PER_WEEK_MIN = 0.015 	# The minimum percentage of manpower a unit can lose each week due to attrition
+	MANPOWER_LOST_DUE_TO_ATTRITION_PER_WEEK_MAX = 0.045 	# The maximum percentage of manpower a unit can lose each week due to attrition
+
+	BATTLE_BASE_MIN_PROVINCES_TAKEN = 1
+	BATTLE_BASE_MAX_PROVINCES_TAKEN = 3
+	BATTLE_PROVINCES_TAKEN_FRONT_PROVINCES_NUM_DIVISOR = 25		# Attacker takes (num provinces in front) divided by this as extra, clamped to BATTLE_BASE_MIN_PROVINCES_TAKEN and BATTLE_BASE_MAX_PROVINCES_TAKEN
+	BATTLE_PROVINCES_TAKEN_THEATER_PROVINCES_NUM_DIVISOR = 250	# Attacker takes (num provinces in theater) divided by this as extra, clamped to BATTLE_BASE_MIN_PROVINCES_TAKEN and BATTLE_BASE_MAX_PROVINCES_TAKEN
+	BATTLE_PROVINCES_TAKEN_ATTACKING_UNIT_SCALE = 0.02			# Multiply provinces taken by ( 1 + this * number of attacking units left at end of battle)
+	BATTLE_PROVINCES_TAKEN_MAX_DEPTH_MIN = 1					# Maximum distance from battle provinces that provinces can be taken by attacker (minimum)
+	BATTLE_PROVINCES_TAKEN_MAX_DEPTH_MAX = 3					# Maximum distance from battle provinces that provinces can be taken (maximum)
+	BATTLE_PROVINCES_TAKEN_MAX_DEPTH_FRONT_PROVINCES_NUM_DIVISOR = 50	# Num provinces in front is divided by this and added to maximum depth attacker can take provinces at
+	BATTLE_PROVINCES_TAKEN_MAX_DEPTH_THEATER_PROVINCES_NUM_DIVISOR = 500	# Num provinces in theater is divided by this and added to maximum depth attacker can take provinces at 
+	DEFENSIVE_PROVINCES_RETAKEN_MAX_DEPTH = 1					# Maximum distance from battle provinces that provinces can be retaken in defensive battle
+	BATTLE_PROVINCES_TAKEN_THEATER_UNIT_SCALE = 1				# Scales number of provinces captured by theater-provinces / ( units-in-theater * this-define )
+	BATTLE_PROVINCES_TAKEN_MAX_EXTRA = 1                  		# If the selected provinces will cause split, capture the new theater as long as it has up to BATTLE_PROVINCES_TAKEN_MAX_EXTRA provinces. This might not respect the distance limit (BATTLE_PROVINCES_TAKEN_MAX_DEPTH).
+	BATTLE_PROVINCES_TAKEN_THEATER_MIN_SCALE = 0.01			# Number of provinces captured cannot result in a lower scaling factor than this due to BATTLE_PROVINCES_TAKEN_THEATER_UNIT_SCALE
+	BATTLE_PROVINCES_TAKEN_ABSOLUTE_MIN = 1					# The absolute least number of provinces that can be captured in a successful advance, after all scaling has been applied
+}
+
+NWar = {
+
+	DEVASTATION_INCREASE_RATE = 0.03 # Per day, scales with level of occupation
+	DEVASTATION_DECAY_RATE = -0.03 # Per day, when there are no occupations
+	DEVASTATION_FROM_BATTLES = 0.1 # For each battle
+
+	DAYS_BETWEEN_WAR_EXHAUSTION = 30 # Every this many days war support will be reduced by the war exhaustion formula
+	WAR_EXHAUSTION_BASE = 0.25
+ 	WAR_EXHAUSTION_KIA_FACTOR = 50.0 # Scaled by casualties compared to total manpower
+
+}
