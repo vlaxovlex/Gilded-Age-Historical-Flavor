@@ -384,13 +384,13 @@ je_the_kings_infection = {
 		year >= 1858
 		exists = c:DEN
 		c:DEN = ROOT
+		coa_monarchy_trigger = yes
 	}
 
 	possible = {
 		year >= 1863
 		hidden_trigger = {
 			any_subject_or_below = {
-				is_subject_type = subject_type_personal_union
 				OR = {
 					AND = {
 						exists = c:SCH
