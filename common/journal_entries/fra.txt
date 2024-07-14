@@ -83,10 +83,10 @@ je_french_demographic_crisis_pacifist = {
 			ig:ig_devout = {
 				is_powerful = yes
 			}
-			NOT = { 
-				any_scope_state = { 
-					is_incorporated = yes 
-					average_sol < 8
+			every_scope_state = {
+				OR = {
+					is_incorporated = no 
+					average_sol >= 10
 				}
 			}
 		}
