@@ -66,14 +66,14 @@
 				OR = {
 					hidden_trigger = { year >= 1865 }
 					has_state_in_state_region = STATE_SCHLESWIG_HOLSTEIN
-					has_state_in_state_region = STATE_ALSACE_LORRAINE
+					owns_entire_state_region = STATE_ALSACE_LORRAINE
 				}
 			}
 		}
 		OR = { ### YOU MUST EITHER WAIT UNTIL 1865, RESOLVE SCHLESWIG, OR TAKE ALSACE FROM FRANCE ###
 			year >= 1865
 			owns_entire_state_region = STATE_ALSACE_LORRAINE	
-			owns_entire_state_region = STATE_SCHLESWIG_HOLSTEIN
+			has_state_in_state_region = STATE_SCHLESWIG_HOLSTEIN
 			custom_tooltip = {
 				text = je_schleswig_holstein_question_solved_trigger_desc
 				OR = {
