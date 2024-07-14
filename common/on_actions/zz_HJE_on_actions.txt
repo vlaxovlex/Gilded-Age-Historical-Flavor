@@ -965,6 +965,23 @@
 			}
 			set_strategy = ai_strategy_subject_break_free
 		}
+		if = { ## FIX TO TRY AND PREVENT AI ITALY BECOMING A REPUBLIC EARLIER THAN IT SHOULD BECAUSE OF GARIBALDI
+			limit = {
+				is_player = no
+				year < 1900
+				has_law = law_type:law_monarchy 
+				any_interest_group = { has_ideology = ideology:ideology_republican }
+				OR = {
+					has_variable = ITA_current_favourite_to_unify
+					AND = { exists = c:ITA c:ITA = THIS }
+					AND = { NOT = { exists = c:ITA } exists = c:SAR c:SAR = THIS }
+				}
+			}
+			every_interest_group = {
+				limit = { has_ideology = ideology:ideology_republican }
+				remove_ideology = ideology:ideology_republican
+			}
+		}
 		
 		
 		

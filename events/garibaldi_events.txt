@@ -112,7 +112,22 @@ garibaldi_events.1 = {
 								}
 							}
 						}					
-					}			
+					}	
+					AND = { ## HJE EDIT ##
+						is_subject = no
+						has_variable = ITA_current_favourite_to_unify 
+						any_primary_culture = { has_discrimination_trait = italophone }
+						OR = {		
+							any_diplomatic_play = {
+								is_war = yes
+								initiator = root
+							}			
+							any_diplomatic_play = {
+								is_war = yes
+								target = root
+							}
+						}
+					}		
 				}
 			}
 			AND = { # You're fighting for Italy

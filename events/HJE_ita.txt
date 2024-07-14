@@ -345,6 +345,11 @@ HJE_italy.4 = {
 		activate_law = law_type:law_wealth_voting
 		set_variable = risorgimento_unifying_stance
 		set_ruling_interest_groups = { ig_intelligentsia ig_armed_forces }
+		set_strategy = ai_strategy_placate_population
+		every_interest_group = {
+			limit = { has_ideology = ideology:ideology_republican }
+			remove_ideology = ideology:ideology_republican
+		}
 		if = {
 			limit = {
 				any_scope_character = {
@@ -495,7 +500,13 @@ HJE_italy.5 = {
 		add_radicals = { value = -0.4 }
 		add_loyalists = { value = 0.2 }
 		activate_law = law_type:law_wealth_voting
+		set_variable = risorgimento_unifying_stance
 		set_ruling_interest_groups = { ig_intelligentsia ig_armed_forces }
+		set_strategy = ai_strategy_placate_population
+		every_interest_group = {
+			limit = { has_ideology = ideology:ideology_republican }
+			remove_ideology = ideology:ideology_republican
+		}
 		if = {
 			limit = {
 				any_scope_character = {
