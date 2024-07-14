@@ -38,7 +38,7 @@
 				OR = {
 					country_has_voting_franchise = no
 					AND = {
-						year >= 1855
+						year >= 1852
 						in_election_campaign = no
 						has_variable = had_elections_in_last_year
 					}
@@ -53,7 +53,7 @@
 				OR = {
 					country_has_voting_franchise = no
 					AND = {
-						year >= 1865
+						year >= 1860
 						in_election_campaign = no
 						has_variable = had_elections_in_last_year
 					}
@@ -69,18 +69,6 @@
 	}
 
 	on_fail = {
-		if = {
-			limit = {
-				any_country = {
-					is_revolutionary = yes
-					country_definition = root.country_definition
-					ig:ig_landowners = {
-						is_in_government = yes
-					}				
-				}
-			}
-			set_variable = csa_will_spawn_var
-		}
 		custom_tooltip = {
 			text = acw_will_happen_tt
 			trigger_event = { id = acw_je_events.1 days = 7 }
@@ -89,7 +77,7 @@
 					OR = {
 						c:USA = { is_enacting_law = law_type:law_slavery_banned }
 						AND = {
-							year >= 1856
+							year >= 1852
 							NOT = { has_law = law_type:law_slavery_banned }
 							c:USA = { ruler = { has_ideology = ideology:ideology_abolitionist } }
 						}
