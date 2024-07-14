@@ -4,11 +4,7 @@ Rework Spanish-American War
 Roaring 20's
 Great Depression
 
-<<<<<<< Updated upstream
-Great Britain: 
-=======
-Great Britain:124
->>>>>>> Stashed changes
+Great Britain:
 Irish Revolution
 
 Russia:
