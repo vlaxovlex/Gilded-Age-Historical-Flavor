@@ -667,7 +667,7 @@ confederacy_war_modifier = {
 	battle_defense_owned_province_mult = 0.2
     country_war_exhaustion_casualties_mult = -1.5
 	unit_provinces_captured_mult = -0.8
-	unit_mobilization_speed_mult = 0.4
+	unit_mobilization_speed_mult = 0.6
 }
 
 free_american_war_modifier = { 

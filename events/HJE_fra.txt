@@ -167,7 +167,16 @@ HJE_france.5 = {			 #French intervention in Mexico
 			}
 		}
 		exists = c:MEX
-		c:MEX = { NOT = { has_law = law_type:law_monarchy } }
+		c:MEX = { 
+			NOT = { has_law = law_type:law_monarchy } 
+			any_scope_state = {
+				OR = {
+					state_region = s:STATE_VERACRUZ
+					state_region = s:STATE_YUCATAN
+					state_region = s:STATE_RIO_GRANDE
+				}
+			}
+		}
 		OR = {
 			AND = {
 				year >= 1861
@@ -259,9 +268,19 @@ HJE_france.6 = {
 	immediate = {
 		add_loyalists = { value = 0.15 }
 		ig:ig_devout = { remove_ruling_interest_group = yes }
+		random_scope_state = {
+			limit = {
+				OR = {
+					state_region = s:STATE_VERACRUZ
+					state_region = s:STATE_YUCATAN
+					state_region = s:STATE_RIO_GRANDE
+				} 
+			}
+			save_scope_as = second_mexican_empire_starting_state
+		}
 		create_country = {
 			origin = c:MEX
-			state = s:STATE_VERACRUZ.region_state:MEX
+			state = scope:second_mexican_empire_starting_state
 
 			on_created = { 
 				set_variable = second_mexican_empire
@@ -275,8 +294,8 @@ HJE_france.6 = {
 				activate_law = law_type:law_oligarchy
 				activate_law = law_type:law_appointed_bureaucrats
 				create_diplomatic_play = {
-				target_country = c:MEX
-				type = dp_revolution
+					target_country = c:MEX
+					type = dp_revolution
 				}
 			}
 		}
@@ -287,12 +306,19 @@ HJE_france.6 = {
 		c:FRA = {
 			create_diplomatic_pact = {
 				country = scope:second_mexican_empire
-				type = dominion
+				type = hje_colonial_administration
 			}
 		}
-		c:MEX = {
-			set_variable = MEX_independence_war_against_france
+		random_diplomatic_play = {
+			limit = {
+				any_scope_play_involved = {
+					exists = scope:second_mexican_empire
+					THIS = scope:second_mexican_empire
+				}
+			}
+			add_initiator_backers = { c:FRA }
 		}
+		c:MEX = { set_variable = MEX_independence_war_against_france }
 		every_state = {
 			limit = { has_claim_by = c:MEX }
 			this.state_region = { add_claim = scope:second_mexican_empire }

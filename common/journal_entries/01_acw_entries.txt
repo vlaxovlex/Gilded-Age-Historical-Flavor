@@ -84,6 +84,73 @@
 					}
 				}
 				set_variable = csa_will_spawn_var
+				hidden_effect = {
+					s:STATE_SOUTH_CAROLINA.region_state:USA  = {
+						create_building={
+							building="building_barracks"
+							add_ownership={
+								country={
+									country="root"
+									levels=2
+								}
+							}
+							reserves=1
+							activate_production_methods={ "pm_general_training" }
+						}
+					}
+					s:STATE_GEORGIA.region_state:USA = {
+						create_building={
+							building="building_barracks"
+							add_ownership={
+								country={
+									country="root"
+									levels=2
+								}
+							}
+							reserves=1
+							activate_production_methods={ "pm_general_training" }
+						}
+					}
+					s:STATE_LOUISIANA.region_state:USA = {
+						create_building={
+							building="building_barracks"
+							add_ownership={
+								country={
+									country="root"
+									levels=2
+								}
+							}
+							reserves=1
+							activate_production_methods={ "pm_general_training" }
+						}
+					}
+					s:STATE_ALABAMA.region_state:CSA = {
+						create_building={
+							building="building_barracks"
+							add_ownership={
+								country={
+									country="root"
+									levels=1
+								}
+							}
+							reserves=1
+							activate_production_methods={ "pm_general_training" }
+						}
+					}
+					s:STATE_MISSISSIPPI.region_state:CSA = {
+						create_building={
+							building="building_barracks"
+							add_ownership={
+								country={
+									country="root"
+									levels=1
+								}
+							}
+							reserves=1
+							activate_production_methods={ "pm_general_training" }
+						}
+					}
+				}
 			}		#HJE edit end
 		}
 	}

@@ -2482,77 +2482,9 @@ acw_secession_crisis.1 = {
 				}
 			}
 		}
-		s:STATE_GEORGIA.region_state:CSA = {
-			create_building={
-				building="building_barracks"
-				add_ownership={
-					country={
-						country="root"
-						levels=2
-					}
-				}
-				reserves=1
-				activate_production_methods={ "pm_no_organization" }
-			}
-		}
-		s:STATE_LOUISIANA.region_state:CSA = {
-			create_building={
-				building="building_barracks"
-				add_ownership={
-					country={
-						country="root"
-						levels=2
-					}
-				}
-				reserves=1
-				activate_production_methods={ "pm_no_organization" }
-			}
-		}
-		s:STATE_SOUTH_CAROLINA.region_state:CSA = {
-			save_scope_as = south_carolina
-
-			create_building={
-				building="building_barracks"
-				add_ownership={
-					country={
-						country="root"
-						levels=2
-					}
-				}
-				reserves=1
-				activate_production_methods={ "pm_no_organization" }
-			}
-		}
-		s:STATE_ALABAMA.region_state:CSA = {
-			save_scope_as = alabama
-
-			create_building={
-				building="building_barracks"
-				add_ownership={
-					country={
-						country="root"
-						levels=1
-					}
-				}
-				reserves=1
-				activate_production_methods={ "pm_no_organization" }
-			}
-		}
-		s:STATE_MISSISSIPPI.region_state:CSA = {
-			save_scope_as = mississippi
-
-			create_building={
-				building="building_barracks"
-				add_ownership={
-					country={
-						country="root"
-						levels=1
-					}
-				}
-				reserves=1
-				activate_production_methods={ "pm_no_organization" }
-			}
-		}
+		s:STATE_SOUTH_CAROLINA.region_state:CSA = { save_scope_as = south_carolina }
+		s:STATE_ALABAMA.region_state:CSA = { save_scope_as = alabama }
+		s:STATE_MISSISSIPPI.region_state:CSA = { save_scope_as = mississippi }
 		c:USA = {
 			save_scope_as = united_states
 		}

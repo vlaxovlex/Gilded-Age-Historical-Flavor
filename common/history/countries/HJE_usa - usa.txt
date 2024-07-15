@@ -1,5 +1,0 @@
-﻿COUNTRIES = {
-	c:USA = {
-		add_journal_entry = { type = je_fifty_four_fourty }
-	}
-}

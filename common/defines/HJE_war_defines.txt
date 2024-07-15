@@ -1,38 +1,37 @@
 ﻿NAI = {
-	AI_PEACE_AGREEMENT_BASE_VALUE = -100
-	AI_PEACE_AGREEMENT_WHITE_PEACE_BASE = 25 # If no wargoals are being enforced on either side
-	AI_PEACE_AGREEMENT_WHITE_PEACE_WAR_DURATION = 4 # For each month the war goes on add this to the acceptance for a white peace
-	AI_PEACE_AGREEMENT_WAR_SUPPORT_FACTOR = -2	# Each point of war support affects peace acceptance by this amount
-	AI_MONTHS_OF_REDUCED_PEACE_DESIRE = 24 # Before this amount of months, reduce AI peace desire
-	AI_PEACE_DESIRE_FROM_SHORT_WAR = -100 # Subtract this amount of peace desire for the above number of months (multiplied by AI_MONTHS_OF_REDUCED_PEACE_DESIRE - months of war duration)
-	AI_PEACE_DESIRE_FROM_TURMOIL = 50 # Add this amount of peace desire at 100% radicals
-	AI_PEACE_DESIRE_FROM_DEVASTATION = 100 # Add this amount of peace desire at 100% devastation
-	AI_PEACE_DESIRE_FROM_LOYALISTS = -50 # Subtract this amount of peace desire at 100% loyalists
-	AI_PEACE_DESIRE_FROM_GOLD_RESERVES = -50 # Subtract this amount of peace desire at 100% gold reserves
+	AI_PEACE_AGREEMENT_BASE_VALUE = -75
+	AI_PEACE_AGREEMENT_WHITE_PEACE_BASE = 20 # If no wargoals are being enforced on either side
+	AI_PEACE_AGREEMENT_WHITE_PEACE_WAR_DURATION = 3 # For each month the war goes on add this to the acceptance for a white peace
+	AI_PEACE_AGREEMENT_WAR_SUPPORT_FACTOR = -1.5	# Each point of war support affects peace acceptance by this amount
+	AI_MONTHS_OF_REDUCED_PEACE_DESIRE = 18 # Before this amount of months, reduce AI peace desire
+	AI_PEACE_DESIRE_FROM_SHORT_WAR = -75 # Subtract this amount of peace desire for the above number of months (multiplied by AI_MONTHS_OF_REDUCED_PEACE_DESIRE - months of war duration)
+	AI_PEACE_DESIRE_FROM_TURMOIL = 40 # Add this amount of peace desire at 100% radicals
+	AI_PEACE_DESIRE_FROM_DEVASTATION = 80 # Add this amount of peace desire at 100% devastation
+	AI_PEACE_DESIRE_FROM_LOYALISTS = -40 # Subtract this amount of peace desire at 100% loyalists
+	AI_PEACE_DESIRE_FROM_GOLD_RESERVES = -40 # Subtract this amount of peace desire at 100% gold reserves
 }
 
 NMilitary = {
 	BATTLE_PLAN_ADVANCE_PROGRESS_TO_LAUNCH = 400 			# required accumulated advance progress to launch
-	BATTLE_RAW_MANPOWER_INFLICTED_CASUALTY_RATIO = 0.15		# applied to the number of casualties caused by raw number of troops, ie without considering Offense/Defense - increasing this makes CE less important and battles more lethal
-	BATTLE_COMBAT_EFFICIENCY_INFLICTED_CASUALTY_RATIO = 0.35	# applied to the number of casualties caused by troops with Offense/Defense also factored in - incre
-	BASE_MORALE_RECOVERED_PER_DAY = 0.005			# Default morale recovered is 3% per day
-	BASE_MORALE_LOST_PER_DAY = 0.01					# Default morale lost when out of supply is 5%
-	MANPOWER_LOST_DUE_TO_ATTRITION_PER_WEEK_MIN = 0.015 	# The minimum percentage of manpower a unit can lose each week due to attrition
-	MANPOWER_LOST_DUE_TO_ATTRITION_PER_WEEK_MAX = 0.045 	# The maximum percentage of manpower a unit can lose each week due to attrition
+	BATTLE_RAW_MANPOWER_INFLICTED_CASUALTY_RATIO = 0.1		# applied to the number of casualties caused by raw number of troops, ie without considering Offense/Defense - increasing this makes CE less important and battles more lethal
+	BATTLE_COMBAT_EFFICIENCY_INFLICTED_CASUALTY_RATIO = 0.75	# applied to the number of casualties caused by troops with Offense/Defense also factored in - incre
+	BASE_MORALE_RECOVERED_PER_DAY = 0.01			# Default morale recovered is 3% per day
+	BASE_MORALE_LOST_PER_DAY = 0.03					# Default morale lost when out of supply is 5%
+	MANPOWER_LOST_DUE_TO_ATTRITION_PER_WEEK_MIN = 0.025 	# The minimum percentage of manpower a unit can lose each week due to attrition
+	MANPOWER_LOST_DUE_TO_ATTRITION_PER_WEEK_MAX = 0.085 	# The maximum percentage of manpower a unit can lose each week due to attrition
 	BATTLE_BASE_MIN_PROVINCES_TAKEN = 1
-	BATTLE_BASE_MAX_PROVINCES_TAKEN = 6
-	BATTLE_PROVINCES_TAKEN_FRONT_PROVINCES_NUM_DIVISOR = 25		# Attacker takes (num provinces in front) divided by this as extra, clamped to BATTLE_BASE_MIN_PROVINCES_TAKEN and BATTLE_BASE_MAX_PROVINCES_TAKEN
-	BATTLE_PROVINCES_TAKEN_THEATER_PROVINCES_NUM_DIVISOR = 250	# Attacker takes (num provinces in theater) divided by this as extra, clamped to BATTLE_BASE_MIN_PROVINCES_TAKEN and BATTLE_BASE_MAX_PROVINCES_TAKEN
+	BATTLE_BASE_MAX_PROVINCES_TAKEN = 5
+	BATTLE_PROVINCES_TAKEN_FRONT_PROVINCES_NUM_DIVISOR = 15		# Attacker takes (num provinces in front) divided by this as extra, clamped to BATTLE_BASE_MIN_PROVINCES_TAKEN and BATTLE_BASE_MAX_PROVINCES_TAKEN
+	BATTLE_PROVINCES_TAKEN_THEATER_PROVINCES_NUM_DIVISOR = 150	# Attacker takes (num provinces in theater) divided by this as extra, clamped to BATTLE_BASE_MIN_PROVINCES_TAKEN and BATTLE_BASE_MAX_PROVINCES_TAKEN
 	BATTLE_PROVINCES_TAKEN_MAX_DEPTH_MIN = 1					# Maximum distance from battle provinces that provinces can be taken by attacker (minimum)
-	BATTLE_PROVINCES_TAKEN_MAX_DEPTH_MAX = 3					# Maximum distance from battle provinces that provinces can be taken (maximum)
-	BATTLE_PROVINCES_TAKEN_MAX_DEPTH_THEATER_PROVINCES_NUM_DIVISOR = 500	# Num provinces in theater is divided by this and added to maximum depth attacker can take provinces at 
-	BATTLE_PROVINCES_TAKEN_THEATER_UNIT_SCALE = 1				# Scales number of provinces captured by theater-provinces / ( units-in-theater * this-define )
-	BATTLE_PROVINCES_TAKEN_MAX_EXTRA = 1                  		# If the selected provinces will cause split, capture the new theater as long as it has up to BATTLE_PROVINCES_TAKEN_MAX_EXTRA provinces. This might not respect the distance limit (BATTLE_PROVINCES_TAKEN_MAX_DEPTH).
+	BATTLE_PROVINCES_TAKEN_MAX_DEPTH_MAX = 4					# Maximum distance from battle provinces that provinces can be taken (maximum)
+	BATTLE_PROVINCES_TAKEN_THEATER_UNIT_SCALE = 1.5				# Scales number of provinces captured by theater-provinces / ( units-in-theater * this-define )
+	BATTLE_PROVINCES_TAKEN_MAX_EXTRA = 2                  		# If the selected provinces will cause split, capture the new theater as long as it has up to BATTLE_PROVINCES_TAKEN_MAX_EXTRA provinces. This might not respect the distance limit (BATTLE_PROVINCES_TAKEN_MAX_DEPTH).
 }
 
 NWar = {
-	DEVASTATION_INCREASE_RATE = 0.03 # Per day, scales with level of occupation
-	DEVASTATION_DECAY_RATE = -0.03 # Per day, when there are no occupations
+	DEVASTATION_INCREASE_RATE = 0.05 # Per day, scales with level of occupation
+	DEVASTATION_DECAY_RATE = -0.05 # Per day, when there are no occupations
 	DAYS_BETWEEN_WAR_EXHAUSTION = 30 # Every this many days war support will be reduced by the war exhaustion formula
- 	WAR_EXHAUSTION_KIA_FACTOR = 50.0 # Scaled by casualties compared to total manpower
+ 	WAR_EXHAUSTION_KIA_FACTOR = 25.0 # Scaled by casualties compared to total manpower
 }
