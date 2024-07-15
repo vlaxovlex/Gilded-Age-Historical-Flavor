@@ -3705,7 +3705,7 @@ HJE_colonial.99 = {
 			set_state_owner = scope:colonial_claims_scope
 		}
 		hidden_effect = {
-			trigger_event = { id = HJE_colonial.99001 days = 5 }
+			trigger_event = { id = HJE_colonial.99001 days = 1 }
 		}
 		
 		ai_chance = {
