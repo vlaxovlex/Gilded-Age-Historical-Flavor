@@ -5,12 +5,20 @@
 	
 	# note that if you change this, also update the decision
 	complete = {
-		owns_entire_state_region = STATE_CALIFORNIA
-		owns_entire_state_region = STATE_NEVADA
-		owns_entire_state_region = STATE_UTAH
+		has_state_in_state_region = STATE_CALIFORNIA	#HJE edit
+		has_state_in_state_region = STATE_NEVADA		#HJE edit
+		has_state_in_state_region = STATE_UTAH 			#HJE edit
 		has_state_in_state_region = STATE_ARIZONA		#HJE edit
 		has_state_in_state_region = STATE_NEW_MEXICO	#HJE edit
-		owns_entire_state_region = STATE_TEXAS
+		has_state_in_state_region = STATE_TEXAS			#HJE edit
+		c:MEX = {			#HJE edit
+			NOR = {
+				has_state_in_state_region = STATE_CALIFORNIA	#HJE edit
+				has_state_in_state_region = STATE_NEVADA		#HJE edit
+				has_state_in_state_region = STATE_UTAH 			#HJE edit
+				has_state_in_state_region = STATE_TEXAS			#HJE edit
+			}
+		}
 	}
 
 	on_complete = {
