@@ -544,7 +544,7 @@ manifest_destiny.6 = {
 		
 		
 		
-		create_incident = { country = root value = 20 }
+		create_incident = { country = root value = 10 }
 		c:USA = {
 			trigger_event = { id = manifest_destiny.7 days = 0 popup = yes }
 		}
@@ -756,7 +756,7 @@ manifest_destiny.6 = {
 		
 		
 		
-		create_incident = { country = root value = 40 }
+		create_incident = { country = root value = 20 }
 		c:USA = {
 			trigger_event = { id = manifest_destiny.7 days = 0 popup = yes }
 		}
@@ -950,7 +950,7 @@ manifest_destiny.6 = {
 				set_state_owner = c:USA
 			}
 		}
-		create_incident = { country = root value = 60 }
+		create_incident = { country = root value = 40 }
 		c:USA = {
 			trigger_event = { id = manifest_destiny.7 days = 0 popup = yes }
 		}

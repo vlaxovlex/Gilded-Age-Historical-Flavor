@@ -1428,7 +1428,7 @@ HJE_scandi.2 = {		#Storting says New Monarch (Swedish Response)
 			}
 		}
 
-		create_incident = { country = root value = 100 }
+		create_incident = { country = root value = 15 }
 		create_diplomatic_play = {
 			name = norwegian_independence_war_name
             target_country = c:NOR

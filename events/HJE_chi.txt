@@ -29,7 +29,7 @@ HJE_china.1 = { #Suppression of the Korean rebellion
 		default_option = yes
 	
 		create_incident = {
-			country = c:JAP value = 25 
+			country = c:JAP value = 15 
 		}
 		change_relations = {
 			country = c:JAP
@@ -102,7 +102,7 @@ HJE_china.2 = { #Kim Ok-kyung's murder
 		default_option = yes
 	
 		create_incident = {
-			country = c:JAP value = 25 
+			country = c:JAP value = 15 
 		}
 		change_relations = {
 			country = c:JAP

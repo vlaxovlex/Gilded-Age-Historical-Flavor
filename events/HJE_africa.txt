@@ -147,7 +147,7 @@ HJE_mideast.1 = {
 			base = 0
 		}
 	
-		create_incident = { country = root value = 100 }
+		create_incident = { country = root value = 30 }
 	}		
 }
 
@@ -2867,7 +2867,7 @@ HJE_colonial.16 = { 			### ERITREA DISPUTE (split between France and Italy) ###
 		trigger = { exists = scope:eritrea_italy_equivalent_scope }
 
 		s:STATE_ERITREA = { add_claim = ROOT }
-		create_incident = { country = root value = 40 }
+		create_incident = { country = root value = 30 }
 		every_state = {
 			limit = { 
 				state_region = s:STATE_ERITREA 
@@ -3124,7 +3124,7 @@ HJE_colonial.18 = { 			### SOMALIA DISPUTE (split between Britain and Italy) ###
 		trigger = { exists = scope:somalia_italy_equivalent_scope }
 
 		s:STATE_SOMALILAND = { add_claim = ROOT }
-		create_incident = { country = root value = 40 }
+		create_incident = { country = root value = 30 }
 		every_state = {
 			limit = { 
 				state_region = s:STATE_SOMALILAND 
@@ -3411,7 +3411,7 @@ HJE_colonial.20 = { 			### CONGO (GP option, lots of infamy) ###
 				country_rank >= rank_value:major_power
 				has_variable = SFA_attended_berlin_conference
 			}
-			create_incident = { country = root value = 50 }
+			create_incident = { country = root value = 40 }
 		}
 		else = {
 			create_incident = { country = root value = 15 }
