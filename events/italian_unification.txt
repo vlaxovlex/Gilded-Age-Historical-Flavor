@@ -226,6 +226,12 @@ italian_unification.4 = {
 				country_has_primary_culture = cu:south_italian
 			}
 		}
+		NOT = {				#HJE edit start
+			AND = { exists = c:RPA this ?= c:PAP }
+		}
+		NOT = {
+			AND = { exists = c:RSI this ?= c:SIC }
+		}					#HJE edit end
 	}
 
 	immediate = {
