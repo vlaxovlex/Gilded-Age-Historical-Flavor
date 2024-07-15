@@ -488,7 +488,13 @@ colonial_claims = {
 			}
 			if = {
 				limit = {
-					is_subject = no
+					OR = { 
+						is_subject = no 
+						AND = { 
+							is_subject = yes 
+							NOT = { is_subject_type = subject_type_colonial_administration } 
+						} 
+					}
 				}
 				trigger_event = { id = HJE_colonial.99 popup = yes }
 			}
