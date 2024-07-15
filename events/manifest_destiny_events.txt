@@ -27,23 +27,41 @@ manifest_destiny.1 = {
 		default_option = yes
 		s:STATE_CALIFORNIA = { 
 			add_homeland = cu:yankee
-			remove_claim = c:MEX
+			add_homeland = cu:dixie
+			hidden_effect = {
+				remove_claim = c:MEX
+				add_claim = c:USA
+			}
 		}
 		s:STATE_NEVADA = { 
 			add_homeland = cu:yankee
-			remove_claim = c:MEX
+			hidden_effect = {
+				remove_claim = c:MEX
+				add_claim = c:USA
+			}
 		}
 		s:STATE_UTAH = { 
 			add_homeland = cu:yankee
-			remove_claim = c:MEX
+			hidden_effect = {
+				remove_claim = c:MEX
+				add_claim = c:USA
+			}
 		}
 		s:STATE_ARIZONA = { 
+			add_homeland = cu:yankee
 			add_homeland = cu:dixie
-			remove_claim = c:MEX
+			hidden_effect = {
+				remove_claim = c:MEX
+				add_claim = c:USA
+			}
 		}
 		s:STATE_NEW_MEXICO = { 
+			add_homeland = cu:yankee
 			add_homeland = cu:dixie
-			remove_claim = c:MEX
+			hidden_effect = {
+				remove_claim = c:MEX
+				add_claim = c:USA
+			}
 		}
 	}
 }

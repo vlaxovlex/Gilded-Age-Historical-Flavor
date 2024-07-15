@@ -2856,6 +2856,7 @@ acw_secession_crisis.2 = {
 		s:STATE_KENTUCKY = { add_claim = c:CSA }
 		s:STATE_OKLAHOMA = { add_claim = c:CSA }
 		s:STATE_ARIZONA = { add_claim = c:CSA }
+		s:STATE_MISSOURI = { add_claim = c:CSA }
 		s:STATE_NEW_MEXICO = { add_claim = c:CSA }
 		if = {
 			limit = {

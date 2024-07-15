@@ -117,7 +117,7 @@ modifier_tge_junkers_heer_krupp = {
 
 modifier_tge_austria_in_chaos = {
 	icon = gfx/interface/icons/timed_modifier_icons/modifier_rifle_negative.dds	
-	unit_army_offense_mult = -0.15
+	unit_army_offense_mult = -0.3
 }
 
 modifier_tge_unification_boom = {

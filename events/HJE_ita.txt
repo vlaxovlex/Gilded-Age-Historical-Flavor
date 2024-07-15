@@ -72,6 +72,22 @@ HJE_italy.2 = {
 				set_variable = pan_italian_rebellion
 				activate_law = law_type:law_parliamentary_republic
 				activate_law = law_type:law_wealth_voting
+				create_military_formation = {
+					type = army
+					hq_region = c:RSI.capital.region
+		
+					combat_unit = {
+						type = unit_type:combat_unit_type_irregular_infantry
+						state_region = c:RSI.capital.state_region
+						count = 5
+					}
+					
+					combat_unit = {
+						type = unit_type:combat_unit_type_hussars
+						state_region = c:RSI.capital.state_region
+						count = 5
+					}
+				}
 			}
 		}
 		c:RSI = {
@@ -233,6 +249,22 @@ HJE_italy.3 = {
 				set_variable = pan_italian_rebellion
 				activate_law = law_type:law_parliamentary_republic
 				activate_law = law_type:law_wealth_voting
+				create_military_formation = {
+					type = army
+					hq_region = c:RPA.capital.region
+		
+					combat_unit = {
+						type = unit_type:combat_unit_type_irregular_infantry
+						state_region = c:RPA.capital.state_region
+						count = 5
+					}
+					
+					combat_unit = {
+						type = unit_type:combat_unit_type_hussars
+						state_region = c:RPA.capital.state_region
+						count = 5
+					}
+				}
 			}
 		}
 		c:RPA = {
@@ -917,6 +949,22 @@ HJE_italy.7 = {
 		name = HJE_italy.7.a
 		default_option = yes
 		ai_chance = { base = 5 }
+		create_military_formation = {
+			type = army
+			hq_region = scope:iwai1_attacker_scope.capital.region
+
+			combat_unit = {
+				type = unit_type:combat_unit_type_irregular_infantry
+				state_region = scope:iwai1_attacker_scope.capital.state_region
+				count = 15
+			}
+			
+			combat_unit = {
+				type = unit_type:combat_unit_type_hussars
+				state_region = scope:iwai1_attacker_scope.capital.state_region
+				count = 15
+			}
+		}
 		create_diplomatic_play = {
 			name = san_marco_revolt_1848_name
 			target_state = scope:iwai1_state_lombardy_scope

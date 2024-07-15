@@ -55,6 +55,10 @@ GLOBAL = {
 			months = -1
 		}
 	}
+	s:STATE_PENNSYLVANIA = { add_homeland = cu:dixie }
+	s:STATE_MARYLAND = { add_homeland = cu:yankee }
+	s:STATE_DELAWARE = { add_homeland = cu:yankee }
+	s:STATE_DISTRICT_OF_COLUMBIA = { add_homeland = cu:yankee }
 	# Give Sweden their small colonial empire back
 	s:STATE_WEST_INDIES = {
 		set_owner_of_provinces = {
