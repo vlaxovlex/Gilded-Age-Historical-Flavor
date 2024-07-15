@@ -5,10 +5,6 @@
 	AI_PEACE_AGREEMENT_WAR_SUPPORT_FACTOR = -1.5	# Each point of war support affects peace acceptance by this amount
 	AI_MONTHS_OF_REDUCED_PEACE_DESIRE = 18 # Before this amount of months, reduce AI peace desire
 	AI_PEACE_DESIRE_FROM_SHORT_WAR = -75 # Subtract this amount of peace desire for the above number of months (multiplied by AI_MONTHS_OF_REDUCED_PEACE_DESIRE - months of war duration)
-	AI_PEACE_DESIRE_FROM_TURMOIL = 40 # Add this amount of peace desire at 100% radicals
-	AI_PEACE_DESIRE_FROM_DEVASTATION = 80 # Add this amount of peace desire at 100% devastation
-	AI_PEACE_DESIRE_FROM_LOYALISTS = -40 # Subtract this amount of peace desire at 100% loyalists
-	AI_PEACE_DESIRE_FROM_GOLD_RESERVES = -40 # Subtract this amount of peace desire at 100% gold reserves
 }
 
 NMilitary = {

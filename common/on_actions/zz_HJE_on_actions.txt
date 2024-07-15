@@ -603,9 +603,11 @@
 		}
 		if = {
 			limit = {			#AI will try to take these states at least once
+				year > 1840
 				exists = c:USA
-				c:USA = { is_player = no }
-				NOT = { c:USA = { has_variable = am_wargoals } }
+				c:USA = ROOT
+				is_player = no
+				NOT = { has_variable = am_wargoals }
 				c:MEX = { 
 					is_diplomatic_play_enemy_of = ROOT 
 					OR = {
@@ -618,31 +620,21 @@
 			random_diplomatic_play = {
 				limit = {
 					any_scope_play_involved = {
-						THIS = ROOT
-						is_diplomatic_play_enemy_of = c:MEX
-					}
-					any_scope_play_involved = {
 						THIS = c:MEX
 						is_diplomatic_play_enemy_of = ROOT
 					}
 				}
-				if = {
-					limit = { NOT = { s:STATE_TEXAS = { is_target_of_wargoal = c:USA } } }
-					add_war_goal = {
-						holder = c:USA
-						type = return_state
-						target_state = s:STATE_TEXAS.region_state:MEX
-						primary_demand = yes
-					}
+				add_war_goal = {
+					holder = c:USA
+					type = return_state
+					target_state = s:STATE_CALIFORNIA.region_state:MEX
+					primary_demand = yes
 				}
-				if = {
-					limit = { NOT = { s:STATE_CALIFORNIA = { is_target_of_wargoal = c:USA } } }
-					add_war_goal = {
-						holder = c:USA
-						type = return_state
-						target_state = s:STATE_CALIFORNIA.region_state:MEX
-						primary_demand = yes
-					}
+				add_war_goal = {
+					holder = c:USA
+					type = return_state
+					target_state = s:STATE_TEXAS.region_state:MEX
+					primary_demand = yes
 				}
 			}
 		}
