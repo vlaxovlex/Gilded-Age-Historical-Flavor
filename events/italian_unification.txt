@@ -88,7 +88,7 @@ italian_unification.2 = {
 				relations:root >= relations_threshold:amicable
 				is_player = no
 				NOT = { has_variable = italian_minor_dont_annex }
-				trigger_if = { ## HJE EDIT ##
+				trigger_if = { #HJE edit start
 					limit = { 
 						ROOT = { is_player = no } 
 						is_subject = no
@@ -101,7 +101,7 @@ italian_unification.2 = {
 						}
 					}
 					NOT = { has_variable = ITA_current_favourite_to_unify }
-				}
+				}				#HJE edit end
 			}
 		}
 	}
@@ -134,13 +134,13 @@ italian_unification.2 = {
 	option = {
 		name = italian_unification.2.a
 		default_option = yes
-		hidden_effect = { ## HJE EDIT ##
+		hidden_effect = { #HJE edit start
 			if = {
 				limit = { scope:italian_annex_country = { has_variable = ITA_current_favourite_to_unify } }
 				scope:italian_annex_country = { remove_variable = ITA_current_favourite_to_unify }
 				set_variable = ITA_current_favourite_to_unify
 			}
-		}
+		}				  #HJE edit end
 		create_incident = {
 			country = scope:italian_annex_country
 			value = 10

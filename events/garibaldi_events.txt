@@ -42,8 +42,8 @@ garibaldi_events.1 = {
 			}
 		}
 
-		year >= 1846 ## HJE EDIT ##
-		trigger_if = { ## HJE EDIT ##
+		year >= 1846 #HJE edit start
+		trigger_if = { 
 			limit = { 
 				NOT = { exists = c:ITA }
 				any_country = {
@@ -60,7 +60,7 @@ garibaldi_events.1 = {
 				} 
 			}
 			has_variable = ITA_current_favourite_to_unify
-		}
+		}			#HJE edit end	
 
 		OR = {
 			AND = { # You're a nation fighting the good cause (defensive war OR democratically-inclined revolution/secession)
@@ -113,7 +113,7 @@ garibaldi_events.1 = {
 							}
 						}					
 					}	
-					AND = { ## HJE EDIT ##
+					AND = { #HJE edit start
 						is_subject = no
 						has_variable = ITA_current_favourite_to_unify 
 						any_primary_culture = { has_discrimination_trait = italophone }
@@ -127,7 +127,7 @@ garibaldi_events.1 = {
 								target = root
 							}
 						}
-					}		
+					}		#HJE edit end
 				}
 			}
 			AND = { # You're fighting for Italy
@@ -729,7 +729,7 @@ garibaldi_events.2 = {
 			}
 		}
 
-		trigger_if = { ## HJE EDIT ##
+		trigger_if = { #HJE edit start
 			limit = { 
 				NOT = { exists = c:ITA }
 				any_country = {
@@ -746,7 +746,7 @@ garibaldi_events.2 = {
 				} 
 			}
 			always = no
-		}
+		}				#HJE edit end
 	}
 
 	cancellation_trigger = {
