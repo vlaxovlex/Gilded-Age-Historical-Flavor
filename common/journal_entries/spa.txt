@@ -215,6 +215,7 @@ HJ_second_carlist_war = {
 			}
 			c:SPA = {
 				create_diplomatic_play = {
+					name = second_carlist_war_name
 	
 					target_country = c:CSP
 					type = dp_annex_war
@@ -356,6 +357,7 @@ HJ_third_carlist_war = {
 			}
 			c:SPA = {
 				create_diplomatic_play = {
+					name = third_carlist_war_name
 				
 					target_country = c:CSP
 					type = dp_annex_war

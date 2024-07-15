@@ -281,6 +281,22 @@ HJ_dominican_revolution = {
 				random_country = {
 					limit = { has_variable = dominican_republic }
 					save_scope_as = dominican_republic_scope
+					create_military_formation = {
+						type = army
+						hq_region = scope:santo_domingo_scope.region
+			
+						combat_unit = {
+							type = unit_type:combat_unit_type_irregular_infantry
+							state_region = scope:santo_domingo_scope
+							count = 3
+						}
+						
+						combat_unit = {
+							type = unit_type:combat_unit_type_hussars
+							state_region = scope:santo_domingo_scope
+							count = 3
+						}
+					}
 				}
 				create_diplomatic_play = {
 		            target_country = scope:dominican_republic_scope
@@ -331,6 +347,22 @@ HJ_dominican_revolution = {
 				random_country = {
 					limit = { has_variable = hatian_republic }
 					save_scope_as = haitian_republic_scope
+					create_military_formation = {
+						type = army
+						hq_region = scope:haiti_scope.region
+			
+						combat_unit = {
+							type = unit_type:combat_unit_type_irregular_infantry
+							state_region = scope:haiti_scope
+							count = 2
+						}
+						
+						combat_unit = {
+							type = unit_type:combat_unit_type_hussars
+							state_region = scope:haiti_scope
+							count = 2
+						}
+					}
 				}
 				create_diplomatic_play = {
 		            target_country = scope:haitian_republic_scope

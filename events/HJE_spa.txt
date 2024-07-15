@@ -79,6 +79,7 @@ HJE_spain.1 = {			 #Occupation of Santo Domingo claims
 		if = {
 			limit = { is_player = no }
 		    create_diplomatic_play = {
+				name = dominican_restoration_war_name
 				target_state = scope:spa_santo_domingo
 		    	type = dp_return_state
 				war = no

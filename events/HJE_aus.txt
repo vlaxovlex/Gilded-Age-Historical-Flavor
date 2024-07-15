@@ -236,6 +236,7 @@ TGE_austria.2 = {
 			create_diplomatic_play = {
 				war = no
 				type = dp_conquer_state
+				name = hungarian_revolt_1848_name
 				target_state = s:STATE_SLAVONIA.region_state:AUS
 				add_war_goal = {
 					holder = c:HUN

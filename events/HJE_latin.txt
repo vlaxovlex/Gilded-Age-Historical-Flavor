@@ -92,9 +92,10 @@ HJE_latin_america.1 = {
 			}
 		}
 		create_diplomatic_play = {
-                target_country = c:BOL
-                type = dp_contain_threat
-				war = no
+			name = war_of_the_confederation_name
+            target_country = c:BOL
+            type = dp_contain_threat
+			war = no
 		}
 		every_country = {
 			limit = {
@@ -499,6 +500,7 @@ HJE_latin_america.5 = {			 #War of the Pacific Claims
 			}
 			c:CHL = {
 				create_diplomatic_play = {
+					name = war_of_the_pacific_name
 	                target_country = scope:chl_antofagasta_owner
 	                type = dp_humiliation
 					war = no
@@ -540,6 +542,7 @@ HJE_latin_america.5 = {			 #War of the Pacific Claims
 			}
 			c:CHL = {
 				create_diplomatic_play = {
+					name = war_of_the_pacific_name
 					target_country = scope:chl_tarapaca_owner
 					type = dp_humiliation
 					war = no
@@ -719,6 +722,7 @@ HJE_latin_america.7 = {
 						months = -1
 					}
 					create_diplomatic_play = {
+						name = mexican_civil_war_name
 						target_country = c:MEX
 						type = dp_annex_war
 						war = yes
@@ -951,6 +955,7 @@ HJE_latin_america.9 = {
 						months = 9
 					}
 					create_diplomatic_play = {
+						name = mexican_civil_war_name
 						target_country = c:MEX
 						type = dp_annex_war
 						war = yes
@@ -1079,6 +1084,7 @@ HJE_latin_america.10 = {
 						months = 30
 					}
 					create_diplomatic_play = {
+						name = mexican_civil_war_name
 						target_country = c:MEX
 						type = dp_annex_war
 						war = yes
@@ -1096,6 +1102,7 @@ HJE_latin_america.10 = {
 						NOT = { PREV = THIS }
 					}
 					create_diplomatic_play = {
+						name = mexican_civil_war_name
 						target_country = PREV
 						type = dp_annex_war
 						war = yes
@@ -1227,6 +1234,7 @@ HJE_latin_america.11 = {
 						months = 24
 					}
 					create_diplomatic_play = {
+						name = mexican_civil_war_name
 						target_country = c:MEX
 						type = dp_annex_war
 						war = yes
@@ -1245,6 +1253,7 @@ HJE_latin_america.11 = {
 						NOT = { PREV = THIS }
 					}
 					create_diplomatic_play = {
+						name = mexican_civil_war_name
 						target_country = PREV
 						type = dp_annex_war
 						war = yes
@@ -1408,6 +1417,7 @@ HJE_latin_america.12 = {
 					months = 30
 				}
 				create_diplomatic_play = {
+					name = mexican_civil_war_name
 					target_country = c:MEX
 					type = dp_annex_war
 					war = yes
@@ -1425,6 +1435,7 @@ HJE_latin_america.12 = {
 					NOT = { PREV = THIS }
 				}
 				create_diplomatic_play = {
+					name = mexican_civil_war_name
 					target_country = PREV
 					type = dp_annex_war
 					war = yes
@@ -1648,6 +1659,7 @@ HJE_latin_america.14 = {
 							is_decaying = yes
 						}
 						create_diplomatic_play = {
+							name = brazilian_civil_war_name
 							target_country = c:BRZ
 							type = dp_annex_war
 							war = yes
@@ -1714,6 +1726,7 @@ HJE_latin_america.14 = {
 						add_loyalists = { value = 0.2 }
 
 						create_diplomatic_play = {
+							name = brazilian_civil_war_name
 							target_country = c:BRZ
 							type = dp_annex_war
 							war = yes
@@ -1881,6 +1894,7 @@ HJE_latin_america.15 = {
 							is_decaying = yes
 						}
 						create_diplomatic_play = {
+							name = brazilian_civil_war_name
 							target_country = c:BRZ
 							type = dp_annex_war
 							war = yes
@@ -1947,6 +1961,7 @@ HJE_latin_america.15 = {
 						add_loyalists = { value = 0.2 }
 
 						create_diplomatic_play = {
+							name = brazilian_civil_war_name
 							target_country = c:BRZ
 							type = dp_annex_war
 							war = yes

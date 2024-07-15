@@ -1502,6 +1502,9 @@ HJE_britain.14 = {
 			}
 		}
 		c:GBR = { trigger_event = { id = HJE_britain.15 days = 5 } }
+		scope:tgg_cw_diplomatic_play_scope = {
+			set_key = crimean_war_name
+		}
 	}
 
 	option = {

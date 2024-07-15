@@ -294,6 +294,7 @@ HJE_france.6 = {
 				activate_law = law_type:law_oligarchy
 				activate_law = law_type:law_appointed_bureaucrats
 				create_diplomatic_play = {
+					name = mexican_war_of_independence_name
 					target_country = c:MEX
 					type = dp_revolution
 				}

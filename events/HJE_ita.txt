@@ -76,6 +76,7 @@ HJE_italy.2 = {
 		}
 		c:RSI = {
 			create_diplomatic_play = {
+				name = sicilian_revolt_1848_name
                 target_country = ROOT
                 type = dp_annex_war
 				add_war_goal = {
@@ -236,6 +237,7 @@ HJE_italy.3 = {
 		}
 		c:RPA = {
 			create_diplomatic_play = {
+				name = roman_revolt_1848_name
                 target_country = ROOT
                 type = dp_annex_war
 				add_war_goal = {
@@ -916,6 +918,7 @@ HJE_italy.7 = {
 		default_option = yes
 		ai_chance = { base = 5 }
 		create_diplomatic_play = {
+			name = san_marco_revolt_1848_name
 			target_state = scope:iwai1_state_lombardy_scope
             type = dp_return_state
 			war = no
@@ -1398,6 +1401,7 @@ HJE_italy.11 = {
 				save_scope_as = italy_scope
 			}
    			create_diplomatic_play = {
+				name = italian_war_of_independence_name
                 target_country = scope:italy_scope
                 type = dp_humiliation
 				war = no
@@ -1415,6 +1419,7 @@ HJE_italy.11 = {
 				c:UCI = { is_subject = no }
 			}
    			create_diplomatic_play = {
+				name = italian_war_of_independence_name
                 target_country = c:UCI
                 type = dp_humiliation
 				war = no
@@ -1625,6 +1630,7 @@ HJE_italy.12 = { #Italy Claims (Expedition of the Thousand)
 				}
 			}
 			create_diplomatic_play = {
+				name = italian_war_of_unification_name
                 target_country = scope:random_italian_victim
                 type = dp_annex_war
 				war = no

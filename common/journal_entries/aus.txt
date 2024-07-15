@@ -76,6 +76,7 @@ je_tge_hungarianrevolution = {
 	
 	on_timeout = {
 		create_diplomatic_play = {
+			name = hungarian_revolt_1848_name
             target_country = c:HUN
             type = dp_annex_war
 			war = no

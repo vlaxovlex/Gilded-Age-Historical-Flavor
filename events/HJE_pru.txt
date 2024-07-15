@@ -189,6 +189,7 @@ HJE_prussia.1 = {			 #Danish attempt to annex Schleswig-Holstein
 			save_scope_as = den_initial_scwhol_victim
 		}
 		create_diplomatic_play = {
+			name = schleswig_holstein_rebellion_name
             target_country = scope:den_initial_scwhol_victim
             type = dp_annex_war
 			war = no
@@ -725,6 +726,7 @@ HJE_prussia.6 = {			 #French response to Ems Dispatch insult
 			scope:NGF_fpw_antagonizer = { add_modifier = { name = wartime_zeal months = 12 } } 
 		}
 		create_diplomatic_play = {
+			name = franco_prussian_war_name
             target_country = scope:NGF_fpw_antagonizer
             type = dp_humiliation
 			war = no
@@ -1049,6 +1051,7 @@ HJE_prussia.8 = {			 #GermConfed Dissolved (Prussia)
 				}
 			}
 			save_scope_as = brothers_war
+			set_key = brothers_war_name
 		}
 	}
 

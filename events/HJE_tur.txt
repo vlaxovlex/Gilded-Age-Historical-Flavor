@@ -2420,6 +2420,7 @@ HJE_turkey.1 = {			 #Oriental Crisis
 					initiator_is = c:TUR
 		            target_is = c:EGY
 				}
+				set_key = oriental_crisis_name
 				add_escalation = 60
 				add_initiator_backers = { c:JAB }
 				remove_war_goal = {
