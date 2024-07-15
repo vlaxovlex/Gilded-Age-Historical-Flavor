@@ -42,7 +42,6 @@ Nos enorgullece presentar nuestro mod, "Gilded Era", el cual añade una consider
 - El mod es compatible con otros mods globales; se recomienda cargarlo debajo de todos los demás mods
 - Un año en el juego dura aproximadamente 3 minutos en la fase inicial y alrededor de 3 minutos y 30 segundos en la fase tardía en mi i7-13620H; el rendimiento global es aproximadamente el 70% del juego base
 - Por favor, informa cualquier error que encuentres
--Si el lanzador te escribe "error al analizar metadatos", no hagas caso, es un error conocido, pero no afecta al juego
 
 
 [h1]Lista de Actualizaciones:[/h1]
@@ -65,4 +64,4 @@ Nos enorgullece presentar nuestro mod, "Gilded Era", el cual añade una consider
 
 [b]Enlaces:[/b]
 [url=https://discord.gg/kagHUtjr]Victoria 3 Mod Co-op[/url]
-[url=https://github.com/vlaxovlex/Gilded-Age-Historical-Flavor]Github[/url]
+[url=https://github.com/vlaxovlex/Gilded-Age-Historical-Flavor]GitHub[/url]

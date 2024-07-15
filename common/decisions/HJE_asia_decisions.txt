@@ -1,8 +1,6 @@
 ﻿dec_kor = { #Ask for Japanese help
 	is_shown = {
-		NOT = {
-			JKFP_is_active_trigger = yes
-		}
+		JKFP_is_active_trigger = no
 	 	exists = c:KOR
 		this = c:KOR
 		OR = {

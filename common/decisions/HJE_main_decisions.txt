@@ -468,7 +468,6 @@ colonial_claims = {
 		random_country = {
 			limit = {
 				NOT = { has_variable = colonial_claimant }
-				top_overlord = { NOT = { has_variable = colonial_claimant } }
 				NOR = {
 					this = root
 					is_country_type = unrecognized
@@ -486,23 +485,7 @@ colonial_claims = {
 					}
 				}
 			}
-			if = {
-				limit = {
-					OR = { 
-						is_subject = no 
-						AND = { 
-							is_subject = yes 
-							NOT = { is_subject_type = subject_type_colonial_administration } 
-						} 
-					}
-				}
-				trigger_event = { id = HJE_colonial.99 popup = yes }
-			}
-			else = {
-				top_overlord = {
-					trigger_event = { id = HJE_colonial.99 popup = yes }
-				}
-			}
+			trigger_event = { id = HJE_colonial.99 popup = yes }
 		}
 	}
 	

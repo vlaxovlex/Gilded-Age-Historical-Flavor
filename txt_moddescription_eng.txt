@@ -42,7 +42,6 @@ We proudly present our mod, “Gilded Era”, which adds a considerable amount o
 -The mod has good compatibility with global mods, it is highly recommended to load below all other mods
 -One year runs about 3 minutes in early game and about 3 minutes and 30 seconds in late game on my i7-13620H, overall performance is about 70% of base game
 -Please report any bugs you find
--If the launcher writes you "parsing metadata failed" do not pay attention, it is a known error but it does not affect the game
 
 
 [h1]List of updates:[/h1]
@@ -65,4 +64,4 @@ We proudly present our mod, “Gilded Era”, which adds a considerable amount o
 
 [b]Links:[/b]
 [url=https://discord.gg/kagHUtjr]Victoria 3 Mod Co-op[/url]
-[url=https://github.com/vlaxovlex/Gilded-Age-Historical-Flavor]Github[/url]
+[url=https://github.com/vlaxovlex/Gilded-Age-Historical-Flavor]GitHub[/url]

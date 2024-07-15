@@ -61,8 +61,8 @@
 	ai_chance = {
 		base = 1
 		modifier = {		#HJE edit start
-			year >= 1858
-			add = 100
+			year >= 1856
+			add = 50
 		}					#HJE edit end
 	}
 }
@@ -147,8 +147,8 @@ sell_savoy = {
 			add = 1
 		}
 		modifier = {		#HJE edit start
-			year >= 1858
-			add = 100
+			year >= 1856
+			add = 50
 		}					#HJE edit end
 	}
 }

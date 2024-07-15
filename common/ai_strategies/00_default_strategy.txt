@@ -7028,66 +7028,7 @@ ai_strategy_default = {
 		
 		colonization_rights = {
 			value = 100
-		}	
-		
-		unification_leadership = {	#HJE edit start
-			value = 0
-			
-			if = {
-				limit = {
-						AND = {
-							OR = {
-								has_journal_entry = je_north_german_unification
-								has_journal_entry = je_german_unification
-							}
-							OR = {
-								NOT = {
-									AND = {
-										exists = c:SCH
-										c:SCH = { has_state_in_state_region = STATE_SCHLESWIG_HOLSTEIN }
-									}
-									AND = {
-										exists = c:HOL
-										c:HOL = { has_state_in_state_region = STATE_SCHLESWIG_HOLSTEIN }
-									}
-									any_country = {
-										has_state_in_state_region = STATE_SCHLESWIG_HOLSTEIN
-										exists = c:DEN
-										OR = {
-											c:DEN = THIS
-											is_subject_of = c:DEN
-										}
-									}
-								}
-								owns_entire_state_region = STATE_ALSACE_LORRAINE
-							}
-						}
-					scope:target_country = {
-						is_unification_candidate = GER
-					}
-				}
-				add = 1000
-			}	
-			else = {
-				add = -100
-			}
-
-			#Italian Nightmare
-			if = {
-				limit = {
-					year >= 1858
-					has_journal_entry = je_italian_unification
-					scope:target_country = {
-						is_unification_candidate = ITA
-					}
-				}
-				add = 1000
-			}	
-			else = {
-				add = -100
-			}
-		
-		}	#HJE edit end		
+		}		
 
 		unification = {
 			value = 100
