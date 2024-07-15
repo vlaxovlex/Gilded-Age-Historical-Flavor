@@ -36,6 +36,7 @@ HJE_spain.1 = {			 #Occupation of Santo Domingo claims
 			}
 			AND = {
 				exists = c:USA
+				c:USA = { NOT = { has_variable = acw_has_fought_less_than_1_year } }
 				any_country = {
 					has_war_with = c:USA
 					OR = {
