@@ -422,7 +422,7 @@ colonial_claims = {
 				this = root
 				is_country_type = unrecognized
 				is_country_type = decentralized
-				
+				is_subject_of = root
 			}
 			any_scope_state = { 
 				state_is_in_africa = yes
@@ -447,6 +447,7 @@ colonial_claims = {
 					this = root
 					is_country_type = unrecognized
 					is_country_type = decentralized
+					is_subject_of = root
 				}
 				any_scope_state = { 
 					state_is_in_africa = yes
@@ -467,10 +468,12 @@ colonial_claims = {
 		random_country = {
 			limit = {
 				NOT = { has_variable = colonial_claimant }
+				top_overlord = { NOT = { has_variable = colonial_claimant } }
 				NOR = {
 					this = root
 					is_country_type = unrecognized
 					is_country_type = decentralized
+					is_subject_of = root
 				}
 				any_scope_state = { 
 					state_is_in_africa = yes
@@ -483,7 +486,17 @@ colonial_claims = {
 					}
 				}
 			}
-			trigger_event = { id = HJE_colonial.99 popup = yes }
+			if = {
+				limit = {
+					is_subject = no
+				}
+				trigger_event = { id = HJE_colonial.99 popup = yes }
+			}
+			else = {
+				top_overlord = {
+					trigger_event = { id = HJE_colonial.99 popup = yes }
+				}
+			}
 		}
 	}
 	

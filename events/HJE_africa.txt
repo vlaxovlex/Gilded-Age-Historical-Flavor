@@ -3694,11 +3694,17 @@ HJE_colonial.99 = {
 			limit = {
 				has_claim_by = scope:colonial_claims_scope
 				state_is_in_africa = yes
-				owner = root
+				OR = { owner = root owner = { is_subject_of = root } }
 				NOT = { has_claim_by = root }
+				NOT = { has_claim_by = { is_subject_of = root } }
 				NOT = {
 					any_neighbouring_state = { 
 						has_claim_by = root
+					}
+				}
+				NOT = {
+					any_neighbouring_state = { 
+						has_claim_by = { is_subject_of = root }
 					}
 				}
 			}
