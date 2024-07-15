@@ -442,11 +442,11 @@ HJE_prussia.3 = {
 		s:STATE_SCHLESWIG_HOLSTEIN = { add_claim = ROOT }
 		if = {
 			limit = { exists = c:SCH }
-			annex = c:SCH
+			annex_with_incorporation = c:SCH
 		}
 		if = {
 			limit = { exists = c:HOL }
-			annex = c:HOL
+			annex_with_incorporation = c:HOL
 		}
 		change_infamy = 50
 
@@ -519,11 +519,11 @@ HJE_prussia.3 = {
 		s:STATE_SCHLESWIG_HOLSTEIN = { add_claim = ROOT }
 		if = {
 			limit = { exists = c:SCH }
-			annex = c:SCH
+			annex_with_incorporation = c:SCH
 		}
 		if = {
 			limit = { exists = c:HOL }
-			annex = c:HOL
+			annex_with_incorporation = c:HOL
 		}
 		change_infamy = 10
 
@@ -1401,7 +1401,7 @@ HJE_prussia.10 = {			 #GermConfed Dissolved (Other Germans:Unify by force or oth
 			}
 			play_as = scope:PRU_equivalent_brothers_war
 		}
-        scope:PRU_equivalent_brothers_war = { annex = ROOT }
+        scope:PRU_equivalent_brothers_war = { annex_with_incorporation = ROOT }
 	}
 	option = {
 		name = HJE_prussia.10.b
