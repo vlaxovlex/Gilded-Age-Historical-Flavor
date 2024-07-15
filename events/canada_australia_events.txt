@@ -477,8 +477,8 @@ can_aus.8 = {
 						state_region = s:STATE_SOUTH_AUSTRALIA
 						state_region = s:STATE_WESTERN_AUSTRALIA
 						state_region = s:STATE_NORTHERN_TERRITORY
-						state_region = s:STATE_NORTH_ISLAND
-						state_region = s:STATE_SOUTH_ISLAND
+						#state_region = s:STATE_NORTH_ISLAND ## HJE EDIT ##
+						#state_region = s:STATE_SOUTH_ISLAND ## HJE EDIT ##
 					}
 					count >= 7
 				}

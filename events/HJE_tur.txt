@@ -461,6 +461,22 @@ HJE_balkan.3 = {
 			random_country = {
 				limit = { has_variable = sofia_uprising }
 				save_scope_as = sofia_uprising_scope
+				create_military_formation = {
+					type = army
+					hq_region = scope:rebelling_state_scope.region
+		
+					combat_unit = {
+						type = unit_type:combat_unit_type_irregular_infantry
+						state_region = scope:rebelling_state_scope
+						count = 15
+					}
+					
+					combat_unit = {
+						type = unit_type:combat_unit_type_hussars
+						state_region = scope:rebelling_state_scope
+						count = 15
+					}
+				}
 			}
 			create_diplomatic_play = {
 	            target_country = scope:sofia_uprising_scope
