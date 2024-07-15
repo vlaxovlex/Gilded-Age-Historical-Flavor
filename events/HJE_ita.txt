@@ -956,13 +956,13 @@ HJE_italy.7 = {
 			combat_unit = {
 				type = unit_type:combat_unit_type_irregular_infantry
 				state_region = scope:iwai1_attacker_scope.capital.state_region
-				count = 15
+				count = 25
 			}
 			
 			combat_unit = {
 				type = unit_type:combat_unit_type_hussars
 				state_region = scope:iwai1_attacker_scope.capital.state_region
-				count = 15
+				count = 25
 			}
 		}
 		create_diplomatic_play = {

@@ -58,6 +58,7 @@ acw_followup_events.1 = {
             culture = cu:dixie
             female = no
             religion = protestant
+			dna = dna_andrew_johnson
             ideology = ideology:ideology_traditionalist
             interest_group = scope:lincoln_proxy_ig
             ig_leader = yes

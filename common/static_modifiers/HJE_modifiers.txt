@@ -117,7 +117,7 @@ modifier_tge_junkers_heer_krupp = {
 
 modifier_tge_austria_in_chaos = {
 	icon = gfx/interface/icons/timed_modifier_icons/modifier_rifle_negative.dds	
-	unit_army_offense_mult = -0.3
+	unit_army_offense_mult = -0.4
 }
 
 modifier_tge_unification_boom = {
@@ -662,8 +662,8 @@ federal_war_modifier = {
 
 confederacy_war_modifier = { 
     icon = gfx/interface/icons/timed_modifier_icons/modifier_rifle_positive.dds
-    unit_army_defense_mult = 0.3
-    unit_army_offense_mult = 0.4
+    unit_army_defense_mult = 0.45
+    unit_army_offense_mult = 0.6
 	battle_defense_owned_province_mult = 0.2
     country_war_exhaustion_casualties_mult = -1.5
 	unit_provinces_captured_mult = -0.8
@@ -673,7 +673,7 @@ confederacy_war_modifier = {
 free_american_war_modifier = { 
     icon = gfx/interface/icons/timed_modifier_icons/modifier_rifle_positive.dds
     unit_army_defense_mult = 0.15
-    unit_army_offense_mult = 0.1
+    unit_army_offense_mult = 0.3
 	battle_defense_owned_province_mult = 0.1
     country_war_exhaustion_casualties_mult = -1.5
 	unit_provinces_captured_mult = -0.8

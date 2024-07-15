@@ -30,7 +30,7 @@
 				text = acw_outlawing_slavery
 				c:USA = { is_enacting_law = law_type:law_slavery_banned }
 			}
-			# CSA via abolitionist president past 1855 OR dictatorship
+			# CSA via abolitionist president past 1852 OR dictatorship
 			custom_tooltip = {
 				text = acw_abolitionist_president
 				NOT = { has_law = law_type:law_slavery_banned }
@@ -44,7 +44,7 @@
 					}
 				}
 			}
-			# FSA via slaver president past 1865 OR dictatorship
+			# FSA via slaver president past 1860 OR dictatorship
 			custom_tooltip = {
 				text = acw_slaver_president
 				NOT = { has_law = law_type:law_slavery_banned }
@@ -124,7 +124,7 @@
 							activate_production_methods={ "pm_general_training" }
 						}
 					}
-					s:STATE_ALABAMA.region_state:CSA = {
+					s:STATE_ALABAMA.region_state:USA = {
 						create_building={
 							building="building_barracks"
 							add_ownership={
@@ -137,7 +137,7 @@
 							activate_production_methods={ "pm_general_training" }
 						}
 					}
-					s:STATE_MISSISSIPPI.region_state:CSA = {
+					s:STATE_MISSISSIPPI.region_state:USA = {
 						create_building={
 							building="building_barracks"
 							add_ownership={

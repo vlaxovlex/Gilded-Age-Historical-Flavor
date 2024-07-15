@@ -3611,8 +3611,13 @@ acw_secession_crisis.4 = {
 		has_global_variable = american_civil_war
 		has_variable = union_side_acw
 		exists = c:CSA
-		s:STATE_WEST_VIRGINIA.region_state:CSA = {
-			devastation > 0.01
+		exists = s:STATE_WEST_VIRGINIA.region_state:CSA
+		OR = {
+			s:STATE_WEST_VIRGINIA.region_state:CSA = { devastation > 0.01 }
+			AND = {
+				exists = s:STATE_VIRGINIA.region_state:CSA
+				s:STATE_VIRGINIA.region_state:CSA = { devastation > 0.01 }
+			}
 		}
 	}
 	
