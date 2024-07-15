@@ -9,6 +9,8 @@
 
  ig_southern_planters:0 "Planter Class"
 
+ dyn_c_rsfsr:0 "Soviet Russia"
+
  canalToll:0 "Canal Toll"
  canalToll_desc:0 "A toll connect from canals."
  modifier_building_input_canalToll_add:0 "@canalToll! $canalToll$ input per level"

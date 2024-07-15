@@ -55,7 +55,7 @@ TGE_austria.1 = {
 		}
 		
 		add_radicals = {
-			value = 0.2
+			value = 0.15
 			culture = cu:hungarian
 		}
 		
@@ -87,7 +87,7 @@ TGE_austria.1 = {
 		}
 			
 		add_radicals = {
-			value = 0.4
+			value = 0.3
 			culture = cu:hungarian
 		}
 			
@@ -110,7 +110,7 @@ TGE_austria.1 = {
 		remove_modifier = modifier_tge_metternich
 		
 		add_radicals = {
-			value = 0.6
+			value = 0.4
 			culture = cu:hungarian
 		}
 		trigger_event = {
@@ -251,6 +251,18 @@ TGE_austria.2 = {
 					holder = c:AUS
 					type = annex_country
 					target_country = c:HUN
+				}
+			}
+			if = {
+				limit = { is_player = no c:RUS = { is_player = no } }
+				random_diplomatic_play = {
+					limit = {
+						any_scope_play_involved = {
+							exists = c:HUN
+							THIS = c:HUN
+						}
+					}
+					add_target_backers = { c:RUS }
 				}
 			}
 		}

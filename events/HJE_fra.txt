@@ -539,7 +539,7 @@ HJE_france.7 = {
 				}
 			}
 			if = {
-				limit = { NOT = { any_scope_character = { has_variable = is_louis_napoleon } } }
+				limit = { NOT = { any_scope_character = { has_variable = napoleon_iii_var } } }
 				create_character = {
 					first_name = Louis-Napoleon
 					last_name = Bonaparte
@@ -557,7 +557,7 @@ HJE_france.7 = {
 						charismatic
 					}
 					on_created = {
-						set_variable = is_louis_napoleon
+						set_variable = napoleon_iii_var
 					}
 				}
 			}
@@ -1176,7 +1176,7 @@ HJE_france.16 = {
 					charismatic
 				}
 				on_created = {
-					set_variable = is_louis_napoleon
+					set_variable = napoleon_iii_var
 				}
 			}
 			if = {
@@ -1321,7 +1321,7 @@ HJE_france.17 = {
 		activate_law = law_type:law_oligarchy
 		hidden_effect = {
 			every_scope_character = {
-				limit = { has_variable = is_louis_napoleon }
+				limit = { has_variable = napoleon_iii_var }
 				kill_character = yes
 			}
 			trigger_event = { id = HJE_france.18 days = 1 }
@@ -1351,7 +1351,7 @@ HJE_france.18 = {
 			}
 			on_created = {
 				set_variable = is_bonapartist
-				set_variable = is_louis_napoleon
+				set_variable = napoleon_iii_var
 			}
 		}
 	}
@@ -1382,7 +1382,7 @@ HJE_france.19 = {
 
 	immediate = {
 		every_scope_character = {
-			limit = { has_variable = is_louis_napoleon }
+			limit = { has_variable = napoleon_iii_var }
 			kill_character = yes
 		}
 	}
@@ -1458,9 +1458,9 @@ HJE_france.20 = {
 				set_variable = french_empire_alsace_lorraine
 			}
 			if = {
-				limit = { any_scope_character = { has_variable = is_louis_napoleon } }
+				limit = { any_scope_character = { has_variable = napoleon_iii_var } }
 				every_scope_character = {
-					limit = { has_variable = is_louis_napoleon }
+					limit = { has_variable = napoleon_iii_var }
 					kill_character = yes
 				}
 			}
@@ -1494,7 +1494,7 @@ HJE_france.21 = {
 			}
 			on_created = {
 				set_variable = is_bonapartist
-				set_variable = is_louis_napoleon
+				set_variable = napoleon_iii_var
 			}
 		}
 	}

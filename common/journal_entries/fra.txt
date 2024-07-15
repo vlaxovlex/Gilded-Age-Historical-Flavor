@@ -247,9 +247,9 @@ je_first_presidential_election = {
 	on_complete = {
 		hidden_effect = {
 			if = {
-				limit = { any_scope_character = { has_variable = is_louis_napoleon } }
+				limit = { any_scope_character = { has_variable = napoleon_iii_var } }
 				every_scope_character = {
-					limit = { has_variable = is_louis_napoleon }
+					limit = { has_variable = napoleon_iii_var }
 					kill_character = yes
 				}
 			}
@@ -297,7 +297,7 @@ je_future_of_the_republic = {
 		}
 		random_scope_character = {
 			limit = {
-				has_variable = is_louis_napoleon
+				has_variable = napoleon_iii_var
 			}
 			save_scope_as = louis_napoleon_leader
 		}
@@ -341,7 +341,7 @@ je_future_of_the_republic = {
 						is_powerful = yes
 					}
 					ruler = {
-						has_variable = is_louis_napoleon
+						has_variable = napoleon_iii_var
 					}
 					#NOT = { root.var:future_of_the_republic_timer >= 49	}
 				}
@@ -356,7 +356,7 @@ je_future_of_the_republic = {
 						is_marginal = yes
 					}
 					ruler = {
-						has_variable = is_louis_napoleon
+						has_variable = napoleon_iii_var
 					}
 				}
 			}	
@@ -366,7 +366,7 @@ je_future_of_the_republic = {
 					#root.var:future_of_the_republic_timer >= 24	
 					#NOT = { root.var:future_of_the_republic_timer >= 49	}
 					ruler = {
-						has_variable = is_louis_napoleon
+						has_variable = napoleon_iii_var
 					}
 	            }
             }	
@@ -376,7 +376,7 @@ je_future_of_the_republic = {
 	invalid = {
 		OR = {
 			NOT = { has_law = law_type:law_presidential_republic }
-			NOT = { any_scope_character = { has_variable = is_louis_napoleon } }
+			NOT = { any_scope_character = { has_variable = napoleon_iii_var } }
 		}
 	}
 	
@@ -396,7 +396,7 @@ je_future_of_the_republic_antibonapartist = {
 		}
 		random_scope_character = {
 			limit = {
-				has_variable = is_louis_napoleon
+				has_variable = napoleon_iii_var
 			}
 			save_scope_as = louis_napoleon_leader
 		}
@@ -437,7 +437,7 @@ je_future_of_the_republic_antibonapartist = {
 					is_in_government = no
 					is_powerful = no
 					leader = {
-						has_variable = is_louis_napoleon
+						has_variable = napoleon_iii_var
 					}
 				}
 				#root.var:future_of_the_republic_timer >= 24		
@@ -448,7 +448,7 @@ je_future_of_the_republic_antibonapartist = {
 				NOT = { has_law = law_type:law_presidential_republic }
 				ig:ig_armed_forces = { 
 					leader = {
-						has_variable = is_louis_napoleon
+						has_variable = napoleon_iii_var
 					}
 				}
 			}	
@@ -459,7 +459,7 @@ je_future_of_the_republic_antibonapartist = {
 					#NOT = { root.var:future_of_the_republic_timer >= 49	}
 					ig:ig_armed_forces = { 
 						leader = {
-							has_variable = is_louis_napoleon
+							has_variable = napoleon_iii_var
 						}
 					}
 	            }
@@ -469,8 +469,8 @@ je_future_of_the_republic_antibonapartist = {
 	
 	invalid = {
 		OR = {
-			NOT = { any_scope_character = { has_variable = is_louis_napoleon } }
-			ruler = { has_variable = is_louis_napoleon }
+			NOT = { any_scope_character = { has_variable = napoleon_iii_var } }
+			ruler = { has_variable = napoleon_iii_var }
 		}
 	}
 	
@@ -533,7 +533,7 @@ je_creating_a_second_empire = {
 	invalid = {
 		OR = {
 			#NOT = { has_law = law_type:law_presidential_republic }
-			any_scope_character = { is_ruler = yes NOT = { has_variable = is_louis_napoleon } }
+			any_scope_character = { is_ruler = yes NOT = { has_variable = napoleon_iii_var } }
 		}
 	}
 	

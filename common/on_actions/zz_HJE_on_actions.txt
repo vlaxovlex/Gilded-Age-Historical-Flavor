@@ -2008,7 +2008,7 @@ on_heir_born = {
 					ruler = { has_variable = is_bonapartist }
 					has_law = law_type:law_monarchy 
 					NAND = { 
-						ruler = { has_variable = is_louis_napoleon } 
+						ruler = { has_variable = napoleon_iii_var } 
 						NOT = { has_variable = napoleon_eugene_born } 
 					}
 				}
@@ -2022,7 +2022,7 @@ on_heir_born = {
 				owner = { 
 					ruler = { has_variable = is_bonapartist }
 					has_law = law_type:law_monarchy 
-					AND = { ruler = { has_variable = is_louis_napoleon } NOT = { has_variable = napoleon_eugene_born } }
+					AND = { ruler = { has_variable = napoleon_iii_var } NOT = { has_variable = napoleon_eugene_born } }
 				}
 			}
 			owner = { trigger_event = { id = HJE_france.24 popup = yes } }
