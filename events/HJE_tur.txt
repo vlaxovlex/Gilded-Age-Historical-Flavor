@@ -3377,3 +3377,163 @@ HJE_turkey.12 = {			 #Nejd, fight Ottomans to retake Al-Hasa?
 		}
 	}		
 }
+
+# Restoration of House Osmanoglu?: If there's a revolt that's still monarchist, the correct house should be restored or denied ASAP
+HJE_turkey.13 = {
+	type = country_event
+	placement = c:TUR
+	title = HJE_turkey.13.t
+	desc = HJE_turkey.13.d
+	flavor = HJE_turkey.13.f
+
+	duration = 3
+
+	event_image = {
+		video = "votp_monarch_holding_court"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/misc/1Character_Banner"
+
+	icon = "gfx/interface/icons/event_icons/event_election.dds"
+
+	trigger = {
+		exists = c:TUR
+		c:TUR = ROOT
+		has_law = law_type:law_monarchy 
+		NOT = { ruler = { has_variable = is_osmanoglu } }
+		NOT = { has_global_variable = TUR_decided_to_ditch_ottoman_dynasty }
+	}
+
+	immediate = {
+	}
+
+	option = {
+		name = HJE_turkey.13.a
+		default_option = yes
+		ai_chance = { base = 1 }
+		if = {
+			limit = { 
+				any_scope_state = { 
+					state_region = s:STATE_EASTERN_THRACE 
+					is_capital = no
+				}
+			}
+			set_capital = STATE_EASTERN_THRACE
+		}
+		if = {
+			limit = { NOT = { has_global_variable = abdulaziz_1_born } }
+			set_global_variable = abdulaziz_1_born
+			create_character = {
+				first_name = Abdulaziz
+				last_name = Osmanoglu
+				historical = yes
+				female = no
+				ruler = yes		
+				birth_date = 1830.2.8
+				dna = dna_abdulaziz
+				interest_group = ig_intelligentsia
+				ideology = ideology:ideology_reformer
+				traits = {
+					expensive_tastes
+					tactful
+				}
+				on_created = {
+					set_variable = is_abdulaziz_1
+					set_variable = is_osmanoglu
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				year >= 1841
+				NOT = { has_global_variable = murad_5_born }
+				OR = {
+					year >= 1861
+					has_global_variable = abdulaziz_1_born
+				}
+			}
+			set_global_variable = murad_5_born
+			create_character = {
+				first_name = Murad
+				last_name = Osmanoglu
+				historical = yes
+				female = no
+				ruler = yes		
+				birth_date = 1840.9.21
+				dna = dna_murad_5
+				interest_group = ig_intelligentsia
+				ideology = ideology:ideology_moderate
+				traits = {
+					psychological_affliction
+					reserved
+				}
+				on_created = {
+					set_variable = is_murad_5
+					set_variable = is_osmanoglu
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				year >= 1869
+				NOT = { has_global_variable = abdulmecid_2_born }
+				OR = {
+					year >= 1889
+					AND = {
+						has_global_variable = abdulaziz_1_born
+						has_global_variable = murad_5_born
+					}
+				}
+			}
+			set_global_variable = abdulmecid_2_born
+			create_character = {
+				first_name = Abdulmecid
+				last_name = Osmanoglu
+				historical = yes
+				female = no
+				ruler = yes		
+				birth_date = 1868.5.30
+				dna = dna_abdulmecid_2
+				interest_group = ig_intelligentsia
+				ideology = ideology:ideology_moderate
+				traits = {
+					cautious
+					romantic
+					pious
+				}
+				on_created = {
+					set_variable = is_abdulmecid_2
+					set_variable = is_osmanoglu
+				}
+			}
+		}
+		else = {
+			create_character = {
+				last_name = Osmanoglu
+				female = no
+				ruler = yes		
+				age = 40
+				interest_group = ig_landowners
+				ideology = ideology:ideology_moderate
+				on_created = {
+					set_variable = is_osmanoglu
+				}
+			}
+		}
+	}
+	option = {
+		name = HJE_turkey.13.b
+		ai_chance = { base = 0 }
+		if = {
+			limit = { 
+				any_scope_state = { 
+					state_region = s:STATE_EASTERN_THRACE 
+					is_capital = no
+				}
+			}
+			set_capital = STATE_EASTERN_THRACE
+		}
+		set_global_variable = TUR_decided_to_ditch_ottoman_dynasty
+	}
+}

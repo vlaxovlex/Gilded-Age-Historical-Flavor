@@ -205,3 +205,18 @@ GBR = { # Great Britain of United Kingdom
 		}
 	}
 }
+
+TUR = { # Turkey
+	dynamic_country_name = {
+		name = dyn_c_ottoman_empire
+		adjective = dyn_c_ottoman_empire_adj
+		
+		is_main_tag_only = yes
+		priority = 0
+		
+		trigger = {
+			coa_def_monarchy_flag_trigger = yes
+			NOT = { has_global_variable = TUR_decided_to_ditch_ottoman_dynasty }
+		}
+	}
+}

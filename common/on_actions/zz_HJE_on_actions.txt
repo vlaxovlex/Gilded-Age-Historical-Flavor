@@ -1,14 +1,12 @@
 ﻿on_monthly_pulse_country = {
 	events = {
 		### HISTORICAL JOURNAL ENTRIES ###
-		HJE_main.2 					#Quinine spread
-		HJE_main.3 					#Malaria Prevention spread
-		HJE_main.4 					#Multilateral Alliances spread
+
+		### HISTORICAL EVENTS ###
 		HJE_latin_america.1  		#War of the Confederation
 		HJE_britain.5001 			#Potato Blight
 		manifest_destiny.6 			#Mexican Cession
 		TGE_austria.1 				#Hungarian Revolution 1848
-		HJE_usa.11 					#Spawns ACW Generals
 		treaty_of_villafranca.1 	#Treaty of Villafranca
 		HJE_spain.1 				#Invasion of Dominican Republic
 		HJE_france.5 				#French invasion of Mexico
@@ -19,13 +17,21 @@
 		HJE_china.6					#Instead "01_taiping"
 		HJE_germany.3				#GER-AUS
 		HJE_britain.19				#GBR-FRA
-		HJE_china.5					#China support
 
+		### ELECTION AND CHARACTER EVENTS ###
+		HJE_usa.11 					#Spawns ACW Generals
 		HJE_usa.7					#USA Jackson -> van Buren
 		HJE_usa.8					#USA James K. Polk	
 		HJE_usa.9					#USA James K. Polk retires
 		HJE_usa.9001				#USA James Buchanan
 		HJE_usa.10					#USA Abraham Lincoln
+
+		### MAINTENENCE EVENTS ###
+		HJE_main.2 					#Quinine spread
+		HJE_main.3 					#Malaria Prevention spread
+		HJE_main.4 					#Multilateral Alliances spread
+		HJE_china.5					#China support
+		HJE_turkey.13				#Ottoman Dynasty Restoration
 	}
 	
 	effect = {
