@@ -1,4 +1,4 @@
-We proudly present our mod, “Gilded Era”, which adds a considerable amount of historical flavor for many nations, and also makes changes to the AI, modifying its behavior to be more competent and provide a more competitive experience.
+We proudly present our mod, “Gilded Age”, which adds a considerable amount of historical flavor for many nations, and also makes changes to the AI, modifying its behavior to be more competent and provide a more competitive experience.
 
 
 [h1]Features:[/h1]
@@ -35,7 +35,7 @@ We proudly present our mod, “Gilded Era”, which adds a considerable amount o
 -New claims for historical colonization
 -Sino-Japanese War
 (and much more!)
-(currently content for the game is made before the 1890s, in the future it is planned to expand the time period to 1936)
+(currently content ends around the 1890s, future content planned up to 1936!)
 
 
 [b]Compatibility and Performance:[/b]
