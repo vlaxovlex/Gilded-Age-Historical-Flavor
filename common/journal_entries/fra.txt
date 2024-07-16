@@ -79,17 +79,10 @@ je_french_demographic_crisis_pacifist = {
 	group = je_group_crises
 		
 	complete = {
-		AND = {
-			ig:ig_devout = {
-				is_powerful = yes
-			}
-			every_scope_state = {
-				OR = {
-					is_incorporated = no 
-					average_sol >= 10
-				}
-			}
+		ig:ig_devout = {
+			is_powerful = yes
 		}
+		average_sol >= 10
 	}
 
 	on_complete = {
