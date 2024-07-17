@@ -59,6 +59,7 @@ We proudly present our mod, “Gilded Age”, which adds a considerable amount o
 -Russian
 -English
 -Spanish (Thanks to Unión Soviética)
+-[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3291300341]Chinese[/url]
 (for other languages the default is English)
 
 

@@ -59,6 +59,7 @@
 -Русская
 -Английская
 -Испанская (Спасибо Unión Soviética)
+-[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3291300341]Китайская[/url]
 (для остальных языков по умолчанию используется английская)
 
 

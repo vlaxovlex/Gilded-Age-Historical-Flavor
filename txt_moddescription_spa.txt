@@ -59,6 +59,7 @@ Nos enorgullece presentar nuestro mod, "Gilded Era", el cual añade una consider
 -Ruso
 -Inglés
 -Español (Gracias a Unión Soviética)
+[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3291300341]Chino[/url]
 (para otros idiomas el valor por defecto es Inglés)
 
 
