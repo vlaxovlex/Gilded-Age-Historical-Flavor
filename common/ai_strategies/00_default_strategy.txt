@@ -1046,6 +1046,7 @@ ai_strategy_default = {
 						AND = {
 							is_coastal = yes
 							state_is_in_east_asia = yes
+							is_split_state = no
 						}
 					}
 				}

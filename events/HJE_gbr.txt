@@ -2067,7 +2067,7 @@ HJE_britain.21 = { #FRA was polite and open to improving relations
 		default_option = yes
         change_relations = {
             country = c:FRA
-            value = 75
+            value = 100
         }
         hidden_effect = {
 			set_mutual_secret_goal = {

@@ -1443,7 +1443,10 @@
 			}
 			s:STATE_BALUCHISTAN	 = {
 				add_claim = c:BIC
-			}		
+			}	
+			s:STATE_QUETTA = {
+				add_claim = c:BIC
+			}				
 			s:STATE_OKLAHOMA = {
 				add_claim = c:USA
 				add_claim = c:MEX
