@@ -1652,3 +1652,108 @@ HJE_france.24 = {
 		name = HJE_france.24.a
 	}
 }
+
+HJE_france.25 = {
+	type = country_event
+	placement = root
+	title = HJE_france.25.t
+	desc = HJE_france.25.d
+	flavor = HJE_france.25.f
+
+	duration = 3
+
+	event_image = {
+		video = "gfx/event_pictures/unspecific_signed_contract.bk2"	#Needed to be replaced
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"					#Will replaced
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/rich_and_poor"	#Will replaced
+
+	icon = "gfx/interface/icons/event_icons/event_default.dds"
+
+	trigger = {
+	}
+	
+	immediate = {
+		random_power_bloc = {
+			limit = {
+				power_bloc_leader = root
+			}
+			remove_power_bloc = this
+		}
+		set_variable = in_triple_entente_var
+	}
+
+	option = {
+		name = HJE_france.25.r
+		trigger = {
+			exists = c:RUS
+			c:RUS = {
+				NOT = {
+					has_variable = in_triple_alliance_var
+					has_variable = in_triple_entente_var
+					has_variable = does_not_join_triple_entente_var
+				}
+			}
+		}
+		
+		c:RUS = {
+			trigger_event = {
+				id = HJE_main.7 days = 15 popup = yes 
+			}
+		}
+		
+		ai_chance = {
+			base = 1
+		}
+	}
+	
+	option = {
+		name = HJE_france.25.a
+		trigger = {
+			exists = c:AUS
+			c:AUS = {
+				NOT = {
+					has_variable = in_triple_alliance_var
+					has_variable = in_triple_entente_var
+					has_variable = does_not_join_triple_entente_var
+				}
+			}
+		}
+		
+		c:AUS = {
+			trigger_event = {
+				id = HJE_main.7 days = 15 popup = yes 
+			}
+		}
+		
+		ai_chance = {
+			base = 0
+		}
+	}
+	
+	option = {
+		name = HJE_france.25.i
+		trigger = {
+			exists = c:ITA
+			c:ITA = {
+				NOT = {
+					has_variable = in_triple_alliance_var
+					has_variable = in_triple_entente_var
+					has_variable = does_not_join_triple_entente_var
+				}
+			}
+		}
+		
+		c:ITA = {
+			trigger_event = {
+				id = HJE_main.7 days = 15 popup = yes 
+			}
+		}
+		
+		ai_chance = {
+			base = 0
+		}
+	}
+
+}

@@ -1530,7 +1530,7 @@ HJE_prussia.11 = {			 #Loser has to give up Customs Unions
 					country_has_primary_culture = cu:south_german
 				}
 				country_rank < rank_value:major_power
-				is_in_same_power_bloc = scope:relevant_country = ROOT
+				is_in_same_power_bloc = ROOT
 			}
 			hidden_effect = {
 				set_secret_goal = {
@@ -1594,8 +1594,8 @@ HJE_germany.3 = { #GER: Question of Austria (or equivalent)
 
 	duration = 3
 	
-	cooldown = ( months = 120 }
-	
+	cooldown = { months = 120 }
+		
     trigger = {
 		OR = {
 			AND = {
@@ -1626,22 +1626,14 @@ HJE_germany.3 = { #GER: Question of Austria (or equivalent)
 				country_has_primary_culture = cu:south_german
 			}
 		}
-		OR = {
-			num_alliances < 1
-		    has_technology_researched = multilateral_alliances
-		    NOT = {
-				any_country = {
-					country_rank >= rank_value:major_power
-					has_technology_researched = multilateral_alliances
-				}
-		    }
-		}
+		NOT = { has_global_variable = triple_alliance_second_member_comes_globvar }	#Globvar to determine how many members there already are
 	}
 
 	immediate = {
 		save_scope_as = kraut_scope
 		random_country = {
 			limit = {
+				NOT = { this = root }
 	    		is_subject = no
 	    		country_rank >= rank_value:major_power
 				country_is_in_europe = yes
@@ -1663,12 +1655,6 @@ HJE_germany.3 = { #GER: Question of Austria (or equivalent)
 		scope:austria_scope = {
 			trigger_event = { id = HJE_germany.5 days = 15 popup = yes }
 		}
-        hidden_effect = {
-			set_secret_goal = {
-				country = scope:austria_scope
-				secret_goal = befriend
-			}
-        }
 	}
 	option = { #Their lands are rightfully German
 		name = HJE_germany.3.b
@@ -1750,11 +1736,19 @@ HJE_germany.4 = { #GER announces intention to unify Grosdeutschland
 
 	option = {
         name = HJE_germany.4.a
-		default_option = yes
         change_relations = {
             country = scope:kraut_scope
             value = -150
         }
+		ai_chance = {
+			base = 0
+		}
+	}
+	
+	option = {
+        name = HJE_main.5.u	#We should find new allies (universal localization)
+		default_option = yes
+        trigger_event = { id = HJE_main.5 days = 15 popup = yes }	#Universal event to get SECOND new power bloc member
 		ai_chance = {
 			base = 1
 		}
@@ -1795,7 +1789,7 @@ HJE_germany.5 = { #Austria equivalent gets diplomatic envoy
         }
 		set_global_variable = {
         	name = ger_dual_alliance_event_globvar
-        	days = 3650
+			months = 120
         }
 	}
     option = { #Why would we ally ourselves with our inferiors?
@@ -1839,33 +1833,39 @@ HJE_germany.6 = { #AUS agrees to Dual Alliance
 	option = {
         name = HJE_germany.6.a
 		default_option = yes
-        change_relations = {
-            country = scope:austria_scope
-            value = 150
-        }
-        if = {
-        	limit = {
-	    		NOT = {
-	    			any_country = {
-	    				country_rank >= rank_value:major_power
-	    				has_technology_researched = multilateral_alliances
-	    			}
-	    		}
-        	}
-			add_technology_researched = multilateral_alliances
-			scope:austria_scope = { add_technology_researched = multilateral_alliances }
-        }
-		create_diplomatic_pact = {
-			country = scope:austria_scope
-			type = alliance
+		
+		set_global_variable = triple_alliance_second_member_comes_globvar
+		trigger_event = {
+			id = HJE_main.5 days = 1095 popup = yes 
 		}
-        hidden_effect = {
-			set_mutual_secret_goal = {
-				country = scope:austria_scope
-				secret_goal = befriend
+			
+        set_mutual_secret_goal = {
+			country = scope:austria_scope
+			secret_goal = protect
+		}
+		change_relations = {
+			country = scope:austria_scope
+			value = 150
+		}
+		root = {
+			random_power_bloc = {
+				limit = {
+					power_bloc_leader = root
+				}
+				remove_power_bloc = this
 			}
-        }
-		s:STATE_SCHLESWIG_HOLSTEIN = { remove_claim = scope:austria_scope }
+			create_power_bloc = {
+				name = TRIPLE_ALLIANCE
+				
+				map_color = { 1 1 1 #Will be replaced }
+
+				founding_date = 1882.8.17
+				identity = identity_ideological_union			#Will be replaced
+				principle = principle_creative_legislature_1	#Will be replaced
+
+				member = scope:austria_scope
+			}
+		}			
 
 		ai_chance = {
 			base = 1
@@ -1904,7 +1904,6 @@ HJE_germany.7 = { #AUS insults us for thinking we were a worthy ally
 
 	option = {
         name = HJE_germany.7.a
-		default_option = yes
         change_relations = {
             country = scope:austria_scope
             value = -50
@@ -1915,6 +1914,15 @@ HJE_germany.7 = { #AUS insults us for thinking we were a worthy ally
 				secret_goal = antagonize
 			}
         }
+		ai_chance = {
+			base = 0
+		}
+	}
+	
+	option = {
+        name = HJE_main.5.u	#We should find new allies (universal localization)
+		default_option = yes
+        trigger_event = { id = HJE_main.5 days = 15 popup = yes }	#Universal event to get SECOND new power bloc member
 		ai_chance = {
 			base = 1
 		}

@@ -1858,3 +1858,86 @@ HJE_italy.12 = { #Italy Claims (Expedition of the Thousand)
 		}
 	}		
 }
+
+HJE_italy.13 = {
+	type = country_event
+	placement = root
+	title = HJE_italy.13.t
+	desc = HJE_italy.13.d
+	flavor = HJE_italy.13.f
+
+	duration = 3
+
+	event_image = {
+		video = "gfx/event_pictures/unspecific_signed_contract.bk2"	#Needed to be replaced
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"					#Will replaced
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/rich_and_poor"	#Will replaced
+
+	icon = "gfx/interface/icons/event_icons/event_default.dds"
+
+	trigger = {
+		NOT = {
+			has_global_variable = {
+				triple_alliance_second_member_comes_globvar
+			}
+		}
+		OR = {
+			AND = {
+				has_global_variable = sfa_eritrea_split
+				has_state_in_state_region = STATE_ERITREA
+				s:STATE_ERITREA = {
+					any_scope_state = {
+						has_claim_by = root
+						owner = {
+							OR = {
+								this ?= c:GBR
+								this ?= c:FRA
+							}
+						}
+					}				
+				}
+			}
+			AND = {
+				has_global_variable = sfa_somalia_split
+				has_state_in_state_region = STATE_SOMALILAND
+				s:STATE_SOMALILAND = {
+					any_scope_state = {
+						has_claim_by = root
+						owner = {
+							OR = {
+								this ?= c:GBR
+								this ?= c:FRA
+							}
+						}
+					}				
+				}
+			}
+		}	
+	}
+	
+	immediate = {
+	}
+
+	option = {
+		name = HJE_main.5.u
+		
+		trigger_event = {
+			id = HJE_main.5 days = 15 popup = yes 
+		}
+
+		ai_chance = {
+			base = 1
+		}
+	}
+	
+	option = {
+		name = HJE_italy.13.b
+
+		ai_chance = {
+			base = 0
+		}
+	}
+
+}

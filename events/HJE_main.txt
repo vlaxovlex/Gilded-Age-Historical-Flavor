@@ -2856,17 +2856,10 @@ HJE_main.4 = { #Spreads Multilateral Alliances sooner once one power has it
 	icon = "gfx/interface/icons/event_icons/event_default.dds"
 
 	trigger = {
-		country_rank >= rank_value:major_power
-		NOT = { has_technology_researched = multilateral_alliances }
-		NOT = { has_variable = got_malaria_prevention_spread_event }
-		any_country = {
-			country_rank >= rank_value:major_power
-			has_technology_researched = multilateral_alliances
-		}
 	}
 	
 	immediate = {
-		set_variable = got_malaria_prevention_spread_event
+		set_variable = got_multilateral_alliances_spread_event
 		random_country = {
 			limit = {
 				country_rank >= rank_value:major_power
@@ -2887,4 +2880,411 @@ HJE_main.4 = { #Spreads Multilateral Alliances sooner once one power has it
 
 		ai_chance = 100
 	}
+}
+
+HJE_main.5 = {
+	type = country_event
+	placement = root
+	title = HJE_main.5.t
+	desc = HJE_main.5.d
+	flavor = HJE_main.5.f
+
+	duration = 3
+
+	event_image = {
+		video = "gfx/event_pictures/unspecific_signed_contract.bk2"	#Will be replaced
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"					#Will be replaced
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/rich_and_poor"	#Will be replaced
+
+	icon = "gfx/interface/icons/event_icons/event_default.dds"
+
+	trigger = {
+	}
+	
+	immediate = {
+		random_power_bloc = {
+			limit = {
+				power_bloc_leader = root
+			}
+			remove_power_bloc = this
+		}
+		set_variable = in_triple_alliance_var
+		if = {
+			limit = {
+				NOT = {	has_global_variable = triple_alliance_second_member_comes_globvar }
+			}
+			trigger_event = {
+				id = HJE_main.5 days = 1095 popup = yes 
+			}
+		}
+	}
+
+	option = {
+		name = HJE_main.5.r
+		trigger = {
+			exists = c:RUS
+			c:RUS = {
+				NOT = {
+					has_variable = in_triple_alliance_var
+					has_variable = in_triple_entente_var
+					has_variable = does_not_join_triple_alliance_var
+				}
+			}
+		}
+		
+		c:RUS = {
+			trigger_event = {
+				id = HJE_main.6 days = 15 popup = yes 
+			}
+		}
+
+		ai_chance = {
+			base = 0
+		}
+	}
+	
+	option = {
+		name = HJE_main.5.i
+		trigger = {
+			exists = c:ITA
+			c:ITA = {
+				NOT = {
+					has_variable = in_triple_alliance_var
+					has_variable = in_triple_entente_var
+					has_variable = does_not_join_triple_alliance_var
+				}
+			}
+		}
+		
+		c:ITA = {
+			trigger_event = {
+				id = HJE_main.6 days = 15 popup = yes 
+			}
+		}
+
+		ai_chance = {
+			base = 1
+		}
+	}
+	
+	option = {
+		name = HJE_main.5.a
+		trigger = {
+			exists = c:AUS
+			c:AUS = {
+				NOT = {
+					has_variable = in_triple_alliance_var
+					has_variable = in_triple_entente_var
+					has_variable = does_not_join_triple_alliance_var
+				}
+			}
+		}
+		
+		c:AUS = {
+			trigger_event = {
+				id = HJE_main.6 days = 15 popup = yes 
+			}
+		}
+
+		ai_chance = {
+			base = 1
+		}
+	}
+
+}
+
+HJE_main.6 = {
+	type = country_event
+	placement = root
+	title = HJE_main.6.t
+	desc = HJE_main.6.d
+	flavor = HJE_main.6.f
+
+	duration = 3
+
+	event_image = {
+		video = "gfx/event_pictures/unspecific_signed_contract.bk2"	#Will be replaced
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"					#Will be replaced
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/rich_and_poor"	#Will be replaced
+
+	icon = "gfx/interface/icons/event_icons/event_default.dds"
+
+	trigger = {
+	}
+	
+	immediate = {
+		if = {
+			limit = {
+				any_country = {
+					has_variable = in_triple_alliance_var
+					any_power_bloc = {
+						power_bloc_leader = this
+					}
+				}
+			}
+			random_country = {
+				limit = {
+					has_variable = in_triple_alliance_var
+					any_power_bloc = {
+						power_bloc_leader = this
+					}
+				}
+				save_scope_as = triple_alliance_leader_scope
+			}
+		}
+		else_if = {
+			limit = {
+				any_country = {
+					has_variable = in_triple_alliance_var
+					NOT = {
+						any_power_bloc = {
+							OR = {
+								power_bloc_leader = this
+								power_bloc_leader = { is_in_same_power_bloc = this }
+							}
+						}
+					}
+				}
+			}
+			random_country = {
+				limit = {
+					has_variable = in_triple_alliance_var
+					NOT = {
+						any_power_bloc = {
+							OR = {
+								power_bloc_leader = this
+								power_bloc_leader = { is_in_same_power_bloc = this }
+							}
+						}
+					}
+				}
+				save_scope_as = triple_alliance_creator_scope
+			}
+		}
+			
+	}
+
+	option = {
+		name = HJE_main.6.a
+		default_option = yes
+		
+		set_mutual_secret_goal = {
+			country = scope:triple_alliance_leader_scope
+			secret_goal = protect
+		}
+		change_relations = {
+			country = scope:triple_alliance_leader_scope
+			value = 150
+		}
+		set_mutual_secret_goal = {
+			country = scope:triple_alliance_creator_scope
+			secret_goal = protect
+		}
+		change_relations = {
+			country = scope:triple_alliance_creator_scope
+			value = 150
+		}
+		random_power_bloc = {
+			limit = {
+				power_bloc_leader = {
+					is_in_same_power_bloc = root
+					NOT = { this = root }
+				}
+			}
+			add_leverage = { target = root value = -1000 }
+		}
+		random_power_bloc = {
+			limit = {
+				power_bloc_leader = root
+			}
+			remove_power_bloc = this
+		}
+		if = {
+			limit = {
+				exists = scope:triple_alliance_leader_scope
+			}
+			scope:triple_alliance_leader_scope = {
+				power_bloc = { 
+					add_leverage = { target = root value = 1000 }
+				}
+				create_diplomatic_pact = { target = root type = invite_to_power_bloc }
+			}
+		}
+		if = {
+			limit = {
+				exists = scope:triple_alliance_creator_scope
+			}
+			scope:triple_alliance_creator_scope = {
+				create_power_bloc = {
+					name = TRIPLE_ALLIANCE
+
+					map_color = { 1 1 1 #Will be replaced }
+
+					founding_date = 1882.5.20
+					identity = identity_ideological_union			#Will be replaced
+					principle = principle_creative_legislature_1	#Will be replaced
+
+					member = root
+				}
+			}
+		}
+		if = {
+			limit = {
+				has_global_variable = triple_alliance_second_member_comes_globvar
+				exists = c:FRA
+				c:FRA = {
+					NOT = {
+						has_variable = in_triple_entente_var
+					}
+				}
+			}
+			c:FRA = {
+				trigger_event = {
+					id = HJE_france.25 days = 3650 popup = yes 
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				has_global_variable = triple_alliance_second_member_comes_globvar
+				NOT = { exists = c:FRA }
+				exists = c:RUS 
+				c:RUS = {
+					NOT = {
+						has_variable = in_triple_alliance_var
+						has_variable = in_triple_entente_var
+					}
+				}
+			}
+			c:RUS = {
+				trigger_event = {
+					id = HJE_france.25 days = 3650 popup = yes 
+				}
+			}
+		}	
+		else = {
+			set_global_variable = triple_alliance_second_member_comes_globvar
+		}
+		trigger_event = {
+			id = HJE_main.4 days = 15 popup = yes
+		}
+					
+
+	}
+	
+	option = {
+		name = HJE_main.6.b
+
+		change_relations = {
+			country = scope:triple_alliance_leader_scope
+			value = -75
+		}
+		change_relations = {
+			country = scope:triple_alliance_creator_scope
+			value = -75
+		}
+		hidden_effect = {
+			scope:triple_alliance_leader_scope = { trigger_event = { id = HJE_main.5 days = 15 popup = yes } }
+			scope:triple_alliance_creator_scope = { trigger_event = { id = HJE_main.5 days = 15 popup = yes } }
+		}
+		set_variable = does_not_join_triple_alliance_var
+
+	}
+
+}
+
+HJE_main.7 = {
+	type = country_event
+	placement = root
+	title = HJE_main.7.t
+	desc = HJE_main.7.d
+	flavor = HJE_main.7.f
+
+	duration = 3
+
+	event_image = {
+		video = "gfx/event_pictures/unspecific_signed_contract.bk2"	#Will be replaced
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"					#Will be replaced
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/rich_and_poor"	#Will be replaced
+
+	icon = "gfx/interface/icons/event_icons/event_default.dds"
+
+	trigger = {
+	}
+	
+	immediate = {
+		random_country = {
+			limit = {
+				has_variable = in_triple_entente_var
+			}
+			save_scope_as = triple_entente_leader_scope
+		}	
+	}
+
+	option = {
+		name = HJE_main.6.a
+		default_option = yes
+		
+		set_mutual_secret_goal = {
+			country = scope:triple_entente_leader_scope
+			secret_goal = protect
+		}
+		change_relations = {
+			country = scope:triple_entente_leader_scope
+			value = 150
+		}
+		random_power_bloc = {
+			limit = {
+				power_bloc_leader = {
+					is_in_same_power_bloc = root
+					NOT = { this = root }
+				}
+			}
+			add_leverage = { target = root value = -1000 }
+		}
+		random_power_bloc = {
+			limit = {
+				power_bloc_leader = root
+			}
+			remove_power_bloc = this
+		}
+		scope:triple_entente_leader_scope = {
+			create_power_bloc = {
+				name = TRIPLE_ENTENTE
+				
+				map_color = { 1 1 1 #Will be replaced }
+
+				founding_date = 1892.8.17
+				identity = identity_ideological_union			#Will be replaced
+				principle = principle_creative_legislature_1	#Will be replaced
+
+				member = root
+			}
+		}	
+		trigger_event = {
+			id = HJE_main.4 days = 15 popup = yes
+		}
+
+	}
+	
+	option = {
+		name = HJE_main.6.b
+
+		change_relations = {
+			country = scope:triple_entente_leader_scope
+			value = -75
+		}
+		hidden_effect = {
+			scope:triple_entente_leader_scope = { trigger_event = { id = HJE_france.25 days = 15 popup = yes } }
+		}
+		set_variable = does_not_join_triple_entente_var
+
+	}
+
 }
