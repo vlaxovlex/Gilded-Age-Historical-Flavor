@@ -49,17 +49,18 @@ Nos enorgullece presentar nuestro mod, "Gilded Era", el cual añade una consider
 
 
 [h1]Crédito de contenido:[/h1]
-[url=https://steamcommunity.com/sharedfiles/filedetails/?id=2899973887]Contenido para Rusia y Prusia[/url]
-[url=https://steamcommunity.com/sharedfiles/filedetails/?id=2884270621]Contenido para los países escandinavos[/url]
-[url=https://steamcommunity.com/sharedfiles/filedetails/?id=2930839768]Contenido para el Imperio Otomano[/url]
-[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3213294110]Optimización[/url]
+[url=https://steamcommunity.com/sharedfiles/filedetails/?id=2899973887]-Contenido para Rusia y Prusia[/url]
+[url=https://steamcommunity.com/sharedfiles/filedetails/?id=2884270621]-Contenido para los países escandinavos[/url]
+[url=https://steamcommunity.com/sharedfiles/filedetails/?id=2930839768]-Contenido para el Imperio Otomano[/url]
+[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3213294110]-Optimización[/url]
 
 
 [b]Localización:[/b]
 -Ruso
 -Inglés
 -Español (Gracias a Unión Soviética)
-[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3291300341]Chino[/url]
+[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3291300341]-Chino (*haga clic aquí*)[/url]
+[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3293210904]-Portugués (*haga clic aquí*)[/url]
 (para otros idiomas el valor por defecto es Inglés)
 
 

@@ -49,17 +49,18 @@ We proudly present our mod, “Gilded Age”, which adds a considerable amount o
 
 
 [h1]Content Credit:[/h1]
-[url=https://steamcommunity.com/sharedfiles/filedetails/?id=2899973887]Content for Russia and Prussia[/url]
-[url=https://steamcommunity.com/sharedfiles/filedetails/?id=2884270621]Content for Scandinavian countries[/url]
-[url=https://steamcommunity.com/sharedfiles/filedetails/?id=2930839768]Ottoman Empire content[/url]
-[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3213294110]Optimization[/url]
+[url=https://steamcommunity.com/sharedfiles/filedetails/?id=2899973887]-Content for Russia and Prussia[/url]
+[url=https://steamcommunity.com/sharedfiles/filedetails/?id=2884270621]-Content for Scandinavian countries[/url]
+[url=https://steamcommunity.com/sharedfiles/filedetails/?id=2930839768]-Ottoman Empire content[/url]
+[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3213294110]-Optimization[/url]
 
 
 [b]Localization:[/b]
 -Russian
 -English
 -Spanish (Thanks to Unión Soviética)
--[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3291300341]Chinese[/url]
+[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3291300341]-Chinese (*click here*)[/url]
+[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3293210904]-Portuguese (*click here*)[/url]
 (for other languages the default is English)
 
 

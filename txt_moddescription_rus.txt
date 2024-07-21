@@ -49,17 +49,18 @@
 
 
 [h1]Благодарность:[/h1]
-[url=https://steamcommunity.com/sharedfiles/filedetails/?id=2899973887]Контент для России и Пруссии[/url]
-[url=https://steamcommunity.com/sharedfiles/filedetails/?id=2884270621]Контент для Скандинавских стран[/url]
-[url=https://steamcommunity.com/sharedfiles/filedetails/?id=2930839768]Контент для Османской империи[/url]
-[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3213294110]Оптимизация[/url]
+[url=https://steamcommunity.com/sharedfiles/filedetails/?id=2899973887]-Контент для России и Пруссии[/url]
+[url=https://steamcommunity.com/sharedfiles/filedetails/?id=2884270621]-Контент для Скандинавских стран[/url]
+[url=https://steamcommunity.com/sharedfiles/filedetails/?id=2930839768]-Контент для Османской империи[/url]
+[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3213294110]-Оптимизация[/url]
 
 
 [b]Локализация:[/b]
 -Русская
 -Английская
--Испанская (Спасибо Unión Soviética)
--[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3291300341]Китайская[/url]
+-Испанская (спасибо Unión Soviética)
+[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3291300341]-Китайская (*нажмите сюда*)[/url]
+[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3293210904]-Португальская (*нажмите сюда*)[/url]
 (для остальных языков по умолчанию используется английская)
 
 

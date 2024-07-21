@@ -2871,9 +2871,13 @@ HJE_colonial.16 = { 			### ERITREA DISPUTE (split between France and Italy) ###
 		every_state = {
 			limit = { 
 				state_region = s:STATE_ERITREA 
-				OWNER = {
-					is_player = no
-					OR = { is_country_type = unrecognized is_country_type = decentralized }
+				owner = {
+					NOT = { is_country_type = decentralized }
+					NOT = { is_country_type = unrecognized }
+					OR = {
+						has_variable = SFA_attended_berlin_conference
+						any_overlord_or_above = { has_variable = SFA_attended_berlin_conference }
+					}
 				}
 			}
 			set_state_owner = THIS
@@ -2898,9 +2902,13 @@ HJE_colonial.16 = { 			### ERITREA DISPUTE (split between France and Italy) ###
 		every_state = {
 			limit = { 
 				state_region = s:STATE_ERITREA 
-				OWNER = {
-					is_player = no
-					OR = { is_country_type = unrecognized is_country_type = decentralized }
+				owner = {
+					NOT = { is_country_type = decentralized }
+					NOT = { is_country_type = unrecognized }
+					OR = {
+						has_variable = SFA_attended_berlin_conference
+						any_overlord_or_above = { has_variable = SFA_attended_berlin_conference }
+					}
 				}
 			}
 			set_state_owner = THIS
