@@ -1755,5 +1755,24 @@ HJE_france.25 = {
 			base = 0
 		}
 	}
+	
+	option = {
+		name = HJE_france.25.n
+		
+		if = {
+			limit = {
+				this ?= c:FRA
+			}
+			c:RUS = {
+				trigger_event = {
+					id = HJE_france.25 days = 15 popup = yes 
+				}
+			}
+		}
+		
+		ai_chance = {
+			base = 0
+		}
+	}
 
 }
