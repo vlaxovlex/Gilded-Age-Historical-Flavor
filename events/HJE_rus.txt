@@ -104,6 +104,10 @@ TGE_russia.2 = {
 			traits = {
 				meticulous
 			}
+			on_created = {
+				set_variable = is_aleksandr_ii
+				set_variable = is_romanov
+			}
 		}
 		create_character = {
 			first_name = Nikolai #move to on_actions later
@@ -116,6 +120,9 @@ TGE_russia.2 = {
 			traits = {
 				innovative
 				charismatic
+			}
+			on_created = {
+				set_variable = is_romanov
 			}
 		}
 		
@@ -203,9 +210,14 @@ TGE_russia.4 = {
 			ruler = yes
 			birth_date = 1845.3.10
 			interest_group = ig_landowners
+			dna = dna_rus_aleksandr_03
 			ideology = ideology:ideology_traditionalist
 			traits = {
 				imperious
+			}
+			on_created = {
+				set_variable = is_aleksandr_iii
+				set_variable = is_romanov
 			}
 		}
 		create_character = {
@@ -221,6 +233,11 @@ TGE_russia.4 = {
 			traits = {
 				arrogant
 				scarred #Otsu Incident
+			}
+			on_created = {
+				set_variable = is_nikolas_ii
+				set_variable = is_romanov
+				set_variable = weight_does_not_change
 			}
 		}
 	}

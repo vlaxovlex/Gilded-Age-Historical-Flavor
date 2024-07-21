@@ -25,6 +25,7 @@ aus_franz_josef_I_habsburg_template = {
     heir = yes
     noble = yes
     birth_date = 1830.8.18
+    dna = dna_aus_franz_josef_01
     interest_group = ig_landowners
     ideology = ideology_moderate
     traits = {
