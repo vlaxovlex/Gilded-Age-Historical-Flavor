@@ -2602,24 +2602,6 @@ ai_strategy_default = {
 		
 		if = {
 			limit = {
-				scope:target_country = {
-					OR = {
-						is_country_type = recognized
-						country_rank >= rank_value:great_power
-						any_overlord_or_above = {
-							OR = {
-								is_country_type = recognized
-								country_rank >= rank_value:great_power
-							}
-						}
-					}
-				}
-			}
-			multiply = 0.1
-		}
-		
-		if = {
-			limit = {
 				has_journal_entry = HJ_end_japanese_isolationism
 				has_variable = jap_commodore_attacked_var
 				scope:target_country = {
@@ -5977,24 +5959,6 @@ ai_strategy_default = {
 				}
 				add = 1000
 			}	
-			
-			if = {
-				limit = {
-					scope:target_country = {
-						OR = {
-							is_country_type = recognized
-							country_rank >= rank_value:great_power
-							any_overlord_or_above = {
-								OR = {
-									is_country_type = recognized
-									country_rank >= rank_value:great_power
-								}
-							}
-						}
-					}
-				}
-				multiply = 0.1
-			}
 			
 			if = {
 				limit = {
