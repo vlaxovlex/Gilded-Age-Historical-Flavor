@@ -218,7 +218,10 @@
 				text = TGG_anglo_russian_agreement_tt
 				has_global_variable = TGG_anglo_russian_agreement
 			}
-			has_journal_entry = je_great_game_control
+			hidden_trigger = {
+				has_journal_entry = je_great_game_control
+				is_player = yes
+			}
 		}
 	}
 

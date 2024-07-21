@@ -1787,17 +1787,18 @@ HJE_germany.5 = { #Austria equivalent gets diplomatic envoy
         scope:kraut_scope = {
 			trigger_event = { id = HJE_germany.6 days = 5 popup = yes }
         }
-		set_global_variable = {
-        	name = ger_dual_alliance_event_globvar
-			months = 120
-        }
 	}
     option = { #Why would we ally ourselves with our inferiors?
         name = HJE_germany.5.b
         ai_chance = { base = 0 }
+		set_global_variable = {
+        	name = ger_dual_alliance_event_globvar
+			months = 120
+        }
         scope:kraut_scope = {
 			trigger_event = { id = HJE_germany.7 days = 5 popup = yes }
         }
+		set_variable = does_not_join_triple_alliance_var
     }
 }
 
@@ -1835,8 +1836,10 @@ HJE_germany.6 = { #AUS agrees to Dual Alliance
 		default_option = yes
 		
 		set_global_variable = triple_alliance_second_member_comes_globvar
-		trigger_event = {
-			id = HJE_main.5 days = 1095 popup = yes 
+		hidden_effect = {
+			trigger_event = {
+				id = HJE_main.5 days = 1095 popup = yes 
+			}
 		}
 			
         set_mutual_secret_goal = {
@@ -1847,25 +1850,15 @@ HJE_germany.6 = { #AUS agrees to Dual Alliance
 			country = scope:austria_scope
 			value = 150
 		}
-		root = {
-			random_power_bloc = {
-				limit = {
-					power_bloc_leader = root
-				}
-				remove_power_bloc = this
-			}
-			create_power_bloc = {
-				name = TRIPLE_ALLIANCE
-				
-				map_color = { 1 1 1 #Will be replaced }
-
-				founding_date = 1882.8.17
-				identity = identity_ideological_union			#Will be replaced
-				principle = principle_creative_legislature_1	#Will be replaced
-
-				member = scope:austria_scope
-			}
-		}			
+		create_diplomatic_pact = {
+			country = scope:austria_scope
+			type = alliance
+		}	
+		add_technology_researched = multilateral_alliances
+		scope:austria_scope = {
+			add_technology_researched = multilateral_alliances
+			set_variable = in_triple_alliance_var
+		}
 
 		ai_chance = {
 			base = 1

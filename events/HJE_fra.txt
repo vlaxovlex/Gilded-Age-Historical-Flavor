@@ -1675,13 +1675,8 @@ HJE_france.25 = {
 	}
 	
 	immediate = {
-		random_power_bloc = {
-			limit = {
-				power_bloc_leader = root
-			}
-			remove_power_bloc = this
-		}
 		set_variable = in_triple_entente_var
+		save_scope_as = triple_alliance_leader_scope
 	}
 
 	option = {
@@ -1762,6 +1757,14 @@ HJE_france.25 = {
 		if = {
 			limit = {
 				this ?= c:FRA
+				exists = c:RUS
+				c:RUS = {
+					NOT = {
+						has_variable = in_triple_alliance_var
+						has_variable = in_triple_entente_var
+						has_variable = does_not_join_triple_entente_var
+					}
+				}
 			}
 			c:RUS = {
 				trigger_event = {
@@ -1769,6 +1772,7 @@ HJE_france.25 = {
 				}
 			}
 		}
+		clear_saved_scope = triple_alliance_leader_scope
 		
 		ai_chance = {
 			base = 0
