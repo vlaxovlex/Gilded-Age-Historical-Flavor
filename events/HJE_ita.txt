@@ -1640,6 +1640,7 @@ HJE_italy.12 = { #Italy Claims (Expedition of the Thousand)
 							c:PAP = THIS
 							is_subject_of = c:PAP
 						}
+						is_player = no
 					}
 					OR = {
 						state_region = s:STATE_LOMBARDY

@@ -1513,7 +1513,6 @@ HJE_prussia.11 = {			 #Loser has to give up Customs Unions
 		default_option = yes
 		ai_chance = { base = 1 }
 		
-		set_variable = ger_var
 		every_subject_or_below = {
 			limit = {
 				OR = {
@@ -1606,8 +1605,11 @@ HJE_germany.3 = { #GER: Question of Austria (or equivalent)
 			AND = {
 				exists = c:NGF
 				c:NGF = ROOT
-				any_country = {
-					has_variable = ger_var	#AUS-HUNGARY
+				NOT = {
+					any_country = {
+						NOT = { this = root }
+						is_unification_candidate = GER
+					}
 				}
 			}
 		}

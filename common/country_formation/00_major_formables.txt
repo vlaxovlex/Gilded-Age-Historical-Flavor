@@ -170,8 +170,11 @@ SCA = {
 			}	
 			has_technology_researched = pan-nationalism	
 		}
-		has_global_variable = nordic_pan_nationalism_var	#HJE edit
-		has_variable = scandinvia_monetary_union_var		#HJE edit
+		custom_tooltip = {	#HJE edit start
+			text = tt_scandinavia_formation
+			has_global_variable = nordic_pan_nationalism_var	
+			has_variable = scandinvia_monetary_union_var		
+		}					#HJE edit end
 	}
 }
 

@@ -181,7 +181,7 @@
 				year >= 1855	
 				has_law = law_type:law_free_trade
 				NOT = { has_global_variable = had_second_opium_war }
-				#has_variable = var_dynamic_opium_wars_victim				
+				has_variable = var_dynamic_opium_wars_victim				
 			}
 			activate_law = law_type:law_isolationism
 			set_variable = ai_china_closes_markets_again_var
@@ -769,103 +769,8 @@
 				}
 			}
 			random_list = {
-				95 = {  }
-				5 = { trigger_event = { id = HJE_prussia.5 } }
-			}
-		}
-		if = {
-			limit = {			#Randomized event for Prussia to goad France into invading them
-				year >= 1870
-				year < 1875
-				NOT = { has_global_variable = ems_dispatch_scheme }
-				aggressive_diplomatic_plays_permitted = yes
-				is_diplomatic_play_committed_participant = no
-				is_diplomatic_play_initiator = no
-				is_diplomatic_play_target = no
-				NOT = { country_or_subject_owns_entire_state_region = STATE_ALSACE_LORRAINE }
-				any_country = {
-					is_adjacent_to_country = ROOT
-					aggressive_diplomatic_plays_permitted = yes
-					country_rank >= rank_value:major_power
-					country_or_subject_owns_entire_state_region = STATE_ALSACE_LORRAINE
-				}
-				OR = {
-					AND = {
-						exists = c:NGF
-						c:NGF = THIS
-					}
-					AND = {
-						exists = c:SGF
-						c:SGF = THIS
-					}
-				}
-			}
-			random_list = {
 				90 = {  }
 				10 = { trigger_event = { id = HJE_prussia.5 } }
-			}
-		}
-		if = {
-			limit = {			#Randomized event for Prussia to goad France into invading them
-				year >= 1875
-				year < 1880
-				NOT = { has_global_variable = ems_dispatch_scheme }
-				aggressive_diplomatic_plays_permitted = yes
-				is_diplomatic_play_committed_participant = no
-				is_diplomatic_play_initiator = no
-				is_diplomatic_play_target = no
-				NOT = { country_or_subject_owns_entire_state_region = STATE_ALSACE_LORRAINE }
-				any_country = {
-					is_adjacent_to_country = ROOT
-					aggressive_diplomatic_plays_permitted = yes
-					country_rank >= rank_value:major_power
-					country_or_subject_owns_entire_state_region = STATE_ALSACE_LORRAINE
-				}
-				OR = {
-					AND = {
-						exists = c:NGF
-						c:NGF = THIS
-					}
-					AND = {
-						exists = c:SGF
-						c:SGF = THIS
-					}
-				}
-			}
-			random_list = {
-				85 = {  }
-				15 = { trigger_event = { id = HJE_prussia.5 } }
-			}
-		}
-		if = {
-			limit = {			#Randomized event for Prussia to goad France into invading them
-				year >= 1880
-				NOT = { has_global_variable = ems_dispatch_scheme }
-				aggressive_diplomatic_plays_permitted = yes
-				is_diplomatic_play_committed_participant = no
-				is_diplomatic_play_initiator = no
-				is_diplomatic_play_target = no
-				NOT = { country_or_subject_owns_entire_state_region = STATE_ALSACE_LORRAINE }
-				any_country = {
-					is_adjacent_to_country = ROOT
-					aggressive_diplomatic_plays_permitted = yes
-					country_rank >= rank_value:major_power
-					country_or_subject_owns_entire_state_region = STATE_ALSACE_LORRAINE
-				}
-				OR = {
-					AND = {
-						exists = c:NGF
-						c:NGF = THIS
-					}
-					AND = {
-						exists = c:SGF
-						c:SGF = THIS
-					}
-				}
-			}
-			random_list = {
-				60 = {  }
-				40 = { trigger_event = { id = HJE_prussia.5 } }
 			}
 		}
 

@@ -93,29 +93,19 @@ HJ_kor = { #Korean political instability
 	group = je_group_historical_content
 	
 	complete = {
-		OR = {
-			AND = {
-				NOT = {	has_law = law_type:law_isolationism }
-				exists = c:CHI
-				NOT = { is_subject_of = c:CHI }
-				trigger_if = {
-					limit = {
-						exists = c:TPG
-					}
-					NOT = { is_subject_of = c:TPG }
-				}
-			}
-			AND = {
-				NOT = {	has_law = law_type:law_isolationism }
+		NOT = {	has_law = law_type:law_isolationism }
+		trigger_if = {
+			limit = {
 				exists = c:TPG
-				NOT = { is_subject_of = c:TPG }
-				trigger_if = {
-					limit = {
-						exists = c:CHI
-					}
-					NOT = { is_subject_of = c:CHI }
-				}
+				NOT = { exists = c:CHI }
 			}
+			NOT = { is_subject_of = c:TPG }
+		}
+		trigger_else_if = {
+			limit = {
+				exists = c:CHI
+			}
+			NOT = { is_subject_of = c:CHI }
 		}
 	}
 	

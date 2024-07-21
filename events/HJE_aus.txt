@@ -30,7 +30,10 @@ TGE_austria.1 = {
 				THIS = ROOT
 			}
 			OR = {
-				has_technology_researched = nationalism
+				AND = {
+					has_technology_researched = nationalism
+					year >= 1848
+				}
 				has_journal_entry = je_first_presidential_election 		#france had a revolution
 				has_journal_entry = je_future_of_the_republic 			#france had a revolution 
 				has_journal_entry = je_springtime_of_the_peoples 		#random neighbour had springtime (very unlikely ROOT has this journal)

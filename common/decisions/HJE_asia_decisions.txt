@@ -21,7 +21,7 @@
 	possible = {
 		exists = c:JAP
 		OR = {
-			c:JAP = { has_variable = meiji_restoration_complete }
+			hidden_trigger = { c:JAP = { has_variable = meiji_restoration_complete } }
 			c:JAP = { has_journal_entry = je_meiji_main }
 		}
 	}
@@ -40,12 +40,12 @@
 	}
 	
 	ai_chance = {
-		base = 20
+		base = 1
 		modifier = {
 			trigger = {
 				year >= 1884
 			}
-			add = 80
+			add = 90
 		}		
 	}
 }

@@ -974,7 +974,7 @@ HJE_main.2 = { #Spreads Quinine sooner once one power has it
 		if = {
 			limit = { NOT = { has_technology_researched = quinine } }
 			add_technology_progress = { 
-				progress = 2000 
+				progress = 8000 
 				technology = quinine 
 			}
 		}
@@ -2829,7 +2829,7 @@ HJE_main.3 = { #Spreads Malaria Prevention sooner once one power has it
 		default_option = yes	
 	
 		add_technology_progress = { 
-			progress = 2000 
+			progress = 150000 
 			technology = malaria_prevention 
 		}
 
@@ -2881,7 +2881,7 @@ HJE_main.4 = { #Spreads Multilateral Alliances sooner once one power has it
 		default_option = yes	
 	
 		add_technology_progress = { 
-			progress = 2000 
+			progress = 150000 
 			technology = multilateral_alliances 
 		}
 

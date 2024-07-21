@@ -277,8 +277,10 @@ swedish_the_rise_of_lantmanna_partiet = {
 			if = {
 				limit = {
 					ig:ig_rural_folk = {
-						is_marginal = no
-						is_being_suppressed = no
+						OR = {
+							is_powerful = yes
+							is_in_government = yes
+						}
 					}
 				}
 				change_variable = {
