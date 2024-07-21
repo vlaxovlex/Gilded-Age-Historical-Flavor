@@ -1698,6 +1698,12 @@ HJE_france.25 = {
 			}
 		}
 		
+		hidden_effect = {
+			c:GBR = {
+				trigger_event = { id = HJE_britain.23 days = 5475 popup = yes }
+			}
+		}
+		
 		ai_chance = {
 			base = 1
 		}
@@ -1719,6 +1725,12 @@ HJE_france.25 = {
 		c:AUS = {
 			trigger_event = {
 				id = HJE_main.7 days = 15 popup = yes 
+			}
+		}
+		
+		hidden_effect = {
+			c:GBR = {
+				trigger_event = { id = HJE_britain.23 days = 5475 popup = yes }
 			}
 		}
 		
@@ -1746,13 +1758,19 @@ HJE_france.25 = {
 			}
 		}
 		
+		hidden_effect = {
+			c:GBR = {
+				trigger_event = { id = HJE_britain.23 days = 5475 popup = yes }
+			}
+		}
+		
 		ai_chance = {
 			base = 0
 		}
 	}
 	
 	option = {
-		name = HJE_france.25.n
+		name = HJE_france.25.u
 		
 		if = {
 			limit = {

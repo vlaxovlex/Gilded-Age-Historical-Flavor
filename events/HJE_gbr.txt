@@ -2127,3 +2127,232 @@ HJE_britain.22 = { #FRA snubbs attempt to improve relations
 		}
 	}
 }
+
+HJE_britain.23 = { 
+	type = country_event
+	placement = ROOT
+
+	title = HJE_britain.23.t
+	desc = HJE_britain.23.d
+	flavor = HJE_britain.23.f
+
+	duration = 3
+
+	event_image = {
+		video = "gfx/event_pictures/unspecific_politicians_arguing.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/before_the_battle"
+
+	icon = "gfx/interface/icons/event_icons/event_map.dds"
+
+	trigger = {
+	}
+
+	immediate = {
+	}
+
+	option = {
+        name = HJE_britain.23.a
+		default_option = yes
+		trigger = {
+			exists = c:RUS
+			OR = {
+				c:RUS = {
+					has_variable = in_triple_entente_var
+				}
+				c:RUS = {
+					has_variable = in_triple_alliance_var
+				}
+			}
+		}
+		
+		if = {
+			limit = {
+				exists = scope:triple_entente_leader_scope
+				scope:triple_entente_leader_scope = {
+					NOT = {
+						has_variable = does_not_accept_gbr_var
+					}
+				}
+				exists = c:RUS
+				c:RUS = {
+					has_variable = in_triple_entente_var
+				}
+			}
+			scope:triple_entente_leader_scope = {
+				trigger_event = { id = HJE_britain.24 days = 15 popup = yes }
+			}
+		}
+		else_if = {
+			limit = {
+				exists = scope:triple_alliance_leader_scope
+				scope:triple_alliance_leader_scope = {
+					NOT = {
+						has_variable = does_not_accept_gbr_var
+					}
+				}
+				exists = c:RUS
+				c:RUS = {
+					has_variable = in_triple_alliance_var
+				}
+			}
+			scope:triple_alliance_leader_scope = {
+				trigger_event = { id = HJE_britain.24 days = 15 popup = yes }
+			}
+		}
+		
+		ai_chance = {
+			base = 0
+			modifier = {
+				trigger = {
+					has_global_variable = TGG_anglo_russian_agreement
+				}
+				add = 1
+			}
+		}
+	}
+	
+	option = {
+        name = HJE_britain.23.b
+		default_option = yes
+		trigger = {
+			exists = c:RUS
+			OR = {
+				c:RUS = {
+					has_variable = in_triple_entente_var
+				}
+				c:RUS = {
+					has_variable = in_triple_alliance_var
+				}
+			}
+		}
+		
+		if = {
+			limit = {
+				exists = scope:triple_alliance_leader_scope
+				scope:triple_alliance_leader_scope = {
+					NOT = {
+						has_variable = does_not_accept_gbr_var
+					}
+				}
+				exists = c:RUS
+				c:RUS = {
+					has_variable = in_triple_entente_var
+				}
+			}
+			scope:triple_alliance_leader_scope = {
+				trigger_event = { id = HJE_britain.24 days = 15 popup = yes }
+			}
+		}
+		else_if = {
+			limit = {
+				exists = scope:triple_entente_leader_scope
+				scope:triple_entente_leader_scope = {
+					NOT = {
+						has_variable = does_not_accept_gbr_var
+					}
+				}
+				exists = c:RUS
+				c:RUS = {
+					has_variable = in_triple_alliance_var
+				}
+			}
+			scope:triple_entente_leader_scope = {
+				trigger_event = { id = HJE_britain.24 days = 15 popup = yes }
+			}
+		}
+		
+		ai_chance = {
+			base = 0
+			modifier = {
+				trigger = {
+					NOT = { has_global_variable = TGG_anglo_russian_agreement }
+				}
+				add = 1
+			}
+		}
+	}
+	
+	option = {
+		name = HJE_france.25.u
+		
+		change_relations = {
+			country = scope:triple_entente_leader_scope
+			value = -15
+		}
+		change_relations = {
+			country = scope:triple_alliance_leader_scope
+			value = -15
+		}
+		
+		ai_chance = {
+			base = 0
+		}
+	}
+		
+}
+
+HJE_britain.24 = {
+	type = country_event
+	placement = root
+	title = HJE_britain.24.t
+	desc = HJE_britain.24.d
+	flavor = HJE_britain.24.f
+
+	duration = 3
+
+	event_image = {
+		video = "gfx/event_pictures/unspecific_signed_contract.bk2"	#Will be replaced
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"					#Will be replaced
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/rich_and_poor"	#Will be replaced
+
+	icon = "gfx/interface/icons/event_icons/event_default.dds"
+
+	trigger = {
+	}
+	
+	immediate = {
+	}
+
+	option = {
+		name = HJE_britain.24.a
+		default_option = yes
+		
+		set_mutual_secret_goal = {
+			country = c:GBR
+			secret_goal = befriend
+		}
+		change_relations = {
+			country = c:GBR
+			value = 150
+		}
+		create_diplomatic_pact = {
+			country = c:GBR
+			type = alliance
+		}
+		add_technology_researched = multilateral_alliances
+		c:GBR = {
+			add_technology_researched = multilateral_alliances
+		}
+
+	}
+	
+	option = {
+		name = HJE_britain.24.b
+
+		change_relations = {
+			country = c:GBR
+			value = -75
+		}
+		hidden_effect = {
+			c:GBR = { trigger_event = { id = HJE_britain.24 days = 15 popup = yes } }
+		}
+		set_variable = does_not_accept_gbr_var
+
+	}
+
+}

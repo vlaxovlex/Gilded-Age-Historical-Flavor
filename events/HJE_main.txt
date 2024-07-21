@@ -3050,9 +3050,9 @@ HJE_main.6 = {
 HJE_main.7 = {
 	type = country_event
 	placement = root
-	title = HJE_main.7.t
-	desc = HJE_main.7.d
-	flavor = HJE_main.7.f
+	title = HJE_main.6.t
+	desc = HJE_main.6.d
+	flavor = HJE_main.6.f
 
 	duration = 3
 
