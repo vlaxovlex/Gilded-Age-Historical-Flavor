@@ -15,9 +15,12 @@
 	}
 
 	possible = {
-		has_global_variable = berlin_conference_happened			#HJE edit start
-		has_variable = SFA_attended_berlin_conference
-		NOT = { has_global_variable = berlin_conference_ongoing }	#HJE edit end
+		custom_tooltip = {												#HJE edit start
+			text = sfa_accepted_tt
+			has_global_variable = berlin_conference_happened			
+			has_variable = SFA_attended_berlin_conference
+			NOT = { has_global_variable = berlin_conference_ongoing }	
+		}																#HJE edit end
 		any_scope_state = {
 			region = sr:region_senegal
 			is_largest_state_in_region = yes
@@ -135,9 +138,12 @@ je_colonial_administration_button_niger = {
 	}
 
 	possible = {
-		has_global_variable = berlin_conference_happened			#HJE edit start
-		has_variable = SFA_attended_berlin_conference
-		NOT = { has_global_variable = berlin_conference_ongoing }	#HJE edit end
+		custom_tooltip = {												#HJE edit start
+			text = sfa_accepted_tt
+			has_global_variable = berlin_conference_happened			
+			has_variable = SFA_attended_berlin_conference
+			NOT = { has_global_variable = berlin_conference_ongoing }	
+		}																#HJE edit end
 		any_scope_state = {
 			region = sr:region_niger
 			is_largest_state_in_region = yes
@@ -255,9 +261,12 @@ je_colonial_administration_button_ethiopia = {
 	}
 
 	possible = {
-		has_global_variable = berlin_conference_happened			#HJE edit start
-		has_variable = SFA_attended_berlin_conference
-		NOT = { has_global_variable = berlin_conference_ongoing }	#HJE edit end
+		custom_tooltip = {												#HJE edit start
+			text = sfa_accepted_tt
+			has_global_variable = berlin_conference_happened			
+			has_variable = SFA_attended_berlin_conference
+			NOT = { has_global_variable = berlin_conference_ongoing }	
+		}																#HJE edit end
 		any_scope_state = {
 			region = sr:region_ethiopia
 			is_largest_state_in_region = yes
@@ -375,9 +384,12 @@ je_colonial_administration_button_zanj = {
 	}
 
 	possible = {
-		has_global_variable = berlin_conference_happened			#HJE edit start
-		has_variable = SFA_attended_berlin_conference
-		NOT = { has_global_variable = berlin_conference_ongoing }	#HJE edit end
+		custom_tooltip = {												#HJE edit start
+			text = sfa_accepted_tt
+			has_global_variable = berlin_conference_happened			
+			has_variable = SFA_attended_berlin_conference
+			NOT = { has_global_variable = berlin_conference_ongoing }	
+		}																#HJE edit end
 		any_scope_state = {
 			region = sr:region_zanj
 			is_largest_state_in_region = yes
@@ -495,9 +507,12 @@ je_colonial_administration_button_southern_africa = {
 	}
 
 	possible = {
-		has_global_variable = berlin_conference_happened			#HJE edit start
-		has_variable = SFA_attended_berlin_conference
-		NOT = { has_global_variable = berlin_conference_ongoing }	#HJE edit end
+		custom_tooltip = {												#HJE edit start
+			text = sfa_accepted_tt
+			has_global_variable = berlin_conference_happened			
+			has_variable = SFA_attended_berlin_conference
+			NOT = { has_global_variable = berlin_conference_ongoing }	
+		}																#HJE edit end
 		any_scope_state = {
 			region = sr:region_southern_africa
 			is_largest_state_in_region = yes
@@ -615,9 +630,12 @@ je_colonial_administration_button_congo = {
 	}
 
 	possible = {
-		has_global_variable = berlin_conference_happened			#HJE edit start
-		has_variable = SFA_attended_berlin_conference
-		NOT = { has_global_variable = berlin_conference_ongoing }	#HJE edit end
+		custom_tooltip = {												#HJE edit start
+			text = sfa_accepted_tt
+			has_global_variable = berlin_conference_happened			
+			has_variable = SFA_attended_berlin_conference
+			NOT = { has_global_variable = berlin_conference_ongoing }	
+		}																#HJE edit end
 		any_scope_state = {
 			region = sr:region_congo
 			is_largest_state_in_region = yes
@@ -733,9 +751,12 @@ je_colonial_administration_button_expand_senegal = {
 	}
 
 	possible = {
-		has_global_variable = berlin_conference_happened			#HJE edit start
-		has_variable = SFA_attended_berlin_conference
-		NOT = { has_global_variable = berlin_conference_ongoing }	#HJE edit end
+		custom_tooltip = {												#HJE edit start
+			text = sfa_accepted_tt
+			has_global_variable = berlin_conference_happened			
+			has_variable = SFA_attended_berlin_conference
+			NOT = { has_global_variable = berlin_conference_ongoing }	
+		}																#HJE edit end
 		#prevents expanding during diplo play or war as it invalidates wargoals. is_at_war is there for clarity for players even though it's technically included in the former
 		is_diplomatic_play_committed_participant = no
 		is_at_war = no
@@ -826,9 +847,12 @@ je_colonial_administration_button_expand_niger = {
 	}
 
 	possible = {
-		has_global_variable = berlin_conference_happened			#HJE edit start
-		has_variable = SFA_attended_berlin_conference
-		NOT = { has_global_variable = berlin_conference_ongoing }	#HJE edit end
+		custom_tooltip = {												#HJE edit start
+			text = sfa_accepted_tt
+			has_global_variable = berlin_conference_happened			
+			has_variable = SFA_attended_berlin_conference
+			NOT = { has_global_variable = berlin_conference_ongoing }	
+		}																#HJE edit end
 		#prevents expanding during diplo play or war as it invalidates wargoals. is_at_war is there for clarity for players even though it's technically included in the former
 		is_diplomatic_play_committed_participant = no
 		is_at_war = no
@@ -918,9 +942,12 @@ je_colonial_administration_button_expand_ethiopia = {
 	}
 
 	possible = {
-		has_global_variable = berlin_conference_happened			#HJE edit start
-		has_variable = SFA_attended_berlin_conference
-		NOT = { has_global_variable = berlin_conference_ongoing }	#HJE edit end
+		custom_tooltip = {												#HJE edit start
+			text = sfa_accepted_tt
+			has_global_variable = berlin_conference_happened			
+			has_variable = SFA_attended_berlin_conference
+			NOT = { has_global_variable = berlin_conference_ongoing }	
+		}																#HJE edit end
 		#prevents expanding during diplo play or war as it invalidates wargoals. is_at_war is there for clarity for players even though it's technically included in the former
 		is_diplomatic_play_committed_participant = no
 		is_at_war = no
@@ -1010,9 +1037,12 @@ je_colonial_administration_button_expand_zanj = {
 	}
 
 	possible = {
-		has_global_variable = berlin_conference_happened			#HJE edit start
-		has_variable = SFA_attended_berlin_conference
-		NOT = { has_global_variable = berlin_conference_ongoing }	#HJE edit end
+		custom_tooltip = {												#HJE edit start
+			text = sfa_accepted_tt
+			has_global_variable = berlin_conference_happened			
+			has_variable = SFA_attended_berlin_conference
+			NOT = { has_global_variable = berlin_conference_ongoing }	
+		}																#HJE edit end
 		#prevents expanding during diplo play or war as it invalidates wargoals. is_at_war is there for clarity for players even though it's technically included in the former
 		is_diplomatic_play_committed_participant = no
 		is_at_war = no
@@ -1102,9 +1132,12 @@ je_colonial_administration_button_expand_southern_africa = {
 	}
 
 	possible = {
-		has_global_variable = berlin_conference_happened			#HJE edit start
-		has_variable = SFA_attended_berlin_conference
-		NOT = { has_global_variable = berlin_conference_ongoing }	#HJE edit end
+		custom_tooltip = {												#HJE edit start
+			text = sfa_accepted_tt
+			has_global_variable = berlin_conference_happened			
+			has_variable = SFA_attended_berlin_conference
+			NOT = { has_global_variable = berlin_conference_ongoing }	
+		}																#HJE edit end
 		#prevents expanding during diplo play or war as it invalidates wargoals. is_at_war is there for clarity for players even though it's technically included in the former
 		is_diplomatic_play_committed_participant = no
 		is_at_war = no
@@ -1194,9 +1227,12 @@ je_colonial_administration_button_expand_congo = {
 	}
 
 	possible = {
-		has_global_variable = berlin_conference_happened			#HJE edit start
-		has_variable = SFA_attended_berlin_conference
-		NOT = { has_global_variable = berlin_conference_ongoing }	#HJE edit end
+		custom_tooltip = {												#HJE edit start
+			text = sfa_accepted_tt
+			has_global_variable = berlin_conference_happened			
+			has_variable = SFA_attended_berlin_conference
+			NOT = { has_global_variable = berlin_conference_ongoing }	
+		}																#HJE edit end
 		#prevents expanding during diplo play or war as it invalidates wargoals. is_at_war is there for clarity for players even though it's technically included in the former
 		is_diplomatic_play_committed_participant = no
 		is_at_war = no
