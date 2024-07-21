@@ -1948,10 +1948,11 @@ HJE_britain.19 = { #GBR: Extend diplomatic hand to France?
     trigger = {
     	year >= 1840
 		this ?= c:GBR
+		country_rank >= rank_value:major_power
     	NOT = { has_global_variable = gbr_fra_resumed_old_rivalry }
     	exists = c:FRA
     	c:FRA = { 
-    		country_rank = rank_value:great_power 
+    		country_rank >= rank_value:major_power
     		relations:root <= relations_threshold:cold
     		NOT = { is_diplomatic_play_enemy_of = ROOT }
     	}

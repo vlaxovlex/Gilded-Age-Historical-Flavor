@@ -17,6 +17,7 @@
 		HJE_china.6					#Instead "01_taiping"
 		HJE_germany.3				#GER-AUS
 		HJE_britain.19				#GBR-FRA
+		HJE_italy.13				#Italian equivalent to create a triple alliance 
 
 		### ELECTION AND CHARACTER EVENTS ###
 		HJE_usa.11 					#Spawns ACW Generals
@@ -29,7 +30,6 @@
 		### MAINTENENCE EVENTS ###
 		HJE_main.2 					#Quinine spread
 		HJE_main.3 					#Malaria Prevention spread
-		HJE_main.4 					#Multilateral Alliances spread
 		HJE_china.5					#China support
 		HJE_turkey.13				#Ottoman Dynasty Restoration
 	}
