@@ -416,13 +416,13 @@ berlin_conference = {
 
 colonial_claims = {
 	is_shown = {
-		#is_ai = yes
 		any_country = {
 			NOR = {
 				this = root
 				is_country_type = unrecognized
 				is_country_type = decentralized
-				is_subject_of = root
+				#is_subject_of = root
+				has_subject_relation_with = root
 			}
 			any_scope_state = { 
 				state_is_in_africa = yes
@@ -447,7 +447,8 @@ colonial_claims = {
 					this = root
 					is_country_type = unrecognized
 					is_country_type = decentralized
-					is_subject_of = root
+					#is_subject_of = root
+					has_subject_relation_with = root
 				}
 				any_scope_state = { 
 					state_is_in_africa = yes
@@ -472,7 +473,8 @@ colonial_claims = {
 					this = root
 					is_country_type = unrecognized
 					is_country_type = decentralized
-					is_subject_of = root
+					#is_subject_of = root
+					has_subject_relation_with = root
 				}
 				any_scope_state = { 
 					state_is_in_africa = yes
