@@ -4,11 +4,12 @@
 		adjective = POL_ADJ
 		
 		is_main_tag_only = yes
-		priority = 0
+		priority = 25
 		
 		trigger = {
 			exists = c:RUS
 			c:RUS = {
+				has_law = law_type:law_monarchy
 				OR = {
 					has_diplomatic_pact = {
 						who = c:POL
@@ -202,6 +203,7 @@ GBR = { # Great Britain of United Kingdom
 		trigger = {
 			coa_def_monarchy_flag_trigger = yes
 			coa_def_undemocratic_monarchy_flag_trigger = no
+			scope:actor = { NOT = { capital = { state_region = s:STATE_LANCASHIRE } } }
 		}
 	}
 }
