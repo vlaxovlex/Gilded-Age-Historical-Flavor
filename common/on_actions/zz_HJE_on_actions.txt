@@ -1033,6 +1033,7 @@
 				limit = {
 					NOT = {
 						exists = c:CAR
+						exists = c:CSP
 					}
 				}
 				create_country = {
