@@ -1363,6 +1363,10 @@
 			s:STATE_NEVADA = {
 				add_claim = c:MEX
 			}
+			s:STATE_NEW_MEXICO = {
+				add_claim = c:MEX
+				remove_claim = c:USA
+			}
 			s:STATE_MEKONG = { 
 				add_claim = c:FRA
 			}

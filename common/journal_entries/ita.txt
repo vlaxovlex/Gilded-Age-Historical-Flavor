@@ -137,7 +137,7 @@
 				text = italian_1848_revolutions_has_ended_in_THIS_tt
 				has_variable = italian_1848_revolutions_has_ended_in_THIS
 			}
-			year >= 1851
+			year > 1852
 		}	
 	}
 

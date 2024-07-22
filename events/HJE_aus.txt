@@ -23,6 +23,7 @@ TGE_austria.1 = {
 		c:AUS = THIS
 		any_scope_state = { cu:hungarian = { has_homeland = PREV } }
 		year >= 1846
+		year <= 1852
 		has_journal_entry = je_dual_monarchy
 		any_country = {
 			OR = {

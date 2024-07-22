@@ -6993,7 +6993,7 @@ ai_strategy_default = {
 		
 		colonization_rights = {
 			value = 100
-		}		
+		}	
 
 		unification = {
 			value = 100
