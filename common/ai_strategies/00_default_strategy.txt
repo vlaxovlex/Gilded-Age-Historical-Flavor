@@ -535,7 +535,7 @@ ai_strategy_default = {
 	# Added to base neutrality in diplomatic plays	
 	# Using this value in other strategies will function additively
 	diplomatic_play_neutrality = {
-		value = 50 
+		value = 250 #HJE edit 50
 		
 		# Ottomans should avoid unnecessary entanglements while trying to pursue the Tanzimat reforms
 		if = {
@@ -550,7 +550,7 @@ ai_strategy_default = {
 	# Added to base boldness in diplomatic plays	
 	# Using this value in other strategies will function additively
 	diplomatic_play_boldness = {
-		value = 50
+		value = 10	#HJE edit 50
 		
 		if = {	#HJE edit start	 #Russia and Ottomans should never surrender against each other	
 			limit = {
@@ -2523,7 +2523,7 @@ ai_strategy_default = {
 	# How likely is the AI to start a diplomatic play against another country if their attitude allows for it
 	# Using this value in other strategies will function additively
 	aggression = {
-		value = 0.5
+		value = 2.5	#HJE edit 0.5
 
 		if = {	#HJE edit start
 			limit = {
