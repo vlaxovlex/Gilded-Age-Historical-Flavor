@@ -1676,7 +1676,7 @@ HJE_france.25 = {
 	
 	immediate = {
 		set_variable = in_triple_entente_var
-		save_scope_as = triple_alliance_leader_scope
+		save_scope_as = triple_entente_leader_scope
 	}
 
 	option = {
@@ -1685,6 +1685,8 @@ HJE_france.25 = {
 			exists = c:RUS
 			c:RUS = {
 				NOT = {
+					is_subject = yes
+					is_diplomatic_play_enemy_of = ROOT
 					has_variable = in_triple_alliance_var
 					has_variable = in_triple_entente_var
 					has_variable = does_not_join_triple_entente_var
@@ -1699,8 +1701,14 @@ HJE_france.25 = {
 		}
 		
 		hidden_effect = {
-			c:GBR = {
-				trigger_event = { id = HJE_britain.23 days = 5475 popup = yes }
+			if = {
+				limit = {
+					NOT = { has_global_variable = gbr_invite_globvar }
+				}
+				c:GBR = {
+					trigger_event = { id = HJE_britain.23 days = 5475 popup = yes }
+				}
+				set_global_variable = gbr_invite_globvar
 			}
 		}
 		
@@ -1715,6 +1723,8 @@ HJE_france.25 = {
 			exists = c:AUS
 			c:AUS = {
 				NOT = {
+					is_subject = yes
+					is_diplomatic_play_enemy_of = ROOT
 					has_variable = in_triple_alliance_var
 					has_variable = in_triple_entente_var
 					has_variable = does_not_join_triple_entente_var
@@ -1729,8 +1739,14 @@ HJE_france.25 = {
 		}
 		
 		hidden_effect = {
-			c:GBR = {
-				trigger_event = { id = HJE_britain.23 days = 5475 popup = yes }
+			if = {
+				limit = {
+					NOT = { has_global_variable = gbr_invite_globvar }
+				}
+				c:GBR = {
+					trigger_event = { id = HJE_britain.23 days = 5475 popup = yes }
+				}
+				set_global_variable = gbr_invite_globvar
 			}
 		}
 		
@@ -1745,6 +1761,8 @@ HJE_france.25 = {
 			exists = c:ITA
 			c:ITA = {
 				NOT = {
+					is_subject = yes
+					is_diplomatic_play_enemy_of = ROOT
 					has_variable = in_triple_alliance_var
 					has_variable = in_triple_entente_var
 					has_variable = does_not_join_triple_entente_var
@@ -1759,8 +1777,14 @@ HJE_france.25 = {
 		}
 		
 		hidden_effect = {
-			c:GBR = {
-				trigger_event = { id = HJE_britain.23 days = 5475 popup = yes }
+			if = {
+				limit = {
+					NOT = { has_global_variable = gbr_invite_globvar }
+				}
+				c:GBR = {
+					trigger_event = { id = HJE_britain.23 days = 5475 popup = yes }
+				}
+				set_global_variable = gbr_invite_globvar
 			}
 		}
 		
@@ -1778,6 +1802,7 @@ HJE_france.25 = {
 				exists = c:RUS
 				c:RUS = {
 					NOT = {
+						is_subject = yes
 						has_variable = in_triple_alliance_var
 						has_variable = in_triple_entente_var
 						has_variable = does_not_join_triple_entente_var
@@ -1788,9 +1813,13 @@ HJE_france.25 = {
 				trigger_event = {
 					id = HJE_france.25 days = 15 popup = yes 
 				}
+				change_relations = {
+					country = root
+					value = -50
+				}
 			}
 		}
-		clear_saved_scope = triple_alliance_leader_scope
+		clear_saved_scope = triple_entente_leader_scope
 		
 		ai_chance = {
 			base = 0

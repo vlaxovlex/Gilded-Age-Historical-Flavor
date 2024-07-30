@@ -313,7 +313,7 @@ je_french_demographic_crisis_advance:0 "Resolves the French Demographic Crisis."
 french_demographic_var:0 "Progress"
 finished_french_demographic_crisis:0 "Reinvigorated French Pride or Society."
 je_french_demographic_crisis:0 "French Demographic Crisis"
-je_french_demographic_crisis_reason:0 "The wars of the French Revolution and Napoleon have robbed of us a generation of fathers and sons, greatly reducing our future population growth. We must find a way to avert the oncoming Demographic Crisis, whether it be through renewed pride or a strengthened society."
+je_french_demographic_crisis_reason:0 "The wars of the French Revolution and Napoleon have robbed of us a generation of fathers and sons, greatly reducing our future population growth. We must find a way to avert the oncoming Demographic Crisis, whether it be through renewed pride and a strengthened society."
 je_french_demographic_crisis_goal:0 "Reinvigorate France"
 je_french_demographic_crisis_military:0 "Reinvigorate French Pride"
 je_french_demographic_crisis_military_reason:0 "There is but one threat to France's future and it lays across the Rhine! We must reforge our pride, take up arms and seize the initiative to defend ourselves from what lurks beyond the Rhine!"
@@ -744,6 +744,10 @@ modifier_liberal_win:0 "Liberal Victory!"
  setting_ultra_historical_politics_compatibility_yes_desc:0 "You can use Ultra Historical Politics along with HJE if you place HJE below Ultra Historical Politics in the load order." 
  DIPLOMATIC_ACCEPTANCE_UNIFICATION_CANDIDATE:0 "Is [Concept('concept_unification_candidate', 'unification candidate')] of Germany"
  tt_scandinavia_formation:0 "Established Scandinavian nationalism and a Scandinavian monetary union"
+ hje_colonial_administration_trigger_desc_third:0 "[COUNTRY.GetNameNoFlag] is a [concept_colonial_administration] of [AddTextIf(ObjectsEqual(GetMetaPlayer.GetPlayedOrObservedCountry.Self, TARGET_COUNTRY.Self),TARGET_COUNTRY.GetName)][AddTextIf(Not(ObjectsEqual(GetMetaPlayer.GetPlayedOrObservedCountry.Self, TARGET_COUNTRY.Self)),TARGET_COUNTRY.GetName)]"
+ hje_colonial_administration_trigger_false_desc_third:0 "[COUNTRY.GetNameNoFlag] is #b not#! a [concept_colonial_administration] of [AddTextIf(ObjectsEqual(GetMetaPlayer.GetPlayedOrObservedCountry.Self, TARGET_COUNTRY.Self),TARGET_COUNTRY.GetName)][AddTextIf(Not(ObjectsEqual(GetMetaPlayer.GetPlayedOrObservedCountry.Self, TARGET_COUNTRY.Self)),TARGET_COUNTRY.GetName)]"
+
+ 
  
  #RE-WRITTEN TEXT:
  

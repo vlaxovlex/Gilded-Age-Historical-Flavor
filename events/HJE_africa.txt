@@ -3751,7 +3751,7 @@ HJE_colonial.99 = {
 	option = {
 		name = HJE_colonial.99.b
 		set_variable = colonial_claims_var
-		create_incident = { country = scope:colonial_claims_scope value = 15 }
+		create_incident = { country = scope:colonial_claims_scope value = 5 }
 		change_relations = {
 			country = scope:colonial_claims_scope
 			value = -30

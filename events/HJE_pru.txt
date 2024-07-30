@@ -1613,19 +1613,13 @@ HJE_germany.3 = { #GER: Question of Austria (or equivalent)
 				}
 			}
 		}
-		country_rank >= rank_value:major_power
+		is_subject = no
 		NOT = { has_global_variable = ger_dual_alliance_event_globvar }
-		any_country = {
-			relations:root <= relations_threshold:cold
-			is_subject = no
-			country_rank >= rank_value:major_power
-			country_is_in_europe = yes
-			NOT = { is_diplomatic_play_enemy_of = ROOT }
-			OR = {
-				country_has_primary_culture = cu:north_german
-				country_has_primary_culture = cu:south_german
-			}
-		}
+		exists = c:AUS
+		c:AUS = { 
+    		is_subject = no
+    		NOT = { is_diplomatic_play_enemy_of = ROOT }
+    	}
 		NOT = { has_global_variable = triple_alliance_second_member_comes_globvar }	#Globvar to determine how many members there already are
 	}
 

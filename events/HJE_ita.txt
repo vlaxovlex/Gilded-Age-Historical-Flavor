@@ -1878,6 +1878,7 @@ HJE_italy.13 = {
 	icon = "gfx/interface/icons/event_icons/event_default.dds"
 
 	trigger = {
+		is_subject = no
 		NOT = {
 			has_global_variable = {
 				triple_alliance_second_member_comes_globvar

@@ -2174,6 +2174,8 @@ HJE_britain.23 = {
 				scope:triple_entente_leader_scope = {
 					NOT = {
 						has_variable = does_not_accept_gbr_var
+						is_subject = yes
+						is_diplomatic_play_enemy_of = ROOT
 					}
 				}
 				exists = c:RUS
@@ -2191,6 +2193,8 @@ HJE_britain.23 = {
 				scope:triple_alliance_leader_scope = {
 					NOT = {
 						has_variable = does_not_accept_gbr_var
+						is_subject = yes
+						is_diplomatic_play_enemy_of = ROOT
 					}
 				}
 				exists = c:RUS
@@ -2235,6 +2239,8 @@ HJE_britain.23 = {
 				scope:triple_alliance_leader_scope = {
 					NOT = {
 						has_variable = does_not_accept_gbr_var
+						is_subject = yes
+						is_diplomatic_play_enemy_of = ROOT
 					}
 				}
 				exists = c:RUS
@@ -2252,6 +2258,8 @@ HJE_britain.23 = {
 				scope:triple_entente_leader_scope = {
 					NOT = {
 						has_variable = does_not_accept_gbr_var
+						is_subject = yes
+						is_diplomatic_play_enemy_of = ROOT
 					}
 				}
 				exists = c:RUS
@@ -2278,13 +2286,37 @@ HJE_britain.23 = {
 	option = {
 		name = HJE_france.25.u
 		
-		change_relations = {
-			country = scope:triple_entente_leader_scope
-			value = -15
+		
+		if = {
+			limit = {
+				exists = c:RUS
+				OR = {
+					c:RUS = {
+						has_variable = in_triple_entente_var
+					}
+					c:RUS = {
+						has_variable = in_triple_alliance_var
+					}
+				}
+			}
+			change_relations = {
+				country = scope:triple_entente_leader_scope
+				value = -50
+			}
+			change_relations = {
+				country = scope:triple_alliance_leader_scope
+				value = -50
+			}
 		}
-		change_relations = {
-			country = scope:triple_alliance_leader_scope
-			value = -15
+		else = {
+			change_relations = {
+				country = scope:triple_entente_leader_scope
+				value = 50
+			}
+			change_relations = {
+				country = scope:triple_alliance_leader_scope
+				value = 50
+			}
 		}
 		
 		ai_chance = {

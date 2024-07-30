@@ -441,6 +441,7 @@ colonial_claims = {
 		custom_tooltip = {
 			text = colonial_claims_tt
 			NOT = { exists = scope:colonial_claims_scope }
+			NOT = { has_variable = recently_demanded_colonies_var }
 			any_country = {
 				NOT = { has_variable = colonial_claimant }
 				NOR = {
@@ -489,15 +490,16 @@ colonial_claims = {
 			}
 			trigger_event = { id = HJE_colonial.99 popup = yes }
 		}
+		set_variable = { name = recently_demanded_colonies_var months = 1 }
 	}
 	
 	ai_chance = {
-		base = 3
+		base = 5
 		modifier = {
 			trigger = {
 				has_global_variable = berlin_conference_happened
 			}
-			add = 90
+			add = 85
 		}
 	}
 }

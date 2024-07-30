@@ -449,7 +449,9 @@
  dominican_restoration_war_name:0 "Доминиканская война за независимость"
  oriental_crisis_name:0 "Восточный кризис"
  tt_scandinavia_formation:0 "Утвержден скандинавский национализм и создан Скандинавский монетный союз"
- 
+ hje_colonial_administration_trigger_desc_third:0 "[COUNTRY.GetNameNoFlag] явля[COUNTRY.GetCustom('RU_CL_END_T')]ся [Concept('concept_colonial_administration', 'колониальной администрацией')] государства [AddTextIf(ObjectsEqual(GetMetaPlayer.GetPlayedOrObservedCountry.Self, TARGET_COUNTRY.Self),TARGET_COUNTRY.GetName)][AddTextIf(Not(ObjectsEqual(GetMetaPlayer.GetPlayedOrObservedCountry.Self, TARGET_COUNTRY.Self)),TARGET_COUNTRY.GetName)]"
+ hje_colonial_administration_trigger_false_desc_third:0 "[COUNTRY.GetNameNoFlag] #b не#! явля[COUNTRY.GetCustom('RU_CL_END_T')]ся [Concept('concept_colonial_administration', 'колониальной администрацией')] государства [AddTextIf(ObjectsEqual(GetMetaPlayer.GetPlayedOrObservedCountry.Self, TARGET_COUNTRY.Self),TARGET_COUNTRY.GetName)][AddTextIf(Not(ObjectsEqual(GetMetaPlayer.GetPlayedOrObservedCountry.Self, TARGET_COUNTRY.Self)),TARGET_COUNTRY.GetName)]"
+
  
  #НОВЫЙ ТЕКСТ:
 

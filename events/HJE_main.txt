@@ -2877,6 +2877,8 @@ HJE_main.5 = {
 			exists = c:RUS
 			c:RUS = {
 				NOT = {
+					is_diplomatic_play_enemy_of = ROOT
+					is_subject = yes
 					has_variable = in_triple_alliance_var
 					has_variable = in_triple_entente_var
 					has_variable = does_not_join_triple_alliance_var
@@ -2901,6 +2903,8 @@ HJE_main.5 = {
 			exists = c:ITA
 			c:ITA = {
 				NOT = {
+					is_diplomatic_play_enemy_of = ROOT
+					is_subject = yes
 					has_variable = in_triple_alliance_var
 					has_variable = in_triple_entente_var
 					has_variable = does_not_join_triple_alliance_var
@@ -2925,6 +2929,8 @@ HJE_main.5 = {
 			exists = c:AUS
 			c:AUS = {
 				NOT = {
+					is_diplomatic_play_enemy_of = ROOT
+					is_subject = yes
 					has_variable = in_triple_alliance_var
 					has_variable = in_triple_entente_var
 					has_variable = does_not_join_triple_alliance_var
@@ -2940,6 +2946,35 @@ HJE_main.5 = {
 
 		ai_chance = {
 			base = 1
+		}
+	}
+	
+	option = {
+		name = HJE_france.25.u
+		
+		if = {
+			limit = {
+				OR = { this ?= c:GER this ?= c:NGF }
+				exists = c:ITA
+				c:ITA = {
+					NOT = {
+						is_subject = yes
+						has_variable = in_triple_alliance_var
+						has_variable = in_triple_entente_var
+						has_variable = does_not_join_triple_alliance_var
+					}
+				}
+			}
+			c:ITA = {
+				trigger_event = {
+					id = HJE_main.5 days = 15 popup = yes 
+				}
+			}
+		}
+		clear_saved_scope = triple_alliance_leader_scope
+		
+		ai_chance = {
+			base = 0
 		}
 	}
 
@@ -2982,6 +3017,10 @@ HJE_main.6 = {
 			country = scope:triple_alliance_leader_scope
 			value = 150
 		}
+		change_relations = {
+			country = scope:triple_entente_leader_scope
+			value = -75
+		}
 		create_diplomatic_pact = {
 			country = scope:triple_alliance_leader_scope
 			type = alliance
@@ -2996,6 +3035,7 @@ HJE_main.6 = {
 				exists = c:FRA
 				c:FRA = {
 					NOT = {
+						is_subject = yes
 						has_variable = in_triple_entente_var
 					}
 				}
@@ -3009,10 +3049,11 @@ HJE_main.6 = {
 		else_if = {
 			limit = {
 				has_global_variable = triple_alliance_second_member_comes_globvar
-				NOT = { exists = c:FRA }
+				NOT = { exists = c:FRA c:FRA = { is_subject = no } }
 				exists = c:RUS 
 				c:RUS = {
 					NOT = {
+						is_subject = yes
 						has_variable = in_triple_alliance_var
 						has_variable = in_triple_entente_var
 					}
@@ -3087,6 +3128,10 @@ HJE_main.7 = {
 		create_diplomatic_pact = {
 			country = scope:triple_entente_leader_scope
 			type = alliance
+		}
+		change_relations = {
+			country = scope:triple_alliance_leader_scope
+			value = -75
 		}
 		add_technology_researched = multilateral_alliances
 		scope:triple_entente_leader_scope = {
