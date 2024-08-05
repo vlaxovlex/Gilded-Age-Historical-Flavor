@@ -38,6 +38,7 @@ monroe_doctrine = {
 			country_rank >= rank_value:minor_power
 			is_diplomatic_play_enemy_of = ROOT
 			NOT = {
+				has_truce_with = c:USA
 				any_scope_state = {
 					is_capital = yes
 					state_is_in_americas = yes
@@ -51,7 +52,7 @@ monroe_doctrine = {
 		set_variable = monroe_doctrine_victim
 		set_variable = { 
 			name = already_asked_yank_for_help 
-			days = 200
+			months = 24
 		}
 	}
 	ai_chance = {

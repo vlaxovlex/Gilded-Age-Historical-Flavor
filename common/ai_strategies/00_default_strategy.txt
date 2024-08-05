@@ -1042,6 +1042,7 @@ ai_strategy_default = {
 			limit = {
 				scope:target_state = { 
 					NOT = { has_claim_by = root }
+					NOT = { owner = root }
 					NOT = {
 						AND = {
 							is_coastal = yes

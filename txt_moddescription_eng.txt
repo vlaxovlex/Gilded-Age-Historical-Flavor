@@ -46,6 +46,7 @@ We proudly present our mod, “Gilded Age”, which adds a considerable amount o
 
 [h1]List of updates:[/h1]
 -04.07.24 Release
+-05.08.24 Version 1.01 (Bugfix)
 
 
 [h1]Content Credit:[/h1]

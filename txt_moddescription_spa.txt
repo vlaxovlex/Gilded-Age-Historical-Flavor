@@ -46,6 +46,7 @@ Nos enorgullece presentar nuestro mod, "Gilded Era", el cual añade una consider
 
 [h1]Lista de Actualizaciones:[/h1]
 -04.07.24 Lanzamiento
+-05.08.24 Versión 1.01 (Corrección de errores)
 
 
 [h1]Crédito de contenido:[/h1]
