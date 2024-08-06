@@ -3538,6 +3538,15 @@ HJE_turkey.13 = {
 				}
 			}
 		}
+		hidden_effect = {
+			random_scope_character = {
+				limit = { 
+					is_heir = yes 
+					NOT = { has_variable = is_osmanoglu }
+				}
+				kill_character = yes
+			}
+		}
 	}
 	option = {
 		name = HJE_turkey.13.b

@@ -4,7 +4,7 @@
 		adjective = POL_ADJ
 		
 		is_main_tag_only = yes
-		priority = 25
+		priority = 250
 		
 		trigger = {
 			exists = c:RUS

@@ -2065,3 +2065,33 @@ on_character_death = {
 		}
 	}
 }
+
+# Root = Country
+# scope:target = Uprising country
+on_secession_start = {
+	effect = {
+		if = {
+			limit = {
+				NOT = { exists = c:RSM }
+				any_country = { has_journal_entry = je_risorgimento }
+				scope:target = {
+					NOT = { any_scope_state = { is_capital = yes state_region = s:STATE_VENETIA } } ## HJE, Italy should fight to get Venice ##
+					OR = {
+						country_has_primary_culture = cu:north_italian
+						country_has_primary_culture = cu:south_italian
+					}
+				}
+				ROOT = {
+					NOR = {
+						country_has_primary_culture = cu:north_italian
+						country_has_primary_culture = cu:south_italian
+					}
+				}
+			}
+			root = {
+				#trigger_event = { id = italian_unification.7 days = 3 }
+				trigger_event = { id = HJE_italy.14 days = 3 }
+			}
+		}
+	}
+}

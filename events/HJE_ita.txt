@@ -696,7 +696,7 @@ HJE_italy.6 = {
 				}
 			}
 			set_variable = iwai1_victim
-			save_scope_as = iwai1_victim_scope
+			save_scope_as = rsm_revolted_scope
 		}
 		if = {
 			limit = {
@@ -842,8 +842,8 @@ HJE_italy.6 = {
 				NOT = { has_claim_by = ROOT }
 				owner = { 
 					OR = { 
-						THIS = scope:iwai1_victim_scope 
-						is_subject_of = scope:iwai1_victim_scope 
+						THIS = scope:rsm_revolted_scope 
+						is_subject_of = scope:rsm_revolted_scope 
 					} 
 				}
 				OR = {
@@ -867,13 +867,11 @@ HJE_italy.6 = {
 		}
 		scope:iwai1_state_lombardy_scope = {
 			set_variable = iwai1_state_lombardy
-			set_state_owner = ROOT
-			this.state_region = { add_claim = scope:iwai1_victim_scope }
+			this.state_region = { add_claim = ROOT }
 		}
-		scope:iwai1_victim_scope = {
+		scope:rsm_revolted_scope = {
 			trigger_event = { id = HJE_italy.7 days = 1 }
 		}
-		s:STATE_VENETIA = { add_claim = scope:iwai1_victim_scope }
 	}
 	option = {
 		name = HJE_italy.6.b
@@ -889,25 +887,25 @@ HJE_italy.7 = {
 	type = country_event
 	placement = scope:iwai1_state_lombardy_scope
 	title = HJE_italy.7.t
-	flavor = HJE_italy.7.f
-	desc = HJE_italy.7.d
-
-	duration = 3
+	desc = italian_unification.7.d
+	flavor = italian_unification.7.f
 
 	is_popup = yes
 
 	event_image = {
-		video = "gfx/event_pictures/unspecific_politicians_arguing.bk2"
+		video = "unspecific_signed_contract"
 	}
 
 	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
-	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/before_the_battle"
 
-	icon = "gfx/interface/icons/event_icons/event_map.dds"
+	icon = "gfx/interface/icons/event_icons/waving_flag.dds"
+
+	duration = 1
 
 	trigger = {
+		#Triggered as part of event chain
 	}
-	
+
 	immediate = {
 		random_country = {
 			limit = { 
@@ -916,106 +914,83 @@ HJE_italy.7 = {
 			}
 			save_scope_as = iwai1_attacker_scope
 		}
-		random_state = {
-			limit = {
-				has_claim_by = ROOT
-				has_variable = iwai1_state_lombardy
-				owner = { 
-					is_subject = no 
-					has_variable = ITA_current_favourite_to_unify  
-				}
-				OR = {
-					state_region = s:STATE_LOMBARDY
-					state_region = s:STATE_PIEDMONT
-					state_region = s:STATE_UMBRIA
-					state_region = s:STATE_CAMPANIA
-					state_region = s:STATE_CALABRIA
-					state_region = s:STATE_APULIA
-					state_region = s:STATE_ABRUZZO
-					state_region = s:STATE_SAVOY
-					state_region = s:STATE_EMILIA
-					state_region = s:STATE_TUSCANY
-					state_region = s:STATE_ROMAGNA
-					state_region = s:STATE_LAZIO
-					state_region = s:STATE_VENETIA
-					state_region = s:STATE_SICILY
-				}
-			}
+		random_scope_state = {
+			limit = { has_variable = iwai1_state_lombardy }
 			save_scope_as = iwai1_state_lombardy_scope
 		}
-	}
-
-	option = {
-		name = HJE_italy.7.a
-		default_option = yes
-		ai_chance = { base = 5 }
-		create_military_formation = {
-			type = army
-			hq_region = scope:iwai1_attacker_scope.capital.region
-
-			combat_unit = {
-				type = unit_type:combat_unit_type_irregular_infantry
-				state_region = scope:iwai1_attacker_scope.capital.state_region
-				count = 25
-			}
-			
-			combat_unit = {
-				type = unit_type:combat_unit_type_hussars
-				state_region = scope:iwai1_attacker_scope.capital.state_region
-				count = 25
+		create_country = {
+			tag = RSM
+			origin = scope:iwai1_attacker_scope
+			state = scope:iwai1_state_lombardy_scope
+			on_created = {
+				save_scope_as = rsm_scope	
+				activate_law = law_type:law_presidential_republic
+				activate_law = law_type:law_oligarchy
+				capital = { save_scope_as = rsm_capital_scope }
 			}
 		}
+		scope:iwai1_state_lombardy_scope = { add_claim = ROOT }
 		create_diplomatic_play = {
 			name = san_marco_revolt_1848_name
-			target_state = scope:iwai1_state_lombardy_scope
-            type = dp_return_state
+
+            target_country = c:RSM
+            type = dp_annex_war
 			war = no
-			add_war_goal = {
-				holder = root
-				type = return_state
-				target_state = s:STATE_VENETIA
-				primary_demand = yes
-			}
 		}
-		hidden_effect = {
-	        random_diplomatic_play = {
-				limit = {
-					initiator_is = ROOT
-		            target_is = scope:iwai1_attacker_scope
-				}
-				add_escalation = 50
-			}
-		}
-		if = {
-			limit = { scope:iwai1_attacker_scope = { is_ai = yes } }
-			scope:iwai1_attacker_scope = {
-				add_modifier = { name = wartime_zeal months = 24 }
-				random_scope_state = {
-					limit = { is_capital = yes }
-					create_building={
-						building="building_barracks"
-						add_ownership={
-							country={
-								country="root"
-								levels=1
-							}
-						}
-						reserves=1
-						activate_production_methods={ "pm_no_organization" }
-					}
+		random_diplomatic_play = {
+			limit = {
+				target = {
+					c:RSM ?= this
 				}
 			}
-		}		
+			add_escalation = 25
+		}
 	}
 
 	option = {
-		name = HJE_italy.7.b
-		ai_chance = { base = 1 }
-		add_modifier = {
-			name = withdrew_from_colonial_incident
-			months = short_modifier_time
+		name = italian_unification.7.a
+		default_option = yes
+		custom_tooltip = {
+			text = italian_states_choose_sides_tt
+			every_country = {
+				limit = {
+					OR = {
+						has_journal_entry = je_risorgimento
+						has_variable = ITA_current_favourite_to_unify  
+					}
+					NOT = {
+						c:RSM ?= this
+					}
+				}
+				trigger_event = { id = italian_unification.8 days = 7 popup = yes }
+			}
 		}
-	}	
+		custom_tooltip = italian_states_choose_sides_danger_tt
+	}
+
+	option = {
+		name = italian_unification.7.b
+		trigger = {
+			is_player = yes
+		}
+		custom_tooltip = {
+			text = italian_states_choose_sides_tt
+			every_country = {
+				limit = {
+					OR = {
+						has_journal_entry = je_risorgimento
+						has_variable = ITA_current_favourite_to_unify  
+					}
+					NOT = {
+						c:RSM ?= this
+					}
+				}
+				trigger_event = { id = italian_unification.8 days = 7 popup = yes }
+			}
+		}
+		custom_tooltip = italian_states_choose_sides_danger_tt
+		play_as = c:RSM
+	}
 }
 
 HJE_italy.8 = {
@@ -1941,4 +1916,108 @@ HJE_italy.13 = {
 		}
 	}
 
+}
+
+# Republic of San Marco - fires for Austria
+HJE_italy.14 = { ## exact same as "italian_unification.7", but in order to replace the event trigger in on_actions we need to rename it and trigger here
+	type = country_event
+	placement = ROOT
+
+	title = italian_unification.7.t
+	desc = italian_unification.7.d
+	flavor = italian_unification.7.f
+
+	event_image = {
+		video = "unspecific_signed_contract"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/waving_flag.dds"
+
+	duration = 1
+
+	trigger = {
+		#Triggered as part of event chain
+	}
+
+	immediate = {
+		save_scope_as = rsm_revolted_scope
+		random_country = {
+			limit = {	
+				is_secessionist = yes
+				OR = {
+					country_has_primary_culture = cu:north_italian
+					country_has_primary_culture = cu:south_italian
+				}
+			}
+			if = { ## HJE, Italy should fight to get Venetia ##
+				limit = { any_scope_state = { state_region = s:STATE_VENETIA } }
+				random_scope_state = {
+					limit = { state_region = s:STATE_VENETIA }
+					set_state_owner = ROOT
+				}
+			}
+			activate_law = law_type:law_presidential_republic
+			activate_law = law_type:law_oligarchy
+			change_tag = RSM
+			save_scope_as = rsm_scope	
+			capital = {
+				save_scope_as = rsm_capital_scope
+			}
+		}
+		random_diplomatic_play = {
+			limit = {
+				target = {
+					c:RSM ?= this
+				}
+			}
+			add_escalation = 25
+		}
+	}
+
+	option = {
+		name = italian_unification.7.a
+		default_option = yes
+		custom_tooltip = {
+			text = italian_states_choose_sides_tt
+			every_country = {
+				limit = {
+					OR = {
+						has_journal_entry = je_risorgimento
+						has_variable = ITA_current_favourite_to_unify  
+					}
+					NOT = {
+						c:RSM ?= this
+					}
+				}
+				trigger_event = { id = italian_unification.8 days = 7 popup = yes }
+			}
+		}
+		custom_tooltip = italian_states_choose_sides_danger_tt
+	}
+
+	option = {
+		name = italian_unification.7.b
+		trigger = {
+			is_player = yes
+		}
+		custom_tooltip = {
+			text = italian_states_choose_sides_tt
+			every_country = {
+				limit = {
+					OR = {
+						has_journal_entry = je_risorgimento
+						has_variable = ITA_current_favourite_to_unify  
+					}
+					NOT = {
+						c:RSM ?= this
+					}
+				}
+				trigger_event = { id = italian_unification.8 days = 7 popup = yes }
+			}
+		}
+		custom_tooltip = italian_states_choose_sides_danger_tt
+		play_as = c:RSM
+	}
 }
