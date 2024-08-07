@@ -929,6 +929,12 @@ HJE_italy.7 = {
 				capital = { save_scope_as = rsm_capital_scope }
 			}
 		}
+		scope:iwai1_attacker_scope = {
+			create_diplomatic_pact = {
+				country = c:RSM
+				type = alliance
+			}
+		}
 		scope:iwai1_state_lombardy_scope = { add_claim = ROOT }
 		create_diplomatic_play = {
 			name = san_marco_revolt_1848_name
@@ -956,6 +962,7 @@ HJE_italy.7 = {
 				limit = {
 					OR = {
 						has_journal_entry = je_risorgimento
+						has_journal_entry = HJ_italian_1848_revolutions
 						has_variable = ITA_current_favourite_to_unify  
 					}
 					NOT = {
@@ -979,6 +986,7 @@ HJE_italy.7 = {
 				limit = {
 					OR = {
 						has_journal_entry = je_risorgimento
+						has_journal_entry = HJ_italian_1848_revolutions
 						has_variable = ITA_current_favourite_to_unify  
 					}
 					NOT = {
@@ -1985,6 +1993,7 @@ HJE_italy.14 = { ## exact same as "italian_unification.7", but in order to repla
 				limit = {
 					OR = {
 						has_journal_entry = je_risorgimento
+						has_journal_entry = HJ_italian_1848_revolutions
 						has_variable = ITA_current_favourite_to_unify  
 					}
 					NOT = {
@@ -2008,6 +2017,7 @@ HJE_italy.14 = { ## exact same as "italian_unification.7", but in order to repla
 				limit = {
 					OR = {
 						has_journal_entry = je_risorgimento
+						has_journal_entry = HJ_italian_1848_revolutions
 						has_variable = ITA_current_favourite_to_unify  
 					}
 					NOT = {
