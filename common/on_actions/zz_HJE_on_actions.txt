@@ -35,265 +35,211 @@
 	}
 	
 	effect = {
-
 		### HISTORICAL JOURNAL ENTRIES ###
+		# STARTUP #
 		if = {
-			limit = {
-				c:AUS = { NOT = { has_variable = kra_var } }
-				exists = c:KRA
-				exists = c:AUS
-				OR = {
-					any_diplomatic_play = {
-						target_is = c:AUS
-						initator_is = c:KRA
+			limit = { NOT = { has_global_variable = HJE_history } }
+			set_global_variable = HJE_history
+			c:CSP = {	
+				add_journal_entry = { type = HJ_carlist_victory }			
+				create_diplomatic_play = {
+					name = first_carlist_war_name
+					target_state = s:STATE_TOLEDO.region_state:SPA				
+					war = yes				
+					type = dp_revolution
+				}		
+				create_character = {
+					first_name = "Carlos"
+					last_name = "de_Borbon"
+					historical = yes
+					ruler = yes
+					female = no
+					birth_date = 1788.03.29
+					dna = dna_carlos
+					interest_group = ig_landowners
+					ideology = ideology:ideology_moderate
+					traits = {
+						pious
 					}
-					any_diplomatic_play = {
-						target_is = c:KRA
-						initator_is = c:AUS
-					}
+				}	
+				create_character = {
+					first_name = "Tomas"
+					last_name = "Zumalacarregui"
+					historical = yes
+					birth_date = 1788.12.29
+					is_general = yes
+					interest_group = ig_armed_forces
+					ideology = ideology:ideology_jingoist_leader
+					hq = region_iberia
+					commander_rank = commander_rank_2
+					traits = {
+						experienced_defensive_strategist popular_commander
+					}	
+				}
+				effect_starting_technology_tier_3_tech = yes
+				effect_starting_politics_conservative = yes
+				set_tax_level = medium
+				add_taxed_goods = g:liquor			
+				set_tariffs_import_priority = g:artillery
+				set_tariffs_import_priority = g:small_arms		
+				# Estatuto Real de 1834 was in effect; the Constitution of 1812 was not restored until August of 1836
+				activate_law = law_type:law_monarchy
+				activate_law = law_type:law_landed_voting 
+				activate_law = law_type:law_state_religion
+				activate_law = law_type:law_legacy_slavery
+				activate_law = law_type:law_racial_segregation
+				activate_law = law_type:law_mercantilism
+				activate_law = law_type:law_interventionism
+				activate_law = law_type:law_land_based_taxation	
+				activate_law = law_type:law_religious_schools
+				activate_law = law_type:law_charitable_health_system
+				activate_law = law_type:law_autocracy
+				activate_law = law_type:law_national_militia
+				#activate_law = law_type:law_colonial_exploitation # spain has nothing to colonize in 1836
+				set_institution_investment_level = {
+					institution = institution_health_system
+					level = 1
+				}
+				ig:ig_intelligentsia = {
+					add_ruling_interest_group = no 
+				}
+				ig:ig_devout = {
+					add_ruling_interest_group = yes
+				}
+				ig:ig_devout = { 
+					set_interest_group_name = ig_catholic_church 
+				}
+				ig:ig_landowners = {
+					add_ideology = ideology:ideology_pious
+					add_ruling_interest_group = yes
 				}
 			}
-			random_diplomatic_play = {
-				limit = {
-					OR = {
-						AND = {
-							target_is = c:AUS
-							initator_is = c:KRA
-						}
-						AND = {
-							target_is = c:KRA
-							initator_is = c:AUS
-						}
-					}
-				}					
-				add_war_goal = {
-					holder = c:AUS
-					type = annex_country
-					target_country = c:KRA
-					target_state = s:STATE_WEST_GALICIA.region_state:KRA			
-					primary_demand = yes
+			c:POL = {
+				effect_starting_technology_tier_3_tech = yes
+				add_technology_researched = napoleonic_warfare
+				# Laws 
+				activate_law = law_type:law_parliamentary_republic
+				activate_law = law_type:law_oligarchy
+				activate_law = law_type:law_serfdom
+				activate_law = law_type:law_land_based_taxation
+				activate_law = law_type:law_hereditary_bureaucrats
+				activate_law = law_type:law_state_religion
+				activate_law = law_type:law_national_supremacy
+				activate_law = law_type:law_traditionalism
+				activate_law = law_type:law_peasant_levies
+				activate_law = law_type:law_censorship		
+				add_taxed_goods = g:liquor
+				ig:ig_devout = {
+					set_interest_group_name = ig_catholic_church
+					is_marginal = yes
+				}
+				ig:ig_armed_forces = {
+					is_marginal = yes
 				}
 			}
-			c:AUS = { set_variable = kra_var add_journal_entry = je_the_krakow_uprising activate_journal_entry = je_the_krakow_uprising }
-			c:KRA = { set_variable = krakow_uprising_happened }
+			c:MGL = {
+				effect_starting_technology_tier_4_tech = yes
+				add_technology_researched = urban_planning
+				add_technology_researched = sericulture
+				activate_law = law_type:law_presidential_republic
+				activate_law = law_type:law_oligarchy
+				activate_law = law_type:law_land_based_taxation
+				activate_law = law_type:law_appointed_bureaucrats
+				activate_law = law_type:law_cultural_exclusion
+				activate_law = law_type:law_traditionalism
+				activate_law = law_type:law_censorship	
+				ig:ig_landowners = { 
+					remove_ideology = ideology:ideology_paternalistic
+					add_ideology = ideology:ideology_moralist
+					add_ideology = ideology:ideology_isolationist
+					add_ruling_interest_group = yes
+				}
+				ig:ig_intelligentsia = { 
+					set_interest_group_name = ig_literati
+					remove_ideology = ideology:ideology_anti_clerical
+					add_ideology = ideology:ideology_confucian
+					remove_ruling_interest_group = yes
+				}			
+				ig:ig_devout = {
+					set_interest_group_name = ig_scholar_officials
+					add_ideology = ideology:ideology_scholar_paternalistic
+					remove_ruling_interest_group = yes
+				}
+			}
+			c:MCH = {
+				effect_starting_technology_tier_4_tech = yes
+				add_technology_researched = urban_planning
+				add_technology_researched = sericulture
+				activate_law = law_type:law_presidential_republic
+				activate_law = law_type:law_oligarchy
+				activate_law = law_type:law_land_based_taxation
+				activate_law = law_type:law_appointed_bureaucrats
+				activate_law = law_type:law_cultural_exclusion
+				activate_law = law_type:law_traditionalism
+				activate_law = law_type:law_censorship				
+				ig:ig_landowners = { 
+					remove_ideology = ideology:ideology_paternalistic
+					add_ideology = ideology:ideology_moralist
+					add_ideology = ideology:ideology_isolationist
+					add_ruling_interest_group = yes
+				}			
+				ig:ig_intelligentsia = { 
+					set_interest_group_name = ig_literati
+					remove_ideology = ideology:ideology_anti_clerical
+					add_ideology = ideology:ideology_confucian
+					remove_ruling_interest_group = yes
+				}			
+				ig:ig_devout = {
+					set_interest_group_name = ig_scholar_officials
+					add_ideology = ideology:ideology_scholar_paternalistic
+					remove_ruling_interest_group = yes
+				}
+			}
+			c:XIB = {
+				effect_starting_technology_tier_4_tech = yes
+				add_technology_researched = urban_planning
+				add_technology_researched = sericulture
+				activate_law = law_type:law_theocracy
+				activate_law = law_type:law_autocracy 
+				activate_law = law_type:law_land_based_taxation
+				activate_law = law_type:law_appointed_bureaucrats
+				activate_law = law_type:law_cultural_exclusion
+				activate_law = law_type:law_traditionalism
+				activate_law = law_type:law_censorship	
+				ig:ig_landowners = { 
+					remove_ideology = ideology:ideology_paternalistic
+					add_ideology = ideology:ideology_moralist
+					add_ideology = ideology:ideology_isolationist
+				}				
+				ig:ig_intelligentsia = { 
+					set_interest_group_name = ig_literati
+					remove_ideology = ideology:ideology_anti_clerical
+					add_ideology = ideology:ideology_confucian
+				}		
+				ig:ig_devout = {
+					set_interest_group_name = ig_scholar_officials
+					add_ideology = ideology:ideology_scholar_paternalistic
+				}
+			}
 		}
-		
+
+		HJE_cleanup_effect = yes
+
+		HJE_semi_random_events_USA_effect = yes
+		HJE_semi_random_events_GER_effect = yes
+		HJE_semi_random_events_ITA_effect = yes
+
 		if = {
-			limit = {
-				exists = c:ROM
-				root = c:ROM
-				OR = {
-					AND = {
-						exists = c:MOL
-						is_subject_of = c:MOL
-					}
-					AND = {
-						exists = c:WAL
-						is_subject_of = c:WAL
-					}
-				}
+			limit = {			#Election recency variable for events
+				in_election_campaign = yes
+				NOT = { has_variable = had_elections_in_last_year }
 			}
-			if = {
-				limit = {
-					exists = c:MOL
-					is_subject_of = c:MOL
-				}
-				create_diplomatic_pact = {
-					country = c:MOL
-					type = personal_union
-				}
-				c:MOL = {	
-					remove_diplomatic_pact = {
-						country = root
-						type = puppet
-					}
-					remove_diplomatic_pact = {
-						country = root
-						type = protectorate
-					}
-					remove_diplomatic_pact = {
-						country = root
-						type = personal_union
-					}
-				}
-			}
-			if = {
-				limit = {
-					exists = c:WAL
-					is_subject_of = c:WAL
-				}
-				create_diplomatic_pact = {
-					country = c:WAL
-					type = personal_union
-				}
-				c:WAL = {	
-					remove_diplomatic_pact = {
-						country = root
-						type = puppet
-					}
-					remove_diplomatic_pact = {
-						country = root
-						type = protectorate
-					}
-					remove_diplomatic_pact = {
-						country = root
-						type = personal_union
-					}
-				}
+			set_variable = {
+				name = had_elections_in_last_year
+				days = 365
 			}
 		}
-		
-		if = {
-			limit = {
-				NOT = { has_variable = ai_1861_var }
-				year >= 1861
-				exists = c:RUS
-				c:RUS = ROOT
-				c:RUS = { is_player = no }		
-			}
-			set_ruling_interest_groups = { ig_intelligentsia ig_industrialists }
-			activate_law = law_type:law_tenant_farmers
-			activate_law = law_type:law_slavery_banned
-			activate_law = law_type:law_agrarianism
-			set_variable = 1861_var
-		}
-		
-		if = {
-			limit = {
-				NOT = { has_variable = ai_1862_var }
-				year >= 1862
-				exists = c:RUS
-				c:RUS = ROOT
-				c:RUS = { is_player = no }		
-			}
-			set_ruling_interest_groups = { ig_intelligentsia ig_industrialists }
-			activate_law = law_type:law_professional_army
-			activate_law = law_type:law_national_guard
-			set_variable = 1862_var
-		}	
-		
-		if = {
-			limit = {
-				NOT = { has_variable = ai_china_closes_markets_again_var }				
-				exists = c:CHI
-				c:CHI = ROOT
-				c:CHI = { is_player = no }
-				year >= 1855	
-				has_law = law_type:law_free_trade
-				NOT = { has_global_variable = had_second_opium_war }
-				has_variable = var_dynamic_opium_wars_victim				
-			}
-			activate_law = law_type:law_isolationism
-			set_variable = ai_china_closes_markets_again_var
-		}
-		
-		if = {
-			limit = {
-				exists = c:BRZ
-				c:BRZ = ROOT
-				year >= 1889		
-				c:BRZ = { is_player = no }	
-				NOT = { has_variable = ai_brazil_bans_slavery_var }
-			}
-			activate_law = law_type:law_slavery_banned	
-			set_variable = ai_brazil_bans_slavery_var		
-		}
-		
-		if = {
-			limit = {
-				is_player = no
-				OR = {
-					country_has_primary_culture = cu:north_italian
-					country_has_primary_culture = cu:south_italian
-				}
-				calc_true_if = {
-					amount >= 6
-					any_scope_state = { state_region = s:STATE_LOMBARDY }
-					any_scope_state = { state_region = s:STATE_PIEDMONT }
-					any_scope_state = { state_region = s:STATE_UMBRIA }
-					any_scope_state = { state_region = s:STATE_CAMPANIA }
-					any_scope_state = { state_region = s:STATE_CALABRIA }
-					any_scope_state = { state_region = s:STATE_APULIA }
-					any_scope_state = { state_region = s:STATE_ABRUZZO }
-					any_scope_state = { state_region = s:STATE_SAVOY }
-					any_scope_state = { state_region = s:STATE_EMILIA }
-					any_scope_state = { state_region = s:STATE_TUSCANY }
-					any_scope_state = { state_region = s:STATE_ROMAGNA }
-					any_scope_state = { state_region = s:STATE_LAZIO }
-					any_scope_state = { state_region = s:STATE_VENETIA }
-					any_scope_state = { state_region = s:STATE_SICILY }
-				}
-				is_diplomatic_play_committed_participant = no
-				exists = c:AUS
-				NOT = { c:AUS = { is_diplomatic_play_enemy_of = ROOT } }
-				OR = {
-					c:AUS = { has_state_in_state_region = STATE_VENETIA }
-					c:AUS = { has_state_in_state_region = STATE_LOMBARDY }
-				}
-				any_country = {
-					NOT = { THIS = ROOT }
-					NOT = { THIS = c:AUS }
-					is_adjacent_to_country = c:AUS
-					country_rank >= rank_value:great_power
-					is_diplomatic_play_enemy_of = c:AUS
-					is_diplomatic_play_initiator = yes
-				}
-				NOT = { has_variable = ai_venetia_var }
-			}
-			s:STATE_VENETIA = { add_claim = root }
-			s:STATE_LOMBARDY = { add_claim = root }
-			random_diplomatic_play = {
-				limit = {
-					target_is = c:AUS
-					initator_is = scope:PRU_equivalent_brothers_war
-				}
-				add_initiator_backers = { ROOT }
-				add_war_goal = {
-					holder = ROOT
-					type = return_state
-					target_state = s:STATE_VENETIA.region_state:AUS			
-					primary_demand = yes
-				}
-				add_war_goal = {
-					holder = ROOT
-					type = return_state
-					target_state = s:STATE_LOMBARDY.region_state:AUS			
-					primary_demand = yes
-				}
-			}
-			add_modifier = { 
-				name = wartime_zeal
-				months = 12
-			}
-			set_variable = ai_venetia_var				
-		}
-		
-		if = {
-			limit = {
-				exists = c:GBR
-				c:GBR = ROOT
-				c:GBR = { is_player = no }		
-				year >= 1850
-				NOT = { has_variable = ai_tech_buff_for_suez_expedition_var }
-			}
-			add_technology_researched = nationalism
-			add_technology_researched = colonization
-			set_variable = ai_tech_buff_for_suez_expedition_var
-		}
-		
-		if = {
-			limit = {
-				exists = c:BRZ
-				c:BRZ = ROOT
-				c:BRZ = { is_player = no }	
-				NOT = { has_variable = ai_brazil_education_reforms_var }
-				year >= 1851 # vague date lol
-				has_law = law_type:law_monarchy	
-			}
-			activate_law = law_type:law_public_schools
-			set_variable = ai_brazil_education_reforms_var
-		}
-				
+
 		if = {
 			limit = {			#Enables capital change decision if Capital isn't in correct place (WIP)
 				has_variable = capital_decided_variable
@@ -313,6 +259,15 @@
 						owns_entire_state_region = STATE_ILE_DE_FRANCE
 						any_scope_state = {
 							NOT = { state_region = s:STATE_ILE_DE_FRANCE }
+							is_capital = yes
+						}
+					}
+					AND = {
+						exists = c:AUS
+						c:AUS = ROOT
+						owns_entire_state_region = STATE_AUSTRIA
+						any_scope_state = {
+							NOT = { state_region = s:STATE_AUSTRIA }
 							is_capital = yes
 						}
 					}
@@ -457,7 +412,7 @@
 		}
 
 		if = {
-			limit = {
+			limit = {			#Unexplored State modifier
 				any_state = { has_modifier = sfa_unexplored_state }
 				any_state = {
 					NOT = { has_modifier = sfa_unexplored_state }
@@ -515,198 +470,7 @@
 		}
 
 		if = {
-			limit = {			#Anyone who tries to colonize New Zealand states once it exists instantly gives colonial states to New Zealand
-				exists = c:GBR
-				any_country = {
-					NOT = { THIS = ROOT }
-					is_subject_of = c:GBR
-					has_variable = new_zealand_variable
-				}
-				OR = {
-					c:GBR = ROOT
-					is_subject_of = c:GBR
-					AND = {
-						exists = c:DEI 	#idk why but DEI does it too
-						c:DEI = ROOT
-						is_player = no 
-					}
-				}
-				any_scope_state = {
-					OR = {
-						state_region = s:STATE_NORTH_ISLAND
-						state_region = s:STATE_SOUTH_ISLAND
-					}
-				}
-			}
-			random_country = {
-				limit = { has_variable = new_zealand_variable }
-				save_scope_as = new_zealand_scope
-			}
-			every_state = {
-				limit = {
-					OR = {
-						owner = c:GBR
-						owner = { is_subject_of = c:GBR }
-					}
-					OR = {
-						state_region = s:STATE_NORTH_ISLAND
-						state_region = s:STATE_SOUTH_ISLAND
-					}
-				}
-				set_state_owner = scope:new_zealand_scope
-			}
-		}
-
-		if = {
-			limit = {			#Random event for Americans to move to California
-				year >= 1840
-				year < 1850
-				NOT = { has_global_variable = yankee_california_overflow }
-				has_state_in_state_region = STATE_CALIFORNIA
-				NOT = {
-					any_country = {
-						NOT = { PREV = THIS }
-						has_state_in_state_region = STATE_CALIFORNIA
-						NOR = {
-							is_country_type = unrecognized
-							is_country_type = decentralized
-						}
-					}
-				}
-			}
-			random_list = {
-				95 = {  }
-				5 = { trigger_event = { id = HJE_usa.5 } }
-			}
-		}
-		if = {
-			limit = {			#Random event for Americans to move to Utah
-				year >= 1845
-				year < 1855
-				NOT = { has_global_variable = utah_mormons }
-				has_state_in_state_region = STATE_UTAH
-				NOT = {
-					any_country = {
-						NOT = { PREV = THIS }
-						has_state_in_state_region = STATE_UTAH
-						NOR = {
-							is_country_type = unrecognized
-							is_country_type = decentralized
-						}
-					}
-				}
-			}
-			random_list = {
-				95 = {  }
-				5 = { trigger_event = { id = HJE_usa.6 } }
-			}
-		}
-		if = {
-			limit = {			#AI will try to take these states at least once
-				year > 1840
-				exists = c:USA
-				c:USA = ROOT
-				is_player = no
-				NOT = { has_variable = am_wargoals }
-				c:MEX = { 
-					is_diplomatic_play_enemy_of = ROOT 
-					OR = {
-						has_state_in_state_region = STATE_TEXAS
-						has_state_in_state_region = STATE_CALIFORNIA
-					}
-				}
-			}
-			c:USA = { set_variable = am_wargoals }
-			random_diplomatic_play = {
-				limit = {
-					any_scope_play_involved = {
-						THIS = c:MEX
-						is_diplomatic_play_enemy_of = ROOT
-					}
-				}
-				add_war_goal = {
-					holder = c:USA
-					type = return_state
-					target_state = s:STATE_CALIFORNIA.region_state:MEX
-					primary_demand = yes
-				}
-				add_war_goal = {
-					holder = c:USA
-					type = return_state
-					target_state = s:STATE_TEXAS.region_state:MEX
-					primary_demand = yes
-				}
-			}
-		}
-		if = {
-			limit = {
-				in_election_campaign = yes
-				NOT = { has_variable = had_elections_in_last_year }
-			}
-			set_variable = {
-				name = had_elections_in_last_year
-				days = 365
-			}
-		}
-		if = {
-			limit = {
-				exists = c:USA
-				c:USA = THIS
-				is_player = no
-				OR = {
-					has_state_in_state_region = STATE_ALBERTA
-					has_state_in_state_region = STATE_SASKATCHEWAN
-				}
-				any_country = {
-					OR = {
-						country_has_primary_culture = cu:anglo_canadian
-						country_has_primary_culture = cu:franco_canadian
-					}
-					OR = {
-						has_state_in_state_region = STATE_ALBERTA
-						has_state_in_state_region = STATE_SASKATCHEWAN
-					}
-				}
-			}
-			random_country = {
-				limit = {
-					OR = {
-						country_has_primary_culture = cu:anglo_canadian
-						country_has_primary_culture = cu:franco_canadian
-					}
-					OR = {
-						has_state_in_state_region = STATE_ALBERTA
-						has_state_in_state_region = STATE_SASKATCHEWAN
-					}
-				}
-				save_scope_as = canada_scope
-			}
-			every_state = {
-				limit = {
-					owner = ROOT
-					OR = {
-						state_region = s:STATE_ALBERTA
-						state_region = s:STATE_SASKATCHEWAN
-					}
-				}
-				set_state_owner = scope:canada_scope
-			}
-		}
-
-		if = {
-			limit = {
-				exists = c:ITA
-				c:ITA = THIS
-				NOT = { has_variable = ITA_newly_formed_capital_decision }
-			}
-			c:ITA = { 
-				set_variable = ITA_newly_formed_capital_decision
-				trigger_event = { id = HJE_main.1 }
-			}
-		}
-
-		if = {
-			limit = {
+			limit = {			#Fixed Taiping event
 				exists = c:CHI
 				NOT = { c:CHI = { has_variable = tpg_var } }
 				NOT = { exists = c:TPG }
@@ -725,57 +489,7 @@
 		}
 
 		if = {
-			limit = {
-				OR = {
-					AND = { exists = c:NGF c:NGF = THIS }
-					AND = { exists = c:GER c:GER = THIS }
-				}
-			}
-			random_list = {
-				9 = {  }
-				1 = { trigger_event = { id = german_unification.3 } } #so you get Otto von Bismarck even if you form Germany early
-			}
-		}
-
-		if = {
-			limit = {			#Randomized event for Prussia to goad France into invading them
-				year >= 1870
-				year < 1880
-				NOT = { has_global_variable = ems_dispatch_scheme }
-				aggressive_diplomatic_plays_permitted = yes
-				is_diplomatic_play_committed_participant = no
-				is_diplomatic_play_initiator = no
-				is_diplomatic_play_target = no
-				NOT = { country_or_subject_owns_entire_state_region = STATE_ALSACE_LORRAINE }
-				any_country = {
-					is_adjacent_to_country = ROOT
-					aggressive_diplomatic_plays_permitted = yes
-					OR = { country_rank >= rank_value:major_power this ?= c:SWI }
-					country_or_subject_owns_entire_state_region = STATE_ALSACE_LORRAINE
-				}
-				OR = {
-					AND = {
-						exists = c:NGF
-						c:NGF = THIS
-					}
-					AND = {
-						exists = c:SGF
-						c:SGF = THIS
-					}
-					AND = {
-						exists = c:PRU
-						c:PRU = THIS
-					}
-				}
-			}
-			random_list = {
-				90 = {  }
-				10 = { trigger_event = { id = HJE_prussia.5 } }
-			}
-		}
-
-		if = {
-			limit = {
+			limit = {			#Persian exploitation setup
 				any_country = { has_modifier = exploiting_southern_persia_modifier }
 				any_state = { has_modifier = british_economic_zone_state_modifier }
 				OR = {
@@ -853,554 +567,6 @@
 					}
 				}
 			}
-		}
-		if = {
-			limit = {
-				year > 1860
-				exists = c:CUB
-				c:CUB = THIS
-				NOT = { has_strategy = ai_strategy_subject_break_free }
-				any_overlord_or_above = {
-					country_is_in_north_america = no
-					country_is_in_central_america = no
-					country_is_in_south_america = no
-				}
-			}
-			set_strategy = ai_strategy_subject_break_free
-		}
-		if = { ## FIX TO TRY AND PREVENT AI ITALY BECOMING A REPUBLIC EARLIER THAN IT SHOULD BECAUSE OF GARIBALDI
-			limit = {
-				is_player = no
-				year < 1900
-				has_law = law_type:law_monarchy 
-				any_interest_group = { has_ideology = ideology:ideology_republican }
-				OR = {
-					has_variable = ITA_current_favourite_to_unify
-					AND = { exists = c:ITA c:ITA = THIS }
-					AND = { NOT = { exists = c:ITA } exists = c:SAR c:SAR = THIS }
-				}
-			}
-			every_interest_group = {
-				limit = { has_ideology = ideology:ideology_republican }
-				remove_ideology = ideology:ideology_republican
-			}
-		}
-		
-		
-		
-	#Instead "history"
-		if = {
-			limit = {
-				NOT = {
-					has_global_variable = HJE_history
-				}
-			}
-			create_country = {
-				tag = MGL
-				origin = c:CHI
-				state = s:STATE_ULIASTAI.region_state:CHI
-				state = s:STATE_URGA.region_state:CHI
-				state = s:STATE_TUVA.region_state:CHI
-				state = s:STATE_TOMSK.region_state:CHI
-				on_created = {
-					c:CHI = {
-						create_diplomatic_pact = {
-							country = c:MGL
-							type = vassal
-						}
-					}
-					c:MGL = {
-						effect_starting_technology_tier_4_tech = yes
-						add_technology_researched = urban_planning
-						add_technology_researched = sericulture
-						activate_law = law_type:law_presidential_republic
-						activate_law = law_type:law_oligarchy
-						activate_law = law_type:law_land_based_taxation
-						activate_law = law_type:law_appointed_bureaucrats
-						activate_law = law_type:law_cultural_exclusion
-						activate_law = law_type:law_traditionalism
-						activate_law = law_type:law_censorship	
-						ig:ig_landowners = { 
-							remove_ideology = ideology:ideology_paternalistic
-							add_ideology = ideology:ideology_moralist
-							add_ideology = ideology:ideology_isolationist
-							add_ruling_interest_group = yes
-						}
-						ig:ig_intelligentsia = { 
-							set_interest_group_name = ig_literati
-							remove_ideology = ideology:ideology_anti_clerical
-							add_ideology = ideology:ideology_confucian
-							remove_ruling_interest_group = yes
-						}			
-						ig:ig_devout = {
-							set_interest_group_name = ig_scholar_officials
-							add_ideology = ideology:ideology_scholar_paternalistic
-							remove_ruling_interest_group = yes
-						}			
-					}
-				}	
-			}
-			create_country = {
-				tag = MCH
-				origin = c:CHI
-				state = s:STATE_AMUR.region_state:CHI
-				state = s:STATE_SHENGJING.region_state:CHI
-				state = s:STATE_OUTER_MANCHURIA.region_state:CHI
-				state = s:STATE_SOUTHERN_MANCHURIA.region_state:CHI
-				state = s:STATE_NORTHERN_MANCHURIA.region_state:CHI
-				on_created = {
-					c:CHI = {
-						create_diplomatic_pact = {
-							country = c:MCH
-							type = vassal
-						}
-					}		
-					c:MCH = {
-						effect_starting_technology_tier_4_tech = yes
-						add_technology_researched = urban_planning
-						add_technology_researched = sericulture
-						activate_law = law_type:law_presidential_republic
-						activate_law = law_type:law_oligarchy
-						activate_law = law_type:law_land_based_taxation
-						activate_law = law_type:law_appointed_bureaucrats
-						activate_law = law_type:law_cultural_exclusion
-						activate_law = law_type:law_traditionalism
-						activate_law = law_type:law_censorship				
-						ig:ig_landowners = { 
-							remove_ideology = ideology:ideology_paternalistic
-							add_ideology = ideology:ideology_moralist
-							add_ideology = ideology:ideology_isolationist
-							add_ruling_interest_group = yes
-						}			
-						ig:ig_intelligentsia = { 
-							set_interest_group_name = ig_literati
-							remove_ideology = ideology:ideology_anti_clerical
-							add_ideology = ideology:ideology_confucian
-							remove_ruling_interest_group = yes
-						}			
-						ig:ig_devout = {
-							set_interest_group_name = ig_scholar_officials
-							add_ideology = ideology:ideology_scholar_paternalistic
-							remove_ruling_interest_group = yes
-						}			
-					}
-				}
-			}
-			create_country = {
-				tag = XIB
-				origin = c:CHI
-				state = s:STATE_DZUNGARIA.region_state:CHI
-				state = s:STATE_TIANSHAN.region_state:CHI
-				state = s:STATE_KIRGHIZIA.region_state:CHI
-				state = s:STATE_JETISY.region_state:CHI
-				state = s:STATE_ALTAI.region_state:CHI
-				on_created = {
-					c:CHI = {
-						create_diplomatic_pact = {
-							country = c:XIB
-							type = vassal
-						}
-					}		
-					c:XIB = {
-						effect_starting_technology_tier_4_tech = yes
-						add_technology_researched = urban_planning
-						add_technology_researched = sericulture
-						activate_law = law_type:law_theocracy
-						activate_law = law_type:law_autocracy 
-						activate_law = law_type:law_land_based_taxation
-						activate_law = law_type:law_appointed_bureaucrats
-						activate_law = law_type:law_cultural_exclusion
-						activate_law = law_type:law_traditionalism
-						activate_law = law_type:law_censorship	
-						ig:ig_landowners = { 
-							remove_ideology = ideology:ideology_paternalistic
-							add_ideology = ideology:ideology_moralist
-							add_ideology = ideology:ideology_isolationist
-						}				
-						ig:ig_intelligentsia = { 
-							set_interest_group_name = ig_literati
-							remove_ideology = ideology:ideology_anti_clerical
-							add_ideology = ideology:ideology_confucian
-						}		
-						ig:ig_devout = {
-							set_interest_group_name = ig_scholar_officials
-							add_ideology = ideology:ideology_scholar_paternalistic
-						}
-					}
-				}
-			}
-			if = {
-				limit = {
-					NOT = {
-						exists = c:CAR
-						exists = c:CSP
-					}
-				}
-				create_country = {
-					tag = CSP
-					origin = c:SPA
-					state = s:STATE_ARAGON.region_state:SPA
-					state = s:STATE_NAVARRA.region_state:SPA
-					state = s:STATE_CATALONIA.region_state:SPA
-					on_created = {
-						c:CSP = {
-							#change_infamy = -100			
-							add_journal_entry = HJ_carlist_victory			
-							create_diplomatic_play = {
-								name = first_carlist_war_name
-								target_state = s:STATE_TOLEDO.region_state:SPA				
-								war = yes				
-								type = dp_revolution
-							}		
-							create_character = {
-								first_name = "Carlos"
-								last_name = "de_Borbon"
-								historical = yes
-								ruler = yes
-								female = no
-								birth_date = 1788.03.29
-								dna = dna_carlos
-								interest_group = ig_landowners
-								ideology = ideology:ideology_moderate
-								traits = {
-									pious
-								}
-							}	
-							create_character = {
-								first_name = "Tomas"
-								last_name = "Zumalacarregui"
-								historical = yes
-								birth_date = 1788.12.29
-								is_general = yes
-								interest_group = ig_armed_forces
-								ideology = ideology:ideology_jingoist_leader
-								hq = region_iberia
-								commander_rank = commander_rank_2
-								traits = {
-									experienced_defensive_strategist popular_commander
-								}
-							}		
-							effect_starting_technology_tier_3_tech = yes
-							effect_starting_politics_conservative = yes
-							set_tax_level = medium
-							add_taxed_goods = g:liquor			
-							set_tariffs_import_priority = g:artillery
-							set_tariffs_import_priority = g:small_arms		
-							# Estatuto Real de 1834 was in effect; the Constitution of 1812 was not restored until August of 1836
-							activate_law = law_type:law_monarchy
-							activate_law = law_type:law_landed_voting 
-							activate_law = law_type:law_state_religion
-							activate_law = law_type:law_legacy_slavery
-							activate_law = law_type:law_racial_segregation
-							activate_law = law_type:law_mercantilism
-							activate_law = law_type:law_interventionism
-							activate_law = law_type:law_land_based_taxation	
-							activate_law = law_type:law_religious_schools
-							activate_law = law_type:law_charitable_health_system
-							activate_law = law_type:law_autocracy
-							activate_law = law_type:law_national_militia
-							#activate_law = law_type:law_colonial_exploitation # spain has nothing to colonize in 1836
-							set_institution_investment_level = {
-								institution = institution_health_system
-								level = 1
-							}
-							ig:ig_intelligentsia = {
-								add_ruling_interest_group = no 
-							}
-							ig:ig_devout = {
-								add_ruling_interest_group = yes
-							}
-							ig:ig_devout = { 
-								set_interest_group_name = ig_catholic_church 
-							}
-							ig:ig_landowners = {
-								add_ideology = ideology:ideology_pious
-								add_ruling_interest_group = yes
-							}
-						}
-					}
-				}
-			}
-			create_country = {
-				tag = POL
-				origin = c:RUS
-				state = s:STATE_GREATER_POLAND.region_state:RUS
-				state = s:STATE_LESSER_POLAND.region_state:RUS
-				state = s:STATE_MAZOVIA.region_state:RUS
-				on_created = {
-					c:RUS = {
-						create_diplomatic_pact = {
-							country = c:POL
-							type = puppet
-						}
-					}
-					c:POL = {
-						effect_starting_technology_tier_3_tech = yes
-						add_technology_researched = napoleonic_warfare
-						# Laws 
-						activate_law = law_type:law_parliamentary_republic
-						activate_law = law_type:law_oligarchy
-						activate_law = law_type:law_serfdom
-						activate_law = law_type:law_land_based_taxation
-						activate_law = law_type:law_hereditary_bureaucrats
-						activate_law = law_type:law_state_religion
-						activate_law = law_type:law_national_supremacy
-						activate_law = law_type:law_traditionalism
-						activate_law = law_type:law_peasant_levies
-						activate_law = law_type:law_censorship		
-						add_taxed_goods = g:liquor
-						ig:ig_devout = {
-							set_interest_group_name = ig_catholic_church
-							is_marginal = yes
-						}
-						ig:ig_armed_forces = {
-							is_marginal = yes
-						}	
-					}
-				}
-			}
-			s:STATE_EAST_MICRONESIA = {
-				add_claim = c:USA
-				add_claim = c:SPA
-			}
-			s:STATE_WEST_MICRONESIA = {
-				add_claim = c:USA
-				add_claim = c:SPA
-			}
-			s:STATE_CENTRAL_JAVA = {
-				add_claim = c:DEI
-				add_claim = c:NET
-			}
-			s:STATE_GHANA = {
-				add_claim = c:GBR
-			}
-			s:STATE_TOGO = {
-				add_claim = c:PRU
-			}
-			s:STATE_ALTO_PARAGUAY = {
-				add_claim = c:BOL
-			}
-			s:STATE_BUENOS_AIRES = {
-				add_claim = c:ARG
-			}
-			s:STATE_PATAGONIA = {
-				remove_claim = c:CHL
-			}
-			s:STATE_RIO_NEGRO = {
-				add_claim = c:ARG
-			}
-			s:STATE_SANTA_FE = {
-				add_claim = c:ARG
-			}
-			s:STATE_CHACO = {
-				add_claim = c:ARG
-			}
-			s:STATE_ARAUCANIA = {
-				remove_claim = c:ARG
-			}
-			s:STATE_WEST_SAHARA = {
-				add_claim = c:SPA
-				add_claim = c:CSP
-				remove_claim = c:MOR
-			}
-			s:STATE_INNER_MOROCCO = {
-				remove_claim = c:FRA
-			}
-			s:STATE_ORAN = {
-				add_claim = c:FRA
-			}
-			s:STATE_ALGIERS = {
-				add_claim = c:FRA
-			}
-			s:STATE_CONSTANTINE = {
-				add_claim = c:FRA
-			}
-			s:STATE_LOURENCO_MARQUES = {
-				add_claim = c:POR
-			}
-			s:STATE_MOCAMBIQUE = {
-				add_claim = c:POR
-			}
-			s:STATE_ZAMBEZIA = {
-				add_claim = c:POR
-			}
-			#s:STATE_NORTHERN_CAPE = {
-			#	add_claim = c:SAF
-			#}
-			s:STATE_NORTH_SUMATRA = {
-				add_claim = c:DEI
-				add_claim = c:NET
-			}	
-			s:STATE_ACEH = {
-				add_claim = c:DEI
-				add_claim = c:NET
-			}
-			s:STATE_WESTERN_NEW_GUINEA = {
-				add_claim = c:DEI
-				add_claim = c:NET
-			}
-			s:STATE_CELEBES = {
-				add_claim = c:DEI
-				add_claim = c:NET
-			}
-			s:STATE_WEST_BORNEO = {
-				add_claim = c:DEI
-				add_claim = c:NET
-			}
-			s:STATE_EAST_BORNEO = {
-				add_claim = c:DEI
-				add_claim = c:NET
-			}
-			s:STATE_MALAYA = {
-				add_claim = c:GBR
-			}	
-			s:STATE_NORTH_BORNEO = {
-				add_claim = c:GBR
-			}	
-			s:STATE_MINDANAO = {
-				add_claim = c:PHI
-			}
-			#s:STATE_ZULULAND = {
-			#	add_claim = c:SAF
-			#}
-			#s:STATE_VRYSTAAT = {
-			#	add_claim = c:SAF
-			#}
-			#s:STATE_TRANSVAAL = {
-			#	add_claim = c:SAF
-			#}
-			s:STATE_SOLOMON_ISLANDS = {
-				add_claim = c:GBR
-			}
-			s:STATE_NAURU = {
-				add_claim = c:PRU
-			}
-			s:STATE_FIJI = {
-				add_claim = c:GBR
-			}
-			s:STATE_VANUATU = {
-				add_claim = c:FRA
-			}
-			s:STATE_KANAK = {
-				add_claim = c:FRA
-			}
-			s:STATE_TAHITI = {
-				add_claim = c:GBR
-				add_claim = c:FRA
-				add_claim = c:CHL
-			}
-			s:STATE_TONGA = {
-				add_claim = c:GBR
-				add_claim = c:USA
-			}
-			s:STATE_CRETE = {
-				add_claim = c:TUR
-			}
-			s:STATE_SAKHALIN = {
-				remove_claim = c:JAP
-			}
-			s:STATE_SOLOMON_ISLANDS = {
-				add_claim = c:GBR
-			}
-			s:STATE_SOLOMON_ISLANDS = {
-				add_claim = c:GBR
-			}
-			s:STATE_SOLOMON_ISLANDS = {
-				add_claim = c:GBR
-			}
-			s:STATE_SOLOMON_ISLANDS = {
-				add_claim = c:GBR
-			}		
-			s:STATE_SOUTH_AUSTRALIA = {
-				add_claim = c:SAS
-			}	
-			s:STATE_EAST_ANGOLA = {
-				add_claim = c:POR
-			}
-			s:STATE_SOUTH_ANGOLA = {
-				add_claim = c:POR
-			}
-			s:STATE_DARFUR = {
-				add_claim = c:EGY
-			}	
-			s:STATE_KACHIN = {
-				add_claim = c:BIC
-			}
-			s:STATE_BURMA = {
-				add_claim = c:BIC
-			}
-			s:STATE_PEGU = {
-				add_claim = c:BIC
-			}
-			s:STATE_SHAN_STATES	 = {
-				add_claim = c:BIC
-			}
-			s:STATE_KASHMIR = {
-				add_claim = c:BIC
-			}
-			s:STATE_PUNJAB = {
-				add_claim = c:BIC
-			}
-			s:STATE_PASHTUNISTAN = {
-				add_claim = c:BIC
-			}
-			s:STATE_SINDH = {
-				add_claim = c:BIC
-			}
-			s:STATE_BALUCHISTAN	 = {
-				add_claim = c:BIC
-			}	
-			s:STATE_QUETTA = {
-				add_claim = c:BIC
-			}				
-			s:STATE_OKLAHOMA = {
-				add_claim = c:USA
-				add_claim = c:MEX
-			}
-			s:STATE_COLORADO = {
-				add_claim = c:USA
-				add_claim = c:MEX
-			}
-			s:STATE_NEVADA = {
-				add_claim = c:MEX
-			}
-			s:STATE_NEW_MEXICO = {
-				add_claim = c:MEX
-				remove_claim = c:USA
-			}
-			s:STATE_MEKONG = { 
-				add_claim = c:FRA
-			}
-			s:STATE_TONKIN = { 
-				add_claim = c:FRA				
-			}
-			s:STATE_ANNAM = { 
-				add_claim = c:FRA 
-			}
-			s:STATE_LAOS = { 
-				add_claim = c:FRA 	
-			}
-			s:STATE_CAMBODIA = { 
-				add_claim = c:FRA 
-			}
-			s:STATE_LARISTAN = { 
-				add_claim = c:PER 
-			}
-			s:STATE_HERAT = { 
-				remove_claim = c:PER 
-			}
-			s:STATE_HERAT = { 
-				remove_claim = c:PER 
-			}
-			s:STATE_SISTAN = { 
-				every_scope_state = {
-					limit = {
-						owner = c:KAN
-					}
-					set_state_owner = c:PER
-				}
-			}
-			set_global_variable = HJE_history
 		}
 	}
 }
@@ -1989,9 +1155,16 @@ on_character_death = {
 				owner = { 
 					any_subject_or_below = {
 						NOT = { has_law = law_type:law_autocracy }
-						is_subject_type = subject_type_personal_union
 						exists = c:NOR
 						c:NOR = THIS
+						OR = {
+							is_subject_type = subject_type_personal_union
+							AND = {
+								is_player = no
+								exists = c:SWE
+								c:SWE = PREV
+							}
+						}
 					}
 				}
 			}
@@ -2005,7 +1178,14 @@ on_character_death = {
 					has_law = law_type:law_monarchy 
 					NOT = { has_variable = den_attempt_to_eat_schleswig }
 					any_subject_or_below = {
-						is_subject_type = subject_type_personal_union
+						OR = {
+							is_subject_type = subject_type_personal_union
+							AND = {
+								is_player = no
+								exists = c:DEN
+								c:DEN = PREV
+							}
+						}
 						OR = {
 							AND = {
 								exists = c:SCH

@@ -158,4 +158,317 @@ GLOBAL = {
 	c:UBD = {
 		remove_primary_culture = cu:north_german
 	}
+	if = {
+		limit = {
+			NOR = {
+				exists = c:CAR
+				exists = c:CSP
+			}
+		}
+		create_country = {
+			tag = CSP
+			origin = c:SPA
+			state = s:STATE_ARAGON.region_state:SPA
+			state = s:STATE_NAVARRA.region_state:SPA
+			state = s:STATE_CATALONIA.region_state:SPA
+		}
+	}
+	create_country = {
+		tag = POL
+		origin = c:RUS
+		state = s:STATE_GREATER_POLAND.region_state:RUS
+		state = s:STATE_LESSER_POLAND.region_state:RUS
+		state = s:STATE_MAZOVIA.region_state:RUS
+	}
+	c:RUS = {
+		create_diplomatic_pact = {
+			country = c:POL
+			type = puppet
+		}
+	}
+	create_country = {
+		tag = MGL
+		origin = c:CHI
+		state = s:STATE_ULIASTAI.region_state:CHI
+		state = s:STATE_URGA.region_state:CHI
+		state = s:STATE_TUVA.region_state:CHI
+		state = s:STATE_TOMSK.region_state:CHI	
+	}
+	c:CHI = {
+		create_diplomatic_pact = {
+			country = c:MGL
+			type = vassal
+		}
+	}
+	create_country = {
+		tag = MCH
+		origin = c:CHI
+		state = s:STATE_AMUR.region_state:CHI
+		state = s:STATE_SHENGJING.region_state:CHI
+		state = s:STATE_OUTER_MANCHURIA.region_state:CHI
+		state = s:STATE_SOUTHERN_MANCHURIA.region_state:CHI
+		state = s:STATE_NORTHERN_MANCHURIA.region_state:CHI
+	}
+	c:CHI = {
+		create_diplomatic_pact = {
+			country = c:MCH
+			type = vassal
+		}
+	}
+	create_country = {
+		tag = XIB
+		origin = c:CHI
+		state = s:STATE_DZUNGARIA.region_state:CHI
+		state = s:STATE_TIANSHAN.region_state:CHI
+		state = s:STATE_KIRGHIZIA.region_state:CHI
+		state = s:STATE_JETISY.region_state:CHI
+		state = s:STATE_ALTAI.region_state:CHI
+	}
+	c:CHI = {
+		create_diplomatic_pact = {
+			country = c:XIB
+			type = vassal
+		}
+	}
+	s:STATE_EAST_MICRONESIA = {
+		add_claim = c:USA
+		add_claim = c:SPA
+	}
+	s:STATE_WEST_MICRONESIA = {
+		add_claim = c:USA
+		add_claim = c:SPA
+	}
+	s:STATE_CENTRAL_JAVA = {
+		add_claim = c:DEI
+		add_claim = c:NET
+	}
+	s:STATE_GHANA = {
+		add_claim = c:GBR
+	}
+	s:STATE_TOGO = {
+		add_claim = c:PRU
+	}
+	s:STATE_ALTO_PARAGUAY = {
+		add_claim = c:BOL
+	}
+	s:STATE_BUENOS_AIRES = {
+		add_claim = c:ARG
+	}
+	s:STATE_PATAGONIA = {
+		remove_claim = c:CHL
+	}
+	s:STATE_RIO_NEGRO = {
+		add_claim = c:ARG
+	}
+	s:STATE_SANTA_FE = {
+		add_claim = c:ARG
+	}
+	s:STATE_CHACO = {
+		add_claim = c:ARG
+	}
+	s:STATE_ARAUCANIA = {
+		remove_claim = c:ARG
+	}
+	s:STATE_WEST_SAHARA = {
+		add_claim = c:SPA
+		add_claim = c:CSP
+		remove_claim = c:MOR
+	}
+	s:STATE_INNER_MOROCCO = {
+		remove_claim = c:FRA
+	}
+	s:STATE_ORAN = {
+		add_claim = c:FRA
+	}
+	s:STATE_ALGIERS = {
+		add_claim = c:FRA
+	}
+	s:STATE_CONSTANTINE = {
+		add_claim = c:FRA
+	}
+	s:STATE_LOURENCO_MARQUES = {
+		add_claim = c:POR
+	}
+	s:STATE_MOCAMBIQUE = {
+		add_claim = c:POR
+	}
+	s:STATE_ZAMBEZIA = {
+		add_claim = c:POR
+	}
+	#s:STATE_NORTHERN_CAPE = {
+	#	add_claim = c:SAF
+	#}
+	s:STATE_NORTH_SUMATRA = {
+		add_claim = c:DEI
+		add_claim = c:NET
+	}	
+	s:STATE_ACEH = {
+		add_claim = c:DEI
+		add_claim = c:NET
+	}
+	s:STATE_WESTERN_NEW_GUINEA = {
+		add_claim = c:DEI
+		add_claim = c:NET
+	}
+	s:STATE_CELEBES = {
+		add_claim = c:DEI
+		add_claim = c:NET
+	}
+	s:STATE_WEST_BORNEO = {
+		add_claim = c:DEI
+		add_claim = c:NET
+	}
+	s:STATE_EAST_BORNEO = {
+		add_claim = c:DEI
+		add_claim = c:NET
+	}
+	s:STATE_MALAYA = {
+		add_claim = c:GBR
+	}	
+	s:STATE_NORTH_BORNEO = {
+		add_claim = c:GBR
+	}	
+	s:STATE_MINDANAO = {
+		add_claim = c:PHI
+	}
+	#s:STATE_ZULULAND = {
+	#	add_claim = c:SAF
+	#}
+	#s:STATE_VRYSTAAT = {
+	#	add_claim = c:SAF
+	#}
+	#s:STATE_TRANSVAAL = {
+	#	add_claim = c:SAF
+	#}
+	s:STATE_SOLOMON_ISLANDS = {
+		add_claim = c:GBR
+	}
+	s:STATE_NAURU = {
+		add_claim = c:PRU
+	}
+	s:STATE_FIJI = {
+		add_claim = c:GBR
+	}
+	s:STATE_VANUATU = {
+		add_claim = c:FRA
+	}
+	s:STATE_KANAK = {
+		add_claim = c:FRA
+	}
+	s:STATE_TAHITI = {
+		add_claim = c:GBR
+		add_claim = c:FRA
+		add_claim = c:CHL
+	}
+	s:STATE_TONGA = {
+		add_claim = c:GBR
+		add_claim = c:USA
+	}
+	s:STATE_CRETE = {
+		add_claim = c:TUR
+	}
+	s:STATE_SAKHALIN = {
+		remove_claim = c:JAP
+	}
+	s:STATE_SOLOMON_ISLANDS = {
+		add_claim = c:GBR
+	}
+	s:STATE_SOLOMON_ISLANDS = {
+		add_claim = c:GBR
+	}
+	s:STATE_SOLOMON_ISLANDS = {
+		add_claim = c:GBR
+	}
+	s:STATE_SOLOMON_ISLANDS = {
+		add_claim = c:GBR
+	}		
+	s:STATE_SOUTH_AUSTRALIA = {
+		add_claim = c:SAS
+	}	
+	s:STATE_EAST_ANGOLA = {
+		add_claim = c:POR
+	}
+	s:STATE_SOUTH_ANGOLA = {
+		add_claim = c:POR
+	}
+	s:STATE_DARFUR = {
+		add_claim = c:EGY
+	}	
+	s:STATE_KACHIN = {
+		add_claim = c:BIC
+	}
+	s:STATE_BURMA = {
+		add_claim = c:BIC
+	}
+	s:STATE_PEGU = {
+		add_claim = c:BIC
+	}
+	s:STATE_SHAN_STATES	 = {
+		add_claim = c:BIC
+	}
+	s:STATE_KASHMIR = {
+		add_claim = c:BIC
+	}
+	s:STATE_PUNJAB = {
+		add_claim = c:BIC
+	}
+	s:STATE_PASHTUNISTAN = {
+		add_claim = c:BIC
+	}
+	s:STATE_SINDH = {
+		add_claim = c:BIC
+	}
+	s:STATE_BALUCHISTAN	 = {
+		add_claim = c:BIC
+	}	
+	s:STATE_QUETTA = {
+		add_claim = c:BIC
+	}				
+	s:STATE_OKLAHOMA = {
+		add_claim = c:USA
+		add_claim = c:MEX
+	}
+	s:STATE_COLORADO = {
+		add_claim = c:USA
+		add_claim = c:MEX
+	}
+	s:STATE_NEVADA = {
+		add_claim = c:MEX
+	}
+	s:STATE_NEW_MEXICO = {
+		add_claim = c:MEX
+		remove_claim = c:USA
+	}
+	s:STATE_MEKONG = { 
+		add_claim = c:FRA
+	}
+	s:STATE_TONKIN = { 
+		add_claim = c:FRA				
+	}
+	s:STATE_ANNAM = { 
+		add_claim = c:FRA 
+	}
+	s:STATE_LAOS = { 
+		add_claim = c:FRA 	
+	}
+	s:STATE_CAMBODIA = { 
+		add_claim = c:FRA 
+	}
+	s:STATE_LARISTAN = { 
+		add_claim = c:PER 
+	}
+	s:STATE_HERAT = { 
+		remove_claim = c:PER 
+	}
+	s:STATE_HERAT = { 
+		remove_claim = c:PER 
+	}
+	s:STATE_SISTAN = { 
+		every_scope_state = {
+			limit = {
+				owner = c:KAN
+			}
+			set_state_owner = c:PER
+		}
+	}
 }

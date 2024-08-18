@@ -221,4 +221,51 @@ TUR = { # Turkey
 			NOT = { has_global_variable = TUR_decided_to_ditch_ottoman_dynasty }
 		}
 	}
+	dynamic_country_name = {
+		name = dyn_c_turkish_empire
+		adjective = dyn_c_turkish_empire_adj
+		
+		is_main_tag_only = yes
+		priority = 0
+		
+		trigger = {
+			coa_def_monarchy_flag_trigger = yes
+			has_global_variable = TUR_decided_to_ditch_ottoman_dynasty
+		}
+	}
+}
+
+BIC = { # East India Company
+	dynamic_country_name = {
+		name = dyn_c_british_raj
+		adjective = dyn_c_british_raj_adj
+		use_overlord_prefix = yes
+
+		is_main_tag_only = yes
+		priority = 0
+		
+		trigger = {
+			coa_def_subject_trigger = yes
+		}
+	}
+	dynamic_country_name = {
+		name = dyn_c_east_india_company
+		adjective = dyn_c_east_india_company_adj
+		use_overlord_prefix = yes
+
+		is_main_tag_only = yes
+		priority = 1
+		
+		trigger = {
+			coa_def_subject_trigger = yes
+			NOT = { has_global_variable = eic_disbanded_globevar }
+			scope:actor = { 
+				NOR = {
+					has_law = law_type:law_monarchy 
+					is_subject_type = subject_type_puppet
+					is_subject_type = subject_type_colonial_administration
+				}
+			}
+		}
+	}
 }

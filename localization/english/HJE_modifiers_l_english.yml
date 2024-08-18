@@ -157,8 +157,6 @@
  modifier_hosted_berlin_conference:0 "Hosted the West Africa Conference"
  sfa_unexplored_state:0 "Dangerous and Unexplored"
  sfa_scramble_for_africa:0 "The Scramble for Africa"
-
- #NEW TEXT:
  open_markets_modifier:0 "Open Markets"
  modifier_fra_support_for_old_monarchy:0 "Down with the Republic!"
  modifier_fra_disrespect_for_kings_law:0 "Down with the monarch!"
@@ -169,6 +167,13 @@
  modifier_fra_fail_coup_etat:0 "Failed coup"
  hungarian_glory:0 "Austro-Hungarian Compromise"
  front_speed_modifier:0 "Disorganized Army"
+
+ #NEW TEXT:
+ laborer_unrest:0 "Laborer Unrest"
+ modifier_usa_american_empire:0 "Belief in American Exceptionalism"
+ modifier_usa_american_empire_desc:0 "American citizens believe that their country has asserted herself on the world stage."
+ modifier_gilded_age_reforms:0 "Gilded Age Reforms"
+ modifier_gilded_age_reforms_desc:0 "Though marred in corruption, the gilded era's reforms greatly expanded the opportunities for American business and empire."
 
  
  #RE-WRITTEN TEXT:

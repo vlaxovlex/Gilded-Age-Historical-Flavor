@@ -42,27 +42,34 @@ raj.1 = {
 		name = raj.1.a
 		default_option = yes
 		custom_tooltip = activate_british_raj
-		if = {
-			limit = {
-				has_diplomatic_pact = {
-					who = c:BIC
-					type = dominion
-				}
-			}
-			hidden_effect = {
-				remove_diplomatic_pact = {
-					country = c:BIC
-					type = dominion
-				}
-			}
-			create_diplomatic_pact = {
-				country = c:BIC
-				type = hje_colonial_administration	#HJE edit
-			}
-		}
+#		if = {	#HJE edit, doesn't seem to work for some reason
+#			limit = {
+#				has_diplomatic_pact = {
+#					who = c:BIC
+#					type = dominion
+#				}
+#			}
+#			hidden_effect = {
+#				remove_diplomatic_pact = {
+#					country = c:BIC
+#					type = dominion
+#				}
+#			}
+#			create_diplomatic_pact = {
+#				country = c:BIC
+#				type = hje_colonial_administration	#HJE edit
+#			}
+#		}
 		c:BIC = {
 			set_variable = doctrine_of_lapse_ended
 			custom_tooltip = doctrine_of_lapse_disabled
+			if = {
+				limit = {	#HJE edit
+					is_subject_of = ROOT
+					is_subject_type = subject_type_dominion
+				}
+				change_subject_type = subject_type_colonial_administration
+			}
 			if = {
 				limit = {
 					NOT = {
@@ -776,7 +783,7 @@ raj.7 = {
 		default_option = yes
 		custom_tooltip = activate_british_raj
 		custom_tooltip = doctrine_of_lapse_disabled
-		set_variable = is_british_raj_var	#HJE edit
+		has_global_variable = eic_disbanded_globevar	#HJE edit
 		show_as_tooltip = {
 			c:GBR = {
 				create_diplomatic_pact = {

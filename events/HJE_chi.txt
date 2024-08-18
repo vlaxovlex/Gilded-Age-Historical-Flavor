@@ -254,7 +254,7 @@ HJE_china.5 = {
 		exists = c:TPG
 		any_diplomatic_play = {
 	        target_is = c:CHI
-			initator_is = c:TPG
+			initiator_is = c:TPG
 		}
 		NOT = { has_variable = support_against_tpg_var }
 		OR = {
@@ -289,7 +289,7 @@ HJE_china.5 = {
 		
 		random_diplomatic_play = {
 			limit = {
-				initator_is = c:TPG
+				initiator_is = c:TPG
 	            target_is = c:CHI
 			}
 			add_target_backers = { ROOT }

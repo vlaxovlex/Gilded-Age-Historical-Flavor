@@ -462,20 +462,24 @@ HJE_austria.1 = {
 		else = {
 			c:BOS = { save_scope_as = austrian_bosnia_scope }
 		}
-		every_state = {
-			limit = { owner = scope:austrian_bosnia_scope }
-			state_region = {
-				add_modifier = {
-					name = bosnia_modifier
-					months = 360
-				}
-			}
-			add_modifier = {
-				name = bosnia_modifier
-				months = 360
-			}
+#		every_state = { ## when PDX makes this work, we can enable this
+#			limit = { owner = scope:austrian_bosnia_scope }
+#			state_region = {
+#				add_modifier = {
+#					name = bosnia_modifier
+#					months = 360
+#				}
+#			}
+#			add_modifier = {
+#				name = bosnia_modifier
+#				months = 360
+#			}
+#		}
+#		annex = scope:austrian_bosnia_scope
+		create_diplomatic_pact = {
+			country = scope:austrian_bosnia_scope
+			type = puppet
 		}
-		annex = scope:austrian_bosnia_scope
 	}
 	option = {
 		name = HJE_austria.1.b

@@ -78,7 +78,7 @@ modifier_reforms_of_alexander = {
 modifier_tge_peasants_reform = {
 	icon = gfx/interface/icons/timed_modifier_icons/modifier_statue_positive.dds
 	state_birth_rate_mult = 0.4
-	country_production_weekly_innovation_mult = 0.75
+	country_weekly_innovation_mult = 0.75
 }
 	
 modifier_tge_russian_military_reform = {
@@ -86,14 +86,14 @@ modifier_tge_russian_military_reform = {
 	unit_army_offense_mult = 0.1
 	unit_army_defense_mult = 0.1
 	building_training_rate_mult = 0.25
-	country_military_weekly_innovation_mult = 0.75
+	country_military_tech_research_speed_mult = 0.25
 }
 modifier_tge_melikovs_constitution = {
 	icon = gfx/interface/icons/timed_modifier_icons/modifier_statue_positive.dds
 	country_bureaucracy_mult = 0.1
 	country_influence_mult = 0.1
 	country_authority_mult = 0.1
-	country_society_weekly_innovation_mult = 0.75
+	country_society_tech_research_speed_mult = 0.25
 }
 
 modifier_reforms_of_alexander_legacy = {
@@ -111,8 +111,8 @@ modifier_tge_metternich = {
 modifier_tge_junkers_heer_krupp = {
 	icon = gfx/interface/icons/timed_modifier_icons/modifier_gear_positive.dds
 	building_training_rate_mult = 0.15
-	country_production_weekly_innovation_mult = 0.05
-	country_military_weekly_innovation_mult = 0.05
+	country_weekly_innovation_mult = 0.05
+	country_military_tech_research_speed_mult = 0.05
 }
 
 modifier_tge_austria_in_chaos = {
@@ -128,8 +128,8 @@ modifier_tge_unification_boom = {
 land_redistribution_modifier = {
 	icon = gfx/interface/icons/timed_modifier_icons/modifier_documents_negative.dds
 	#Agricultural throughput reduced
-	building_group_bg_agriculture_throughput_mult = -0.05
-	building_group_bg_ranching_throughput_mult = -0.05
+	building_group_bg_agriculture_throughput_add = -0.05
+	building_group_bg_ranching_throughput_add = -0.05
 	#increase bureaucracy
 	country_bureaucracy_mult = -0.1
 	#increase government costs
@@ -206,15 +206,16 @@ modifier_prussia_of_the_americas = {
 
 modifier_mex_porfiriato = {
 	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_negative.dds
-	country_private_buildings_protected = 0.9
-	country_society_weekly_innovation_mult = -0.1
+	#country_private_buildings_protected = yes
+	country_private_construction_allocation_mult = 0.9
+	country_society_tech_research_speed_mult = -0.1
 	state_radicals_from_discrimination_mult = 0.05
 	state_radicals_from_sol_change_mult = 0.1
 	country_bureaucracy_mult = -0.05
 	country_influence_mult = 0.1
 	country_authority_mult = 0.15
-	building_group_bg_agriculture_throughput_mult = 0.6
-	building_group_bg_plantations_throughput_mult = 0.6
+	building_group_bg_plantations_throughput_add = 0.5
+	building_group_bg_ranching_throughput_add = 0.5
 }
 
 modifier_state_capital_of_germany = {
@@ -226,7 +227,7 @@ modifier_state_capital_of_germany = {
 
 guerilla_warfare = { 
     icon = gfx/interface/icons/timed_modifier_icons/modifier_rifle_positive.dds
-	front_enemy_advancement_speed_mult = -2
+	unit_advancement_speed_mult = -2
 	military_formation_movement_speed_mult = -1
     unit_army_defense_mult = 0.5
 	state_conscription_rate_add = 0.03
@@ -234,9 +235,9 @@ guerilla_warfare = {
 
 mexican_civil_war = { 
     icon = gfx/interface/icons/timed_modifier_icons/modifier_rifle_negative.dds
-	front_advancement_speed_mult = -0.5
+	unit_advancement_speed_mult = -0.5
 	country_war_exhaustion_casualties_mult = -1
-	country_society_weekly_innovation_mult = 0.25
+	country_society_tech_research_speed_mult = 0.25
     unit_army_defense_mult = 1
 	unit_army_offense_mult = 1
 }
@@ -252,7 +253,7 @@ modifier_fra_support_for_old_monarchy = {
 	icon = gfx/interface/icons/timed_modifier_icons/modifier_documents_positive.dds
 		
 	country_legitimacy_base_add = 15
-	country_revolution_secession_speed_add = -0.25
+	country_secession_progress_add = -0.25
 	interest_group_ig_landowners_pol_str_mult = -0.25
 	interest_group_ig_industrialists_pol_str_mult = 0.25
 	interest_group_ig_intelligentsia_pol_str_mult = -0.25
@@ -263,7 +264,7 @@ modifier_fra_disrespect_for_kings_law = {
 	icon = gfx/interface/icons/timed_modifier_icons/modifier_documents_negative.dds
 	
 	country_legitimacy_base_add = -10
-	country_revolution_secession_speed_add = 0.25
+	country_secession_progress_add = 0.25
 	interest_group_ig_intelligentsia_pol_str_mult = 0.50
 	interest_group_ig_trade_unions_pol_str_mult = 0.25
 }
@@ -423,8 +424,8 @@ denmark_national_humiliation = {
 
 denmark_focus_on_agriculture = {
 	icon = gfx/interface/icons/timed_modifier_icons/modifier_documents_positive.dds
-	building_group_bg_agriculture_throughput_mult = 0.2
-	building_group_bg_ranching_throughput_mult = 0.2
+	building_group_bg_agriculture_throughput_add = 0.2
+	building_group_bg_ranching_throughput_add = 0.2
 	country_expenses_add = 250
 }
 
@@ -528,12 +529,12 @@ norway_abolishment_of_new_aristocrats = {
 norway_det_store_hamskiftet = {
 	icon = gfx/interface/icons/timed_modifier_icons/modifier_documents_positive.dds
 	interest_group_ig_industrialists_pol_str_mult = 0.1
-	building_group_bg_light_industry_throughput_mult = 0.1
+	building_group_bg_light_industry_throughput_add = 0.1
 }
 norway_det_store_hamskiftet_alt = {
 	icon = gfx/interface/icons/timed_modifier_icons/modifier_documents_positive.dds
-	building_group_bg_agriculture_throughput_mult = 0.05
-	building_group_bg_light_industry_throughput_mult = 0.05
+	building_group_bg_agriculture_throughput_add = 0.05
+	building_group_bg_light_industry_throughput_add = 0.05
 }
 norway_support_during_changing_times = {
 	icon = gfx/interface/icons/timed_modifier_icons/modifier_documents_positive.dds
@@ -576,7 +577,7 @@ finland_the_strife_over_language = {
 }
 finland_language_question_solved = {
 	icon = gfx/interface/icons/timed_modifier_icons/modifier_fist_positive.dds
-	country_society_weekly_innovation_mult = 0.25
+	country_society_tech_research_speed_mult = 0.25
 	state_assimilation_mult = 0.1
 }
 finland_language_question_unsolved = {
@@ -589,7 +590,7 @@ finland_swedish_oppose_the_academics = {
 	icon = gfx/interface/icons/timed_modifier_icons/modifier_documents_positive.dds
 	country_authority_mult = 0.05
 	state_assimilation_mult = 0.05
-	country_society_weekly_innovation_mult = -0.1
+	country_society_tech_research_speed_mult = -0.1
 	interest_group_ig_intelligentsia_approval_add = -1
 }
 finland_old_elite_opposition = {
@@ -657,27 +658,29 @@ federal_war_modifier = {
 	battle_defense_owned_province_mult = 0.2
     country_war_exhaustion_casualties_mult = -1.5
 	unit_provinces_captured_mult = -0.8
-	unit_mobilization_speed_mult = -0.2
+	state_conscription_rate_mult = -0.25
 }
 
 confederacy_war_modifier = { 
     icon = gfx/interface/icons/timed_modifier_icons/modifier_rifle_positive.dds
     unit_army_defense_mult = 0.45
     unit_army_offense_mult = 0.6
+	state_conscription_rate_add = 0.5
 	battle_defense_owned_province_mult = 0.2
     country_war_exhaustion_casualties_mult = -1.5
 	unit_provinces_captured_mult = -0.8
-	unit_mobilization_speed_mult = 0.6
+	state_conscription_rate_mult = 0.5
 }
 
 free_american_war_modifier = { 
     icon = gfx/interface/icons/timed_modifier_icons/modifier_rifle_positive.dds
     unit_army_defense_mult = 0.15
     unit_army_offense_mult = 0.3
+	state_conscription_rate_add = 0.25
 	battle_defense_owned_province_mult = 0.1
     country_war_exhaustion_casualties_mult = -1.5
 	unit_provinces_captured_mult = -0.8
-	unit_mobilization_speed_mult = 0.6
+	state_conscription_rate_mult = 0.5
 }
 
 otf_annex_egypt_mdf = {
@@ -782,7 +785,7 @@ otf_developed_market = {
 
 otf_black_gold_mdf = {
 	icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_positive.dds
-	building_output_oil_mult = 0.1
+	building_group_bg_oil_extraction_throughput_add = 0.1
 }
 
 otf_balance_politics = {
@@ -792,9 +795,8 @@ otf_balance_politics = {
 
 otf_advanced_weapons_industry = {
 	icon = gfx/interface/icons/timed_modifier_icons/modifier_rifle_positive.dds
-	building_output_artillery_mult = 0.1
-	building_output_ammunition_mult = 0.1
-	building_output_small_arms_mult = 0.1
+	goods_output_artillery_mult = 0.15
+	goods_output_small_arms_mult = 0.15
 }
 
 otf_armenian_become_loyal = {
@@ -804,7 +806,7 @@ otf_armenian_become_loyal = {
 
 otf_pre_otto_egypt_war_mdf = {
 	icon = gfx/interface/icons/timed_modifier_icons/modifier_rifle_positive.dds
-	country_military_tech_cost_mult = -0.075
+	country_military_tech_research_speed_mult = 0.1
 }
 
 otf_legislate_kanuni_esasi_mdf = {
@@ -825,7 +827,7 @@ otf_peoples_empire_mdf = {
 
 otf_modernize_army_mdf = {
 	icon = gfx/interface/icons/timed_modifier_icons/modifier_rifle_positive.dds
-	interest_group_ig_ig_armed_forces_approval_add = 2
+	interest_group_ig_armed_forces_approval_add = 2
 }
 
 balkans_united_mdf = {
@@ -855,7 +857,8 @@ otf_dof_islam_inf_mdf = {
 
 otf_turkic_unification_mdf = {
 	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
-	state_turkic_standard_of_living_add = 2
+	state_tuvan_standard_of_living_add = 2
+	state_uighur_standard_of_living_add = 2
 }
 
 paid_off_debt_to_suez_company_modifier = {
@@ -870,14 +873,14 @@ debt_returns_from_suez_company_modifier = {
 
 potato_blight_country_modifier = {
 	icon = gfx/interface/icons/timed_modifier_icons/modifier_fire_negative.dds
-	building_rye_farm_throughput_mult = -1
+	building_rye_farm_throughput_add = -1
     state_loyalists_from_sol_change_mult = -0.2
 }
 
 potato_blight_less_country_modifier = {
 	icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_negative.dds
 	country_expenses_add = 100
-	building_rye_farm_throughput_mult = -0.95
+	building_rye_farm_throughput_add = -0.95
     state_loyalists_from_sol_change_mult = -0.1
 }
 
@@ -937,20 +940,20 @@ gec_modifier_encouraging_attrocities = {
 	country_prestige_mult = -0.25
 }
 
-bosnia_modifier = {
-	icon = gfx/interface/icons/timed_modifier_icons/modifier_fire_negative.dds
-    state_disallow_incorporation = yes
-}
+#bosnia_modifier = { ## when PDX makes this work, we can enable this
+#	icon = gfx/interface/icons/timed_modifier_icons/modifier_fire_negative.dds
+#    state_disallow_incorporation = yes
+#}
 
-building_input_canalToll_add = {
-	good = no
-	percent = no
-}
-
-building_output_canalToll_add = {
-	good = yes
-	percent = no
-}
+#building_input_canalToll_add = { ## when 2942007769 updates we can fix this
+#	good = no
+#	percent = no
+#}
+#
+#building_output_canalToll_add = {
+#	good = yes
+#	percent = no
+#}
 
 harpers_ferry_success_mod = {
 	icon = gfx/interface/icons/timed_modifier_icons/modifier_fire_negative.dds
@@ -994,8 +997,8 @@ sfa_scramble_for_africa = {
 
 open_markets_modifier = {
 	icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_positive.dds
-	country_trade_route_exports_add = 50
-	country_trade_route_imports_add = 50
+	tariff_import_add = 0.25
+	tariff_export_add = 0.25
 }
 
 hungarian_glory = {
@@ -1006,4 +1009,27 @@ hungarian_glory = {
 front_speed_modifier = {
 	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_negative.dds
 	unit_provinces_captured_mult = -0.9
+}
+
+modifier_usa_american_empire = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_statue_positive.dds
+	country_prestige_mult = 0.15
+	country_influence_mult = 0.15
+	country_society_tech_spread_mult = 0.05
+	state_conscription_rate_add = 0.05
+}
+
+modifier_gilded_age_reforms = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_negative.dds
+	state_radicals_from_sol_change_accepted_culture_mult = -0.05
+	country_bureaucracy_mult = 0.1
+	country_private_construction_allocation_mult = 0.3
+	country_society_tech_research_speed_mult = 0.15
+}
+
+laborer_unrest = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_fist_negative.dds
+	building_group_bg_light_industry_throughput_add = -0.50
+	building_group_bg_heavy_industry_throughput_add = -0.20
+	state_conscription_rate_mult = -0.25
 }

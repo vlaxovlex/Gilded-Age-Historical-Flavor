@@ -4964,6 +4964,278 @@ HJE_usa.11 = {
 		}
 	}
 }
+	
+#American Exceptionalism (Choice between expanded Manifest Destiny or building an American foreign empire)
+HJE_usa.12 = {
+	type = country_event
+	
+	event_image = {
+		video = "gfx/event_pictures/europenorthamerica_capitalists_meeting.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/capitalists_meeting"
+
+	icon = "gfx/interface/icons/event_icons/event_map.dds"
+	
+	title = HJE_usa.12.t 
+	desc = HJE_usa.12.d 
+	flavor = HJE_usa.12.f 
+	
+	duration = 3
+	
+	trigger = {
+	}
+	
+	immediate = {
+		set_variable = {
+			name = HJE_american_empire_event
+			value = yes
+		}
+	}
+	
+	option = {
+		name = HJE_usa.12.a						
+        default_option = yes
+		ai_chance = { 
+			base = 95 
+			modifier = {
+				factor = 0
+				any_country = {
+					NOT = { THIS = ROOT }
+					OR = {
+						AND = {
+							exists = c:USA
+							c:USA = THIS
+						}
+						AND = {
+							exists = c:FSA
+							c:FSA = THIS
+						}
+						AND = {
+							exists = c:CSA
+							c:CSA = THIS
+						}
+					}
+				}
+			}
+		}
+		add_journal_entry = { type = je_building_an_american_empire }
+		add_journal_entry = { type = je_american_empire_education }
+		add_journal_entry = { type = je_american_empire_bureaucracy }
+		add_journal_entry = { type = je_american_empire_get_foreign_colony }
+		add_journal_entry = { type = je_american_empire_liberate_euro_colonies }
+		s:STATE_PUERTO_RICO = { add_claim = ROOT }
+		hidden_effect = {
+			set_variable = {
+				name = american_empire_var
+				value = 0
+			}
+			every_country = {
+				limit = {
+					OR = {
+						country_is_in_north_america = yes
+						country_is_in_central_america = yes
+						country_is_in_south_america = yes
+					}
+					OR = {
+						is_subject_type = subject_type_dominion
+						is_subject_type = subject_type_puppet
+						is_subject_type = subject_type_colonial_administration
+					}
+					any_overlord_or_above = {
+						NOR = {
+							country_is_in_north_america = yes
+							country_is_in_central_america = yes
+							country_is_in_south_america = yes
+						}
+					}
+				}
+				set_variable = american_empire_je_current_american_colony
+				every_overlord_or_above = {
+					limit = {
+						NOR = {
+							country_is_in_north_america = yes
+							country_is_in_central_america = yes
+							country_is_in_south_america = yes
+						}
+					}
+					set_variable = american_empire_je_potential_enemy_empire
+				}
+			}
+		}
+	}
+	option = {
+		name = HJE_usa.12.b
+		ai_chance = { base = 5 }
+		add_journal_entry = { type = je_building_an_american_empire }
+		add_journal_entry = { type = je_american_empire_education }
+		add_journal_entry = { type = je_american_empire_bureaucracy }
+		add_journal_entry = { type = je_american_empire_continued_manifest_destiny }
+		if = {
+			limit = {
+				any_scope_state = {
+					is_incorporated = yes
+					this.state_region = { OR = { is_homeland = cu:yankee is_homeland = cu:dixie } }
+					any_neighbouring_state = {
+						NOT = { owner = ROOT }
+						owner = {
+							OR = {
+								country_has_primary_culture = cu:anglo_canadian
+								country_has_primary_culture = cu:franco_canadian
+							}
+						}
+					}
+				}
+			}
+			set_variable = american_empire_je_requires_canada
+			s:STATE_NORTHWEST_TERRITORIES = { add_claim = ROOT }
+			s:STATE_NUNAVUT = { add_claim = ROOT }
+			s:STATE_ONTARIO = { add_claim = ROOT } 
+			s:STATE_QUEBEC = { add_claim = ROOT }
+			s:STATE_NEWFOUNDLAND = { add_claim = ROOT }
+			s:STATE_MANITOBA = { add_claim = ROOT }
+			s:STATE_BRITISH_COLUMBIA = { add_claim = ROOT }
+			s:STATE_YUKON_TERRITORY = { add_claim = ROOT }
+			s:STATE_ALBERTA = { add_claim = ROOT }
+		}
+		if = {
+			limit = {
+				any_scope_state = {
+					is_incorporated = yes
+					this.state_region = { OR = { is_homeland = cu:yankee is_homeland = cu:dixie } }
+					any_neighbouring_state = {
+						NOT = { owner = ROOT }
+						owner = { country_has_primary_culture = cu:mexican }
+					}
+				}
+			}
+			set_variable = american_empire_je_requires_northern_mexico
+			s:STATE_BAJA_CALIFORNIA = { add_claim = ROOT }
+			s:STATE_CHIHUAHUA = { add_claim = ROOT }
+			s:STATE_DURANGO = { add_claim = ROOT }
+			s:STATE_SONORA = { add_claim = ROOT }
+			s:STATE_SINALOA = { add_claim = ROOT }
+			s:STATE_CHIHUAHUA = { add_claim = ROOT }
+			s:STATE_RIO_GRANDE = { add_claim = ROOT }
+		}
+		hidden_effect = {
+			set_variable = {
+				name = american_empire_var
+				value = 1
+			}
+		}
+	}
+}
+
+# Market reforms resisted
+HJE_usa.13 = {
+	type = country_event
+	placement = scope:laborer_state
+	title = HJE_usa.13.t
+	desc = HJE_usa.13.d
+	flavor = HJE_usa.13.f
+
+	event_image = {
+		video = "europenorthamerica_political_extremism"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_protest.dds"
+	
+	duration = 3
+
+	trigger = {
+		has_variable = american_empire_var
+		NOT = { 
+			has_variable = american_empire_cooldown 
+		}
+		any_scope_state = {
+			is_incorporated = yes
+			any_scope_pop = {
+				is_pop_type = laborers 
+			}
+		}
+		any_scope_character = {
+			OR = {
+				has_role = general
+			}
+		}
+	}
+	immediate = {
+		random_scope_state = {
+			limit = {
+				is_incorporated = yes
+				any_scope_pop = {
+					is_pop_type = laborers 
+				}
+			}
+			random_scope_pop = {
+					limit = { 
+						is_pop_type = laborers 
+					}
+					save_scope_as = laborer_pop_scope
+				}
+			save_scope_as = laborer_state
+		}
+		set_variable = {
+			name = american_empire_cooldown
+			months = short_modifier_time
+		}
+		random_scope_character = {
+			limit = {
+				has_role = general
+			}
+			save_scope_as = laborer_smashing_general
+		}
+	}
+
+	option = {
+		name = HJE_usa.13.a						
+        default_option = yes
+		scope:laborer_state = {
+			add_modifier = {
+				name = laborer_unrest
+				months = normal_modifier_time
+				multiplier = 0.5
+			}
+			add_radicals_in_state = {
+				pop_type = laborers
+				value = medium_radicals
+			}
+		}
+		ig:ig_industrialists = {
+			add_modifier = {
+				name = expanding_holdings
+				months = normal_modifier_time
+			}
+		}
+	}
+	option = {
+		name = HJE_usa.13.b
+		scope:laborer_state = {
+			add_modifier = {
+				name = laborer_unrest
+				months = normal_modifier_time
+				multiplier = 0.25
+			}
+			add_radicals_in_state = {
+				pop_type = laborers
+				value = large_radicals
+			}
+		}
+	}
+	option = {
+		name = HJE_usa.13.c					
+		scope:laborer_state = {
+			add_modifier = {
+				name = laborer_unrest
+				months = normal_modifier_time
+			}
+		}
+	}
+}
 
 namespace = gadsden_purchase
 

@@ -58,3 +58,579 @@ create_random_bonapartist_heir = {
 		1 = { create_character = { first_name = Jean-Christophe last_name = Bonaparte age = 0 heir = yes ideology = ideology_royalist on_created = { set_variable = is_bonapartist } } }
 	}
 }
+
+HJE_cleanup_effect = {
+	if = {
+		limit = {			#USA AI will not be allowed to colonize canadian states
+			exists = c:USA
+			c:USA = THIS
+			is_player = no
+			OR = {
+				has_state_in_state_region = STATE_ALBERTA
+				has_state_in_state_region = STATE_SASKATCHEWAN
+			}
+			any_country = {
+				OR = {
+					country_has_primary_culture = cu:anglo_canadian
+					country_has_primary_culture = cu:franco_canadian
+				}
+				OR = {
+					has_state_in_state_region = STATE_ALBERTA
+					has_state_in_state_region = STATE_SASKATCHEWAN
+				}
+			}
+		}
+		random_country = {
+			limit = {
+				OR = {
+					country_has_primary_culture = cu:anglo_canadian
+					country_has_primary_culture = cu:franco_canadian
+				}
+				OR = {
+					has_state_in_state_region = STATE_ALBERTA
+					has_state_in_state_region = STATE_SASKATCHEWAN
+				}
+			}
+			save_scope_as = canada_scope
+		}
+		every_state = {
+			limit = {
+				owner = ROOT
+				OR = {
+					state_region = s:STATE_ALBERTA
+					state_region = s:STATE_SASKATCHEWAN
+				}
+			}
+			set_state_owner = scope:canada_scope
+		}
+	}
+	if = {
+		limit = {			#USA AI will try to take these states at least once
+			year > 1840
+			exists = c:USA
+			c:USA = ROOT
+			is_player = no
+			NOT = { has_variable = am_wargoals }
+			c:MEX = { 
+				is_diplomatic_play_enemy_of = ROOT 
+				OR = {
+					has_state_in_state_region = STATE_TEXAS
+					has_state_in_state_region = STATE_CALIFORNIA
+				}
+			}
+		}
+		c:USA = { set_variable = am_wargoals }
+		random_diplomatic_play = {
+			limit = {
+				any_scope_play_involved = {
+					THIS = c:MEX
+					is_diplomatic_play_enemy_of = ROOT
+				}
+			}
+			if = {
+				limit = { NOT = { s:STATE_CALIFORNIA.region_state:MEX = { is_target_of_wargoal = ROOT } } }
+				add_war_goal = {
+					holder = c:USA
+					type = return_state
+					target_state = s:STATE_CALIFORNIA.region_state:MEX
+					primary_demand = yes
+				}
+			}
+			if = {
+				limit = { NOT = { s:STATE_TEXAS.region_state:MEX = { is_target_of_wargoal = ROOT } } }
+				add_war_goal = {
+					holder = c:USA
+					type = return_state
+					target_state = s:STATE_TEXAS.region_state:MEX
+					primary_demand = yes
+				}
+			}
+		}
+	}
+	if = {
+		limit = {			#Romania Fix
+			exists = c:ROM
+			root = c:ROM
+			OR = {
+				AND = {
+					exists = c:MOL
+					is_subject_of = c:MOL
+				}
+				AND = {
+					exists = c:WAL
+					is_subject_of = c:WAL
+				}
+			}
+		}
+		if = {
+			limit = {
+				exists = c:MOL
+				is_subject_of = c:MOL
+			}
+			create_diplomatic_pact = {
+				country = c:MOL
+				type = personal_union
+			}
+			c:MOL = {	
+				remove_diplomatic_pact = {
+					country = root
+					type = puppet
+				}
+				remove_diplomatic_pact = {
+					country = root
+					type = protectorate
+				}
+				remove_diplomatic_pact = {
+					country = root
+					type = personal_union
+				}
+			}
+		}
+		if = {
+			limit = {
+				exists = c:WAL
+				is_subject_of = c:WAL
+			}
+			create_diplomatic_pact = {
+				country = c:WAL
+				type = personal_union
+			}
+			c:WAL = {	
+				remove_diplomatic_pact = {
+					country = root
+					type = puppet
+				}
+				remove_diplomatic_pact = {
+					country = root
+					type = protectorate
+				}
+				remove_diplomatic_pact = {
+					country = root
+					type = personal_union
+				}
+			}
+		}
+	}
+	if = {
+		limit = {			#Russian government fix 1
+			NOT = { has_variable = ai_1861_var }
+			year >= 1861
+			exists = c:RUS
+			c:RUS = ROOT
+			c:RUS = { is_player = no }		
+		}
+		set_ruling_interest_groups = { ig_intelligentsia ig_industrialists }
+		activate_law = law_type:law_tenant_farmers
+		activate_law = law_type:law_slavery_banned
+		activate_law = law_type:law_agrarianism
+		set_variable = 1861_var
+	}
+	
+	if = {
+		limit = {			#Russian government fix 2
+			NOT = { has_variable = ai_1862_var }
+			year >= 1862
+			exists = c:RUS
+			c:RUS = ROOT
+			c:RUS = { is_player = no }		
+		}
+		set_ruling_interest_groups = { ig_intelligentsia ig_industrialists }
+		activate_law = law_type:law_professional_army
+		activate_law = law_type:law_national_guard
+		set_variable = 1862_var
+	}	
+	
+	if = {
+		limit = {			#Chinese historical market fix
+			NOT = { has_variable = ai_china_closes_markets_again_var }				
+			exists = c:CHI
+			c:CHI = ROOT
+			c:CHI = { is_player = no }
+			year >= 1855	
+			has_law = law_type:law_free_trade
+			NOT = { has_global_variable = had_second_opium_war }
+			has_variable = var_dynamic_opium_wars_victim				
+		}
+		activate_law = law_type:law_isolationism
+		set_variable = ai_china_closes_markets_again_var
+	}
+	
+	if = {
+		limit = {			#Brazilian slavery fix
+			exists = c:BRZ
+			c:BRZ = ROOT
+			year >= 1889		
+			c:BRZ = { is_player = no }	
+			NOT = { has_variable = ai_brazil_bans_slavery_var }
+		}
+		activate_law = law_type:law_slavery_banned	
+		set_variable = ai_brazil_bans_slavery_var		
+	}
+
+	if = {
+		limit = {			#British colonization buff
+			exists = c:GBR
+			c:GBR = ROOT
+			c:GBR = { is_player = no }		
+			year >= 1850
+			NOT = { has_variable = ai_tech_buff_for_suez_expedition_var }
+		}
+		add_technology_researched = nationalism
+		add_technology_researched = colonization
+		set_variable = ai_tech_buff_for_suez_expedition_var
+	}
+	
+	if = {
+		limit = {			#Brazilian education fix
+			exists = c:BRZ
+			c:BRZ = ROOT
+			c:BRZ = { is_player = no }	
+			NOT = { has_variable = ai_brazil_education_reforms_var }
+			year >= 1851 # vague date lol
+			has_law = law_type:law_monarchy	
+		}
+		activate_law = law_type:law_public_schools
+		set_variable = ai_brazil_education_reforms_var
+	}
+
+	if = {
+		limit = {			#Anyone who tries to colonize New Zealand states once it exists instantly gives colonial states to New Zealand
+			exists = c:GBR
+			any_country = {
+				NOT = { THIS = ROOT }
+				is_subject_of = c:GBR
+				has_variable = new_zealand_variable
+			}
+			OR = {
+				c:GBR = ROOT
+				is_subject_of = c:GBR
+				AND = {
+					exists = c:DEI 	#idk why but DEI does it too
+					c:DEI = ROOT
+					is_player = no 
+				}
+			}
+			any_scope_state = {
+				OR = {
+					state_region = s:STATE_NORTH_ISLAND
+					state_region = s:STATE_SOUTH_ISLAND
+				}
+			}
+		}
+		random_country = {
+			limit = { has_variable = new_zealand_variable }
+			save_scope_as = new_zealand_scope
+		}
+		every_state = {
+			limit = {
+				OR = {
+					owner = c:GBR
+					owner = { is_subject_of = c:GBR }
+				}
+				OR = {
+					state_region = s:STATE_NORTH_ISLAND
+					state_region = s:STATE_SOUTH_ISLAND
+				}
+			}
+			set_state_owner = scope:new_zealand_scope
+		}
+	}
+
+	if = { ## FIX TO TRY AND PREVENT AI ITALY BECOMING A REPUBLIC EARLIER THAN IT SHOULD BECAUSE OF GARIBALDI
+		limit = {
+			is_player = no
+			year < 1900
+			has_law = law_type:law_monarchy 
+			any_interest_group = { has_ideology = ideology:ideology_republican }
+			OR = {
+				has_variable = ITA_current_favourite_to_unify
+				AND = { exists = c:ITA c:ITA = THIS }
+				AND = { NOT = { exists = c:ITA } exists = c:SAR c:SAR = THIS }
+			}
+		}
+		every_interest_group = {
+			limit = { has_ideology = ideology:ideology_republican }
+			remove_ideology = ideology:ideology_republican
+		}
+	}
+}
+
+HJE_semi_random_events_USA_effect = {
+	if = {
+		limit = {			#Random event for Americans to move to California
+			year >= 1840
+			year < 1850
+			NOT = { has_global_variable = yankee_california_overflow }
+			has_state_in_state_region = STATE_CALIFORNIA
+			NOT = {
+				any_country = {
+					NOT = { PREV = THIS }
+					has_state_in_state_region = STATE_CALIFORNIA
+					NOR = {
+						is_country_type = unrecognized
+						is_country_type = decentralized
+					}
+				}
+			}
+		}
+		random_list = {
+			95 = {  }
+			5 = { trigger_event = { id = HJE_usa.5 } }
+		}
+	}
+	if = {
+		limit = {			#Random event for Americans to move to Utah
+			year >= 1845
+			year < 1855
+			NOT = { has_global_variable = utah_mormons }
+			has_state_in_state_region = STATE_UTAH
+			NOT = {
+				any_country = {
+					NOT = { PREV = THIS }
+					has_state_in_state_region = STATE_UTAH
+					NOR = {
+						is_country_type = unrecognized
+						is_country_type = decentralized
+					}
+				}
+			}
+		}
+		random_list = {
+			95 = {  }
+			5 = { trigger_event = { id = HJE_usa.6 } }
+		}
+	}
+	if = {
+		limit = {			#Random event for Americans to build a American or Foreign Empire
+			is_subject = no
+			market = { exists = yes }
+			is_junior_in_customs_union = no
+			NOT = { has_variable = HJE_american_empire_event }
+	    	OR = {
+				year > 1880
+				AND = {
+					has_variable = manifested_destiny #already took Manifest Destiny decision
+					has_variable = mexican_american_war_peace #peace with mexico
+					has_global_variable = american_civil_war #the civil war happened
+				}
+	    	}
+			OR = {
+				AND = {
+					exists = c:USA
+					c:USA = THIS
+				}
+				AND = {
+					exists = c:FSA
+					c:FSA = THIS
+				}
+				AND = {
+					exists = c:CSA
+					c:CSA = THIS
+				}
+			}
+		}
+		random_list = {
+			95 = {  }
+			5 = { trigger_event = { id = HJE_usa.12 } }
+		}
+	}
+
+	if = {
+		limit = {			#Cuba AI liberty desire
+			year > 1860
+			exists = c:CUB
+			c:CUB = THIS
+			NOT = { has_strategy = ai_strategy_subject_break_free }
+			any_overlord_or_above = {
+				country_is_in_north_america = no
+				country_is_in_central_america = no
+				country_is_in_south_america = no
+			}
+		}
+		set_strategy = ai_strategy_subject_break_free
+	}
+}
+
+HJE_semi_random_events_GER_effect = {
+
+	if = {
+		limit = {			#Krakau Uprising
+			c:AUS = { NOT = { has_variable = kra_var } }
+			exists = c:KRA
+			exists = c:AUS
+			OR = {
+				any_diplomatic_play = {
+					target_is = c:AUS
+					initiator_is = c:KRA
+				}
+				any_diplomatic_play = {
+					target_is = c:KRA
+					initiator_is = c:AUS
+				}
+			}
+		}
+		random_diplomatic_play = {
+			limit = {
+				OR = {
+					AND = {
+						target_is = c:AUS
+						initiator_is = c:KRA
+					}
+					AND = {
+						target_is = c:KRA
+						initiator_is = c:AUS
+					}
+				}
+			}					
+			add_war_goal = {
+				holder = c:AUS
+				type = annex_country
+				target_country = c:KRA
+				target_state = s:STATE_WEST_GALICIA.region_state:KRA			
+				primary_demand = yes
+			}
+		}
+		c:KRA = { set_variable = krakow_uprising_happened }
+		c:AUS = { 
+			set_variable = kra_var 
+			add_journal_entry = { type = je_the_krakow_uprising }
+		}
+	}
+	if = {
+		limit = {			#Bismark event for early formed German Federation
+			OR = {
+				AND = { exists = c:NGF c:NGF = THIS }
+				AND = { exists = c:GER c:GER = THIS }
+			}
+		}
+		random_list = {
+			9 = {  }
+			1 = { trigger_event = { id = german_unification.3 } }
+		}
+	}
+	if = {
+		limit = {			#Randomized event for Prussia to goad France into invading them
+			year >= 1870
+			year < 1880
+			NOT = { has_global_variable = ems_dispatch_scheme }
+			aggressive_diplomatic_plays_permitted = yes
+			is_diplomatic_play_committed_participant = no
+			is_diplomatic_play_initiator = no
+			is_diplomatic_play_target = no
+			NOT = { country_or_subject_owns_entire_state_region = STATE_ALSACE_LORRAINE }
+			any_country = {
+				is_adjacent_to_country = ROOT
+				aggressive_diplomatic_plays_permitted = yes
+				OR = { country_rank >= rank_value:major_power this ?= c:SWI }
+				country_or_subject_owns_entire_state_region = STATE_ALSACE_LORRAINE
+			}
+			OR = {
+				AND = {
+					exists = c:NGF
+					c:NGF = THIS
+				}
+				AND = {
+					exists = c:SGF
+					c:SGF = THIS
+				}
+				AND = {
+					exists = c:PRU
+					c:PRU = THIS
+				}
+			}
+		}
+		random_list = {
+			90 = {  }
+			10 = { trigger_event = { id = HJE_prussia.5 } }
+		}
+	}
+}
+
+HJE_semi_random_events_ITA_effect = {
+	if = {
+		limit = {			#Italians join in on the Brother's War
+			is_player = no
+			OR = {
+				country_has_primary_culture = cu:north_italian
+				country_has_primary_culture = cu:south_italian
+			}
+			calc_true_if = {
+				amount >= 6
+				any_scope_state = { state_region = s:STATE_LOMBARDY }
+				any_scope_state = { state_region = s:STATE_PIEDMONT }
+				any_scope_state = { state_region = s:STATE_UMBRIA }
+				any_scope_state = { state_region = s:STATE_CAMPANIA }
+				any_scope_state = { state_region = s:STATE_CALABRIA }
+				any_scope_state = { state_region = s:STATE_APULIA }
+				any_scope_state = { state_region = s:STATE_ABRUZZO }
+				any_scope_state = { state_region = s:STATE_SAVOY }
+				any_scope_state = { state_region = s:STATE_EMILIA }
+				any_scope_state = { state_region = s:STATE_TUSCANY }
+				any_scope_state = { state_region = s:STATE_ROMAGNA }
+				any_scope_state = { state_region = s:STATE_LAZIO }
+				any_scope_state = { state_region = s:STATE_VENETIA }
+				any_scope_state = { state_region = s:STATE_SICILY }
+			}
+			is_diplomatic_play_committed_participant = no
+			exists = c:AUS
+			NOT = { c:AUS = { is_diplomatic_play_enemy_of = ROOT } }
+			OR = {
+				c:AUS = { has_state_in_state_region = STATE_VENETIA }
+				c:AUS = { has_state_in_state_region = STATE_LOMBARDY }
+			}
+			any_country = {
+				NOT = { THIS = ROOT }
+				NOT = { THIS = c:AUS }
+				is_adjacent_to_country = c:AUS
+				country_rank >= rank_value:great_power
+				is_diplomatic_play_enemy_of = c:AUS
+				is_diplomatic_play_initiator = yes
+			}
+			NOT = { has_variable = ai_venetia_var }
+		}
+		s:STATE_VENETIA = { add_claim = root }
+		s:STATE_LOMBARDY = { add_claim = root }
+		random_country = {
+			limit = {
+				is_unification_candidate = GER
+				is_diplomatic_play_enemy_of = c:AUS
+			}
+			random_diplomatic_play = {
+				limit = {
+					initiator_is = PREV
+					target_is = c:AUS
+				}
+				add_initiator_backers = { ROOT }
+				add_war_goal = {
+					holder = ROOT
+					type = return_state
+					target_state = s:STATE_VENETIA.region_state:AUS			
+					primary_demand = yes
+				}
+				add_war_goal = {
+					holder = ROOT
+					type = return_state
+					target_state = s:STATE_LOMBARDY.region_state:AUS			
+					primary_demand = yes
+				}
+			}
+		}
+		add_modifier = { 
+			name = wartime_zeal
+			months = 12
+		}
+		set_variable = ai_venetia_var				
+	}
+	
+	if = {
+		limit = {			#Give Italy Former the opportunity to move capital to Rome
+			exists = c:ITA
+			c:ITA = THIS
+			NOT = { has_variable = ITA_newly_formed_capital_decision }
+		}
+		c:ITA = { 
+			set_variable = ITA_newly_formed_capital_decision
+			trigger_event = { id = HJE_main.1 }
+		}
+	}
+}

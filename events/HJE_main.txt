@@ -58,6 +58,64 @@ HJE_main.1 = {			 #Capital Decider
 		set_capital = scope:german_capital_state
 	}
 	option = {
+		name = HJE_main.1.vienna
+		ai_chance = { 
+			base = 100 
+			modifier = {
+				factor = 0
+				exists = c:GER
+				c:GER = ROOT
+				any_scope_state = {
+					has_modifier = modifier_state_capital_of_germany
+					is_capital = no
+				}
+			}
+		}
+		trigger = {
+			owns_entire_state_region = STATE_AUSTRIA
+			any_scope_state = { 
+				state_region = s:STATE_AUSTRIA 
+				OR = {
+					NOT = { has_modifier = modifier_state_capital_of_germany }
+					NAND = {
+						exists = c:GER
+						c:GER = ROOT
+					}
+				}
+			}
+			OR = {
+				AND = {
+					exists = c:AUS
+					c:AUS = ROOT
+				}
+				AND = {
+					exists = c:SGF
+					c:SGF = ROOT
+				}
+				AND = {
+					exists = c:GER
+					c:GER = ROOT
+				}
+			}
+		}
+		set_variable = capital_decided_variable
+		set_capital = STATE_AUSTRIA
+		if = {
+			limit = { 
+				exists = c:GER
+				c:GER = ROOT
+				NOT = { any_state = { has_modifier = modifier_state_capital_of_germany } } 
+			}
+			random_scope_state = {
+				limit = { is_capital = yes }
+				add_modifier = {
+					name = modifier_state_capital_of_germany
+					months = -1
+				}
+			}
+		}
+	}
+	option = {
 		name = HJE_main.1.berlin
 		ai_chance = { 
 			base = 100 
@@ -533,6 +591,68 @@ HJE_main.1 = {			 #Capital Decider
 		}
 		set_variable = capital_decided_variable
 		set_capital = STATE_SMOLENSK
+	}
+	option = {
+		name = HJE_main.1.constantinople
+		ai_chance = { 
+			base = 100
+			modifier = {
+				factor = 0
+				NOT = { has_law = law_type:law_monarchy }
+			}
+		}
+		trigger = {
+			owns_entire_state_region = STATE_EASTERN_THRACE
+			any_scope_state = {
+				state_region = s:STATE_EASTERN_THRACE
+				is_capital = no
+			}
+			OR = {
+				AND = {
+					exists = c:TUR
+					c:TUR = ROOT
+				}
+				AND = {
+					exists = c:RUS
+					c:RUS = ROOT
+				}
+				AND = {
+					exists = c:GRE
+					c:GRE = ROOT
+				}
+				AND = {
+					exists = c:BYZ
+					c:BYZ = ROOT
+				}
+			}
+		}
+		set_variable = capital_decided_variable
+		set_capital = STATE_EASTERN_THRACE
+	}
+	option = {
+		name = HJE_main.1.ankara
+		ai_chance = { 
+			base = 100
+			modifier = {
+				factor = 0
+				has_law = law_type:law_monarchy
+			}
+		}
+		trigger = {
+			owns_entire_state_region = STATE_ANKARA
+			any_scope_state = {
+				state_region = s:STATE_ANKARA
+				is_capital = no
+			}
+			OR = {
+				AND = {
+					exists = c:TUR
+					c:TUR = ROOT
+				}
+			}
+		}
+		set_variable = capital_decided_variable
+		set_capital = STATE_ANKARA
 	}
 	option = {
 		name = HJE_main.1.stockholm

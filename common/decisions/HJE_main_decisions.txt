@@ -25,6 +25,15 @@ decide_capital_decision = {
 				}
 			}
 			AND = {
+				exists = c:AUS
+				c:AUS = ROOT
+				owns_entire_state_region = STATE_AUSTRIA
+				any_scope_state = {
+					state_region = s:STATE_AUSTRIA
+					is_capital = no
+				}
+			}
+			AND = {
 				exists = c:PRU
 				c:PRU = ROOT
 				owns_entire_state_region = STATE_BRANDENBURG
@@ -107,6 +116,20 @@ decide_capital_decision = {
 				owns_entire_state_region = STATE_MOSCOW
 				any_scope_state = {
 					state_region = s:STATE_MOSCOW
+					is_capital = no
+				}
+			}
+			AND = {
+				exists = c:TUR
+				c:TUR = ROOT
+				owns_entire_state_region = STATE_EASTERN_THRACE
+				any_scope_state = {
+					state_region = s:STATE_EASTERN_THRACE
+					is_capital = no
+				}
+				owns_entire_state_region = STATE_ANKARA
+				any_scope_state = {
+					state_region = s:STATE_ANKARA
 					is_capital = no
 				}
 			}
