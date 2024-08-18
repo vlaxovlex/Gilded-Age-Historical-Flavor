@@ -211,6 +211,12 @@
  modifier_fra_fail_coup_etat:0 "Неудачный переворот"
  hungarian_glory:0 "Австро-венгерский компромисс"
  front_speed_modifier:0 "Неорганизованная армия"
+ laborer_unrest:0 "Беспорядки среди рабочих"
+ modifier_usa_american_empire:0 "Американский империализм"
+ modifier_usa_american_empire_desc:0 "Америка недавно заявила о себе на мировой арене."
+ modifier_gilded_age_reforms:0 "Позолоченный век"
+ modifier_gilded_age_reforms_desc:0 "Позолоченный век стал предзнаменованием быстрого роста Америки."
+   
    
  
  #НОВЫЙ ТЕКСТ:
