@@ -3430,15 +3430,6 @@ HJE_turkey.13 = {
 		default_option = yes
 		ai_chance = { base = 1 }
 		if = {
-			limit = { 
-				any_scope_state = { 
-					state_region = s:STATE_EASTERN_THRACE 
-					is_capital = no
-				}
-			}
-			set_capital = STATE_EASTERN_THRACE
-		}
-		if = {
 			limit = { NOT = { has_global_variable = abdulaziz_1_born } }
 			set_global_variable = abdulaziz_1_born
 			create_character = {
@@ -3551,15 +3542,6 @@ HJE_turkey.13 = {
 	option = {
 		name = HJE_turkey.13.b
 		ai_chance = { base = 0 }
-		if = {
-			limit = { 
-				any_scope_state = { 
-					state_region = s:STATE_EASTERN_THRACE 
-					is_capital = no
-				}
-			}
-			set_capital = STATE_EASTERN_THRACE
-		}
 		set_global_variable = TUR_decided_to_ditch_ottoman_dynasty
 	}
 }

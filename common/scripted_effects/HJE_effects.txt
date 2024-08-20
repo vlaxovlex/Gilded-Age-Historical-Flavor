@@ -1,64 +1,4 @@
-﻿create_random_orleanist_ruler = {
-	random_list = {
-		3 = { create_character = { first_name = Philippe last_name = d_Orleans ruler = yes ideology = ideology_royalist on_created = { set_variable = is_orleanist } } }
-		3 = { create_character = { first_name = Ferdinand-Philippe last_name = d_Orleans ruler = yes ideology = ideology_royalist on_created = { set_variable = is_orleanist } } }
-		3 = { create_character = { first_name = Jean last_name = d_Orleans ruler = yes ideology = ideology_royalist on_created = { set_variable = is_orleanist } } }
-		3 = { create_character = { first_name = Francois last_name = d_Orleans ruler = yes ideology = ideology_royalist on_created = { set_variable = is_orleanist } } }
-		1 = { create_character = { first_name = Henri last_name = d_Orleans ruler = yes ideology = ideology_royalist on_created = { set_variable = is_orleanist } } }
-		1 = { create_character = { first_name = Louis last_name = d_Orleans ruler = yes ideology = ideology_royalist on_created = { set_variable = is_orleanist } } }
-		1 = { create_character = { first_name = Charles last_name = d_Orleans ruler = yes ideology = ideology_royalist on_created = { set_variable = is_orleanist } } }
-	}
-}
-create_random_legitimist_ruler = {
-	random_list = {
-		5 = { create_character = { first_name = Louis last_name = de_Bourbon ruler = yes ideology = ideology_royalist on_created = { set_variable = is_legitimist } } }
-		4 = { create_character = { first_name = Charles last_name = de_Bourbon ruler = yes ideology = ideology_royalist on_created = { set_variable = is_legitimist } } }
-		3 = { create_character = { first_name = Henri last_name = de_Bourbon ruler = yes ideology = ideology_royalist on_created = { set_variable = is_legitimist } } }
-		1 = { create_character = { first_name = Francois last_name = de_Bourbon ruler = yes ideology = ideology_royalist on_created = { set_variable = is_legitimist } } }
-	}
-}
-create_random_bonapartist_ruler = {
-	random_list = {
-		3 = { create_character = { first_name = Napoleon-Louis last_name = Bonaparte ruler = yes ideology = ideology_royalist on_created = { set_variable = is_bonapartist } } }
-		3 = { create_character = { first_name = Napoleon-Joseph last_name = Bonaparte ruler = yes ideology = ideology_royalist on_created = { set_variable = is_bonapartist } } }
-		3 = { create_character = { first_name = Napoleon-Jerome last_name = Bonaparte ruler = yes ideology = ideology_royalist on_created = { set_variable = is_bonapartist } } }
-		3 = { create_character = { first_name = Napoleon-Eugene last_name = Bonaparte ruler = yes ideology = ideology_royalist on_created = { set_variable = is_bonapartist } } }
-		3 = { create_character = { first_name = Napoleon-Victor last_name = Bonaparte ruler = yes ideology = ideology_royalist on_created = { set_variable = is_bonapartist } } }
-		3 = { create_character = { first_name = Napoleon-Charles last_name = Bonaparte ruler = yes ideology = ideology_royalist on_created = { set_variable = is_bonapartist } } }
-		1 = { create_character = { first_name = Jean-Christophe last_name = Bonaparte ruler = yes ideology = ideology_royalist on_created = { set_variable = is_bonapartist } } }
-	}
-}
-create_random_orleanist_heir = {
-	random_list = {
-		3 = { create_character = { first_name = Philippe last_name = d_Orleans age = 0 heir = yes ideology = ideology_royalist on_created = { set_variable = is_orleanist } } }
-		3 = { create_character = { first_name = Ferdinand-Philippe last_name = d_Orleans age = 0 heir = yes ideology = ideology_royalist on_created = { set_variable = is_orleanist } } }
-		3 = { create_character = { first_name = Jean last_name = d_Orleans age = 0 heir = yes ideology = ideology_royalist on_created = { set_variable = is_orleanist } } }
-		3 = { create_character = { first_name = Francois last_name = d_Orleans age = 0 heir = yes ideology = ideology_royalist on_created = { set_variable = is_orleanist } } }
-		1 = { create_character = { first_name = Henri last_name = d_Orleans age = 0 heir = yes ideology = ideology_royalist on_created = { set_variable = is_orleanist } } }
-		1 = { create_character = { first_name = Louis last_name = d_Orleans age = 0 heir = yes ideology = ideology_royalist on_created = { set_variable = is_orleanist } } }
-		1 = { create_character = { first_name = Charles last_name = d_Orleans age = 0 heir = yes ideology = ideology_royalist on_created = { set_variable = is_orleanist } } }
-	}
-}
-create_random_legitimist_heir = {
-	random_list = {
-		5 = { create_character = { first_name = Louis last_name = de_Bourbon age = 0 heir = yes ideology = ideology_royalist on_created = { set_variable = is_legitimist } } }
-		4 = { create_character = { first_name = Charles last_name = de_Bourbon age = 0 heir = yes ideology = ideology_royalist on_created = { set_variable = is_legitimist } } }
-		3 = { create_character = { first_name = Henri last_name = de_Bourbon age = 0 heir = yes ideology = ideology_royalist on_created = { set_variable = is_legitimist } } }
-		1 = { create_character = { first_name = Francois last_name = de_Bourbon age = 0 heir = yes ideology = ideology_royalistideology_royalist on_created = { set_variable = is_legitimist } } }
-	}
-}
-create_random_bonapartist_heir = {
-	random_list = {
-		3 = { create_character = { first_name = Napoleon-Louis last_name = Bonaparte age = 0 heir = yes ideology = ideology_royalist on_created = { set_variable = is_bonapartist } } }
-		3 = { create_character = { first_name = Napoleon-Joseph last_name = Bonaparte age = 0 heir = yes ideology = ideology_royalist on_created = { set_variable = is_bonapartist } } }
-		3 = { create_character = { first_name = Napoleon-Jerome last_name = Bonaparte age = 0 heir = yes ideology = ideology_royalist on_created = { set_variable = is_bonapartist } } }
-		3 = { create_character = { first_name = Napoleon-Eugene last_name = Bonaparte age = 0 heir = yes ideology = ideology_royalist on_created = { set_variable = is_bonapartist } } }
-		3 = { create_character = { first_name = Napoleon-Victor last_name = Bonaparte age = 0 heir = yes ideology = ideology_royalist on_created = { set_variable = is_bonapartist } } }
-		3 = { create_character = { first_name = Napoleon-Charles last_name = Bonaparte age = 0 heir = yes ideology = ideology_royalist on_created = { set_variable = is_bonapartist } } }
-		1 = { create_character = { first_name = Jean-Christophe last_name = Bonaparte age = 0 heir = yes ideology = ideology_royalist on_created = { set_variable = is_bonapartist } } }
-	}
-}
-
+﻿
 HJE_cleanup_effect = {
 	if = {
 		limit = {			#USA AI will not be allowed to colonize canadian states
@@ -336,21 +276,654 @@ HJE_cleanup_effect = {
 		}
 	}
 
-	if = { ## FIX TO TRY AND PREVENT AI ITALY BECOMING A REPUBLIC EARLIER THAN IT SHOULD BECAUSE OF GARIBALDI
+	if = { ## FIX TO TRY AND PREVENT AI BRITAIN FROM BEING SO DAMNED AUTHORITARIAN
 		limit = {
 			is_player = no
-			year < 1900
-			has_law = law_type:law_monarchy 
-			any_interest_group = { has_ideology = ideology:ideology_republican }
-			OR = {
-				has_variable = ITA_current_favourite_to_unify
-				AND = { exists = c:ITA c:ITA = THIS }
-				AND = { NOT = { exists = c:ITA } exists = c:SAR c:SAR = THIS }
+			has_law = law_type:law_monarchy
+			has_strategy = ai_strategy_conservative_agenda
+			exists = c:GBR
+			c:GBR = THIS
+			NOR = {
+				has_law = law_type:law_public_health_insurance
+				has_law = law_type:law_multicultural
+				has_law = law_type:law_old_age_pension
+				has_law = law_type:law_protected_speech
+				has_law = law_type:law_graduated_taxation
+				has_law = law_type:law_womens_suffrage
+				has_law = law_type:law_cooperative_ownership
+				has_law = law_type:law_guaranteed_liberties
+				has_law = law_type:law_worker_protections
+				has_law = law_type:law_universal_suffrage
 			}
 		}
-		every_interest_group = {
-			limit = { has_ideology = ideology:ideology_republican }
-			remove_ideology = ideology:ideology_republican
+		set_strategy = ai_strategy_progressive_agenda
+	}
+}
+create_random_orleanist_ruler = {
+	random_list = {
+		3 = { create_character = { first_name = Philippe last_name = d_Orleans ruler = yes ideology = ideology_royalist on_created = { set_variable = is_orleanist } } }
+		3 = { create_character = { first_name = Ferdinand-Philippe last_name = d_Orleans ruler = yes ideology = ideology_royalist on_created = { set_variable = is_orleanist } } }
+		3 = { create_character = { first_name = Jean last_name = d_Orleans ruler = yes ideology = ideology_royalist on_created = { set_variable = is_orleanist } } }
+		3 = { create_character = { first_name = Francois last_name = d_Orleans ruler = yes ideology = ideology_royalist on_created = { set_variable = is_orleanist } } }
+		1 = { create_character = { first_name = Henri last_name = d_Orleans ruler = yes ideology = ideology_royalist on_created = { set_variable = is_orleanist } } }
+		1 = { create_character = { first_name = Louis last_name = d_Orleans ruler = yes ideology = ideology_royalist on_created = { set_variable = is_orleanist } } }
+		1 = { create_character = { first_name = Charles last_name = d_Orleans ruler = yes ideology = ideology_royalist on_created = { set_variable = is_orleanist } } }
+	}
+}
+create_random_legitimist_ruler = {
+	random_list = {
+		5 = { create_character = { first_name = Louis last_name = de_Bourbon ruler = yes ideology = ideology_royalist on_created = { set_variable = is_legitimist } } }
+		4 = { create_character = { first_name = Charles last_name = de_Bourbon ruler = yes ideology = ideology_royalist on_created = { set_variable = is_legitimist } } }
+		3 = { create_character = { first_name = Henri last_name = de_Bourbon ruler = yes ideology = ideology_royalist on_created = { set_variable = is_legitimist } } }
+		1 = { create_character = { first_name = Francois last_name = de_Bourbon ruler = yes ideology = ideology_royalist on_created = { set_variable = is_legitimist } } }
+	}
+}
+create_random_bonapartist_ruler = {
+	random_list = {
+		3 = { create_character = { first_name = Napoleon-Louis last_name = Bonaparte ruler = yes ideology = ideology_royalist on_created = { set_variable = is_bonapartist } } }
+		3 = { create_character = { first_name = Napoleon-Joseph last_name = Bonaparte ruler = yes ideology = ideology_royalist on_created = { set_variable = is_bonapartist } } }
+		3 = { create_character = { first_name = Napoleon-Jerome last_name = Bonaparte ruler = yes ideology = ideology_royalist on_created = { set_variable = is_bonapartist } } }
+		3 = { create_character = { first_name = Napoleon-Eugene last_name = Bonaparte ruler = yes ideology = ideology_royalist on_created = { set_variable = is_bonapartist } } }
+		3 = { create_character = { first_name = Napoleon-Victor last_name = Bonaparte ruler = yes ideology = ideology_royalist on_created = { set_variable = is_bonapartist } } }
+		3 = { create_character = { first_name = Napoleon-Charles last_name = Bonaparte ruler = yes ideology = ideology_royalist on_created = { set_variable = is_bonapartist } } }
+		1 = { create_character = { first_name = Jean-Christophe last_name = Bonaparte ruler = yes ideology = ideology_royalist on_created = { set_variable = is_bonapartist } } }
+	}
+}
+create_random_orleanist_heir = {
+	random_list = {
+		3 = { create_character = { first_name = Philippe last_name = d_Orleans age = 0 heir = yes ideology = ideology_royalist on_created = { set_variable = is_orleanist } } }
+		3 = { create_character = { first_name = Ferdinand-Philippe last_name = d_Orleans age = 0 heir = yes ideology = ideology_royalist on_created = { set_variable = is_orleanist } } }
+		3 = { create_character = { first_name = Jean last_name = d_Orleans age = 0 heir = yes ideology = ideology_royalist on_created = { set_variable = is_orleanist } } }
+		3 = { create_character = { first_name = Francois last_name = d_Orleans age = 0 heir = yes ideology = ideology_royalist on_created = { set_variable = is_orleanist } } }
+		1 = { create_character = { first_name = Henri last_name = d_Orleans age = 0 heir = yes ideology = ideology_royalist on_created = { set_variable = is_orleanist } } }
+		1 = { create_character = { first_name = Louis last_name = d_Orleans age = 0 heir = yes ideology = ideology_royalist on_created = { set_variable = is_orleanist } } }
+		1 = { create_character = { first_name = Charles last_name = d_Orleans age = 0 heir = yes ideology = ideology_royalist on_created = { set_variable = is_orleanist } } }
+	}
+}
+create_random_legitimist_heir = {
+	random_list = {
+		5 = { create_character = { first_name = Louis last_name = de_Bourbon age = 0 heir = yes ideology = ideology_royalist on_created = { set_variable = is_legitimist } } }
+		4 = { create_character = { first_name = Charles last_name = de_Bourbon age = 0 heir = yes ideology = ideology_royalist on_created = { set_variable = is_legitimist } } }
+		3 = { create_character = { first_name = Henri last_name = de_Bourbon age = 0 heir = yes ideology = ideology_royalist on_created = { set_variable = is_legitimist } } }
+		1 = { create_character = { first_name = Francois last_name = de_Bourbon age = 0 heir = yes ideology = ideology_royalistideology_royalist on_created = { set_variable = is_legitimist } } }
+	}
+}
+create_random_bonapartist_heir = {
+	random_list = {
+		3 = { create_character = { first_name = Napoleon-Louis last_name = Bonaparte age = 0 heir = yes ideology = ideology_royalist on_created = { set_variable = is_bonapartist } } }
+		3 = { create_character = { first_name = Napoleon-Joseph last_name = Bonaparte age = 0 heir = yes ideology = ideology_royalist on_created = { set_variable = is_bonapartist } } }
+		3 = { create_character = { first_name = Napoleon-Jerome last_name = Bonaparte age = 0 heir = yes ideology = ideology_royalist on_created = { set_variable = is_bonapartist } } }
+		3 = { create_character = { first_name = Napoleon-Eugene last_name = Bonaparte age = 0 heir = yes ideology = ideology_royalist on_created = { set_variable = is_bonapartist } } }
+		3 = { create_character = { first_name = Napoleon-Victor last_name = Bonaparte age = 0 heir = yes ideology = ideology_royalist on_created = { set_variable = is_bonapartist } } }
+		3 = { create_character = { first_name = Napoleon-Charles last_name = Bonaparte age = 0 heir = yes ideology = ideology_royalist on_created = { set_variable = is_bonapartist } } }
+		1 = { create_character = { first_name = Jean-Christophe last_name = Bonaparte age = 0 heir = yes ideology = ideology_royalist on_created = { set_variable = is_bonapartist } } }
+	}
+}
+
+HJE_apply_historical_dynasty_heirs_GBR_effect = {
+	if = {
+		limit = {
+			year < 1842
+			NOT = { has_global_variable = edward_7_of_england_born }
+			owner = { 
+				has_law = law_type:law_monarchy 
+				ruler = { has_variable = is_hannover }
+			}
+			OR = {
+				AND = { 
+					exists = c:ENG
+					owner = c:ENG
+	            }
+	            AND = { 
+					NOT = { exists = c:ENG }
+					exists = c:GBR
+					owner = c:GBR
+					c:GBR = { owns_entire_state_region = STATE_HOME_COUNTIES }
+	            }
+	        }
+		}
+		set_global_variable = edward_7_of_england_born
+		owner = {
+			create_character = {
+				first_name = Edward
+				last_name = Hannover
+				historical = yes
+				heir = yes		
+				age = 0
+				interest_group = ig_armed_forces
+				female = no
+				dna = dna_edward_7
+				ideology = ideology:ideology_royalist
+				traits = {
+					imperious
+					charismatic
+					romantic
+				}
+				on_created = {
+					set_variable = is_edward_7
+					set_variable = is_hannover
+					set_variable = weight_does_not_change
+				}
+			}
+		}
+	}
+	if = {
+		limit = {
+			year >= 1842
+			NOT = { has_global_variable = edward_7_of_england_born }
+			owner = { 
+				has_law = law_type:law_monarchy 
+				ruler = { has_variable = is_hannover }
+			}
+			OR = {
+				AND = { 
+					exists = c:ENG
+					owner = c:ENG
+	            }
+	            AND = { 
+					NOT = { exists = c:ENG }
+					exists = c:GBR
+					owner = c:GBR
+					c:GBR = { owns_entire_state_region = STATE_HOME_COUNTIES }
+	            }
+	        }
+		}
+		set_global_variable = edward_7_of_england_born
+		owner = {
+			create_character = {
+				first_name = Edward
+				last_name = Hannover
+				historical = yes
+				heir = yes		
+				birth_date = 1841.11.9
+				interest_group = ig_armed_forces
+				female = no
+				dna = dna_edward_7
+				ideology = ideology:ideology_royalist
+				traits = {
+					imperious
+					charismatic
+					romantic
+				}
+				on_created = {
+					set_variable = is_edward_7
+					set_variable = is_hannover
+					set_variable = weight_does_not_change
+				}
+			}
+		}
+	}
+	if = {
+		limit = {
+			year >= 1866
+			has_global_variable = edward_7_of_england_born
+			NOT = { has_global_variable = george_5_of_england_born }
+			owner = { 
+				has_law = law_type:law_monarchy 
+				ruler = { has_variable = is_hannover }
+			}
+			OR = {
+				AND = { 
+					exists = c:ENG
+					owner = c:ENG
+	            }
+	            AND = { 
+					NOT = { exists = c:ENG }
+					exists = c:GBR
+					owner = c:GBR
+					c:GBR = { owns_entire_state_region = STATE_HOME_COUNTIES }
+	            }
+	        }
+		}
+		set_global_variable = george_5_of_england_born
+		owner = {
+			create_character = {
+				first_name = George
+				last_name = Hannover
+				historical = yes
+				heir = yes		
+				birth_date = 1865.6.3
+				interest_group = ig_armed_forces
+				female = no
+				dna = dna_george_5
+				ideology = ideology:ideology_royalist
+				traits = {
+					meticulous
+					direct
+					cautious
+				}
+				on_created = {
+					set_variable = is_george_5
+					set_variable = is_hannover
+				}
+			}
+		}
+	}
+	if = {
+		limit = {
+			year >= 1895
+			has_global_variable = edward_7_of_england_born
+			has_global_variable = george_5_of_england_born
+			NOT = { has_global_variable = edward_8_of_england_born }
+			owner = { 
+				has_law = law_type:law_monarchy 
+				ruler = { has_variable = is_hannover }
+			}
+			OR = {
+				AND = { 
+					exists = c:ENG
+					owner = c:ENG
+	            }
+	            AND = { 
+					NOT = { exists = c:ENG }
+					exists = c:GBR
+					owner = c:GBR
+					c:GBR = { owns_entire_state_region = STATE_HOME_COUNTIES }
+	            }
+	        }
+		}
+		set_global_variable = edward_8_of_england_born
+		owner = {
+			create_character = {
+				first_name = Edward
+				last_name = Windsor
+				historical = yes
+				heir = yes		
+				birth_date = 1894.6.23
+				interest_group = ig_petty_bourgeoisie
+				female = no
+				dna = dna_gbr_edward_08
+				ideology = ideology:ideology_authoritarian
+				traits = {
+					imperious
+					arrogant
+					charismatic
+				}
+				on_created = {
+					set_variable = is_edward_8
+					set_variable = is_hannover
+					set_variable = weight_does_not_change
+				}
+			}
+		}
+	}
+	if = {
+		limit = {
+			owner = {
+				has_law = law_type:law_monarchy 
+				ruler = { 
+					has_variable = is_hannover 
+					is_historical = no
+				}
+			}
+		}
+		random_scope_character = {
+			limit = { 
+				is_heir = yes 
+				NOT = { has_variable = is_hannover }
+			}
+			set_variable = is_hannover
+		}
+	}
+}
+
+HJE_apply_historical_dynasty_heirs_PRU_effect = {
+	if = {
+		limit = {
+			NOT = { has_global_variable = wilhelm_1_von_preusen_born }
+			owner = { 
+				has_law = law_type:law_monarchy 
+				ruler = { has_variable = is_hohenzollern }
+			}
+			OR = {
+				AND = { 
+					exists = c:PRU
+					owner = c:PRU
+	            }
+	            AND = { 
+					NOT = { exists = c:PRU }
+					exists = c:GER
+					owner = c:GER
+					c:GER = { owns_entire_state_region = STATE_BRANDENBURG }
+	            }
+				AND = { 
+					NOT = { exists = c:PRU }
+					exists = c:NGF
+					owner = c:NGF
+					c:NGF = { owns_entire_state_region = STATE_BRANDENBURG }
+	            }
+	        }
+		}
+		set_global_variable = wilhelm_1_von_preusen_born
+		owner = {
+			create_character = {
+				first_name = Wilhelm
+				last_name = von_Hohenzollern
+				historical = yes
+				heir = yes		
+				birth_date = 1797.3.22
+				dna = dna_emperor_wilhelm_1
+				interest_group = ig_landowners
+				female = no
+				ideology = ideology:ideology_royalist
+				traits = {
+					romantic
+					popular_commander
+				}
+				on_created = {
+					set_variable = is_wilhelm_1
+					set_variable = is_hohenzollern
+				}
+			}
+		}
+	}
+	if = {
+		limit = {
+			year >= 1851
+			has_global_variable = wilhelm_1_von_preusen_born
+			NOT = { has_global_variable = friedrich_3_von_preusen_born }
+			owner = { 
+				has_law = law_type:law_monarchy 
+				ruler = { has_variable = is_hohenzollern }
+			}
+			OR = {
+				AND = { 
+					exists = c:PRU
+					owner = c:PRU
+	            }
+	            AND = { 
+					NOT = { exists = c:PRU }
+					exists = c:GER
+					owner = c:GER
+					c:GER = { owns_entire_state_region = STATE_BRANDENBURG }
+	            }
+				AND = { 
+					NOT = { exists = c:PRU }
+					exists = c:NGF
+					owner = c:NGF
+					c:NGF = { owns_entire_state_region = STATE_BRANDENBURG }
+	            }
+	        }
+		}
+		set_global_variable = friedrich_3_von_preusen_born
+		owner = {
+			create_character = {
+				first_name = Friedrich
+				last_name = von_Hohenzollern
+				historical = yes
+				heir = yes		
+				birth_date = 1831.10.18
+				dna = dna_emperor_friedrich_3
+				interest_group = ig_armed_forces
+				female = no
+				ideology = ideology:ideology_radical
+				traits = {
+					cancer
+					popular_commander
+					persistent
+				}
+				on_created = {
+					set_variable = is_friedrich_3
+					set_variable = is_hohenzollern
+					set_variable = weight_does_not_change
+				}
+			}
+		}
+	}
+	if = {
+		limit = {
+			year >= 1859
+			has_global_variable = wilhelm_1_von_preusen_born
+			has_global_variable = friedrich_3_von_preusen_born
+			NOT = { has_global_variable = wilhelm_2_von_preusen_born }
+			owner = { 
+				has_law = law_type:law_monarchy 
+				ruler = { has_variable = is_hohenzollern }
+			}
+			OR = {
+				AND = { 
+					exists = c:PRU
+					owner = c:PRU
+	            }
+	            AND = { 
+					NOT = { exists = c:PRU }
+					exists = c:GER
+					owner = c:GER
+					c:GER = { owns_entire_state_region = STATE_BRANDENBURG }
+	            }
+				AND = { 
+					NOT = { exists = c:PRU }
+					exists = c:NGF
+					owner = c:NGF
+					c:NGF = { owns_entire_state_region = STATE_BRANDENBURG }
+	            }
+	        }
+		}
+		set_global_variable = wilhelm_2_von_preusen_born
+		owner = {
+			create_character = {
+				first_name = Wilhelm
+				last_name = von_Hohenzollern
+				historical = yes
+				heir = yes		
+				birth_date = 1859.1.27
+				dna = dna_emperor_wilhelm_2
+				interest_group = ig_landowners
+				female = no
+				ideology = ideology:ideology_jingoist_leader
+				traits = {
+					wrathful
+					experienced_colonial_administrator
+					imperious
+					direct
+				}
+				on_created = {
+					set_variable = is_wilhelm_2
+					set_variable = is_hohenzollern
+					set_variable = weight_does_not_change
+				}
+			}
+		}
+	}
+	if = {
+		limit = {
+			year >= 1883
+			has_global_variable = wilhelm_1_von_preusen_born
+			has_global_variable = friedrich_3_von_preusen_born
+			has_global_variable = wilhelm_2_von_preusen_born
+			NOT = { has_global_variable = wilhelm_3_von_preusen_born }
+			owner = { 
+				has_law = law_type:law_monarchy 
+				ruler = { has_variable = is_hohenzollern }
+			}
+			OR = {
+				AND = { 
+					exists = c:PRU
+					owner = c:PRU
+	            }
+	            AND = { 
+					NOT = { exists = c:PRU }
+					exists = c:GER
+					owner = c:GER
+					c:GER = { owns_entire_state_region = STATE_BRANDENBURG }
+	            }
+				AND = { 
+					NOT = { exists = c:PRU }
+					exists = c:NGF
+					owner = c:NGF
+					c:NGF = { owns_entire_state_region = STATE_BRANDENBURG }
+	            }
+	        }
+		}
+		set_global_variable = wilhelm_3_von_preusen_born
+		owner = {
+			create_character = {
+				first_name = Wilhelm
+				last_name = von_Hohenzollern
+				historical = yes
+				heir = yes		
+				birth_date = 1882.5.6
+				dna = dna_kronprinz_wilhelm
+				interest_group = ig_landowners
+				female = no
+				ideology = ideology:ideology_royalist
+				traits = {
+					charismatic
+					expensive_tastes
+					popular_commander
+				}
+				on_created = {
+					set_variable = is_kronprinz
+					set_variable = is_hohenzollern
+				}
+			}
+		}
+	}
+	if = {
+		limit = {
+			owner = {
+				has_law = law_type:law_monarchy 
+				ruler = { 
+					has_variable = is_hohenzollern 
+					is_historical = no
+				}
+			}
+		}
+		random_scope_character = {
+			limit = { 
+				is_heir = yes 
+				NOT = { has_variable = is_hohenzollern }
+			}
+			set_variable = is_hohenzollern
+		}
+	}
+}
+
+HJE_apply_historical_dynasty_heirs_TUR_effect = {
+	if = {
+		limit = {
+			NOT = { has_global_variable = abdulaziz_1_born }
+			exists = c:TUR
+			owner = c:TUR
+			owner = { 
+				has_law = law_type:law_monarchy 
+				ruler = { has_variable = is_osmanoglu }
+			}
+		}
+		set_global_variable = abdulaziz_1_born
+		owner = {
+			create_character = {
+				first_name = Abdulaziz
+				last_name = Osmanoglu
+				historical = yes
+				female = no
+				heir = yes		
+				birth_date = 1830.2.8
+				dna = dna_abdulaziz
+				interest_group = ig_intelligentsia
+				ideology = ideology:ideology_reformer
+				traits = {
+					expensive_tastes
+					tactful
+				}
+				on_created = {
+					set_variable = is_abdulaziz_1
+					set_variable = is_osmanoglu
+				}
+			}
+		}
+	}
+	if = {
+		limit = {
+			year >= 1841
+			has_global_variable = abdulaziz_1_born
+			NOT = { has_global_variable = murad_5_born }
+			exists = c:TUR
+			owner = c:TUR
+			owner = { 
+				has_law = law_type:law_monarchy 
+				ruler = { has_variable = is_osmanoglu }
+			}
+		}
+		set_global_variable = murad_5_born
+		owner = {
+			create_character = {
+				first_name = Murad
+				last_name = Osmanoglu
+				historical = yes
+				female = no
+				heir = yes		
+				birth_date = 1840.9.21
+				dna = dna_murad_5
+				interest_group = ig_intelligentsia
+				ideology = ideology:ideology_moderate
+				traits = {
+					psychological_affliction
+					reserved
+				}
+				on_created = {
+					set_variable = is_murad_5
+					set_variable = is_osmanoglu
+				}
+			}
+		}
+	}
+	if = {
+		limit = {
+			year >= 1869
+			has_global_variable = abdulaziz_1_born
+			has_global_variable = murad_5_born
+			NOT = { has_global_variable = abdulmecid_2_born }
+			exists = c:TUR
+			owner = c:TUR
+			owner = { 
+				has_law = law_type:law_monarchy 
+				ruler = { 
+					has_variable = is_osmanoglu 
+					has_variable = no_longer_in_danger_of_being_overthrown
+				}
+			}
+		}
+		set_global_variable = abdulmecid_2_born
+		owner = {
+			create_character = {
+				first_name = Abdulmecid
+				last_name = Osmanoglu
+				historical = yes
+				female = no
+				heir = yes		
+				birth_date = 1868.5.30
+				dna = dna_abdulmecid_2
+				interest_group = ig_intelligentsia
+				ideology = ideology:ideology_moderate
+				traits = {
+					cautious
+					romantic
+					pious
+				}
+				on_created = {
+					set_variable = is_abdulmecid_2
+					set_variable = is_osmanoglu
+				}
+			}
+		}
+	}
+	if = {
+		limit = {
+			owner = {
+				has_law = law_type:law_monarchy 
+				ruler = { 
+					has_variable = is_osmanoglu 
+					is_historical = no
+				}
+			}
+		}
+		random_scope_character = {
+			limit = { 
+				is_heir = yes 
+				NOT = { has_variable = is_osmanoglu }
+			}
+			set_variable = is_osmanoglu
 		}
 	}
 }
@@ -448,6 +1021,56 @@ HJE_semi_random_events_USA_effect = {
 			}
 		}
 		set_strategy = ai_strategy_subject_break_free
+	}
+	if = {
+		limit = {			#Random reoccuring event for Cubans to be prompted to rebel from non-american overlord
+			is_subject = yes
+			NOT = { has_variable = HJE_generic_rebellion_event_cooldown }
+	    	year > 1860
+			exists = c:CUB
+			c:CUB = THIS
+			any_overlord_or_above = {
+				country_is_in_north_america = no
+				country_is_in_central_america = no
+				country_is_in_south_america = no
+			}
+		}
+		random_list = {
+			95 = {  }
+			5 = { trigger_event = { id = HJE_main.8 } }
+		}
+	}
+	if = {
+		limit = {			#Philippines AI liberty desire
+			year > 1860
+			exists = c:PHI
+			c:PHI = THIS
+			NOT = { has_strategy = ai_strategy_subject_break_free }
+			any_overlord_or_above = {
+				country_is_in_north_america = no
+				country_is_in_central_america = no
+				country_is_in_south_america = no
+			}
+		}
+		set_strategy = ai_strategy_subject_break_free
+	}
+	if = {
+		limit = {			#Random reoccuring event for Filipinos to be prompted to rebel from non-asian overlord
+			is_subject = yes
+			NOT = { has_variable = HJE_generic_rebellion_event_cooldown }
+	    	year > 1860
+			exists = c:PHI
+			c:PHI = THIS
+			any_overlord_or_above = {
+				country_is_in_india = no
+				country_is_in_east_asia = no
+				country_is_in_southeast_asia = no
+			}
+		}
+		random_list = {
+			95 = {  }
+			5 = { trigger_event = { id = HJE_main.8 } }
+		}
 	}
 }
 

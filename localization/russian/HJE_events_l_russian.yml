@@ -1384,6 +1384,16 @@
  
  
  #НОВЫЙ ТЕКСТ:
+ HJE_britain.25.t:0 "Restoration of House von Hannover"
+ HJE_britain.25.d:0 "A relatively new, dynasty to rule over Britain, yes. However, the Hannovers are heavily associated with the Might of Empire..."
+ HJE_britain.25.f:0 "Times have been difficult as of late for the British Nation and, by natural extention, the whole of the ever mighty British Empire, and yet remains crown which, while still officially held by the recently deposed Lord von Hannover, is functionally empty. The Kingdom cannot be without a King or Queen. An emergency joint session of the House of Lords and House of Commons has convened. The body of Parliament must decide, will we accept a scion of House von Hannover to be our new King or Queen, leading in action or in spirit over this great and bounding dominion borne of English soil? /n/nOr, shall we turn the page of history, and allow a new dynasty to rise, and begin a new chapter in the long and storied history of British dynastic politics?"
+ HJE_britain.25.a:0 "God save the von Hannovers!"
+ HJE_britain.25.b:0 "Like the Tudors and Stuarts before them, they shall only remain in our histories."
+ HJE_main.8.t:0 "Agitation Over [SCOPE.sCountry('generic_subject_rebellion_victim').GetAdjectiveNoFlag] Policeman Incident"
+ HJE_main.8.d:0 "A spout of violence between a patrol officer belonging to our [SCOPE.sCountry('generic_subject_rebellion_victim').GetAdjective] 'benefactors' and some locals in our capital sparks new tensions."
+ HJE_main.8.f:0 "A skirmish between the officer and some locals has lead to a small number of casualties, due to reprisals from the rest of his unit. There are differing stories on who is at fault for this whole incident, but the result is the same in any case: the People are infuriated and demand justice, a demand which has been refused by [SCOPE.sCountry('generic_subject_rebellion_victim').GetName]. Our magnanimous overlords have made it clear that the officer and his unit are not to be penalized for the incident: and that instead they have been transferred to a different post someplace in their vast empire. \n\nThis has turned the people's anger against the unit into a new rage against our overlords. Negotiations seem to be going nowhere. We can either bow to the people's wishes and attempt to assert ourselves, or we must prepare to put down the riotous masses..."
+ HJE_main.8.a:0 "An opportunity to sieze our rightful liberty!"
+ HJE_main.8.b:0 "There is nothing we can do but prepare to break down barricades..."
 
 
  

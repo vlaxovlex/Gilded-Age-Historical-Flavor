@@ -285,11 +285,11 @@ HJE_france.6 = {
 			on_created = { 
 				set_variable = second_mexican_empire
 				set_ruling_interest_groups = { ig_landowners ig_devout ig_armed_forces }
-				ig:ig_landowners = { add_ideology = ideology:ideology_royalist }
-				ig:ig_armed_forces = { add_ideology = ideology:ideology_royalist }
-				ig:ig_intelligentsia = { add_ideology = ideology:ideology_royalist }
-				ig:ig_rural_folk = { add_ideology = ideology:ideology_royalist }
-				ig:ig_trade_unions = { add_ideology = ideology:ideology_royalist }
+				ig:ig_landowners = { add_ideology = ideology_royalist }
+				ig:ig_armed_forces = { add_ideology = ideology_royalist }
+				ig:ig_intelligentsia = { add_ideology = ideology_royalist }
+				ig:ig_rural_folk = { add_ideology = ideology_royalist }
+				ig:ig_trade_unions = { add_ideology = ideology_royalist }
 				activate_law = law_type:law_monarchy
 				activate_law = law_type:law_oligarchy
 				activate_law = law_type:law_appointed_bureaucrats

@@ -2388,3 +2388,211 @@ HJE_britain.24 = {
 	}
 
 }
+
+# Restoration of House Hannover?: If there's a revolt that's still monarchist, the correct house should be restored or denied ASAP
+HJE_britain.25 = {
+	type = country_event
+	placement = ROOT
+	title = HJE_britain.25.t
+	desc = HJE_britain.25.d
+	flavor = HJE_britain.25.f
+
+	duration = 3
+
+	event_image = {
+		video = "votp_monarch_holding_court"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/misc/1Character_Banner"
+
+	icon = "gfx/interface/icons/event_icons/event_election.dds"
+
+	trigger = {
+		OR = {
+			AND = { 
+				exists = c:ENG
+				c:ENG = ROOT
+            }
+            AND = { 
+				NOT = { exists = c:ENG }
+				exists = c:GBR
+				c:GBR = ROOT
+				c:GBR = { owns_entire_state_region = STATE_HOME_COUNTIES }
+            }
+        }
+		has_law = law_type:law_monarchy 
+		NOT = { ruler = { has_variable = is_hannover } }
+		NOT = { has_global_variable = GBR_decided_to_ditch_hannover_dynasty }
+	}
+
+	immediate = {
+	}
+
+	option = {
+		name = HJE_britain.25.a
+		default_option = yes
+		ai_chance = { base = 1 }
+		if = {
+			limit = {
+				year < 1842
+				NOT = { has_global_variable = edward_7_of_england_born }
+			}
+			set_global_variable = edward_7_of_england_born
+			create_character = {
+				first_name = Edward
+				last_name = Hannover
+				historical = yes
+				ruler = yes		
+				age = 0
+				interest_group = ig_armed_forces
+				female = no
+				dna = dna_edward_7
+				ideology = ideology:ideology_royalist
+				traits = {
+					imperious
+					charismatic
+					romantic
+				}
+				on_created = {
+					set_variable = is_edward_7
+					set_variable = is_hannover
+					set_variable = weight_does_not_change
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				year >= 1842
+				NOT = { has_global_variable = edward_7_of_england_born }
+			}
+			set_global_variable = edward_7_of_england_born
+			create_character = {
+				first_name = Edward
+				last_name = Hannover
+				historical = yes
+				ruler = yes		
+				birth_date = 1841.11.9
+				interest_group = ig_armed_forces
+				female = no
+				dna = dna_edward_7
+				ideology = ideology:ideology_royalist
+				traits = {
+					imperious
+					charismatic
+					romantic
+				}
+				on_created = {
+					set_variable = is_edward_7
+					set_variable = is_hannover
+					set_variable = weight_does_not_change
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				year >= 1866
+				NOT = { has_global_variable = george_5_of_england_born }
+				OR = {
+					year >= 1886
+					has_global_variable = edward_7_of_england_born
+				}
+			}
+			set_global_variable = george_5_of_england_born
+			create_character = {
+				first_name = George
+				last_name = Hannover
+				historical = yes
+				ruler = yes		
+				birth_date = 1865.6.3
+				interest_group = ig_armed_forces
+				female = no
+				dna = dna_george_5
+				ideology = ideology:ideology_royalist
+				traits = {
+					meticulous
+					direct
+					cautious
+				}
+				on_created = {
+					set_variable = is_george_5
+					set_variable = is_hannover
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				year >= 1895
+				NOT = { has_global_variable = edward_8_of_england_born }
+				OR = {
+					year >= 1915
+					AND = {
+						has_global_variable = edward_7_of_england_born
+						has_global_variable = george_5_of_england_born
+					}
+				}
+			}
+			set_global_variable = edward_8_of_england_born
+			create_character = {
+				first_name = Edward
+				last_name = Windsor
+				historical = yes
+				ruler = yes		
+				birth_date = 1894.6.23
+				interest_group = ig_petty_bourgeoisie
+				female = no
+				dna = dna_gbr_edward_08
+				ideology = ideology:ideology_authoritarian
+				traits = {
+					imperious
+					arrogant
+					charismatic
+				}
+				on_created = {
+					set_variable = is_edward_8
+					set_variable = is_hannover
+					set_variable = weight_does_not_change
+				}
+			}
+		}
+		else_if = {
+			limit = { year >= 1917 }
+			create_character = {
+				last_name = Windsor
+				ruler = yes
+				age = 40
+				interest_group = ig_landowners
+				ideology = ideology:ideology_moderate
+				on_created = {
+					set_variable = is_hannover
+				}
+			}
+		}
+		else = {
+			create_character = {
+				last_name = Hannover
+				ruler = yes		
+				age = 40
+				interest_group = ig_landowners
+				ideology = ideology:ideology_moderate
+				on_created = {
+					set_variable = is_hannover
+				}
+			}
+		}
+		hidden_effect = {
+			random_scope_character = {
+				limit = { 
+					is_heir = yes 
+					NOT = { has_variable = is_hannover }
+				}
+				kill_character = yes
+			}
+		}
+	}
+	option = {
+		name = HJE_britain.25.b
+		ai_chance = { base = 0 }
+		set_global_variable = GBR_decided_to_ditch_hannover_dynasty
+	}
+}

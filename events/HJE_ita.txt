@@ -382,7 +382,7 @@ HJE_italy.4 = {
 		set_strategy = ai_strategy_progressive_agenda
 		every_interest_group = {
 			limit = { has_ideology = ideology:ideology_republican }
-			remove_ideology = ideology:ideology_republican
+			remove_ideology = ideology_republican
 		}
 		if = {
 			limit = {
@@ -539,7 +539,7 @@ HJE_italy.5 = {
 		set_strategy = ai_strategy_progressive_agenda
 		every_interest_group = {
 			limit = { has_ideology = ideology:ideology_republican }
-			remove_ideology = ideology:ideology_republican
+			remove_ideology = ideology_republican
 		}
 		if = {
 			limit = {
@@ -932,7 +932,7 @@ HJE_italy.7 = {
 		scope:iwai1_attacker_scope = {
 			create_diplomatic_pact = {
 				country = c:RSM
-				type = alliance
+				type = dominion
 			}
 		}
 		scope:iwai1_state_lombardy_scope = { add_claim = ROOT }
@@ -950,6 +950,7 @@ HJE_italy.7 = {
 				}
 			}
 			add_escalation = 25
+			add_target_backers = { scope:iwai1_attacker_scope }
 		}
 	}
 

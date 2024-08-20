@@ -1,0 +1,9 @@
+﻿COUNTRIES = {
+	c:GBR = {
+		add_modifier = {
+			name = reform_of_1832
+			years = 46
+			is_decaying = yes
+		}
+	}
+}

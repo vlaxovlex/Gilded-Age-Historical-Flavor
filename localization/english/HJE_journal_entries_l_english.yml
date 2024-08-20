@@ -592,7 +592,6 @@ perry_expedition_events.194.a:0 "Take the port"
  HJ_the_sultans_tuberculosis_reason:0 ""
  HJ_carlist_victory_goal:0 "The Carlist War is over"
 
- #NEW TEXT:
  je_building_an_american_empire:0 "American Exceptionalism"
  je_building_an_american_empire_reason:0 "The American nation is undergoing an era of economic and imperial expansion."
  je_building_an_american_empire_goal:0 "Complete 3-4 'Gilded Age' [Concept('concept_journal_entry', '$concept_journal_entries$')]"
@@ -612,6 +611,8 @@ perry_expedition_events.194.a:0 "Take the port"
  former_american_colony_tt:0 "Is a former American [concept_subject] Colony."
  empire_with_former_american_territory_tt:0 "Is a Foreign Empire which formerly had an American [concept_subject] Colony."
  recently_lost_a_war_tt:0 "Has recently lost a war."
+
+ #NEW TEXT:
 
  #RE-WRITTEN TEXT:
  

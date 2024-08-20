@@ -2662,7 +2662,7 @@ acw_secession_crisis.2 = {
 			leader = { set_ideology = ideology:ideology_traditionalist }
 		}
 		ig:ig_devout = {
-			add_ideology = ideology:ideology_anti_slavery
+			add_ideology = ideology_anti_slavery
 			leader = { set_ideology = ideology:ideology_abolitionist }
 		}
 		hidden_effect = {
@@ -2819,9 +2819,9 @@ acw_secession_crisis.2 = {
 			}
 			ig:ig_landowners = { 
 				set_interest_group_name = ig_southern_planters
-				remove_ideology = ideology:ideology_paternalistic
-				add_ideology = ideology:ideology_republican_paternalistic
-				add_ideology = ideology:ideology_pro_slavery
+				remove_ideology = ideology_paternalistic
+				add_ideology = ideology_republican_paternalistic
+				add_ideology = ideology_pro_slavery
 				leader = { set_ideology = ideology:ideology_slaver }
 		        add_modifier = {
 		            name = ig_party_prospers
@@ -2831,17 +2831,17 @@ acw_secession_crisis.2 = {
 
 			ig:ig_devout = {
 				set_interest_group_name = ig_evangelicals
-				add_ideology = ideology:ideology_pro_slavery
+				add_ideology = ideology_pro_slavery
 				leader = { set_ideology = ideology:ideology_slaver }
 			}
 
 			ig:ig_armed_forces = {
-				add_ideology = ideology:ideology_pro_slavery
+				add_ideology = ideology_pro_slavery
 				leader = { set_ideology = ideology:ideology_slaver }
 			}
 
 			ig:ig_rural_folk = {
-				add_ideology = ideology:ideology_pro_slavery
+				add_ideology = ideology_pro_slavery
 				leader = { set_ideology = ideology:ideology_slaver }
 			}
 
@@ -3245,17 +3245,17 @@ acw_secession_crisis.2001 = {
 
 			ig:ig_devout = {
 				set_interest_group_name = ig_evangelicals
-				add_ideology = ideology:ideology_anti_slavery
+				add_ideology = ideology_anti_slavery
 				leader = { set_ideology = ideology:ideology_abolitionist }
 			}
 
 			ig:ig_armed_forces = {
-				add_ideology = ideology:ideology_anti_slavery
+				add_ideology = ideology_anti_slavery
 				leader = { set_ideology = ideology:ideology_abolitionist }
 			}
 
 			ig:ig_rural_folk = {
-				add_ideology = ideology:ideology_anti_slavery
+				add_ideology = ideology_anti_slavery
 				leader = { set_ideology = ideology:ideology_abolitionist }
 			}
 
@@ -3665,6 +3665,303 @@ acw_secession_crisis.4 = {
 		ai_chance = { base = 0 }
 	}
 }	
+
+namespace = gadsden_purchase
+
+gadsden_purchase.1 = { #USA offers to buy territory from MEX
+	type = country_event
+	placement = root
+	
+	title = gadsden_purchase.1.t
+	desc = gadsden_purchase.1.d
+	flavor = gadsden_purchase.1.f
+	
+	event_image = {
+		video = "gfx/event_pictures/unspecific_signed_contract.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/unspecific/signed_contract"
+
+	icon = "gfx/interface/icons/event_icons/event_trade.dds"
+	
+	duration = 3
+	
+    trigger = {
+	}
+
+	immediate = {
+        c:USA = {
+			save_scope_as = usa_scope
+		}
+		c:MEX = {
+			save_scope_as = mexico_scope
+		}
+		s:STATE_NEW_MEXICO.region_state:MEX = {
+			save_scope_as = new_mexico_scope
+		}
+        s:STATE_ARIZONA.region_state:MEX = {
+			save_scope_as = arizona_scope
+		}
+	}
+
+	option = { #send the offer to Mexico
+		name = gadsden_purchase.1.a
+		default_option = yes
+		c:MEX = {
+			trigger_event = { id = gadsden_purchase.2 days = 0 popup = yes }
+		}
+		show_as_tooltip = {
+			s:STATE_NEW_MEXICO.region_state:MEX = {
+				set_state_owner = c:USA
+			}
+            s:STATE_ARIZONA.region_state:MEX = {
+				set_state_owner = c:USA
+			}
+		}
+        custom_tooltip = {
+            text = gadsden_purchase.1.a.tt
+            add_treasury = -1000000 #pay now, get back if MEX refuses
+        }
+		ai_chance = {
+			base = 1
+		}
+	}
+	option = {#Another time
+		name = gadsden_purchase.1.b
+        c:USA = {
+            remove_variable = gadsden_purchase
+        }
+        custom_tooltip = {
+            text = gadsden_purchase_tt2
+        } 
+		ai_chance = {
+			base = 0
+		}
+	}
+}
+
+gadsden_purchase.2 = { #MEX gets offer
+	type = country_event
+	placement = ROOT
+
+	title = gadsden_purchase.2.t
+	desc = gadsden_purchase.2.d
+	flavor = gadsden_purchase.2.f
+
+	duration = 3
+
+	event_image = {
+		video = "gfx/event_pictures/unspecific_signed_contract.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/unspecific/signed_contract"
+
+	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
+
+	trigger = {
+	}
+
+	immediate = {
+		c:USA = {
+			save_scope_as = usa_scope
+		}
+		s:STATE_NEW_MEXICO.region_state:MEX = {
+			save_scope_as = new_mexico_scope
+		}
+        s:STATE_ARIZONA.region_state:MEX = {
+			save_scope_as = arizona_scope
+		}
+	}
+
+	option = { #Mexico Accepts
+		name = gadsden_purchase.2.a
+		default_option = yes
+        s:STATE_NEW_MEXICO.region_state:MEX = {
+            set_state_owner = c:USA
+        }
+        s:STATE_ARIZONA.region_state:MEX = {
+            set_state_owner = c:USA
+        }
+        custom_tooltip = {
+            text = gadsden_purchase.2.a.tt
+            add_treasury = 1000000 #MEX gets money because they accept
+        }
+        c:USA = {
+			trigger_event = { id = gadsden_purchase.3 days = 0 popup = yes }
+		}
+        ai_chance = {
+			base = 1 #why wouldn't they?
+		}
+	}
+    option = { #Mexico Refuses
+        name = gadsden_purchase.2.b
+        show_as_tooltip = {
+            s:STATE_ARIZONA = {  
+                if = {
+                    limit = {
+                        any_scope_state = {
+                            owner = c:MEX
+                        }
+                    }
+                    add_claim = c:USA 
+                }
+            }
+            s:STATE_NEW_MEXICO = {
+                if = {
+                    limit = {
+                        any_scope_state = {
+                            owner = c:MEX
+                        }
+                    }
+                    add_claim = c:USA 
+                }
+            }
+        }  
+        c:USA = {
+			trigger_event = { id = gadsden_purchase.4 days = 0 popup = yes }
+		}
+        ai_chance = {
+            base = 0 #would just give the USA an excuse...
+        }
+    }
+}
+
+gadsden_purchase.3 = { #MEX accepted the offer
+	type = country_event
+	placement = ROOT
+
+	title = gadsden_purchase.3.t
+	desc = gadsden_purchase.3.d
+	flavor = gadsden_purchase.3.f
+
+	duration = 3
+
+	event_image = {
+		video = "gfx/event_pictures/unspecific_signed_contract.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/unspecific/signed_contract"
+
+	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
+
+	trigger = {
+	}
+
+	immediate = {
+		c:MEX = {
+			save_scope_as = mexico_scope
+		}
+        s:STATE_NEW_MEXICO.region_state:USA = {
+            save_scope_as = new_mexico_scope
+        }
+        s:STATE_ARIZONA.region_state:USA = {
+            save_scope_as = arizona_scope
+        }
+	}
+
+	option = {
+        name = gadsden_purchase.3.a
+		default_option = yes
+        custom_tooltip = {
+            text = gadsden_purchase_tt3
+        }
+        change_relations = {
+            country = c:MEX
+            value = 50
+        }
+        hidden_effect = {
+			set_mutual_secret_goal = {
+				country = c:MEX
+				secret_goal = reconcile
+			}
+        }
+
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+gadsden_purchase.4 = { #MEX refused the offer
+	type = country_event
+	placement = ROOT
+
+	title = gadsden_purchase.4.t
+	desc = gadsden_purchase.4.d
+	flavor = gadsden_purchase.4.f
+
+	duration = 3
+
+	event_image = {
+		video = "gfx/event_pictures/unspecific_signed_contract.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/unspecific/signed_contract"
+
+	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
+
+	trigger = {
+	}
+
+	immediate = {
+		c:MEX = {
+			save_scope_as = mexico_scope
+		}
+        s:STATE_NEW_MEXICO.region_state:USA = {
+            save_scope_as = new_mexico_scope
+        }
+        s:STATE_ARIZONA.region_state:USA = {
+            save_scope_as = arizona_scope
+        }
+	}
+
+	option = {
+        name = gadsden_purchase.4.a
+		default_option = yes
+        s:STATE_ARIZONA = {  
+            if = {
+                limit = {
+                    any_scope_state = {
+                        owner = c:MEX
+                    }
+                }
+                add_claim = ROOT 
+            }
+        }
+        s:STATE_NEW_MEXICO = {
+            if = {
+                limit = {
+                    any_scope_state = {
+                        owner = c:MEX
+                    }
+                }
+                add_claim = ROOT 
+            }
+        }
+        custom_tooltip = {
+            text = gadsden_purchase_tt4
+            add_treasury = 1000000 #USA gets their money back
+        }
+        change_relations = {
+            country = c:MEX
+            value = -25
+        }
+        hidden_effect = {
+			set_mutual_secret_goal = {
+				country = c:MEX
+				secret_goal = antagonize
+			}
+        }
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
 
 namespace = HJE_usa
 
@@ -5236,300 +5533,3 @@ HJE_usa.13 = {
 		}
 	}
 }
-
-namespace = gadsden_purchase
-
-gadsden_purchase.1 = { #USA offers to buy territory from MEX
-	type = country_event
-	placement = root
-	
-	title = gadsden_purchase.1.t
-	desc = gadsden_purchase.1.d
-	flavor = gadsden_purchase.1.f
-	
-	event_image = {
-		video = "gfx/event_pictures/unspecific_signed_contract.bk2"
-	}
-
-	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
-	on_opened_soundeffect = "event:/SFX/Events/unspecific/signed_contract"
-
-	icon = "gfx/interface/icons/event_icons/event_trade.dds"
-	
-	duration = 3
-	
-    trigger = {
-	}
-
-	immediate = {
-        c:USA = {
-			save_scope_as = usa_scope
-		}
-		c:MEX = {
-			save_scope_as = mexico_scope
-		}
-		s:STATE_NEW_MEXICO.region_state:MEX = {
-			save_scope_as = new_mexico_scope
-		}
-        s:STATE_ARIZONA.region_state:MEX = {
-			save_scope_as = arizona_scope
-		}
-	}
-
-	option = { #send the offer to Mexico
-		name = gadsden_purchase.1.a
-		default_option = yes
-		c:MEX = {
-			trigger_event = { id = gadsden_purchase.2 days = 0 popup = yes }
-		}
-		show_as_tooltip = {
-			s:STATE_NEW_MEXICO.region_state:MEX = {
-				set_state_owner = c:USA
-			}
-            s:STATE_ARIZONA.region_state:MEX = {
-				set_state_owner = c:USA
-			}
-		}
-        custom_tooltip = {
-            text = gadsden_purchase.1.a.tt
-            add_treasury = -1000000 #pay now, get back if MEX refuses
-        }
-		ai_chance = {
-			base = 1
-		}
-	}
-	option = {#Another time
-		name = gadsden_purchase.1.b
-        c:USA = {
-            remove_variable = gadsden_purchase
-        }
-        custom_tooltip = {
-            text = gadsden_purchase_tt2
-        } 
-		ai_chance = {
-			base = 0
-		}
-	}
-}
-
-gadsden_purchase.2 = { #MEX gets offer
-	type = country_event
-	placement = ROOT
-
-	title = gadsden_purchase.2.t
-	desc = gadsden_purchase.2.d
-	flavor = gadsden_purchase.2.f
-
-	duration = 3
-
-	event_image = {
-		video = "gfx/event_pictures/unspecific_signed_contract.bk2"
-	}
-
-	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
-	on_opened_soundeffect = "event:/SFX/Events/unspecific/signed_contract"
-
-	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
-
-	trigger = {
-	}
-
-	immediate = {
-		c:USA = {
-			save_scope_as = usa_scope
-		}
-		s:STATE_NEW_MEXICO.region_state:MEX = {
-			save_scope_as = new_mexico_scope
-		}
-        s:STATE_ARIZONA.region_state:MEX = {
-			save_scope_as = arizona_scope
-		}
-	}
-
-	option = { #Mexico Accepts
-		name = gadsden_purchase.2.a
-		default_option = yes
-        s:STATE_NEW_MEXICO.region_state:MEX = {
-            set_state_owner = c:USA
-        }
-        s:STATE_ARIZONA.region_state:MEX = {
-            set_state_owner = c:USA
-        }
-        custom_tooltip = {
-            text = gadsden_purchase.2.a.tt
-            add_treasury = 1000000 #MEX gets money because they accept
-        }
-        c:USA = {
-			trigger_event = { id = gadsden_purchase.3 days = 0 popup = yes }
-		}
-        ai_chance = {
-			base = 1 #why wouldn't they?
-		}
-	}
-    option = { #Mexico Refuses
-        name = gadsden_purchase.2.b
-        show_as_tooltip = {
-            s:STATE_ARIZONA = {  
-                if = {
-                    limit = {
-                        any_scope_state = {
-                            owner = c:MEX
-                        }
-                    }
-                    add_claim = c:USA 
-                }
-            }
-            s:STATE_NEW_MEXICO = {
-                if = {
-                    limit = {
-                        any_scope_state = {
-                            owner = c:MEX
-                        }
-                    }
-                    add_claim = c:USA 
-                }
-            }
-        }  
-        c:USA = {
-			trigger_event = { id = gadsden_purchase.4 days = 0 popup = yes }
-		}
-        ai_chance = {
-            base = 0 #would just give the USA an excuse...
-        }
-    }
-}
-
-gadsden_purchase.3 = { #MEX accepted the offer
-	type = country_event
-	placement = ROOT
-
-	title = gadsden_purchase.3.t
-	desc = gadsden_purchase.3.d
-	flavor = gadsden_purchase.3.f
-
-	duration = 3
-
-	event_image = {
-		video = "gfx/event_pictures/unspecific_signed_contract.bk2"
-	}
-
-	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
-	on_opened_soundeffect = "event:/SFX/Events/unspecific/signed_contract"
-
-	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
-
-	trigger = {
-	}
-
-	immediate = {
-		c:MEX = {
-			save_scope_as = mexico_scope
-		}
-        s:STATE_NEW_MEXICO.region_state:USA = {
-            save_scope_as = new_mexico_scope
-        }
-        s:STATE_ARIZONA.region_state:USA = {
-            save_scope_as = arizona_scope
-        }
-	}
-
-	option = {
-        name = gadsden_purchase.3.a
-		default_option = yes
-        custom_tooltip = {
-            text = gadsden_purchase_tt3
-        }
-        change_relations = {
-            country = c:MEX
-            value = 50
-        }
-        hidden_effect = {
-			set_mutual_secret_goal = {
-				country = c:MEX
-				secret_goal = reconcile
-			}
-        }
-
-		ai_chance = {
-			base = 1
-		}
-	}
-}
-
-gadsden_purchase.4 = { #MEX refused the offer
-	type = country_event
-	placement = ROOT
-
-	title = gadsden_purchase.4.t
-	desc = gadsden_purchase.4.d
-	flavor = gadsden_purchase.4.f
-
-	duration = 3
-
-	event_image = {
-		video = "gfx/event_pictures/unspecific_signed_contract.bk2"
-	}
-
-	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
-	on_opened_soundeffect = "event:/SFX/Events/unspecific/signed_contract"
-
-	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
-
-	trigger = {
-	}
-
-	immediate = {
-		c:MEX = {
-			save_scope_as = mexico_scope
-		}
-        s:STATE_NEW_MEXICO.region_state:USA = {
-            save_scope_as = new_mexico_scope
-        }
-        s:STATE_ARIZONA.region_state:USA = {
-            save_scope_as = arizona_scope
-        }
-	}
-
-	option = {
-        name = gadsden_purchase.4.a
-		default_option = yes
-        s:STATE_ARIZONA = {  
-            if = {
-                limit = {
-                    any_scope_state = {
-                        owner = c:MEX
-                    }
-                }
-                add_claim = ROOT 
-            }
-        }
-        s:STATE_NEW_MEXICO = {
-            if = {
-                limit = {
-                    any_scope_state = {
-                        owner = c:MEX
-                    }
-                }
-                add_claim = ROOT 
-            }
-        }
-        custom_tooltip = {
-            text = gadsden_purchase_tt4
-            add_treasury = 1000000 #USA gets their money back
-        }
-        change_relations = {
-            country = c:MEX
-            value = -25
-        }
-        hidden_effect = {
-			set_mutual_secret_goal = {
-				country = c:MEX
-				secret_goal = antagonize
-			}
-        }
-		ai_chance = {
-			base = 1
-		}
-	}
-}
-

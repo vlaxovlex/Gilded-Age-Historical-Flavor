@@ -31,7 +31,8 @@
 		HJE_main.2 					#Quinine spread
 		HJE_main.3 					#Malaria Prevention spread
 		HJE_china.5					#China support
-		HJE_turkey.13				#Ottoman Dynasty Restoration
+		HJE_britain.25				#GBR Hannover Dynasty Restoration
+		HJE_turkey.13				#TUR Ottoman Dynasty Restoration
 	}
 	
 	effect = {
@@ -110,7 +111,7 @@
 					set_interest_group_name = ig_catholic_church 
 				}
 				ig:ig_landowners = {
-					add_ideology = ideology:ideology_pious
+					add_ideology = ideology_pious
 					add_ruling_interest_group = yes
 				}
 			}
@@ -149,20 +150,20 @@
 				activate_law = law_type:law_traditionalism
 				activate_law = law_type:law_censorship	
 				ig:ig_landowners = { 
-					remove_ideology = ideology:ideology_paternalistic
-					add_ideology = ideology:ideology_moralist
-					add_ideology = ideology:ideology_isolationist
+					remove_ideology = ideology_paternalistic
+					add_ideology = ideology_moralist
+					add_ideology = ideology_isolationist
 					add_ruling_interest_group = yes
 				}
 				ig:ig_intelligentsia = { 
 					set_interest_group_name = ig_literati
-					remove_ideology = ideology:ideology_anti_clerical
-					add_ideology = ideology:ideology_confucian
+					remove_ideology = ideology_anti_clerical
+					add_ideology = ideology_confucian
 					remove_ruling_interest_group = yes
 				}			
 				ig:ig_devout = {
 					set_interest_group_name = ig_scholar_officials
-					add_ideology = ideology:ideology_scholar_paternalistic
+					add_ideology = ideology_scholar_paternalistic
 					remove_ruling_interest_group = yes
 				}
 			}
@@ -178,20 +179,20 @@
 				activate_law = law_type:law_traditionalism
 				activate_law = law_type:law_censorship				
 				ig:ig_landowners = { 
-					remove_ideology = ideology:ideology_paternalistic
-					add_ideology = ideology:ideology_moralist
-					add_ideology = ideology:ideology_isolationist
+					remove_ideology = ideology_paternalistic
+					add_ideology = ideology_moralist
+					add_ideology = ideology_isolationist
 					add_ruling_interest_group = yes
 				}			
 				ig:ig_intelligentsia = { 
 					set_interest_group_name = ig_literati
-					remove_ideology = ideology:ideology_anti_clerical
-					add_ideology = ideology:ideology_confucian
+					remove_ideology = ideology_anti_clerical
+					add_ideology = ideology_confucian
 					remove_ruling_interest_group = yes
 				}			
 				ig:ig_devout = {
 					set_interest_group_name = ig_scholar_officials
-					add_ideology = ideology:ideology_scholar_paternalistic
+					add_ideology = ideology_scholar_paternalistic
 					remove_ruling_interest_group = yes
 				}
 			}
@@ -207,18 +208,18 @@
 				activate_law = law_type:law_traditionalism
 				activate_law = law_type:law_censorship	
 				ig:ig_landowners = { 
-					remove_ideology = ideology:ideology_paternalistic
-					add_ideology = ideology:ideology_moralist
-					add_ideology = ideology:ideology_isolationist
+					remove_ideology = ideology_paternalistic
+					add_ideology = ideology_moralist
+					add_ideology = ideology_isolationist
 				}				
 				ig:ig_intelligentsia = { 
 					set_interest_group_name = ig_literati
-					remove_ideology = ideology:ideology_anti_clerical
-					add_ideology = ideology:ideology_confucian
+					remove_ideology = ideology_anti_clerical
+					add_ideology = ideology_confucian
 				}		
 				ig:ig_devout = {
 					set_interest_group_name = ig_scholar_officials
-					add_ideology = ideology:ideology_scholar_paternalistic
+					add_ideology = ideology_scholar_paternalistic
 				}
 			}
 		}
@@ -598,464 +599,11 @@ on_capitulation = {
 on_heir_born = {
 	effect = {
 		post_notification = heir_born_notification
-		if = {
-			limit = {
-				year < 1842
-				NOT = { has_global_variable = edward_7_of_england_born }
-				owner = { 
-					has_law = law_type:law_monarchy 
-					ruler = { has_variable = is_hannover }
-				}
-				OR = {
-					AND = { 
-						exists = c:ENG
-						owner = c:ENG
-		            }
-		            AND = { 
-						NOT = { exists = c:ENG }
-						exists = c:GBR
-						owner = c:GBR
-						c:GBR = { owns_entire_state_region = STATE_HOME_COUNTIES }
-		            }
-		        }
-			}
-			set_global_variable = edward_7_of_england_born
-			owner = {
-				create_character = {
-					first_name = Edward
-					last_name = Hannover
-					historical = yes
-					heir = yes		
-					age = 0
-					interest_group = ig_armed_forces
-					female = no
-					dna = dna_edward_7
-					ideology = ideology:ideology_royalist
-					traits = {
-						imperious
-						charismatic
-						romantic
-					}
-					on_created = {
-						set_variable = is_edward_7
-						set_variable = is_hannover
-						set_variable = weight_does_not_change
-					}
-				}
-			}
-		}
-		if = {
-			limit = {
-				year >= 1842
-				NOT = { has_global_variable = edward_7_of_england_born }
-				owner = { 
-					has_law = law_type:law_monarchy 
-					ruler = { has_variable = is_hannover }
-				}
-				OR = {
-					AND = { 
-						exists = c:ENG
-						owner = c:ENG
-		            }
-		            AND = { 
-						NOT = { exists = c:ENG }
-						exists = c:GBR
-						owner = c:GBR
-						c:GBR = { owns_entire_state_region = STATE_HOME_COUNTIES }
-		            }
-		        }
-			}
-			set_global_variable = edward_7_of_england_born
-			owner = {
-				create_character = {
-					first_name = Edward
-					last_name = Hannover
-					historical = yes
-					heir = yes		
-					birth_date = 1841.11.9
-					interest_group = ig_armed_forces
-					female = no
-					dna = dna_edward_7
-					ideology = ideology:ideology_royalist
-					traits = {
-						imperious
-						charismatic
-						romantic
-					}
-					on_created = {
-						set_variable = is_edward_7
-						set_variable = is_hannover
-						set_variable = weight_does_not_change
-					}
-				}
-			}
-		}
-		if = {
-			limit = {
-				year >= 1866
-				has_global_variable = edward_7_of_england_born
-				NOT = { has_global_variable = george_5_of_england_born }
-				owner = { 
-					has_law = law_type:law_monarchy 
-					ruler = { has_variable = is_hannover }
-				}
-				OR = {
-					AND = { 
-						exists = c:ENG
-						owner = c:ENG
-		            }
-		            AND = { 
-						NOT = { exists = c:ENG }
-						exists = c:GBR
-						owner = c:GBR
-						c:GBR = { owns_entire_state_region = STATE_HOME_COUNTIES }
-		            }
-		        }
-			}
-			set_global_variable = george_5_of_england_born
-			owner = {
-				create_character = {
-					first_name = George
-					last_name = Hannover
-					historical = yes
-					heir = yes		
-					birth_date = 1865.6.3
-					interest_group = ig_armed_forces
-					female = no
-					dna = dna_george_5
-					ideology = ideology:ideology_royalist
-					traits = {
-						meticulous
-						direct
-						cautious
-					}
-					on_created = {
-						set_variable = is_george_5
-						set_variable = is_hannover
-						set_variable = weight_does_not_change
-					}
-				}
-			}
-		}
-		if = {
-			limit = {
-				NOT = { has_global_variable = wilhelm_1_von_preusen_born }
-				owner = { 
-					has_law = law_type:law_monarchy 
-					ruler = { has_variable = is_hohenzollern }
-				}
-				OR = {
-					AND = { 
-						exists = c:PRU
-						owner = c:PRU
-		            }
-		            AND = { 
-						NOT = { exists = c:PRU }
-						exists = c:GER
-						owner = c:GER
-						c:GER = { owns_entire_state_region = STATE_BRANDENBURG }
-		            }
-					AND = { 
-						NOT = { exists = c:PRU }
-						exists = c:NGF
-						owner = c:NGF
-						c:NGF = { owns_entire_state_region = STATE_BRANDENBURG }
-		            }
-		        }
-			}
-			set_global_variable = wilhelm_1_von_preusen_born
-			owner = {
-				create_character = {
-					first_name = Wilhelm
-					last_name = von_Hohenzollern
-					historical = yes
-					heir = yes		
-					birth_date = 1797.3.22
-					dna = dna_emperor_wilhelm_1
-					interest_group = ig_landowners
-					female = no
-					ideology = ideology:ideology_royalist
-					traits = {
-						romantic
-						popular_commander
-					}
-					on_created = {
-						set_variable = is_wilhelm_1
-						set_variable = is_hohenzollern
-					}
-				}
-			}
-		}
-		if = {
-			limit = {
-				year >= 1851
-				has_global_variable = wilhelm_1_von_preusen_born
-				NOT = { has_global_variable = friedrich_3_von_preusen_born }
-				owner = { 
-					has_law = law_type:law_monarchy 
-					ruler = { has_variable = is_hohenzollern }
-				}
-				OR = {
-					AND = { 
-						exists = c:PRU
-						owner = c:PRU
-		            }
-		            AND = { 
-						NOT = { exists = c:PRU }
-						exists = c:GER
-						owner = c:GER
-						c:GER = { owns_entire_state_region = STATE_BRANDENBURG }
-		            }
-					AND = { 
-						NOT = { exists = c:PRU }
-						exists = c:NGF
-						owner = c:NGF
-						c:NGF = { owns_entire_state_region = STATE_BRANDENBURG }
-		            }
-		        }
-			}
-			set_global_variable = friedrich_3_von_preusen_born
-			owner = {
-				create_character = {
-					first_name = Friedrich
-					last_name = von_Hohenzollern
-					historical = yes
-					heir = yes		
-					birth_date = 1831.10.18
-					dna = dna_emperor_friedrich_3
-					interest_group = ig_armed_forces
-					female = no
-					ideology = ideology:ideology_radical
-					traits = {
-						cancer
-						popular_commander
-						persistent
-					}
-					on_created = {
-						set_variable = is_friedrich_3
-						set_variable = is_hohenzollern
-						set_variable = weight_does_not_change
-					}
-				}
-			}
-		}
-		if = {
-			limit = {
-				year >= 1859
-				has_global_variable = wilhelm_1_von_preusen_born
-				has_global_variable = friedrich_3_von_preusen_born
-				NOT = { has_global_variable = wilhelm_2_von_preusen_born }
-				owner = { 
-					has_law = law_type:law_monarchy 
-					ruler = { has_variable = is_hohenzollern }
-				}
-				OR = {
-					AND = { 
-						exists = c:PRU
-						owner = c:PRU
-		            }
-		            AND = { 
-						NOT = { exists = c:PRU }
-						exists = c:GER
-						owner = c:GER
-						c:GER = { owns_entire_state_region = STATE_BRANDENBURG }
-		            }
-					AND = { 
-						NOT = { exists = c:PRU }
-						exists = c:NGF
-						owner = c:NGF
-						c:NGF = { owns_entire_state_region = STATE_BRANDENBURG }
-		            }
-		        }
-			}
-			set_global_variable = wilhelm_2_von_preusen_born
-			owner = {
-				create_character = {
-					first_name = Wilhelm
-					last_name = von_Hohenzollern
-					historical = yes
-					heir = yes		
-					birth_date = 1859.1.27
-					dna = dna_emperor_wilhelm_2
-					interest_group = ig_landowners
-					female = no
-					ideology = ideology:ideology_jingoist_leader
-					traits = {
-						wrathful
-						experienced_colonial_administrator
-						imperious
-						direct
-					}
-					on_created = {
-						set_variable = is_wilhelm_2
-						set_variable = is_hohenzollern
-						set_variable = weight_does_not_change
-					}
-				}
-			}
-		}
-		if = {
-			limit = {
-				year >= 1883
-				has_global_variable = wilhelm_1_von_preusen_born
-				has_global_variable = friedrich_3_von_preusen_born
-				has_global_variable = wilhelm_2_von_preusen_born
-				NOT = { has_global_variable = wilhelm_3_von_preusen_born }
-				owner = { 
-					has_law = law_type:law_monarchy 
-					ruler = { has_variable = is_hohenzollern }
-				}
-				OR = {
-					AND = { 
-						exists = c:PRU
-						owner = c:PRU
-		            }
-		            AND = { 
-						NOT = { exists = c:PRU }
-						exists = c:GER
-						owner = c:GER
-						c:GER = { owns_entire_state_region = STATE_BRANDENBURG }
-		            }
-					AND = { 
-						NOT = { exists = c:PRU }
-						exists = c:NGF
-						owner = c:NGF
-						c:NGF = { owns_entire_state_region = STATE_BRANDENBURG }
-		            }
-		        }
-			}
-			set_global_variable = wilhelm_3_von_preusen_born
-			owner = {
-				create_character = {
-					first_name = Wilhelm
-					last_name = von_Hohenzollern
-					historical = yes
-					heir = yes		
-					birth_date = 1882.5.6
-					dna = dna_kronprinz_wilhelm
-					interest_group = ig_landowners
-					female = no
-					ideology = ideology:ideology_royalist
-					traits = {
-						charismatic
-						expensive_tastes
-						popular_commander
-					}
-					on_created = {
-						set_variable = is_kronprinz
-						set_variable = is_hohenzollern
-					}
-				}
-			}
-		}
-		if = {
-			limit = {
-				NOT = { has_global_variable = abdulaziz_1_born }
-				exists = c:TUR
-				owner = c:TUR
-				owner = { 
-					has_law = law_type:law_monarchy 
-					ruler = { has_variable = is_osmanoglu }
-				}
-			}
-			set_global_variable = abdulaziz_1_born
-			owner = {
-				create_character = {
-					first_name = Abdulaziz
-					last_name = Osmanoglu
-					historical = yes
-					female = no
-					heir = yes		
-					birth_date = 1830.2.8
-					dna = dna_abdulaziz
-					interest_group = ig_intelligentsia
-					ideology = ideology:ideology_reformer
-					traits = {
-						expensive_tastes
-						tactful
-					}
-					on_created = {
-						set_variable = is_abdulaziz_1
-						set_variable = is_osmanoglu
-					}
-				}
-			}
-		}
-		if = {
-			limit = {
-				year >= 1841
-				has_global_variable = abdulaziz_1_born
-				NOT = { has_global_variable = murad_5_born }
-				exists = c:TUR
-				owner = c:TUR
-				owner = { 
-					has_law = law_type:law_monarchy 
-					ruler = { has_variable = is_osmanoglu }
-				}
-			}
-			set_global_variable = murad_5_born
-			owner = {
-				create_character = {
-					first_name = Murad
-					last_name = Osmanoglu
-					historical = yes
-					female = no
-					heir = yes		
-					birth_date = 1840.9.21
-					dna = dna_murad_5
-					interest_group = ig_intelligentsia
-					ideology = ideology:ideology_moderate
-					traits = {
-						psychological_affliction
-						reserved
-					}
-					on_created = {
-						set_variable = is_murad_5
-						set_variable = is_osmanoglu
-					}
-				}
-			}
-		}
-		if = {
-			limit = {
-				year >= 1869
-				has_global_variable = abdulaziz_1_born
-				has_global_variable = murad_5_born
-				NOT = { has_global_variable = abdulmecid_2_born }
-				exists = c:TUR
-				owner = c:TUR
-				owner = { 
-					has_law = law_type:law_monarchy 
-					ruler = { 
-						has_variable = is_osmanoglu 
-						has_variable = no_longer_in_danger_of_being_overthrown
-					}
-				}
-			}
-			set_global_variable = abdulmecid_2_born
-			owner = {
-				create_character = {
-					first_name = Abdulmecid
-					last_name = Osmanoglu
-					historical = yes
-					female = no
-					heir = yes		
-					birth_date = 1868.5.30
-					dna = dna_abdulmecid_2
-					interest_group = ig_intelligentsia
-					ideology = ideology:ideology_moderate
-					traits = {
-						cautious
-						romantic
-						pious
-					}
-					on_created = {
-						set_variable = is_abdulmecid_2
-						set_variable = is_osmanoglu
-					}
-				}
-			}
-		}
+
+		HJE_apply_historical_dynasty_heirs_GBR_effect = yes
+		HJE_apply_historical_dynasty_heirs_PRU_effect = yes
+		HJE_apply_historical_dynasty_heirs_TUR_effect = yes
+
 		if = {
 			limit = {
 				exists = c:FRA

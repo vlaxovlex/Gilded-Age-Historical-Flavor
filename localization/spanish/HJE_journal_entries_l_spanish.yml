@@ -586,12 +586,32 @@
  je_fifty_four_fourty:0 "Cincuenta y Cuatro Cuarenta o ¡LUCHA!"
  je_fifty_four_fourty_reason:0 "Nuestra disputa sobre la frontera de Oregón es inconciliable. Gran Bretaña debe ceder la totalidad del territorio de Oregón a los estadounidenses."
  
- #NUEVO TEXTO:
  HJ_polish_uprising:0 "Inquietud Polaca"
  HJ_polish_uprising_reason:0 "Después de las reformas en Rusia, sus demandas se extendieron al Reino de Polonia. Entre la intelligentsia polaca, se han estado realizando preparativos para un levantamiento armado durante varios años. Nuestra reciente política hacia los prisioneros políticos en Siberia también ha influido en los sentimientos separatistas. Es probable que cualquier movimiento descuidado o incidente pueda causar más disturbios, aunque una misión diplomática sería la mejor opción para manejar la situación."
  HJ_polish_uprising_goal:0 "Levantamiento polaco"
  HJ_the_sultans_tuberculosis_reason:0 ""
  HJ_carlist_victory_goal:0 "La Guerra Carlista ha terminado"
+
+ #NUEVO TEXTO:
+ je_building_an_american_empire:0 "American Exceptionalism"
+ je_building_an_american_empire_reason:0 "The American nation is undergoing an era of economic and imperial expansion."
+ je_building_an_american_empire_goal:0 "Complete 3-4 'Gilded Age' [Concept('concept_journal_entry', '$concept_journal_entries$')]"
+ je_american_empire_advance:0 "Advances the Journal Entry 'American Exceptionalism'"
+ finished_american_empire_tt:0 "Has completed the American Exceptionalism [concept_journal_entry]"
+ je_american_empire_education:0 "Gilded Age: Education Reform"
+ je_american_empire_education_reason:0 "The American nation must become a beacon of education so bright it can be seen and envied across the world."
+ je_american_empire_education_goal:1 "Increase the literacy rate of your people by 20%."
+ je_american_empire_bureaucracy:0 "Gilded Age: De-Regulation"
+ je_american_empire_bureaucracy_reason:0 "We must become the envy of nations in reguard to ease of doing business by de-regulating the economy as much as possible."
+ je_american_empire_continued_manifest_destiny:0 "Gilded Age: Continue Manifest Destiny"
+ je_american_empire_continued_manifest_destiny_reason:0 "The destiny of America has been imagined by some to be to conquer from sea to shining sea. Now we must correct this vision, and dominate all of North America."
+ je_american_empire_get_foreign_colony:0 "Gilded Age: A Colonial Empire"
+ je_american_empire_get_foreign_colony_reason:0 "We have decided to begin to build a colonial empire, like those of our European cousins."
+ je_american_empire_liberate_euro_colonies:0 "Gilded Age: Liberate an American Colony"
+ je_american_empire_liberate_euro_colonies_reason:0 "There's a number of non-American Empires who still hold their old colonies in the Americas. It is our backyard and nobody else's. These nations must be freed."
+ former_american_colony_tt:0 "Is a former American [concept_subject] Colony."
+ empire_with_former_american_territory_tt:0 "Is a Foreign Empire which formerly had an American [concept_subject] Colony."
+ recently_lost_a_war_tt:0 "Has recently lost a war."
 
  #RE-WRITTEN TEXT:
  

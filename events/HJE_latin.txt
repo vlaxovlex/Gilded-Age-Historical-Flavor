@@ -801,11 +801,11 @@ HJE_latin_america.8 = {
 			months = -1
 		}
 		set_ruling_interest_groups = { ig_intelligentsia ig_armed_forces }
-		ig:ig_landowners = { add_ideology = ideology:ideology_caudillismo }
-		ig:ig_armed_forces = { add_ideology = ideology:ideology_caudillismo }
-		ig:ig_intelligentsia = { add_ideology = ideology:ideology_liberal }
-		ig:ig_rural_folk = { add_ideology = ideology:ideology_proletarian }
-		ig:ig_trade_unions = { add_ideology = ideology:ideology_proletarian }
+		ig:ig_landowners = { add_ideology = ideology_caudillismo }
+		ig:ig_armed_forces = { add_ideology = ideology_caudillismo }
+		ig:ig_intelligentsia = { add_ideology = ideology_liberal }
+		ig:ig_rural_folk = { add_ideology = ideology_proletarian }
+		ig:ig_trade_unions = { add_ideology = ideology_proletarian }
 		activate_law = law_type:law_landed_voting
 		activate_law = law_type:law_appointed_bureaucrats
 		activate_law = law_type:law_censorship
@@ -917,11 +917,11 @@ HJE_latin_america.9 = {
 						months = -1
 					}
 					set_ruling_interest_groups = { ig_intelligentsia ig_armed_forces }
-					ig:ig_landowners = { add_ideology = ideology:ideology_caudillismo }
-					ig:ig_armed_forces = { add_ideology = ideology:ideology_caudillismo }
-					ig:ig_intelligentsia = { add_ideology = ideology:ideology_liberal }
-					ig:ig_rural_folk = { add_ideology = ideology:ideology_proletarian }
-					ig:ig_trade_unions = { add_ideology = ideology:ideology_proletarian }
+					ig:ig_landowners = { add_ideology = ideology_caudillismo }
+					ig:ig_armed_forces = { add_ideology = ideology_caudillismo }
+					ig:ig_intelligentsia = { add_ideology = ideology_liberal }
+					ig:ig_rural_folk = { add_ideology = ideology_proletarian }
+					ig:ig_trade_unions = { add_ideology = ideology_proletarian }
 					activate_law = law_type:law_landed_voting
 					activate_law = law_type:law_appointed_bureaucrats
 					activate_law = law_type:law_censorship
@@ -1061,12 +1061,12 @@ HJE_latin_america.10 = {
 						add_technology_researched = socialism
 					}
 					set_ruling_interest_groups = { ig_rural_folk ig_trade_unions ig_devout }
-					ig:ig_landowners = { add_ideology = ideology:ideology_proletarian }
-					ig:ig_armed_forces = { add_ideology = ideology:ideology_proletarian }
-					ig:ig_intelligentsia = { add_ideology = ideology:ideology_proletarian }
-					ig:ig_rural_folk = { add_ideology = ideology:ideology_proletarian }
-					ig:ig_trade_unions = { add_ideology = ideology:ideology_proletarian }
-					ig:ig_devout = { add_ideology = ideology:ideology_proletarian }
+					ig:ig_landowners = { add_ideology = ideology_proletarian }
+					ig:ig_armed_forces = { add_ideology = ideology_proletarian }
+					ig:ig_intelligentsia = { add_ideology = ideology_proletarian }
+					ig:ig_rural_folk = { add_ideology = ideology_proletarian }
+					ig:ig_trade_unions = { add_ideology = ideology_proletarian }
+					ig:ig_devout = { add_ideology = ideology_proletarian }
 					activate_law = law_type:law_council_republic
 					activate_law = law_type:law_anarchy
 					activate_law = law_type:law_elected_bureaucrats
@@ -1211,11 +1211,11 @@ HJE_latin_america.11 = {
 						months = -1
 					}
 					set_ruling_interest_groups = { ig_intelligentsia ig_rural_folk ig_trade_unions }
-					ig:ig_landowners = { add_ideology = ideology:ideology_egalitarian }
-					ig:ig_armed_forces = { add_ideology = ideology:ideology_egalitarian }
-					ig:ig_intelligentsia = { add_ideology = ideology:ideology_egalitarian }
-					ig:ig_rural_folk = { add_ideology = ideology:ideology_egalitarian }
-					ig:ig_trade_unions = { add_ideology = ideology:ideology_egalitarian }
+					ig:ig_landowners = { add_ideology = ideology_egalitarian }
+					ig:ig_armed_forces = { add_ideology = ideology_egalitarian }
+					ig:ig_intelligentsia = { add_ideology = ideology_egalitarian }
+					ig:ig_rural_folk = { add_ideology = ideology_egalitarian }
+					ig:ig_trade_unions = { add_ideology = ideology_egalitarian }
 					activate_law = law_type:law_census_voting
 					activate_law = law_type:law_elected_bureaucrats
 					activate_law = law_type:law_national_guard
@@ -1395,11 +1395,11 @@ HJE_latin_america.12 = {
 					add_technology_researched = socialism
 				}
 				set_ruling_interest_groups = { ig_rural_folk ig_trade_unions ig_armed_forces }
-				ig:ig_landowners = { add_ideology = ideology:ideology_proletarian }
-				ig:ig_armed_forces = { add_ideology = ideology:ideology_proletarian }
-				ig:ig_intelligentsia = { add_ideology = ideology:ideology_proletarian }
-				ig:ig_rural_folk = { add_ideology = ideology:ideology_proletarian }
-				ig:ig_trade_unions = { add_ideology = ideology:ideology_proletarian }
+				ig:ig_landowners = { add_ideology = ideology_proletarian }
+				ig:ig_armed_forces = { add_ideology = ideology_proletarian }
+				ig:ig_intelligentsia = { add_ideology = ideology_proletarian }
+				ig:ig_rural_folk = { add_ideology = ideology_proletarian }
+				ig:ig_trade_unions = { add_ideology = ideology_proletarian }
 				activate_law = law_type:law_council_republic
 				activate_law = law_type:law_oligarchy
 				activate_law = law_type:law_elected_bureaucrats
@@ -1592,8 +1592,8 @@ HJE_latin_america.14 = {
 		if = {
 			limit = { has_law = law_type:law_slavery_banned }
 			set_ruling_interest_groups = { ig_landowners ig_armed_forces }
-			ig:ig_landowners = { add_ideology = ideology:ideology_caudillismo }
-			ig:ig_armed_forces = { add_ideology = ideology:ideology_caudillismo }
+			ig:ig_landowners = { add_ideology = ideology_caudillismo }
+			ig:ig_armed_forces = { add_ideology = ideology_caudillismo }
 			activate_law = law_type:law_presidential_republic
 			activate_law = law_type:law_oligarchy
 			activate_law = law_type:law_landed_voting
@@ -1607,8 +1607,8 @@ HJE_latin_america.14 = {
 		}
 		else = {
 			set_ruling_interest_groups = { ig_intelligentsia ig_petty_bourgeoisie }
-			ig:ig_intelligentsia = { add_ideology = ideology:ideology_radical }
-			ig:ig_petty_bourgeoisie = { add_ideology = ideology:ideology_radical }
+			ig:ig_intelligentsia = { add_ideology = ideology_radical }
+			ig:ig_petty_bourgeoisie = { add_ideology = ideology_radical }
 			activate_law = law_type:law_presidential_republic
 			activate_law = law_type:law_slavery_banned
 			activate_law = law_type:law_census_voting
@@ -1647,8 +1647,8 @@ HJE_latin_america.14 = {
 						set_variable = military_brazil
 						add_loyalists = { value = 0.05 }
 						set_ruling_interest_groups = { ig_landowners ig_armed_forces }
-						ig:ig_landowners = { add_ideology = ideology:ideology_caudillismo }
-						ig:ig_armed_forces = { add_ideology = ideology:ideology_caudillismo }
+						ig:ig_landowners = { add_ideology = ideology_caudillismo }
+						ig:ig_armed_forces = { add_ideology = ideology_caudillismo }
 						activate_law = law_type:law_presidential_republic
 						activate_law = law_type:law_oligarchy
 						activate_law = law_type:law_appointed_bureaucrats
@@ -1689,8 +1689,8 @@ HJE_latin_america.14 = {
 				}
 			}
 			set_ruling_interest_groups = { ig_intelligentsia ig_petty_bourgeoisie }
-			ig:ig_intelligentsia = { add_ideology = ideology:ideology_radical }
-			ig:ig_petty_bourgeoisie = { add_ideology = ideology:ideology_radical }
+			ig:ig_intelligentsia = { add_ideology = ideology_radical }
+			ig:ig_petty_bourgeoisie = { add_ideology = ideology_radical }
 			activate_law = law_type:law_census_voting
 			activate_law = law_type:law_multicultural
 			activate_law = law_type:law_elected_bureaucrats
@@ -1716,8 +1716,8 @@ HJE_latin_america.14 = {
 					on_created = { 
 						set_variable = radical_brazil
 						set_ruling_interest_groups = { ig_intelligentsia ig_petty_bourgeoisie }
-						ig:ig_intelligentsia = { add_ideology = ideology:ideology_radical }
-						ig:ig_petty_bourgeoisie = { add_ideology = ideology:ideology_radical }
+						ig:ig_intelligentsia = { add_ideology = ideology_radical }
+						ig:ig_petty_bourgeoisie = { add_ideology = ideology_radical }
 						activate_law = law_type:law_presidential_republic
 						activate_law = law_type:law_census_voting
 						activate_law = law_type:law_multicultural
@@ -1756,8 +1756,8 @@ HJE_latin_america.14 = {
 				}
 			}
 			set_ruling_interest_groups = { ig_landowners ig_armed_forces }
-			ig:ig_landowners = { add_ideology = ideology:ideology_caudillismo }
-			ig:ig_armed_forces = { add_ideology = ideology:ideology_caudillismo }
+			ig:ig_landowners = { add_ideology = ideology_caudillismo }
+			ig:ig_armed_forces = { add_ideology = ideology_caudillismo }
 			activate_law = law_type:law_oligarchy
 			activate_law = law_type:law_appointed_bureaucrats
 			activate_law = law_type:law_censorship
@@ -1828,8 +1828,8 @@ HJE_latin_america.15 = {
 		if = {
 			limit = { has_law = law_type:law_slavery_banned }
 			set_ruling_interest_groups = { ig_landowners ig_armed_forces }
-			ig:ig_landowners = { add_ideology = ideology:ideology_caudillismo }
-			ig:ig_armed_forces = { add_ideology = ideology:ideology_caudillismo }
+			ig:ig_landowners = { add_ideology = ideology_caudillismo }
+			ig:ig_armed_forces = { add_ideology = ideology_caudillismo }
 			activate_law = law_type:law_monarchy
 			activate_law = law_type:law_oligarchy
 			activate_law = law_type:law_appointed_bureaucrats
@@ -1842,8 +1842,8 @@ HJE_latin_america.15 = {
 		}
 		else = {
 			set_ruling_interest_groups = { ig_intelligentsia ig_petty_bourgeoisie }
-			ig:ig_intelligentsia = { add_ideology = ideology:ideology_radical }
-			ig:ig_petty_bourgeoisie = { add_ideology = ideology:ideology_radical }
+			ig:ig_intelligentsia = { add_ideology = ideology_radical }
+			ig:ig_petty_bourgeoisie = { add_ideology = ideology_radical }
 			activate_law = law_type:law_monarchy
 			activate_law = law_type:law_slavery_banned
 			activate_law = law_type:law_census_voting
@@ -1882,8 +1882,8 @@ HJE_latin_america.15 = {
 						set_variable = military_brazil
 						add_loyalists = { value = 0.05 }
 						set_ruling_interest_groups = { ig_landowners ig_armed_forces }
-						ig:ig_landowners = { add_ideology = ideology:ideology_caudillismo }
-						ig:ig_armed_forces = { add_ideology = ideology:ideology_caudillismo }
+						ig:ig_landowners = { add_ideology = ideology_caudillismo }
+						ig:ig_armed_forces = { add_ideology = ideology_caudillismo }
 						activate_law = law_type:law_monarchy
 						activate_law = law_type:law_oligarchy
 						activate_law = law_type:law_appointed_bureaucrats
@@ -1924,8 +1924,8 @@ HJE_latin_america.15 = {
 				}
 			}
 			set_ruling_interest_groups = { ig_intelligentsia ig_petty_bourgeoisie }
-			ig:ig_intelligentsia = { add_ideology = ideology:ideology_radical }
-			ig:ig_petty_bourgeoisie = { add_ideology = ideology:ideology_radical }
+			ig:ig_intelligentsia = { add_ideology = ideology_radical }
+			ig:ig_petty_bourgeoisie = { add_ideology = ideology_radical }
 			activate_law = law_type:law_census_voting
 			activate_law = law_type:law_multicultural
 			activate_law = law_type:law_elected_bureaucrats
@@ -1951,8 +1951,8 @@ HJE_latin_america.15 = {
 					on_created = { 
 						set_variable = radical_brazil
 						set_ruling_interest_groups = { ig_intelligentsia ig_petty_bourgeoisie }
-						ig:ig_intelligentsia = { add_ideology = ideology:ideology_radical }
-						ig:ig_petty_bourgeoisie = { add_ideology = ideology:ideology_radical }
+						ig:ig_intelligentsia = { add_ideology = ideology_radical }
+						ig:ig_petty_bourgeoisie = { add_ideology = ideology_radical }
 						activate_law = law_type:law_monarchy
 						activate_law = law_type:law_census_voting
 						activate_law = law_type:law_multicultural
@@ -1991,8 +1991,8 @@ HJE_latin_america.15 = {
 				}
 			}
 			set_ruling_interest_groups = { ig_landowners ig_armed_forces }
-			ig:ig_landowners = { add_ideology = ideology:ideology_caudillismo }
-			ig:ig_armed_forces = { add_ideology = ideology:ideology_caudillismo }
+			ig:ig_landowners = { add_ideology = ideology_caudillismo }
+			ig:ig_armed_forces = { add_ideology = ideology_caudillismo }
 			activate_law = law_type:law_oligarchy
 			activate_law = law_type:law_appointed_bureaucrats
 			activate_law = law_type:law_censorship
