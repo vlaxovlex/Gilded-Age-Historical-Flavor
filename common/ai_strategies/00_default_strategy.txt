@@ -2635,7 +2635,7 @@ ai_strategy_default = {
 							has_journal_entry = je_german_unification
 						}
 						OR = {
-							NOT = {
+							NOR = {
 								AND = {
 									exists = c:SCH
 									c:SCH = { has_state_in_state_region = STATE_SCHLESWIG_HOLSTEIN }
@@ -5995,7 +5995,7 @@ ai_strategy_default = {
 								has_journal_entry = je_german_unification
 							}
 							OR = {
-								NOT = {
+								NOR = {
 									AND = {
 										exists = c:SCH
 										c:SCH = { has_state_in_state_region = STATE_SCHLESWIG_HOLSTEIN }

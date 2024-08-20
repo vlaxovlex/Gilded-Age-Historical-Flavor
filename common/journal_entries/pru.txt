@@ -63,11 +63,11 @@ HJ_occupation_of_schleswig = {
 				OR = {
 					AND = {
 						exists = c:SCH
-						c:SCH = { is_player = no is_subject = no }
+						c:SCH = { is_player = no OR = { is_subject = no is_subject_of = root } }
 					}
 					AND = {
 						exists = c:HOL
-						c:HOL = { is_player = no is_subject = no }
+						c:HOL = { is_player = no OR = { is_subject = no is_subject_of = root } }
 					}
 				}
 			}
