@@ -6,6 +6,10 @@
 	
 }
 
+NEconomy = {
+	TRADE_ROUTE_MAX_LEVEL = 3000							#100		#Increases likelihood of trade collapse causing historical global crash in lategame
+}
+
 NAI = {			#x4
 	DIPLO_PLAY_NEUTRALITY_PREFERENCE_DELTA_THRESHOLD = 200		 	#50 		#Neutrality bloc
 	DIPLO_PLAY_SYMPATHY_BASE_INITIATOR = 5							#20 
@@ -16,7 +20,7 @@ NAI = {			#x4
 	NUM_GROWING_COLONIES_MAX = 20									#5
 	TENSION_NUM_PROVINCE_SCALING_BASE = 2.5							#10
 	
-	#BASE_AGGRESSION = 0.0625										#0.25		#Aggression bloc
+	BASE_AGGRESSION = 0.15											#0.25		#Aggression bloc
 	UNIFICATION_AGGRESSION_MULT_HIGHER_TIER = 80					#20			
 	UNIFICATION_AGGRESSION_MULT_SAME_TIER = 0.4						#0.1
 

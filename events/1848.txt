@@ -692,7 +692,7 @@
 		}
 		NOT = {
 			any_country = {
-				NOT = { THIS = ROOT }
+				is_revolutionary = yes	
 				country_definition = root.country_definition
 			}
 		}

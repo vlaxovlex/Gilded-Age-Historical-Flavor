@@ -621,6 +621,20 @@ opium_wars.5 = {
 			months = normal_modifier_time
 		}
 		remove_variable = opium_wars_aggressor
+		#HJE edit start
+		if = {
+			limit = {
+				OR = {
+					has_state_in_state_region = STATE_MALAYA
+					has_state_in_state_region = STATE_NORTH_BORNEO
+					any_subject_or_below = { has_state_in_state_region = STATE_MALAYA }
+					any_subject_or_below = { has_state_in_state_region = STATE_NORTH_BORNEO }
+				}
+			}
+			s:STATE_MALAYA = { add_claim = ROOT }
+			s:STATE_NORTH_BORNEO = { add_claim = ROOT }
+		}
+		#HJE edit end
 	}
 
 	option = {
@@ -630,6 +644,20 @@ opium_wars.5 = {
 			months = normal_modifier_time
 		}
 		remove_variable = opium_wars_aggressor
+		#HJE edit start
+		if = {
+			limit = {
+				OR = {
+					has_state_in_state_region = STATE_MALAYA
+					has_state_in_state_region = STATE_NORTH_BORNEO
+					any_subject_or_below = { has_state_in_state_region = STATE_MALAYA }
+					any_subject_or_below = { has_state_in_state_region = STATE_NORTH_BORNEO }
+				}
+			}
+			s:STATE_MALAYA = { add_claim = ROOT }
+			s:STATE_NORTH_BORNEO = { add_claim = ROOT }
+		}
+		#HJE edit end
 	}
 }
 

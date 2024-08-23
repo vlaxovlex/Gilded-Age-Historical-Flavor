@@ -126,12 +126,15 @@ HJ_opium_wars = {
 				NOT = { THIS = ROOT }
 				has_variable = var_dynamic_opium_wars_victim
 				any_scope_state = { is_coastal = yes }
-				has_law = law_type:law_isolationism
-				NOT = {
-					any_country = {
-						has_diplomatic_pact = { who = PREV type = foreign_investment_agreement }	
-						OR = {
-							THIS = ROOT
+
+				trigger_if = {
+					limit = { NOT = { has_dlc_feature = foreign_investment } }
+					has_law = law_type:law_isolationism
+				}
+				trigger_else = {
+					NOT = {
+						any_country = {
+							has_diplomatic_pact = { who = PREV type = foreign_investment_agreement }	
 							country_rank = rank_value:great_power
 						}
 					}
@@ -146,7 +149,12 @@ HJ_opium_wars = {
 					state_region = {
 						any_scope_state = {
 							is_treaty_port = no
-							owner = { has_variable = var_dynamic_opium_wars_victim }
+							owner = { 
+								OR = {
+									has_variable = var_dynamic_opium_wars_victim 
+									any_overlord_or_above = { has_variable = var_dynamic_opium_wars_victim  }
+								}
+							}
 						}
 					}
 				}
@@ -161,7 +169,12 @@ HJ_opium_wars = {
 						state_region = {
 							any_scope_state = {
 								is_treaty_port = no
-								owner = { has_variable = var_dynamic_opium_wars_victim }
+								owner = { 
+									OR = {
+										has_variable = var_dynamic_opium_wars_victim 
+										any_overlord_or_above = { has_variable = var_dynamic_opium_wars_victim  }
+									}
+								}
 							}
 						}
 					}
@@ -174,7 +187,12 @@ HJ_opium_wars = {
 		custom_tooltip = opiumwars_timelimit_tt
 		hidden_effect = {
 			every_country = {
-				limit = { has_variable = var_dynamic_opium_wars_victim }
+				limit = { 
+					OR = {
+						has_variable = var_dynamic_opium_wars_victim 
+						any_overlord_or_above = { has_variable = var_dynamic_opium_wars_victim  }
+					}
+				}
 				set_secret_goal = {
 					country = ROOT
 					secret_goal = antagonize			
@@ -182,7 +200,7 @@ HJ_opium_wars = {
 				ROOT = {
 					set_secret_goal = {
 						country = PREV
-						secret_goal = antagonize			
+						secret_goal = conquer			
 					}
 				}
 			}
@@ -201,7 +219,12 @@ HJ_opium_wars = {
 							state_region = {
 								any_scope_state = {
 									is_treaty_port = no
-									owner = { has_variable = var_dynamic_opium_wars_victim }
+									owner = { 
+										OR = {
+											has_variable = var_dynamic_opium_wars_victim 
+											any_overlord_or_above = { has_variable = var_dynamic_opium_wars_victim  }
+										}
+									}
 								}
 							}
 						}
@@ -219,20 +242,18 @@ HJ_opium_wars = {
 		}
 		custom_tooltip = {
 			text = opiumwars_chi_has_been_forced_to_reopen_markets_tt
-			NOT = {
-				any_country = {
-					NOT = { THIS = ROOT }
-					has_variable = var_dynamic_opium_wars_victim
-					any_scope_state = { is_coastal = yes }
-					has_law = law_type:law_isolationism
-					NOT = {
-						any_country = {
-							has_diplomatic_pact = { who = PREV type = foreign_investment_agreement }	
-							OR = {
-								THIS = ROOT
-								country_rank = rank_value:great_power
-							}
-						}
+			any_country = {
+				NOT = { THIS = ROOT }
+				has_variable = var_dynamic_opium_wars_victim
+				any_scope_state = { is_coastal = yes }
+				trigger_if = {
+					limit = { NOT = { has_dlc_feature = foreign_investment } }
+					has_law = law_type:law_free_trade
+				}
+				trigger_else = {
+					any_country = {
+						has_diplomatic_pact = { who = PREV type = foreign_investment_agreement }	
+						country_rank = rank_value:great_power
 					}
 				}
 			}
@@ -246,7 +267,12 @@ HJ_opium_wars = {
 					state_region = {
 						any_scope_state = {
 							is_treaty_port = no
-							owner = { has_variable = var_dynamic_opium_wars_victim }
+							owner = { 
+								OR = {
+									has_variable = var_dynamic_opium_wars_victim 
+									any_overlord_or_above = { has_variable = var_dynamic_opium_wars_victim  }
+								}
+							}
 						}
 					}
 				}
@@ -285,12 +311,14 @@ HJ_opium_wars = {
 					NOT = { THIS = ROOT }
 					has_variable = var_dynamic_opium_wars_victim
 					any_scope_state = { is_coastal = yes }
-					has_law = law_type:law_isolationism
-					NOT = {
-						any_country = {
-							has_diplomatic_pact = { who = PREV type = foreign_investment_agreement }	
-							OR = {
-								THIS = ROOT
+					trigger_if = {
+						limit = { NOT = { has_dlc_feature = foreign_investment } }
+						has_law = law_type:law_isolationism
+					}
+					trigger_else = {
+						NOT = {
+							any_country = {
+								has_diplomatic_pact = { who = PREV type = foreign_investment_agreement }	
 								country_rank = rank_value:great_power
 							}
 						}
@@ -308,7 +336,12 @@ HJ_opium_wars = {
 							state_region = {
 								any_scope_state = {
 									is_treaty_port = no
-									owner = { has_variable = var_dynamic_opium_wars_victim }
+									owner = { 
+										OR = {
+											has_variable = var_dynamic_opium_wars_victim 
+											any_overlord_or_above = { has_variable = var_dynamic_opium_wars_victim  }
+										}
+									}
 								}
 							}
 						}
@@ -376,12 +409,15 @@ HJ_opium_wars_unhistorical = {
 				NOT = { THIS = ROOT }
 				has_variable = var_dynamic_opium_wars_victim
 				any_scope_state = { is_coastal = yes }
-				has_law = law_type:law_isolationism
-				NOT = {
-					any_country = {
-						has_diplomatic_pact = { who = PREV type = foreign_investment_agreement }	
-						OR = {
-							THIS = ROOT
+
+				trigger_if = {
+					limit = { NOT = { has_dlc_feature = foreign_investment } }
+					has_law = law_type:law_isolationism
+				}
+				trigger_else = {
+					NOT = {
+						any_country = {
+							has_diplomatic_pact = { who = PREV type = foreign_investment_agreement }	
 							country_rank = rank_value:great_power
 						}
 					}
@@ -396,7 +432,12 @@ HJ_opium_wars_unhistorical = {
 					state_region = {
 						any_scope_state = {
 							is_treaty_port = no
-							owner = { has_variable = var_dynamic_opium_wars_victim }
+							owner = { 
+								OR = {
+									has_variable = var_dynamic_opium_wars_victim 
+									any_overlord_or_above = { has_variable = var_dynamic_opium_wars_victim  }
+								}
+							}
 						}
 					}
 				}
@@ -411,7 +452,12 @@ HJ_opium_wars_unhistorical = {
 						state_region = {
 							any_scope_state = {
 								is_treaty_port = no
-								owner = { has_variable = var_dynamic_opium_wars_victim }
+								owner = { 
+									OR = {
+										has_variable = var_dynamic_opium_wars_victim 
+										any_overlord_or_above = { has_variable = var_dynamic_opium_wars_victim  }
+									}
+								}
 							}
 						}
 					}
@@ -451,7 +497,12 @@ HJ_opium_wars_unhistorical = {
 							state_region = {
 								any_scope_state = {
 									is_treaty_port = no
-									owner = { has_variable = var_dynamic_opium_wars_victim }
+									owner = { 
+										OR = {
+											has_variable = var_dynamic_opium_wars_victim 
+											any_overlord_or_above = { has_variable = var_dynamic_opium_wars_victim  }
+										}
+									}
 								}
 							}
 						}
@@ -469,20 +520,18 @@ HJ_opium_wars_unhistorical = {
 		}
 		custom_tooltip = {
 			text = opiumwars_chi_has_been_forced_to_reopen_markets_tt
-			NOT = {
-				any_country = {
-					NOT = { THIS = ROOT }
-					has_variable = var_dynamic_opium_wars_victim
-					any_scope_state = { is_coastal = yes }
-					has_law = law_type:law_isolationism
-					NOT = {
-						any_country = {
-							has_diplomatic_pact = { who = PREV type = foreign_investment_agreement }	
-							OR = {
-								THIS = ROOT
-								country_rank = rank_value:great_power
-							}
-						}
+			any_country = {
+				NOT = { THIS = ROOT }
+				has_variable = var_dynamic_opium_wars_victim
+				any_scope_state = { is_coastal = yes }
+				trigger_if = {
+					limit = { NOT = { has_dlc_feature = foreign_investment } }
+					has_law = law_type:law_free_trade
+				}
+				trigger_else = {
+					any_country = {
+						has_diplomatic_pact = { who = PREV type = foreign_investment_agreement }	
+						country_rank = rank_value:great_power
 					}
 				}
 			}
@@ -496,7 +545,12 @@ HJ_opium_wars_unhistorical = {
 					state_region = {
 						any_scope_state = {
 							is_treaty_port = no
-							owner = { has_variable = var_dynamic_opium_wars_victim }
+							owner = { 
+								OR = {
+									has_variable = var_dynamic_opium_wars_victim 
+									any_overlord_or_above = { has_variable = var_dynamic_opium_wars_victim  }
+								}
+							}
 						}
 					}
 				}
@@ -535,12 +589,14 @@ HJ_opium_wars_unhistorical = {
 					NOT = { THIS = ROOT }
 					has_variable = var_dynamic_opium_wars_victim
 					any_scope_state = { is_coastal = yes }
-					has_law = law_type:law_isolationism
-					NOT = {
-						any_country = {
-							has_diplomatic_pact = { who = PREV type = foreign_investment_agreement }	
-							OR = {
-								THIS = ROOT
+					trigger_if = {
+						limit = { NOT = { has_dlc_feature = foreign_investment } }
+						has_law = law_type:law_isolationism
+					}
+					trigger_else = {
+						NOT = {
+							any_country = {
+								has_diplomatic_pact = { who = PREV type = foreign_investment_agreement }	
 								country_rank = rank_value:great_power
 							}
 						}
@@ -558,7 +614,12 @@ HJ_opium_wars_unhistorical = {
 							state_region = {
 								any_scope_state = {
 									is_treaty_port = no
-									owner = { has_variable = var_dynamic_opium_wars_victim }
+									owner = { 
+										OR = {
+											has_variable = var_dynamic_opium_wars_victim 
+											any_overlord_or_above = { has_variable = var_dynamic_opium_wars_victim  }
+										}
+									}
 								}
 							}
 						}

@@ -240,7 +240,7 @@ GLOBAL = {
 	}
 	s:STATE_CENTRAL_JAVA = {
 		add_claim = c:DEI
-		add_claim = c:NET
+#		add_claim = c:NET
 	}
 	s:STATE_GHANA = {
 		add_claim = c:GBR
@@ -300,35 +300,32 @@ GLOBAL = {
 	#}
 	s:STATE_NORTH_SUMATRA = {
 		add_claim = c:DEI
-		add_claim = c:NET
+#		add_claim = c:NET
 	}	
 	s:STATE_ACEH = {
 		add_claim = c:DEI
-		add_claim = c:NET
+#		add_claim = c:NET
 	}
 	s:STATE_WESTERN_NEW_GUINEA = {
 		add_claim = c:DEI
-		add_claim = c:NET
+#		add_claim = c:NET
 	}
 	s:STATE_CELEBES = {
 		add_claim = c:DEI
-		add_claim = c:NET
+#		add_claim = c:NET
 	}
 	s:STATE_WEST_BORNEO = {
 		add_claim = c:DEI
-		add_claim = c:NET
+#		add_claim = c:NET
 	}
 	s:STATE_EAST_BORNEO = {
 		add_claim = c:DEI
-		add_claim = c:NET
+#		add_claim = c:NET
 	}
-	s:STATE_MALAYA = {
-		add_claim = c:GBR
-	}	
-	s:STATE_NORTH_BORNEO = {
-		add_claim = c:GBR
-	}	
 	s:STATE_MINDANAO = {
+		add_claim = c:PHI
+	}
+	s:STATE_LUZON = {
 		add_claim = c:PHI
 	}
 	#s:STATE_ZULULAND = {

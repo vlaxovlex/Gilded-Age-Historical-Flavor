@@ -283,7 +283,7 @@ je_acw_war = {
 			40 = acw_special_events.1 #The Gettysburg Address
 			40 = acw_special_events.2 #Sherman's March to the Sea
 			15 = acw_special_events.7 #Emancipation Proclamation
-			30 = acw_special_events.14 #Generic Skirmishes
+			25 = acw_special_events.14 #Generic Skirmishes
 			10 = acw_events.8 #Great Locomotive Chase
 		}					#HJE edit end
 	}

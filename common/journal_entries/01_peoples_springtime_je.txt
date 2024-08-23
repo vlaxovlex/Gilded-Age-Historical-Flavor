@@ -49,12 +49,21 @@
 
 	possible = {
 		year >= 1846	#HJE edit
-		any_interest_group = {
+		trigger_if = {
+			limit = { exists = c:PRU c:PRU = THIS }
 			OR = {
-				is_powerful = yes
-				is_insurrectionary = yes
+				pop_radical_fraction > 0.15
+				any_interest_group = { leader = { has_ideology = ideology:ideology_radical } }
 			}
-			leader = { has_ideology = ideology:ideology_radical }
+		}
+		trigger_else = {
+			any_interest_group = {
+				leader = { has_ideology = ideology:ideology_radical }
+				OR = {
+					is_powerful = yes
+					is_insurrectionary = yes
+				}
+			}
 		}
 	}
 

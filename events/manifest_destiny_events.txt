@@ -144,9 +144,9 @@ manifest_destiny.3 = {
 				region = sr:region_great_plains
 				region = sr:region_the_midwest
 				region = sr:region_dixie
-				region = sr:region_western_canada		#HJE edit
-				region = sr:region_american_frontier	#HJE edit
-				region = sr:region_west_dixie			#HJE edit
+				#region = sr:region_western_canada		#HJE edit
+				#region = sr:region_american_frontier	#HJE edit
+				#region = sr:region_west_dixie			#HJE edit
 			}
 			state_region = {
 				any_scope_state = {
@@ -174,9 +174,9 @@ manifest_destiny.3 = {
 					region = sr:region_great_plains
 					region = sr:region_the_midwest
 					region = sr:region_dixie
-					region = sr:region_western_canada		#HJE edit
-					region = sr:region_american_frontier	#HJE edit
-					region = sr:region_west_dixie			#HJE edit
+					#region = sr:region_western_canada		#HJE edit
+					#region = sr:region_american_frontier	#HJE edit
+					#region = sr:region_west_dixie			#HJE edit
 				}
 				state_region = {
 					any_scope_state = {

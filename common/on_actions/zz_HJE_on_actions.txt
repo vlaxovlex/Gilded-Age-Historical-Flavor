@@ -673,33 +673,6 @@ on_character_death = {
 		if = {
 			limit = {
 				is_ruler = yes
-				exists = c:HAW
-				owner = c:HAW
-				owner = {
-					has_law = law_type:law_monarchy
-					NOT = { has_variable = death_of_kamehameha }
-					NOT = { has_global_variable = gp_hawaii_interest }
-				}
-			}
-			owner = {
-				trigger_event = hawaii_events.1
-			}
-		}
-		
-		if = {
-			limit = {
-				has_variable = expedition_leader_var
-			}
-			owner = {
-				trigger_event = expedition_events.110
-			}
-		}
-
-
-
-		if = {
-			limit = {
-				is_ruler = yes
 				owner = { 
 					any_subject_or_below = {
 						NOT = { has_law = law_type:law_autocracy }
@@ -798,6 +771,30 @@ on_character_death = {
 # scope:target = Uprising country
 on_secession_start = {
 	effect = {
+		if = {
+			limit = {
+				NOT = { exists = c:DOM }
+				scope:target = {
+					any_scope_state = { is_capital = yes state_region = s:STATE_SANTO_DOMINGO }
+					NOT = { any_scope_state = { state_region = s:STATE_CUBA } }
+					OR = {
+						country_has_primary_culture = cu:caribeno
+						country_has_primary_culture = cu:afro_caribeno
+					}
+				}
+			}
+			scope:target = {
+				change_tag = DOM
+				add_loyalists = { value = 0.8 }
+				add_primary_culture = cu:caribeno
+				add_primary_culture = cu:afro_caribeno
+				activate_law = law_type:law_landed_voting
+				add_modifier = {
+					name = separatist_zeal
+					months = 12
+				}
+			}
+		}
 		if = {
 			limit = {
 				NOT = { exists = c:RSM }

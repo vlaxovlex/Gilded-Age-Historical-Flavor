@@ -1042,3 +1042,15 @@ reform_of_1832 = {
 	country_capitalists_voting_power_add = 50
 	interest_group_ig_industrialists_pol_str_mult = 0.25
 }
+
+disapproves_of_teller_amendment_decision = { ## ig approval mod ##
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_negative.dds
+	interest_group_approval_add = -4
+	interest_group_pop_attraction_mult = -0.2
+}
+
+approves_of_teller_amendment_decision = { ## ig approval mod ##
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_negative.dds
+	interest_group_approval_add = 3
+	interest_group_pop_attraction_mult = 0.15
+}

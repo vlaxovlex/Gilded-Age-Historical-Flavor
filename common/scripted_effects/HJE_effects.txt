@@ -68,21 +68,24 @@ HJE_cleanup_effect = {
 				}
 			}
 			if = {
-				limit = { NOT = { s:STATE_CALIFORNIA.region_state:MEX = { is_target_of_wargoal = ROOT } } }
-				add_war_goal = {
-					holder = c:USA
-					type = return_state
-					target_state = s:STATE_CALIFORNIA.region_state:MEX
-					primary_demand = yes
+				limit = { NOT = { c:MEX = { any_scope_state = { is_target_of_wargoal = c:USA } } } }
+				if = {
+					limit = { c:MEX = { has_state_in_state_region = STATE_TEXAS } }
+					add_war_goal = {
+						holder = c:USA
+						type = return_state
+						target_state = s:STATE_TEXAS.region_state:MEX
+						primary_demand = yes
+					}
 				}
-			}
-			if = {
-				limit = { NOT = { s:STATE_TEXAS.region_state:MEX = { is_target_of_wargoal = ROOT } } }
-				add_war_goal = {
-					holder = c:USA
-					type = return_state
-					target_state = s:STATE_TEXAS.region_state:MEX
-					primary_demand = yes
+				if = {
+					limit = { c:MEX = { has_state_in_state_region = STATE_CALIFORNIA } }
+					add_war_goal = {
+						holder = c:USA
+						type = return_state
+						target_state = s:STATE_CALIFORNIA.region_state:MEX
+						primary_demand = yes
+					}
 				}
 			}
 		}
@@ -189,10 +192,32 @@ HJE_cleanup_effect = {
 			year >= 1855	
 			has_law = law_type:law_free_trade
 			NOT = { has_global_variable = had_second_opium_war }
-			has_variable = var_dynamic_opium_wars_victim				
+			has_variable = var_dynamic_opium_wars_victim
+			trigger_if = {
+				limit = { NOT = { has_dlc_feature = foreign_investment } }
+				has_law = law_type:law_free_trade
+			}
+			trigger_else = {
+				any_country = {
+					has_diplomatic_pact = { who = PREV type = foreign_investment_agreement }	
+					country_rank = rank_value:great_power
+				}
+			}
 		}
-		activate_law = law_type:law_isolationism
 		set_variable = ai_china_closes_markets_again_var
+		if = {
+			limit = { NOT = { has_dlc_feature = foreign_investment } }
+			activate_law = law_type:law_isolationism
+		}
+		else = {
+			every_country = {
+				limit = { has_diplomatic_pact = { who = ROOT type = foreign_investment_agreement } }
+				remove_diplomatic_pact = {
+					country = ROOT
+					type = foreign_investment_agreement
+				}
+			}
+		}
 	}
 	
 	if = {
@@ -297,6 +322,38 @@ HJE_cleanup_effect = {
 			}
 		}
 		set_strategy = ai_strategy_progressive_agenda
+	}
+
+	if = {
+		limit = { 
+			exists = c:GER 
+			NOT = { any_state_region = { has_modifier = modifier_state_capital_of_germany } } 
+			c:GER = {
+				country_is_in_europe = yes
+				any_scope_state = { 
+					is_capital = yes 
+					OR = {
+						cu:north_german = { has_homeland = PREV }
+						cu:south_german = { has_homeland = PREV }
+					}
+				}
+			}
+		}
+		c:GER = {
+			random_scope_state = {
+				limit = {
+					is_capital = yes 
+					OR = {
+						cu:north_german = { has_homeland = PREV }
+						cu:south_german = { has_homeland = PREV }
+					}
+				}
+				add_modifier = { 
+					name = modifier_state_capital_of_germany
+					months = -1
+				}
+			}
+		}
 	}
 }
 create_random_orleanist_ruler = {

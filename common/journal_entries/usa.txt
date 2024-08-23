@@ -264,6 +264,7 @@ je_american_empire_continued_manifest_destiny = {
 	group = je_group_historical_content
 
 	complete = {
+		is_at_war = no
 		if = {
 			limit = { has_variable = american_empire_je_requires_canada }
 			owns_entire_state_region = STATE_NORTHWEST_TERRITORIES
@@ -310,6 +311,7 @@ je_american_empire_get_foreign_colony = {
 	group = je_group_historical_content
 
 	complete = {
+		is_at_war = no
 		any_subject_or_below = {
 			hidden_trigger = {
 				trigger_if = {
@@ -321,6 +323,11 @@ je_american_empire_get_foreign_colony = {
 				is_subject_type = subject_type_dominion
 				is_subject_type = subject_type_puppet
 				is_subject_type = subject_type_colonial_administration
+				AND = {
+					exists = c:PHI
+					c:PHI = THIS
+					is_subject_type = subject_type_protectorate
+				}
 			}
 			OR = {
 				country_is_in_africa = yes
@@ -328,6 +335,28 @@ je_american_empire_get_foreign_colony = {
 				country_is_in_india = yes
 				country_is_in_east_asia = yes
 				country_is_in_southeast_asia = yes
+			}
+		}
+	}
+
+	on_monthly_pulse = {
+		effect = {
+			if = {
+				limit = {
+					is_player = no
+					exists = c:PHI
+					c:PHI = { is_subject = no }
+					is_diplomatic_play_committed_participant = no
+					is_diplomatic_play_initiator = no
+					is_diplomatic_play_target = no
+					NOT = { has_variable = already_attempted_to_take_philippines_once }
+				}
+				set_variable = already_attempted_to_take_philippines_once
+				create_diplomatic_play = {
+		            target_country = c:PHI
+		            type = dp_make_protectorate
+					war = no
+				}
 			}
 		}
 	}
@@ -360,10 +389,10 @@ je_american_empire_liberate_euro_colonies = {
 	group = je_group_historical_content
 
 	complete = {
+		is_at_war = no
 		OR = {
-			any_country = {
-				count = all
-				NOT = {
+			NOT = {
+				any_country = {
 					custom_tooltip = {
 						text = former_american_colony_tt
 						has_variable = american_empire_je_current_american_colony
@@ -372,11 +401,11 @@ je_american_empire_liberate_euro_colonies = {
 			}
 			AND = {
 				any_country = {
+					is_subject = no
 					custom_tooltip = {
 						text = former_american_colony_tt
 						has_variable = american_empire_je_current_american_colony
 					}
-					is_subject = no
 				}
 				any_country = {
 					custom_tooltip = {
@@ -393,11 +422,105 @@ je_american_empire_liberate_euro_colonies = {
 		}
 	}
 
+	on_monthly_pulse = {
+		effect = {
+			every_country = { ## double checks that there aren't new potential options for liberation
+				limit = {
+					OR = {
+						country_is_in_north_america = yes
+						country_is_in_central_america = yes
+						country_is_in_south_america = yes
+					}
+					OR = {
+						is_subject_type = subject_type_dominion
+						is_subject_type = subject_type_puppet
+						is_subject_type = subject_type_colonial_administration
+					}
+					any_overlord_or_above = {
+						NOR = {
+							country_is_in_north_america = yes
+							country_is_in_central_america = yes
+							country_is_in_south_america = yes
+						}
+					}
+				}
+				if = {
+					limit = { NOT = { has_variable = american_empire_je_current_american_colony } }
+					set_variable = american_empire_je_current_american_colony
+				}
+				every_overlord_or_above = {
+					limit = {
+						NOR = {
+							country_is_in_north_america = yes
+							country_is_in_central_america = yes
+							country_is_in_south_america = yes
+						}
+					}
+					if = {
+						limit = { NOT = { has_variable = american_empire_je_potential_enemy_empire } }
+						set_variable = american_empire_je_potential_enemy_empire
+					}
+				}
+			}
+			every_country = { ## if a country gains independence diplomatically they're no longer valid
+				limit = {
+					has_variable = american_empire_je_current_american_colony
+					NOT = { any_country = { has_truce_with = prev } }
+					is_subject = no
+					is_at_war = no
+				}
+				remove_variable = american_empire_je_current_american_colony
+			}
+			every_country = { ## if an empire loses all it's american colonies with no fuss it's no longer valid
+				limit = {
+					has_variable = american_empire_je_potential_enemy_empire
+					NOT = { has_truce_with = ROOT }
+					NOT = {
+						any_subject_or_below = {
+							OR = {
+								country_is_in_north_america = yes
+								country_is_in_central_america = yes
+								country_is_in_south_america = yes
+							}
+						}
+					}
+				}
+				remove_variable = american_empire_je_potential_enemy_empire
+			}
+		}
+		random_events = {
+			50 = 0
+			50 = HJE_usa.14 #Cease Trade with Rebellious Cuba (or equivallent)?
+		}
+	}
+
 	on_complete = {
 		custom_tooltip = je_american_empire_advance
 		change_variable = {
 			name = american_empire_var
 			add = 1
+		}
+		if = {
+			limit = { 
+				any_country = { has_variable = CUB_equivallent_spaamerwar_var } 
+				OR = {
+					is_subject = no
+					is_subject_of = ROOT
+				}
+			}
+			random_country = {
+				limit = { has_variable = CUB_equivallent_spaamerwar_var }
+				root = {
+					create_diplomatic_pact = {
+						country = prev
+						type = protectorate
+					}
+					trigger_event = { ## Teller Amendment ##
+						id = HJE_usa.18
+						days = 15
+					} 
+				}
+			}
 		}
 		hidden_effect = {
 			every_country = {
@@ -407,6 +530,13 @@ je_american_empire_liberate_euro_colonies = {
 			every_country = {
 				limit = { has_variable = american_empire_je_potential_enemy_empire }
 				remove_variable = american_empire_je_potential_enemy_empire
+			}
+			if = {
+				limit = { any_country = { has_variable = SPA_equivallent_spaamerwar_var } }
+				every_country = {
+					limit = { has_variable = SPA_equivallent_spaamerwar_var }
+					remove_variable = SPA_equivallent_spaamerwar_var
+				}
 			}
 		}
 	}
@@ -421,6 +551,6 @@ je_american_empire_liberate_euro_colonies = {
 	transferable = no
 
 	weight = 5000
-	
+
 	should_be_pinned_by_default = yes
 }

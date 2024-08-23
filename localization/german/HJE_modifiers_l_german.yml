@@ -177,6 +177,8 @@
  reform_of_1832:0 "Great Reform Act of 1832"
  reform_of_1832_desc:0 "The Reform Act of 1832 extended the right to vote to a larger portion of the male population and redistributed parliamentary seats to reflect changes in population and urbanization. This reform effectively increased the power of the House of Commons by making it more representative of the population and reducing the influence of aristocratic landowners."
 
+ disapproves_of_teller_amendment_decision:0 "Teller Amendment choice disapproval"
+ approves_of_teller_amendment_decision:0 "Teller Amendment choice approval"
  
  #RE-WRITTEN TEXT:
  

@@ -2424,15 +2424,15 @@ acw_special_events.14 = {
 			scope:ongoing_acw = {
 				add_war_war_support = {
 					target = c:CSA
-					value = 35
+					value = 25
 				}
 				add_war_war_support = {
 					target = c:USA
-					value = 35
+					value = 25
 				}
 				add_war_war_support = {
 					target = c:FSA
-					value = 35
+					value = 25
 				}		
 			}
 		}
@@ -5323,7 +5323,32 @@ HJE_usa.12 = {
 		add_journal_entry = { type = je_american_empire_get_foreign_colony }
 		add_journal_entry = { type = je_american_empire_liberate_euro_colonies }
 		s:STATE_PUERTO_RICO = { add_claim = ROOT }
+		s:STATE_HAWAIIAN_ISLANDS = { add_claim = ROOT }
 		hidden_effect = {
+			set_secret_goal = {
+				country = c:PHI
+				secret_goal = dominate 
+			}
+			set_secret_goal = {
+				country = c:PAN
+				secret_goal = protect 
+			}
+			set_secret_goal = {
+				country = c:DOM
+				secret_goal = protect 
+			}
+			set_secret_goal = {
+				country = c:HAI
+				secret_goal = protect 
+			}
+			set_secret_goal = {
+				country = c:GUA
+				secret_goal = protect 
+			}
+			set_secret_goal = {
+				country = c:HON
+				secret_goal = protect 
+			}
 			set_variable = {
 				name = american_empire_var
 				value = 0
@@ -5395,6 +5420,32 @@ HJE_usa.12 = {
 			s:STATE_BRITISH_COLUMBIA = { add_claim = ROOT }
 			s:STATE_YUKON_TERRITORY = { add_claim = ROOT }
 			s:STATE_ALBERTA = { add_claim = ROOT }
+			hidden_effect = {
+				set_secret_goal = {
+					country = c:CAN
+					secret_goal = conquer 
+				}
+				set_secret_goal = {
+					country = c:QUE
+					secret_goal = conquer 
+				}
+				set_secret_goal = {
+					country = c:ONT
+					secret_goal = conquer 
+				}
+				set_secret_goal = {
+					country = c:NBS
+					secret_goal = conquer 
+				}
+				set_secret_goal = {
+					country = c:HBC
+					secret_goal = conquer 
+				}
+				set_secret_goal = {
+					country = c:ORG
+					secret_goal = conquer 
+				}
+			}
 		}
 		if = {
 			limit = {
@@ -5415,6 +5466,12 @@ HJE_usa.12 = {
 			s:STATE_SINALOA = { add_claim = ROOT }
 			s:STATE_CHIHUAHUA = { add_claim = ROOT }
 			s:STATE_RIO_GRANDE = { add_claim = ROOT }
+			hidden_effect = {
+				set_secret_goal = {
+					country = c:MEX
+					secret_goal = conquer 
+				}
+			}
 		}
 		hidden_effect = {
 			set_variable = {
@@ -5529,6 +5586,814 @@ HJE_usa.13 = {
 			add_modifier = {
 				name = laborer_unrest
 				months = normal_modifier_time
+			}
+		}
+	}
+}
+
+# Rebellion in Cuba or Equivallent, send warboat, trade, or avoid situation?
+HJE_usa.14 = {
+	type = country_event
+	placement = scope:CUB_equivallent_spaamerwar_scope
+	title = HJE_usa.14.t
+	desc = HJE_usa.14.d
+	flavor = HJE_usa.14.f
+
+	duration = 3
+
+	event_image = {
+		video = "ep1_clandestine_meeting"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/before_the_battle"
+
+	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
+
+	trigger = {
+		aggressive_diplomatic_plays_permitted = yes
+		is_diplomatic_play_committed_participant = no
+		is_diplomatic_play_initiator = no
+		is_diplomatic_play_target = no
+		NOT = { has_variable = recently_lost_war }
+		NOT = { has_variable = american_empire_je_cuba_ship_gambit_ongoing }
+		OR = {
+			year > 1890
+			is_player = no
+		}
+		any_country = {
+			any_enemy_in_diplo_play = { 
+				has_variable = american_empire_je_potential_enemy_empire 
+				NOT = { has_truce_with = ROOT }
+			}
+			OR = {
+				has_variable = american_empire_je_current_american_colony
+				AND = {
+					is_revolutionary = yes
+					country_definition = prev.country_definition
+					any_enemy_in_diplo_play = {
+						has_variable = american_empire_je_current_american_colony
+						any_overlord_or_above = { has_variable = american_empire_je_potential_enemy_empire }
+					}
+				}
+			}
+		}
+	}
+	
+	immediate = {
+		save_scope_as = USA_equivallent_spaamerwar_scope
+		random_country = {
+			limit = {
+				any_enemy_in_diplo_play = { has_variable = american_empire_je_potential_enemy_empire }
+				OR = {
+					has_variable = american_empire_je_current_american_colony
+					AND = {
+						is_revolutionary = yes
+						country_definition = prev.country_definition
+						any_enemy_in_diplo_play = {
+							has_variable = american_empire_je_current_american_colony
+							any_overlord_or_above = { has_variable = american_empire_je_potential_enemy_empire }
+						}
+					}
+				}
+			}
+			set_variable = CUB_equivallent_spaamerwar_var
+			save_scope_as = CUB_equivallent_spaamerwar_scope
+			random_enemy_in_diplo_play = {
+				limit = { has_variable = american_empire_je_potential_enemy_empire }
+				set_variable = SPA_equivallent_spaamerwar_var
+				save_scope_as = SPA_equivallent_spaamerwar_scope
+			}
+		}
+	}
+
+	option = { ## send a gunboat
+		name = HJE_usa.14.a
+		default_option = yes
+		ai_chance = 3
+		custom_tooltip = je_american_empire_cuba_gunpowder_ship
+		hidden_effect = {
+			set_variable = {
+				name = american_empire_je_cuba_ship_gambit_ongoing
+				months = 1
+			}
+			random_list = {
+				10 = { 
+					trigger_event = {
+						id = HJE_usa.15
+						days = 25
+					} 
+				}
+				90 = {
+					trigger_event = {
+						id = HJE_usa.16
+						days = 25
+					} 
+				}
+			}
+		}
+	}
+	option = {
+		name = HJE_usa.14.b
+		ai_chance = 1
+		custom_tooltip = je_american_empire_cuba_normal_trade
+		hidden_effect = {
+			set_variable = {
+				name = american_empire_je_cuba_ship_gambit_ongoing
+				months = short_modifier_time
+			}
+			random_list = {
+				50 = {  }
+				50 = {
+					trigger_event = {
+						id = HJE_usa.17
+						days = 25
+					} 
+				}
+			}
+		}
+	}
+	option = {
+		name = HJE_usa.14.c
+		ai_chance = 1
+		custom_tooltip = je_american_empire_cuba_ignore
+		hidden_effect = {
+			set_variable = {
+				name = american_empire_je_cuba_ship_gambit_ongoing
+				months = medium_modifier_time
+			}
+		}
+		add_modifier = {
+			name = withdrew_from_colonial_incident
+			months = short_modifier_time
+		}
+	}
+}
+
+# Nothing Happens to the Gunboat (Spanish-American War Avoided)
+HJE_usa.15 = {
+	type = country_event
+	placement = scope:CUB_equivallent_spaamerwar_scope
+	title = HJE_usa.15.t
+	desc = HJE_usa.15.d
+	flavor = HJE_usa.15.f
+
+	event_image = {
+		video = "unspecific_steam_ship"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
+
+	duration = 3
+
+	trigger = {
+		any_country = { exists = yes has_variable = CUB_equivallent_spaamerwar_var }
+		any_country = { exists = yes has_variable = SPA_equivallent_spaamerwar_var }
+	}
+
+	immediate = {
+		random_country = {
+			limit = { has_variable = SPA_equivallent_spaamerwar_var }
+			save_scope_as = SPA_equivallent_spaamerwar_scope
+			remove_variable = SPA_equivallent_spaamerwar_var
+		}
+		random_country = {
+			limit = { has_variable = CUB_equivallent_spaamerwar_var }
+			save_scope_as = CUB_equivallent_spaamerwar_scope
+			remove_variable = CUB_equivallent_spaamerwar_var
+		}
+	}
+
+	option = {
+		name = HJE_usa.15.a						
+        default_option = yes
+		remove_variable = american_empire_je_cuba_ship_gambit_ongoing
+		add_modifier = {
+			name = withdrew_from_colonial_incident
+			months = short_modifier_time
+		}
+	}
+}
+
+# Gunboat "Mysteriously" Explodes (Spanish-American War)
+HJE_usa.16 = {
+	type = country_event
+	placement = scope:CUB_equivallent_spaamerwar_scope
+	title = HJE_usa.16.t
+	desc = HJE_usa.16.d
+	flavor = HJE_usa.16.f
+
+ 	event_image = {
+ 		video = "unspecific_naval_battle"
+ 	}
+
+ 	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+ 	icon = "gfx/interface/icons/event_icons/event_military.dds"
+
+	duration = 3
+
+	trigger = {
+	}
+
+	immediate = {
+		random_country = {
+			limit = { has_variable = SPA_equivallent_spaamerwar_var }
+			save_scope_as = SPA_equivallent_spaamerwar_scope
+		}
+		random_country = {
+			limit = { has_variable = CUB_equivallent_spaamerwar_var }
+			save_scope_as = CUB_equivallent_spaamerwar_scope
+		}
+	}
+
+	option = {
+		name = HJE_usa.16.a						
+        default_option = yes
+        every_diplomatic_play = {
+			limit = {
+				initiator_is = scope:CUB_equivallent_spaamerwar_scope
+				any_country = {
+					NOT = { THIS = ROOT }
+					is_diplomatic_play_enemy_of = scope:CUB_equivallent_spaamerwar_scope
+					THIS = scope:SPA_equivallent_spaamerwar_scope
+				}
+			}
+			add_initiator_backers = { ROOT }
+			if = {
+				limit = { 
+					scope:SPA_equivallent_spaamerwar_scope = { 
+						any_subject_or_below = {
+							exists = c:PHI
+							c:PHI = THIS
+						}
+					}
+				}
+				add_war_goal = {
+					holder = ROOT
+					type = transfer_subject
+					target_country = c:PHI
+					primary_demand = yes
+				}
+			}
+		}
+        every_diplomatic_play = {
+			limit = {
+				target_is = scope:CUB_equivallent_spaamerwar_scope
+				any_country = {
+					NOT = { THIS = ROOT }
+					is_diplomatic_play_enemy_of = scope:CUB_equivallent_spaamerwar_scope
+					THIS = scope:SPA_equivallent_spaamerwar_scope
+				}
+			}
+			add_target_backers = { ROOT }
+			if = {
+				limit = { 
+					scope:SPA_equivallent_spaamerwar_scope = { 
+						any_subject_or_below = {
+							exists = c:PHI
+							c:PHI = THIS
+						}
+					}
+				}
+				add_war_goal = {
+					holder = ROOT
+					type = transfer_subject
+					target_country = c:PHI
+					primary_demand = yes
+				}
+			}
+			if = {
+				limit = { 
+					scope:SPA_equivallent_spaamerwar_scope = { 
+						any_scope_state = { 
+							NOT = { is_target_of_wargoal = ROOT }
+							state_region = s:STATE_PUERTO_RICO
+						}
+					} 
+				}
+				scope:SPA_equivallent_spaamerwar_scope = {
+					random_scope_state = {
+						limit = { state_region = s:STATE_PUERTO_RICO }
+						save_scope_as = spanish_puerto_rico_scope
+					}
+				}
+				add_war_goal = {
+					holder = ROOT
+					type = return_state
+					target_state = scope:spanish_puerto_rico_scope
+				}
+			}
+			if = {
+				limit = { 
+					scope:SPA_equivallent_spaamerwar_scope = { 
+						any_scope_state = { 
+							NOT = { is_target_of_wargoal = ROOT }
+							state_region = s:STATE_HAWAIIAN_ISLANDS
+						}
+					} 
+				}
+				scope:SPA_equivallent_spaamerwar_scope = {
+					random_scope_state = {
+						limit = { state_region = s:STATE_HAWAIIAN_ISLANDS }
+						save_scope_as = spanish_hawaii_scope
+					}
+				}
+				add_war_goal = {
+					holder = ROOT
+					type = return_state
+					target_state = scope:spanish_hawaii_scope
+				}
+			}
+			if = {
+				limit = { 
+					scope:SPA_equivallent_spaamerwar_scope = { 
+						any_scope_state = { 
+							NOT = { is_target_of_wargoal = ROOT }
+							state_region = s:STATE_EAST_MICRONESIA
+						}
+					} 
+				}
+				scope:SPA_equivallent_spaamerwar_scope = {
+					random_scope_state = {
+						limit = { state_region = s:STATE_EAST_MICRONESIA }
+						save_scope_as = spanish_e_mico_scope
+					}
+				}
+				add_war_goal = {
+					holder = ROOT
+					type = return_state
+					target_state = scope:spanish_e_mico_scope
+				}
+			}
+			if = {
+				limit = { 
+					scope:SPA_equivallent_spaamerwar_scope = { 
+						any_scope_state = { 
+							NOT = { is_target_of_wargoal = ROOT }
+							state_region = s:STATE_WEST_MICRONESIA
+						}
+					} 
+				}
+				scope:SPA_equivallent_spaamerwar_scope = {
+					random_scope_state = {
+						limit = { state_region = s:STATE_WEST_MICRONESIA }
+						save_scope_as = spanish_w_mico_scope
+					}
+				}
+				add_war_goal = {
+					holder = ROOT
+					type = return_state
+					target_state = scope:spanish_w_mico_scope
+				}
+			}
+		}
+	}
+
+	option = {
+		name = HJE_usa.16.b
+		remove_variable = american_empire_je_cuba_ship_gambit_ongoing
+		add_radicals = { value = 0.05 }
+		add_modifier = {
+			name = withdrew_from_colonial_incident
+			months = medium_modifier_time
+		}
+		hidden_effect = {
+			random_country = {
+				limit = { has_variable = SPA_equivallent_spaamerwar_var }
+				remove_variable = SPA_equivallent_spaamerwar_var
+			}
+			random_country = {
+				limit = { has_variable = CUB_equivallent_spaamerwar_var }
+				remove_variable = CUB_equivallent_spaamerwar_var
+			}
+		}
+	}
+}
+
+# Convoy Attacked Frfr (Spanish-American War)
+HJE_usa.16 = {
+	type = country_event
+	placement = scope:CUB_equivallent_spaamerwar_scope
+	title = HJE_usa.17.t
+	desc = HJE_usa.17.d
+	flavor = HJE_usa.17.f
+
+ 	event_image = {
+ 		video = "unspecific_naval_battle"
+ 	}
+
+ 	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+ 	icon = "gfx/interface/icons/event_icons/event_military.dds"
+
+	duration = 3
+
+	trigger = {
+	}
+
+	immediate = {
+		random_country = {
+			limit = { has_variable = SPA_equivallent_spaamerwar_var }
+			save_scope_as = SPA_equivallent_spaamerwar_scope
+		}
+		random_country = {
+			limit = { has_variable = CUB_equivallent_spaamerwar_var }
+			save_scope_as = CUB_equivallent_spaamerwar_scope
+		}
+	}
+
+	option = {
+		name = HJE_usa.17.a						
+        default_option = yes
+        every_diplomatic_play = {
+			limit = {
+				initiator_is = scope:CUB_equivallent_spaamerwar_scope
+				any_country = {
+					NOT = { THIS = ROOT }
+					is_diplomatic_play_enemy_of = scope:CUB_equivallent_spaamerwar_scope
+					THIS = scope:SPA_equivallent_spaamerwar_scope
+				}
+			}
+			add_initiator_backers = { ROOT }
+			if = {
+				limit = { 
+					scope:SPA_equivallent_spaamerwar_scope = { 
+						any_subject_or_below = {
+							exists = c:PHI
+							c:PHI = THIS
+						}
+					}
+				}
+				add_war_goal = {
+					holder = ROOT
+					type = transfer_subject
+					target_country = c:PHI
+					primary_demand = yes
+				}
+			}
+			if = {
+				limit = { 
+					scope:SPA_equivallent_spaamerwar_scope = { 
+						any_scope_state = { 
+							NOT = { is_target_of_wargoal = ROOT }
+							state_region = s:STATE_PUERTO_RICO
+						}
+					} 
+				}
+				scope:SPA_equivallent_spaamerwar_scope = {
+					random_scope_state = {
+						limit = { state_region = s:STATE_PUERTO_RICO }
+						save_scope_as = spanish_puerto_rico_scope
+					}
+				}
+				add_war_goal = {
+					holder = ROOT
+					type = return_state
+					target_state = scope:spanish_puerto_rico_scope
+				}
+			}
+			if = {
+				limit = { 
+					scope:SPA_equivallent_spaamerwar_scope = { 
+						any_scope_state = { 
+							NOT = { is_target_of_wargoal = ROOT }
+							state_region = s:STATE_HAWAIIAN_ISLANDS
+						}
+					} 
+				}
+				scope:SPA_equivallent_spaamerwar_scope = {
+					random_scope_state = {
+						limit = { state_region = s:STATE_HAWAIIAN_ISLANDS }
+						save_scope_as = spanish_hawaii_scope
+					}
+				}
+				add_war_goal = {
+					holder = ROOT
+					type = return_state
+					target_state = scope:spanish_hawaii_scope
+				}
+			}
+			if = {
+				limit = { 
+					scope:SPA_equivallent_spaamerwar_scope = { 
+						any_scope_state = { 
+							NOT = { is_target_of_wargoal = ROOT }
+							state_region = s:STATE_EAST_MICRONESIA
+						}
+					} 
+				}
+				scope:SPA_equivallent_spaamerwar_scope = {
+					random_scope_state = {
+						limit = { state_region = s:STATE_EAST_MICRONESIA }
+						save_scope_as = spanish_e_mico_scope
+					}
+				}
+				add_war_goal = {
+					holder = ROOT
+					type = return_state
+					target_state = scope:spanish_e_mico_scope
+				}
+			}
+			if = {
+				limit = { 
+					scope:SPA_equivallent_spaamerwar_scope = { 
+						any_scope_state = { 
+							NOT = { is_target_of_wargoal = ROOT }
+							state_region = s:STATE_WEST_MICRONESIA
+						}
+					} 
+				}
+				scope:SPA_equivallent_spaamerwar_scope = {
+					random_scope_state = {
+						limit = { state_region = s:STATE_WEST_MICRONESIA }
+						save_scope_as = spanish_w_mico_scope
+					}
+				}
+				add_war_goal = {
+					holder = ROOT
+					type = return_state
+					target_state = scope:spanish_w_mico_scope
+				}
+			}
+		}
+        every_diplomatic_play = {
+			limit = {
+				target_is = scope:CUB_equivallent_spaamerwar_scope
+				any_country = {
+					NOT = { THIS = ROOT }
+					is_diplomatic_play_enemy_of = scope:CUB_equivallent_spaamerwar_scope
+					THIS = scope:SPA_equivallent_spaamerwar_scope
+				}
+			}
+			add_target_backers = { ROOT }
+			if = {
+				limit = { 
+					scope:SPA_equivallent_spaamerwar_scope = { 
+						any_subject_or_below = {
+							exists = c:PHI
+							c:PHI = THIS
+						}
+					}
+				}
+				add_war_goal = {
+					holder = ROOT
+					type = transfer_subject
+					target_country = c:PHI
+					primary_demand = yes
+				}
+			}
+			if = {
+				limit = { 
+					scope:SPA_equivallent_spaamerwar_scope = { 
+						any_scope_state = { 
+							NOT = { is_target_of_wargoal = ROOT }
+							state_region = s:STATE_PUERTO_RICO
+						}
+					} 
+				}
+				scope:SPA_equivallent_spaamerwar_scope = {
+					random_scope_state = {
+						limit = { state_region = s:STATE_PUERTO_RICO }
+						save_scope_as = spanish_puerto_rico_scope
+					}
+				}
+				add_war_goal = {
+					holder = ROOT
+					type = return_state
+					target_state = scope:spanish_puerto_rico_scope
+				}
+			}
+			if = {
+				limit = { 
+					scope:SPA_equivallent_spaamerwar_scope = { 
+						any_scope_state = { 
+							NOT = { is_target_of_wargoal = ROOT }
+							state_region = s:STATE_HAWAIIAN_ISLANDS
+						}
+					} 
+				}
+				scope:SPA_equivallent_spaamerwar_scope = {
+					random_scope_state = {
+						limit = { state_region = s:STATE_HAWAIIAN_ISLANDS }
+						save_scope_as = spanish_hawaii_scope
+					}
+				}
+				add_war_goal = {
+					holder = ROOT
+					type = return_state
+					target_state = scope:spanish_hawaii_scope
+				}
+			}
+			if = {
+				limit = { 
+					scope:SPA_equivallent_spaamerwar_scope = { 
+						any_scope_state = { 
+							NOT = { is_target_of_wargoal = ROOT }
+							state_region = s:STATE_EAST_MICRONESIA
+						}
+					} 
+				}
+				scope:SPA_equivallent_spaamerwar_scope = {
+					random_scope_state = {
+						limit = { state_region = s:STATE_EAST_MICRONESIA }
+						save_scope_as = spanish_e_mico_scope
+					}
+				}
+				add_war_goal = {
+					holder = ROOT
+					type = return_state
+					target_state = scope:spanish_e_mico_scope
+				}
+			}
+			if = {
+				limit = { 
+					scope:SPA_equivallent_spaamerwar_scope = { 
+						any_scope_state = { 
+							NOT = { is_target_of_wargoal = ROOT }
+							state_region = s:STATE_WEST_MICRONESIA
+						}
+					} 
+				}
+				scope:SPA_equivallent_spaamerwar_scope = {
+					random_scope_state = {
+						limit = { state_region = s:STATE_WEST_MICRONESIA }
+						save_scope_as = spanish_w_mico_scope
+					}
+				}
+				add_war_goal = {
+					holder = ROOT
+					type = return_state
+					target_state = scope:spanish_w_mico_scope
+				}
+			}
+		}
+	}
+
+	option = {
+		name = HJE_usa.17.b
+		remove_variable = american_empire_je_cuba_ship_gambit_ongoing
+		add_radicals = { value = 0.1 }
+		add_modifier = {
+			name = withdrew_from_colonial_incident
+			months = long_modifier_time
+		}
+		hidden_effect = {
+			random_country = {
+				limit = { has_variable = SPA_equivallent_spaamerwar_var }
+				remove_variable = SPA_equivallent_spaamerwar_var
+			}
+			random_country = {
+				limit = { has_variable = CUB_equivallent_spaamerwar_var }
+				remove_variable = CUB_equivallent_spaamerwar_var
+			}
+		}
+	}
+}
+
+# Teller Amendment
+HJE_usa.18 = {
+	type = country_event
+	placement = scope:CUB_equivallent_spaamerwar_scope
+	title = HJE_usa.18.t
+	desc = HJE_usa.18.d
+	flavor = HJE_usa.18.f
+
+	duration = 3
+
+	event_image = {
+		video = "ep1_clandestine_meeting"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/before_the_battle"
+
+	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
+
+	trigger = {
+	}
+	
+	immediate = {
+		random_country = {
+			limit = { has_variable = CUB_equivallent_spaamerwar_var }
+			save_scope_as = CUB_equivallent_spaamerwar_scope
+			remove_variable = CUB_equivallent_spaamerwar_var
+		}
+	}
+
+	option = { ## Keep Cuba equivallent as protectorate
+		name = HJE_usa.18.a
+		ai_chance = 3
+		every_interest_group = {
+			limit = {
+				NOR = {
+					has_ideology = ideology:ideology_jingoist 
+					has_ideology = ideology:ideology_plutocratic 
+					leader = { has_ideology = ideology:ideology_jingoist_leader }
+				}
+				OR = {
+					has_ideology = ideology:ideology_isolationist 
+					has_ideology = ideology:ideology_socialist 
+					leader = { has_ideology = ideology:ideology_pacifist }
+					AND = {
+						has_party = yes
+						is_in_government = no
+					}
+				}
+			}
+			add_modifier = {
+				name = disapproves_of_teller_amendment_decision
+				months = long_modifier_time
+			}
+		}
+		every_interest_group = {
+			limit = {
+				NOR = {
+					has_ideology = ideology:ideology_isolationist 
+					has_ideology = ideology:ideology_socialist 
+					leader = { has_ideology = ideology:ideology_pacifist }
+				}
+				OR = {
+					has_ideology = ideology:ideology_jingoist 
+					has_ideology = ideology:ideology_plutocratic 
+					leader = { has_ideology = ideology:ideology_jingoist_leader }
+				}
+			}
+			add_modifier = {
+				name = approves_of_teller_amendment_decision
+				months = long_modifier_time
+			}
+		}
+	}
+	option = { ## it'll just be in the market and I'll have a treaty port please
+		name = HJE_usa.18.b
+		default_option = yes
+		ai_chance = 9
+		trigger = {
+			exists = c:CUB
+			scope:CUB_equivallent_spaamerwar_scope = { THIS = c:CUB }
+			NOT = { any_country = { has_treaty_port_in_country = c:CUB } }
+		}
+		s:STATE_CUBA = {
+			set_owner_of_provinces = {
+				country = ROOT
+				provinces = { xB48FF1 }
+			}
+		}
+		random_scope_state = {
+			limit = { state_region = s:STATE_CUBA }
+			set_state_type = treaty_port
+		}
+		scope:CUB_equivallent_spaamerwar_scope = {
+			make_independent = yes
+		}
+	}
+	option = { ## let them go entirely (good ending)
+		name = HJE_usa.18.c
+		ai_chance = 1
+		scope:CUB_equivallent_spaamerwar_scope = {
+			make_independent = yes
+		}
+		every_interest_group = {
+			limit = {
+				NOR = {
+					has_ideology = ideology:ideology_isolationist 
+					has_ideology = ideology:ideology_socialist 
+					leader = { has_ideology = ideology:ideology_pacifist }
+				}
+				OR = {
+					has_ideology = ideology:ideology_jingoist 
+					has_ideology = ideology:ideology_plutocratic 
+					leader = { has_ideology = ideology:ideology_jingoist_leader }
+					AND = {
+						has_party = yes
+						is_in_government = no
+					}
+				}
+			}
+			add_modifier = {
+				name = disapproves_of_teller_amendment_decision
+				months = long_modifier_time
+			}
+		}
+		every_interest_group = {
+			limit = {
+				NOR = {
+					has_ideology = ideology:ideology_jingoist 
+					has_ideology = ideology:ideology_plutocratic 
+					leader = { has_ideology = ideology:ideology_jingoist_leader }
+				}
+				OR = {
+					has_ideology = ideology:ideology_isolationist 
+					has_ideology = ideology:ideology_socialist 
+					leader = { has_ideology = ideology:ideology_pacifist }
+				}
+			}
+			add_modifier = {
+				name = approves_of_teller_amendment_decision
+				months = long_modifier_time
 			}
 		}
 	}

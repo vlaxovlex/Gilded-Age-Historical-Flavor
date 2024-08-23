@@ -927,12 +927,36 @@ HJE_italy.7 = {
 				activate_law = law_type:law_presidential_republic
 				activate_law = law_type:law_oligarchy
 				capital = { save_scope_as = rsm_capital_scope }
+				set_secret_goal = {
+					country = scope:iwai1_attacker_scope
+					secret_goal = befriend
+				}
+				change_relations = {
+					country = scope:iwai1_attacker_scope
+					value = 100
+				}
+				add_modifier = {
+					name = separatist_zeal
+					months = 24
+				}
 			}
 		}
 		scope:iwai1_attacker_scope = {
 			create_diplomatic_pact = {
 				country = c:RSM
-				type = dominion
+				type = alliance
+			}
+			set_secret_goal = {
+				country = c:RSM
+				secret_goal = protect
+			}
+			change_relations = {
+				country = c:RSM
+				value = 100
+			}
+			add_modifier = {
+				name = separatist_zeal
+				months = 24
 			}
 		}
 		scope:iwai1_state_lombardy_scope = { add_claim = ROOT }
@@ -1557,6 +1581,7 @@ HJE_italy.12 = { #Italy Claims (Expedition of the Thousand)
 				NAND = {
 					exists = c:PAP
 					c:PAP = THIS
+					has_law = law_type:law_theocracy
 				}
 				country_is_in_europe = yes
 				OR = {
@@ -1596,6 +1621,7 @@ HJE_italy.12 = { #Italy Claims (Expedition of the Thousand)
 				has_variable = ITA_current_favourite_to_unify
 				exists = c:PAP
 				c:PAP = {
+					has_law = law_type:law_theocracy
 					NOT = { has_variable = ITA_current_favourite_to_unify }
 					calc_true_if = {
 						amount >= 2
@@ -1619,12 +1645,12 @@ HJE_italy.12 = { #Italy Claims (Expedition of the Thousand)
 			every_state = {
 				limit = {
 					owner = {
+						is_player = no
 						exists = c:PAP
 						OR = {
 							c:PAP = THIS
 							is_subject_of = c:PAP
 						}
-						is_player = no
 					}
 					OR = {
 						state_region = s:STATE_LOMBARDY

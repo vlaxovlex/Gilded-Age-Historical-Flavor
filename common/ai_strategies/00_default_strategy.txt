@@ -714,17 +714,15 @@ ai_strategy_default = {
 		
 		if = {	#HJE edit start
 			limit = {
-				AND = {
-					OR = {
-						has_journal_entry = je_north_german_unification
-						has_journal_entry = je_german_unification
-					}
-					scope:target_country = {
-						is_unification_candidate = GER
-					}
+				OR = {
+					has_journal_entry = je_north_german_unification
+					has_journal_entry = je_german_unification
+				}
+				scope:target_country = {
+					is_unification_candidate = GER
 				}
 			} 
-		add = 0.65
+			add = 0.65
 		}
 		
 		if = {
@@ -1506,15 +1504,26 @@ ai_strategy_default = {
 				multiply = 0.0
 			}
 
+			#HJE edit start
 			if = {
 				limit = {
-					has_journal_entry = je_opium_wars
+					OR = {
+						has_journal_entry = je_opium_wars
+						has_journal_entry = HJ_opium_wars
+						has_journal_entry = HJ_opium_wars_unhistorical
+					}
 					scope:target_country = {
-						has_variable = opium_wars_target
+						OR = {
+							has_variable = opium_wars_target
+							has_variable = var_dynamic_opium_wars_victim
+							any_overlord_or_above = { has_variable = opium_wars_target }
+							any_overlord_or_above = { has_variable = var_dynamic_opium_wars_victim }
+						}
 					}
 				}
 				multiply = 0
 			}
+			#HJE edit end	
 			
 			if = {
 				limit = { 
@@ -1677,12 +1686,20 @@ ai_strategy_default = {
 				}						
 			}										
 		}
-					
+		
+			#HJE edit start			
 		if = {
 			limit = {
-				has_journal_entry = je_opium_wars
+				OR = {
+					has_journal_entry = je_opium_wars
+					has_journal_entry = HJ_opium_wars
+					has_journal_entry = HJ_opium_wars_unhistorical
+				}
 				scope:target_country = {
-					has_variable = opium_wars_target
+					OR = {
+						has_variable = opium_wars_target
+						has_variable = var_dynamic_opium_wars_victim
+					}
 				}
 				scope:target_state = {
 					NOT = { state_region = s:STATE_FORMOSA }
@@ -1690,6 +1707,7 @@ ai_strategy_default = {
 			}
 			add = 100
 		}
+			#HJE edit end	
 
 		if = { #Carving up China
 			limit = {
@@ -2268,17 +2286,26 @@ ai_strategy_default = {
 			add = 1
 		}		
 	
+			#HJE edit start
 		# Opium wars participants should both be confident
 		if = {
 			limit = {
-				has_journal_entry = je_opium_wars
+				OR = {
+					has_journal_entry = je_opium_wars
+					has_journal_entry = HJ_opium_wars
+					has_journal_entry = HJ_opium_wars_unhistorical
+				}
 				scope:target_country = {
-					has_variable = opium_wars_target
 					is_banning_goods = g:opium
+					OR = {
+						has_variable = opium_wars_target
+						has_variable = var_dynamic_opium_wars_victim
+					}
 				}
 			}
 			add = 1
 		}
+			#HJE edit end	
 		
 		if = {
 			limit = {
@@ -2807,17 +2834,26 @@ ai_strategy_default = {
 			add = 100
 		}		
 		
+			#HJE edit start
 		# Opium wars aggressor should be very, very aggressive against target if they're banning opium
 		if = {
 			limit = {
-				has_journal_entry = je_opium_wars
+				OR = {
+					has_journal_entry = je_opium_wars
+					has_journal_entry = HJ_opium_wars
+					has_journal_entry = HJ_opium_wars_unhistorical
+				}
 				scope:target_country = {
-					has_variable = opium_wars_target
 					is_banning_goods = g:opium
+					OR = {
+						has_variable = opium_wars_target
+						has_variable = var_dynamic_opium_wars_victim
+					}
 				}
 			}
 			add = 100
 		}
+			#HJE edit end	
 		
 		# Greek Nationalism
 		if = {
@@ -4651,6 +4687,17 @@ ai_strategy_default = {
 				}
 				add = 50
 			}
+			#HJE edit start
+			if = {
+				limit = {
+					OR = {
+						has_journal_entry = HJ_opium_wars
+						has_journal_entry = HJ_opium_wars_unhistorical
+					}
+				}
+				add = 1000
+			}	
+			#HJE edit end	
 		}	
 		region_manchuria = {
 			if = {
@@ -4665,7 +4712,13 @@ ai_strategy_default = {
 		region_south_china = {
 			if = {
 				limit = {
-					has_journal_entry = je_opium_wars	
+					OR = {
+						has_journal_entry = je_opium_wars
+			#HJE edit start
+						has_journal_entry = HJ_opium_wars
+						has_journal_entry = HJ_opium_wars_unhistorical
+					}
+			#HJE edit end	
 				}
 				add = 1000
 			}	
@@ -6483,7 +6536,66 @@ ai_strategy_default = {
 					}					
 				}
 				add = 1000
-			}			
+			}	
+			#HJE edit start
+			# HJE Britain should go for Shanghai in Second Opium War
+			if = {
+				limit = {
+					exists = c:GBR
+					c:GBR = THIS
+					has_journal_entry = HJ_opium_wars
+					NOT = { is_diplomatic_play_enemy_of = scope:target_country }
+					scope:target_country = {
+						OR = {
+							has_variable = var_dynamic_opium_wars_victim
+							any_overlord_or_above = { has_variable = var_dynamic_opium_wars_victim }
+						}
+					}
+					scope:target_state = {
+						state_region = s:STATE_SUZHOU
+					}
+				}
+				add = 1000
+			}	
+			# HJE France should go for Guandong in Second Opium War
+			if = {
+				limit = {
+					exists = c:FRA
+					c:FRA = THIS
+					has_journal_entry = HJ_opium_wars
+					NOT = { is_diplomatic_play_enemy_of = scope:target_country }
+					scope:target_country = {
+						OR = {
+							has_variable = var_dynamic_opium_wars_victim
+							any_overlord_or_above = { has_variable = var_dynamic_opium_wars_victim }
+						}
+					}
+					scope:target_state = {
+						state_region = s:STATE_GUANGDONG
+					}
+				}
+				add = 1000
+			}
+			# HJE Russia should go for Shengjing in Second Opium War
+			if = {
+				limit = {
+					exists = c:RUS
+					c:RUS = THIS
+					has_journal_entry = HJ_opium_wars
+					NOT = { is_diplomatic_play_enemy_of = scope:target_country }
+					scope:target_country = {
+						OR = {
+							has_variable = var_dynamic_opium_wars_victim
+							any_overlord_or_above = { has_variable = var_dynamic_opium_wars_victim }
+						}
+					}
+					scope:target_state = {
+						state_region = s:STATE_SHENGJING
+					}
+				}
+				add = 1000
+			}	
+			#HJE edit end		
 		}
 		
 		transfer_subject = {
@@ -6630,15 +6742,24 @@ ai_strategy_default = {
 				}
 			}
 			
+			#HJE edit start
 			if = {
 				limit = {
-					has_journal_entry = je_opium_wars
+					OR = {
+						has_journal_entry = je_opium_wars
+						has_journal_entry = HJ_opium_wars 
+						has_journal_entry = HJ_opium_wars_unhistorical
+					}
 					scope:target_country = {
-						has_variable = opium_wars_target
+						OR = {
+							has_variable = opium_wars_target
+							has_variable = var_dynamic_opium_wars_victim
+						}
 					}
 				}
 				add = 50
 			}	
+			#HJE edit end	
 
 			if = {
 				limit = {
@@ -6775,15 +6896,24 @@ ai_strategy_default = {
 				add = 50
 			}			
 		
+			#HJE edit start
 			if = {
 				limit = {
-					has_journal_entry = je_opium_wars
+					OR = {
+						has_journal_entry = je_opium_wars
+						has_journal_entry = HJ_opium_wars 
+						has_journal_entry = HJ_opium_wars_unhistorical
+					}
 					scope:target_country = {
-						has_variable = opium_wars_target
+						OR = {
+							has_variable = opium_wars_target
+							has_variable = var_dynamic_opium_wars_victim
+						}
 					}
 				}
 				add = 75
 			}
+			#HJE edit end	
 
 			if = {
 				limit = {
@@ -6833,6 +6963,21 @@ ai_strategy_default = {
 		foreign_investment_rights = {
 			value = 0
 			
+			#HJE edit start
+			if = {
+				limit = {
+					OR = {
+						has_journal_entry = HJ_opium_wars 
+						has_journal_entry = HJ_opium_wars_unhistorical
+					}
+					scope:target_country = {
+						has_variable = var_dynamic_opium_wars_victim
+					}
+				}
+				add = 1000
+			}
+			#HJE edit end	
+
 			if = {
 				limit = {
 					scope:target_country = {

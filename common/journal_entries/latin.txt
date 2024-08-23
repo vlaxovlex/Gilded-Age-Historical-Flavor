@@ -271,7 +271,7 @@ HJ_dominican_revolution = {
 						add_ownership={
 							country={
 								country="root"
-								levels=3
+								levels=1
 							}
 						}
 						reserves=1
@@ -337,7 +337,7 @@ HJ_dominican_revolution = {
 						add_ownership={
 							country={
 								country="root"
-								levels=2
+								levels=1
 							}
 						}
 						reserves=1
