@@ -6967,11 +6967,15 @@ ai_strategy_default = {
 			if = {
 				limit = {
 					OR = {
-						has_journal_entry = HJ_opium_wars 
+						has_journal_entry = je_opium_wars
+						has_journal_entry = HJ_opium_wars
 						has_journal_entry = HJ_opium_wars_unhistorical
 					}
 					scope:target_country = {
-						has_variable = var_dynamic_opium_wars_victim
+						OR = {
+							has_variable = opium_wars_target
+							has_variable = var_dynamic_opium_wars_victim
+						}
 					}
 				}
 				add = 1000
