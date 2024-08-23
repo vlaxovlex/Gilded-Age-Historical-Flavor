@@ -1699,6 +1699,8 @@ ai_strategy_default = {
 					OR = {
 						has_variable = opium_wars_target
 						has_variable = var_dynamic_opium_wars_victim
+						any_overlord_or_above = { has_variable = opium_wars_target }
+						any_overlord_or_above = { has_variable = var_dynamic_opium_wars_victim }
 					}
 				}
 				scope:target_state = {
@@ -6974,6 +6976,24 @@ ai_strategy_default = {
 					scope:target_country = {
 						OR = {
 							has_variable = opium_wars_target
+							has_variable = var_dynamic_opium_wars_victim
+						}
+					}
+				}
+				add = 1000
+			}
+			if = { # russia had a special interest in manchuria
+				limit = {
+					exists = c:RUS
+					c:RUS = THIS
+					OR = {
+						has_journal_entry = HJ_opium_wars
+						has_journal_entry = HJ_opium_wars_unhistorical
+					}
+					scope:target_country = {
+						exists = c:MAN
+						c:MAN = THIS
+						any_overlord_or_above = {
 							has_variable = var_dynamic_opium_wars_victim
 						}
 					}
