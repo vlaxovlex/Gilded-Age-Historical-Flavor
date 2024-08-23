@@ -622,6 +622,10 @@ opium_wars.5 = {
 		}
 		remove_variable = opium_wars_aggressor
 		#HJE edit start
+		create_diplomatic_pact = {
+			country = scope:opium_wars_target_country
+			type = foreign_investment_rights
+		}
 		if = {
 			limit = {
 				OR = {
