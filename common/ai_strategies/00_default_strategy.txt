@@ -718,7 +718,7 @@ ai_strategy_default = {
 					has_journal_entry = je_north_german_unification
 					has_journal_entry = je_german_unification
 				}
-				scope:target_country = {
+				scope:enemy_country = {
 					is_unification_candidate = GER
 				}
 			} 
@@ -732,7 +732,7 @@ ai_strategy_default = {
 					has_journal_entry = HJ_opium_wars
 					has_journal_entry = HJ_opium_wars_unhistorical
 				}
-				scope:target_country = {
+				scope:enemy_country = {
 					OR = {
 						has_variable = opium_wars_target
 						has_variable = var_dynamic_opium_wars_victim
@@ -746,7 +746,7 @@ ai_strategy_default = {
 			limit = {
 				year >= 1858
 				has_journal_entry = je_italian_unification
-				scope:target_country = {
+				scope:enemy_country = {
 					any_scope_state = {
 						OR = {
 							state_region = s:STATE_LOMBARDY
@@ -2305,7 +2305,7 @@ ai_strategy_default = {
 					}
 				}
 			}
-			add = 1
+			add = 3
 		}
 			#HJE edit end	
 		
@@ -2853,7 +2853,7 @@ ai_strategy_default = {
 					}
 				}
 			}
-			add = 100
+			add = 300
 		}
 			#HJE edit end	
 		
@@ -4693,12 +4693,13 @@ ai_strategy_default = {
 			if = {
 				limit = {
 					OR = {
+						has_journal_entry = je_opium_wars
 						has_journal_entry = HJ_opium_wars
 						has_journal_entry = HJ_opium_wars_unhistorical
 					}
 				}
-				add = 1000
-			}	
+				add = 9000
+			}
 			#HJE edit end	
 		}	
 		region_manchuria = {
@@ -4720,9 +4721,9 @@ ai_strategy_default = {
 						has_journal_entry = HJ_opium_wars
 						has_journal_entry = HJ_opium_wars_unhistorical
 					}
-			#HJE edit end	
 				}
-				add = 1000
+				add = 500
+			#HJE edit end	
 			}	
 			if = {
 				limit = {
@@ -6529,7 +6530,7 @@ ai_strategy_default = {
 			if = {
 				limit = {
 					has_journal_entry = je_opium_wars
-					NOT = { is_diplomatic_play_enemy_of = scope:target_country }
+					#NOT = { is_diplomatic_play_enemy_of = scope:target_country } ## HJE edit ##
 					scope:target_country = {
 						has_variable = opium_wars_target
 					}
@@ -6546,7 +6547,6 @@ ai_strategy_default = {
 					exists = c:GBR
 					c:GBR = THIS
 					has_journal_entry = HJ_opium_wars
-					NOT = { is_diplomatic_play_enemy_of = scope:target_country }
 					scope:target_country = {
 						OR = {
 							has_variable = var_dynamic_opium_wars_victim
@@ -6557,7 +6557,7 @@ ai_strategy_default = {
 						state_region = s:STATE_SUZHOU
 					}
 				}
-				add = 1000
+				add = 750
 			}	
 			# HJE France should go for Guandong in Second Opium War
 			if = {
@@ -6565,7 +6565,6 @@ ai_strategy_default = {
 					exists = c:FRA
 					c:FRA = THIS
 					has_journal_entry = HJ_opium_wars
-					NOT = { is_diplomatic_play_enemy_of = scope:target_country }
 					scope:target_country = {
 						OR = {
 							has_variable = var_dynamic_opium_wars_victim
@@ -6576,7 +6575,7 @@ ai_strategy_default = {
 						state_region = s:STATE_GUANGDONG
 					}
 				}
-				add = 1000
+				add = 750
 			}
 			# HJE Russia should go for Shengjing in Second Opium War
 			if = {
@@ -6584,7 +6583,6 @@ ai_strategy_default = {
 					exists = c:RUS
 					c:RUS = THIS
 					has_journal_entry = HJ_opium_wars
-					NOT = { is_diplomatic_play_enemy_of = scope:target_country }
 					scope:target_country = {
 						OR = {
 							has_variable = var_dynamic_opium_wars_victim
@@ -6595,7 +6593,7 @@ ai_strategy_default = {
 						state_region = s:STATE_SHENGJING
 					}
 				}
-				add = 1000
+				add = 750
 			}	
 			#HJE edit end		
 		}
@@ -6980,7 +6978,7 @@ ai_strategy_default = {
 						}
 					}
 				}
-				add = 1000
+				add = 2000
 			}
 			if = { # russia had a special interest in manchuria
 				limit = {
@@ -6998,7 +6996,7 @@ ai_strategy_default = {
 						}
 					}
 				}
-				add = 1000
+				add = 2000
 			}
 			#HJE edit end	
 

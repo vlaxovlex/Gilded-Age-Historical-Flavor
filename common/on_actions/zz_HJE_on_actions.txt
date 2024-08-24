@@ -820,3 +820,40 @@ on_secession_start = {
 		}
 	}
 }
+
+# on_election_campaign_start = {
+	# on_actions = {
+        # tl_on_election_campaign_start
+    # }
+# }
+
+on_election_campaign_end = {
+	on_actions = {
+        tl_on_election_campaign_end
+    }
+}
+
+on_yearly_pulse_character = {
+	on_actions = {
+        tl_on_yearly_pulse_character
+    }
+}
+
+# tl_on_election_campaign_start = {
+	# events = {
+        # ruler_term_limits.1 # check if on term limit and replace as ig leader if needed
+    # }
+# }
+
+tl_on_election_campaign_end = {
+	events = {
+        ruler_term_limits.3 # set ruler term modifier after election
+		ruler_term_limits.2 # start timer to replace ig leader before election starts if he already has two terms
+    }
+}
+
+tl_on_yearly_pulse_character = {
+	events = {
+        ruler_term_limits.4 # mark first term of starting characters
+    }
+}

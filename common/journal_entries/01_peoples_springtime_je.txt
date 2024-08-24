@@ -48,11 +48,25 @@
 	}	#HJE edit end
 
 	possible = {
-		year >= 1846	#HJE edit
-		trigger_if = {
-			limit = { exists = c:PRU c:PRU = THIS }
+		year >= 1846	
+		trigger_if = { #HJE edit
+			limit = {
+				OR = {
+					AND = { exists = c:PRU c:PRU = THIS }
+					AND = { exists = c:NGF c:NGF = THIS }
+					AND = { exists = c:GER c:GER = THIS }
+				}
+			}
+			any_interest_group = { 
+				can_have_radical_leader = yes 
+				OR = {
+					is_powerful = yes
+					is_insurrectionary = yes
+				}
+			}
 			OR = {
-				pop_radical_fraction > 0.15
+				capital = { turmoil > 0.25 }
+				any_scope_state = { is_incorporated = yes turmoil > 0.5 }
 				any_interest_group = { leader = { has_ideology = ideology:ideology_radical } }
 			}
 		}
@@ -68,6 +82,28 @@
 	}
 
 	immediate = {
+		## HJE edit start
+		if = {
+			limit = {
+				NOT = {
+					any_interest_group = {
+						leader = { has_ideology = ideology:ideology_radical }
+						OR = {
+							is_powerful = yes
+							is_insurrectionary = yes
+						}
+					}
+				}
+			}
+			random_interest_group = {
+				limit = {
+					can_have_radical_leader = yes
+					OR = { is_powerful = yes is_insurrectionary = yes }
+				}
+				leader = { set_ideology = ideology:ideology_radical }
+			}
+		}
+		## HJE edit end
 		trigger_event = { id = 1848.4 }
 	}
 
@@ -102,7 +138,7 @@
 					is_marginal = no
 				}
 			}
-		}		
+		}
 	}
 
 	on_complete = {
@@ -175,18 +211,9 @@
 						}
 					}
 					OR = {
-						AND = {
-							exists = c:PRU
-							c:PRU = THIS
-						}
-						AND = {
-							exists = c:NGF
-							c:NGF = THIS
-						}
-						AND = {
-							exists = c:GER
-							c:GER = THIS
-						}
+						AND = { exists = c:PRU c:PRU = THIS }
+						AND = { exists = c:NGF c:NGF = THIS }
+						AND = { exists = c:GER c:GER = THIS }
 					}
 				}
 				trigger_event = { id = 1848.7 }

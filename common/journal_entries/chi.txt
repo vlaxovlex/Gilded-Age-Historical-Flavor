@@ -126,19 +126,7 @@ HJ_opium_wars = {
 				NOT = { THIS = ROOT }
 				has_variable = var_dynamic_opium_wars_victim
 				any_scope_state = { is_coastal = yes }
-
-				trigger_if = {
-					limit = { NOT = { has_dlc_feature = foreign_investment } }
-					has_law = law_type:law_isolationism
-				}
-				trigger_else = {
-					NOT = {
-						any_country = {
-							has_diplomatic_pact = { who = PREV type = foreign_investment_agreement }	
-							country_rank = rank_value:great_power
-						}
-					}
-				}
+				has_law = law_type:law_isolationism
 			}
 		}
 		OR = {
@@ -208,7 +196,7 @@ HJ_opium_wars = {
 				limit = { NOT = { has_global_variable = opiumwars_someone_opened_opiumwar2 } }
 				set_global_variable = opiumwars_someone_opened_opiumwar2
 				set_global_variable = opiumwars_time_limit
-				trigger_event = { id = HJE_china.4 days = 730 }
+				trigger_event = { id = HJE_china.4 days = 1825 }
 			}
 			if = {
 				limit = {
@@ -252,8 +240,17 @@ HJ_opium_wars = {
 				}
 				trigger_else = {
 					any_country = {
-						has_diplomatic_pact = { who = PREV type = foreign_investment_agreement }	
 						country_rank = rank_value:great_power
+						OR = {
+							can_create_diplomatic_pact = { target = PREV = foreign_investment_agreement }
+							can_create_diplomatic_pact = { target = PREV = foreign_investment_rights }
+							has_diplomatic_pact = { who = PREV type = foreign_investment_rights }	
+							has_diplomatic_pact = { who = PREV type = foreign_investment_agreement }	
+						}
+						OR = {
+							has_diplomatic_pact = { who = PREV type = foreign_investment_rights }	
+							has_diplomatic_pact = { who = PREV type = foreign_investment_agreement }	
+						}
 					}
 				}
 			}
@@ -311,18 +308,7 @@ HJ_opium_wars = {
 					NOT = { THIS = ROOT }
 					has_variable = var_dynamic_opium_wars_victim
 					any_scope_state = { is_coastal = yes }
-					trigger_if = {
-						limit = { NOT = { has_dlc_feature = foreign_investment } }
-						has_law = law_type:law_isolationism
-					}
-					trigger_else = {
-						NOT = {
-							any_country = {
-								has_diplomatic_pact = { who = PREV type = foreign_investment_agreement }	
-								country_rank = rank_value:great_power
-							}
-						}
-					}
+					has_law = law_type:law_isolationism
 				}
 			}
 
@@ -409,19 +395,7 @@ HJ_opium_wars_unhistorical = {
 				NOT = { THIS = ROOT }
 				has_variable = var_dynamic_opium_wars_victim
 				any_scope_state = { is_coastal = yes }
-
-				trigger_if = {
-					limit = { NOT = { has_dlc_feature = foreign_investment } }
-					has_law = law_type:law_isolationism
-				}
-				trigger_else = {
-					NOT = {
-						any_country = {
-							has_diplomatic_pact = { who = PREV type = foreign_investment_agreement }	
-							country_rank = rank_value:great_power
-						}
-					}
-				}
+				has_law = law_type:law_isolationism
 			}
 		}
 		OR = {
@@ -486,7 +460,7 @@ HJ_opium_wars_unhistorical = {
 				limit = { NOT = { has_global_variable = opiumwars_someone_opened_opiumwar3 } }
 				set_global_variable = opiumwars_someone_opened_opiumwar3
 				set_global_variable = opiumwars_time_limit
-				trigger_event = { id = HJE_china.4 days = 730 }
+				trigger_event = { id = HJE_china.4 days = 1825 }
 			}
 			if = {
 				limit = {
@@ -530,8 +504,17 @@ HJ_opium_wars_unhistorical = {
 				}
 				trigger_else = {
 					any_country = {
-						has_diplomatic_pact = { who = PREV type = foreign_investment_agreement }	
 						country_rank = rank_value:great_power
+						OR = {
+							can_create_diplomatic_pact = { target = PREV = foreign_investment_agreement }
+							can_create_diplomatic_pact = { target = PREV = foreign_investment_rights }
+							has_diplomatic_pact = { who = PREV type = foreign_investment_rights }	
+							has_diplomatic_pact = { who = PREV type = foreign_investment_agreement }	
+						}
+						OR = {
+							has_diplomatic_pact = { who = PREV type = foreign_investment_rights }	
+							has_diplomatic_pact = { who = PREV type = foreign_investment_agreement }	
+						}
 					}
 				}
 			}
@@ -589,18 +572,7 @@ HJ_opium_wars_unhistorical = {
 					NOT = { THIS = ROOT }
 					has_variable = var_dynamic_opium_wars_victim
 					any_scope_state = { is_coastal = yes }
-					trigger_if = {
-						limit = { NOT = { has_dlc_feature = foreign_investment } }
-						has_law = law_type:law_isolationism
-					}
-					trigger_else = {
-						NOT = {
-							any_country = {
-								has_diplomatic_pact = { who = PREV type = foreign_investment_agreement }	
-								country_rank = rank_value:great_power
-							}
-						}
-					}
+					has_law = law_type:law_isolationism
 				}
 			}
 
@@ -637,7 +609,11 @@ HJ_opium_wars_unhistorical = {
 		}
 		hidden_effect = {
 			every_country = {
-				limit = { has_variable = var_dynamic_opium_wars_victim }		
+				limit = { has_variable = var_dynamic_opium_wars_victim }	
+				set_secret_goal = {
+					country = ROOT
+					secret_goal = none
+				}	
 				ROOT = {
 					set_secret_goal = {
 						country = PREV

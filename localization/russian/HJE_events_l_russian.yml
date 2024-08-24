@@ -1423,6 +1423,12 @@
  HJE_usa.18.b:0 "Very well, they will be free within our sphere of influence, in exchange for Guantanamo Bay."
  HJE_usa.18.c:0 "They are right, we should pull out of [SCOPE.sCountry('CUB_equivallent_spaamerwar_scope').GetName] altogether."
 
+ tl_first_term:0 "This character is serving his first term."
+ tl_second_term:0 "This character is serving his second term and will retire when it ends." 
+ notification_ruler_term_limit_exceeded_name:0 "[SCOPE.sCharacter('retiring_ig_leader').GetFullName] has reached his term limit."
+ notification_ruler_term_limit_exceeded_desc:0 "[SCOPE.sCharacter('retiring_ig_leader').GetFullName] has reached the term limit and will retire at the end of his term. [SCOPE.gsInterestGroup('retiring_leader_ig').GetName] will be led by [SCOPE.sCharacter('candidate').GetFullName] in the upcoming election."
+ notification_ruler_term_limit_exceeded_tooltip:0 "#header $notification_ruler_term_limit_exceeded_name$#!\n$TOOLTIP_DELIMITER$\n$notification_ruler_term_limit_exceeded_desc$"
+
 
 
  

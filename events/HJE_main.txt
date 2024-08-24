@@ -1,4 +1,148 @@
-﻿namespace = HJE_main
+﻿namespace = ruler_term_limits
+
+# replace ig leader if the current leader already had two terms
+ruler_term_limits.1 = {	 
+	type = country_event 
+	hidden = yes
+	
+	trigger = {
+		ruler = {
+			has_modifier = tl_second_term 
+		}
+		has_law = law_type:law_presidential_republic 
+		OR = { 
+			has_law = law_type:law_landed_voting
+			has_law = law_type:law_wealth_voting
+			has_law = law_type:law_census_voting
+			has_law = law_type:law_universal_suffrage
+		}						
+	}	
+		
+	immediate = {
+		ruler = {
+			save_scope_as = retiring_ig_leader
+			interest_group = {
+				save_scope_as = retiring_leader_ig
+			}
+		}
+		if = {
+			limit = {
+				scope:retiring_leader_ig = {
+					leader = scope:retiring_ig_leader
+				}
+			}
+			
+			create_character = {
+				ig_leader = no
+				interest_group = scope:retiring_leader_ig
+				save_scope_as = candidate
+			}
+			scope:candidate = {
+				set_as_interest_group_leader = yes
+			}
+			post_notification = ruler_term_limit_exceeded	
+		}	
+	}	
+}
+
+# start timer to replace ig leader before election starts if he already has two terms
+ruler_term_limits.2 = {	
+	type = country_event 
+	hidden = yes
+	
+	trigger = {
+		has_law = law_type:law_presidential_republic 
+		OR = { 
+			has_law = law_type:law_landed_voting
+			has_law = law_type:law_wealth_voting
+			has_law = law_type:law_census_voting
+			has_law = law_type:law_universal_suffrage
+		}						
+	}	
+		
+	immediate = {
+		trigger_event = {
+			id = ruler_term_limits.1
+			months = 36
+		}
+	}		
+}
+
+# set ruler term modifier after election
+ruler_term_limits.3 = {	
+	type = country_event 
+	hidden = yes
+	
+	trigger = {
+		has_law = law_type:law_presidential_republic 
+		OR = { 
+			has_law = law_type:law_landed_voting
+			has_law = law_type:law_wealth_voting
+			has_law = law_type:law_census_voting
+			has_law = law_type:law_universal_suffrage
+		}
+	}
+	immediate = {
+		if = {
+			limit = {
+				ruler = {					
+					has_modifier = tl_first_term
+				}
+			}
+			ruler = {
+				add_modifier = { 
+					name = tl_second_term
+				}
+				remove_modifier = tl_first_term
+			}
+		}
+		if = {
+			limit = {
+				ruler = {					
+					NOT = { has_modifier = tl_first_term }
+					NOT = { has_modifier = tl_second_term  }
+				}
+			}
+			ruler = {
+				add_modifier = { 
+					name = tl_first_term
+					months = 49 # one election cycle + 1 month to ensure temporary overlap
+				}
+			}
+		}		
+	}
+}
+
+# mark first term of starting characters
+ruler_term_limits.4 = {	
+	type = character_event 
+	hidden = yes
+	
+	trigger = {
+		game_date < 1837.1.5
+		is_ruler = yes
+		NOT = { has_modifier = tl_first_term }
+		NOT = { has_modifier = tl_second_term  }
+		owner = {
+			has_law = law_type:law_presidential_republic 
+			OR = { 
+				has_law = law_type:law_landed_voting
+				has_law = law_type:law_wealth_voting
+				has_law = law_type:law_census_voting
+				has_law = law_type:law_universal_suffrage
+			}		
+		}		
+	}
+	immediate = {
+		add_modifier = { 
+			name = tl_first_term
+			months = 49 # one election cycle + 1 month to ensure temporary overlap
+		}
+		
+	}	
+}
+
+namespace = HJE_main
 
 HJE_main.1 = {			 #Capital Decider
 	type = country_event

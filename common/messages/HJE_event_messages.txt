@@ -1,0 +1,6 @@
+﻿ruler_term_limit_exceeded = {
+	type = country
+	texture = "gfx/interface/icons/notification_icons/character.dds"
+
+	notification_type = feed
+}

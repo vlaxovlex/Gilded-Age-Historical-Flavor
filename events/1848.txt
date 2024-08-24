@@ -213,20 +213,12 @@
 		NOT = {
 			has_modifier = no_new_constitution
 		}
-		NOR = {	#HJE edit start
-			AND = {
-				exists = c:PRU
-				c:PRU = THIS
-			}
-			AND = {
-				exists = c:NGF
-				c:NGF = THIS
-			}
-			AND = {
-				exists = c:GER
-				c:GER = THIS
-			}
-		}	#HJE edit end	
+			#HJE edit start
+		NOR = {
+			AND = { exists = c:PRU c:PRU = THIS }
+			AND = { exists = c:NGF c:NGF = THIS }
+			AND = { exists = c:GER c:GER = THIS }
+		}	#HJE edit end
 	}
 
 	immediate = {
@@ -697,18 +689,9 @@
 			}
 		}
 		OR = {
-			AND = {
-				exists = c:PRU
-				c:PRU = THIS
-			}
-			AND = {
-				exists = c:NGF
-				c:NGF = THIS
-			}
-			AND = {
-				exists = c:GER
-				c:GER = THIS
-			}
+			AND = { exists = c:PRU c:PRU = THIS }
+			AND = { exists = c:NGF c:NGF = THIS }
+			AND = { exists = c:GER c:GER = THIS }
 		}
 	}
 

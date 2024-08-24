@@ -193,29 +193,33 @@ HJE_cleanup_effect = {
 			has_law = law_type:law_free_trade
 			NOT = { has_global_variable = had_second_opium_war }
 			has_variable = var_dynamic_opium_wars_victim
-			trigger_if = {
-				limit = { NOT = { has_dlc_feature = foreign_investment } }
+			OR = {
 				has_law = law_type:law_free_trade
-			}
-			trigger_else = {
-				any_country = {
-					has_diplomatic_pact = { who = PREV type = foreign_investment_agreement }	
-					country_rank = rank_value:great_power
+				trigger_if = {
+					any_country = {
+						country_rank = rank_value:great_power
+						OR = {
+							has_diplomatic_pact = { who = ROOT type = foreign_investment_rights }	
+							has_diplomatic_pact = { who = ROOT type = foreign_investment_agreement }	
+						}
+					}
 				}
 			}
 		}
 		set_variable = ai_china_closes_markets_again_var
-		if = {
-			limit = { NOT = { has_dlc_feature = foreign_investment } }
-			activate_law = law_type:law_isolationism
+		activate_law = law_type:law_isolationism
+		every_country = {
+			limit = { has_diplomatic_pact = { who = ROOT type = foreign_investment_rights } }
+			remove_diplomatic_pact = {
+				country = ROOT
+				type = foreign_investment_rights
+			}
 		}
-		else = {
-			every_country = {
-				limit = { has_diplomatic_pact = { who = ROOT type = foreign_investment_agreement } }
-				remove_diplomatic_pact = {
-					country = ROOT
-					type = foreign_investment_agreement
-				}
+		every_country = {
+			limit = { has_diplomatic_pact = { who = ROOT type = foreign_investment_agreement } }
+			remove_diplomatic_pact = {
+				country = ROOT
+				type = foreign_investment_agreement
 			}
 		}
 	}
