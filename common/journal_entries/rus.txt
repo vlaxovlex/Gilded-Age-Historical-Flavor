@@ -501,6 +501,9 @@ HJ_crimean_war = {
 
 	group = je_group_crises
 
+	scripted_button = HJ_crimean_war_tur_intervention_button
+	scripted_button = HJ_crimean_war_rus_intervention_button
+
 	is_shown_when_inactive = {
 		exists = c:RUS
 		exists = c:GBR
@@ -539,9 +542,9 @@ HJ_crimean_war = {
 
 	on_weekly_pulse = { 		#I have more flavour events planned, that's why this is a seperate journal
 		random_events = {
-			80 = 0
-			30 = HJE_russia.6 				#Russian allies (and/or Austria) decide whether or not it's worth it
-			15 = HJE_britain.16 			#Western GPs (and Sardinia) get an opportunity to join alliance against Russia
+			75 = 0
+			24 = HJE_russia.6 				#Russian allies (and/or Austria) decide whether or not it's worth it
+			1 = HJE_britain.16 			#Western GPs (and Sardinia) get an opportunity to join alliance against Russia
 			# Liberation of Romania (only if Romanian states don't exist, historically feasible)
 			# Charge of the Light Brigade
 			# Nightingale and Seacole

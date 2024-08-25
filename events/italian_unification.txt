@@ -860,6 +860,7 @@ italian_unification.10 = {
 	}
 	option = {
 		name = italian_unification.10.b
+		trigger = { NOT = { has_variable = ITA_current_favourite_to_unify } } ## HJE edit ##
 		ai_chance = {
 			base = 15
 			modifier = {

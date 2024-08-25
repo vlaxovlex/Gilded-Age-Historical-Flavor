@@ -612,6 +612,10 @@
  former_american_colony_tt:0 "Is a former American [concept_subject] Colony."
  empire_with_former_american_territory_tt:0 "Is a Foreign Empire which formerly had an American [concept_subject] Colony."
  recently_lost_a_war_tt:0 "Has recently lost a war."
+ HJ_crimean_war_tur_intervention_button:0 "Join the Turks' Alliance?"
+ HJ_crimean_war_tur_intervention_button_desc:0 "Begin debate on whether or not our nation should intervene on behalf of the Turks and join their alliance against the Russians."
+ HJ_crimean_war_rus_intervention_button:0 "Join the Russian Alliance?"
+ HJ_crimean_war_rus_intervention_button_desc:0 "Begin debate on whether or not our nation should intervene on behalf of the Russians and join their alliance against the Turks."
 
  #RE-WRITTEN TEXT:
  

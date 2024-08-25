@@ -1256,7 +1256,7 @@ HJE_main.2 = { #Spreads Quinine sooner once one power has it
 				}
 				OR = {
 					any_scope_state = { state_region = s:STATE_ALGIERS }
-					any_scope_state = { state_region = s:STATE_TLEMCEN }
+					any_scope_state = { state_region = s:STATE_ORAN }
 					any_scope_state = { state_region = s:STATE_CONSTANTINE }
 					NOT = {
 						any_country = {
@@ -1268,7 +1268,7 @@ HJE_main.2 = { #Spreads Quinine sooner once one power has it
 							}
 							OR = {
 								any_scope_state = { state_region = s:STATE_ALGIERS }
-								any_scope_state = { state_region = s:STATE_TLEMCEN }
+								any_scope_state = { state_region = s:STATE_ORAN }
 								any_scope_state = { state_region = s:STATE_CONSTANTINE }
 							}
 						}
@@ -1278,7 +1278,7 @@ HJE_main.2 = { #Spreads Quinine sooner once one power has it
 			set_variable = quinine_sahara_claimant
 			create_incident = { country = root value = 15 }
 			s:STATE_ALGIERS = { add_claim = ROOT }
-			s:STATE_TLEMCEN = { add_claim = ROOT }
+			s:STATE_ORAN = { add_claim = ROOT }
 			s:STATE_CONSTANTINE = { add_claim = ROOT }
 			s:STATE_INNER_MAURITANIA = { add_claim = ROOT }
 			s:STATE_SAHARA = { add_claim = ROOT }
@@ -1295,7 +1295,7 @@ HJE_main.2 = { #Spreads Quinine sooner once one power has it
 				limit = {
 					OR = {
 						state_region = s:STATE_ALGIERS
-						state_region = s:STATE_TLEMCEN
+						state_region = s:STATE_ORAN
 						state_region = s:STATE_CONSTANTINE
 						state_region = s:STATE_INNER_MAURITANIA
 						state_region = s:STATE_SAHARA
@@ -1327,7 +1327,7 @@ HJE_main.2 = { #Spreads Quinine sooner once one power has it
 				NOT = { any_country = { has_variable = quinine_sahara_claimant } }
 				OR = {
 					any_scope_state = { state_region = s:STATE_ALGIERS }
-					any_scope_state = { state_region = s:STATE_TLEMCEN }
+					any_scope_state = { state_region = s:STATE_ORAN }
 					any_scope_state = { state_region = s:STATE_CONSTANTINE }
 				}
 				OR = {
@@ -1338,7 +1338,7 @@ HJE_main.2 = { #Spreads Quinine sooner once one power has it
 						c:FRA = {
 							NOR = {
 								any_scope_state = { state_region = s:STATE_ALGIERS }
-								any_scope_state = { state_region = s:STATE_TLEMCEN }
+								any_scope_state = { state_region = s:STATE_ORAN }
 								any_scope_state = { state_region = s:STATE_CONSTANTINE }
 							}
 							OR = {
@@ -1355,7 +1355,7 @@ HJE_main.2 = { #Spreads Quinine sooner once one power has it
 			set_variable = quinine_sahara_claimant
 			create_incident = { country = root value = 15 }
 			s:STATE_ALGIERS = { add_claim = ROOT }
-			s:STATE_TLEMCEN = { add_claim = ROOT }
+			s:STATE_ORAN = { add_claim = ROOT }
 			s:STATE_CONSTANTINE = { add_claim = ROOT }
 			s:STATE_INNER_MAURITANIA = { add_claim = ROOT }
 			s:STATE_SAHARA = { add_claim = ROOT }
@@ -1372,7 +1372,7 @@ HJE_main.2 = { #Spreads Quinine sooner once one power has it
 				limit = {
 					OR = {
 						state_region = s:STATE_ALGIERS
-						state_region = s:STATE_TLEMCEN
+						state_region = s:STATE_ORAN
 						state_region = s:STATE_CONSTANTINE
 						state_region = s:STATE_INNER_MAURITANIA
 						state_region = s:STATE_SAHARA
@@ -1410,7 +1410,7 @@ HJE_main.2 = { #Spreads Quinine sooner once one power has it
 						}
 						OR = {
 							any_scope_state = { state_region = s:STATE_ALGIERS }
-							any_scope_state = { state_region = s:STATE_TLEMCEN }
+							any_scope_state = { state_region = s:STATE_ORAN }
 							any_scope_state = { state_region = s:STATE_CONSTANTINE }
 						}
 					}
@@ -1422,7 +1422,7 @@ HJE_main.2 = { #Spreads Quinine sooner once one power has it
 					set_variable = quinine_sahara_claimant
 					create_incident = { country = root value = 15 }
 					s:STATE_ALGIERS = { add_claim = ROOT }
-					s:STATE_TLEMCEN = { add_claim = ROOT }
+					s:STATE_ORAN = { add_claim = ROOT }
 					s:STATE_CONSTANTINE = { add_claim = ROOT }
 					s:STATE_INNER_MAURITANIA = { add_claim = ROOT }
 					s:STATE_SAHARA = { add_claim = ROOT }
@@ -1439,7 +1439,7 @@ HJE_main.2 = { #Spreads Quinine sooner once one power has it
 						limit = {
 							OR = {
 								state_region = s:STATE_ALGIERS
-								state_region = s:STATE_TLEMCEN
+								state_region = s:STATE_ORAN
 								state_region = s:STATE_CONSTANTINE
 								state_region = s:STATE_INNER_MAURITANIA
 								state_region = s:STATE_SAHARA

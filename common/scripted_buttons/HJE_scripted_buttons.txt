@@ -1,0 +1,74 @@
+﻿
+HJ_crimean_war_tur_intervention_button = {
+	name = "HJ_crimean_war_tur_intervention_button"
+	desc = "HJ_crimean_war_tur_intervention_button_desc"
+
+	visible = { 
+		exists = c:RUS
+		exists = c:TUR
+		NOT = { c:RUS = THIS }
+		NOT = { c:TUR = THIS }
+		NOT = { has_variable = CRIMEA_already_offered_to_join_alles }
+		OR = {		 									#is relevant or Sardinia-Piedmont
+			country_rank >= rank_value:major_power
+			has_variable = ITA_current_favourite_to_unify
+		}
+	}
+	
+	possible = {
+		aggressive_diplomatic_plays_permitted = yes
+		NOR = {					 #Can't like Russia or hate Britain
+			c:RUS = { relations:root > relations_threshold:amicable }
+			c:GBR = { relations:root < relations_threshold:cold }
+		}
+	}
+
+	ai_chance = {
+		base = 100
+		modifier = {
+			factor = 0.25
+			c:TUR = { relations:root < relations_threshold:amicable }
+		}
+		modifier = {
+			factor = 0.05
+			NOR = {
+				AND = { exists = c:GBR c:GBR = THIS }
+				AND = { exists = c:FRA c:FRA = THIS }
+				has_variable = ITA_current_favourite_to_unify
+			}
+		}
+		modifier = {
+			factor = 0
+			country_is_in_europe = no
+		}
+	}
+
+	effect = {
+		trigger_event = { id = HJE_britain.16 days = 1 popup = yes }
+	}
+}
+
+HJ_crimean_war_rus_intervention_button = {
+	name = "HJ_crimean_war_rus_intervention_button"
+	desc = "HJ_crimean_war_rus_intervention_button_desc"
+
+	visible = { 
+		exists = c:RUS
+		exists = c:TUR
+		NOT = { c:RUS = THIS }
+		NOT = { c:TUR = THIS }
+		NOT = { has_variable = CRIMEA_already_offered_to_leave_russia }
+		country_rank >= rank_value:major_power
+	}
+	
+	possible = {
+		aggressive_diplomatic_plays_permitted = yes
+		c:RUS = { relations:root >= relations_threshold:amicable } 	#at least tolerates Russia
+	}
+
+	ai_chance = { base = 0 }
+
+	effect = {
+		trigger_event = { id = HJE_russia.6 days = 1 popup = yes }
+	}
+}

@@ -1037,7 +1037,6 @@ HJE_semi_random_events_USA_effect = {
 	if = {
 		limit = {			#Random event for Americans to build a American or Foreign Empire
 			is_subject = no
-			market = { exists = yes }
 			is_junior_in_customs_union = no
 			NOT = { has_variable = HJE_american_empire_event }
 	    	OR = {

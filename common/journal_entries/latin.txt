@@ -268,14 +268,13 @@ HJ_dominican_revolution = {
 				scope:santo_domingo_scope = {
 					create_building={
 						building="building_barracks"
-						add_ownership={
-							country={
-								country="root"
-								levels=1
-							}
-						}
+						level=1
 						reserves=1
-						activate_production_methods={ "pm_no_organization" }
+					}
+					create_building={
+						building="building_conscription_center"
+						level=1
+						reserves=1
 					}
 				}
 				random_country = {
@@ -334,14 +333,13 @@ HJ_dominican_revolution = {
 				scope:haiti_scope = {
 					create_building={
 						building="building_barracks"
-						add_ownership={
-							country={
-								country="root"
-								levels=1
-							}
-						}
+						level=1
 						reserves=1
-						activate_production_methods={ "pm_no_organization" }
+					}
+					create_building={
+						building="building_conscription_center"
+						level=1
+						reserves=1
 					}
 				}
 				random_country = {

@@ -1650,7 +1650,7 @@ HJE_britain.16 = {			 #France and Other Powers are drawn into the fighting
 		exists = c:GBR
 		OR = {		 									#is relevant or Sardinia-Piedmont
 			country_rank >= rank_value:major_power
-			has_modifier = plombieres_agreement
+			has_variable = ITA_current_favourite_to_unify
 		}
 		any_scope_state = { 							#is from western europe
 			is_capital = yes
@@ -1686,21 +1686,6 @@ HJE_britain.16 = {			 #France and Other Powers are drawn into the fighting
 				exists = c:GBR
 				c:GBR = THIS
 				is_diplomatic_play_enemy_of = c:RUS
-			}
-			trigger_if = {
-				limit = {
-					ROOT = { 
-						OR = {
-							has_modifier = plombieres_agreement
-						}
-					}
-				}
-				any_scope_play_involved = {
-					NOT = { THIS = ROOT }
-					exists = c:FRA
-					c:FRA = THIS
-					is_diplomatic_play_enemy_of = c:RUS
-				}
 			}
 		}
 	}
