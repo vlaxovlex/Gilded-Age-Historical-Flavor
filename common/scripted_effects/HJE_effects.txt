@@ -1039,8 +1039,9 @@ HJE_semi_random_events_USA_effect = {
 			is_subject = no
 			is_junior_in_customs_union = no
 			NOT = { has_variable = HJE_american_empire_event }
+			year > 1870
 	    	OR = {
-				year > 1880
+				year > 1885
 				AND = {
 					has_variable = manifested_destiny #already took Manifest Destiny decision
 					has_variable = mexican_american_war_peace #peace with mexico
@@ -1059,6 +1060,14 @@ HJE_semi_random_events_USA_effect = {
 				AND = {
 					exists = c:CSA
 					c:CSA = THIS
+				}
+			}
+			NOT = {
+				any_country = {
+					OR = {
+						has_journal_entry = je_acw_war
+						has_journal_entry = je_acw_war_csa_fsa
+					}
 				}
 			}
 		}

@@ -282,6 +282,15 @@ je_american_empire_continued_manifest_destiny = {
 	complete = {
 		is_at_war = no
 		if = {
+			limit = { has_variable = american_empire_je_requires_retaking_usa }
+			NOT = {
+				any_state_region = {
+					OR = { is_homeland = cu:yankee is_homeland = cu:dixie }
+					ROOT = { NOT = { has_state_in_state_region = PREV } }
+				}
+			}
+		}
+		if = {
 			limit = { has_variable = american_empire_je_requires_canada }
 			owns_entire_state_region = STATE_NORTHWEST_TERRITORIES
 			owns_entire_state_region = STATE_NUNAVUT

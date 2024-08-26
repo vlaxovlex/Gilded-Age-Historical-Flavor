@@ -5602,16 +5602,43 @@ HJE_usa.12 = {
 		add_journal_entry = { type = je_american_empire_continued_manifest_destiny }
 		if = {
 			limit = {
-				any_scope_state = {
-					is_incorporated = yes
-					this.state_region = { OR = { is_homeland = cu:yankee is_homeland = cu:dixie } }
+				OR = {
+					AND = {
+						exists = c:USA
+						c:USA = ROOT
+						OR = { exists = c:CSA exists = c:FSA }
+					}
+					AND = {
+						exists = c:CSA
+						c:CSA = ROOT
+						OR = { exists = c:USA exists = c:FSA }
+					}
+					AND = {
+						exists = c:FSA
+						c:FSA = ROOT
+						OR = { exists = c:CSA exists = c:USA }
+					}
+				}
+			}
+			set_variable = american_empire_je_requires_retaking_usa
+			every_state_region = {
+				limit = {
+					NOT = { has_claim_by = ROOT }
+					OR = { is_homeland = cu:yankee is_homeland = cu:dixie }
+				}
+				add_claim = ROOT
+			}
+		}
+		if = {
+			limit = {
+				any_state_region = {
 					any_neighbouring_state = {
-						NOT = { owner = ROOT }
-						owner = {
-							OR = {
-								country_has_primary_culture = cu:anglo_canadian
-								country_has_primary_culture = cu:franco_canadian
-							}
+						owner = { OR = { THIS = ROOT is_subject_of = ROOT } }
+					}
+					owner = {
+						OR = {
+							country_has_primary_culture = cu:anglo_canadian
+							country_has_primary_culture = cu:franco_canadian
 						}
 					}
 				}
@@ -5655,12 +5682,10 @@ HJE_usa.12 = {
 		}
 		if = {
 			limit = {
-				any_scope_state = {
-					is_incorporated = yes
-					this.state_region = { OR = { is_homeland = cu:yankee is_homeland = cu:dixie } }
+				any_state_region = {
+					owner = { country_has_primary_culture = cu:mexican }
 					any_neighbouring_state = {
-						NOT = { owner = ROOT }
-						owner = { country_has_primary_culture = cu:mexican }
+						owner = { OR = { THIS = ROOT is_subject_of = ROOT } }
 					}
 				}
 			}
