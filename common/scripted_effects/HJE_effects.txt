@@ -330,7 +330,7 @@ HJE_cleanup_effect = {
 	if = {
 		limit = { 
 			exists = c:GER 
-			NOT = { any_state_region = { has_modifier = modifier_state_capital_of_germany } } 
+			NOT = { has_global_variable = capital_of_germany_mod_applied } 
 			c:GER = {
 				country_is_in_europe = yes
 				any_scope_state = { 
@@ -342,6 +342,7 @@ HJE_cleanup_effect = {
 				}
 			}
 		}
+		set_global_variable = capital_of_germany_mod_applied
 		c:GER = {
 			random_scope_state = {
 				limit = {

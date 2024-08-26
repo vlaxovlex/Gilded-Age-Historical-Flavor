@@ -1,4 +1,4 @@
-dna_andrew_johnson={
+﻿dna_andrew_johnson={
 	type=male
 	id=1750968009
 	age=0.560000
