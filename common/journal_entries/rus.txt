@@ -43,6 +43,12 @@
 		}
 	}
 
+	invalid = {
+		NOT = {
+			has_law = law_type:law_monarchy
+		}
+	}
+
 
 	weight = 10000
 	should_be_pinned_by_default = yes
@@ -76,6 +82,12 @@ je_reforms_of_alexander = {
 
 	goal_add_value = {
 		add = 3
+	}
+
+	invalid = {
+		NOT = {
+			has_law = law_type:law_monarchy
+		}
 	}
 	
 	progressbar = yes
@@ -123,9 +135,14 @@ je_tge_peasants_reform = {
 		}
 	}
 	invalid = {
-		custom_tooltip = {
-			text = finished_reforms_of_alexander
-			has_variable = reforms_of_alexander_complete
+		OR = {
+			custom_tooltip = {
+				text = finished_reforms_of_alexander
+				has_variable = reforms_of_alexander_complete
+			}
+			NOT = {
+				has_law = law_type:law_monarchy
+			}
 		}
 	}
 
@@ -174,9 +191,14 @@ je_tge_military_reform = {
 		}
 	}
 	invalid = {
-		custom_tooltip = {
-			text = finished_reforms_of_alexander
-			has_variable = reforms_of_alexander_complete
+		OR = {
+			custom_tooltip = {
+				text = finished_reforms_of_alexander
+				has_variable = reforms_of_alexander_complete
+			}
+			NOT = {
+				has_law = law_type:law_monarchy
+			}
 		}
 	}
 
@@ -224,9 +246,14 @@ je_tge_melikovs_constitution = {
 		}
 	}
 	invalid = {
-		custom_tooltip = {
-			text = finished_reforms_of_alexander
-			has_variable = reforms_of_alexander_complete
+		OR = {
+			custom_tooltip = {
+				text = finished_reforms_of_alexander
+				has_variable = reforms_of_alexander_complete
+			}
+			NOT = {
+				has_law = law_type:law_monarchy
+			}
 		}
 	}
 
