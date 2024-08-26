@@ -160,7 +160,7 @@ GLOBAL = {
 	}
 	if = {
 		limit = {
-			NOR = {
+			NOT = {
 				exists = c:CAR
 				exists = c:CSP
 			}

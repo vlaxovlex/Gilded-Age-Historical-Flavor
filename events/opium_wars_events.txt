@@ -505,14 +505,10 @@ opium_wars.4 = {
 			}
 			remove_modifier = opium_ban_authority
 		}
-		if = {	#HJE edit start
-			limit = {
-				exists = scope:opium_wars_treaty_port_winner
-			}
-			set_global_variable = had_first_opium_war
-			add_journal_entry = { 
-				type = HJ_china_humiliation 
-			}
+			#HJE edit start
+		set_global_variable = had_first_opium_war
+		add_journal_entry = { 
+			type = HJ_china_humiliation 
 		}
 		if = {
 			limit = { NOT = { has_law = law_type:law_free_trade } }
