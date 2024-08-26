@@ -16,8 +16,7 @@ NAI = {			#x4
 	NUM_GROWING_COLONIES_MAX = 20									#5
 	TENSION_NUM_PROVINCE_SCALING_BASE = 2.5							#10
 
-	#BASE_AGGRESSION = 0.17											#0.25		#Aggression bloc
-	#Base aggression is best left untouched, it could break basegame historical wars (like the opium wars, etc). If you're worried about too many wars between great powers, I hope 1.8 fixes that 								
+	BASE_AGGRESSION = 0.15											#0.25		#Aggression bloc
 	UNIFICATION_AGGRESSION_MULT_HIGHER_TIER = 80					#20
 	UNIFICATION_AGGRESSION_MULT_SAME_TIER = 0.4						#0.1
 

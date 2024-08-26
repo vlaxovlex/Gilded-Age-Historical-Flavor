@@ -275,8 +275,8 @@
 						region = sr:region_senegal
 						region = sr:region_niger
 						region = sr:region_congo
-						#HJE edit (disabled)region = sr:region_zambezia
-						#HJE edit (disabled)region = sr:region_angola
+						 region = sr:region_zambezia
+						 region = sr:region_angola
 						region = sr:region_zanj
 						state_region = s:STATE_WADDAI
 						state_region = s:STATE_HEREROLAND
@@ -300,8 +300,8 @@
 						region = sr:region_senegal
 						region = sr:region_niger
 						region = sr:region_congo
-						#HJE edit (disabled)region = sr:region_zambezia
-						#HJE edit (disabled)region = sr:region_angola
+						 region = sr:region_zambezia
+						 region = sr:region_angola
 						region = sr:region_zanj
 						state_region = s:STATE_WADDAI
 						state_region = s:STATE_HEREROLAND

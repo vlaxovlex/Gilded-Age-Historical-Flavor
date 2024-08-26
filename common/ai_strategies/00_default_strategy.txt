@@ -537,6 +537,35 @@ ai_strategy_default = {
 	diplomatic_play_neutrality = {
 		value = 50
 		
+		if = {	#HJE edit start
+			limit = {
+				OR = {
+					has_journal_entry = HJ_opium_wars
+					has_journal_entry = HJ_opium_wars_unhistorical
+				}
+				OR = {
+					AND = {
+						exists = c:GBR
+						c:GBR = THIS
+					}
+					AND = {
+						exists = c:FRA
+						c:FRA = THIS
+					}
+					AND = {
+						exists = c:USA
+						c:USA = THIS
+					}
+				}
+				exists = c:TPG
+				any_country = {
+					has_variable = var_dynamic_opium_wars_victim
+					is_diplomatic_play_enemy_of = c:TPG
+				}
+			}
+			add = 100
+		}		#HJE edit end
+		
 		# Ottomans should avoid unnecessary entanglements while trying to pursue the Tanzimat reforms
 		if = {
 			limit = {
