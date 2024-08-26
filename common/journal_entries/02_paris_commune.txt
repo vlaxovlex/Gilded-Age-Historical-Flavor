@@ -76,6 +76,16 @@
 
 	immediate = {
 		trigger_event = { id = paris_commune.1 popup = yes }
+		if = {	#HJE edit start
+			limit = {
+				ruler = {
+					has_variable = napoleon_iii_var
+				}
+			}
+			ruler = {
+				kill_character = yes
+			}
+		}		#HJE edit end
 	}
 
 	fail = {

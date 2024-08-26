@@ -507,17 +507,7 @@ opium_wars.4 = {
 		}
 		if = {	#HJE edit start
 			limit = {
-				any_country = {
-					has_variable = opium_wars_aggressor
-					any_scope_state = {
-						is_treaty_port = yes
-						state_region = {
-							any_scope_state = {
-								owner = ROOT
-							}
-						}
-					}
-				}
+				exists = scope:opium_wars_treaty_port_winner
 			}
 			set_global_variable = had_first_opium_war
 			add_journal_entry = { 

@@ -33,7 +33,7 @@
 		HJE_turkey.13				#TUR Ottoman Dynasty Restoration
 	}
 	
-	on_actions = hje_startup_on_action
+	on_actions = { hje_monthly_pulse_on_actions }
 
 }
 
@@ -44,13 +44,13 @@ on_capitulation = {
 		HJE_china.3 			#Re-Opens Chinese Market after Opium Wars
 	}
 	
-	on_actions = hje_capitulation_on_actions
+	on_actions = { hje_capitulation_on_actions }
 	
 }
 
 on_heir_born = {
 	
-	on_actions = hje_heir_born_on_actions
+	on_actions = { hje_heir_born_on_actions }
 	
 }
 
@@ -66,13 +66,13 @@ on_battle_won = {
 
 on_character_death = {
 	
-	on_actions = hje_character_death_on_actions
+	on_actions = { hje_character_death_on_actions }
 
 }
 
 on_secession_start = {
 	
-	on_actions = hje_secession_start_on_actions
+	on_actions = { hje_secession_start_on_actions }
 
 }
 

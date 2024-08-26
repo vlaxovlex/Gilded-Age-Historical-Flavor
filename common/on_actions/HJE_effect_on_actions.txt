@@ -1,8 +1,11 @@
-hje_startup_on_action = {
+hje_monthly_pulse_on_actions = {
 	effect = {
 		if = {
 			limit = { NOT = { has_global_variable = HJE_history } }
 			set_global_variable = HJE_history
+			c:SPA = {
+				add_journal_entry = { type = HJ_isab_victory }
+			}
 			c:CSP = {	
 				add_journal_entry = { type = HJ_carlist_victory }			
 				create_diplomatic_play = {
