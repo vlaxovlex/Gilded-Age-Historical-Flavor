@@ -78,13 +78,12 @@
 		trigger_event = { id = paris_commune.1 popup = yes }
 		if = {	#HJE edit start
 			limit = {
-				ruler = {
-					has_variable = napoleon_iii_var
+				OR = {
+					has_law = law_type:law_monarchy
+					ruler = { has_variable = napoleon_iii_var }
 				}
 			}
-			ruler = {
-				kill_character = yes
-			}
+			trigger_event = { id = HJE_france.22 days = 25 popup = yes }
 		}		#HJE edit end
 	}
 
