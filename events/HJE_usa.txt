@@ -2162,27 +2162,6 @@ acw_special_events.7 = {
 	duration = 3
 	
 	trigger = {
-		NOT = { has_variable = emancipation_proclaimed }
-		NOT = { has_law = law_type:law_slavery_banned }
-		ruler = { NOT = { has_ideology = ideology:ideology_slaver } }
-		NOT = { any_interest_group = { has_modifier = delayed_emancipation } }
-		any_country = {
-			has_war_with = ROOT
-			NOT = { THIS = ROOT }
-			NOT = { has_law = law_type:law_slavery_banned }
-			OR = {
-				has_journal_entry = je_acw_war
-				has_journal_entry = je_acw_war_csa_fsa
-			}
-		}
-		OR = {
-			has_variable = won_battle_gettysburg
-			NOT = { has_variable = acw_has_fought_less_than_2_years }
-			AND = {
-				is_player = no
-				NOT = { has_variable = acw_has_fought_less_than_1_year }
-			}
-		}
 	}
 	
 	immediate = {
@@ -2198,27 +2177,6 @@ acw_special_events.7 = {
 	
 	option = {
 		name = acw_special_events.7.a
-		custom_tooltip = {
-			text = acw_special_events.7.tt
-			set_variable = {
-				name = emancipation_proclamation
-				value = yes
-			}
-			scope:ongoing_acw = {
-				add_war_war_support = {
-					target = c:USA
-					value = 25
-				}
-				add_war_war_support = {
-					target = c:CSA
-					value = 25
-				}
-				add_war_war_support = {
-					target = c:FSA
-					value = 25
-				}
-			}
-		}
 		every_interest_group = {
 			limit = {
 				law_stance = {
@@ -2231,6 +2189,7 @@ acw_special_events.7 = {
 				months = normal_modifier_time
 			}
 		}
+		start_enactment = law_type:law_slavery_banned
 		every_country = {
 			limit = {
 				has_war_with = ROOT
@@ -2277,11 +2236,14 @@ acw_special_events.7001 = {
 			limit = {
 				has_war_with = ROOT
 				NOT = { THIS = ROOT }
+				any_interest_group = { has_modifier = enacted_emancipation }
+				NOT = { has_variable = ACW_already_got_emancipation_proc_reaction }
 				OR = {
 					has_journal_entry = je_acw_war
 					has_journal_entry = je_acw_war_csa_fsa
 				}
 			}
+			set_variable = ACW_already_got_emancipation_proc_reaction
 			save_scope_as = union
 			ruler = { save_scope_as = president }
 		}
@@ -2327,9 +2289,27 @@ acw_special_events.12 = {
 			has_journal_entry = je_acw_war
 			has_journal_entry = je_acw_war_csa_fsa
 		}
-		any_scope_state = {
-			state_region = s:STATE_PENNSYLVANIA
-			devastation > 0.01
+		OR = {
+			AND = {
+				has_variable = battle_of_gettysburg_has_begun
+				any_scope_state = {
+					state_region = s:STATE_PENNSYLVANIA
+					devastation < 0.01
+				}
+			}
+			any_country = {
+				has_war_with = ROOT
+				NOT = { THIS = ROOT }
+				has_variable = battle_of_gettysburg_has_begun
+				OR = {
+					has_journal_entry = je_acw_war
+					has_journal_entry = je_acw_war_csa_fsa
+				}
+				any_scope_state = {
+					state_region = s:STATE_PENNSYLVANIA
+					devastation > 0.5
+				}
+			}
 		}
 	}
 	
@@ -2435,6 +2415,232 @@ acw_special_events.14 = {
 					value = 25
 				}		
 			}
+		}
+	}
+}
+
+#Remaining Slave States Seceed (Emancipation Proclamation Fail)
+acw_special_events.15 = {
+	type = country_event
+	event_image = {
+		video = "gfx/event_pictures/europenorthamerica_capitalists_meeting.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/capitalists_meeting"
+
+	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
+	
+	title = acw_special_events.15.t
+	desc = acw_special_events.15.d
+	flavor = acw_special_events.15.f
+	
+	duration = 3
+	
+	trigger = {
+		#triggered by event
+	}
+	
+	immediate = {
+		ruler = { save_scope_as = president }
+		random_country = {
+			limit = {
+				has_war_with = ROOT
+				NOT = { THIS = ROOT }
+				OR = {
+					has_journal_entry = je_acw_war
+					has_journal_entry = je_acw_war_csa_fsa
+				}
+				OR = {
+					AND = { exists = c:CSA c:CSA = THIS }
+					has_law = law_type:law_legacy_slavery
+					has_law = law_type:law_slave_trade
+				}
+			}
+			save_scope_as = csa_scope
+		}
+	}
+	
+	option = { 
+		name = acw_special_events.15.a 
+		default_option = yes
+		every_scope_state = {
+			limit = { is_slave_state = yes is_incorporated = yes }
+			set_state_owner = scope:csa_scope
+		}
+	}
+}
+
+#Incarceration Proclamation
+acw_special_events.16 = {
+	type = country_event
+	
+	event_image = {
+		video = "gfx/event_pictures/unspecific_ruler_speaking_to_people.bk2"
+	}
+	
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/capitalists_meeting"
+	
+	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
+	
+	title = acw_special_events.16.t
+	desc = acw_special_events.16.d
+	flavor = acw_special_events.16.f
+	
+	duration = 3
+	
+	trigger = {
+	}
+	
+	immediate = {
+		ruler = { save_scope_as = president }
+		random_scope_war = {
+			save_scope_as = ongoing_acw
+		}
+		set_variable = {
+			name = incarceration_proclaimed 
+			value = yes
+		}
+	}
+	
+	option = {
+		name = acw_special_events.16.a
+		every_interest_group = {
+			limit = {
+				law_stance = {
+					law = law_type:law_slave_trade
+					value > neutral
+				}
+			}
+			add_modifier = {
+				name = enacted_emancipation # +1 opinion
+				months = normal_modifier_time
+			}
+		}
+		start_enactment = law_type:law_slave_trade
+		every_country = {
+			limit = {
+				has_war_with = ROOT
+				NOT = { THIS = ROOT }
+				OR = {
+					has_journal_entry = je_acw_war
+					has_journal_entry = je_acw_war_csa_fsa
+				}
+			}
+			trigger_event = { id = acw_special_events.17 }
+		}
+	}
+}
+
+#Reaction to the Emancipation Proclamation
+acw_special_events.17 = {
+	type = country_event
+	placement = c:USA
+	
+	event_image = {
+		video = "gfx/event_pictures/unspecific_ruler_speaking_to_people.bk2"
+	}
+	
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/capitalists_meeting"
+	
+	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
+	
+	title = acw_special_events.17.t
+	desc = acw_special_events.17.d 
+	flavor = acw_special_events.17.f 
+	
+	duration = 3
+	
+	trigger = {
+	}
+	
+	immediate = {
+		save_scope_as = free_states
+		random_scope_war = {
+			save_scope_as = ongoing_acw
+		}
+		random_country = {
+			limit = {
+				has_war_with = ROOT
+				NOT = { THIS = ROOT }
+				any_interest_group = { has_modifier = enacted_emancipation }
+				NOT = { has_variable = ACW_already_got_incarceration_proc_reaction }
+				OR = {
+					has_journal_entry = je_acw_war
+					has_journal_entry = je_acw_war_csa_fsa
+				}
+			}
+			set_variable = ACW_already_got_incarceration_proc_reaction
+			save_scope_as = union
+			ruler = { save_scope_as = president }
+		}
+	}
+	
+	option = {
+		name = acw_special_events.17.a 
+		trigger = { 
+			NOT = { has_law = law_type:law_slave_trade } 
+		}
+		custom_tooltip = { text = acw_special_events_union.tt }
+	}
+
+	option = {
+		name = acw_special_events.17.b 
+		trigger = { has_law = law_type:law_slave_trade }
+		play_as = c:USA
+		c:USA = { annex = scope:free_states }
+	}
+}
+
+#Remaining Free States Seceed (Incarceration Proclamation Fail)
+acw_special_events.18 = {
+	type = country_event
+	event_image = {
+		video = "gfx/event_pictures/europenorthamerica_capitalists_meeting.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/capitalists_meeting"
+
+	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
+	
+	title = acw_special_events.18.t
+	desc = acw_special_events.18.d
+	flavor = acw_special_events.18.f
+	
+	duration = 3
+	
+	trigger = {
+		#triggered by event
+	}
+	
+	immediate = {
+		ruler = { save_scope_as = president }
+		random_country = {
+			limit = {
+				has_war_with = ROOT
+				NOT = { THIS = ROOT }
+				OR = {
+					has_journal_entry = je_acw_war
+					has_journal_entry = je_acw_war_csa_fsa
+				}
+				OR = {
+					AND = { exists = c:FSA c:FSA = THIS }
+					has_law = law_type:law_slavery_banned
+				}
+			}
+			save_scope_as = fsa_scope
+		}
+	}
+	
+	option = { 
+		name = acw_special_events.18.a 
+		default_option = yes
+		every_scope_state = {
+			limit = { is_slave_state = no is_incorporated = yes }
+			set_state_owner = scope:fsa_scope
 		}
 	}
 }

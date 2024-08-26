@@ -59,6 +59,9 @@ je_usa_western_territories = {
 je_acw_war_csa_fsa = {
 	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
 
+	scripted_button = HJ_acw_emancipation_proclamation_button
+	scripted_button = HJ_acw_incarceration_proclamation_button
+
 	immediate = {
 	}
 
@@ -77,6 +80,19 @@ je_acw_war_csa_fsa = {
 			30 = acw_special_events.14 #Generic Skirmishes
 			10 = acw_events.7 #Free State of Jefferson
 			10 = acw_events.8 #Great Locomotive Chase
+		}
+		effect = {
+			if = {
+				limit = { 
+					NOT = { any_country = { has_variable = battle_of_gettysburg_has_begun } }
+					NOT = { any_country = { has_variable = won_battle_gettysburg } }
+					any_scope_state = { 
+						state_region = s:STATE_PENNSYLVANIA 
+						enemy_occupation > 0
+					}
+				}
+				set_variable = battle_of_gettysburg_has_begun
+			}
 		}
 	}
 	

@@ -359,6 +359,17 @@ manifest_destiny.6 = {
 	}
 	immediate = {
 		set_variable = mexican_american_war_peace
+		if = {
+			limit = {
+				is_player = no
+				any_subject_or_below = { 
+					exists = c:TEX 
+					c:TEX = THIS 
+					is_player = no
+				}
+			}
+			annex = c:TEX
+		}
 	}
 
 	option = { #North of Rio Grande

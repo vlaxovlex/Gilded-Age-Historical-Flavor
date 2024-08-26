@@ -924,6 +924,41 @@ HJE_main.1 = {			 #Capital Decider
 		set_capital = STATE_WALLONIA
 	}
 	option = {
+		name = HJE_main.1.washington
+		ai_chance = { 
+			base = 50
+		}
+		trigger = {
+			owns_entire_state_region = STATE_DISTRICT_OF_COLUMBIA
+			any_scope_state = {
+				state_region = s:STATE_DISTRICT_OF_COLUMBIA
+				is_capital = no
+			}
+			OR = {
+				AND = {
+					NOT = { exists = c:CSA }
+					NOT = { exists = c:FSA }
+					exists = c:USA
+					c:USA = ROOT
+				}
+				AND = {
+					NOT = { exists = c:USA }
+					NOT = { exists = c:FSA }
+					exists = c:CSA
+					c:CSA = ROOT
+				}
+				AND = {
+					NOT = { exists = c:CSA }
+					NOT = { exists = c:USA }
+					exists = c:FSA
+					c:FSA = ROOT
+				}
+			}
+		}
+		set_variable = capital_decided_variable
+		set_capital = STATE_DISTRICT_OF_COLUMBIA
+	}
+	option = {
 		name = HJE_main.1.mexico
 		ai_chance = { 
 			base = 50

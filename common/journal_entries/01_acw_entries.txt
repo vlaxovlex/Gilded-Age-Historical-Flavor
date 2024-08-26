@@ -213,6 +213,9 @@ je_acw_war = {
 
 	group = je_group_historical_content
 	
+	scripted_button = HJ_acw_emancipation_proclamation_button ## HJE ##
+	scripted_button = HJ_acw_incarceration_proclamation_button ## HJE ##
+
 	immediate = {	#HJE edit start
 		ruler = { set_variable = abraham_lincoln }
 		set_variable = {
@@ -273,19 +276,31 @@ je_acw_war = {
 	}			#HJE edit end
 	
 
-	on_monthly_pulse = {
-		events = {
-			acw_je_events.4
-		}
-		random_events = {	#HJE edit start
+	on_monthly_pulse = {	#HJE edit start
+		#events = {
+		#	acw_je_events.4
+		#}
+		random_events = {
 			35 = 0
 			45 = acw_secession_crisis.4 #West Virginia secession
 			40 = acw_special_events.1 #The Gettysburg Address
-			40 = acw_special_events.2 #Sherman's March to the Sea
-			15 = acw_special_events.7 #Emancipation Proclamation
+			95 = acw_special_events.2 #Sherman's March to the Sea
 			25 = acw_special_events.14 #Generic Skirmishes
 			10 = acw_events.8 #Great Locomotive Chase
-		}					#HJE edit end
+		}	
+		effect = {
+			if = {
+				limit = { 
+					NOT = { any_country = { has_variable = battle_of_gettysburg_has_begun } }
+					NOT = { any_country = { has_variable = won_battle_gettysburg } }
+					any_scope_state = { 
+						state_region = s:STATE_PENNSYLVANIA 
+						devastation > 0
+					}
+				}
+				set_variable = battle_of_gettysburg_has_begun
+			}
+		}				#HJE edit end
 	}
 
 	should_be_pinned_by_default = yes

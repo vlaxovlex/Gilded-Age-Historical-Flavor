@@ -72,3 +72,187 @@ HJ_crimean_war_rus_intervention_button = {
 		trigger_event = { id = HJE_russia.6 days = 1 popup = yes }
 	}
 }
+
+HJ_acw_emancipation_proclamation_button = {
+	name = "HJ_acw_emancipation_proclamation_button"
+	desc = "HJ_acw_emancipation_proclamation_button_desc"
+
+	visible = {
+		exists = c:CSA
+		NOT = { THIS = c:CSA }
+		NOT = { exists = c:FSA }
+		NOT = { has_variable = emancipation_proclaimed }
+		NOT = { has_variable = incarceration_proclaimed }
+		NOT = { has_law = law_type:law_slavery_banned }
+		ruler = { NOT = { has_ideology = ideology:ideology_slaver } }
+		any_country = {
+			has_war_with = ROOT
+			NOT = { THIS = ROOT }
+			NOT = { has_law = law_type:law_slavery_banned }
+			OR = {
+				has_journal_entry = je_acw_war
+				has_journal_entry = je_acw_war_csa_fsa
+			}
+		}
+	}
+	
+	possible = {
+		hidden_trigger = { always = yes }
+	}
+
+	ai_chance = { 
+		base = 0 
+		modifier = {
+			add = 100
+			OR = {
+				any_revolution_ongoing = yes
+				has_variable = won_battle_gettysburg
+				NOT = { any_country = { has_variable = acw_has_fought_less_than_3_years } }
+				NOT = { any_scope_state = { is_incorporated = yes is_slave_state = yes } }
+			}
+		}
+	}
+
+	effect = {
+		trigger_event = { id = acw_special_events.7 days = 1 popup = yes }
+		if = {
+			limit = { any_scope_state = { is_incorporated = yes is_slave_state = yes } }
+			if = {
+				limit = {
+					OR = {
+						has_variable = won_battle_gettysburg
+						NOT = { any_country = { has_variable = acw_has_fought_less_than_3_years } }
+					}
+				}
+				custom_tooltip = {
+					text = remaining_slave_states_may_switch_to_CSA_very_low_chance_tt
+					random_list = {
+						10 = { trigger_event = { id = acw_special_events.15 days = 15 popup = yes } }
+						90 = { }
+					}
+				}
+			}
+			else_if = {
+				limit = { NOT = { any_country = { has_variable = acw_has_fought_less_than_2_years } } }
+				custom_tooltip = {
+					text = remaining_slave_states_may_switch_to_CSA_low_chance_tt
+					random_list = {
+						40 = { trigger_event = { id = acw_special_events.15 days = 15 popup = yes } }
+						60 = { }
+					}
+				}
+			}
+			else_if = {
+				limit = { NOT = { any_country = { has_variable = acw_has_fought_less_than_1_year } } }
+				custom_tooltip = {
+					text = remaining_slave_states_may_switch_to_CSA_high_chance_tt
+					random_list = {
+						60 = { trigger_event = { id = acw_special_events.15 days = 15 popup = yes } }
+						40 = { }
+					}
+				}
+			}
+			else = {
+				custom_tooltip = {
+					text = remaining_slave_states_may_switch_to_CSA_very_high_chance_tt
+					random_list = {
+						80 = { trigger_event = { id = acw_special_events.15 days = 15 popup = yes } }
+						20 = { }
+					}
+				}
+			}
+		}
+	}
+}
+
+HJ_acw_incarceration_proclamation_button = {
+	name = "HJ_acw_incarceration_proclamation_button"
+	desc = "HJ_acw_incarceration_proclamation_button_desc"
+
+	visible = {
+		exists = c:FSA
+		NOT = { THIS = c:FSA }
+		NOT = { exists = c:CSA }
+		NOT = { has_variable = emancipation_proclaimed }
+		NOT = { has_variable = incarceration_proclaimed }
+		NOT = { has_law = law_type:law_slave_trade }
+		ruler = { NOT = { has_ideology = ideology:ideology_abolitionist } }
+		any_country = {
+			has_war_with = ROOT
+			NOT = { THIS = ROOT }
+			NOT = { has_law = law_type:law_slave_trade }
+			OR = {
+				has_journal_entry = je_acw_war
+				has_journal_entry = je_acw_war_csa_fsa
+			}
+		}
+	}
+	
+	possible = {
+		hidden_trigger = { always = yes }
+	}
+
+	ai_chance = { 
+		base = 0 
+		modifier = {
+			add = 100
+			OR = {
+				any_revolution_ongoing = yes
+				has_variable = won_battle_gettysburg
+				NOT = { any_country = { has_variable = acw_has_fought_less_than_3_years } }
+				NOT = { any_scope_state = { is_incorporated = yes is_slave_state = no } }
+			}
+		}
+	}
+
+	effect = {
+		trigger_event = { id = acw_special_events.16 days = 1 popup = yes }
+		if = {
+			limit = { any_scope_state = { is_incorporated = yes is_slave_state = no } }
+			if = {
+				limit = {
+					OR = {
+						has_variable = won_battle_gettysburg
+						NOT = { any_country = { has_variable = acw_has_fought_less_than_3_years } }
+					}
+				}
+				custom_tooltip = {
+					text = remaining_free_states_may_switch_to_FSA_very_low_chance_tt
+					random_list = {
+						10 = { trigger_event = { id = acw_special_events.18 days = 15 popup = yes } }
+						90 = { }
+					}
+				}
+			}
+			else_if = {
+				limit = { NOT = { any_country = { has_variable = acw_has_fought_less_than_2_years } } }
+				custom_tooltip = {
+					text = remaining_free_states_may_switch_to_FSA_low_chance_tt
+					random_list = {
+						40 = { trigger_event = { id = acw_special_events.18 days = 15 popup = yes } }
+						60 = { }
+					}
+				}
+			}
+			else_if = {
+				limit = { NOT = { any_country = { has_variable = acw_has_fought_less_than_1_year } } }
+				custom_tooltip = {
+					text = remaining_free_states_may_switch_to_FSA_high_chance_tt
+					random_list = {
+						60 = { trigger_event = { id = acw_special_events.18 days = 15 popup = yes } }
+						40 = { }
+					}
+				}
+			}
+			else = {
+				custom_tooltip = {
+					text = remaining_free_states_may_switch_to_FSA_very_chance_tt
+					random_list = {
+						80 = { trigger_event = { id = acw_special_events.18 days = 15 popup = yes } }
+						20 = { }
+					}
+				}
+			}
+		}
+	}
+}
