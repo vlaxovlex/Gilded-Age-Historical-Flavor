@@ -2936,7 +2936,7 @@ ai_strategy_default = {
 					}
 				}
 			}
-			add = 20 ## HJE Edit ##
+			add = 15 ## HJE Edit ##
 		}
 
 		# Extra french aggression for Haiti renouncing debt payments

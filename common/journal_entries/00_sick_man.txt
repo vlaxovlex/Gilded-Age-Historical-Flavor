@@ -136,7 +136,13 @@ je_sick_man_syria = {
 			if = {													#HJE edit start
 				limit = { exists = c:EGY }
 				c:EGY = { trigger_event = { id = HJE_mideast.1 } }
-			}														#HJE edit end
+			}														
+			hidden_effect = {
+				set_secret_goal = {
+					country = c:ZAI
+					secret_goal = dominate
+				}
+			}						#HJE edit end
 		}
 		custom_tooltip = sickman_syria_egypt
 	}

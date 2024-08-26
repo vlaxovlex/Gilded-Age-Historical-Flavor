@@ -68,6 +68,10 @@
 				capital = { turmoil > 0.25 }
 				any_scope_state = { is_incorporated = yes turmoil > 0.5 }
 				any_interest_group = { leader = { has_ideology = ideology:ideology_radical } }
+				hidden_trigger = { 
+					is_player = no 
+					any_scope_state = { is_incorporated = yes turmoil > 0.1 }
+				}
 			}
 		}
 		trigger_else = {
