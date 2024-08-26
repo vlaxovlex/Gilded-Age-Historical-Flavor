@@ -1,0 +1,3 @@
+NEconomy = {
+	TRADE_ROUTE_MAX_LEVEL = 3000									#100
+}

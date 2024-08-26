@@ -3,32 +3,29 @@
 	WAR_GOAL_EXECUTION_PRIORITY_CONQUER_STATE = 42				 #21
 	WAR_GOAL_EXECUTION_PRIORITY_UNIFICATION = 100				 #200
 	WAR_GOAL_EXECUTION_PRIORITY_TRANSFER_SUBJECT = 100			 #50
-	
-}
 
-NEconomy = {
-	TRADE_ROUTE_MAX_LEVEL = 3000							#100		#Increases likelihood of trade collapse causing historical global crash in lategame
 }
 
 NAI = {			#x4
 	DIPLO_PLAY_NEUTRALITY_PREFERENCE_DELTA_THRESHOLD = 200		 	#50 		#Neutrality bloc
-	DIPLO_PLAY_SYMPATHY_BASE_INITIATOR = 5							#20 
-	DIPLO_PLAY_SYMPATHY_BASE_TARGET = 10							#40 
-	
+	DIPLO_PLAY_SYMPATHY_BASE_INITIATOR = 5							#20
+	DIPLO_PLAY_SYMPATHY_BASE_TARGET = 10							#40
+
 	NUM_GROWING_COLONIES_BASE = 4 									#1			#Colonization bloc
 	NUM_GROWING_COLONIES_SCALED = 0.03								#0.01
 	NUM_GROWING_COLONIES_MAX = 20									#5
 	TENSION_NUM_PROVINCE_SCALING_BASE = 2.5							#10
-	
-	BASE_AGGRESSION = 0.17											#0.25		#Aggression bloc
-	UNIFICATION_AGGRESSION_MULT_HIGHER_TIER = 80					#20			
+
+	#BASE_AGGRESSION = 0.17											#0.25		#Aggression bloc
+	#Base aggression is best left untouched, it could break basegame historical wars (like the opium wars, etc). If you're worried about too many wars between great powers, I hope 1.8 fixes that 								
+	UNIFICATION_AGGRESSION_MULT_HIGHER_TIER = 80					#20
 	UNIFICATION_AGGRESSION_MULT_SAME_TIER = 0.4						#0.1
 
 	CHANGE_LAW_POTENTIAL_CIVIL_WAR_ENACT_CHANCE = 2.5				#10			#Civil bloc
-	CHANGE_LAW_CIVIL_WAR_BOLDNESS_RANGE = 25						#100 
-	
+	CHANGE_LAW_CIVIL_WAR_BOLDNESS_RANGE = 25						#100
+
 	WAR_GOAL_RANDOM_FACTOR = 0.5									#2.0 		#War bloc
 	AI_PEACE_AGREEMENT_SELF_WARGOAL_MULT = 0.75						#3
 	AI_PEACE_AGREEMENT_ALLY_WARGOAL_MULT = 0.25						#1
-	
+
 }

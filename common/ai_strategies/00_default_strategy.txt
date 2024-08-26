@@ -1503,27 +1503,6 @@ ai_strategy_default = {
 				}
 				multiply = 0.0
 			}
-
-			#HJE edit start
-			if = {
-				limit = {
-					OR = {
-						has_journal_entry = je_opium_wars
-						has_journal_entry = HJ_opium_wars
-						has_journal_entry = HJ_opium_wars_unhistorical
-					}
-					scope:target_country = {
-						OR = {
-							has_variable = opium_wars_target
-							has_variable = var_dynamic_opium_wars_victim
-							any_overlord_or_above = { has_variable = opium_wars_target }
-							any_overlord_or_above = { has_variable = var_dynamic_opium_wars_victim }
-						}
-					}
-				}
-				multiply = 0
-			}
-			#HJE edit end	
 			
 			if = {
 				limit = { 
@@ -1595,6 +1574,30 @@ ai_strategy_default = {
 	# scope:target_country = state owner
 	treaty_port_value = {
 		value = 0
+
+			#HJE edit start			
+		if = {
+			limit = {
+				OR = {
+					has_journal_entry = je_opium_wars
+					has_journal_entry = HJ_opium_wars
+					has_journal_entry = HJ_opium_wars_unhistorical
+				}
+				scope:target_country = {
+					OR = {
+						has_variable = opium_wars_target
+						has_variable = var_dynamic_opium_wars_victim
+						any_overlord_or_above = { has_variable = opium_wars_target }
+						any_overlord_or_above = { has_variable = var_dynamic_opium_wars_victim }
+					}
+				}
+				scope:target_state = {
+					NOT = { state_region = s:STATE_FORMOSA }
+				}					
+			}
+			add = 1000
+		}
+			#HJE edit end	
 
 		if = {
 			limit = {	
@@ -1686,30 +1689,6 @@ ai_strategy_default = {
 				}						
 			}										
 		}
-		
-			#HJE edit start			
-		if = {
-			limit = {
-				OR = {
-					has_journal_entry = je_opium_wars
-					has_journal_entry = HJ_opium_wars
-					has_journal_entry = HJ_opium_wars_unhistorical
-				}
-				scope:target_country = {
-					OR = {
-						has_variable = opium_wars_target
-						has_variable = var_dynamic_opium_wars_victim
-						any_overlord_or_above = { has_variable = opium_wars_target }
-						any_overlord_or_above = { has_variable = var_dynamic_opium_wars_victim }
-					}
-				}
-				scope:target_state = {
-					NOT = { state_region = s:STATE_FORMOSA }
-				}					
-			}
-			add = 100
-		}
-			#HJE edit end	
 
 		if = { #Carving up China
 			limit = {
@@ -2288,26 +2267,17 @@ ai_strategy_default = {
 			add = 1
 		}		
 	
-			#HJE edit start
 		# Opium wars participants should both be confident
 		if = {
 			limit = {
-				OR = {
-					has_journal_entry = je_opium_wars
-					has_journal_entry = HJ_opium_wars
-					has_journal_entry = HJ_opium_wars_unhistorical
-				}
+				has_journal_entry = je_opium_wars
 				scope:target_country = {
+					has_variable = opium_wars_target
 					is_banning_goods = g:opium
-					OR = {
-						has_variable = opium_wars_target
-						has_variable = var_dynamic_opium_wars_victim
-					}
 				}
 			}
-			add = 3
+			add = 10     #HJE edit 1
 		}
-			#HJE edit end	
 		
 		if = {
 			limit = {
@@ -2317,7 +2287,7 @@ ai_strategy_default = {
 					has_journal_entry = je_opium_wars
 				}
 			}
-			add = 1
+			add = 1     
 		}		
 	
 		# Ottomans should be extremely confident against owners of Syria and Egypt when they have the relevant JE's
@@ -2373,7 +2343,7 @@ ai_strategy_default = {
 					}
 				}
 			}
-			add = 5 ## HJE Edit ##
+			add = 10     #HJE edit 1
 		}
 	
 		# Greek Nationalism
@@ -2622,6 +2592,7 @@ ai_strategy_default = {
 		
 		if = {
 			limit = {
+				year >= 1880
 				scope:target_country = { 
 					OR = { country_is_in_southeast_asia = yes country_is_in_india = yes } 
 					any_scope_state = { has_claim_by = ROOT }
@@ -2834,28 +2805,19 @@ ai_strategy_default = {
 				}
 			}
 			add = 100
-		}		
-		
-			#HJE edit start
-		# Opium wars aggressor should be very, very aggressive against target if they're banning opium
+		}	
+
+        # Opium wars aggressor should be very, very aggressive against target if they're banning opium
 		if = {
 			limit = {
-				OR = {
-					has_journal_entry = je_opium_wars
-					has_journal_entry = HJ_opium_wars
-					has_journal_entry = HJ_opium_wars_unhistorical
-				}
+				has_journal_entry = je_opium_wars
 				scope:target_country = {
+					has_variable = opium_wars_target
 					is_banning_goods = g:opium
-					OR = {
-						has_variable = opium_wars_target
-						has_variable = var_dynamic_opium_wars_victim
-					}
 				}
 			}
-			add = 300
-		}
-			#HJE edit end	
+			add = 300   #HJE edit 100
+		}        
 		
 		# Greek Nationalism
 		if = {
@@ -2936,7 +2898,7 @@ ai_strategy_default = {
 					}
 				}
 			}
-			add = 15 ## HJE Edit ##
+			add = 15 #HJE edit 5
 		}
 
 		# Extra french aggression for Haiti renouncing debt payments
@@ -4689,18 +4651,15 @@ ai_strategy_default = {
 				}
 				add = 50
 			}
-			#HJE edit start
-			if = {
+			if = {  #HJE edit start
 				limit = {
 					OR = {
-						has_journal_entry = je_opium_wars
 						has_journal_entry = HJ_opium_wars
 						has_journal_entry = HJ_opium_wars_unhistorical
 					}
 				}
-				add = 9000
-			}
-			#HJE edit end	
+				add = 1000  #I don't think there will be a difference between 1000 and 9000, it's already a very high value
+			}       #HJE edit end
 		}	
 		region_manchuria = {
 			if = {
@@ -4715,15 +4674,9 @@ ai_strategy_default = {
 		region_south_china = {
 			if = {
 				limit = {
-					OR = {
-						has_journal_entry = je_opium_wars
-			#HJE edit start
-						has_journal_entry = HJ_opium_wars
-						has_journal_entry = HJ_opium_wars_unhistorical
-					}
-				}
-				add = 500
-			#HJE edit end	
+					has_journal_entry = je_opium_wars
+                }
+				add = 1000
 			}	
 			if = {
 				limit = {
@@ -4733,6 +4686,15 @@ ai_strategy_default = {
 				}
 				add = 50
 			}
+            if = {  #HJE edit start
+				limit = {
+					OR = {
+						has_journal_entry = HJ_opium_wars
+						has_journal_entry = HJ_opium_wars_unhistorical
+					}
+				}
+				add = 1000
+			}       #HJE edit end
 		}
 		region_pacific_coast = {
 			if = {
@@ -6009,6 +5971,7 @@ ai_strategy_default = {
 			
 			if = {
 				limit = {
+					year >= 1880
 					scope:target_country = { 
 						OR = { country_is_in_southeast_asia = yes country_is_in_india = yes } 
 						any_scope_state = { has_claim_by = ROOT }
@@ -6523,14 +6486,13 @@ ai_strategy_default = {
 			}			
 		}	
 		
-		take_treaty_port = {
+		take_treaty_port = {    #HJE edit start
 			add = scope:target_state.ai_treaty_port_value:root	
-			
+			            
 			# Britain should go for Hong Kong when starting Opium Wars play against Qing
 			if = {
 				limit = {
 					has_journal_entry = je_opium_wars
-					#NOT = { is_diplomatic_play_enemy_of = scope:target_country } ## HJE edit ##
 					scope:target_country = {
 						has_variable = opium_wars_target
 					}
@@ -6540,7 +6502,7 @@ ai_strategy_default = {
 				}
 				add = 1000
 			}	
-			#HJE edit start
+            
 			# HJE Britain should go for Shanghai in Second Opium War
 			if = {
 				limit = {
@@ -6557,8 +6519,9 @@ ai_strategy_default = {
 						state_region = s:STATE_SUZHOU
 					}
 				}
-				add = 750
+				add = 1000  #I like round numbers
 			}	
+            
 			# HJE France should go for Guandong in Second Opium War
 			if = {
 				limit = {
@@ -6575,8 +6538,9 @@ ai_strategy_default = {
 						state_region = s:STATE_GUANGDONG
 					}
 				}
-				add = 750
+				add = 1000
 			}
+            
 			# HJE Russia should go for Shengjing in Second Opium War
 			if = {
 				limit = {
@@ -6593,10 +6557,9 @@ ai_strategy_default = {
 						state_region = s:STATE_SHENGJING
 					}
 				}
-				add = 750
+				add = 1000  #It's not meant to increase aggression 
 			}	
-			#HJE edit end		
-		}
+		}   #HJE edit end
 		
 		transfer_subject = {
 			if = {
@@ -6741,25 +6704,6 @@ ai_strategy_default = {
 					multiply = 1.5
 				}
 			}
-			
-			#HJE edit start
-			if = {
-				limit = {
-					OR = {
-						has_journal_entry = je_opium_wars
-						has_journal_entry = HJ_opium_wars 
-						has_journal_entry = HJ_opium_wars_unhistorical
-					}
-					scope:target_country = {
-						OR = {
-							has_variable = opium_wars_target
-							has_variable = var_dynamic_opium_wars_victim
-						}
-					}
-				}
-				add = 50
-			}	
-			#HJE edit end	
 
 			if = {
 				limit = {
@@ -6883,21 +6827,7 @@ ai_strategy_default = {
 		open_market = {
 			value = 0
 			
-			if = {
-				limit = {
-					scope:target_country = {
-						has_diplomatic_pact = {
-							who = root
-							type = embargo
-						}	
-					}
-					can_reach_target_country = yes
-				}
-				add = 50
-			}			
-		
-			#HJE edit start
-			if = {
+			if = {  #HJE edit start
 				limit = {
 					OR = {
 						has_journal_entry = je_opium_wars
@@ -6911,9 +6841,21 @@ ai_strategy_default = {
 						}
 					}
 				}
-				add = 75
-			}
-			#HJE edit end	
+				add = 1000
+			}   #HJE edit end
+            
+			if = {
+				limit = {
+					scope:target_country = {
+						has_diplomatic_pact = {
+							who = root
+							type = embargo
+						}	
+					}
+					can_reach_target_country = yes
+				}
+				add = 50
+			}			
 
 			if = {
 				limit = {
@@ -6963,12 +6905,11 @@ ai_strategy_default = {
 		foreign_investment_rights = {
 			value = 0
 			
-			#HJE edit start
-			if = {
+            if = {  #HJE edit start
 				limit = {
 					OR = {
 						has_journal_entry = je_opium_wars
-						has_journal_entry = HJ_opium_wars
+						has_journal_entry = HJ_opium_wars 
 						has_journal_entry = HJ_opium_wars_unhistorical
 					}
 					scope:target_country = {
@@ -6978,9 +6919,10 @@ ai_strategy_default = {
 						}
 					}
 				}
-				add = 2000
-			}
-			if = { # russia had a special interest in manchuria
+				add = 1000
+			}  
+            
+            if = { # russia had a special interest in manchuria
 				limit = {
 					exists = c:RUS
 					c:RUS = THIS
@@ -6996,9 +6938,8 @@ ai_strategy_default = {
 						}
 					}
 				}
-				add = 2000
-			}
-			#HJE edit end	
+				add = 1000
+			}	#HJE edit end	
 
 			if = {
 				limit = {
