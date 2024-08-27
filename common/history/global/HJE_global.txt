@@ -59,6 +59,16 @@ GLOBAL = {
 	s:STATE_MARYLAND = { add_homeland = cu:yankee }
 	s:STATE_DELAWARE = { add_homeland = cu:yankee }
 	s:STATE_DISTRICT_OF_COLUMBIA = { add_homeland = cu:yankee }
+	s:STATE_SANTO_DOMINGO = {
+		add_radicals_in_state = {
+			value = 0.25
+			culture = cu:caribeno
+		}
+		add_radicals_in_state = {
+			value = 0.25
+			culture = cu:afro_caribeno
+		}
+	}
 	# Give Sweden their small colonial empire back
 	s:STATE_WEST_INDIES = {
 		set_owner_of_provinces = {

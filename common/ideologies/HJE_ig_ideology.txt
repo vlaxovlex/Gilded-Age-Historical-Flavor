@@ -86,10 +86,16 @@ ideology_hje_conservative = { #modern stratocratic
 		law_no_schools = disapprove
 	}
 	
+	lawgroup_colonization = {
+		law_colonial_exploitation = strongly_approve
+		law_no_colonial_affairs = strongly_disapprove
+		law_colonial_resettlement = approve
+		law_frontier_colonization = approve
+	}
 }
 
 ideology_hje_libertarian = { #modern plutocratic
-	icon = "gfx/interface/icons/ideology_icons/individualist.dds"
+	icon = "gfx/interface/icons/ideology_icons/liberal.dds"
 	
 	lawgroup_distribution_of_power = {
 		law_oligarchy = neutral
@@ -121,8 +127,8 @@ ideology_hje_libertarian = { #modern plutocratic
 	
 	lawgroup_colonization = {
 		law_colonial_exploitation = approve
-		law_no_colonial_affairs = neutral
-		law_colonial_resettlement = neutral
-		law_frontier_colonization = neutral
+		law_no_colonial_affairs = disapprove
+		law_colonial_resettlement = strongly_approve
+		law_frontier_colonization = strongly_approve
 	}
 }

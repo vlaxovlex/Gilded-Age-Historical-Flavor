@@ -474,6 +474,7 @@ HJE_ideologies_effect = {
 	}
 	if = {
 		limit = {			#Reactionaries random chance to become Libertarian
+			year > 1850
 			GovPlus_is_active_trigger = no
 			reactionary_revolution_ongoing = no
 			OR = {
