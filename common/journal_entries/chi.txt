@@ -66,16 +66,7 @@
 							state_region = {
 								any_scope_state = {
 									is_treaty_port = no
-									owner = {
-										OR = {
-											THIS = ROOT
-											is_subject_of = ROOT
-											AND = {
-												exists = c:TPG
-												c:TPG = THIS
-											}
-										}
-									}
+									owner = { has_variable = var_dynamic_opium_wars_victim }
 								}
 							}
 						}
@@ -86,11 +77,14 @@
 	}
 	
 	on_complete = {
-		remove_variable = var_dynamic_opium_wars_victim
 		remove_global_variable = globvar_dynamic_opium_wars
-		if = {
-			limit = { NOT = { is_country_type = recognized } } 	#this should probably be made an event at some point
-			set_country_type = recognized
+		every_country = {
+			limit = { has_variable = var_dynamic_opium_wars_victim }
+			remove_variable = var_dynamic_opium_wars_victim
+			if = {
+				limit = { NOT = { is_country_type = recognized } } 	#this should probably be made an event at some point
+				set_country_type = recognized
+			}
 		}
 	}
 
