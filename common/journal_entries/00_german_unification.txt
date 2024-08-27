@@ -468,11 +468,12 @@ je_german_unification = {
 	possible = {
 		hidden_trigger = { has_variable = je_german_confederate_unifier }
 		country_rank >= rank_value:major_power
-		#has_technology_researched = pan-nationalism	#HJE edit
+		OR = { has_technology_researched = pan-nationalism hidden_trigger = { is_ai = yes } }	#HJE edit
 		is_subject = no
 	}
 
 	complete = {
+		owns_entire_state_region = STATE_ALSACE_LORRAINE	#HJE edit
 		custom_tooltip = {
 			c:GER ?= this
 			text = je_german_unification_complete_trigger_desc

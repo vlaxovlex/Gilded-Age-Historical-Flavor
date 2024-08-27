@@ -70,13 +70,10 @@
 				}
 			}
 		}	
-		OR = { ### YOU MUST EITHER WAIT UNTIL 1880 OR TAKE ALSACE FROM FRANCE ###
-			year >= 1880
-			owns_entire_state_region = STATE_ALSACE_LORRAINE
-		}
-		OR = { ### YOU MUST EITHER WAIT UNTIL 1865 OR RESOLVE SCHLESWIG ###
+		OR = { ### YOU MUST EITHER WAIT UNTIL 1865 OR RESOLVE SCHLESWIG OR TAKE ALSACE FROM FRANCE ###
 			year >= 1865
 			has_state_in_state_region = STATE_SCHLESWIG_HOLSTEIN
+			owns_entire_state_region = STATE_ALSACE_LORRAINE
 			custom_tooltip = {
 				text = je_schleswig_holstein_question_solved_trigger_desc
 				OR = {
