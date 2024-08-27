@@ -117,7 +117,7 @@ HJ_acw_emancipation_proclamation_button = {
 				any_revolution_ongoing = yes
 				has_variable = won_battle_gettysburg
 				NOT = { any_country = { has_variable = acw_has_fought_less_than_3_years } }
-				NOT = { any_scope_state = { is_incorporated = yes is_slave_state = yes } }
+				NOT = { any_scope_state = { is_capital = no is_incorporated = yes is_slave_state = yes } }
 			}
 		}
 	}
@@ -125,7 +125,7 @@ HJ_acw_emancipation_proclamation_button = {
 	effect = {
 		trigger_event = { id = acw_special_events.7 days = 1 popup = yes }
 		if = {
-			limit = { any_scope_state = { is_incorporated = yes is_slave_state = yes } }
+			limit = { any_scope_state = { is_capital = no is_incorporated = yes is_slave_state = yes } }
 			if = {
 				limit = {
 					OR = {
@@ -136,8 +136,8 @@ HJ_acw_emancipation_proclamation_button = {
 				custom_tooltip = {
 					text = remaining_slave_states_may_switch_to_CSA_very_low_chance_tt
 					random_list = {
-						10 = { trigger_event = { id = acw_special_events.15 days = 15 popup = yes } }
-						90 = { }
+						5 = { trigger_event = { id = acw_special_events.15 days = 15 popup = yes } }
+						95 = { }
 					}
 				}
 			}
@@ -146,8 +146,8 @@ HJ_acw_emancipation_proclamation_button = {
 				custom_tooltip = {
 					text = remaining_slave_states_may_switch_to_CSA_low_chance_tt
 					random_list = {
-						40 = { trigger_event = { id = acw_special_events.15 days = 15 popup = yes } }
-						60 = { }
+						35 = { trigger_event = { id = acw_special_events.15 days = 15 popup = yes } }
+						65 = { }
 					}
 				}
 			}
@@ -209,7 +209,7 @@ HJ_acw_incarceration_proclamation_button = {
 				any_revolution_ongoing = yes
 				has_variable = won_battle_gettysburg
 				NOT = { any_country = { has_variable = acw_has_fought_less_than_3_years } }
-				NOT = { any_scope_state = { is_incorporated = yes is_slave_state = no } }
+				NOT = { any_scope_state = { is_capital = no is_incorporated = yes is_slave_state = no } }
 			}
 		}
 	}
@@ -217,7 +217,7 @@ HJ_acw_incarceration_proclamation_button = {
 	effect = {
 		trigger_event = { id = acw_special_events.16 days = 1 popup = yes }
 		if = {
-			limit = { any_scope_state = { is_incorporated = yes is_slave_state = no } }
+			limit = { any_scope_state = { is_capital = no is_incorporated = yes is_slave_state = no } }
 			if = {
 				limit = {
 					OR = {

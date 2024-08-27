@@ -2465,7 +2465,7 @@ acw_special_events.15 = {
 		name = acw_special_events.15.a 
 		default_option = yes
 		every_scope_state = {
-			limit = { is_slave_state = yes is_incorporated = yes }
+			limit = { is_capital = no is_slave_state = yes is_incorporated = yes }
 			set_state_owner = scope:csa_scope
 		}
 	}
@@ -2639,7 +2639,7 @@ acw_special_events.18 = {
 		name = acw_special_events.18.a 
 		default_option = yes
 		every_scope_state = {
-			limit = { is_slave_state = no is_incorporated = yes }
+			limit = { is_capital = no is_slave_state = no is_incorporated = yes }
 			set_state_owner = scope:fsa_scope
 		}
 	}
