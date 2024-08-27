@@ -304,6 +304,17 @@ HJE_cleanup_effect = {
 		}
 	}
 
+	if = {
+		limit = {
+			exists = c:GBR
+			c:GBR = ROOT
+			has_truce_with = c:CHI
+			has_journal_entry = je_opium_wars
+		}
+		end_truce = { country = c:CHI }
+		c:CHI = { end_truce = { country = c:GBR } }
+	}
+
 	if = { ## FIX TO TRY AND PREVENT AI BRITAIN FROM BEING SO DAMNED AUTHORITARIAN
 		limit = {
 			year > 1860
