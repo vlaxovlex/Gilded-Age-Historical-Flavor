@@ -537,9 +537,7 @@ opium_wars.4 = {
 		}
 			#HJE edit start
 		set_global_variable = had_first_opium_war
-		add_journal_entry = { 
-			type = HJ_china_humiliation 
-		}
+		set_global_variable = globvar_dynamic_opium_wars
 		if = {
 			limit = { NOT = { has_law = law_type:law_free_trade } }
 			activate_law = law_type:law_free_trade
