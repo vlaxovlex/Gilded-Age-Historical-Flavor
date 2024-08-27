@@ -166,7 +166,7 @@
  modifier_fra_changarnier_wins_election:0 "Changarnier's election victory"
  modifier_fra_fail_coup_etat:0 "Failed coup"
  hungarian_glory:0 "Austro-Hungarian Compromise"
- front_speed_modifier:0 "Disorganized Army"
+ gec_debuff_for_ottomans:0 "Disorganized Army"
  laborer_unrest:0 "Laborer Unrest"
  modifier_usa_american_empire:0 "Belief in American Exceptionalism"
  modifier_usa_american_empire_desc:0 "American citizens believe that their country has asserted herself on the world stage."

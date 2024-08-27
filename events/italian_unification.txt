@@ -251,11 +251,11 @@ italian_unification.4 = {
 					country_has_primary_culture = cu:north_italian
 					country_has_primary_culture = cu:south_italian
 				}
-				is_adjacent_to_country = ROOT
+				OR = { is_adjacent_to_country = ROOT has_variable = favorite_to_form_italy }				#HJE edit
 				NOT = {
 					is_subject = yes
 				}
-				has_variable = risorgimento_unifying_stance
+				OR = { has_variable = risorgimento_unifying_stance has_variable = favorite_to_form_italy }	#HJE edit
 				NOT = {
 					THIS = ROOT
 				}

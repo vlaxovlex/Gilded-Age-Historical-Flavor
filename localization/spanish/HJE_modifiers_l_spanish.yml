@@ -166,7 +166,7 @@
  modifier_fra_changarnier_wins_election:0 "Victoria electoral de Changarnier"
  modifier_fra_fail_coup_etat:0 "Intento de golpe fallido"
  hungarian_glory:0 "Compromiso Austro-Húngaro"
- front_speed_modifier:0 "Ejército Desorganizado"
+ gec_debuff_for_ottomans:0 "Ejército Desorganizado"
 
  #NEW TEXT:
  laborer_unrest:0 "Laborer Unrest"

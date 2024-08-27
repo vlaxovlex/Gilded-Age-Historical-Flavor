@@ -426,7 +426,7 @@ GLOBAL = {
 		add_claim = c:MEX
 	}
 	s:STATE_COLORADO = {
-		add_claim = c:USA
+		remove_claim = c:USA
 		add_claim = c:MEX
 	}
 	s:STATE_NEVADA = {

@@ -1554,14 +1554,14 @@ HJE_france.22 = {
 
 	option = {
 		name = HJE_france.22.a
-		every_scope_character = {
-			limit = { has_variable = napoleon_iii_var }
-			kill_character = yes
-		}
+		activate_law = law_type:law_parliamentary_republic
+		activate_law = law_type:law_universal_suffrage
 		hidden_effect = {
 			remove_variable = french_empire_alsace_lorraine
-			activate_law = law_type:law_parliamentary_republic
-			activate_law = law_type:law_universal_suffrage
+			every_scope_character = {
+				limit = { has_variable = napoleon_iii_var }
+				kill_character = yes
+			}
 		}
 	}
 }

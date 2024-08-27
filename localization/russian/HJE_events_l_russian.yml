@@ -945,7 +945,7 @@
  HJE_britain.15.d:0 "Война между нами и Россией теперь неизбежна."
  HJE_britain.15.f:0 ""
  HJE_britain.15.a:0 "Теперь мы не можем отступить..."
- HJE_britain.16.t:0 "[SCOPE.sCountry('root_scope').GetAdjective]ое участие в Крымской войне"
+ HJE_britain.16.t:0 "[SCOPE.sCountry('root_scope').GetAdjective]ое вмешательство в Крымскую войну"
  HJE_britain.16.d:0 "Идет борьба за поддержание баланса сил на Востоке. Россия жаждет [SCOPE.sCountry('tgg_cw_country_turkey_scope').GetAdjective]ой крови, и самые смелые из великих держав Запада создают союз для борьбы с русским медведем." 
  HJE_britain.16.f:0 "Вкус плодов хорошо войны никогда не бывает сладким..."
  HJE_britain.16.a:0 "Спасибо, мы не хотим этих плодов."

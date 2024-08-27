@@ -2305,7 +2305,7 @@ ai_strategy_default = {
 					is_banning_goods = g:opium
 				}
 			}
-			add = 10     #HJE edit 1
+			add = 1
 		}
 		
 		if = {
@@ -2845,7 +2845,7 @@ ai_strategy_default = {
 					is_banning_goods = g:opium
 				}
 			}
-			add = 300   #HJE edit 100
+			add = 100
 		}        
 		
 		# Greek Nationalism
@@ -2927,7 +2927,7 @@ ai_strategy_default = {
 					}
 				}
 			}
-			add = 15 #HJE edit 5
+			add = 50 #HJE edit 5
 		}
 
 		# Extra french aggression for Haiti renouncing debt payments

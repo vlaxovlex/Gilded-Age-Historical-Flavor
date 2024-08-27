@@ -185,6 +185,10 @@ can_aus.3 = {
 		random_neighbouring_state = {
 			limit = {
 				owner = {
+					if = {	#HJE edit start
+						limit = { exists = c:NZL }
+						NOT = { c:NZL = THIS } 
+					}		#HJE edit end
 					is_ai = yes
 					relations:root >= relations_threshold:amicable
 					OR = {
@@ -245,6 +249,10 @@ can_aus.4 = {
 		}
 		random_subject_or_below = {
 			limit = {
+				if = {	#HJE edit start
+					limit = { exists = c:NZL }
+					NOT = { c:NZL = THIS } 
+				}		#HJE edit end
 				OR = {
 					country_has_primary_culture = cu:australian
 					country_has_primary_culture = cu:maori
@@ -257,6 +265,10 @@ can_aus.4 = {
 		}
 		random_subject_or_below = {
 			limit = {
+				if = {	#HJE edit start
+					limit = { exists = c:NZL }
+					NOT = { c:NZL = THIS } 
+				}		#HJE edit end
 				OR = {
 					country_has_primary_culture = cu:australian
 					country_has_primary_culture = cu:maori
@@ -477,10 +489,10 @@ can_aus.8 = {
 						state_region = s:STATE_SOUTH_AUSTRALIA
 						state_region = s:STATE_WESTERN_AUSTRALIA
 						state_region = s:STATE_NORTHERN_TERRITORY
-						#state_region = s:STATE_NORTH_ISLAND ## HJE EDIT ##
-						#state_region = s:STATE_SOUTH_ISLAND ## HJE EDIT ##
+						#state_region = s:STATE_NORTH_ISLAND 	#HJE edit
+						#state_region = s:STATE_SOUTH_ISLAND	#HJE edit
 					}
-					count >= 7
+					count >= 5									#HJE edit 7
 				}
 			}
 			save_scope_as = canada_country

@@ -74,17 +74,15 @@
 		has_journal_entry = je_carlist_victory
 	}
 
-
 HJ_isab_victory = {
-
 	icon = "gfx/interface/icons/event_icons/event_military.dds"
 
 	group = je_group_crises
 
 	is_shown_when_inactive = {
 		NOT = { has_journal_entry = je_cristininos_victory }
-		exists = c:SPA
 		exists = c:CSP
+		exists = c:SPA
 		c:SPA = ROOT
 	}
 
@@ -93,21 +91,32 @@ HJ_isab_victory = {
 		NOT = { exists = c:CSP }
 	}
 
-	should_be_pinned_by_default = yes
-	
-	on_complete = {	
+	on_complete = {
 		add_loyalists = { value = 0.15 }
 		add_modifier = {
 			name = modifier_liberal_win
 			months = 12
 		}
-	}
+		every_scope_state = {
+			limit = {
+				owner = root
+				is_homeland_of_country_cultures = root
+			}
+			set_state_type = incorporated
+		}
+	}		
+
+	progressbar = yes
+
+	weight = 100
+
+	should_be_pinned_by_default = yes
 	
 	invalid = {
 		has_journal_entry = je_cristininos_victory
 	}
+	
 }
-
 
 HJ_second_carlist_war = {
 	icon = "gfx/interface/icons/event_icons/event_skull.dds"
