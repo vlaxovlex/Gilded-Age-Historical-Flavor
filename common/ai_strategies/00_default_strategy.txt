@@ -1604,7 +1604,6 @@ ai_strategy_default = {
 					OR = {
 						has_variable = opium_wars_target
 						has_variable = var_dynamic_opium_wars_victim
-						any_overlord_or_above = { has_variable = opium_wars_target }
 						any_overlord_or_above = { has_variable = var_dynamic_opium_wars_victim }
 					}
 				}
@@ -6548,6 +6547,7 @@ ai_strategy_default = {
 			if = {
 				limit = {
 					has_journal_entry = je_opium_wars
+					NOT = { is_diplomatic_play_enemy_of = scope:target_country }
 					scope:target_country = {
 						has_variable = opium_wars_target
 					}
@@ -6557,7 +6557,7 @@ ai_strategy_default = {
 				}
 				add = 1000
 			}	
-            
+			
 			# HJE Britain should go for Shanghai in Second Opium War
 			if = {
 				limit = {

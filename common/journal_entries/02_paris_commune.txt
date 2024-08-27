@@ -7,8 +7,28 @@
 		has_dlc_feature = voice_of_the_people_content
 		OR = { NOT = { has_global_variable = paris_commune_happened } is_ai = yes }	#HJE edit
 		c:FRA ?= this
-		OR = { has_technology_researched = socialism is_ai = yes }					#HJE edit
-		OR = { has_technology_researched = anarchism is_ai = yes }					#HJE edit
+		OR = { 
+			has_technology_researched = socialism 
+			AND = { 	#HJE edit start
+				is_ai = yes 
+				NOT = {
+					any_scope_state = {
+						state_region = s:STATE_ALSACE_LORRAINE
+					}
+				} 
+			}
+		}	
+		OR = { 
+			has_technology_researched = anarchism 
+			AND = { 	
+				is_ai = yes 
+				NOT = {
+					any_scope_state = {
+						state_region = s:STATE_ALSACE_LORRAINE
+					}
+				} 
+			}
+		}				#HJE edit end
 		NOT = { has_law = law_type:law_council_republic }
 	}
 
@@ -52,8 +72,9 @@
 			AND = {		#HJE edit start
 				custom_tooltip = {
 					text = lost_war_tt
-					ruler = {
-						has_variable = napoleon_iii_var
+					OR = {
+						has_law = law_type:law_monarchy
+						ruler = { has_variable = napoleon_iii_var }
 					}
 					OR = {
 						has_variable = recently_lost_war
@@ -84,6 +105,16 @@
 				}
 			}
 			trigger_event = { id = HJE_france.22 days = 25 popup = yes }
+		}	
+		if = {
+			limit = {
+				OR = {
+					NOT = { has_technology_researched = socialism  }
+					NOT = { has_technology_researched = anarchism  }
+				}
+			}
+			add_technology_researched = socialism
+			add_technology_researched = anarchism
 		}		#HJE edit end
 	}
 
