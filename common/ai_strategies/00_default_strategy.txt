@@ -2794,6 +2794,7 @@ ai_strategy_default = {
 		if = {
 			limit = {
 				OR = {
+					has_journal_entry = je_opium_wars
 					has_journal_entry = HJ_opium_wars
 					has_journal_entry = HJ_opium_wars_unhistorical
 				}
@@ -2816,7 +2817,10 @@ ai_strategy_default = {
 					}
 				}
 				scope:target_country = {
-					has_variable = var_dynamic_opium_wars_victim
+					OR = {
+						has_variable = opium_wars_target
+						has_variable = var_dynamic_opium_wars_victim
+					}
 				}
 			}
 			add = 1000
@@ -6572,7 +6576,7 @@ ai_strategy_default = {
 						state_region = s:STATE_SUZHOU
 					}
 				}
-				add = 800
+				add = 500
 			}	
             
 			# HJE France should go for Guandong in Second Opium War
@@ -6591,7 +6595,7 @@ ai_strategy_default = {
 						state_region = s:STATE_FUJIAN
 					}
 				}
-				add = 800
+				add = 500
 			}
             
 			# HJE Russia should go for Shengjing in Second Opium War
@@ -6610,7 +6614,7 @@ ai_strategy_default = {
 						state_region = s:STATE_SHENGJING
 					}
 				}
-				add = 800
+				add = 500
 			}	
 		}   #HJE edit end
 		
