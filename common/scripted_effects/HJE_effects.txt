@@ -1,102 +1,6 @@
 ﻿
 HJE_cleanup_effect = {
 	if = {
-		limit = {			#Reactionaries random chance to become Estatists
-			GovPlus_is_active_trigger = no
-			reactionary_revolution_ongoing = no
-			has_law = law_type:law_monarchy	
-			OR = {
-				has_law = law_type:law_wealth_voting
-				has_law = law_type:law_census_voting
-				has_law = law_type:law_universal_suffrage
-			}
-			any_interest_group = {
-				has_ideology = ideology:ideology_paternalistic
-				NOT = { has_ideology = ideology:ideology_pro_slavery }
-				leader = {
-					NOR = {
-						has_ideology = ideology:ideology_slaver
-						has_ideology = ideology:ideology_fascist
-						has_ideology = ideology:ideology_integralist
-						has_ideology = ideology:ideology_theocrat
-						has_ideology = ideology:ideology_ethno_nationalist
-						has_ideology = ideology:ideology_traditionalist
-					}
-				}
-			}
-		}
-		random_list = {
-			95 = {  }
-			5 = { 
-				random_interest_group = {
-					limit = {
-						has_ideology = ideology:ideology_paternalistic
-						NOT = { has_ideology = ideology:ideology_pro_slavery }
-						leader = {
-							NOR = {
-								has_ideology = ideology:ideology_slaver
-								has_ideology = ideology:ideology_fascist
-								has_ideology = ideology:ideology_integralist
-								has_ideology = ideology:ideology_theocrat
-								has_ideology = ideology:ideology_ethno_nationalist
-								has_ideology = ideology:ideology_traditionalist
-							}
-						}
-					}
-					remove_ideology = ideology_paternalistic
-					add_ideology = ideology_hje_estatist
-				}
-			}
-		}
-	}
-	if = {
-		limit = {			#Reactionaries random chance to become Conservative
-			GovPlus_is_active_trigger = no
-			reactionary_revolution_ongoing = no
-			OR = {
-				has_law = law_type:law_census_voting
-				has_law = law_type:law_universal_suffrage
-			}
-			any_interest_group = {
-				has_ideology = ideology:ideology_stratocratic
-				NOT = { has_ideology = ideology:ideology_pro_slavery }
-				leader = {
-					NOR = {
-						has_ideology = ideology:ideology_slaver
-						has_ideology = ideology:ideology_fascist
-						has_ideology = ideology:ideology_integralist
-						has_ideology = ideology:ideology_theocrat
-						has_ideology = ideology:ideology_ethno_nationalist
-						has_ideology = ideology:ideology_traditionalist
-					}
-				}
-			}
-		}
-		random_list = {
-			95 = {  }
-			5 = { 
-				random_interest_group = {
-					limit = {
-						has_ideology = ideology:ideology_stratocratic
-						NOT = { has_ideology = ideology:ideology_pro_slavery }
-						leader = {
-							NOR = {
-								has_ideology = ideology:ideology_slaver
-								has_ideology = ideology:ideology_fascist
-								has_ideology = ideology:ideology_integralist
-								has_ideology = ideology:ideology_theocrat
-								has_ideology = ideology:ideology_ethno_nationalist
-								has_ideology = ideology:ideology_traditionalist
-							}
-						}
-					}
-					remove_ideology = ideology_stratocratic
-					add_ideology = ideology_hje_conservative
-				}
-			}
-		}
-	}
-	if = {
 		limit = {			#USA AI will not be allowed to colonize canadian states
 			exists = c:USA
 			c:USA = THIS
@@ -452,6 +356,152 @@ HJE_cleanup_effect = {
 				add_modifier = { 
 					name = modifier_state_capital_of_germany
 					months = -1
+				}
+			}
+		}
+	}
+}
+
+HJE_ideologies_effect = {
+	if = {
+		limit = {			#Reactionaries random chance to become Estatists
+			GovPlus_is_active_trigger = no
+			reactionary_revolution_ongoing = no
+			has_law = law_type:law_monarchy	
+			OR = {
+				has_law = law_type:law_landed_voting
+				has_law = law_type:law_wealth_voting
+				has_law = law_type:law_census_voting
+				has_law = law_type:law_universal_suffrage
+			}
+			any_interest_group = {
+				has_ideology = ideology:ideology_paternalistic
+				NOT = { has_ideology = ideology:ideology_pro_slavery }
+				leader = {
+					NOR = {
+						has_ideology = ideology:ideology_slaver
+						has_ideology = ideology:ideology_fascist
+						has_ideology = ideology:ideology_integralist
+						has_ideology = ideology:ideology_theocrat
+						has_ideology = ideology:ideology_ethno_nationalist
+						has_ideology = ideology:ideology_traditionalist
+					}
+				}
+			}
+		}
+		random_list = {
+			95 = {  }
+			5 = { 
+				random_interest_group = {
+					limit = {
+						has_ideology = ideology:ideology_paternalistic
+						NOT = { has_ideology = ideology:ideology_pro_slavery }
+						leader = {
+							NOR = {
+								has_ideology = ideology:ideology_slaver
+								has_ideology = ideology:ideology_fascist
+								has_ideology = ideology:ideology_integralist
+								has_ideology = ideology:ideology_theocrat
+								has_ideology = ideology:ideology_ethno_nationalist
+								has_ideology = ideology:ideology_traditionalist
+							}
+						}
+					}
+					remove_ideology = ideology_paternalistic
+					add_ideology = ideology_hje_estatist
+				}
+			}
+		}
+	}
+	if = {
+		limit = {			#Reactionaries random chance to become Conservative
+			GovPlus_is_active_trigger = no
+			reactionary_revolution_ongoing = no
+			OR = {
+				has_law = law_type:law_wealth_voting
+				has_law = law_type:law_census_voting
+				has_law = law_type:law_universal_suffrage
+			}
+			any_interest_group = {
+				has_ideology = ideology:ideology_stratocratic
+				NOT = { has_ideology = ideology:ideology_pro_slavery }
+				leader = {
+					NOR = {
+						has_ideology = ideology:ideology_slaver
+						has_ideology = ideology:ideology_fascist
+						has_ideology = ideology:ideology_integralist
+						has_ideology = ideology:ideology_theocrat
+						has_ideology = ideology:ideology_ethno_nationalist
+						has_ideology = ideology:ideology_traditionalist
+					}
+				}
+			}
+		}
+		random_list = {
+			95 = {  }
+			5 = { 
+				random_interest_group = {
+					limit = {
+						has_ideology = ideology:ideology_stratocratic
+						NOT = { has_ideology = ideology:ideology_pro_slavery }
+						leader = {
+							NOR = {
+								has_ideology = ideology:ideology_slaver
+								has_ideology = ideology:ideology_fascist
+								has_ideology = ideology:ideology_integralist
+								has_ideology = ideology:ideology_theocrat
+								has_ideology = ideology:ideology_ethno_nationalist
+								has_ideology = ideology:ideology_traditionalist
+							}
+						}
+					}
+					remove_ideology = ideology_stratocratic
+					add_ideology = ideology_hje_conservative
+				}
+			}
+		}
+	}
+	if = {
+		limit = {			#Reactionaries random chance to become Libertarian
+			GovPlus_is_active_trigger = no
+			reactionary_revolution_ongoing = no
+			OR = {
+				has_law = law_type:law_landed_voting
+				has_law = law_type:law_wealth_voting
+				has_law = law_type:law_census_voting
+				has_law = law_type:law_universal_suffrage
+			}
+			any_interest_group = {
+				has_ideology = ideology:ideology_plutocratic
+				leader = {
+					NOR = {
+						has_ideology = ideology:ideology_fascist
+						has_ideology = ideology:ideology_integralist
+						has_ideology = ideology:ideology_theocrat
+						has_ideology = ideology:ideology_ethno_nationalist
+						has_ideology = ideology:ideology_traditionalist
+					}
+				}
+			}
+		}
+		random_list = {
+			95 = {  }
+			5 = { 
+				random_interest_group = {
+					limit = {
+						has_ideology = ideology:ideology_plutocratic
+						leader = {
+							NOR = {
+								has_ideology = ideology:ideology_fascist
+								has_ideology = ideology:ideology_integralist
+								has_ideology = ideology:ideology_theocrat
+								has_ideology = ideology:ideology_ethno_nationalist
+								has_ideology = ideology:ideology_traditionalist
+							}
+						}
+					}
+					remove_ideology = ideology_plutocratic
+					add_ideology = ideology_hje_libertarian
 				}
 			}
 		}

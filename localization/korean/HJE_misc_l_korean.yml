@@ -723,6 +723,7 @@ modifier_liberal_win:0 "Liberal Victory!"
  DIPLOMATIC_ACCEPTANCE_UNIFICATION_CANDIDATE:0 "Is [Concept('concept_unification_candidate', 'unification candidate')] of Germany"
  ideology_hje_estatist:0 "Estatist"
  ideology_hje_conservative:0 "Conservative"
+ ideology_hje_libertarian:0 "Libertarian"
  
  #RE-WRITTEN TEXT:
  

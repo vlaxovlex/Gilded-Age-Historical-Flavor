@@ -190,6 +190,7 @@ hje_monthly_pulse_on_actions = {
 		}
 
 		HJE_cleanup_effect = yes
+		HJE_ideologies_effect = yes
 
 		HJE_semi_random_events_USA_effect = yes
 		HJE_semi_random_events_GER_effect = yes

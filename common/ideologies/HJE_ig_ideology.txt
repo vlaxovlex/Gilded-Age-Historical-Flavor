@@ -40,7 +40,7 @@
 }
 
 ideology_hje_conservative = { #modern stratocratic
-	icon = "gfx/interface/icons/ideology_icons/individualist.dds"
+	icon = "gfx/interface/icons/ideology_icons/agrarian.dds"
 	
 	lawgroup_army_model = {
 		law_peasant_levies = neutral
@@ -86,4 +86,43 @@ ideology_hje_conservative = { #modern stratocratic
 		law_no_schools = disapprove
 	}
 	
+}
+
+ideology_hje_libertarian = { #modern plutocratic
+	icon = "gfx/interface/icons/ideology_icons/individualist.dds"
+	
+	lawgroup_distribution_of_power = {
+		law_oligarchy = neutral
+		law_wealth_voting = approve
+		law_technocracy = approve
+		law_landed_voting = approve
+		law_census_voting = strongly_approve
+		law_single_party_state = strongly_disapprove
+		law_autocracy = disapprove
+		law_universal_suffrage = disapprove
+		law_anarchy = strongly_disapprove
+	}
+
+	lawgroup_governance_principles = {
+		law_monarchy = neutral			
+		law_presidential_republic = neutral
+		law_parliamentary_republic = neutral
+		law_theocracy = disapprove
+		law_council_republic = strongly_disapprove
+	}
+	
+	lawgroup_taxation = {
+		law_per_capita_based_taxation = approve
+		law_consumption_based_taxation = neutral
+		law_land_based_taxation = neutral
+		law_proportional_taxation = neutral
+		law_graduated_taxation = disapprove
+	}	
+	
+	lawgroup_colonization = {
+		law_colonial_exploitation = approve
+		law_no_colonial_affairs = neutral
+		law_colonial_resettlement = neutral
+		law_frontier_colonization = neutral
+	}
 }
