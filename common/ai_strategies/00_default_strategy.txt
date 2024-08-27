@@ -2536,13 +2536,14 @@ ai_strategy_default = {
             add = 2
         }	
 
-        ## HJE edit start ##
+        #HJE edit start
 		# 2nd+ Opium wars participants should be very confident because all the great powers should be joining them
 		if = {
 			limit = {
 				OR = {
 					has_journal_entry = HJ_opium_wars 
 					has_journal_entry = HJ_opium_wars_unhistorical
+					has_journal_entry = je_opium_wars
 				}
 				OR = {
 					scope:target_country = { has_law = law_type:law_isolationism }
@@ -2559,9 +2560,9 @@ ai_strategy_default = {
 					}
 				}
 			}
-			add = 3
+			add = 10
 		}
-        ## HJE edit end ##
+        #HJE edit end
 	}
 	
 	# How likely is the AI to start a diplomatic play against another country if their attitude allows for it
@@ -6884,14 +6885,13 @@ ai_strategy_default = {
 			if = {  #HJE edit start
 				limit = {
 					OR = {
-						has_journal_entry = je_opium_wars
 						has_journal_entry = HJ_opium_wars 
 						has_journal_entry = HJ_opium_wars_unhistorical
 					}
 					scope:target_country = {
 						OR = {
-							has_variable = opium_wars_target
 							has_variable = var_dynamic_opium_wars_victim
+							any_overlord_or_above = { has_variable = var_dynamic_opium_wars_victim }
 						}
 					}
 				}
@@ -6962,14 +6962,13 @@ ai_strategy_default = {
             if = {  #HJE edit start
 				limit = {
 					OR = {
-						has_journal_entry = je_opium_wars
 						has_journal_entry = HJ_opium_wars 
 						has_journal_entry = HJ_opium_wars_unhistorical
 					}
 					scope:target_country = {
 						OR = {
-							has_variable = opium_wars_target
 							has_variable = var_dynamic_opium_wars_victim
+							any_overlord_or_above = { has_variable = var_dynamic_opium_wars_victim }
 						}
 					}
 				}
