@@ -7,7 +7,10 @@
 		is_subject = no
 		is_country_type = unrecognized
 		country_has_primary_culture = cu:han
-		has_global_variable = globvar_dynamic_opium_wars
+	}
+
+	possible = {
+		hidden_trigger = { has_global_variable = globvar_dynamic_opium_wars }
 	}
 
 	immediate = {
