@@ -2547,6 +2547,26 @@ ai_strategy_default = {
             }
             add = 2
         }	
+
+        ## HJE edit start ##
+		# 2nd+ Opium wars participants should be very confident because all the great powers should be joining them
+		if = {
+			limit = {
+				has_law = law_type:law_isolationism
+				OR = {
+					has_journal_entry = HJ_opium_wars 
+					has_journal_entry = HJ_opium_wars_unhistorical
+				}
+				scope:target_country = {
+					OR = {
+						has_variable = opium_wars_target
+						has_variable = var_dynamic_opium_wars_victim
+					}
+				}
+			}
+			add = 3
+		}
+        ## HJE edit end ##
 	}
 	
 	# How likely is the AI to start a diplomatic play against another country if their attitude allows for it
@@ -2789,6 +2809,10 @@ ai_strategy_default = {
 					AND = {
 						exists = c:USA
 						c:USA = THIS
+					}
+					AND = {
+						exists = c:RUS
+						c:RUS = THIS
 					}
 				}
 				scope:target_country = {
@@ -6548,7 +6572,7 @@ ai_strategy_default = {
 						state_region = s:STATE_SUZHOU
 					}
 				}
-				add = 1000  #I like round numbers
+				add = 800
 			}	
             
 			# HJE France should go for Guandong in Second Opium War
@@ -6564,10 +6588,10 @@ ai_strategy_default = {
 						}
 					}
 					scope:target_state = {
-						state_region = s:STATE_GUANGDONG
+						state_region = s:STATE_FUJIAN
 					}
 				}
-				add = 1000
+				add = 800
 			}
             
 			# HJE Russia should go for Shengjing in Second Opium War
@@ -6586,7 +6610,7 @@ ai_strategy_default = {
 						state_region = s:STATE_SHENGJING
 					}
 				}
-				add = 1000  #It's not meant to increase aggression 
+				add = 800
 			}	
 		}   #HJE edit end
 		

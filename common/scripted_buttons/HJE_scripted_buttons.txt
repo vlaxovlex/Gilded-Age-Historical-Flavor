@@ -66,7 +66,16 @@ HJ_crimean_war_rus_intervention_button = {
 		c:RUS = { relations:root >= relations_threshold:amicable } 	#at least tolerates Russia
 	}
 
-	ai_chance = { base = 0 }
+	ai_chance = { 
+		base = 0 
+		modifier = {
+			add = 100
+			any_country = {
+				has_war_with = ROOT
+				THIS = c:TUR
+			}
+		}
+	}
 
 	effect = {
 		trigger_event = { id = HJE_russia.6 days = 1 popup = yes }
@@ -380,7 +389,7 @@ HJ_the_enemy_of_my_enemy = {
 		}
 	}
 
-	ai_chance = { base = 0 }
+	ai_chance = { base = 100 }
 
 	effect = {
 		set_variable = tgg_victim
