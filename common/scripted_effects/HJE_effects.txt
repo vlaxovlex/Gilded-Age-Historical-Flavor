@@ -222,6 +222,16 @@ HJE_cleanup_effect = {
 			}
 		}
 	}
+
+	if = { ## taiping also would be an opium wars victim
+		limit = {
+			is_subject = no
+			is_country_type = unrecognized
+			country_has_primary_culture = cu:han
+			NOT = { has_journal_entry = HJ_china_humiliation }
+		}
+		add_journal_entry = { type = HJ_china_humiliation }
+	}
 	
 	if = {
 		limit = {			#Brazilian slavery fix
