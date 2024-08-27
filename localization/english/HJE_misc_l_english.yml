@@ -735,8 +735,6 @@ modifier_liberal_win:0 "Liberal Victory!"
  Bedford_Forrest:0 "Bedford Forrest"
  GT_Beauregard:0 "G.T. Beauregard"
  William_Henry:0 "William Henry"
- 
- #NEW TEXT:
  rule_ultra_historical_politics_compatibility:0 "HJE: compatibility with Ultra Historical Politics"
  setting_ultra_historical_politics_compatibility_no:0 "No"
  setting_ultra_historical_politics_compatibility_yes:0 "Yes"
@@ -747,6 +745,10 @@ modifier_liberal_win:0 "Liberal Victory!"
  hje_colonial_administration_trigger_desc_third:0 "[COUNTRY.GetNameNoFlag] is a [concept_colonial_administration] of [AddTextIf(ObjectsEqual(GetMetaPlayer.GetPlayedOrObservedCountry.Self, TARGET_COUNTRY.Self),TARGET_COUNTRY.GetName)][AddTextIf(Not(ObjectsEqual(GetMetaPlayer.GetPlayedOrObservedCountry.Self, TARGET_COUNTRY.Self)),TARGET_COUNTRY.GetName)]"
  hje_colonial_administration_trigger_false_desc_third:0 "[COUNTRY.GetNameNoFlag] is #b not#! a [concept_colonial_administration] of [AddTextIf(ObjectsEqual(GetMetaPlayer.GetPlayedOrObservedCountry.Self, TARGET_COUNTRY.Self),TARGET_COUNTRY.GetName)][AddTextIf(Not(ObjectsEqual(GetMetaPlayer.GetPlayedOrObservedCountry.Self, TARGET_COUNTRY.Self)),TARGET_COUNTRY.GetName)]"
 
+ ideology_hje_estatist:0 "Estatist"
+ ideology_hje_conservative:0 "Conservative"
+ 
+ #NEW TEXT:
  
  
  #RE-WRITTEN TEXT:

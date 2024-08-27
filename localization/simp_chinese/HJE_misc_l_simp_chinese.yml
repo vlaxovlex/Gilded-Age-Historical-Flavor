@@ -721,6 +721,8 @@ modifier_liberal_win:0 "Liberal Victory!"
  setting_ultra_historical_politics_compatibility_no_desc:0 "You cannot use Ultra Historical Politics with HJE."
  setting_ultra_historical_politics_compatibility_yes_desc:0 "You can use Ultra Historical Politics along with HJE if you place HJE below Ultra Historical Politics in the load order." 
  DIPLOMATIC_ACCEPTANCE_UNIFICATION_CANDIDATE:0 "Is [Concept('concept_unification_candidate', 'unification candidate')] of Germany"
+ ideology_hje_estatist:0 "Estatist"
+ ideology_hje_conservative:0 "Conservative"
  
  #RE-WRITTEN TEXT:
  

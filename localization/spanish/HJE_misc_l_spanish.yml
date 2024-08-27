@@ -713,14 +713,16 @@ modifier_liberal_win:0 "¡Victoria Liberal!"
  Bedford_Forrest:0 "Bedford Forrest"
  GT_Beauregard:0 "G.T. Beauregard"
  William_Henry:0 "William Henry"
- 
- #NEW TEXT:
  rule_ultra_historical_politics_compatibility:0 "HJE: compatibilidad con Ultra Historical Politics"
  setting_ultra_historical_politics_compatibility_no:0 "No"
  setting_ultra_historical_politics_compatibility_yes:0 "Sí"
  setting_ultra_historical_politics_compatibility_no_desc:0 "No puedes usar Ultra Historical Politics con HJE."
  setting_ultra_historical_politics_compatibility_yes_desc:0 "Puedes usar Ultra Historical Politics junto con HJE si colocas HJE debajo de Ultra Historical Politics en el orden de carga."
  DIPLOMATIC_ACCEPTANCE_UNIFICATION_CANDIDATE:0 "Es [Concept('concept_unification_candidate', 'candidato a la unificación')] de Alemania"
+ 
+ #NEW TEXT:
+ ideology_hje_estatist:0 "Estatist"
+ ideology_hje_conservative:0 "Conservative"
 
  
  #RE-WRITTEN TEXT:

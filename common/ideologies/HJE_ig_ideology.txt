@@ -1,0 +1,89 @@
+﻿ideology_hje_estatist = { #modern paternalistic
+	icon = "gfx/interface/icons/ideology_icons/oligarchic.dds"
+	
+	lawgroup_governance_principles = {
+		law_monarchy = strongly_approve
+		law_theocracy = approve			
+		law_presidential_republic = neutral
+		law_parliamentary_republic = neutral
+		law_council_republic = strongly_disapprove
+	}
+	
+	lawgroup_distribution_of_power = {
+		law_single_party_state = neutral
+		law_landed_voting = strongly_approve
+		law_autocracy = neutral
+		law_oligarchy = approve
+		law_wealth_voting = approve
+		law_census_voting = approve
+		law_universal_suffrage = neutral
+		law_anarchy = strongly_disapprove
+		law_technocracy = strongly_disapprove
+	}
+	
+	lawgroup_economic_system = {		
+		law_traditionalism = approve
+		law_agrarianism = neutral
+		law_interventionism = neutral
+		law_industry_banned = disapprove
+		law_laissez_faire = strongly_approve
+		law_cooperative_ownership = strongly_disapprove
+		law_command_economy = strongly_disapprove
+	}
+	
+	lawgroup_trade_policy = {		
+		law_isolationism = approve
+		law_mercantilism = approve
+		law_protectionism = disapprove
+		law_free_trade = strongly_approve
+	}
+}
+
+ideology_hje_conservative = { #modern stratocratic
+	icon = "gfx/interface/icons/ideology_icons/individualist.dds"
+	
+	lawgroup_army_model = {
+		law_peasant_levies = neutral
+		law_professional_army = approve
+		law_national_militia = disapprove
+		law_mass_conscription = strongly_disapprove
+	}
+	
+	lawgroup_labor_rights = {
+		law_no_workers_rights = approve
+		law_regulatory_bodies = disapprove
+		law_worker_protections = strongly_disapprove
+	}
+	
+	lawgroup_land_reform = {
+		law_serfdom = neutral
+		law_tenant_farmers = approve
+		law_commercialized_agriculture = neutral
+		law_homesteading = disapprove
+		law_collectivized_agriculture = strongly_disapprove
+	}	
+	
+	lawgroup_taxation = {
+		law_consumption_based_taxation = strongly_disapprove
+		law_land_based_taxation = disapprove
+		law_per_capita_based_taxation = neutral
+		law_early_proportional_taxation = approve
+		law_proportional_taxation = neutral
+		law_graduated_taxation = disapprove
+	}
+
+	lawgroup_welfare = {
+		law_poor_laws = neutral
+		law_no_social_security = neutral
+		law_wage_subsidies = disapprove
+		law_old_age_pension = strongly_disapprove
+	}
+
+	lawgroup_education_system = {
+		law_private_schools = neutral
+		law_public_schools = disapprove
+		law_religious_schools = approve
+		law_no_schools = disapprove
+	}
+	
+}

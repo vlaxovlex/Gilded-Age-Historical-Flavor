@@ -76,6 +76,13 @@ GLOBAL = {
 	}
 	# Move away British from East Indies to UK
 	c:GBR = {
+		if = {
+			limit = { GovPlus_is_active_trigger = no }
+			ig:ig_landowners = {  
+				remove_ideology = ideology_paternalistic
+				add_ideology = ideology_hje_estatist
+			}
+		}
 		random_scope_state = {
 			limit = {
 				any_scope_pop = {
