@@ -457,16 +457,15 @@
  notification_ruler_term_limit_exceeded_name:0 "[SCOPE.sCharacter('retiring_ig_leader').GetFullName] достиг лимита сроков."
  notification_ruler_term_limit_exceeded_desc:0 "[SCOPE.sCharacter('retiring_ig_leader').GetFullName] достиг лимита сроков и уйдет на пенсию по окончании срока. [SCOPE.gsInterestGroup('retiring_leader_ig').GetName] будет возглавляться [SCOPE.sCharacter('candidate').GetFullName] на предстоящих выборах."
  notification_ruler_term_limit_exceeded_tooltip:0 "#header $notification_ruler_term_limit_exceeded_name$#!\n$TOOLTIP_DELIMITER$\n$notification_ruler_term_limit_exceeded_desc$"
+ ideology_hje_estatist:0 "Сословная иерархия"
+ ideology_hje_estatist_desc:0 "Эта группа считает, что традиционные привилегии дворянства должны быть сохранены в рамках системы ограниченной монархии."
+ ideology_hje_conservative:0 "Реакционизм"
+ ideology_hje_conservative:0 "Эта группа считает, что традиционные социальные и моральные устои быть защищены с помощью жесткой политики."
+ ideology_hje_libertarian:0 "Либертарианство"
+ ideology_hje_libertarian_desc:0 "Эта группа считает, что государство должно как можно меньше вмешиваться в экономическую и политическую жизнь граждан."
  
 
  #НОВЫЙ ТЕКСТ:
- ideology_hje_estatist:0 "Estatist"
- ideology_hje_estatist_desc:0 "This group believes that the traditional powers and privileges of the nobility should be preserved within a system of limited monarchy. This group believes that the monarch's authority should be constrained by a constitution and a legislative body dominated by the aristocratic class."
- ideology_hje_conservative:0 "Conservative"
- ideology_hje_conservative:0 "This group believes that traditional social and moral values should be defended through an assertive foreign policy and a strong military, in order to promote the interests of their nation and combat perceived threats from rival powers or ideologies."
- ideology_hje_libertarian:0 "Libertarian"
- ideology_hje_libertarian_desc:0 "This group believes that the state should have as little as possible to do with the day-to-day business of the citizenry, especially in matters of finance."
- 
 
 
 
