@@ -451,9 +451,14 @@
  tt_scandinavia_formation:0 "Утвержден скандинавский национализм и создан Скандинавский монетный союз"
  hje_colonial_administration_trigger_desc_third:0 "[COUNTRY.GetNameNoFlag] явля[COUNTRY.GetCustom('RU_CL_END_T')]ся [Concept('concept_colonial_administration', 'колониальной администрацией')] государства [AddTextIf(ObjectsEqual(GetMetaPlayer.GetPlayedOrObservedCountry.Self, TARGET_COUNTRY.Self),TARGET_COUNTRY.GetName)][AddTextIf(Not(ObjectsEqual(GetMetaPlayer.GetPlayedOrObservedCountry.Self, TARGET_COUNTRY.Self)),TARGET_COUNTRY.GetName)]"
  hje_colonial_administration_trigger_false_desc_third:0 "[COUNTRY.GetNameNoFlag] #b не#! явля[COUNTRY.GetCustom('RU_CL_END_T')]ся [Concept('concept_colonial_administration', 'колониальной администрацией')] государства [AddTextIf(ObjectsEqual(GetMetaPlayer.GetPlayedOrObservedCountry.Self, TARGET_COUNTRY.Self),TARGET_COUNTRY.GetName)][AddTextIf(Not(ObjectsEqual(GetMetaPlayer.GetPlayedOrObservedCountry.Self, TARGET_COUNTRY.Self)),TARGET_COUNTRY.GetName)]"
- expanding_holdings:0 "Расширение холдингов"
-
+ expanding_holdings:0 "Расширение компаний"
+ tl_first_term:0 "Этот персонаж отбывает свой первый срок."
+ tl_second_term:0 "Этот персонаж отбывает свой второй срок и уйдет на пенсию, когда он закончится."
+ notification_ruler_term_limit_exceeded_name:0 "[SCOPE.sCharacter('retiring_ig_leader').GetFullName] достиг лимита сроков."
+ notification_ruler_term_limit_exceeded_desc:0 "[SCOPE.sCharacter('retiring_ig_leader').GetFullName] достиг лимита сроков и уйдет на пенсию по окончании срока. [SCOPE.gsInterestGroup('retiring_leader_ig').GetName] будет возглавляться [SCOPE.sCharacter('candidate').GetFullName] на предстоящих выборах."
+ notification_ruler_term_limit_exceeded_tooltip:0 "#header $notification_ruler_term_limit_exceeded_name$#!\n$TOOLTIP_DELIMITER$\n$notification_ruler_term_limit_exceeded_desc$"
  
+
  #НОВЫЙ ТЕКСТ:
 
 

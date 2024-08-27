@@ -218,12 +218,12 @@
  modifier_gilded_age_reforms_desc:0 "Позолоченный век стал предзнаменованием быстрого роста Америки."
  reform_of_1832:0 "Избирательная реформа 1832 года"
  reform_of_1832_desc:0 "Избирательная реформа 1832 года распространила избирательное право на большую часть мужского населения и перераспределила места в парламенте, чтобы отразить изменения в численности населения и уровне его урбанизации."
-
-   
+ disapproves_of_teller_amendment_decision:0 "Поправка Теллера не одобрена"
+ approves_of_teller_amendment_decision:0 "Поправка Теллера одобрена"
+ 
  
  #НОВЫЙ ТЕКСТ:
- disapproves_of_teller_amendment_decision:0 "Teller Amendment choice disapproval"
- approves_of_teller_amendment_decision:0 "Teller Amendment choice approval"
+
 
 
 

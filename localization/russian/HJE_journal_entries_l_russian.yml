@@ -377,27 +377,27 @@
  former_american_colony_tt:0 "Освобожденная колония"
  empire_with_former_american_territory_tt:0 "Бывший колонизатор Америки"
  recently_lost_a_war_tt:0 "Поражение в войне"
- 
+ HJ_crimean_war_tur_intervention_button:0 "Вмешаться в войну на стороне Османской империи"
+ HJ_crimean_war_tur_intervention_button_desc:0 "Подумать о нашем участии в этом конфликте."
+ HJ_crimean_war_rus_intervention_button:0 "Вмешаться в войну на стороне России"
+ HJ_crimean_war_rus_intervention_button_desc:0 "Подумать о нашем участии в этом конфликте."
+ HJ_acw_emancipation_proclamation_button:0 "Прокламация об освобождении рабов"
+ HJ_acw_emancipation_proclamation_button_desc:0 "Как бы мы ни отстаивали позицию о том, что эта война ведется ради сохранения Союза, нельзя отрицать, что в основе кровавого конфликта лежит вопрос о рабстве. Разрешение этого вопроса путем решительного принятия поправки об отмене рабства имеет первостепенное значение, при этом мы все еще должны быть осторожны."
+ remaining_slave_states_may_switch_to_CSA_very_low_chance_tt:0 "Шанс, что оставшиеся рабовладельческие штаты перейдут на сторону врага: @information! #green Очень низкий#!"
+ remaining_slave_states_may_switch_to_CSA_low_chance_tt:0 "Шанс, что оставшиеся рабовладельческие штаты перейдут на сторону врага: @information! #yellow Низкий#!"
+ remaining_slave_states_may_switch_to_CSA_high_chance_tt:0 "Шанс, что оставшиеся рабовладельческие штаты перейдут на сторону врага: @warning! #yellow Средний#!"
+ remaining_slave_states_may_switch_to_CSA_very_high_chance_tt:0 "Шанс, что оставшиеся рабовладельческие штаты перейдут на сторону врага: @warning! #R Высокий#!"
+ HJ_acw_incarceration_proclamation_button:0 "Прокламация о закрепощении рабов"
+ HJ_acw_incarceration_proclamation_button_desc:0 "Как бы мы ни отстаивали позицию о том, что эта война ведется ради независимости Конфедерации, нельзя отрицать, что в основе кровавого конфликта лежит вопрос о рабстве. Разрешение этого вопроса путем решительного принятия поправки о работорговле имеет первостепенное значение, при этом мы все еще должны быть осторожны."
+ remaining_free_states_may_switch_to_FSA_very_low_chance_tt:0 "Шанс, что оставшиеся свободные штаты перейдут на сторону врага: @information! #green Очень низкий#!"
+ remaining_free_states_may_switch_to_FSA_low_chance_tt:0 "Шанс, что оставшиеся свободные штаты перейдут на сторону врага: @information! #yellow Низкий#!"
+ remaining_free_states_may_switch_to_FSA_high_chance_tt:0 "Шанс, что оставшиеся свободные штаты перейдут на сторону врага: @warning! #yellow Средний#!"
+ remaining_free_states_may_switch_to_FSA_very_high_chance_tt:0 "Шанс, что оставшиеся свободные штаты перейдут на сторону врага: @warning! #R Высокий#!"
  
  
  #НОВЫЙ ТЕКСТ: 
- HJ_crimean_war_tur_intervention_button:0 "Join the Turks' Alliance?"
- HJ_crimean_war_tur_intervention_button_desc:0 "Begin debate on whether or not our nation should intervene on behalf of the Turks and join their alliance against the Russians."
- HJ_crimean_war_rus_intervention_button:0 "Join the Russian Alliance?"
- HJ_crimean_war_rus_intervention_button_desc:0 "Begin debate on whether or not our nation should intervene on behalf of the Russians and join their alliance against the Turks."
 
- HJ_acw_emancipation_proclamation_button:0 "Proclaim Emancipation"
- HJ_acw_emancipation_proclamation_button_desc:0 "As much as we espouse the position that this war is being fought to preserve the Union, it cannot be denied that the matter of slavery is at the heart of this bloody conflict. Resolving it through decisively supporting the adoption of an amendment of the constitution to abolish slavery is paramount, but we must be careful only to do so when the time is right..."
- remaining_slave_states_may_switch_to_CSA_very_low_chance_tt:0 "Chance that remaining slave states will secede to the enemy: @information! #green Low#!"
- remaining_slave_states_may_switch_to_CSA_low_chance_tt:0 "Chance that remaining slave states will secede to the enemy: @information! #yellow Unlikely#!"
- remaining_slave_states_may_switch_to_CSA_high_chance_tt:0 "Chance that remaining slave states will secede to the enemy: @warning! #yellow Possible#!"
- remaining_slave_states_may_switch_to_CSA_very_high_chance_tt:0 "Chance that remaining slave states will secede to the enemy: @warning! #R High#!"
- HJ_acw_incarceration_proclamation_button:0 "Proclaim Incarceration"
- HJ_acw_incarceration_proclamation_button_desc:0 "As much as we espouse the position that this war is being fought to preserve the Union, it cannot be denied that the matter of slavery is at the heart of this bloody conflict. Resolving it through decisively supporting the adoption of an amendment of the constitution to codify the sale and ownership of slaves is paramount, but we must be careful only to do so when the time is right..."
- remaining_free_states_may_switch_to_FSA_very_low_chance_tt:0 "Chance that remaining free states will secede to the enemy: @information! #green Low#!"
- remaining_free_states_may_switch_to_FSA_low_chance_tt:0 "Chance that remaining free states will secede to the enemy: @information! #yellow Unlikely#!"
- remaining_free_states_may_switch_to_FSA_high_chance_tt:0 "Chance that remaining free states will secede to the enemy: @warning! #yellow Possible#!"
- remaining_free_states_may_switch_to_FSA_very_high_chance_tt:0 "Chance that remaining free states will secede to the enemy: @warning! #R High#!"
+
 
 
  #ПЕРЕПИСАННЫЙ ТЕКСТ:
