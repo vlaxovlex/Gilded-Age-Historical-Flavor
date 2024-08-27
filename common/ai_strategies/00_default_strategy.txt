@@ -543,24 +543,11 @@ ai_strategy_default = {
 					has_journal_entry = HJ_opium_wars
 					has_journal_entry = HJ_opium_wars_unhistorical
 				}
-				OR = {
-					AND = {
-						exists = c:GBR
-						c:GBR = THIS
-					}
-					AND = {
-						exists = c:FRA
-						c:FRA = THIS
-					}
-					AND = {
-						exists = c:USA
-						c:USA = THIS
-					}
-				}
 				exists = c:TPG
 				any_country = {
 					has_variable = var_dynamic_opium_wars_victim
 					is_diplomatic_play_enemy_of = c:TPG
+					NOT = { has_war_with = c:TPG }
 				}
 			}
 			add = 100
@@ -765,6 +752,7 @@ ai_strategy_default = {
 					OR = {
 						has_variable = opium_wars_target
 						has_variable = var_dynamic_opium_wars_victim
+						any_overlord_or_above = { has_variable = var_dynamic_opium_wars_victim }
 					}
 				}
 			}
@@ -2552,15 +2540,22 @@ ai_strategy_default = {
 		# 2nd+ Opium wars participants should be very confident because all the great powers should be joining them
 		if = {
 			limit = {
-				has_law = law_type:law_isolationism
 				OR = {
 					has_journal_entry = HJ_opium_wars 
 					has_journal_entry = HJ_opium_wars_unhistorical
+				}
+				OR = {
+					scope:target_country = { has_law = law_type:law_isolationism }
+					trigger_if = {
+						limit = { has_variable = opiumwars_treatyport_goal }
+						NOT = { has_treaty_port_in_country = scope:target_country }
+					}
 				}
 				scope:target_country = {
 					OR = {
 						has_variable = opium_wars_target
 						has_variable = var_dynamic_opium_wars_victim
+						any_overlord_or_above = { has_variable = var_dynamic_opium_wars_victim }
 					}
 				}
 			}
@@ -2820,6 +2815,7 @@ ai_strategy_default = {
 					OR = {
 						has_variable = opium_wars_target
 						has_variable = var_dynamic_opium_wars_victim
+						any_overlord_or_above = { has_variable = var_dynamic_opium_wars_victim }
 					}
 				}
 			}
@@ -6200,6 +6196,7 @@ ai_strategy_default = {
 					}
 					scope:target_country = {
 						has_variable = var_dynamic_opium_wars_victim
+						any_overlord_or_above = { has_variable = var_dynamic_opium_wars_victim }
 					}
 				}
 				add = 1000

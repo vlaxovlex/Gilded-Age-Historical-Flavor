@@ -583,12 +583,12 @@ hje_secession_start_on_actions = {
 				capital = {
 					create_building={
 						building="building_barracks"
-						level=1
+						level=3
 						reserves=1
 					}
 					create_building={
 						building="building_conscription_center"
-						level=1
+						level=3
 						reserves=1
 					}
 				}

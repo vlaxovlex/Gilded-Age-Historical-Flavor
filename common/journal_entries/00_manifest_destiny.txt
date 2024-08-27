@@ -23,6 +23,20 @@
 
 	on_complete = {
 		trigger_event = { id = manifest_destiny.1 }
+		hidden_effect = { ## HJE edit
+			s:STATE_CALIFORNIA = {
+				region_state:USA = {
+					hidden_effect = {
+						create_building={
+							building="building_naval_base"
+							level=20
+							reserves=1
+							activate_production_methods={ "pm_no_naval_theory" }
+						}
+					}
+				}
+			}
+		}
 	}
 
 	weight = 100

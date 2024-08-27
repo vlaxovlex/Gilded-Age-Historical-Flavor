@@ -268,12 +268,12 @@ HJ_dominican_revolution = {
 				scope:santo_domingo_scope = {
 					create_building={
 						building="building_barracks"
-						level=1
+						level=5
 						reserves=1
 					}
 					create_building={
 						building="building_conscription_center"
-						level=1
+						level=5
 						reserves=1
 					}
 				}
@@ -333,12 +333,12 @@ HJ_dominican_revolution = {
 				scope:haiti_scope = {
 					create_building={
 						building="building_barracks"
-						level=1
+						level=5
 						reserves=1
 					}
 					create_building={
 						building="building_conscription_center"
-						level=1
+						level=5
 						reserves=1
 					}
 				}

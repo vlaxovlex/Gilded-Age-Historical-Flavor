@@ -465,6 +465,20 @@ HJ_opium_wars_unhistorical = {
 			if = {
 				limit = {
 					country_is_in_europe = yes
+					if = {
+						limit = { NOT = { exists = c:GER } }
+						NOR = {
+							country_has_primary_culture = cu:north_german
+							country_has_primary_culture = cu:south_german
+						}
+					}
+					if = {
+						limit = { NOT = { exists = c:ITA } }
+						NOR = {
+							country_has_primary_culture = cu:north_italian
+							country_has_primary_culture = cu:south_italian
+						}
+					}
 					NOT = {
 						any_scope_state = {
 							is_treaty_port = yes
