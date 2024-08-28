@@ -2163,6 +2163,7 @@ HJE_italy.15 = {
 				last_name = di_Savoia
 				female = no
 				ruler = yes
+				noble = yes
 				age = 40
 				interest_group = ig_landowners
 				ideology = ideology:ideology_moderate

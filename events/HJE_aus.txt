@@ -726,6 +726,7 @@ HJE_austria.3 = {
 				last_name = von_Habsburg
 				female = no
 				ruler = yes
+				noble = yes
 				age = 40
 				interest_group = ig_landowners
 				ideology = ideology:ideology_moderate

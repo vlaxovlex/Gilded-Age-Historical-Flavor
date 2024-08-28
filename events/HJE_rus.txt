@@ -1122,6 +1122,7 @@ HJE_russia.8 = {
 				last_name = Romanov
 				female = no
 				ruler = yes
+				noble = yes
 				age = 40
 				interest_group = ig_landowners
 				ideology = ideology:ideology_moderate
