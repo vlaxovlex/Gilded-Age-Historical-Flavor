@@ -124,6 +124,12 @@ TGE_russia.2 = {
 				kill_character = yes
 			}
 		}
+		ruler = {
+			add_modifier = {
+				name = modifier_alexander_ii
+				months = very_long_modifier_time
+			}
+		}
 	}
 }
 
@@ -220,6 +226,12 @@ TGE_russia.4 = {
 			on_created = {
 				set_variable = is_alex_iii
 				set_variable = is_romanov
+			}
+		}
+		ruler = {
+			add_modifier = {
+				name = modifier_alexander_iii
+				months = very_long_modifier_time
 			}
 		}
 		hidden_effect = {
