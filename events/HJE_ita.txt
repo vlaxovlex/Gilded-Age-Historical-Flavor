@@ -2059,3 +2059,131 @@ HJE_italy.14 = { ## exact same as "italian_unification.7", but in order to repla
 		play_as = c:RSM
 	}
 }
+
+# Restoration of House of Savoy?: If there's a revolt that's still monarchist, the correct house should be restored or denied ASAP
+HJE_italy.15 = {
+	type = country_event
+	placement = ROOT
+	title = HJE_italy.15.t
+	desc = HJE_italy.15.d
+	flavor = HJE_italy.15.f
+
+	duration = 3
+
+	event_image = {
+		video = "votp_monarch_holding_court"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/misc/1Character_Banner"
+
+	icon = "gfx/interface/icons/event_icons/event_election.dds"
+
+	trigger = {
+		has_law = law_type:law_monarchy 
+		NOT = { ruler = { has_variable = is_savoy } }
+		NOT = { has_global_variable = ITA_decided_to_ditch_savoy_dynasty }
+		OR = {
+			was_formed_from = SAR
+			AND = { exists = c:SAR owner = c:SAR }
+        }
+	}
+
+	immediate = {
+	}
+
+	option = {
+		name = HJE_italy.15.a
+		default_option = yes
+		ai_chance = { base = 1 }
+		if = {
+			limit = {
+				year >= 1845
+				NOT = { has_global_variable = umberto_i_born }
+			}
+			set_global_variable = umberto_i_born
+			create_character = {
+				first_name = Umberto
+				last_name = di_Savoia
+				historical = yes
+				noble = yes
+				ruler = yes		
+				female = no
+				birth_date = 1844.3.14
+				interest_group = ig_petty_bourgeoisie
+				dna = dna_sar_umberto_01
+				ideology = ideology_authoritarian
+				traits = {
+					wrathful
+					cruel
+					direct	
+				}
+				on_created = {
+					set_variable = is_married
+					set_variable = is_savoy
+					set_variable = is_umberto_i
+					set_variable = weight_does_not_change
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				year >= 1870
+				NOT = { has_global_variable = vittoro_emmanuele_iii_born }
+				OR = {
+					year >= 1890
+					has_global_variable = umberto_i_born
+				}
+			}
+			set_global_variable = vittoro_emmanuele_iii_born
+			create_character = {
+				first_name = Vittorio_Emanuele
+				last_name = di_Savoia
+				historical = yes
+				noble = yes
+				ruler = yes		
+				female = no
+				birth_date = 1869.11.11
+				interest_group = ig_petty_bourgeoisie
+				dna = dna_sar_vittorio_emanuele_03
+				ideology = ideology_moderate
+				traits = {
+					tactful	
+					reserved
+				}
+				on_created = {
+					set_variable = is_savoy
+					set_variable = is_victor_emmanuel_iii
+					set_variable = weight_does_not_change
+				}
+			}
+		}
+		else = {
+			create_character = {
+				last_name = di_Savoia
+				female = no
+				ruler = yes
+				age = 40
+				interest_group = ig_landowners
+				ideology = ideology:ideology_moderate
+				on_created = {
+					set_variable = is_savoy
+				}
+			}
+		}
+		hidden_effect = {
+			random_scope_character = {
+				limit = { 
+					is_heir = yes 
+					NOT = { has_variable = is_savoy }
+				}
+				kill_character = yes
+			}
+		}
+	}
+	option = {
+		name = HJE_italy.15.b
+		ai_chance = { base = 0 }
+		set_global_variable = ITA_decided_to_ditch_savoy_dynasty
+	}
+}

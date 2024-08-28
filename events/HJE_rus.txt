@@ -61,14 +61,11 @@ TGE_russia.2 = {
 	}
 	
 	immediate = {
+		add_journal_entry = { type = je_reforms_of_alexander }
 		set_variable = {
 			name = alexander_reform_var
 			value = 0
 		}
-		add_journal_entry = {
-			type = je_reforms_of_alexander
-		}
-		
 	}
 
 
@@ -82,50 +79,51 @@ TGE_russia.2 = {
 			name = modifier_reforms_of_alexander
 			months = 240
 		}
-		add_journal_entry = {
-			type = je_tge_peasants_reform
-		}
-		add_journal_entry = {
-			type = je_tge_military_reform
-		}
-		add_journal_entry = {
-			type = je_tge_melikovs_constitution
-		}
-		create_character = {
-			# Alexander II of Russia
-			first_name = Aleksandr
-			last_name = Romanov
-			historical = yes
-			ruler = yes
-			birth_date = 1818.4.26
-			dna = dna_tsar_alexander_02
-			interest_group = ig_intelligentsia
-			ideology = ideology:ideology_moderate
-			traits = {
-				meticulous
+		add_journal_entry = { type = je_tge_peasants_reform }
+		add_journal_entry = { type = je_tge_military_reform }
+		add_journal_entry = { type = je_tge_melikovs_constitution }
+		if = {
+			limit = {
+				NOT = {
+					any_scope_character = {
+						is_heir = yes
+						has_variable = is_aleksandr_ii
+					}
+				}
 			}
-			on_created = {
-				set_variable = is_aleksandr_ii
-				set_variable = is_romanov
+			create_character = {
+				# Alexander II of Russia
+				first_name = Aleksandr
+				last_name = Romanov
+				historical = yes
+				noble = yes
+				ruler = yes
+				birth_date = 1818.4.29
+				dna = dna_tsar_alexander_02
+				interest_group = ig_landowners
+				ideology = ideology_market_liberal
+				traits = {
+					meticulous 
+					romantic
+				}
+			    on_created = {
+			        set_variable = is_aleksandr_ii ## HJE ##
+			        set_variable = is_romanov ## HJE, Ness, needed for heirs to spawn correctly ##
+			    }
 			}
-		}
-		create_character = {
-			first_name = Nikolai #move to on_actions later
-			last_name = Romanov
-			historical = yes
-			heir = yes
-			birth_date = 1843.9.20
-			interest_group = ig_industrialists
-			ideology = ideology:ideology_reformer
-			traits = {
-				innovative
-				charismatic
-			}
-			on_created = {
-				set_variable = is_romanov
+			hidden_effect = {
+				random_scope_character = {
+					limit = { is_heir = yes }
+					kill_character = yes
+				}
 			}
 		}
-		
+		else = {
+			random_scope_character = {
+				limit = { is_ruler = yes }
+				kill_character = yes
+			}
+		}
 	}
 }
 
@@ -202,46 +200,36 @@ TGE_russia.4 = {
 		}
 		
 		
+		set_global_variable = aleksandr_iii_born
 		create_character = {
-			# Alexander III of Russia
-			first_name = "alexander_iii_first_name"
-			last_name = "Romanov"
+			first_name = alexander_iii_first_name
+			last_name = Romanov
 			historical = yes
+			noble = yes
 			ruler = yes
+			female = no
 			birth_date = 1845.3.10
+			dna = dna_tsar_alexander_03
 			interest_group = ig_landowners
-			dna = dna_rus_aleksandr_03
-			ideology = ideology:ideology_traditionalist
+			ideology = ideology_traditionalist
 			traits = {
-				imperious
+				imposing
+				charismatic
+				bigoted
 			}
 			on_created = {
-				set_variable = is_aleksandr_iii
+				set_variable = is_alex_iii
 				set_variable = is_romanov
 			}
 		}
-		create_character = {
-			# That guy who got shot by the Bolsheviks
-			first_name = "nicholas_ii_first_name" #move to on_actions later
-			last_name = "Romanov"
-			historical = yes
-			heir = yes
-			birth_date = 1868.5.18
-			dna = dna_tsar_nicolas_02
-			interest_group = ig_industrialists
-			ideology = ideology:ideology_royalist
-			traits = {
-				arrogant
-				scarred #Otsu Incident
-			}
-			on_created = {
-				set_variable = is_nikolas_ii
-				set_variable = is_romanov
-				set_variable = weight_does_not_change
+		hidden_effect = {
+			random_scope_character = {
+				limit = { is_heir = yes }
+				kill_character = yes
 			}
 		}
 	}
-}	
+}
 
 
 
@@ -996,5 +984,165 @@ HJE_russia.7 = {
 			name = withdrew_from_colonial_incident
 			months = long_modifier_time
 		}
+	}
+}
+
+# Restoration of House Romanov?: If there's a revolt that's still monarchist, the correct house should be restored or denied ASAP
+HJE_russia.8 = {
+	type = country_event
+	placement = ROOT
+	title = HJE_russia.8.t
+	desc = HJE_russia.8.d
+	flavor = HJE_russia.8.f
+
+	duration = 3
+
+	event_image = {
+		video = "votp_monarch_holding_court"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/misc/1Character_Banner"
+
+	icon = "gfx/interface/icons/event_icons/event_election.dds"
+
+	trigger = {
+		has_law = law_type:law_monarchy 
+		NOT = { ruler = { has_variable = is_romanov } }
+		NOT = { has_global_variable = RUS_decided_to_ditch_romanov_dynasty }
+		exists = c:RUS
+		c:RUS = ROOT
+	}
+
+	immediate = {
+	}
+
+	option = {
+		name = HJE_russia.8.a
+		default_option = yes
+		ai_chance = { base = 1 }
+		if = {
+			limit = {
+				year >= 1846
+				NOT = { has_global_variable = aleksandr_iii_born }
+			}
+			set_global_variable = aleksandr_iii_born
+			create_character = {
+				first_name = alexander_iii_first_name
+				last_name = Romanov
+				historical = yes
+				noble = yes
+				ruler = yes
+				female = no
+				birth_date = 1845.3.10
+				dna = dna_tsar_alexander_03
+				interest_group = ig_landowners
+				ideology = ideology_traditionalist
+				traits = {
+					imposing
+					charismatic
+					bigoted
+				}
+				on_created = {
+					set_variable = is_alex_iii
+					set_variable = is_romanov
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				year >= 1869
+				NOT = { has_global_variable = nicky_ii_born }
+				OR = {
+					has_global_variable = aleksandr_iii_born
+					year >= 1889
+				}
+			}
+			set_global_variable = nicky_ii_born
+			create_character = {
+				# That guy who got shot by the Bolsheviks
+				first_name = "nicholas_ii_first_name"
+				last_name = Romanov
+				historical = yes
+				noble = yes
+				ruler = yes
+				female = no
+				birth_date = 1868.5.18
+				dna = dna_tsar_nicolas_02
+				interest_group = ig_landowners
+				ideology = ideology_authoritarian
+				traits = {
+					imperious 
+					arrogant
+					pious
+					scarred #Otsu Incident, should probably be made an event
+				}
+				on_created = {
+					set_variable = is_nicky_ii
+					set_variable = is_romanov
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				year >= 1905
+				NOT = { has_global_variable = sick_alexei_born }
+				OR = {
+					year >= 1925
+					AND = {
+						has_global_variable = aleksandr_iii_born
+						has_global_variable = nicky_ii_born
+					}
+				}
+			}
+			set_global_variable = sick_alexei_born
+			create_character = {
+				first_name = Alexei
+				last_name = Romanov
+				historical = yes
+				noble = yes
+				ruler = yes
+				female = no
+				birth_date = 1904.8.12
+				interest_group = ig_landowners
+				ideology = ideology_jingoist_leader
+				traits = {
+					sickly 
+					romantic
+					arrogant
+				}
+				on_created = {
+					set_variable = alexei_alexei_musnt_run_musnt_climb_must_be_careful_all_the_time
+					set_variable = is_romanov
+				}
+			}
+		}
+		else = {
+			create_character = {
+				last_name = Romanov
+				female = no
+				ruler = yes
+				age = 40
+				interest_group = ig_landowners
+				ideology = ideology:ideology_moderate
+				on_created = {
+					set_variable = is_romanov
+				}
+			}
+		}
+		hidden_effect = {
+			random_scope_character = {
+				limit = { 
+					is_heir = yes 
+					NOT = { has_variable = is_romanov }
+				}
+				kill_character = yes
+			}
+		}
+	}
+	option = {
+		name = HJE_russia.8.b
+		ai_chance = { base = 0 }
+		set_global_variable = RUS_decided_to_ditch_romanov_dynasty
 	}
 }

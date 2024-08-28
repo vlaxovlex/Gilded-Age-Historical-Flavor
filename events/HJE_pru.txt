@@ -1573,6 +1573,200 @@ HJE_prussia.11 = {			 #Loser has to give up Customs Unions
 	}
 }
 
+# Restoration of House Hohenzollern?: If there's a revolt that's still monarchist, the correct house should be restored or denied ASAP
+HJE_prussia.12 = {
+	type = country_event
+	placement = ROOT
+	title = HJE_prussia.12.t
+	desc = HJE_prussia.12.d
+	flavor = HJE_prussia.12.f
+
+	duration = 3
+
+	event_image = {
+		video = "votp_monarch_holding_court"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/misc/1Character_Banner"
+
+	icon = "gfx/interface/icons/event_icons/event_election.dds"
+
+	trigger = {
+		has_law = law_type:law_monarchy 
+		NOT = { ruler = { has_variable = is_hohenzollern } }
+		NOT = { has_global_variable = PRU_decided_to_ditch_hohenzollern_dynasty }
+		OR = {
+			was_formed_from = PRU
+			AND = { exists = c:PRU c:PRU = ROOT }
+		}
+	}
+
+	immediate = {
+	}
+
+	option = {
+		name = HJE_prussia.12.a
+		default_option = yes
+		ai_chance = { base = 1 }
+		if = {
+			limit = { NOT = { has_global_variable = wilhelm_1_von_preusen_born } }
+			set_global_variable = wilhelm_1_von_preusen_born
+			create_character = {
+				first_name = Wilhelm
+				last_name = von_Hohenzollern
+				historical = yes
+				noble = yes
+				ruler = yes		
+				birth_date = 1797.3.22
+				dna = dna_emperor_wilhelm_1
+				interest_group = ig_landowners
+				female = no
+				ideology = ideology:ideology_royalist
+				traits = {
+					romantic
+					popular_commander
+				}
+				on_created = {
+					set_variable = is_wilhelm_1
+					set_variable = is_hohenzollern
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				year >= 1851
+				has_global_variable = wilhelm_1_von_preusen_born
+				NOT = { has_global_variable = friedrich_3_von_preusen_born }
+			}
+			set_global_variable = friedrich_3_von_preusen_born
+			create_character = {
+				first_name = Friedrich
+				last_name = von_Hohenzollern
+				historical = yes
+				noble = yes
+				ruler = yes		
+				birth_date = 1831.10.18
+				dna = dna_emperor_friedrich_3
+				interest_group = ig_armed_forces
+				female = no
+				ideology = ideology:ideology_radical
+				traits = {
+					cancer
+					popular_commander
+					persistent
+				}
+				on_created = {
+					set_variable = is_friedrich_3
+					set_variable = is_hohenzollern
+					set_variable = weight_does_not_change
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				year >= 1859
+				NOT = { has_global_variable = wilhelm_2_von_preusen_born }
+				OR = {
+					year >= 1879
+					AND = {
+						has_global_variable = wilhelm_1_von_preusen_born
+						has_global_variable = friedrich_3_von_preusen_born
+					}
+				}
+			}
+			set_global_variable = wilhelm_2_von_preusen_born
+			create_character = {
+				first_name = Wilhelm
+				last_name = von_Hohenzollern
+				historical = yes
+				noble = yes
+				ruler = yes		
+				birth_date = 1859.1.27
+				dna = dna_emperor_wilhelm_2
+				interest_group = ig_landowners
+				female = no
+				ideology = ideology:ideology_jingoist_leader
+				traits = {
+					wrathful
+					experienced_colonial_administrator
+					imperious
+					direct
+				}
+				on_created = {
+					set_variable = is_wilhelm_2
+					set_variable = is_hohenzollern
+					set_variable = weight_does_not_change
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				year >= 1883
+				NOT = { has_global_variable = wilhelm_3_von_preusen_born }
+				OR = {
+					year >= 1903
+					AND = {
+						has_global_variable = wilhelm_1_von_preusen_born
+						has_global_variable = friedrich_3_von_preusen_born
+						has_global_variable = wilhelm_2_von_preusen_born
+			        }
+				}
+			}
+			set_global_variable = wilhelm_3_von_preusen_born
+			create_character = {
+				first_name = Wilhelm
+				last_name = von_Hohenzollern
+				historical = yes
+				noble = yes
+				ruler = yes		
+				birth_date = 1882.5.6
+				dna = dna_kronprinz_wilhelm
+				interest_group = ig_landowners
+				female = no
+				ideology = ideology:ideology_royalist
+				traits = {
+					charismatic
+					expensive_tastes
+					popular_commander
+				}
+				on_created = {
+					set_variable = is_kronprinz
+					set_variable = is_hohenzollern
+				}
+			}
+		}
+		else = {
+			create_character = {
+				last_name = von_Hohenzollern
+				female = no
+				ruler = yes
+				noble = yes
+				age = 40
+				interest_group = ig_landowners
+				ideology = ideology:ideology_moderate
+				on_created = {
+					set_variable = is_hohenzollern
+				}
+			}
+		}
+		hidden_effect = {
+			random_scope_character = {
+				limit = { 
+					is_heir = yes 
+					NOT = { has_variable = is_hohenzollern }
+				}
+				kill_character = yes
+			}
+		}
+	}
+	option = {
+		name = HJE_prussia.12.b
+		ai_chance = { base = 0 }
+		set_global_variable = PRU_decided_to_ditch_hohenzollern_dynasty
+	}
+}
+
 namespace = HJE_germany
 
 HJE_germany.3 = { #GER: Question of Austria (or equivalent)

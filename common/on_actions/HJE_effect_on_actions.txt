@@ -402,8 +402,11 @@ hje_heir_born_on_actions = {
 		post_notification = heir_born_notification
 
 		HJE_apply_historical_dynasty_heirs_GBR_effect = yes
-		HJE_apply_historical_dynasty_heirs_PRU_effect = yes
+		HJE_apply_historical_dynasty_heirs_RUS_effect = yes
+		HJE_apply_historical_dynasty_heirs_AUS_effect = yes
 		HJE_apply_historical_dynasty_heirs_TUR_effect = yes
+		HJE_apply_historical_dynasty_heirs_PRU_effect = yes
+		HJE_apply_historical_dynasty_heirs_SAR_effect = yes
 
 		if = {
 			limit = {

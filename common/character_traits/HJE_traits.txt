@@ -1,0 +1,30 @@
+﻿
+hje_hale = {
+	type = condition
+	texture = "gfx/interface/icons/character_trait_icons/persistent.dds"
+
+	character_modifier = {
+		character_health_add = 0.8
+	}
+
+	command_modifier = {
+	}
+
+	country_modifier = {
+	}
+
+	agitator_modifier = {
+	}
+
+	interest_group_modifier = {
+	}
+
+	possible = {
+	}
+
+	weight = {
+	}
+
+	replace = {
+	}
+}

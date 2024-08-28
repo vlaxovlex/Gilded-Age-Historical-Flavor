@@ -16,6 +16,7 @@ aus_ferdinand_I_habsburg_template = {
     }
     on_created = {
         set_variable = is_married
+        set_variable = is_habsburg ## HJE, Ness, needed for heirs to spawn correctly ##
     }
 }
 aus_franz_josef_I_habsburg_template = {
@@ -29,7 +30,12 @@ aus_franz_josef_I_habsburg_template = {
     interest_group = ig_landowners
     ideology = ideology_moderate
     traits = {
+        hje_hale
+        cautious
         trait_child
+    }
+    on_created = {
+        set_variable = is_habsburg ## HJE, Ness, needed for heirs to spawn correctly ##
     }
 }
 
@@ -366,6 +372,7 @@ sar_charles_albert_sardinia_template = {
     }
     on_created = {
         set_variable = is_married
+        set_variable = is_savoy ## HJE, Ness, needed for heirs to spawn correctly ##
     }
 }
 sar_victor_emmanuel_template = {
@@ -380,6 +387,9 @@ sar_victor_emmanuel_template = {
     ideology = ideology_moderate
     traits = {
         ambitious
+    }
+    on_created = {
+        set_variable = is_savoy ## HJE, Ness, needed for heirs to spawn correctly ##
     }
 }
 

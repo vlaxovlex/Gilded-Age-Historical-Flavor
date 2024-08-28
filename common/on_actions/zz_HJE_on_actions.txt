@@ -30,7 +30,11 @@
 		HJE_main.3 					#Malaria Prevention spread
 		HJE_china.5					#China support
 		HJE_britain.25				#GBR Hannover Dynasty Restoration
+		HJE_russia.8				#RUS Romanov Dynasty Restoration
+		HJE_austria.3				#AUS Habsburg Dynasty Restoration
 		HJE_turkey.13				#TUR Ottoman Dynasty Restoration
+		HJE_prussia.12				#PRU Hohenzollern Dynasty Restoration
+		HJE_italy.15				#SAR Savoy Dynasty Restoration
 	}
 	
 	on_actions = { hje_monthly_pulse_on_actions }

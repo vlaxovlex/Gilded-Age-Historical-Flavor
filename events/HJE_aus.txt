@@ -476,6 +476,15 @@ HJE_austria.1 = {
 #			}
 #		}
 #		annex = scope:austrian_bosnia_scope
+		every_diplomatic_play = {
+			limit = {
+				OR = {
+					target_is = scope:austrian_bosnia_scope
+					initiator_is = scope:austrian_bosnia_scope
+				}
+			}
+			end_play = yes
+		}
 		create_diplomatic_pact = {
 			country = scope:austrian_bosnia_scope
 			type = puppet
@@ -519,21 +528,225 @@ HJE_austria.2 = {
 
 	option = {
 		name = HJE_austria.2.a
-		default_option = yes
-		ai_chance = { base = 0 }
+		ai_chance = { base = 1 }
+#		create_diplomatic_play = {
+#			target_state = s:STATE_BOSNIA.region_state:ottoman_bosnia_state_scope.owner
+#            type = dp_return_state
+#			war = no
+#		}
 		create_diplomatic_play = {
-			target_state = s:STATE_BOSNIA.region_state:ottoman_bosnia_state_scope.owner
-            type = dp_return_state
+            type = dp_transfer_subject
+			target_country = c:BOS
 			war = no
 		}
 	}
 
 	option = {
 		name = HJE_austria.2.b
-		ai_chance = { base = 1 }
+		default_option = yes
+		ai_chance = { base = 2 }
 		add_modifier = {
 			name = withdrew_from_colonial_incident
 			months = short_modifier_time
 		}
 	}	
+}
+
+# Restoration of House Habsburg?: If there's a revolt that's still monarchist, the correct house should be restored or denied ASAP
+HJE_austria.3 = {
+	type = country_event
+	placement = ROOT
+	title = HJE_austria.3.t
+	desc = HJE_austria.3.d
+	flavor = HJE_austria.3.f
+
+	duration = 3
+
+	event_image = {
+		video = "votp_monarch_holding_court"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/misc/1Character_Banner"
+
+	icon = "gfx/interface/icons/event_icons/event_election.dds"
+
+	trigger = {
+		has_law = law_type:law_monarchy 
+		NOT = { ruler = { has_variable = is_habsburg } }
+		NOT = { has_global_variable = AUS_decided_to_ditch_habsburg_dynasty }
+		OR = {
+			was_formed_from = AUS
+			AND = { exists = c:AUS owner = c:AUS }
+        }
+	}
+
+	immediate = {
+	}
+
+	option = {
+		name = HJE_austria.3.a
+		default_option = yes
+		ai_chance = { base = 1 }
+		if = {
+			limit = { 
+				year < 1859
+				NOT = { has_global_variable = mexico_max_born } 
+			}
+			set_global_variable = mexico_max_born
+			create_character = {
+				first_name = Maximilian
+				last_name = von_Habsburg
+				historical = yes
+				noble = yes
+				ruler = yes		
+				female = no
+				birth_date = 1832.7.6
+				interest_group = ig_intelligentsia
+				dna = dna_aus_maximilian_01
+				ideology = ideology_humanitarian_royalist
+				traits = {
+					dockyard_master
+					charismatic
+				}
+				on_created = {
+					set_variable = is_habsburg
+					set_variable = is_mexico_max
+					set_variable = weight_does_not_change
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				year >= 1859
+				NOT = { has_global_variable = suicide_rudolf_born }
+				OR = {
+					year >= 1879
+					has_global_variable = mexico_max_born
+				}
+			}
+			set_global_variable = suicide_rudolf_born
+			create_character = {
+				first_name = Rudolf
+				last_name = von_Habsburg
+				historical = yes
+				noble = yes
+				ruler = yes		
+				female = no
+				birth_date = 1858.8.21
+				interest_group = ig_intelligentsia
+				dna = dna_aus_rudolf_01
+				ideology = ideology_reformer
+				traits = {
+					reckless
+					alcoholic
+					psychological_affliction
+				}
+				on_created = {
+					set_variable = is_habsburg
+					set_variable = is_suicide_rudolf
+					set_variable = weight_does_not_change
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				year >= 1864
+				NOT = { has_global_variable = franz_ferdinand_born }
+				OR = { 
+					year >= 1884
+					has_global_variable = mexico_max_born
+					has_global_variable = suicide_rudolf_born
+				}
+			}
+			set_global_variable = franz_ferdinand_born
+			create_character = {
+				first_name = Franz_Ferdinand
+				last_name = von_Habsburg
+				historical = yes
+				noble = yes
+				ruler = yes		
+				female = no
+				birth_date = 1863.12.18
+				interest_group = ig_armed_forces
+				dna = dna_aus_franz_ferdinand_01
+				ideology = ideology_reformer
+				traits = {
+					explorer
+					romantic
+					direct
+					persistent
+				}
+				on_created = {
+					set_variable = is_married
+					set_variable = is_habsburg
+					set_variable = is_franz_ferdinand
+					set_variable = weight_does_not_change
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				year >= 1888
+				NOT = { has_global_variable = kiddie_karl_born }
+				OR = { 
+					year >= 1908
+					AND = {
+						has_global_variable = suicide_rudolf_born
+						has_global_variable = franz_ferdinand_born
+					}
+				}
+			}
+			set_global_variable = kiddie_karl_born
+			create_character = {
+				first_name = Karl
+				last_name = von_Habsburg
+				historical = yes
+				noble = yes
+				ruler = yes		
+				female = no
+				birth_date = 1887.8.17
+				interest_group = ig_devout
+				dna = dna_aus_karl_01
+				ideology = ideology_reformer
+				traits = {
+					pious
+					charismatic
+				}
+				on_created = {
+					set_variable = is_married
+					set_variable = is_habsburg
+					set_variable = is_kiddie_karl
+					set_variable = weight_does_not_change
+				}
+			}
+		}
+		else = {
+			create_character = {
+				last_name = von_Habsburg
+				female = no
+				ruler = yes
+				age = 40
+				interest_group = ig_landowners
+				ideology = ideology:ideology_moderate
+				on_created = {
+					set_variable = is_habsburg
+				}
+			}
+		}
+		hidden_effect = {
+			random_scope_character = {
+				limit = { 
+					is_heir = yes 
+					NOT = { has_variable = is_habsburg }
+				}
+				kill_character = yes
+			}
+		}
+	}
+	option = {
+		name = HJE_austria.3.b
+		ai_chance = { base = 0 }
+		set_global_variable = AUS_decided_to_ditch_habsburg_dynasty
+	}
 }

@@ -588,19 +588,19 @@ HJE_apply_historical_dynasty_heirs_GBR_effect = {
 			owner = { 
 				has_law = law_type:law_monarchy 
 				ruler = { has_variable = is_hannover }
+				OR = {
+					AND = { 
+						exists = c:ENG
+						owner = c:ENG
+		            }
+		            AND = { 
+						NOT = { exists = c:ENG }
+						exists = c:GBR
+						owner = c:GBR
+						c:GBR = { owns_entire_state_region = STATE_HOME_COUNTIES }
+		            }
+		        }
 			}
-			OR = {
-				AND = { 
-					exists = c:ENG
-					owner = c:ENG
-	            }
-	            AND = { 
-					NOT = { exists = c:ENG }
-					exists = c:GBR
-					owner = c:GBR
-					c:GBR = { owns_entire_state_region = STATE_HOME_COUNTIES }
-	            }
-	        }
 		}
 		set_global_variable = edward_7_of_england_born
 		owner = {
@@ -608,6 +608,7 @@ HJE_apply_historical_dynasty_heirs_GBR_effect = {
 				first_name = Edward
 				last_name = Hannover
 				historical = yes
+				noble = yes
 				heir = yes		
 				age = 0
 				interest_group = ig_armed_forces
@@ -634,19 +635,19 @@ HJE_apply_historical_dynasty_heirs_GBR_effect = {
 			owner = { 
 				has_law = law_type:law_monarchy 
 				ruler = { has_variable = is_hannover }
+				OR = {
+					AND = { 
+						exists = c:ENG
+						owner = c:ENG
+		            }
+		            AND = { 
+						NOT = { exists = c:ENG }
+						exists = c:GBR
+						owner = c:GBR
+						c:GBR = { owns_entire_state_region = STATE_HOME_COUNTIES }
+		            }
+		        }
 			}
-			OR = {
-				AND = { 
-					exists = c:ENG
-					owner = c:ENG
-	            }
-	            AND = { 
-					NOT = { exists = c:ENG }
-					exists = c:GBR
-					owner = c:GBR
-					c:GBR = { owns_entire_state_region = STATE_HOME_COUNTIES }
-	            }
-	        }
 		}
 		set_global_variable = edward_7_of_england_born
 		owner = {
@@ -654,6 +655,7 @@ HJE_apply_historical_dynasty_heirs_GBR_effect = {
 				first_name = Edward
 				last_name = Hannover
 				historical = yes
+				noble = yes
 				heir = yes		
 				birth_date = 1841.11.9
 				interest_group = ig_armed_forces
@@ -681,19 +683,19 @@ HJE_apply_historical_dynasty_heirs_GBR_effect = {
 			owner = { 
 				has_law = law_type:law_monarchy 
 				ruler = { has_variable = is_hannover }
+				OR = {
+					AND = { 
+						exists = c:ENG
+						owner = c:ENG
+		            }
+		            AND = { 
+						NOT = { exists = c:ENG }
+						exists = c:GBR
+						owner = c:GBR
+						c:GBR = { owns_entire_state_region = STATE_HOME_COUNTIES }
+		            }
+		        }
 			}
-			OR = {
-				AND = { 
-					exists = c:ENG
-					owner = c:ENG
-	            }
-	            AND = { 
-					NOT = { exists = c:ENG }
-					exists = c:GBR
-					owner = c:GBR
-					c:GBR = { owns_entire_state_region = STATE_HOME_COUNTIES }
-	            }
-	        }
 		}
 		set_global_variable = george_5_of_england_born
 		owner = {
@@ -701,6 +703,7 @@ HJE_apply_historical_dynasty_heirs_GBR_effect = {
 				first_name = George
 				last_name = Hannover
 				historical = yes
+				noble = yes
 				heir = yes		
 				birth_date = 1865.6.3
 				interest_group = ig_armed_forces
@@ -728,19 +731,19 @@ HJE_apply_historical_dynasty_heirs_GBR_effect = {
 			owner = { 
 				has_law = law_type:law_monarchy 
 				ruler = { has_variable = is_hannover }
+				OR = {
+					AND = { 
+						exists = c:ENG
+						owner = c:ENG
+		            }
+		            AND = { 
+						NOT = { exists = c:ENG }
+						exists = c:GBR
+						owner = c:GBR
+						c:GBR = { owns_entire_state_region = STATE_HOME_COUNTIES }
+		            }
+		        }
 			}
-			OR = {
-				AND = { 
-					exists = c:ENG
-					owner = c:ENG
-	            }
-	            AND = { 
-					NOT = { exists = c:ENG }
-					exists = c:GBR
-					owner = c:GBR
-					c:GBR = { owns_entire_state_region = STATE_HOME_COUNTIES }
-	            }
-	        }
 		}
 		set_global_variable = edward_8_of_england_born
 		owner = {
@@ -748,6 +751,7 @@ HJE_apply_historical_dynasty_heirs_GBR_effect = {
 				first_name = Edward
 				last_name = Windsor
 				historical = yes
+				noble = yes
 				heir = yes		
 				birth_date = 1894.6.23
 				interest_group = ig_petty_bourgeoisie
@@ -794,25 +798,11 @@ HJE_apply_historical_dynasty_heirs_PRU_effect = {
 			owner = { 
 				has_law = law_type:law_monarchy 
 				ruler = { has_variable = is_hohenzollern }
+				OR = {
+					was_formed_from = PRU
+					AND = { exists = c:PRU owner = c:PRU }
+		        }
 			}
-			OR = {
-				AND = { 
-					exists = c:PRU
-					owner = c:PRU
-	            }
-	            AND = { 
-					NOT = { exists = c:PRU }
-					exists = c:GER
-					owner = c:GER
-					c:GER = { owns_entire_state_region = STATE_BRANDENBURG }
-	            }
-				AND = { 
-					NOT = { exists = c:PRU }
-					exists = c:NGF
-					owner = c:NGF
-					c:NGF = { owns_entire_state_region = STATE_BRANDENBURG }
-	            }
-	        }
 		}
 		set_global_variable = wilhelm_1_von_preusen_born
 		owner = {
@@ -820,6 +810,7 @@ HJE_apply_historical_dynasty_heirs_PRU_effect = {
 				first_name = Wilhelm
 				last_name = von_Hohenzollern
 				historical = yes
+				noble = yes
 				heir = yes		
 				birth_date = 1797.3.22
 				dna = dna_emperor_wilhelm_1
@@ -845,25 +836,11 @@ HJE_apply_historical_dynasty_heirs_PRU_effect = {
 			owner = { 
 				has_law = law_type:law_monarchy 
 				ruler = { has_variable = is_hohenzollern }
+				OR = {
+					was_formed_from = PRU
+					AND = { exists = c:PRU owner = c:PRU }
+		        }
 			}
-			OR = {
-				AND = { 
-					exists = c:PRU
-					owner = c:PRU
-	            }
-	            AND = { 
-					NOT = { exists = c:PRU }
-					exists = c:GER
-					owner = c:GER
-					c:GER = { owns_entire_state_region = STATE_BRANDENBURG }
-	            }
-				AND = { 
-					NOT = { exists = c:PRU }
-					exists = c:NGF
-					owner = c:NGF
-					c:NGF = { owns_entire_state_region = STATE_BRANDENBURG }
-	            }
-	        }
 		}
 		set_global_variable = friedrich_3_von_preusen_born
 		owner = {
@@ -871,6 +848,7 @@ HJE_apply_historical_dynasty_heirs_PRU_effect = {
 				first_name = Friedrich
 				last_name = von_Hohenzollern
 				historical = yes
+				noble = yes
 				heir = yes		
 				birth_date = 1831.10.18
 				dna = dna_emperor_friedrich_3
@@ -899,25 +877,11 @@ HJE_apply_historical_dynasty_heirs_PRU_effect = {
 			owner = { 
 				has_law = law_type:law_monarchy 
 				ruler = { has_variable = is_hohenzollern }
+				OR = {
+					was_formed_from = PRU
+					AND = { exists = c:PRU owner = c:PRU }
+		        }
 			}
-			OR = {
-				AND = { 
-					exists = c:PRU
-					owner = c:PRU
-	            }
-	            AND = { 
-					NOT = { exists = c:PRU }
-					exists = c:GER
-					owner = c:GER
-					c:GER = { owns_entire_state_region = STATE_BRANDENBURG }
-	            }
-				AND = { 
-					NOT = { exists = c:PRU }
-					exists = c:NGF
-					owner = c:NGF
-					c:NGF = { owns_entire_state_region = STATE_BRANDENBURG }
-	            }
-	        }
 		}
 		set_global_variable = wilhelm_2_von_preusen_born
 		owner = {
@@ -925,6 +889,7 @@ HJE_apply_historical_dynasty_heirs_PRU_effect = {
 				first_name = Wilhelm
 				last_name = von_Hohenzollern
 				historical = yes
+				noble = yes
 				heir = yes		
 				birth_date = 1859.1.27
 				dna = dna_emperor_wilhelm_2
@@ -955,25 +920,11 @@ HJE_apply_historical_dynasty_heirs_PRU_effect = {
 			owner = { 
 				has_law = law_type:law_monarchy 
 				ruler = { has_variable = is_hohenzollern }
+				OR = {
+					was_formed_from = PRU
+					AND = { exists = c:PRU owner = c:PRU }
+		        }
 			}
-			OR = {
-				AND = { 
-					exists = c:PRU
-					owner = c:PRU
-	            }
-	            AND = { 
-					NOT = { exists = c:PRU }
-					exists = c:GER
-					owner = c:GER
-					c:GER = { owns_entire_state_region = STATE_BRANDENBURG }
-	            }
-				AND = { 
-					NOT = { exists = c:PRU }
-					exists = c:NGF
-					owner = c:NGF
-					c:NGF = { owns_entire_state_region = STATE_BRANDENBURG }
-	            }
-	        }
 		}
 		set_global_variable = wilhelm_3_von_preusen_born
 		owner = {
@@ -981,6 +932,7 @@ HJE_apply_historical_dynasty_heirs_PRU_effect = {
 				first_name = Wilhelm
 				last_name = von_Hohenzollern
 				historical = yes
+				noble = yes
 				heir = yes		
 				birth_date = 1882.5.6
 				dna = dna_kronprinz_wilhelm
@@ -1023,9 +975,9 @@ HJE_apply_historical_dynasty_heirs_TUR_effect = {
 	if = {
 		limit = {
 			NOT = { has_global_variable = abdulaziz_1_born }
-			exists = c:TUR
-			owner = c:TUR
 			owner = { 
+				exists = c:TUR
+				owner = c:TUR
 				has_law = law_type:law_monarchy 
 				ruler = { has_variable = is_osmanoglu }
 			}
@@ -1036,6 +988,7 @@ HJE_apply_historical_dynasty_heirs_TUR_effect = {
 				first_name = Abdulaziz
 				last_name = Osmanoglu
 				historical = yes
+				noble = yes
 				female = no
 				heir = yes		
 				birth_date = 1830.2.8
@@ -1058,9 +1011,9 @@ HJE_apply_historical_dynasty_heirs_TUR_effect = {
 			year >= 1841
 			has_global_variable = abdulaziz_1_born
 			NOT = { has_global_variable = murad_5_born }
-			exists = c:TUR
-			owner = c:TUR
 			owner = { 
+				exists = c:TUR
+				owner = c:TUR
 				has_law = law_type:law_monarchy 
 				ruler = { has_variable = is_osmanoglu }
 			}
@@ -1071,6 +1024,7 @@ HJE_apply_historical_dynasty_heirs_TUR_effect = {
 				first_name = Murad
 				last_name = Osmanoglu
 				historical = yes
+				noble = yes
 				female = no
 				heir = yes		
 				birth_date = 1840.9.21
@@ -1110,6 +1064,7 @@ HJE_apply_historical_dynasty_heirs_TUR_effect = {
 				first_name = Abdulmecid
 				last_name = Osmanoglu
 				historical = yes
+				noble = yes
 				female = no
 				heir = yes		
 				birth_date = 1868.5.30
@@ -1144,6 +1099,667 @@ HJE_apply_historical_dynasty_heirs_TUR_effect = {
 				NOT = { has_variable = is_osmanoglu }
 			}
 			set_variable = is_osmanoglu
+		}
+	}
+}
+
+HJE_apply_historical_dynasty_heirs_RUS_effect = {
+	if = {
+		limit = {
+			year < 1844
+			NOT = { has_global_variable = tsarevich_nicky_born }
+			owner = { 
+				exists = c:RUS
+				owner = c:RUS
+				has_law = law_type:law_monarchy 
+				ruler = { 
+					has_variable = is_romanov 
+					has_variable = is_aleksandr_ii
+				}
+			}
+		}
+		set_global_variable = tsarevich_nicky_born
+		owner = {
+			create_character = {
+				first_name = Nikolai
+				last_name = Romanov
+				historical = yes
+				noble = yes
+				heir = yes
+				age = 0
+				female = no
+				dna = dna_tsarevich_nicholas
+				interest_group = ig_intelligentsia
+				ideology = ideology_reformer
+				traits = {
+					erudite 
+					romantic
+				}
+				on_created = {
+					set_variable = is_tserevich_nicky
+					set_variable = is_romanov
+				}
+			}
+		}
+	}
+	else_if = {
+		limit = {
+			year >= 1844
+			NOT = { has_global_variable = tsarevich_nicky_born }
+			owner = { 
+				exists = c:RUS
+				owner = c:RUS
+				has_law = law_type:law_monarchy 
+				ruler = { 
+					has_variable = is_romanov 
+					has_variable = is_aleksandr_ii
+				}
+			}
+		}
+		set_global_variable = tsarevich_nicky_born
+		owner = {
+			create_character = {
+				first_name = Nikolai
+				last_name = Romanov
+				historical = yes
+				noble = yes
+				heir = yes
+				female = no
+				birth_date = 1843.9.8
+				dna = dna_tsarevich_nicholas
+				interest_group = ig_intelligentsia
+				ideology = ideology_reformer
+				traits = {
+					erudite 
+					romantic
+				}
+				on_created = {
+					set_variable = is_tserevich_nicky
+					set_variable = is_romanov
+				}
+			}
+		}
+	}
+	if = {
+		limit = {
+			year < 1846
+			NOT = { has_global_variable = aleksandr_iii_born }
+			owner = { 
+				exists = c:RUS
+				owner = c:RUS
+				has_law = law_type:law_monarchy 
+				ruler = { 
+					has_variable = is_romanov 
+					NOT = { has_variable = is_aleksandr_ii }
+				}
+			}
+		}
+		set_global_variable = aleksandr_iii_born
+		owner = {
+			create_character = {
+				first_name = alexander_iii_first_name
+				last_name = Romanov
+				historical = yes
+				noble = yes
+				heir = yes
+				age = 0
+				female = no
+				dna = dna_tsar_alexander_03
+				interest_group = ig_landowners
+				ideology = ideology_traditionalist
+				traits = {
+					imposing
+					charismatic
+					bigoted
+				}
+				on_created = {
+					set_variable = is_alex_iii
+					set_variable = is_romanov
+				}
+			}
+		}
+	}
+	else_if = {
+		limit = {
+			year >= 1846
+			NOT = { has_global_variable = aleksandr_iii_born }
+			owner = { 
+				exists = c:RUS
+				owner = c:RUS
+				has_law = law_type:law_monarchy
+				ruler = { 
+					has_variable = is_romanov 
+					NOT = { has_variable = is_aleksandr_ii }
+				}
+			}
+		}
+		set_global_variable = aleksandr_iii_born
+		owner = {
+			create_character = {
+				first_name = alexander_iii_first_name
+				last_name = Romanov
+				historical = yes
+				noble = yes
+				heir = yes
+				female = no
+				birth_date = 1845.3.10
+				dna = dna_tsar_alexander_03
+				interest_group = ig_landowners
+				ideology = ideology_traditionalist
+				traits = {
+					imposing
+					charismatic
+					bigoted
+				}
+				on_created = {
+					set_variable = is_alex_iii
+					set_variable = is_romanov
+				}
+			}
+		}
+	}
+	if = {
+		limit = {
+			year < 1869
+			has_global_variable = aleksandr_iii_born
+			NOT = { has_global_variable = nicky_ii_born }
+			owner = { 
+				exists = c:RUS
+				owner = c:RUS
+				has_law = law_type:law_monarchy
+				ruler = { 
+					has_variable = is_romanov 
+					NOT = { has_variable = is_aleksandr_ii }
+				}
+			}
+		}
+		set_global_variable = nicky_ii_born
+		owner = {
+			create_character = {
+				# That guy who got shot by the Bolsheviks
+				first_name = "nicholas_ii_first_name"
+				last_name = Romanov
+				historical = yes
+				noble = yes
+				heir = yes
+				age = 0
+				female = no
+				dna = dna_tsar_nicolas_02
+				interest_group = ig_landowners
+				ideology = ideology_authoritarian
+				traits = {
+					imperious 
+					arrogant
+					pious
+					scarred #Otsu Incident, should probably be made an event
+				}
+				on_created = {
+					set_variable = is_nicky_ii
+					set_variable = is_romanov
+				}
+			}
+		}
+	}
+	else_if = {
+		limit = {
+			year >= 1869
+			has_global_variable = aleksandr_iii_born
+			NOT = { has_global_variable = nicky_ii_born }
+			owner = { 
+				exists = c:RUS
+				owner = c:RUS
+				has_law = law_type:law_monarchy
+				ruler = { 
+					has_variable = is_romanov 
+					NOT = { has_variable = is_aleksandr_ii }
+				}
+			}
+		}
+		set_global_variable = nicky_ii_born
+		owner = {
+			create_character = {
+				# That guy who got shot by the Bolsheviks
+				first_name = "nicholas_ii_first_name"
+				last_name = Romanov
+				historical = yes
+				noble = yes
+				heir = yes
+				female = no
+				birth_date = 1868.5.18
+				dna = dna_tsar_nicolas_02
+				interest_group = ig_landowners
+				ideology = ideology_authoritarian
+				traits = {
+					imperious 
+					arrogant
+					pious
+					scarred #Otsu Incident, should probably be made an event
+				}
+				on_created = {
+					set_variable = is_nicky_ii
+					set_variable = is_romanov
+				}
+			}
+		}
+	}
+	if = {
+		limit = {
+			year < 1905
+			has_global_variable = aleksandr_iii_born
+			has_global_variable = nicky_ii_born
+			NOT = { has_global_variable = sick_alexei_born }
+			owner = { 
+				exists = c:RUS
+				owner = c:RUS
+				has_law = law_type:law_monarchy
+				ruler = { 
+					has_variable = is_romanov 
+					NOT = { has_variable = is_aleksandr_ii }
+				}
+			}
+		}
+		set_global_variable = sick_alexei_born
+		owner = {
+			create_character = {
+				first_name = Alexei
+				last_name = Romanov
+				historical = yes
+				noble = yes
+				heir = yes
+				female = no
+				birth_date = 1904.8.12
+				interest_group = ig_landowners
+				ideology = ideology_jingoist_leader
+				traits = {
+					sickly 
+					romantic
+					arrogant
+				}
+				on_created = {
+					set_variable = alexei_alexei_musnt_run_musnt_climb_must_be_careful_all_the_time
+					set_variable = is_romanov
+				}
+			}
+		}
+	}
+	else_if = {
+		limit = {
+			year >= 1905
+			has_global_variable = aleksandr_iii_born
+			has_global_variable = nicky_ii_born
+			NOT = { has_global_variable = sick_alexei_born }
+			owner = { 
+				exists = c:RUS
+				owner = c:RUS
+				has_law = law_type:law_monarchy
+				ruler = { 
+					has_variable = is_romanov 
+					NOT = { has_variable = is_aleksandr_ii }
+				}
+			}
+		}
+		set_global_variable = sick_alexei_born
+		owner = {
+			create_character = {
+				first_name = Alexei
+				last_name = Romanov
+				historical = yes
+				noble = yes
+				heir = yes
+				female = no
+				birth_date = 1904.8.12
+				interest_group = ig_landowners
+				ideology = ideology_jingoist_leader
+				traits = {
+					sickly 
+					romantic
+					arrogant
+				}
+				on_created = {
+					set_variable = alexei_alexei_musnt_run_musnt_climb_must_be_careful_all_the_time
+					set_variable = is_romanov
+				}
+			}
+		}
+	}
+	if = {
+		limit = {
+			owner = {
+				has_law = law_type:law_monarchy 
+				ruler = { 
+					has_variable = is_romanov 
+					is_historical = no
+				}
+			}
+		}
+		random_scope_character = {
+			limit = { 
+				is_heir = yes 
+				NOT = { has_variable = is_romanov }
+			}
+			set_variable = is_romanov
+		}
+	}
+}
+
+HJE_apply_historical_dynasty_heirs_AUS_effect = {
+	if = {
+		limit = {
+			year < 1859
+			NOT = { has_global_variable = suicide_rudolf_born }
+			owner = { 
+				has_law = law_type:law_monarchy 
+				ruler = { has_variable = is_habsburg }
+				OR = {
+					was_formed_from = AUS
+					AND = { exists = c:AUS owner = c:AUS }
+		        }
+			}
+		}
+		set_global_variable = suicide_rudolf_born
+		owner = {
+			create_character = {
+				first_name = Rudolf
+				last_name = von_Habsburg
+				historical = yes
+				noble = yes
+				heir = yes		
+				female = no
+				age = 0
+				interest_group = ig_intelligentsia
+				dna = dna_aus_rudolf_01
+				ideology = ideology_reformer
+				traits = {
+					reckless
+					alcoholic
+					psychological_affliction
+				}
+				on_created = {
+					set_variable = is_habsburg
+					set_variable = is_suicide_rudolf
+					set_variable = weight_does_not_change
+				}
+			}
+		}
+	}
+	else_if = {
+		limit = {
+			year >= 1859
+			NOT = { has_global_variable = suicide_rudolf_born }
+			owner = { 
+				has_law = law_type:law_monarchy 
+				ruler = { has_variable = is_habsburg }
+				OR = {
+					was_formed_from = AUS
+					AND = { exists = c:AUS owner = c:AUS }
+		        }
+			}
+		}
+		set_global_variable = suicide_rudolf_born
+		owner = {
+			create_character = {
+				first_name = Rudolf
+				last_name = von_Habsburg
+				historical = yes
+				noble = yes
+				heir = yes		
+				female = no
+				birth_date = 1858.8.21
+				interest_group = ig_intelligentsia
+				dna = dna_aus_rudolf_01
+				ideology = ideology_reformer
+				traits = {
+					reckless
+					alcoholic
+					psychological_affliction
+				}
+				on_created = {
+					set_variable = is_habsburg
+					set_variable = is_suicide_rudolf
+					set_variable = weight_does_not_change
+				}
+			}
+		}
+	}
+	if = {
+		limit = {
+			year >= 1864
+			has_global_variable = suicide_rudolf_born
+			NOT = { has_global_variable = franz_ferdinand_born }
+			owner = { 
+				has_law = law_type:law_monarchy 
+				ruler = { has_variable = is_habsburg }
+				OR = {
+					was_formed_from = AUS
+					AND = { exists = c:AUS owner = c:AUS }
+		        }
+			}
+		}
+		set_global_variable = franz_ferdinand_born
+		owner = {
+			create_character = {
+				first_name = Franz_Ferdinand
+				last_name = von_Habsburg
+				historical = yes
+				noble = yes
+				heir = yes		
+				female = no
+				birth_date = 1863.12.18
+				interest_group = ig_armed_forces
+				dna = dna_aus_franz_ferdinand_01
+				ideology = ideology_reformer
+				traits = {
+					explorer
+					romantic
+					direct
+					persistent
+				}
+				on_created = {
+					set_variable = is_married
+					set_variable = is_habsburg
+					set_variable = is_franz_ferdinand
+					set_variable = weight_does_not_change
+				}
+			}
+		}
+	}
+	if = {
+		limit = {
+			year >= 1888
+			has_global_variable = suicide_rudolf_born
+			has_global_variable = franz_ferdinand_born
+			NOT = { has_global_variable = kiddie_karl_born }
+			owner = { 
+				has_law = law_type:law_monarchy 
+				ruler = { has_variable = is_habsburg }
+				OR = {
+					was_formed_from = AUS
+					AND = { exists = c:AUS owner = c:AUS }
+		        }
+			}
+		}
+		set_global_variable = kiddie_karl_born
+		owner = {
+			create_character = {
+				first_name = Karl
+				last_name = von_Habsburg
+				historical = yes
+				noble = yes
+				heir = yes		
+				female = no
+				birth_date = 1887.8.17
+				interest_group = ig_devout
+				dna = dna_aus_karl_01
+				ideology = ideology_reformer
+				traits = {
+					pious
+					charismatic
+				}
+				on_created = {
+					set_variable = is_married
+					set_variable = is_habsburg
+					set_variable = is_kiddie_karl
+					set_variable = weight_does_not_change
+				}
+			}
+		}
+	}
+	if = {
+		limit = {
+			owner = {
+				has_law = law_type:law_monarchy 
+				ruler = { 
+					has_variable = is_habsburg 
+					is_historical = no
+				}
+			}
+		}
+		random_scope_character = {
+			limit = { 
+				is_heir = yes 
+				NOT = { has_variable = is_habsburg }
+			}
+			set_variable = is_habsburg
+		}
+	}
+}
+
+HJE_apply_historical_dynasty_heirs_SAR_effect = {
+	if = {
+		limit = {
+			year < 1845
+			NOT = { has_global_variable = umberto_i_born }
+			owner = { 
+				has_law = law_type:law_monarchy 
+				ruler = { has_variable = is_savoy }
+				OR = {
+					was_formed_from = SAR
+					AND = { exists = c:SAR owner = c:SAR }
+		        }
+			}
+		}
+		set_global_variable = umberto_i_born
+		owner = {
+			create_character = {
+				first_name = Umberto
+				last_name = di_Savoia
+				historical = yes
+				noble = yes
+				heir = yes		
+				female = no
+				age = 0
+				interest_group = ig_petty_bourgeoisie
+				dna = dna_sar_umberto_01
+				ideology = ideology_authoritarian
+				traits = {
+					wrathful
+					cruel
+					direct	
+				}
+				on_created = {
+					set_variable = is_savoy
+					set_variable = is_umberto_i
+					set_variable = weight_does_not_change
+				}
+			}
+		}
+	}
+	else_if = {
+		limit = {
+			year >= 1845
+			NOT = { has_global_variable = umberto_i_born }
+			owner = { 
+				has_law = law_type:law_monarchy 
+				ruler = { has_variable = is_savoy }
+				OR = {
+					was_formed_from = SAR
+					AND = { exists = c:SAR owner = c:SAR }
+		        }
+			}
+		}
+		set_global_variable = umberto_i_born
+		owner = {
+			create_character = {
+				first_name = Umberto
+				last_name = di_Savoia
+				historical = yes
+				noble = yes
+				heir = yes		
+				female = no
+				birth_date = 1844.3.14
+				interest_group = ig_petty_bourgeoisie
+				dna = dna_sar_umberto_01
+				ideology = ideology_authoritarian
+				traits = {
+					wrathful
+					cruel
+					direct	
+				}
+				on_created = {
+					set_variable = is_married
+					set_variable = is_savoy
+					set_variable = is_umberto_i
+					set_variable = weight_does_not_change
+				}
+			}
+		}
+	}
+	if = {
+		limit = {
+			year >= 1870
+			has_global_variable = umberto_i_born
+			NOT = { has_global_variable = vittoro_emmanuele_iii_born }
+			owner = { 
+				has_law = law_type:law_monarchy 
+				ruler = { has_variable = is_savoy }
+				OR = {
+					was_formed_from = SAR
+					AND = { exists = c:SAR owner = c:SAR }
+		        }
+			}
+		}
+		set_global_variable = vittoro_emmanuele_iii_born
+		owner = {
+			create_character = {
+				first_name = Vittorio_Emanuele
+				last_name = di_Savoia
+				historical = yes
+				noble = yes
+				heir = yes		
+				female = no
+				birth_date = 1869.11.11
+				interest_group = ig_petty_bourgeoisie
+				dna = dna_sar_vittorio_emanuele_03
+				ideology = ideology_moderate
+				traits = {
+					tactful	
+					reserved
+				}
+				on_created = {
+					set_variable = is_married
+					set_variable = is_savoy
+					set_variable = is_victor_emmanuel_iii
+					set_variable = weight_does_not_change
+				}
+			}
+		}
+	}
+	if = {
+		limit = {
+			owner = {
+				has_law = law_type:law_monarchy 
+				ruler = { 
+					has_variable = is_savoy 
+					is_historical = no
+				}
+			}
+		}
+		random_scope_character = {
+			limit = { 
+				is_heir = yes 
+				NOT = { has_variable = is_savoy }
+			}
+			set_variable = is_savoy
 		}
 	}
 }
