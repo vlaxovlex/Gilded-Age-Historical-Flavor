@@ -83,14 +83,16 @@ TGE_russia.2 = {
 		add_journal_entry = { type = je_tge_military_reform }
 		add_journal_entry = { type = je_tge_melikovs_constitution }
 		if = {
-			limit = {
-				NOT = {
-					any_scope_character = {
-						is_heir = yes
-						has_variable = is_aleksandr_ii
-					}
+			limit = { ruler = { has_variable = is_aleksandr_ii } }
+			ruler = {
+				add_modifier = {
+					name = modifier_alexander_ii
+					months = very_long_modifier_time
 				}
 			}
+		}
+		else_if = {
+			limit = { NOT = { heir = { has_variable = is_aleksandr_ii } } }
 			create_character = {
 				# Alexander II of Russia
 				first_name = Aleksandr
@@ -109,6 +111,10 @@ TGE_russia.2 = {
 			    on_created = {
 			        set_variable = is_aleksandr_ii ## HJE ##
 			        set_variable = is_romanov ## HJE, Ness, needed for heirs to spawn correctly ##
+					add_modifier = {
+						name = modifier_alexander_ii
+						months = very_long_modifier_time
+					}
 			    }
 			}
 			hidden_effect = {
@@ -116,18 +122,24 @@ TGE_russia.2 = {
 					limit = { is_heir = yes }
 					kill_character = yes
 				}
+				ruler = {
+					add_modifier = {
+						name = modifier_alexander_ii
+						months = very_long_modifier_time
+					}
+				}
 			}
 		}
 		else = {
+			heir = {
+				add_modifier = {
+					name = modifier_alexander_ii
+					months = very_long_modifier_time
+				}
+			}
 			random_scope_character = {
 				limit = { is_ruler = yes }
 				kill_character = yes
-			}
-		}
-		ruler = {
-			add_modifier = {
-				name = modifier_alexander_ii
-				months = very_long_modifier_time
 			}
 		}
 	}
