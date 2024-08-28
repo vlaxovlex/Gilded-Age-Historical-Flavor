@@ -2359,7 +2359,7 @@ ai_strategy_default = {
 					}
 				}
 			}
-			add = 10     #HJE edit 1
+			add = 5     #HJE edit 1
 		}
 	
 		# Greek Nationalism
@@ -6173,10 +6173,11 @@ ai_strategy_default = {
 				add = 1000
 			}	
 			
-			# Opium War 2 aggressor should be HYPER aggressive against target if their markets are closed
+				# Opium War 2 aggressor should be HYPER aggressive against target if their markets are closed
 			if = {
 				limit = {
 					OR = {
+						has_journal_entry = je_opium_wars
 						has_journal_entry = HJ_opium_wars
 						has_journal_entry = HJ_opium_wars_unhistorical
 					}
@@ -6193,10 +6194,17 @@ ai_strategy_default = {
 							exists = c:USA
 							c:USA = THIS
 						}
+						AND = {
+							exists = c:RUS
+							c:RUS = THIS
+						}
 					}
 					scope:target_country = {
-						has_variable = var_dynamic_opium_wars_victim
-						any_overlord_or_above = { has_variable = var_dynamic_opium_wars_victim }
+						OR = {
+							has_variable = opium_wars_target
+							has_variable = var_dynamic_opium_wars_victim
+							any_overlord_or_above = { has_variable = var_dynamic_opium_wars_victim }
+						}
 					}
 				}
 				add = 1000

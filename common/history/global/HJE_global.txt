@@ -180,6 +180,7 @@ GLOBAL = {
 			NOT = {
 				exists = c:CAR
 				exists = c:CSP
+				exists = c:VTM_CSP
 			}
 		}
 		create_country = {

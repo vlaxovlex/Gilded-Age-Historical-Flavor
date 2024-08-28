@@ -529,12 +529,8 @@ je_german_unification = {
 			else = {
 				trigger_event = { id = german_unification.2 days = 0 popup = yes }
 			}
-		}	
-		
-		set_global_variable = {
-			name = ger_dual_alliance_event_globvar
-			months = 144
 		}	#HJE edit end
+		
 	}
 
 	status_desc = {
@@ -551,6 +547,13 @@ je_german_unification = {
 			c:HRE ?= THIS
 		}
 	}
+	
+	immediate = {	#HJE edit start
+		set_global_variable = {
+			name = ger_dual_alliance_event_globvar
+			months = 192
+		}	
+	}				#HJE edit end
 
 	weight = 1000
 	should_be_pinned_by_default = yes
