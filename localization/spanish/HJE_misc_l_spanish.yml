@@ -721,8 +721,8 @@ modifier_liberal_win:0 "¡Victoria Liberal!"
  DIPLOMATIC_ACCEPTANCE_UNIFICATION_CANDIDATE:0 "Es [Concept('concept_unification_candidate', 'candidato a la unificación')] de Alemania"
  
  #NEW TEXT:
- ideology_hje_estatist:0 "Estatist"
- ideology_hje_estatist_desc:0 "This group believes that the traditional powers and privileges of the nobility should be preserved within a system of limited monarchy. This group believes that the monarch's authority should be constrained by a constitution and a legislative body dominated by the aristocratic class."
+ ideology_hje_estatist:0 "Estate Constitutionalist"
+ ideology_hje_estatist_desc:0 "This group believes that the traditional powers and privileges of the nobility should be preserved within a system of executive authority, and that said authority should be constrained by a constitution and a legislative body dominated by the aristocratic class."
  ideology_hje_conservative:0 "Conservative"
  ideology_hje_conservative:0 "This group believes that traditional social and moral values should be defended through an assertive foreign policy and a strong military, in order to promote the interests of their nation and combat perceived threats from rival powers or ideologies."
  ideology_hje_libertarian:0 "Libertarian"
