@@ -56,17 +56,23 @@
 			custom_tooltip = {
 				text = chihumiliation_no_gp_treaty_ports_tt
 				NOT = {
-					is_at_war = yes
-					is_revolutionary = yes							
-					has_revolution = yes 
 					any_country = {
-						country_rank = rank_value:great_power
+						country_rank >= rank_value:major_power
 						any_scope_state = {
 							is_treaty_port = yes
 							state_region = {
 								any_scope_state = {
 									is_treaty_port = no
-									owner = { has_variable = var_dynamic_opium_wars_victim }
+									owner = { 
+										OR = {
+											country_has_primary_culture = cu:han
+											has_variable = var_dynamic_opium_wars_victim 
+										}
+										NOR = {
+											is_revolutionary = yes	
+											is_diplomatic_play_committed_participant = yes
+										}
+									}
 								}
 							}
 						}
@@ -79,7 +85,12 @@
 	on_complete = {
 		remove_global_variable = globvar_dynamic_opium_wars
 		every_country = {
-			limit = { has_variable = var_dynamic_opium_wars_victim }
+			limit = {
+				OR = {
+					country_has_primary_culture = cu:han
+					has_variable = var_dynamic_opium_wars_victim 
+				}
+			}
 			remove_variable = var_dynamic_opium_wars_victim
 			if = {
 				limit = { NOT = { is_country_type = recognized } } 	#this should probably be made an event at some point

@@ -467,8 +467,15 @@
 
  #НОВЫЙ ТЕКСТ:
  hje_hale:0 "Hale"
+ hje_hale_desc:0 "This character eats his vegetables, goes on long walks, and avoids miasmatic vapours."
 
 
 
 
  #ПЕРЕПИСАННЫЙ ТЕКСТ:
+ rule_ottoman_colour:0 "Gilded Age: Ottoman Colour"
+ rule_austro_hungarian_colour:0 "Gilded Age: Austro-Hungarian Colour"
+ rule_csa_flag:0 "Gilded Age: Confederate States Flag"
+ rule_ultra_historical_politics_compatibility:0 "Gilded Age: compatibility with Ultra Historical Politics"
+ setting_ultra_historical_politics_compatibility_no_desc:0 "You cannot use Ultra Historical Politics with Gilded Age."
+ setting_ultra_historical_politics_compatibility_yes_desc:0 "You can use Ultra Historical Politics along with Gilded Age if you place Gilded Age below Ultra Historical Politics in the load order." 
