@@ -379,6 +379,14 @@ HJE_ideologies_effect = {
 			GovPlus_is_active_trigger = no
 			reactionary_revolution_ongoing = no
 			has_law = law_type:law_monarchy	
+			NOR = { ## is not a historically autocratic country
+				AND = { exists = c:FRA c:FRA = ROOT year < 1870 }
+				AND = { exists = c:AUS c:AUS = ROOT year < 1900 }
+				AND = { exists = c:RUS c:RUS = ROOT year < 1900 }
+				AND = { exists = c:TUR c:TUR = ROOT year < 1900 }
+				AND = { exists = c:CHI c:CHI = ROOT year < 1900 }
+				AND = { exists = c:MEX c:MEX = ROOT year < 1900 }
+			}
 			OR = {
 				has_law = law_type:law_landed_voting
 				has_law = law_type:law_wealth_voting
@@ -433,6 +441,14 @@ HJE_ideologies_effect = {
 				has_law = law_type:law_census_voting
 				has_law = law_type:law_universal_suffrage
 			}
+			NOR = { ## is not a historically autocratic country
+				AND = { exists = c:FRA c:FRA = ROOT year < 1870 }
+				AND = { exists = c:AUS c:AUS = ROOT year < 1900 }
+				AND = { exists = c:RUS c:RUS = ROOT year < 1900 }
+				AND = { exists = c:TUR c:TUR = ROOT year < 1900 }
+				AND = { exists = c:CHI c:CHI = ROOT year < 1900 }
+				AND = { exists = c:MEX c:MEX = ROOT year < 1900 }
+			}
 			any_interest_group = {
 				has_ideology = ideology:ideology_stratocratic
 				NOT = { has_ideology = ideology:ideology_pro_slavery }
@@ -482,6 +498,14 @@ HJE_ideologies_effect = {
 				has_law = law_type:law_wealth_voting
 				has_law = law_type:law_census_voting
 				has_law = law_type:law_universal_suffrage
+			}
+			NOR = { ## is not a historically autocratic country
+				AND = { exists = c:FRA c:FRA = ROOT year < 1870 }
+				AND = { exists = c:AUS c:AUS = ROOT year < 1900 }
+				AND = { exists = c:RUS c:RUS = ROOT year < 1900 }
+				AND = { exists = c:TUR c:TUR = ROOT year < 1900 }
+				AND = { exists = c:CHI c:CHI = ROOT year < 1900 }
+				AND = { exists = c:MEX c:MEX = ROOT year < 1900 }
 			}
 			any_interest_group = {
 				has_ideology = ideology:ideology_plutocratic
