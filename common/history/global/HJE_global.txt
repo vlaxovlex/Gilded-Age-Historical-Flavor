@@ -55,6 +55,25 @@ GLOBAL = {
 			months = -1
 		}
 	}
+	#s:STATE_EAST_KARELIA = { add_state_trait = state_trait_cold_water_port } # VTM iced
+	s:STATE_ARKHANGELSK = { add_state_trait = state_trait_cold_water_port }
+	s:STATE_INGRIA = { add_state_trait = state_trait_cold_water_port }
+	s:STATE_ROSTOV = { add_state_trait = state_trait_cold_water_port }
+	s:STATE_OKHOTSK = { add_state_trait = state_trait_cold_water_port }
+	#s:STATE_KAMCHATKA = { add_state_trait = state_trait_cold_water_port } # VTM iced
+	s:STATE_CHUKOTKA = { add_state_trait = state_trait_cold_water_port }
+	# FIN
+	s:STATE_WEST_KARELIA = { add_state_trait = state_trait_cold_water_port }
+	s:STATE_UUSIMAA = { add_state_trait = state_trait_cold_water_port }
+	s:STATE_OULU = { add_state_trait = state_trait_cold_water_port }
+	s:STATE_OSTROBOTHNIA = { add_state_trait = state_trait_cold_water_port }
+	# SWE		
+	s:STATE_NORRLAND = { add_state_trait = state_trait_cold_water_port }
+	# NA
+	s:STATE_QUEBEC = { add_state_trait = state_trait_cold_water_port }
+	#s:STATE_NEWFOUNDLAND = { add_state_trait = state_trait_cold_water_port } # VTM iced
+	#s:STATE_GREENLAND = { add_state_trait = state_trait_cold_water_port } # VTM thawed sorry jobarin
+	#s:STATE_ALASKA = { add_state_trait = state_trait_cold_water_port } # VTM thawed sorry jobarin
 	s:STATE_PENNSYLVANIA = { add_homeland = cu:dixie }
 	s:STATE_MARYLAND = { add_homeland = cu:yankee }
 	s:STATE_DELAWARE = { add_homeland = cu:yankee }
