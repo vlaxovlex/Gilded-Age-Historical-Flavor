@@ -59,6 +59,30 @@
 					}
 				}
 			}
+            if = { ## HJE EDIT START ##
+                limit = {
+                    exists = c:RUS
+                    exists = c:GBR
+                    NOT = { has_secret_goal = { who = c:RUS secret_goal = befriend } }
+                    is_diplomatic_play_enemy_of = c:GBR
+                }
+                set_secret_goal = {
+                    country = c:RUS
+                    secret_goal = befriend
+                }
+            }
+            if = {
+                limit = {
+                    exists = c:RUS
+                    exists = c:GBR
+                    NOT = { has_secret_goal = { who = c:GBR secret_goal = befriend } }
+                    is_diplomatic_play_enemy_of = c:RUS
+                }
+                set_secret_goal = {
+                    country = c:GBR
+                    secret_goal = befriend
+                }
+            } ## HJE EDIT END ##
 		}
 	}
 

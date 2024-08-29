@@ -113,6 +113,13 @@ je_sick_man_syria = {
 						exists = c:EGY
 						c:EGY = {
 							is_subject_of = ROOT
+							## HJE Edit start ##
+							OR = {
+								is_subject_type = subject_type_dominion
+								is_subject_type = subject_type_puppet
+								is_subject_type = subject_type_colonial_administration
+							}
+							## HJE Edit End ##
 						}
 					}
 					AND = {
@@ -136,7 +143,7 @@ je_sick_man_syria = {
 			if = {													#HJE edit start
 				limit = { exists = c:EGY }
 				c:EGY = { trigger_event = { id = HJE_mideast.1 } }
-			}														
+			}
 			hidden_effect = {
 				set_secret_goal = {
 					country = c:ZAI
@@ -177,6 +184,13 @@ je_sick_man_egypt = {
 				exists = c:EGY
 				c:EGY = {
 					is_subject_of = ROOT
+					## HJE Edit start ##
+					OR = {
+						is_subject_type = subject_type_dominion
+						is_subject_type = subject_type_puppet
+						is_subject_type = subject_type_colonial_administration
+					}
+					## HJE Edit End ##
 				}
 			}
 			AND = {

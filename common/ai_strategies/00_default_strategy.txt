@@ -2645,6 +2645,33 @@ ai_strategy_default = {
 			add = 1000
 		}	
 		
+		# USA extra aggression against Mexico if leader is Polk or if civil war should be happening soon (historical)
+		if = {
+			limit = {
+				has_journal_entry = je_manifest_destiny_mexico
+				OR = {
+					year >= 1850
+					ruler = { has_variable = james_k_polk }
+				}
+				scope:target_country = {
+					any_scope_state = {
+						OR = {
+							state_region = s:STATE_CALIFORNIA
+							state_region = s:STATE_NEVADA
+							state_region = s:STATE_UTAH
+							state_region = s:STATE_COLORADO
+							state_region = s:STATE_ARIZONA
+							state_region = s:STATE_NEW_MEXICO
+							state_region = s:STATE_TEXAS
+							state_region = s:STATE_KANSAS
+							state_region = s:STATE_OKLAHOMA # if they somehow lose it	
+						}
+					}
+				}
+			}
+			add = 500
+		}
+
 		if = {
 			limit = {
 				has_journal_entry = HJ_end_japanese_isolationism
@@ -2951,7 +2978,7 @@ ai_strategy_default = {
 					}
 				}
 			}
-			add = 35 #HJE edit 5
+			add = 25 #HJE edit 5
 		}
 
 		# Extra french aggression for Haiti renouncing debt payments

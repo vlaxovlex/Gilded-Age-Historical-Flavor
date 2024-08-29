@@ -47,6 +47,35 @@
         }
     }
 
+    on_weekly_pulse = { ## HJE EDIT ##
+        effect = {
+            if = {
+                limit = {
+                    exists = c:RUS
+                    exists = c:GBR
+                    NOT = { has_secret_goal = { who = c:RUS secret_goal = befriend } }
+                    is_diplomatic_play_enemy_of = c:GBR
+                }
+                set_secret_goal = {
+                    country = c:RUS
+                    secret_goal = befriend
+                }
+            }
+            if = {
+                limit = {
+                    exists = c:RUS
+                    exists = c:GBR
+                    NOT = { has_secret_goal = { who = c:GBR secret_goal = befriend } }
+                    is_diplomatic_play_enemy_of = c:RUS
+                }
+                set_secret_goal = {
+                    country = c:GBR
+                    secret_goal = befriend
+                }
+            }
+        }
+    }
+
 	complete = {
         custom_tooltip = {
             text = je_eastern_frontier_tt_1 # Todo PRCAL-14501 Needs state highlighting
