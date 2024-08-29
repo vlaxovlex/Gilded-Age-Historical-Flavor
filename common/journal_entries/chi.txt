@@ -57,20 +57,25 @@
 				text = chihumiliation_no_gp_treaty_ports_tt
 				NOT = {
 					any_country = {
+						is_country_type = recognized
 						country_rank >= rank_value:major_power
 						any_scope_state = {
-							is_treaty_port = yes
-							state_region = {
+							this.state_region = {
+								is_homeland = cu:han
 								any_scope_state = {
 									is_treaty_port = no
 									owner = { 
-										OR = {
-											country_has_primary_culture = cu:han
-											has_variable = var_dynamic_opium_wars_victim 
-										}
 										NOR = {
 											is_revolutionary = yes	
 											is_diplomatic_play_committed_participant = yes
+										}
+										OR = {
+											has_variable = var_dynamic_opium_wars_victim 
+											AND = {
+												is_subject = no
+												is_country_type = unrecognized
+												country_has_primary_culture = cu:han
+											}
 										}
 									}
 								}

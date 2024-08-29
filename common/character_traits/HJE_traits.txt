@@ -4,7 +4,7 @@ hje_hale = {
 	texture = "gfx/interface/icons/character_trait_icons/persistent.dds"
 
 	character_modifier = {
-		character_health_add = 0.8
+		character_health_add = 0.5
 	}
 
 	command_modifier = {
