@@ -276,7 +276,8 @@ italian_unification.4 = {
 				country_has_primary_culture = cu:south_italian
 			}
 		}
-		NOT = {				#HJE edit start
+		is_diplomatic_play_committed_participant = no #HJE edit start
+		NOT = {				
 			AND = { exists = c:RPA this ?= c:PAP }
 		}
 		NOT = {
