@@ -2359,7 +2359,7 @@ ai_strategy_default = {
 					}
 				}
 			}
-			add = 5     #HJE edit 1
+			add = 7     #HJE edit 1
 		}
 	
 		# Greek Nationalism
@@ -2636,7 +2636,7 @@ ai_strategy_default = {
 		
 		if = {
 			limit = {
-				year >= 1880
+				year >= 1850
 				scope:target_country = { 
 					OR = { country_is_in_southeast_asia = yes country_is_in_india = yes } 
 					any_scope_state = { has_claim_by = ROOT }
@@ -6024,7 +6024,7 @@ ai_strategy_default = {
 			
 			if = {
 				limit = {
-					year >= 1880
+					year >= 1850
 					scope:target_country = { 
 						OR = { country_is_in_southeast_asia = yes country_is_in_india = yes } 
 						any_scope_state = { has_claim_by = ROOT }
