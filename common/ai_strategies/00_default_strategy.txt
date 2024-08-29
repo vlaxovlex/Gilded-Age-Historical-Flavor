@@ -2359,7 +2359,7 @@ ai_strategy_default = {
 					}
 				}
 			}
-			add = 7     #HJE edit 1
+			add = 1
 		}
 	
 		# Greek Nationalism
@@ -2669,7 +2669,7 @@ ai_strategy_default = {
 					}
 				}
 			}
-			add = 500
+			add = 1000
 		}
 
 		if = {
@@ -2955,7 +2955,7 @@ ai_strategy_default = {
 					THIS = c:EGY
 				}
 			}
-			add = 300 ## HJE edit ##
+			add = 100	#Never once had a problem with the Ottomans and Egypt
 		}
 
 		# USA should be extremely aggressive against owners of their Manifest Destiny states
@@ -6058,7 +6058,34 @@ ai_strategy_default = {
 					}
 				}
 				add = 1000
-			}	
+			}
+
+				# USA extra aggression against Mexico if leader is Polk or if civil war should be happening soon (historical)
+			if = {
+				limit = {
+					has_journal_entry = je_manifest_destiny_mexico
+					OR = {
+						year >= 1850
+						ruler = { has_variable = james_k_polk }
+					}
+					scope:target_country = {
+						any_scope_state = {
+							OR = {
+								state_region = s:STATE_CALIFORNIA
+								state_region = s:STATE_NEVADA
+								state_region = s:STATE_UTAH
+								state_region = s:STATE_COLORADO
+								state_region = s:STATE_ARIZONA
+								state_region = s:STATE_NEW_MEXICO
+								state_region = s:STATE_TEXAS
+								state_region = s:STATE_KANSAS
+								state_region = s:STATE_OKLAHOMA # if they somehow lose it	
+							}
+						}
+					}
+				}
+				add = 1000
+			}
 			
 			if = {
 				limit = {
