@@ -1730,6 +1730,46 @@ HJE_apply_historical_dynasty_heirs_SAR_effect = {
 	}
 	if = {
 		limit = {
+			year < 1870
+			has_global_variable = umberto_i_born
+			NOT = { has_global_variable = vittoro_emmanuele_iii_born }
+			owner = { 
+				has_law = law_type:law_monarchy 
+				ruler = { has_variable = is_savoy }
+				OR = {
+					was_formed_from = SAR
+					AND = { exists = c:SAR owner = c:SAR }
+		        }
+			}
+		}
+		set_global_variable = vittoro_emmanuele_iii_born
+		owner = {
+			create_character = {
+				first_name = Vittorio_Emanuele
+				last_name = di_Savoia
+				historical = yes
+				noble = yes
+				heir = yes		
+				female = no
+				age = 0
+				interest_group = ig_petty_bourgeoisie
+				dna = dna_sar_vittorio_emanuele_03
+				ideology = ideology_moderate
+				traits = {
+					tactful	
+					reserved
+				}
+				on_created = {
+					set_variable = is_married
+					set_variable = is_savoy
+					set_variable = is_victor_emmanuel_iii
+					set_variable = weight_does_not_change
+				}
+			}
+		}
+	}
+	else_if = {
+		limit = {
 			year >= 1870
 			has_global_variable = umberto_i_born
 			NOT = { has_global_variable = vittoro_emmanuele_iii_born }
