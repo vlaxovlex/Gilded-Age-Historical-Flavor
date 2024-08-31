@@ -11,22 +11,28 @@
 			has_technology_researched = socialism 
 			AND = { 	#HJE edit start
 				is_ai = yes 
-				NOT = {
-					any_scope_state = {
-						state_region = s:STATE_ALSACE_LORRAINE
-					}
-				} 
+				any_country = {
+					OR = {
+						country_has_primary_culture = cu:north_german
+						country_has_primary_culture = cu:south_german
+					}	
+					is_revolutionary = no	#So it wouldn't work on the rebellions of the german minority
+					has_state_in_state_region = STATE_ALSACE_LORRAINE
+				}
 			}
 		}	
 		OR = { 
 			has_technology_researched = anarchism 
 			AND = { 	
 				is_ai = yes 
-				NOT = {
-					any_scope_state = {
-						state_region = s:STATE_ALSACE_LORRAINE
-					}
-				} 
+				any_country = {
+					OR = {
+						country_has_primary_culture = cu:north_german
+						country_has_primary_culture = cu:south_german
+					}	
+					is_revolutionary = no
+					has_state_in_state_region = STATE_ALSACE_LORRAINE
+				}
 			}
 		}				#HJE edit end
 		NOT = { has_law = law_type:law_council_republic }
@@ -86,10 +92,13 @@
 						}
 					}
 				}
-				NOT = {
-					any_scope_state = {
-						state_region = s:STATE_ALSACE_LORRAINE
-					}
+				any_country = {
+					OR = {
+						country_has_primary_culture = cu:north_german
+						country_has_primary_culture = cu:south_german
+					}	
+					is_revolutionary = no
+					has_state_in_state_region = STATE_ALSACE_LORRAINE
 				}
 			}
 		}				#HJE edit end
