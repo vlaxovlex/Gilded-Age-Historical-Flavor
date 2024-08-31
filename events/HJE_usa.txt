@@ -5591,6 +5591,17 @@ HJE_usa.12 = {
 					set_variable = american_empire_je_potential_enemy_empire
 				}
 			}
+			hidden_effect = {
+				every_scope_state = {
+					limit = { is_coastal = yes is_incorporated = yes }
+					create_building={
+						building="building_naval_base"
+						level=10
+						reserves=1
+						activate_production_methods={ "pm_no_naval_theory" }
+					}
+				}
+			}
 		}
 	}
 	option = {
