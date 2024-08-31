@@ -390,6 +390,7 @@ HJE_italy.4 = {
 		if = {
 			limit = {
 				any_scope_character = {
+					NOT = { has_variable = is_victor_emanuel_ii }
 					is_ruler = yes
 					age > 35
 				}
@@ -547,6 +548,7 @@ HJE_italy.5 = {
 		if = {
 			limit = {
 				any_scope_character = {
+					NOT = { has_variable = is_victor_emanuel_ii }
 					is_ruler = yes
 					age > 35
 				}

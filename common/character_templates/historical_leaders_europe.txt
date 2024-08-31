@@ -389,6 +389,7 @@ sar_victor_emmanuel_template = {
         ambitious
     }
     on_created = {
+        set_variable = is_victor_emanuel_ii ## HJE ##
         set_variable = is_savoy ## HJE, Ness, needed for heirs to spawn correctly ##
     }
 }
