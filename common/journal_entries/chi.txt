@@ -51,12 +51,14 @@
 	}
 
 	complete = {
+		is_diplomatic_play_committed_participant = no
 		OR = {
 			is_country_type = recognized
 			custom_tooltip = {
 				text = chihumiliation_no_gp_treaty_ports_tt
 				NOT = {
 					any_country = {
+						is_diplomatic_play_committed_participant = no
 						is_country_type = recognized
 						country_rank >= rank_value:major_power
 						any_scope_state = {
