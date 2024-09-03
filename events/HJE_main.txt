@@ -3474,7 +3474,7 @@ HJE_main.8 = {
 	duration = 3
 	
 	trigger = {
-		is_subject = yes
+		HJE_eligible_for_random_reoccuring_rebellion_events = yes
 	}
 	
 	immediate = {

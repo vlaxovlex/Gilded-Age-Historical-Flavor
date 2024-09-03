@@ -84,21 +84,8 @@ je_sick_man_syria = {
 					secret_goal = none
 				}
 			}
-		}
-		
-		every_scope_state = {
-			limit = {
-				OR = {
-					state_region = s:STATE_ADANA
-					state_region = s:STATE_ALEPPO
-					state_region = s:STATE_SYRIA
-					state_region = s:STATE_LEBANON
-					state_region = s:STATE_TRANSJORDAN
-					state_region = s:STATE_PALESTINE
-				}
-			}
-			set_state_type = incorporated
 		}	#HJE edit end
+		
 		
 		custom_tooltip = je_sick_man_advance
 		change_variable = {
@@ -143,13 +130,7 @@ je_sick_man_syria = {
 			if = {													#HJE edit start
 				limit = { exists = c:EGY }
 				c:EGY = { trigger_event = { id = HJE_mideast.1 } }
-			}
-			hidden_effect = {
-				set_secret_goal = {
-					country = c:ZAI
-					secret_goal = dominate
-				}
-			}						#HJE edit end
+			}					#HJE edit end
 		}
 		custom_tooltip = sickman_syria_egypt
 	}

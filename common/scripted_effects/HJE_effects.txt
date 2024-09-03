@@ -371,6 +371,121 @@ HJE_cleanup_effect = {
 			}
 		}
 	}
+	if = {
+		limit = {			#Cuba AI liberty desire
+			year > 1860
+			exists = c:CUB
+			c:CUB = THIS
+			NOT = { has_strategy = ai_strategy_subject_break_free }
+			any_overlord_or_above = {
+				country_is_in_north_america = no
+				country_is_in_central_america = no
+				country_is_in_south_america = no
+			}
+		}
+		set_strategy = ai_strategy_subject_break_free
+	}
+	if = {
+		limit = {			#Philippines AI liberty desire
+			year > 1880
+			exists = c:PHI
+			c:PHI = THIS
+			NOT = { has_strategy = ai_strategy_subject_break_free }
+			any_overlord_or_above = {
+				country_is_in_north_america = no
+				country_is_in_central_america = no
+				country_is_in_south_america = no
+			}
+		}
+		set_strategy = ai_strategy_subject_break_free
+	}
+
+	if = {
+		limit = {			#Italians join in on the Brother's War
+			is_player = no
+			OR = {
+				country_has_primary_culture = cu:north_italian
+				country_has_primary_culture = cu:south_italian
+			}
+			calc_true_if = {
+				amount >= 6
+				any_scope_state = { state_region = s:STATE_LOMBARDY }
+				any_scope_state = { state_region = s:STATE_PIEDMONT }
+				any_scope_state = { state_region = s:STATE_UMBRIA }
+				any_scope_state = { state_region = s:STATE_CAMPANIA }
+				any_scope_state = { state_region = s:STATE_CALABRIA }
+				any_scope_state = { state_region = s:STATE_APULIA }
+				any_scope_state = { state_region = s:STATE_ABRUZZO }
+				any_scope_state = { state_region = s:STATE_SAVOY }
+				any_scope_state = { state_region = s:STATE_EMILIA }
+				any_scope_state = { state_region = s:STATE_TUSCANY }
+				any_scope_state = { state_region = s:STATE_ROMAGNA }
+				any_scope_state = { state_region = s:STATE_LAZIO }
+				any_scope_state = { state_region = s:STATE_VENETIA }
+				any_scope_state = { state_region = s:STATE_SICILY }
+			}
+			is_diplomatic_play_committed_participant = no
+			exists = c:AUS
+			NOT = { c:AUS = { is_diplomatic_play_enemy_of = ROOT } }
+			OR = {
+				c:AUS = { has_state_in_state_region = STATE_VENETIA }
+				c:AUS = { has_state_in_state_region = STATE_LOMBARDY }
+			}
+			any_country = {
+				NOT = { THIS = ROOT }
+				NOT = { THIS = c:AUS }
+				is_adjacent_to_country = c:AUS
+				country_rank >= rank_value:great_power
+				is_diplomatic_play_enemy_of = c:AUS
+				is_diplomatic_play_initiator = yes
+			}
+			NOT = { has_variable = ai_venetia_var }
+		}
+		s:STATE_VENETIA = { add_claim = root }
+		s:STATE_LOMBARDY = { add_claim = root }
+		random_country = {
+			limit = {
+				is_unification_candidate = GER
+				is_diplomatic_play_enemy_of = c:AUS
+			}
+			random_diplomatic_play = {
+				limit = {
+					initiator_is = PREV
+					target_is = c:AUS
+				}
+				add_initiator_backers = { ROOT }
+				add_war_goal = {
+					holder = ROOT
+					type = return_state
+					target_state = s:STATE_VENETIA.region_state:AUS			
+					primary_demand = yes
+				}
+				add_war_goal = {
+					holder = ROOT
+					type = return_state
+					target_state = s:STATE_LOMBARDY.region_state:AUS			
+					primary_demand = yes
+				}
+			}
+		}
+		add_modifier = { 
+			name = wartime_zeal
+			months = 12
+		}
+		set_variable = ai_venetia_var				
+	}
+	
+	if = {
+		limit = {			#Give Italy Former the opportunity to move capital to Rome
+			exists = c:ITA
+			c:ITA = THIS
+			NOT = { has_variable = ITA_newly_formed_capital_decision }
+		}
+		c:ITA = { 
+			set_variable = ITA_newly_formed_capital_decision
+			trigger_event = { id = HJE_main.1 }
+		}
+	}
 }
 
 HJE_ideologies_effect = {
@@ -1974,447 +2089,5 @@ HJE_apply_historical_dynasty_heirs_SAR_effect = {
 			}
 		}
 		set_variable = is_savoy
-	}
-}
-
-HJE_semi_random_events_USA_effect = {
-	if = {
-		limit = {			#Random event for Americans to move to California
-			year >= 1840
-			year < 1850
-			NOT = { has_global_variable = yankee_california_overflow }
-			has_state_in_state_region = STATE_CALIFORNIA
-			NOT = {
-				any_country = {
-					NOT = { PREV = THIS }
-					has_state_in_state_region = STATE_CALIFORNIA
-					NOR = {
-						is_country_type = unrecognized
-						is_country_type = decentralized
-					}
-				}
-			}
-		}
-		random_list = {
-			95 = {  }
-			5 = { trigger_event = { id = HJE_usa.5 } }
-		}
-	}
-	if = {
-		limit = {			#Random event for Americans to move to Utah
-			year >= 1845
-			year < 1855
-			NOT = { has_global_variable = utah_mormons }
-			has_state_in_state_region = STATE_UTAH
-			NOT = {
-				any_country = {
-					NOT = { PREV = THIS }
-					has_state_in_state_region = STATE_UTAH
-					NOR = {
-						is_country_type = unrecognized
-						is_country_type = decentralized
-					}
-				}
-			}
-		}
-		random_list = {
-			95 = {  }
-			5 = { trigger_event = { id = HJE_usa.6 } }
-		}
-	}
-	if = {
-		limit = {			#Random event for Americans to build a American or Foreign Empire
-			is_subject = no
-			is_junior_in_customs_union = no
-			NOT = { has_variable = HJE_american_empire_event }
-			year > 1870
-	    	OR = {
-				year > 1885
-				AND = {
-					has_variable = manifested_destiny #already took Manifest Destiny decision
-					has_variable = mexican_american_war_peace #peace with mexico
-					has_global_variable = american_civil_war #the civil war happened
-				}
-	    	}
-			OR = {
-				AND = {
-					exists = c:USA
-					c:USA = THIS
-				}
-				AND = {
-					exists = c:FSA
-					c:FSA = THIS
-				}
-				AND = {
-					exists = c:CSA
-					c:CSA = THIS
-				}
-			}
-			NOT = {
-				any_country = {
-					OR = {
-						has_journal_entry = je_acw_war
-						has_journal_entry = je_acw_war_csa_fsa
-					}
-				}
-			}
-		}
-		random_list = {
-			95 = {  }
-			5 = { trigger_event = { id = HJE_usa.12 } }
-		}
-	}
-
-	if = {
-		limit = {			#Cuba AI liberty desire
-			year > 1860
-			exists = c:CUB
-			c:CUB = THIS
-			NOT = { has_strategy = ai_strategy_subject_break_free }
-			any_overlord_or_above = {
-				country_is_in_north_america = no
-				country_is_in_central_america = no
-				country_is_in_south_america = no
-			}
-		}
-		set_strategy = ai_strategy_subject_break_free
-	}
-	if = {
-		limit = {			#Random reoccuring event for Cubans to be prompted to rebel from non-american overlord
-			is_subject = yes
-			NOT = { has_variable = HJE_generic_rebellion_event_cooldown }
-	    	year > 1860
-			exists = c:CUB
-			c:CUB = THIS
-			any_overlord_or_above = {
-				country_is_in_north_america = no
-				country_is_in_central_america = no
-				country_is_in_south_america = no
-			}
-		}
-		random_list = {
-			95 = {  }
-			5 = { trigger_event = { id = HJE_main.8 } }
-		}
-	}
-	if = {
-		limit = {			#Philippines AI liberty desire
-			year > 1860
-			exists = c:PHI
-			c:PHI = THIS
-			NOT = { has_strategy = ai_strategy_subject_break_free }
-			any_overlord_or_above = {
-				country_is_in_north_america = no
-				country_is_in_central_america = no
-				country_is_in_south_america = no
-			}
-		}
-		set_strategy = ai_strategy_subject_break_free
-	}
-	if = {
-		limit = {			#Random reoccuring event for Filipinos to be prompted to rebel from non-asian overlord
-			is_subject = yes
-			NOT = { has_variable = HJE_generic_rebellion_event_cooldown }
-	    	year > 1860
-			exists = c:PHI
-			c:PHI = THIS
-			any_overlord_or_above = {
-				country_is_in_india = no
-				country_is_in_east_asia = no
-				country_is_in_southeast_asia = no
-			}
-		}
-		random_list = {
-			95 = {  }
-			5 = { trigger_event = { id = HJE_main.8 } }
-		}
-	}
-}
-
-HJE_semi_random_events_GER_effect = {
-
-	if = {
-		limit = {			#Krakau Uprising
-			c:AUS = { NOT = { has_variable = kra_var } }
-			exists = c:KRA
-			exists = c:AUS
-			OR = {
-				any_diplomatic_play = {
-					target_is = c:AUS
-					initiator_is = c:KRA
-				}
-				any_diplomatic_play = {
-					target_is = c:KRA
-					initiator_is = c:AUS
-				}
-			}
-		}
-		random_diplomatic_play = {
-			limit = {
-				OR = {
-					AND = {
-						target_is = c:AUS
-						initiator_is = c:KRA
-					}
-					AND = {
-						target_is = c:KRA
-						initiator_is = c:AUS
-					}
-				}
-			}					
-			add_war_goal = {
-				holder = c:AUS
-				type = annex_country
-				target_country = c:KRA
-				target_state = s:STATE_WEST_GALICIA.region_state:KRA			
-				primary_demand = yes
-			}
-		}
-		c:KRA = { set_variable = krakow_uprising_happened }
-		c:AUS = { 
-			set_variable = kra_var 
-			add_journal_entry = { type = je_the_krakow_uprising }
-		}
-	}
-	if = {
-		limit = {			#Bismark event for early formed German Federation
-			OR = {
-				AND = { exists = c:NGF c:NGF = THIS }
-				AND = { exists = c:GER c:GER = THIS }
-			}
-		}
-		random_list = {
-			9 = {  }
-			1 = { trigger_event = { id = german_unification.3 } }
-		}
-	}
-	if = {
-		limit = {			#Randomized event for Prussia to goad France into invading them
-			year >= 1870
-			year < 1880
-			NOT = { has_global_variable = ems_dispatch_scheme }
-			aggressive_diplomatic_plays_permitted = yes
-			is_diplomatic_play_committed_participant = no
-			is_diplomatic_play_initiator = no
-			is_diplomatic_play_target = no
-			NOT = { country_or_subject_owns_entire_state_region = STATE_ALSACE_LORRAINE }
-			any_country = {
-				is_adjacent_to_country = ROOT
-				aggressive_diplomatic_plays_permitted = yes
-				OR = { country_rank >= rank_value:major_power this ?= c:SWI }
-				country_or_subject_owns_entire_state_region = STATE_ALSACE_LORRAINE
-			}
-			OR = {
-				AND = {
-					exists = c:NGF
-					c:NGF = THIS
-				}
-				AND = {
-					exists = c:SGF
-					c:SGF = THIS
-				}
-				AND = {
-					exists = c:PRU
-					c:PRU = THIS
-				}
-			}
-		}
-		random_list = {
-			90 = {  }
-			10 = { trigger_event = { id = HJE_prussia.5 } }
-		}
-	}
-	if = {
-		limit = {			#Randomized event for Mayerling Incident
-			NOT = { has_global_variable = meyerling_incident }
-			has_law = law_type:law_monarchy	
-			OR = {
-				was_formed_from = AUS
-				AND = { 
-					exists = c:AUS 
-					THIS = c:AUS 
-					NOT = { has_global_variable = SGF_formed_from_AUS_globevar }
-					NOT = { has_global_variable = GER_formed_from_AUS_globevar }
-				}
-				AND = {
-					exists = c:SGF 
-					THIS = c:SGF
-					has_global_variable = SGF_formed_from_AUS_globevar
-				}
-				AND = {
-					exists = c:GER 
-					THIS = c:GER
-					has_global_variable = GER_formed_from_AUS_globevar
-				}
-	        }
-			NOT = { has_global_variable = franz_ferdinand_born }
-			NOT = { has_global_variable = kiddie_karl_born }
-			ruler = { has_variable = is_habsburg }
-			OR = {
-				year >= 1875
-				heir = { has_variable = is_suicide_rudolf }
-			}
-			OR = {
-				heir = { age > 28 }
-				AND = { ## sanity check, Franz Ferdinand should be heir so he can be shot by Gavrilo Princip
-					year >= 1900
-					heir = { age > 18 }
-				}
-			}
-		}
-		random_list = {
-			95 = {  }
-			9 = { trigger_event = { id = HJE_austria.4 } }
-		}
-	}
-}
-
-HJE_semi_random_events_ITA_effect = {
-	if = {
-		limit = {			#Italians join in on the Brother's War
-			is_player = no
-			OR = {
-				country_has_primary_culture = cu:north_italian
-				country_has_primary_culture = cu:south_italian
-			}
-			calc_true_if = {
-				amount >= 6
-				any_scope_state = { state_region = s:STATE_LOMBARDY }
-				any_scope_state = { state_region = s:STATE_PIEDMONT }
-				any_scope_state = { state_region = s:STATE_UMBRIA }
-				any_scope_state = { state_region = s:STATE_CAMPANIA }
-				any_scope_state = { state_region = s:STATE_CALABRIA }
-				any_scope_state = { state_region = s:STATE_APULIA }
-				any_scope_state = { state_region = s:STATE_ABRUZZO }
-				any_scope_state = { state_region = s:STATE_SAVOY }
-				any_scope_state = { state_region = s:STATE_EMILIA }
-				any_scope_state = { state_region = s:STATE_TUSCANY }
-				any_scope_state = { state_region = s:STATE_ROMAGNA }
-				any_scope_state = { state_region = s:STATE_LAZIO }
-				any_scope_state = { state_region = s:STATE_VENETIA }
-				any_scope_state = { state_region = s:STATE_SICILY }
-			}
-			is_diplomatic_play_committed_participant = no
-			exists = c:AUS
-			NOT = { c:AUS = { is_diplomatic_play_enemy_of = ROOT } }
-			OR = {
-				c:AUS = { has_state_in_state_region = STATE_VENETIA }
-				c:AUS = { has_state_in_state_region = STATE_LOMBARDY }
-			}
-			any_country = {
-				NOT = { THIS = ROOT }
-				NOT = { THIS = c:AUS }
-				is_adjacent_to_country = c:AUS
-				country_rank >= rank_value:great_power
-				is_diplomatic_play_enemy_of = c:AUS
-				is_diplomatic_play_initiator = yes
-			}
-			NOT = { has_variable = ai_venetia_var }
-		}
-		s:STATE_VENETIA = { add_claim = root }
-		s:STATE_LOMBARDY = { add_claim = root }
-		random_country = {
-			limit = {
-				is_unification_candidate = GER
-				is_diplomatic_play_enemy_of = c:AUS
-			}
-			random_diplomatic_play = {
-				limit = {
-					initiator_is = PREV
-					target_is = c:AUS
-				}
-				add_initiator_backers = { ROOT }
-				add_war_goal = {
-					holder = ROOT
-					type = return_state
-					target_state = s:STATE_VENETIA.region_state:AUS			
-					primary_demand = yes
-				}
-				add_war_goal = {
-					holder = ROOT
-					type = return_state
-					target_state = s:STATE_LOMBARDY.region_state:AUS			
-					primary_demand = yes
-				}
-			}
-		}
-		add_modifier = { 
-			name = wartime_zeal
-			months = 12
-		}
-		set_variable = ai_venetia_var				
-	}
-	
-	if = {
-		limit = {			#Give Italy Former the opportunity to move capital to Rome
-			exists = c:ITA
-			c:ITA = THIS
-			NOT = { has_variable = ITA_newly_formed_capital_decision }
-		}
-		c:ITA = { 
-			set_variable = ITA_newly_formed_capital_decision
-			trigger_event = { id = HJE_main.1 }
-		}
-	}
-}
-
-HJE_semi_random_events_TUR_effect = {
-	if = {
-		limit = {			#Randomized event for Abdulmecid to die early of Tuberculosis
-			year >= 1858
-			NOT = { has_global_variable = abdulaziz_1_born }
-			NOT = { has_global_variable = abdulmecid_death } 
-			has_law = law_type:law_monarchy	
-			exists = c:TUR
-			c:TUR = THIS
-			ruler = { 
-				has_variable = is_osmanoglu 
-				has_variable = is_abdulmecid_i
-			}
-		}
-		random_list = {
-			95 = {  }
-			9 = { trigger_event = { id = HJE_turkey.14 } }
-		}
-	}
-	if = {
-		limit = {			#Randomized event for Abdulaziz to be deposed
-			year >= 1858
-			NOT = { has_global_variable = abdulaziz_coup } 
-			NOT = { has_global_variable = abdulaziz_timer } 
-			has_law = law_type:law_monarchy	
-			exists = c:TUR
-			c:TUR = THIS
-			any_scope_character = { 
-				has_variable = is_osmanoglu 
-				is_heir = yes 
-			}
-			ruler = { 
-				has_variable = is_osmanoglu 
-				has_variable = is_abdulaziz_1
-			}
-		}
-		random_list = {
-			95 = {  }
-			9 = { trigger_event = { id = HJE_turkey.15 } }
-		}
-	}
-	if = {
-		limit = {			#Fast Randomized Event for Murad V to step down due to mental illness
-			year >= 1863
-			NOT = { has_global_variable = abdulhamid_2_born }
-			NOT = { has_global_variable = murad_step_down }
-			has_law = law_type:law_monarchy	
-			exists = c:TUR
-			c:TUR = THIS
-			ruler = { 
-				has_variable = is_osmanoglu 
-				has_variable = is_murad_5
-			}
-		}
-		random_list = {
-			90 = {  }
-			10 = { trigger_event = { id = HJE_turkey.16 } }
-		}
 	}
 }

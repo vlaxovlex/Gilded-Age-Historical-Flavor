@@ -122,6 +122,25 @@ HJE_mideast.1 = {
 					country = c:HDJ
 					type = dominion
 				}
+				set_secret_goal = {
+					country = c:ZAI
+					secret_goal = dominate
+				}
+			}
+		}
+		c:TUR = {
+			every_scope_state = {
+				limit = {
+					OR = {
+						state_region = s:STATE_ADANA
+						state_region = s:STATE_ALEPPO
+						state_region = s:STATE_SYRIA
+						state_region = s:STATE_LEBANON
+						state_region = s:STATE_TRANSJORDAN
+						state_region = s:STATE_PALESTINE
+					}
+				}
+				set_state_type = incorporated
 			}
 		}
 	}

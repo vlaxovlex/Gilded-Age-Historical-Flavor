@@ -4433,6 +4433,19 @@ HJE_usa.5 = {
 	icon = "gfx/interface/icons/event_icons/event_trade.dds"
 
 	trigger = {
+		year >= 1840
+		NOT = { has_global_variable = yankee_california_overflow }
+		has_state_in_state_region = STATE_CALIFORNIA
+		NOT = {
+			any_country = {
+				NOT = { PREV = THIS }
+				has_state_in_state_region = STATE_CALIFORNIA
+				NOR = {
+					is_country_type = unrecognized
+					is_country_type = decentralized
+				}
+			}
+		}
 	}
 	
 	immediate = {
@@ -4566,6 +4579,19 @@ HJE_usa.6 = {
 	icon = "gfx/interface/icons/event_icons/event_trade.dds"
 
 	trigger = {
+		year >= 1845
+		NOT = { has_global_variable = utah_mormons }
+		has_state_in_state_region = STATE_UTAH
+		NOT = {
+			any_country = {
+				NOT = { PREV = THIS }
+				has_state_in_state_region = STATE_UTAH
+				NOR = {
+					is_country_type = unrecognized
+					is_country_type = decentralized
+				}
+			}
+		}
 	}
 	
 	immediate = {
@@ -5488,6 +5514,40 @@ HJE_usa.12 = {
 	duration = 3
 	
 	trigger = {
+		is_subject = no
+		is_junior_in_customs_union = no
+		NOT = { has_variable = HJE_american_empire_event }
+		year > 1870
+    	OR = {
+			year > 1885
+			AND = {
+				has_variable = manifested_destiny #already took Manifest Destiny decision
+				has_variable = mexican_american_war_peace #peace with mexico
+				has_global_variable = american_civil_war #the civil war happened
+			}
+    	}
+		OR = {
+			AND = {
+				exists = c:USA
+				c:USA = THIS
+			}
+			AND = {
+				exists = c:FSA
+				c:FSA = THIS
+			}
+			AND = {
+				exists = c:CSA
+				c:CSA = THIS
+			}
+		}
+		NOT = {
+			any_country = {
+				OR = {
+					has_journal_entry = je_acw_war
+					has_journal_entry = je_acw_war_csa_fsa
+				}
+			}
+		}
 	}
 	
 	immediate = {

@@ -786,6 +786,41 @@ HJE_austria.4 = {
 	icon = "gfx/interface/icons/event_icons/event_skull.dds"
 
 	trigger = {
+		NOT = { has_global_variable = meyerling_incident }
+		has_law = law_type:law_monarchy	
+		OR = {
+			was_formed_from = AUS
+			AND = { 
+				exists = c:AUS 
+				THIS = c:AUS 
+				NOT = { has_global_variable = SGF_formed_from_AUS_globevar }
+				NOT = { has_global_variable = GER_formed_from_AUS_globevar }
+			}
+			AND = {
+				exists = c:SGF 
+				THIS = c:SGF
+				has_global_variable = SGF_formed_from_AUS_globevar
+			}
+			AND = {
+				exists = c:GER 
+				THIS = c:GER
+				has_global_variable = GER_formed_from_AUS_globevar
+			}
+        }
+		NOT = { has_global_variable = franz_ferdinand_born }
+		NOT = { has_global_variable = kiddie_karl_born }
+		ruler = { has_variable = is_habsburg }
+		OR = {
+			year >= 1875
+			heir = { has_variable = is_suicide_rudolf }
+		}
+		OR = {
+			heir = { age > 28 }
+			AND = { ## sanity check, Franz Ferdinand should be heir so he can be shot by Gavrilo Princip
+				year >= 1900
+				heir = { age > 18 }
+			}
+		}
 	}
 
 	immediate = {

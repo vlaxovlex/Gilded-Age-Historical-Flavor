@@ -386,3 +386,30 @@ HJE_capital_is_in_incorrect_place_trigger = {
 		}
 	}
 }
+
+HJE_eligible_for_random_reoccuring_rebellion_events = {
+	is_subject = yes
+	NOT = { has_variable = HJE_generic_rebellion_event_cooldown }
+	OR = {
+		AND = {
+	    	year > 1860
+			exists = c:CUB
+			c:CUB = THIS
+			any_overlord_or_above = {
+				country_is_in_north_america = no
+				country_is_in_central_america = no
+				country_is_in_south_america = no
+			}
+		}
+		AND = {
+	    	year > 1880
+			exists = c:PHI
+			c:PHI = THIS
+			any_overlord_or_above = {
+				country_is_in_india = no
+				country_is_in_east_asia = no
+				country_is_in_southeast_asia = no
+			}
+		}
+	}
+}

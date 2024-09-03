@@ -2444,60 +2444,6 @@ HJE_turkey.1 = {			 #Oriental Crisis
 					war_goal = make_protectorate
 				}
 				if = {
-					limit = { NOT = { s:STATE_ADANA.region_state:EGY = { is_target_of_wargoal = c:TUR } } }
-					add_war_goal = {
-						holder = c:TUR
-						type = return_state
-						target_state = s:STATE_ADANA.region_state:EGY
-						primary_demand = yes
-					}
-				}
-				if = {
-					limit = { NOT = { s:STATE_ALEPPO.region_state:EGY = { is_target_of_wargoal = c:TUR } } }
-					add_war_goal = {
-						holder = c:TUR
-						type = return_state
-						target_state = s:STATE_ALEPPO.region_state:EGY
-						primary_demand = yes
-					}
-				}
-				if = {
-					limit = { NOT = { s:STATE_SYRIA.region_state:EGY = { is_target_of_wargoal = c:TUR } } }
-					add_war_goal = {
-						holder = c:TUR
-						type = return_state
-						target_state = s:STATE_SYRIA.region_state:EGY
-						primary_demand = yes
-					}
-				}
-				if = {
-					limit = { NOT = { s:STATE_LEBANON.region_state:EGY = { is_target_of_wargoal = c:TUR } } }
-					add_war_goal = {
-						holder = c:TUR
-						type = return_state
-						target_state = s:STATE_LEBANON.region_state:EGY
-						primary_demand = yes
-					}
-				}
-				if = {
-					limit = { NOT = { s:STATE_TRANSJORDAN.region_state:EGY = { is_target_of_wargoal = c:TUR } } }
-					add_war_goal = {
-						holder = c:TUR
-						type = return_state
-						target_state = s:STATE_TRANSJORDAN.region_state:EGY
-						primary_demand = yes
-					}
-				}
-				if = {
-					limit = { NOT = { s:STATE_PALESTINE.region_state:EGY = { is_target_of_wargoal = c:TUR } } }
-					add_war_goal = {
-						holder = c:TUR
-						type = return_state
-						target_state = s:STATE_PALESTINE.region_state:EGY
-						primary_demand = yes
-					}
-				}
-				if = {
 					limit = { c:GRE = { is_subject_of = c:EGY } }
 					add_war_goal = {
 						holder = c:TUR
@@ -3644,6 +3590,16 @@ HJE_turkey.14 = {
 	icon = "gfx/interface/icons/event_icons/event_skull.dds"
 
 	trigger = {
+		year >= 1858
+		NOT = { has_global_variable = abdulaziz_1_born }
+		NOT = { has_global_variable = abdulmecid_death } 
+		has_law = law_type:law_monarchy	
+		exists = c:TUR
+		c:TUR = THIS
+		ruler = { 
+			has_variable = is_osmanoglu 
+			has_variable = is_abdulmecid_i
+		}
 	}
 	
 	immediate = {
@@ -3717,6 +3673,20 @@ HJE_turkey.15 = {
 	icon = "gfx/interface/icons/event_icons/event_skull.dds"
 
 	trigger = {
+		year >= 1858
+		NOT = { has_global_variable = abdulaziz_coup } 
+		NOT = { has_global_variable = abdulaziz_timer } 
+		has_law = law_type:law_monarchy	
+		exists = c:TUR
+		c:TUR = THIS
+		any_scope_character = { 
+			has_variable = is_osmanoglu 
+			is_heir = yes 
+		}
+		ruler = { 
+			has_variable = is_osmanoglu 
+			has_variable = is_abdulaziz_1
+		}
 	}
 	
 	immediate = {
@@ -3738,7 +3708,7 @@ HJE_turkey.15 = {
 	}
 }
 
-# Murad V Pushes to Step Down
+# Murad V Pushed to Step Down
 HJE_turkey.16 = {
 	type = country_event
 	placement = root
@@ -3758,6 +3728,16 @@ HJE_turkey.16 = {
 	icon = "gfx/interface/icons/event_icons/event_election.dds"
 
 	trigger = {
+		year >= 1863
+		NOT = { has_global_variable = abdulhamid_2_born }
+		NOT = { has_global_variable = murad_step_down }
+		has_law = law_type:law_monarchy	
+		exists = c:TUR
+		c:TUR = THIS
+		ruler = { 
+			has_variable = is_osmanoglu 
+			has_variable = is_murad_5
+		}
 	}
 	
 	immediate = {

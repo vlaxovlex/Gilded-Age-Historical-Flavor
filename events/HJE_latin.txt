@@ -2004,3 +2004,104 @@ HJE_latin_america.15 = {
 		}
 	}		
 }
+
+# Modified Basegame Earthquake event
+# 1841 Haitian Earthquake (Flavor, increases lack of stability for dominican revolution)
+HJE_latin_america.16 = {
+	type = country_event
+	placement = scope:mega_earthquake_state
+
+	title = natural_disaster_events.4.t
+	desc = natural_disaster_events.4.d
+	flavor = natural_disaster_events.4.f
+
+	event_image = {
+		video = "unspecific_devastation"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_skull.dds"
+
+	duration = 3
+
+	trigger = {
+		NOT = { has_global_variable = 1841_haitian_earthquake_globflag }
+		year >= 1841
+		any_scope_state = {
+			state_region = s:STATE_HAITI
+		}
+	}
+
+	immediate = {
+		set_global_variable = 1841_haitian_earthquake_globflag
+		random_scope_state = {
+			limit = { state_region = s:STATE_HAITI }
+			save_scope_as = mega_earthquake_state
+		}
+		if = {
+			limit = {
+				exists = var:mega_earthquake
+			}
+			change_global_variable = {
+				name = number_of_mega_earthquakes
+				add = 1
+			}
+		}
+		else = {
+			set_variable = {
+				name = mega_earthquake
+				value = 1
+			}
+		}
+	}
+
+	option = { #No extra help
+		name = natural_disaster_events.4.a
+		default_option = yes
+		add_radicals = { value = 0.25 }
+		scope:mega_earthquake_state.state_region = {
+			add_devastation = 80
+			kill_population_percent_in_state = {
+				percent = 0.015
+				culture = cu:afro_antillean
+			}
+		}
+		custom_tooltip = natural_disaster_variable_tt
+		hidden_effect = {
+			random_list = {
+				30 = {
+					random_scope_state = {
+						limit = {
+							is_incorporated = yes
+						}
+						set_variable = {
+							name = natural_disaster_variable
+							months = short_modifier_time
+						}
+					}
+				}
+				70 = {
+				}
+			}
+		}
+	}
+
+	option = { #Extra help
+		name = natural_disaster_events.4.b
+		ai_chance = { factor = 0 }
+		add_radicals = { value = 0.05 }
+		add_modifier = {
+			name = modifier_mega_earthquake_relief
+			multiplier = money_amount_multiplier_large
+			months = normal_modifier_time
+		}
+		scope:mega_earthquake_state.state_region = {
+			add_devastation = 40
+			kill_population_percent_in_state = {
+				percent = 0.015
+				culture = cu:afro_antillean
+			}
+		}
+	}
+}
