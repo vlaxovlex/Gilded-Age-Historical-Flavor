@@ -52,6 +52,7 @@ tur_mahmut_osmanoglu_template = {
         cancer ## HJE, Ness, died of tuberculosis in 1839 ##
     }
 	on_created = {
+		set_variable = is_mahmud_ii ## HJE, Ness, needed for heirs to spawn correctly ##
 		set_variable = is_osmanoglu ## HJE, Ness, needed for heirs to spawn correctly ##
 	}
 }
@@ -65,8 +66,11 @@ tur_abdulmecid_osmanoglu_template = {
     ideology = ideology_moderate
     traits = {
         trait_child
+        honorable ## HJE ##
+        basic_diplomat ## HJE ##
     }
 	on_created = {
+		set_variable = is_abdulmecid_i ## HJE, Ness, needed for heirs to spawn correctly ##
 		set_variable = is_osmanoglu ## HJE, Ness, needed for heirs to spawn correctly ##
 	}
 }

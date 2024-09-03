@@ -195,6 +195,7 @@ hje_monthly_pulse_on_actions = {
 		HJE_semi_random_events_USA_effect = yes
 		HJE_semi_random_events_GER_effect = yes
 		HJE_semi_random_events_ITA_effect = yes
+		HJE_semi_random_events_TUR_effect = yes
 
 		if = {
 			limit = {			#Election recency variable for events

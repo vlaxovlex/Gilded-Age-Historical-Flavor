@@ -1598,8 +1598,23 @@ HJE_prussia.12 = {
 		NOT = { has_global_variable = PRU_decided_to_ditch_hohenzollern_dynasty }
 		OR = {
 			was_formed_from = PRU
-			AND = { exists = c:PRU c:PRU = ROOT }
-		}
+			AND = { 
+				exists = c:PRU 
+				ROOT = c:PRU 
+				NOT = { has_global_variable = NGF_formed_from_PRU_globevar }
+				NOT = { has_global_variable = GER_formed_from_PRU_globevar }
+			}
+			AND = {
+				exists = c:NGF 
+				ROOT = c:NGF
+				has_global_variable = NGF_formed_from_PRU_globevar
+			}
+			AND = {
+				exists = c:GER 
+				ROOT = c:GER
+				has_global_variable = GER_formed_from_PRU_globevar
+			}
+        }
 	}
 
 	immediate = {

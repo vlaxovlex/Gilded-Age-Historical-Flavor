@@ -3430,7 +3430,10 @@ HJE_turkey.13 = {
 		default_option = yes
 		ai_chance = { base = 1 }
 		if = {
-			limit = { NOT = { has_global_variable = abdulaziz_1_born } }
+			limit = { 
+				date < 1861
+				NOT = { has_global_variable = abdulaziz_1_born } 
+			}
 			set_global_variable = abdulaziz_1_born
 			create_character = {
 				first_name = Abdulaziz
@@ -3440,16 +3443,23 @@ HJE_turkey.13 = {
 				female = no
 				ruler = yes		
 				birth_date = 1830.2.8
-				dna = dna_abdulaziz
-				interest_group = ig_intelligentsia
-				ideology = ideology:ideology_reformer
+				dna = dna_tur_abdulaziz_01
+				interest_group = ig_landowners
+				ideology = ideology:ideology_authoritarian
 				traits = {
-					expensive_tastes
-					tactful
+			        cruel
+			        wrathful
+			        expensive_tastes
 				}
 				on_created = {
 					set_variable = is_abdulaziz_1
 					set_variable = is_osmanoglu
+				}
+			}
+			hidden_effect = {
+				set_global_variable = {
+					name = abdulaziz_timer
+					months = 144
 				}
 			}
 		}
@@ -3457,10 +3467,6 @@ HJE_turkey.13 = {
 			limit = {
 				year >= 1841
 				NOT = { has_global_variable = murad_5_born }
-				OR = {
-					year >= 1861
-					has_global_variable = abdulaziz_1_born
-				}
 			}
 			set_global_variable = murad_5_born
 			create_character = {
@@ -3473,13 +3479,80 @@ HJE_turkey.13 = {
 				birth_date = 1840.9.21
 				dna = dna_murad_5
 				interest_group = ig_intelligentsia
-				ideology = ideology:ideology_moderate
+				ideology = ideology:ideology_reformer
 				traits = {
 					psychological_affliction
+        			basic_diplomat
 					reserved
 				}
 				on_created = {
 					set_variable = is_murad_5
+					set_variable = is_osmanoglu
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				year >= 1843
+				NOT = { has_global_variable = abdulhamid_2_born }
+				OR = {
+					year >= 1863
+					has_global_variable = murad_5_born
+				}
+			}
+			set_global_variable = abdulhamid_2_born
+			create_character = {
+				first_name = Abdulhamid
+				last_name = Osmanoglu
+				historical = yes
+				noble = yes
+				female = no
+				ruler = yes		
+				birth_date = 1842.9.21
+				dna = dna_tur_abdulhamid_02
+				interest_group = ig_devout
+				ideology = ideology:ideology_authoritarian
+				traits = {
+			        pious
+			        cruel
+			        persistent
+			        basic_diplomat
+				}
+				on_created = {
+					set_variable = is_abdulhamid_2
+					set_variable = is_osmanoglu
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				year >= 1845
+				NOT = { has_global_variable = mehmed_5_born }
+				OR = {
+					year >= 1865
+					AND = {
+						has_global_variable = murad_5_born
+						has_global_variable = abdulhamid_2_born
+					}
+				}
+			}
+			set_global_variable = mehmed_5_born
+			create_character = {
+				first_name = Mehmed
+				last_name = Osmanoglu
+				historical = yes
+				noble = yes
+				female = no
+				ruler = yes		
+				birth_date = 1844.11.2
+				dna = dna_tur_mehmed_05
+				interest_group = ig_landowners
+				ideology = ideology:ideology_moderate
+				traits = {
+        			reserved
+				}
+				on_created = {
+					set_variable = is_mehmed_5
 					set_variable = is_osmanoglu
 				}
 			}
@@ -3491,8 +3564,9 @@ HJE_turkey.13 = {
 				OR = {
 					year >= 1889
 					AND = {
-						has_global_variable = abdulaziz_1_born
 						has_global_variable = murad_5_born
+						has_global_variable = abdulhamid_2_born
+						has_global_variable = mehmed_5_born
 					}
 				}
 			}
@@ -3547,5 +3621,200 @@ HJE_turkey.13 = {
 		name = HJE_turkey.13.b
 		ai_chance = { base = 0 }
 		set_global_variable = TUR_decided_to_ditch_ottoman_dynasty
+	}
+}
+
+# Death of Abdulmecid I
+HJE_turkey.14 = {
+	type = country_event
+	placement = root
+	title = HJE_turkey.14.t
+	desc = HJE_turkey.14.d
+	flavor = HJE_turkey.14.f
+	
+	duration = 3
+	
+	event_image = {
+		video = "southamerica_aristocrats"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/rich_and_poor"
+
+	icon = "gfx/interface/icons/event_icons/event_skull.dds"
+
+	trigger = {
+	}
+	
+	immediate = {
+		set_global_variable = abdulmecid_death
+		hidden_effect = {
+			set_global_variable = {
+				name = abdulaziz_timer
+				months = 144
+			}
+		}
+	}
+
+	option = {
+		name = HJE_turkey.14.a
+		default_option = yes
+		
+		if = {
+			limit = {
+				is_ai = yes
+			}
+			activate_law = law_type:law_interventionism
+			activate_law = law_type:law_hereditary_bureaucrats
+			activate_law = law_type:law_censorship
+			activate_law = law_type:law_per_capita_taxation
+		}
+		
+		ruler = { kill_character = yes }
+		
+		set_global_variable = abdulaziz_1_born
+		create_character = {
+			first_name = Abdulaziz
+			last_name = Osmanoglu
+			historical = yes
+			noble = yes
+			female = no
+			ruler = yes		
+			birth_date = 1830.2.8
+			dna = dna_tur_abdulaziz_01
+			interest_group = ig_landowners
+			ideology = ideology:ideology_authoritarian
+			traits = {
+		        cruel
+		        wrathful
+		        expensive_tastes
+			}
+			on_created = {
+				set_variable = is_abdulaziz_1
+				set_variable = is_osmanoglu
+			}
+		}
+	}
+}
+
+# Coup against Abdulaziz I?
+HJE_turkey.15 = {
+	type = country_event
+	placement = root
+	title = HJE_turkey.15.t
+	desc = HJE_turkey.15.d
+	flavor = HJE_turkey.15.f
+	
+	duration = 3
+	
+	event_image = {
+		video = "middleeast_police_breaking_door"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/rich_and_poor"
+
+	icon = "gfx/interface/icons/event_icons/event_skull.dds"
+
+	trigger = {
+	}
+	
+	immediate = {
+		set_global_variable = abdulaziz_coup
+	}
+
+	option = {
+		name = HJE_turkey.15.a
+		default_option = yes
+		
+		ruler = { kill_character = yes }
+		add_radicals = { value = -0.1 }
+	}
+	option = {
+		name = HJE_turkey.15.b
+		ai_chance = { factor = 0 }
+		
+		add_radicals = { value = 0.25 }
+	}
+}
+
+# Murad V Pushes to Step Down
+HJE_turkey.16 = {
+	type = country_event
+	placement = root
+	title = HJE_turkey.16.t
+	desc = HJE_turkey.16.d
+	flavor = HJE_turkey.16.f
+	
+	duration = 3
+	
+	event_image = {
+		video = "votp_monarch_holding_court"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/misc/1Character_Banner"
+
+	icon = "gfx/interface/icons/event_icons/event_election.dds"
+
+	trigger = {
+	}
+	
+	immediate = {
+		set_global_variable = murad_step_down
+	}
+
+	option = {
+		name = HJE_turkey.16.a
+		default_option = yes
+		
+		add_radicals = { value = -0.1 }
+		ruler = { kill_character = yes }
+
+		if = {
+			limit = {
+				OR = {
+					has_law = law_type:law_autocracy
+					has_law = law_type:law_oligarchy
+				}
+			}
+			activate_law = law_type:law_landed_voting
+		}
+		
+		set_global_variable = abdulhamid_2_born
+		create_character = {
+			first_name = Abdulhamid
+			last_name = Osmanoglu
+			historical = yes
+			noble = yes
+			female = no
+			ruler = yes		
+			birth_date = 1842.9.21
+			dna = dna_tur_abdulhamid_02
+			interest_group = ig_devout
+			ideology = ideology:ideology_authoritarian
+			traits = {
+		        pious
+		        cruel
+		        persistent
+		        basic_diplomat
+			}
+			on_created = {
+				set_variable = is_abdulhamid_2
+				set_variable = is_osmanoglu
+			}
+		}
+		hidden_effect = {
+			random_scope_character = {
+				limit = { is_heir = yes is_historical = no }
+				kill_character = yes
+			}
+		}
+	}
+	option = {
+		name = HJE_turkey.16.b
+		ai_chance = { factor = 0 }
+		
+		add_radicals = { value = 0.25 }
 	}
 }

@@ -795,23 +795,15 @@ HJE_apply_historical_dynasty_heirs_GBR_effect = {
 			}
 		}
 	}
-	if = {
+	if = { ## NON HISTORICAL CHARACTER FIX ##
 		limit = {
+			NOT = { has_variable = is_hannover }
 			owner = {
 				has_law = law_type:law_monarchy 
-				ruler = { 
-					has_variable = is_hannover 
-					is_historical = no
-				}
+				ruler = { has_variable = is_hannover }
 			}
 		}
-		random_scope_character = {
-			limit = { 
-				is_heir = yes 
-				NOT = { has_variable = is_hannover }
-			}
-			set_variable = is_hannover
-		}
+		set_variable = is_hannover
 	}
 }
 
@@ -824,7 +816,22 @@ HJE_apply_historical_dynasty_heirs_PRU_effect = {
 				ruler = { has_variable = is_hohenzollern }
 				OR = {
 					was_formed_from = PRU
-					AND = { exists = c:PRU this = c:PRU }
+					AND = { 
+						exists = c:PRU 
+						THIS = c:PRU 
+						NOT = { has_global_variable = NGF_formed_from_PRU_globevar }
+						NOT = { has_global_variable = GER_formed_from_PRU_globevar }
+					}
+					AND = {
+						exists = c:NGF 
+						THIS = c:NGF
+						has_global_variable = NGF_formed_from_PRU_globevar
+					}
+					AND = {
+						exists = c:GER 
+						THIS = c:GER
+						has_global_variable = GER_formed_from_PRU_globevar
+					}
 		        }
 			}
 		}
@@ -863,7 +870,22 @@ HJE_apply_historical_dynasty_heirs_PRU_effect = {
 				ruler = { has_variable = is_hohenzollern }
 				OR = {
 					was_formed_from = PRU
-					AND = { exists = c:PRU this = c:PRU }
+					AND = { 
+						exists = c:PRU 
+						THIS = c:PRU 
+						NOT = { has_global_variable = NGF_formed_from_PRU_globevar }
+						NOT = { has_global_variable = GER_formed_from_PRU_globevar }
+					}
+					AND = {
+						exists = c:NGF 
+						THIS = c:NGF
+						has_global_variable = NGF_formed_from_PRU_globevar
+					}
+					AND = {
+						exists = c:GER 
+						THIS = c:GER
+						has_global_variable = GER_formed_from_PRU_globevar
+					}
 		        }
 			}
 		}
@@ -904,7 +926,22 @@ HJE_apply_historical_dynasty_heirs_PRU_effect = {
 				ruler = { has_variable = is_hohenzollern }
 				OR = {
 					was_formed_from = PRU
-					AND = { exists = c:PRU this = c:PRU }
+					AND = { 
+						exists = c:PRU 
+						THIS = c:PRU 
+						NOT = { has_global_variable = NGF_formed_from_PRU_globevar }
+						NOT = { has_global_variable = GER_formed_from_PRU_globevar }
+					}
+					AND = {
+						exists = c:NGF 
+						THIS = c:NGF
+						has_global_variable = NGF_formed_from_PRU_globevar
+					}
+					AND = {
+						exists = c:GER 
+						THIS = c:GER
+						has_global_variable = GER_formed_from_PRU_globevar
+					}
 		        }
 			}
 		}
@@ -947,7 +984,22 @@ HJE_apply_historical_dynasty_heirs_PRU_effect = {
 				ruler = { has_variable = is_hohenzollern }
 				OR = {
 					was_formed_from = PRU
-					AND = { exists = c:PRU this = c:PRU }
+					AND = { 
+						exists = c:PRU 
+						THIS = c:PRU 
+						NOT = { has_global_variable = NGF_formed_from_PRU_globevar }
+						NOT = { has_global_variable = GER_formed_from_PRU_globevar }
+					}
+					AND = {
+						exists = c:NGF 
+						THIS = c:NGF
+						has_global_variable = NGF_formed_from_PRU_globevar
+					}
+					AND = {
+						exists = c:GER 
+						THIS = c:GER
+						has_global_variable = GER_formed_from_PRU_globevar
+					}
 		        }
 			}
 		}
@@ -976,30 +1028,23 @@ HJE_apply_historical_dynasty_heirs_PRU_effect = {
 			}
 		}
 	}
-	if = {
+	if = { ## NON HISTORICAL CHARACTER FIX ##
 		limit = {
+			NOT = { has_variable = is_hohenzollern }
 			owner = {
 				has_law = law_type:law_monarchy 
-				ruler = { 
-					has_variable = is_hohenzollern 
-					is_historical = no
-				}
+				ruler = { has_variable = is_hohenzollern }
 			}
 		}
-		random_scope_character = {
-			limit = { 
-				is_heir = yes 
-				NOT = { has_variable = is_hohenzollern }
-			}
-			set_variable = is_hohenzollern
-		}
+		set_variable = is_hohenzollern
 	}
 }
 
 HJE_apply_historical_dynasty_heirs_TUR_effect = {
 	if = {
 		limit = {
-			NOT = { has_global_variable = abdulaziz_1_born }
+			year < 1841
+			NOT = { has_global_variable = murad_5_born }
 			owner = { 
 				exists = c:TUR
 				this = c:TUR
@@ -1007,34 +1052,34 @@ HJE_apply_historical_dynasty_heirs_TUR_effect = {
 				ruler = { has_variable = is_osmanoglu }
 			}
 		}
-		set_global_variable = abdulaziz_1_born
+		set_global_variable = murad_5_born
 		owner = {
 			create_character = {
-				first_name = Abdulaziz
+				first_name = Murad
 				last_name = Osmanoglu
 				historical = yes
 				noble = yes
 				female = no
 				heir = yes		
-				birth_date = 1830.2.8
-				dna = dna_abdulaziz
+				age = 0
+				dna = dna_murad_5
 				interest_group = ig_intelligentsia
 				ideology = ideology:ideology_reformer
 				traits = {
-					expensive_tastes
-					tactful
+					psychological_affliction
+        			basic_diplomat
+					reserved
 				}
 				on_created = {
-					set_variable = is_abdulaziz_1
+					set_variable = is_murad_5
 					set_variable = is_osmanoglu
 				}
 			}
 		}
 	}
-	if = {
+	else_if = {
 		limit = {
 			year >= 1841
-			has_global_variable = abdulaziz_1_born
 			NOT = { has_global_variable = murad_5_born }
 			owner = { 
 				exists = c:TUR
@@ -1055,9 +1100,10 @@ HJE_apply_historical_dynasty_heirs_TUR_effect = {
 				birth_date = 1840.9.21
 				dna = dna_murad_5
 				interest_group = ig_intelligentsia
-				ideology = ideology:ideology_moderate
+				ideology = ideology:ideology_reformer
 				traits = {
 					psychological_affliction
+        			basic_diplomat
 					reserved
 				}
 				on_created = {
@@ -1069,17 +1115,55 @@ HJE_apply_historical_dynasty_heirs_TUR_effect = {
 	}
 	if = {
 		limit = {
-			year >= 1869
-			has_global_variable = abdulaziz_1_born
+			year >= 1845
 			has_global_variable = murad_5_born
-			NOT = { has_global_variable = abdulmecid_2_born }
+			NOT = { has_global_variable = mehmed_5_born }
 			owner = { 
 				exists = c:TUR
 				this = c:TUR
 				has_law = law_type:law_monarchy 
 				ruler = { 
 					has_variable = is_osmanoglu 
-					has_variable = no_longer_in_danger_of_being_overthrown
+					NOT = { has_variable = is_murad_5 }
+				}
+			}
+		}
+		set_global_variable = mehmed_5_born
+		owner = {
+			create_character = {
+				first_name = Mehmed
+				last_name = Osmanoglu
+				historical = yes
+				noble = yes
+				female = no
+				heir = yes		
+				birth_date = 1844.11.2
+				dna = dna_tur_mehmed_05
+				interest_group = ig_landowners
+				ideology = ideology:ideology_moderate
+				traits = {
+        			reserved
+				}
+				on_created = {
+					set_variable = is_mehmed_5
+					set_variable = is_osmanoglu
+				}
+			}
+		}
+	}
+	if = {
+		limit = {
+			year >= 1869
+			has_global_variable = murad_5_born
+			has_global_variable = mehmed_5_born
+			NOT = { has_global_variable = abdulmecid_2_born }
+			owner = { 
+				exists = c:TUR
+				this = c:TUR
+				has_law = law_type:law_monarchy 
+				ruler = { 
+					has_variable = is_osmanoglu
+					NOT = { has_variable = is_murad_5 }
 				}
 			}
 		}
@@ -1108,23 +1192,15 @@ HJE_apply_historical_dynasty_heirs_TUR_effect = {
 			}
 		}
 	}
-	if = {
+	if = { ## NON HISTORICAL CHARACTER FIX ##
 		limit = {
+			NOT = { has_variable = is_osmanoglu }
 			owner = {
 				has_law = law_type:law_monarchy 
-				ruler = { 
-					has_variable = is_osmanoglu 
-					is_historical = no
-				}
+				ruler = { has_variable = is_osmanoglu }
 			}
 		}
-		random_scope_character = {
-			limit = { 
-				is_heir = yes 
-				NOT = { has_variable = is_osmanoglu }
-			}
-			set_variable = is_osmanoglu
-		}
+		set_variable = is_osmanoglu
 	}
 }
 
@@ -1447,23 +1523,15 @@ HJE_apply_historical_dynasty_heirs_RUS_effect = {
 			}
 		}
 	}
-	if = {
+	if = { ## NON HISTORICAL CHARACTER FIX ##
 		limit = {
+			NOT = { has_variable = is_romanov }
 			owner = {
 				has_law = law_type:law_monarchy 
-				ruler = { 
-					has_variable = is_romanov 
-					is_historical = no
-				}
+				ruler = { has_variable = is_romanov }
 			}
 		}
-		random_scope_character = {
-			limit = { 
-				is_heir = yes 
-				NOT = { has_variable = is_romanov }
-			}
-			set_variable = is_romanov
-		}
+		set_variable = is_romanov
 	}
 }
 
@@ -1477,7 +1545,22 @@ HJE_apply_historical_dynasty_heirs_AUS_effect = {
 				ruler = { has_variable = is_habsburg }
 				OR = {
 					was_formed_from = AUS
-					AND = { exists = c:AUS this = c:AUS }
+					AND = { 
+						exists = c:AUS 
+						THIS = c:AUS 
+						NOT = { has_global_variable = SGF_formed_from_AUS_globevar }
+						NOT = { has_global_variable = GER_formed_from_AUS_globevar }
+					}
+					AND = {
+						exists = c:SGF 
+						THIS = c:SGF
+						has_global_variable = SGF_formed_from_AUS_globevar
+					}
+					AND = {
+						exists = c:GER 
+						THIS = c:GER
+						has_global_variable = GER_formed_from_AUS_globevar
+					}
 		        }
 			}
 		}
@@ -1516,7 +1599,22 @@ HJE_apply_historical_dynasty_heirs_AUS_effect = {
 				ruler = { has_variable = is_habsburg }
 				OR = {
 					was_formed_from = AUS
-					AND = { exists = c:AUS this = c:AUS }
+					AND = { 
+						exists = c:AUS 
+						THIS = c:AUS 
+						NOT = { has_global_variable = SGF_formed_from_AUS_globevar }
+						NOT = { has_global_variable = GER_formed_from_AUS_globevar }
+					}
+					AND = {
+						exists = c:SGF 
+						THIS = c:SGF
+						has_global_variable = SGF_formed_from_AUS_globevar
+					}
+					AND = {
+						exists = c:GER 
+						THIS = c:GER
+						has_global_variable = GER_formed_from_AUS_globevar
+					}
 		        }
 			}
 		}
@@ -1556,7 +1654,22 @@ HJE_apply_historical_dynasty_heirs_AUS_effect = {
 				ruler = { has_variable = is_habsburg }
 				OR = {
 					was_formed_from = AUS
-					AND = { exists = c:AUS this = c:AUS }
+					AND = { 
+						exists = c:AUS 
+						THIS = c:AUS 
+						NOT = { has_global_variable = SGF_formed_from_AUS_globevar }
+						NOT = { has_global_variable = GER_formed_from_AUS_globevar }
+					}
+					AND = {
+						exists = c:SGF 
+						THIS = c:SGF
+						has_global_variable = SGF_formed_from_AUS_globevar
+					}
+					AND = {
+						exists = c:GER 
+						THIS = c:GER
+						has_global_variable = GER_formed_from_AUS_globevar
+					}
 		        }
 			}
 		}
@@ -1599,7 +1712,22 @@ HJE_apply_historical_dynasty_heirs_AUS_effect = {
 				ruler = { has_variable = is_habsburg }
 				OR = {
 					was_formed_from = AUS
-					AND = { exists = c:AUS this = c:AUS }
+					AND = { 
+						exists = c:AUS 
+						THIS = c:AUS 
+						NOT = { has_global_variable = SGF_formed_from_AUS_globevar }
+						NOT = { has_global_variable = GER_formed_from_AUS_globevar }
+					}
+					AND = {
+						exists = c:SGF 
+						THIS = c:SGF
+						has_global_variable = SGF_formed_from_AUS_globevar
+					}
+					AND = {
+						exists = c:GER 
+						THIS = c:GER
+						has_global_variable = GER_formed_from_AUS_globevar
+					}
 		        }
 			}
 		}
@@ -1629,23 +1757,15 @@ HJE_apply_historical_dynasty_heirs_AUS_effect = {
 			}
 		}
 	}
-	if = {
+	if = { ## NON HISTORICAL CHARACTER FIX ##
 		limit = {
+			NOT = { has_variable = is_habsburg }
 			owner = {
 				has_law = law_type:law_monarchy 
-				ruler = { 
-					has_variable = is_habsburg 
-					is_historical = no
-				}
+				ruler = { has_variable = is_habsburg }
 			}
 		}
-		random_scope_character = {
-			limit = { 
-				is_heir = yes 
-				NOT = { has_variable = is_habsburg }
-			}
-			set_variable = is_habsburg
-		}
+		set_variable = is_habsburg
 	}
 }
 
@@ -1659,7 +1779,16 @@ HJE_apply_historical_dynasty_heirs_SAR_effect = {
 				ruler = { has_variable = is_savoy }
 				OR = {
 					was_formed_from = SAR
-					AND = { exists = c:SAR this = c:SAR }
+					AND = { 
+						exists = c:SAR 
+						THIS = c:SAR 
+						NOT = { has_global_variable = ITA_formed_from_SAR_globevar }
+					}
+					AND = {
+						exists = c:ITA 
+						THIS = c:ITA
+						has_global_variable = ITA_formed_from_SAR_globevar
+					}
 		        }
 			}
 		}
@@ -1698,7 +1827,16 @@ HJE_apply_historical_dynasty_heirs_SAR_effect = {
 				ruler = { has_variable = is_savoy }
 				OR = {
 					was_formed_from = SAR
-					AND = { exists = c:SAR this = c:SAR }
+					AND = { 
+						exists = c:SAR 
+						THIS = c:SAR 
+						NOT = { has_global_variable = ITA_formed_from_SAR_globevar }
+					}
+					AND = {
+						exists = c:ITA 
+						THIS = c:ITA
+						has_global_variable = ITA_formed_from_SAR_globevar
+					}
 		        }
 			}
 		}
@@ -1739,7 +1877,16 @@ HJE_apply_historical_dynasty_heirs_SAR_effect = {
 				ruler = { has_variable = is_savoy }
 				OR = {
 					was_formed_from = SAR
-					AND = { exists = c:SAR this = c:SAR }
+					AND = { 
+						exists = c:SAR 
+						THIS = c:SAR 
+						NOT = { has_global_variable = ITA_formed_from_SAR_globevar }
+					}
+					AND = {
+						exists = c:ITA 
+						THIS = c:ITA
+						has_global_variable = ITA_formed_from_SAR_globevar
+					}
 		        }
 			}
 		}
@@ -1779,7 +1926,16 @@ HJE_apply_historical_dynasty_heirs_SAR_effect = {
 				ruler = { has_variable = is_savoy }
 				OR = {
 					was_formed_from = SAR
-					AND = { exists = c:SAR this = c:SAR }
+					AND = { 
+						exists = c:SAR 
+						THIS = c:SAR 
+						NOT = { has_global_variable = ITA_formed_from_SAR_globevar }
+					}
+					AND = {
+						exists = c:ITA 
+						THIS = c:ITA
+						has_global_variable = ITA_formed_from_SAR_globevar
+					}
 		        }
 			}
 		}
@@ -1809,23 +1965,15 @@ HJE_apply_historical_dynasty_heirs_SAR_effect = {
 			}
 		}
 	}
-	if = {
+	if = { ## NON HISTORICAL CHARACTER FIX ##
 		limit = {
+			NOT = { has_variable = is_savoy }
 			owner = {
 				has_law = law_type:law_monarchy 
-				ruler = { 
-					has_variable = is_savoy 
-					is_historical = no
-				}
+				ruler = { has_variable = is_savoy }
 			}
 		}
-		random_scope_character = {
-			limit = { 
-				is_heir = yes 
-				NOT = { has_variable = is_savoy }
-			}
-			set_variable = is_savoy
-		}
+		set_variable = is_savoy
 	}
 }
 
@@ -2082,11 +2230,23 @@ HJE_semi_random_events_GER_effect = {
 			has_law = law_type:law_monarchy	
 			OR = {
 				was_formed_from = AUS
-				AND = {
-					exists = c:AUS
-					c:AUS = THIS
+				AND = { 
+					exists = c:AUS 
+					THIS = c:AUS 
+					NOT = { has_global_variable = SGF_formed_from_AUS_globevar }
+					NOT = { has_global_variable = GER_formed_from_AUS_globevar }
 				}
-			}
+				AND = {
+					exists = c:SGF 
+					THIS = c:SGF
+					has_global_variable = SGF_formed_from_AUS_globevar
+				}
+				AND = {
+					exists = c:GER 
+					THIS = c:GER
+					has_global_variable = GER_formed_from_AUS_globevar
+				}
+	        }
 			NOT = { has_global_variable = franz_ferdinand_born }
 			NOT = { has_global_variable = kiddie_karl_born }
 			ruler = { has_variable = is_habsburg }
@@ -2194,6 +2354,67 @@ HJE_semi_random_events_ITA_effect = {
 		c:ITA = { 
 			set_variable = ITA_newly_formed_capital_decision
 			trigger_event = { id = HJE_main.1 }
+		}
+	}
+}
+
+HJE_semi_random_events_TUR_effect = {
+	if = {
+		limit = {			#Randomized event for Abdulmecid to die early of Tuberculosis
+			year >= 1858
+			NOT = { has_global_variable = abdulaziz_1_born }
+			NOT = { has_global_variable = abdulmecid_death } 
+			has_law = law_type:law_monarchy	
+			exists = c:TUR
+			c:TUR = THIS
+			ruler = { 
+				has_variable = is_osmanoglu 
+				has_variable = is_abdulmecid_i
+			}
+		}
+		random_list = {
+			95 = {  }
+			9 = { trigger_event = { id = HJE_turkey.14 } }
+		}
+	}
+	if = {
+		limit = {			#Randomized event for Abdulaziz to be deposed
+			year >= 1858
+			NOT = { has_global_variable = abdulaziz_coup } 
+			NOT = { has_global_variable = abdulaziz_timer } 
+			has_law = law_type:law_monarchy	
+			exists = c:TUR
+			c:TUR = THIS
+			any_scope_character = { 
+				has_variable = is_osmanoglu 
+				is_heir = yes 
+			}
+			ruler = { 
+				has_variable = is_osmanoglu 
+				has_variable = is_abdulaziz_1
+			}
+		}
+		random_list = {
+			95 = {  }
+			9 = { trigger_event = { id = HJE_turkey.15 } }
+		}
+	}
+	if = {
+		limit = {			#Fast Randomized Event for Murad V to step down due to mental illness
+			year >= 1863
+			NOT = { has_global_variable = abdulhamid_2_born }
+			NOT = { has_global_variable = murad_step_down }
+			has_law = law_type:law_monarchy	
+			exists = c:TUR
+			c:TUR = THIS
+			ruler = { 
+				has_variable = is_osmanoglu 
+				has_variable = is_murad_5
+			}
+		}
+		random_list = {
+			90 = {  }
+			10 = { trigger_event = { id = HJE_turkey.16 } }
 		}
 	}
 }

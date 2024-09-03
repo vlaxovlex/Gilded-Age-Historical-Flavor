@@ -387,6 +387,21 @@ HJE_italy.4 = {
 			remove_ideology = ideology_republican
 			add_ideology = ideology_constitutionalist
 		}
+		every_interest_group = {
+			limit = { has_ideology = ideology:ideology_paternalistic }
+			remove_ideology = ideology_paternalistic
+			add_ideology = ideology_hje_estatist
+		}
+		every_interest_group = {
+			limit = { has_ideology = ideology:ideology_stratocratic }
+			remove_ideology = ideology_stratocratic
+			add_ideology = ideology_hje_conservative
+		}
+		every_interest_group = {
+			limit = { has_ideology = ideology:ideology_plutocratic }
+			remove_ideology = ideology_plutocratic
+			add_ideology = ideology_hje_libertarian
+		}
 		if = {
 			limit = {
 				any_scope_character = {
@@ -2089,7 +2104,16 @@ HJE_italy.15 = {
 		NOT = { has_global_variable = ITA_decided_to_ditch_savoy_dynasty }
 		OR = {
 			was_formed_from = SAR
-			AND = { exists = c:SAR owner = c:SAR }
+			AND = { 
+				exists = c:SAR 
+				ROOT = c:SAR 
+				NOT = { has_global_variable = ITA_formed_from_SAR_globevar }
+			}
+			AND = {
+				exists = c:ITA 
+				ROOT = c:ITA
+				has_global_variable = ITA_formed_from_SAR_globevar
+			}
         }
 	}
 

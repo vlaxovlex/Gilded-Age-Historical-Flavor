@@ -1464,6 +1464,20 @@
  HJE_austria.4.d:0 "The incident in question, an apparent murder-suicide, has left the Habsburg Monarchy once again without an heir."
  HJE_austria.4.f:0 "In what is certainly a personal tragedy for [ROOT.GetCountry.GetRuler.GetPrimaryRoleTitle] [ROOT.GetCountry.GetRuler.GetFullName] and a serious bow to the security of the Empire as a whole, the bodies of [SCOPE.sCharacter('hab_heir').GetPrimaryRoleTitle] [SCOPE.sCharacter('hab_heir').GetFullName] and his mistress were discovered yesterday in the Imperial Hunting Lodge at Mayerling, some 25 kilometres from Wien. \n\nThis murder-suicide appears to have been motivated by several personal tragedies relating to [SCOPE.sCharacter('hab_heir').GetHerHis] personal life, including his melancholic nature, an unhappy marriage, an affair that caused division in the family, and which resulted in a syphilis infection which was then passed to [SCOPE.sCharacter('hab_heir').GetHerHis] spouse, rendering them infertile, and their having only one daughter prior to the current sad state of affairs."
  HJE_austria.4.a:0 "The nation weeps alongside the [ROOT.GetCountry.GetRuler.GetPrimaryRoleTitle]..."
+ HJE_turkey.14.t:0 "Consumption Takes the Sultan"
+ HJE_turkey.14.d:0 "Long Live Abdulaziz"
+ HJE_turkey.14.f:0 "Abdülmecid, our beloved Sultan, took ill a few days ago with Consumption, which the western men of medicine which recently have come to serve the Sublime Porte have begun lately to call Tuberculosis. He did not suffer its ill effects long before passing away and into the waiting and loving arms of Allah. He is succeeded by his brother, Abdulaziz."
+ HJE_turkey.14.a:0 "May his place be in paradise."
+ HJE_turkey.15.t:0 "The Scheme Against Abdulaziz"
+ HJE_turkey.15.d:0 "The Empire chafes under the excessive and cruel reign of Abdulaziz I"
+ HJE_turkey.15.f:0 "There is a plot brewing among the military and aristocracy to force out Abdulaziz and replace him with the member of house Osmanoglu who is next in line for the throne. It would ease tensions among the court and expediate the process should it have your support Vizier. Should it go forth without you, it may not end up being as bloodless as many currently hope..."
+ HJE_turkey.15.a:0 "He must go."
+ HJE_turkey.15.b:0 "Such plotting is unworthy of the Ottoman court!"
+ HJE_turkey.16.t:0 "Murad V Enters Isolation"
+ HJE_turkey.16.d:0 "Murad promises to be an enlightened Sultan, but one whose melancholy may destroy the Empire."
+ HJE_turkey.16.f:0 "Murad seems unable to adapt to his new role as Sultan, so at odds with his quiet life of dabbling in music as Prince. His nerves are weak, and he has taken to drink. All-in-all, he seems to be on the verge of a mental breakdown. In an attempt to pre-empt such a catastrophe as the Sultan and Caliph having a mental breakdown and possible loss of function, he has instead chosen to isolate himself within a room in his palace, which is only marginally better for the stability of the state. \n\nWill the Vizier wait and see how well the Sultan fairs in future, giving him his fair chance as head of the Ottoman state? Or will he support the bid of his younger brother Abdul Hamid, who has also promised a constitution?"
+ HJE_turkey.16.a:0 "For the Empire, Murad must be deposed."
+ HJE_turkey.16.b:0 "Abdul Hamid is an autocrat, only Murad can bring true reform!"
 
 
  

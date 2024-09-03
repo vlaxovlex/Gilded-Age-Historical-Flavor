@@ -576,7 +576,22 @@ HJE_austria.3 = {
 		NOT = { has_global_variable = AUS_decided_to_ditch_habsburg_dynasty }
 		OR = {
 			was_formed_from = AUS
-			AND = { exists = c:AUS owner = c:AUS }
+			AND = { 
+				exists = c:AUS 
+				ROOT = c:AUS 
+				NOT = { has_global_variable = SGF_formed_from_AUS_globevar }
+				NOT = { has_global_variable = GER_formed_from_AUS_globevar }
+			}
+			AND = {
+				exists = c:SGF 
+				ROOT = c:SGF
+				has_global_variable = SGF_formed_from_AUS_globevar
+			}
+			AND = {
+				exists = c:GER 
+				ROOT = c:GER
+				has_global_variable = GER_formed_from_AUS_globevar
+			}
         }
 	}
 

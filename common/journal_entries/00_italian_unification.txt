@@ -100,6 +100,12 @@
 		show_as_tooltip = {
 			trigger_event = { id = italian_unification.1 popup = yes }
 		}
+		hidden_effect = { #HJE edit start
+			if = {
+				limit = { was_formed_from = SAR }
+				set_global_variable = ITA_formed_from_SAR_globevar
+			}
+		}			#HJE edit end
 	}
 
 	current_value = {
