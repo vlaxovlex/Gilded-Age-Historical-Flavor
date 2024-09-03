@@ -842,6 +842,7 @@ HJE_apply_historical_dynasty_heirs_PRU_effect = {
 				female = no
 				ideology = ideology:ideology_royalist
 				traits = {
+        			hje_hale
 					romantic
 					popular_commander
 				}
