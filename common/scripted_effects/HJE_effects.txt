@@ -615,12 +615,12 @@ HJE_apply_historical_dynasty_heirs_GBR_effect = {
 				OR = {
 					AND = { 
 						exists = c:ENG
-						owner = c:ENG
+						this = c:ENG
 		            }
 		            AND = { 
 						NOT = { exists = c:ENG }
 						exists = c:GBR
-						owner = c:GBR
+						this = c:GBR
 						c:GBR = { owns_entire_state_region = STATE_HOME_COUNTIES }
 		            }
 		        }
@@ -662,12 +662,12 @@ HJE_apply_historical_dynasty_heirs_GBR_effect = {
 				OR = {
 					AND = { 
 						exists = c:ENG
-						owner = c:ENG
+						this = c:ENG
 		            }
 		            AND = { 
 						NOT = { exists = c:ENG }
 						exists = c:GBR
-						owner = c:GBR
+						this = c:GBR
 						c:GBR = { owns_entire_state_region = STATE_HOME_COUNTIES }
 		            }
 		        }
@@ -710,12 +710,12 @@ HJE_apply_historical_dynasty_heirs_GBR_effect = {
 				OR = {
 					AND = { 
 						exists = c:ENG
-						owner = c:ENG
+						this = c:ENG
 		            }
 		            AND = { 
 						NOT = { exists = c:ENG }
 						exists = c:GBR
-						owner = c:GBR
+						this = c:GBR
 						c:GBR = { owns_entire_state_region = STATE_HOME_COUNTIES }
 		            }
 		        }
@@ -758,12 +758,12 @@ HJE_apply_historical_dynasty_heirs_GBR_effect = {
 				OR = {
 					AND = { 
 						exists = c:ENG
-						owner = c:ENG
+						this = c:ENG
 		            }
 		            AND = { 
 						NOT = { exists = c:ENG }
 						exists = c:GBR
-						owner = c:GBR
+						this = c:GBR
 						c:GBR = { owns_entire_state_region = STATE_HOME_COUNTIES }
 		            }
 		        }
@@ -824,7 +824,7 @@ HJE_apply_historical_dynasty_heirs_PRU_effect = {
 				ruler = { has_variable = is_hohenzollern }
 				OR = {
 					was_formed_from = PRU
-					AND = { exists = c:PRU owner = c:PRU }
+					AND = { exists = c:PRU this = c:PRU }
 		        }
 			}
 		}
@@ -862,7 +862,7 @@ HJE_apply_historical_dynasty_heirs_PRU_effect = {
 				ruler = { has_variable = is_hohenzollern }
 				OR = {
 					was_formed_from = PRU
-					AND = { exists = c:PRU owner = c:PRU }
+					AND = { exists = c:PRU this = c:PRU }
 		        }
 			}
 		}
@@ -903,7 +903,7 @@ HJE_apply_historical_dynasty_heirs_PRU_effect = {
 				ruler = { has_variable = is_hohenzollern }
 				OR = {
 					was_formed_from = PRU
-					AND = { exists = c:PRU owner = c:PRU }
+					AND = { exists = c:PRU this = c:PRU }
 		        }
 			}
 		}
@@ -946,7 +946,7 @@ HJE_apply_historical_dynasty_heirs_PRU_effect = {
 				ruler = { has_variable = is_hohenzollern }
 				OR = {
 					was_formed_from = PRU
-					AND = { exists = c:PRU owner = c:PRU }
+					AND = { exists = c:PRU this = c:PRU }
 		        }
 			}
 		}
@@ -1001,7 +1001,7 @@ HJE_apply_historical_dynasty_heirs_TUR_effect = {
 			NOT = { has_global_variable = abdulaziz_1_born }
 			owner = { 
 				exists = c:TUR
-				owner = c:TUR
+				this = c:TUR
 				has_law = law_type:law_monarchy 
 				ruler = { has_variable = is_osmanoglu }
 			}
@@ -1037,7 +1037,7 @@ HJE_apply_historical_dynasty_heirs_TUR_effect = {
 			NOT = { has_global_variable = murad_5_born }
 			owner = { 
 				exists = c:TUR
-				owner = c:TUR
+				this = c:TUR
 				has_law = law_type:law_monarchy 
 				ruler = { has_variable = is_osmanoglu }
 			}
@@ -1072,9 +1072,9 @@ HJE_apply_historical_dynasty_heirs_TUR_effect = {
 			has_global_variable = abdulaziz_1_born
 			has_global_variable = murad_5_born
 			NOT = { has_global_variable = abdulmecid_2_born }
-			exists = c:TUR
-			owner = c:TUR
 			owner = { 
+				exists = c:TUR
+				this = c:TUR
 				has_law = law_type:law_monarchy 
 				ruler = { 
 					has_variable = is_osmanoglu 
@@ -1134,7 +1134,7 @@ HJE_apply_historical_dynasty_heirs_RUS_effect = {
 			NOT = { has_global_variable = tsarevich_nicky_born }
 			owner = { 
 				exists = c:RUS
-				owner = c:RUS
+				this = c:RUS
 				has_law = law_type:law_monarchy 
 				ruler = { 
 					has_variable = is_romanov 
@@ -1172,7 +1172,7 @@ HJE_apply_historical_dynasty_heirs_RUS_effect = {
 			NOT = { has_global_variable = tsarevich_nicky_born }
 			owner = { 
 				exists = c:RUS
-				owner = c:RUS
+				this = c:RUS
 				has_law = law_type:law_monarchy 
 				ruler = { 
 					has_variable = is_romanov 
@@ -1210,7 +1210,7 @@ HJE_apply_historical_dynasty_heirs_RUS_effect = {
 			NOT = { has_global_variable = aleksandr_iii_born }
 			owner = { 
 				exists = c:RUS
-				owner = c:RUS
+				this = c:RUS
 				has_law = law_type:law_monarchy 
 				ruler = { 
 					has_variable = is_romanov 
@@ -1249,7 +1249,7 @@ HJE_apply_historical_dynasty_heirs_RUS_effect = {
 			NOT = { has_global_variable = aleksandr_iii_born }
 			owner = { 
 				exists = c:RUS
-				owner = c:RUS
+				this = c:RUS
 				has_law = law_type:law_monarchy
 				ruler = { 
 					has_variable = is_romanov 
@@ -1289,7 +1289,7 @@ HJE_apply_historical_dynasty_heirs_RUS_effect = {
 			NOT = { has_global_variable = nicky_ii_born }
 			owner = { 
 				exists = c:RUS
-				owner = c:RUS
+				this = c:RUS
 				has_law = law_type:law_monarchy
 				ruler = { 
 					has_variable = is_romanov 
@@ -1331,7 +1331,7 @@ HJE_apply_historical_dynasty_heirs_RUS_effect = {
 			NOT = { has_global_variable = nicky_ii_born }
 			owner = { 
 				exists = c:RUS
-				owner = c:RUS
+				this = c:RUS
 				has_law = law_type:law_monarchy
 				ruler = { 
 					has_variable = is_romanov 
@@ -1374,7 +1374,7 @@ HJE_apply_historical_dynasty_heirs_RUS_effect = {
 			NOT = { has_global_variable = sick_alexei_born }
 			owner = { 
 				exists = c:RUS
-				owner = c:RUS
+				this = c:RUS
 				has_law = law_type:law_monarchy
 				ruler = { 
 					has_variable = is_romanov 
@@ -1414,7 +1414,7 @@ HJE_apply_historical_dynasty_heirs_RUS_effect = {
 			NOT = { has_global_variable = sick_alexei_born }
 			owner = { 
 				exists = c:RUS
-				owner = c:RUS
+				this = c:RUS
 				has_law = law_type:law_monarchy
 				ruler = { 
 					has_variable = is_romanov 
@@ -1476,7 +1476,7 @@ HJE_apply_historical_dynasty_heirs_AUS_effect = {
 				ruler = { has_variable = is_habsburg }
 				OR = {
 					was_formed_from = AUS
-					AND = { exists = c:AUS owner = c:AUS }
+					AND = { exists = c:AUS this = c:AUS }
 		        }
 			}
 		}
@@ -1515,7 +1515,7 @@ HJE_apply_historical_dynasty_heirs_AUS_effect = {
 				ruler = { has_variable = is_habsburg }
 				OR = {
 					was_formed_from = AUS
-					AND = { exists = c:AUS owner = c:AUS }
+					AND = { exists = c:AUS this = c:AUS }
 		        }
 			}
 		}
@@ -1555,7 +1555,7 @@ HJE_apply_historical_dynasty_heirs_AUS_effect = {
 				ruler = { has_variable = is_habsburg }
 				OR = {
 					was_formed_from = AUS
-					AND = { exists = c:AUS owner = c:AUS }
+					AND = { exists = c:AUS this = c:AUS }
 		        }
 			}
 		}
@@ -1598,7 +1598,7 @@ HJE_apply_historical_dynasty_heirs_AUS_effect = {
 				ruler = { has_variable = is_habsburg }
 				OR = {
 					was_formed_from = AUS
-					AND = { exists = c:AUS owner = c:AUS }
+					AND = { exists = c:AUS this = c:AUS }
 		        }
 			}
 		}
@@ -1658,7 +1658,7 @@ HJE_apply_historical_dynasty_heirs_SAR_effect = {
 				ruler = { has_variable = is_savoy }
 				OR = {
 					was_formed_from = SAR
-					AND = { exists = c:SAR owner = c:SAR }
+					AND = { exists = c:SAR this = c:SAR }
 		        }
 			}
 		}
@@ -1697,7 +1697,7 @@ HJE_apply_historical_dynasty_heirs_SAR_effect = {
 				ruler = { has_variable = is_savoy }
 				OR = {
 					was_formed_from = SAR
-					AND = { exists = c:SAR owner = c:SAR }
+					AND = { exists = c:SAR this = c:SAR }
 		        }
 			}
 		}
@@ -1738,7 +1738,7 @@ HJE_apply_historical_dynasty_heirs_SAR_effect = {
 				ruler = { has_variable = is_savoy }
 				OR = {
 					was_formed_from = SAR
-					AND = { exists = c:SAR owner = c:SAR }
+					AND = { exists = c:SAR this = c:SAR }
 		        }
 			}
 		}
@@ -1778,7 +1778,7 @@ HJE_apply_historical_dynasty_heirs_SAR_effect = {
 				ruler = { has_variable = is_savoy }
 				OR = {
 					was_formed_from = SAR
-					AND = { exists = c:SAR owner = c:SAR }
+					AND = { exists = c:SAR this = c:SAR }
 		        }
 			}
 		}
@@ -2073,6 +2073,37 @@ HJE_semi_random_events_GER_effect = {
 		random_list = {
 			90 = {  }
 			10 = { trigger_event = { id = HJE_prussia.5 } }
+		}
+	}
+	if = {
+		limit = {			#Randomized event for Mayerling Incident
+			NOT = { has_global_variable = meyerling_incident }
+			has_law = law_type:law_monarchy	
+			OR = {
+				was_formed_from = AUS
+				AND = {
+					exists = c:AUS
+					c:AUS = THIS
+				}
+			}
+			NOT = { has_global_variable = franz_ferdinand_born }
+			NOT = { has_global_variable = kiddie_karl_born }
+			ruler = { has_variable = is_habsburg }
+			OR = {
+				year >= 1875
+				heir = { has_variable = is_suicide_rudolf }
+			}
+			OR = {
+				heir = { age > 28 }
+				AND = { ## sanity check, Franz Ferdinand should be heir so he can be shot by Gavrilo Princip
+					year >= 1900
+					heir = { age > 18 }
+				}
+			}
+		}
+		random_list = {
+			95 = {  }
+			9 = { trigger_event = { id = HJE_austria.4 } }
 		}
 	}
 }

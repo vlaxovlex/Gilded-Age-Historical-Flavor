@@ -58,7 +58,6 @@
 				text = chihumiliation_no_gp_treaty_ports_tt
 				NOT = {
 					any_country = {
-						is_diplomatic_play_committed_participant = no
 						is_country_type = recognized
 						country_rank >= rank_value:major_power
 						any_scope_state = {
@@ -208,6 +207,14 @@ HJ_opium_wars = {
 						country = PREV
 						secret_goal = conquer			
 					}
+					if = {
+						limit = { has_diplomatic_pact = { who = PREV type = alliance } }
+						remove_diplomatic_pact = { country = PREV type = alliance }
+					}
+					if = {
+						limit = { has_diplomatic_pact = { who = PREV type = defensive_pact } }
+						remove_diplomatic_pact = { country = PREV type = defensive_pact }
+					}
 				}
 			}
 			if = {
@@ -248,28 +255,12 @@ HJ_opium_wars = {
 		}
 		custom_tooltip = {
 			text = opiumwars_chi_has_been_forced_to_reopen_markets_tt
-			any_country = {
-				NOT = { THIS = ROOT }
-				has_variable = var_dynamic_opium_wars_victim
-				any_scope_state = { is_coastal = yes }
-				trigger_if = {
-					limit = { NOT = { has_dlc_feature = foreign_investment } }
-					has_law = law_type:law_free_trade
-				}
-				trigger_else = {
-					any_country = {
-						country_rank = rank_value:great_power
-						OR = {
-							can_create_diplomatic_pact = { target = PREV = foreign_investment_agreement }
-							can_create_diplomatic_pact = { target = PREV = foreign_investment_rights }
-							has_diplomatic_pact = { who = PREV type = foreign_investment_rights }	
-							has_diplomatic_pact = { who = PREV type = foreign_investment_agreement }	
-						}
-						OR = {
-							has_diplomatic_pact = { who = PREV type = foreign_investment_rights }	
-							has_diplomatic_pact = { who = PREV type = foreign_investment_agreement }	
-						}
-					}
+			NOT = {
+				any_country = {
+					NOT = { THIS = ROOT }
+					has_variable = var_dynamic_opium_wars_victim
+					any_scope_state = { is_coastal = yes }
+					has_law = law_type:law_isolationism
 				}
 			}
 		}
@@ -470,7 +461,15 @@ HJ_opium_wars_unhistorical = {
 				ROOT = {
 					set_secret_goal = {
 						country = PREV
-						secret_goal = antagonize			
+						secret_goal = conquer			
+					}
+					if = {
+						limit = { has_diplomatic_pact = { who = PREV type = alliance } }
+						remove_diplomatic_pact = { country = PREV type = alliance }
+					}
+					if = {
+						limit = { has_diplomatic_pact = { who = PREV type = defensive_pact } }
+						remove_diplomatic_pact = { country = PREV type = defensive_pact }
 					}
 				}
 			}
@@ -526,28 +525,12 @@ HJ_opium_wars_unhistorical = {
 		}
 		custom_tooltip = {
 			text = opiumwars_chi_has_been_forced_to_reopen_markets_tt
-			any_country = {
-				NOT = { THIS = ROOT }
-				has_variable = var_dynamic_opium_wars_victim
-				any_scope_state = { is_coastal = yes }
-				trigger_if = {
-					limit = { NOT = { has_dlc_feature = foreign_investment } }
-					has_law = law_type:law_free_trade
-				}
-				trigger_else = {
-					any_country = {
-						country_rank = rank_value:great_power
-						OR = {
-							can_create_diplomatic_pact = { target = PREV = foreign_investment_agreement }
-							can_create_diplomatic_pact = { target = PREV = foreign_investment_rights }
-							has_diplomatic_pact = { who = PREV type = foreign_investment_rights }	
-							has_diplomatic_pact = { who = PREV type = foreign_investment_agreement }	
-						}
-						OR = {
-							has_diplomatic_pact = { who = PREV type = foreign_investment_rights }	
-							has_diplomatic_pact = { who = PREV type = foreign_investment_agreement }	
-						}
-					}
+			NOT = {
+				any_country = {
+					NOT = { THIS = ROOT }
+					has_variable = var_dynamic_opium_wars_victim
+					any_scope_state = { is_coastal = yes }
+					has_law = law_type:law_isolationism
 				}
 			}
 		}

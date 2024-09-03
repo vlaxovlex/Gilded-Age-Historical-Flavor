@@ -750,3 +750,46 @@ HJE_austria.3 = {
 		set_global_variable = AUS_decided_to_ditch_habsburg_dynasty
 	}
 }
+
+# Mayerling Incident (death of Rudolf)
+HJE_austria.4 = {
+	type = country_event
+	placement = root
+	title = HJE_austria.4.t
+	desc = HJE_austria.4.d
+	flavor = HJE_austria.4.f
+
+	duration = 3
+
+	event_image = {
+		video = "southamerica_aristocrats"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/rich_and_poor"
+
+	icon = "gfx/interface/icons/event_icons/event_skull.dds"
+
+	trigger = {
+	}
+
+	immediate = {
+		set_global_variable = meyerling_incident
+		random_scope_character = {
+			limit = { is_heir = yes }
+			save_scope_as = hab_heir
+		}
+	}
+
+	option = {
+		name = HJE_austria.4.a
+		default_option = yes
+		scope:hab_heir = {
+			kill_character = yes
+		}
+		add_modifier = {
+			name = modifier_state_of_mourning
+			months = 36
+		}
+	}
+}
