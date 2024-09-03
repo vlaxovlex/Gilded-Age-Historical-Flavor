@@ -272,6 +272,7 @@ pru_wilhelm_IV_hohenzollern_template = {
     ideology = ideology_royalist
     traits = {
         reserved
+        sickly ## HJE ##
     }
     on_created = {
         set_variable = is_married
