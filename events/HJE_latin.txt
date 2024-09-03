@@ -170,7 +170,53 @@ HJE_latin_america.2 = {
 		random_diplomatic_play = {
 			limit = { initiator_is = c:CHL target_is = c:BOL }
 			add_initiator_backers = { ROOT }
-			add_escalation = 80
+			add_escalation = 20
+			if = {
+				limit = { 
+					exists = c:ARG
+					c:ARG = ROOT
+					c:BOL = { 
+						any_scope_state = { 
+							NOT = { is_target_of_wargoal = ROOT }
+							state_region = s:STATE_JUJUY
+						}
+					} 
+				}
+				c:BOL = {
+					random_scope_state = {
+						limit = { state_region = s:STATE_JUJUY }
+						save_scope_as = bolivian_jujuy_scope
+					}
+				}
+				add_war_goal = {
+					holder = ROOT
+					type = return_state
+					target_state = scope:bolivian_jujuy_scope
+				}
+			}
+			else_if = {
+				limit = { 
+					exists = c:BRZ
+					c:BRZ = ROOT
+					c:BOL = { 
+						any_scope_state = { 
+							NOT = { is_target_of_wargoal = ROOT }
+							state_region = s:STATE_AMAZONAS
+						}
+					} 
+				}
+				c:BOL = {
+					random_scope_state = {
+						limit = { state_region = s:STATE_AMAZONAS }
+						save_scope_as = bolivian_amazonas_scope
+					}
+				}
+				add_war_goal = {
+					holder = ROOT
+					type = return_state
+					target_state = scope:bolivian_amazonas_scope
+				}
+			}
 		}
 		if = {
 			limit = {

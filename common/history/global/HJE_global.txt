@@ -9,6 +9,7 @@ GLOBAL = {
 	cu:scottish = { add_cultural_obsession = liquor }
 	cu:han = { add_cultural_obsession = opium }
 	c:HAI = { remove_primary_culture = cu:caribeno }
+	c:PRG = { activate_law = law_type:law_frontier_colonization }
 	c:DEN = {
 		activate_law = law_type:law_legacy_slavery
 		ig:ig_petty_bourgeoisie = {
@@ -287,6 +288,11 @@ GLOBAL = {
 	}
 	s:STATE_ALTO_PARAGUAY = {
 		add_claim = c:BOL
+		add_claim = c:PRG
+		set_owner_of_provinces = {
+			country = c:PRG
+			provinces = { xF81AEB }
+		}
 	}
 	s:STATE_BUENOS_AIRES = {
 		add_claim = c:ARG
