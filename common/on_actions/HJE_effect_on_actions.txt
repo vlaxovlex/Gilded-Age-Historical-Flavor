@@ -1,24 +1,13 @@
 hje_monthly_pulse_events = {
 	events = {
 		### HISTORICAL EVENTS ###
-		HJE_latin_america.1  		#War of the Confederation
-		HJE_britain.5001 			#Potato Blight
 		manifest_destiny.6 			#Mexican Cession
-		TGE_austria.1 				#Hungarian Revolution 1848
 		treaty_of_villafranca.1 	#Treaty of Villafranca
 		HJE_spain.1 				#Invasion of Dominican Republic
 		HJE_france.5 				#French invasion of Mexico
-		HJE_latin_america.3 		#Peruvian-Bolivian Alliance
-		HJE_latin_america.5 		#War of the Pacific
-		HJE_turkey.11 				#Ottoman Al-Hasa Expedition
-		HJE_turkey.3 				#Start of Turko-Armenian Struggles
 		HJE_china.6					#Instead "01_taiping"
-		HJE_germany.3				#GER-AUS
-		HJE_britain.19				#GBR-FRA
-		HJE_italy.13				#Italian equivalent to create a triple alliance 
 
 		### ELECTION AND CHARACTER EVENTS ###
-		HJE_usa.11 					#Spawns ACW Generals
 		HJE_usa.7					#USA Jackson -> van Buren
 		HJE_usa.8					#USA James K. Polk	
 		HJE_usa.9					#USA James K. Polk retires
@@ -26,9 +15,9 @@ hje_monthly_pulse_events = {
 		HJE_usa.10					#USA Abraham Lincoln
 
 		### MAINTENENCE EVENTS ###
+		HJE_china.5					#China support
 		HJE_main.2 					#Quinine spread
 		HJE_main.3 					#Malaria Prevention spread
-		HJE_china.5					#China support
 		HJE_britain.25				#GBR Hannover Dynasty Restoration
 		HJE_russia.8				#RUS Romanov Dynasty Restoration
 		HJE_austria.3				#AUS Habsburg Dynasty Restoration
@@ -41,18 +30,31 @@ hje_monthly_pulse_events = {
 
 		1 = HJE_main.8 					#Generic Subject Rebellion Event
 
+		5 = HJE_britain.5001 			#Potato Blight
+		5 = HJE_britain.19				#GBR-FRA Alliance
+
 		1 = HJE_usa.5 					#Americans Move to California
 		1 = HJE_usa.6 					#Mormons Move to Utah
+		5 = HJE_usa.11 					#Spawns ACW Generals
 		1 = HJE_usa.12 					#American Exceptionalism Event (Begins American Empire Journal)
 
 		2 = HJE_prussia.5 				#Ems Dispatch (Franco-Prussian War)
+		5 = HJE_germany.3				#GER-AUS Alliance
 
+		12 = TGE_austria.1 				#Hungarian Revolution 1848
 		2 = HJE_austria.4 				#Mayerling Incident (Death of Rudolf von Habsburg)
 
+		12 = HJE_turkey.11 				#Ottoman Al-Hasa Expedition
+		1 = HJE_turkey.3 				#Start of Turko-Armeno Conflict
 		1 = HJE_turkey.14 				#Death of Abdulmecid I
 		1 = HJE_turkey.15 				#Coup Against Abdulaziz I
 		5 = HJE_turkey.16 				#Murad V Pushed to Step Down
 
+		5 = HJE_italy.13				#Italian equivalent to create a triple alliance 
+
+		10 = HJE_latin_america.1  		#War of the Confederation
+		10 = HJE_latin_america.3 		#Peruvian-Bolivian Alliance
+		12 = HJE_latin_america.5 		#War of the Pacific
 		15 = HJE_latin_america.16 		#Haitian 1841 Earthquake
 	}
 }
