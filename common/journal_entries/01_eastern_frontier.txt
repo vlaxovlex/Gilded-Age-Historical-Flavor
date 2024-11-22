@@ -9,7 +9,7 @@
     scripted_button = persia_british_aid_button
     scripted_button = persia_russian_aid_button
     scripted_button = persia_resettle_merv_button
-	scripted_button = HJ_the_enemy_of_my_enemy
+	scripted_button = HJ_the_enemy_of_my_enemy	#HJE edit
 
     immediate = {
         s:STATE_HERAT = {
@@ -47,7 +47,7 @@
         }
     }
 
-    on_weekly_pulse = { ## HJE EDIT ##
+   on_weekly_pulse = { ## HJE EDIT start
         effect = {
             if = {
                 limit = {
@@ -74,8 +74,7 @@
                 }
             }
         }
-    }
-
+    }	#HJE edit end
 	complete = {
         custom_tooltip = {
             text = je_eastern_frontier_tt_1 # Todo PRCAL-14501 Needs state highlighting

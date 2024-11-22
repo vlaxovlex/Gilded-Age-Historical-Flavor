@@ -6,6 +6,7 @@ RUS_nicholas_i = { #Nicholas I
 	first_name = Nikolai
 	last_name = Romanov
 	historical = yes
+	culture = primary_culture
 	interest_group = ig_landowners
 	ideology = ideology_traditionalist
 	ruler = yes
@@ -18,8 +19,8 @@ RUS_nicholas_i = { #Nicholas I
 	}
 	on_created = {
         set_variable = is_married
-        set_variable = is_nicholas_i ## HJE ##
-        set_variable = is_romanov ## HJE, Ness, needed for heirs to spawn correctly ##
+        set_variable = is_nicholas_i ## HJE edit ##
+        set_variable = is_romanov ## HJE edit, Ness, needed for heirs to spawn correctly ##
 	}
 	trait_generation = {
 
@@ -30,6 +31,7 @@ RUS_alexander_ii = { #Alexander II, son of Nicholas I
 	first_name = Aleksandr
 	last_name = Romanov
 	historical = yes
+	culture = primary_culture
 	heir = yes
 	birth_date = 1818.4.29
 	dna = dna_tsar_alexander_02
@@ -39,9 +41,9 @@ RUS_alexander_ii = { #Alexander II, son of Nicholas I
 		meticulous 
 		romantic
 	}
-    on_created = {
-        set_variable = is_aleksandr_ii ## HJE ##
-        set_variable = is_romanov ## HJE, Ness, needed for heirs to spawn correctly ##
+	on_created = {
+        set_variable = is_aleksandr_ii ## HJE edit ##
+        set_variable = is_romanov ## HJE edit, Ness, needed for heirs to spawn correctly ##
     }
 	trait_generation = {
 		
@@ -52,6 +54,7 @@ RUS_tsarevich_nicholas_alexandrovich = { #Tsarevich Nicholas Alexandrovich, elde
 	first_name = Nikolai
 	last_name = Romanov
 	historical = yes
+	culture = primary_culture
 	heir = yes
 	birth_date = 1843.9.8
 	dna = dna_tsarevich_nicholas
@@ -70,6 +73,7 @@ RUS_alexander_iii = { #Alexander III, second son of Alexander II
 	first_name = Aleksandr
 	last_name = Romanov
 	historical = yes
+	culture = primary_culture
 	heir = yes
 	birth_date = 1845.3.10
 	dna = dna_tsar_alexander_03
@@ -89,6 +93,7 @@ RUS_nicholas_ii = { #Nicholas II, son of Alexander III
 	first_name = Nikolai
 	last_name = Romanov
 	historical = yes
+	culture = primary_culture
 	heir = yes
 	birth_date = 1868.5.18
 	dna = dna_tsar_nicolas_02
@@ -107,6 +112,7 @@ RUS_george_i = { #Georgy Romanov
 	first_name = Georgy
 	last_name = Romanov
 	historical = yes
+	culture = primary_culture
 	heir = yes
 	birth_date = 1871.5.9
 	interest_group = ig_armed_forces
@@ -125,6 +131,7 @@ RUS_michael_ii = { #Mikhail Romanov
 	first_name = Mikhail
 	last_name = Romanov
 	historical = yes
+	culture = primary_culture
 	heir = yes
 	birth_date = 1878.5.9
 	interest_group = ig_landowners
@@ -142,6 +149,7 @@ RUS_alexei_ii = { #Alexei Romanov, son of Nicholas II
 	first_name = Alexei
 	last_name = Romanov
 	historical = yes
+	culture = primary_culture
 	heir = yes
 	birth_date = 1904.8.12
 	interest_group = ig_landowners
@@ -165,6 +173,7 @@ RUS_alexander_von_benckendorff = {
 	first_name = Aleksandr
 	last_name = von_Benckendorff
 	historical = yes
+	culture = primary_culture
 	birth_date = 1781.7.4
 	ig_leader = yes
 	interest_group = ig_armed_forces
@@ -179,6 +188,7 @@ RUS_mikhail_speransky = {
 	first_name = Mikhail
 	last_name = Speransky
 	historical = yes
+	culture = primary_culture
 	birth_date = 1772.1.12
 	ig_leader = yes
 	interest_group = ig_intelligentsia
@@ -194,6 +204,7 @@ RUS_sergei_uvarov = {
 	first_name = Sergei
 	last_name = Uvarov
 	historical = yes
+	culture = primary_culture
 	birth_date = 1786.9.5
 	ig_leader = yes
 	interest_group = ig_landowners
@@ -208,6 +219,7 @@ RUS_filaret_drozdov = {
 	first_name = Filaret
 	last_name = Drozdov
 	historical = yes
+	culture = primary_culture
 	birth_date = 1783.1.6 # Gregorian calendar. Philaret was born on December 26, 1782 in the /Julian/ Calendar. Please don't write complaints about how his birthday should be in December. Please.
 	ig_leader = yes
 	interest_group = ig_devout
@@ -222,6 +234,7 @@ RUS_aleksandr_herzen = {
 	first_name = Aleksandr
 	last_name = Herzen
 	historical = yes
+	culture = primary_culture
 	birth_date = 1812.4.6
 	ig_leader = yes
 	interest_group = ig_trade_unions
@@ -250,6 +263,7 @@ RUS_alexei_bobrinsky = {
 	first_name = Alexei
 	last_name = Bobrinsky
 	historical = yes
+	culture = primary_culture
 	birth_date = 1800.1.17 # Gregorian Calendar
 	ig_leader = yes
 	interest_group = ig_industrialists
@@ -1139,6 +1153,7 @@ RUS_mikhail_vorontsov = { # General
 	first_name = Mikhail
 	last_name = Vorontsov
 	historical = yes
+	culture = primary_culture
 	birth_date = 1782.5.30 # Gregorian Calendar
 	interest_group = ig_landowners
 	ideology = ideology_reformer
@@ -1156,6 +1171,7 @@ RUS_aleksandr_chernyshyov = { # General
 	first_name = Aleksandr
 	last_name = Chernyshyov
 	historical = yes
+	culture = primary_culture
 	birth_date = 1786.1.10 # Gregorian Calendar
 	interest_group = ig_armed_forces
 	ideology = ideology_luddite
@@ -1171,6 +1187,7 @@ RUS_ivan_paskevich = {
 	first_name = Ivan
 	last_name = Paskevich
 	historical = yes
+	culture = primary_culture
 	age = 54
 	interest_group = ig_landowners
 	ideology = ideology_royalist
@@ -1186,6 +1203,7 @@ RUS_matvey_khrapovitsky = {
 	first_name = Matvey
 	last_name = Khrapovitsky
 	historical = yes
+	culture = primary_culture
 	age = 52
 	interest_group = ig_landowners
 	ideology = ideology_moderate
@@ -1201,6 +1219,7 @@ RUS_nikolay_muravyov_karsky = {
 	first_name = Nikolay
 	last_name = Muravyov_Karsky
 	historical = yes
+	culture = primary_culture
 	age = 49
 	interest_group = ig_armed_forces
 	ideology = ideology_moderate
@@ -1215,6 +1234,7 @@ RUS_pavel_grabbe = {
 	first_name = Pavel
 	last_name = Grabbe
 	historical = yes
+	culture = primary_culture
 	age = 47
 	hq = region_west_siberia
 	commander_rank = commander_rank_2
@@ -1231,6 +1251,7 @@ RUS_friedrich_von_berg = {
 	first_name = Friedrich
 	last_name = von_Berg
 	historical = yes
+	culture = primary_culture
 	hq = region_russia
 	age = 42
 	interest_group = ig_intelligentsia
@@ -1534,6 +1555,7 @@ RUS_mikhail_lazarev = { # Admiral
 	first_name = Mikhail 
 	last_name = Lazarev
 	historical = yes
+	culture = primary_culture
 	birth_date = 1788.11.14 # Gregorian Calendar
 	interest_group = ig_armed_forces
 	ideology = ideology_royalist
@@ -1584,6 +1606,7 @@ RUS_pyotr_ricord = { # RUS, Admiral
 	first_name = Pyotr
 	last_name = Ricord
 	historical = yes
+	culture = primary_culture
 	interest_group = ig_armed_forces
 	ideology = ideology_reformer
 	birth_date = 1776.2.9
@@ -1592,6 +1615,21 @@ RUS_pyotr_ricord = { # RUS, Admiral
 		basic_naval_commander
 		experienced_diplomat
 		tactful
+	}
+}
+
+RUS_ivan_kupreyanov = { # ALK, Admiral
+	first_name = Ivan
+	last_name = Kupreyanov
+	historical = yes
+	culture = primary_culture
+    ruler = yes
+	interest_group = ig_armed_forces
+	ideology = ideology_moderate
+	birth_date = 1794.08.17 # Only year known
+	traits = {
+		dockyard_master
+		explorer
 	}
 }
 
@@ -1886,7 +1924,7 @@ agitator_nestor_makhno = {
 	birth_date = 1888.11.8 # October 27th in the Old Style calendar
 	dna = dna_mahno
 	traits = {
-		bandit
+		social_bandit
 		imposing
 		celebrity_commander
 	}

@@ -22,7 +22,7 @@
 		}	
         add_radicals = {
             value = small_radicals
-            strata = poor
+            strata = lower
         }
         custom_tooltip = commune_progress_subtract_10
         change_global_variable = {
@@ -56,7 +56,7 @@ je_the_paris_commune_france_button_b = {
 		}	
 		add_loyalists = {
 			value = small_radicals
-			strata = poor
+			strata = lower
         }
         custom_tooltip = commune_progress_add_10
         change_global_variable = {
@@ -277,11 +277,13 @@ je_positivist_movement_embrace_positivism_button = {
 	effect = {
 		custom_tooltip = {
 			text = positivists_advance_10
-			change_variable = { name = positivism_progress_var add = 10 }
+			je:je_positivist_movement = {
+				add_progress = { value = 10 name = positivist_progress_bar }
+			}
 		}
 		add_radicals = {
 			value = small_radicals
-			strata = poor
+			strata = lower
 		}
 		scope:journal_entry = {
 			custom_tooltip = cooldown_year_tt
@@ -310,7 +312,9 @@ je_positivist_movement_suppress_positivism_button = {
 	effect = {
 		custom_tooltip = {
 			text = positivists_retreat_10
-			change_variable = { name = positivism_progress_var subtract = 10 }
+			je:je_positivist_movement = {
+				add_progress = { value = -10 name = positivist_progress_bar }
+			}
 		}
 		add_radicals = {
 			value = small_radicals
@@ -327,7 +331,11 @@ je_sell_alaska_button = {
 	name = "je_sell_alaska_button"
 	desc = "je_sell_alaska_button_desc"
 
-	visible = { always = yes }
+	visible = { 
+		c:ALK ?= {
+			is_player = no
+		} 
+	}
 
 	ai_chance = {
 		base = 0
@@ -343,7 +351,7 @@ je_sell_alaska_button = {
 				NOT = { has_modifier = modifier_tge_peasants_reform }
 			}
 			add = 30
-		}																#HJE edit end		
+		}																#HJE edit end				
 		modifier = {
 			trigger = { 
 				scaled_debt > 0
@@ -385,7 +393,12 @@ je_sell_alaska_button = {
 			text = has_alaska_sale_cooldown_tt
 			NOT = { has_variable = alaska_sale_cooldown }
 		}
-		has_state_in_state_region = STATE_ALASKA
+		OR = {
+			has_state_in_state_region = STATE_ALASKA
+			any_subject_or_below = {
+				has_state_in_state_region = STATE_ALASKA
+			}
+		}
 		trigger_if = {										#HJE edit start
 			limit = {
 				is_ai = yes
@@ -407,7 +420,7 @@ je_sell_alaska_button = {
 					}
 				}
 			}
-		}													#HJE edit
+		}	#HJE edit
 	}
 
 	effect = {
@@ -443,7 +456,11 @@ je_buy_alaska_button = {
 	name = "je_buy_alaska_button"
 	desc = "je_buy_alaska_button_desc"
 
-	visible = { always = yes }
+	visible = { 
+		c:ALK ?= {
+			is_player = no
+		} 
+	}
 
 	ai_chance = {
 		base = 10														#HJE edit 100
@@ -534,6 +551,26 @@ je_risorgimento_austrian_radicals_button = {
 				}
 			}
 		}
+		sr:region_italy = {
+			any_scope_country = {
+				NOR = {
+					country_has_primary_culture = cu:south_italian
+					country_has_primary_culture = cu:north_italian
+				}
+				custom_tooltip = {
+					text = owns_italian_homelands_tt
+					any_scope_state = {
+						state_region = {
+							OR = {
+								is_homeland = cu:south_italian
+								is_homeland = cu:north_italian
+							}
+						}
+					}
+				}
+				relations:root <= 20
+			}
+		}
 		custom_tooltip = {
 			text = risorgimento_unifying_stance_tt
 			has_variable = risorgimento_unifying_stance
@@ -546,27 +583,7 @@ je_risorgimento_austrian_radicals_button = {
 			trigger = {
 				has_law = law_type:law_theocracy
 			}
-			add = -50
-		}
-		modifier = {
-			trigger = {
-				any_country = {
-					NOR = {
-						country_has_primary_culture = cu:south_italian
-						country_has_primary_culture = cu:north_italian
-					}
-					any_scope_state = {
-						state_region = {
-							OR = {
-								is_homeland = cu:south_italian
-								is_homeland = cu:north_italian
-							}
-						}
-					}
-					relations:root >= 20
-				}
-			}
-			add = -25
+			add = -70
 		}
 		modifier = {
 			trigger = {
@@ -615,9 +632,22 @@ je_risorgimento_austrian_radicals_button = {
 						is_homeland = cu:north_italian
 					}
 				}
-				add_radicals_in_state = {
-					value = 0.15
-					culture = cu:north_italian
+				if = {
+					limit = {
+						ROOT = {
+							country_rank >= rank_value:major_power
+						}
+					}
+					add_radicals_in_state = {
+						value = 0.15
+						culture = cu:north_italian
+					}
+				}
+				else = {
+					add_radicals_in_state = {
+						value = 0.10
+						culture = cu:north_italian
+					}
 				}
 			}
 			every_scope_state = {
@@ -626,9 +656,22 @@ je_risorgimento_austrian_radicals_button = {
 						is_homeland = cu:south_italian
 					}
 				}
-				add_radicals_in_state = {
-					value = 0.15
-					culture = cu:south_italian
+				if = {
+					limit = {
+						ROOT = {
+							country_rank >= rank_value:major_power
+						}
+					}
+					add_radicals_in_state = {
+						value = 0.15
+						culture = cu:south_italian
+					}
+				}
+				else = {
+					add_radicals_in_state = {
+						value = 0.10
+						culture = cu:south_italian
+					}
 				}
 			}
 			post_notification = nationalism_decision_agitation_occurred

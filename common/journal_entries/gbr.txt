@@ -209,7 +209,14 @@
 
 	timeout = 21535
 	on_timeout = {
-		trigger_event = { id = HJE_britain.11 }
+		if = {
+			limit = {
+				is_ai = no
+			}
+			show_as_tooltip = {
+				trigger_event = { id = HJE_britain.11 }
+			}
+		}
 	}
 
 	invalid = {

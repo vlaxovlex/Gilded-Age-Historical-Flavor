@@ -339,9 +339,9 @@ can_aus.5 = {
 		}
 		if = {
 			limit = {
-				NOT = { is_subject_type = subject_type_colonial_administration }	#HJE edit
+				NOT = { is_subject_type = subject_type_colony }	#HJE edit
 			}
-			change_subject_type = subject_type_colonial_administration				#HJE edit
+			change_subject_type = subject_type_colony				#HJE edit
 		}
 	}
 }
@@ -444,9 +444,9 @@ can_aus.7 = {
 		}
 		if = {
 			limit = {
-				NOT = { is_subject_type = subject_type_colonial_administration }	#HJE edit
+				NOT = { is_subject_type = subject_type_colony }	#HJE edit
 			}
-			change_subject_type = subject_type_colonial_administration				#HJE edit
+			change_subject_type = subject_type_colony				#HJE edit
 		}
 	}
 }

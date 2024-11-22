@@ -307,7 +307,7 @@ HJE_france.6 = {
 		c:FRA = {
 			create_diplomatic_pact = {
 				country = scope:second_mexican_empire
-				type = hje_colonial_administration
+				type = colony
 			}
 		}
 		random_diplomatic_play = {

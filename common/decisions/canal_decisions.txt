@@ -70,13 +70,13 @@
 				}
 			}
 			add = -20
-		}						#HJE edit end
+		}						#HJE edit end		
 		modifier = {
 			trigger = {
 				has_strategy = ai_strategy_armed_isolationism
 			}
 			add = -1000
-		}	
+		}		
 		modifier = {
 			OR = {
 				is_diplomatic_play_committed_participant = yes

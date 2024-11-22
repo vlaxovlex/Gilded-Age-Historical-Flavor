@@ -42,6 +42,7 @@ tur_mahmut_osmanoglu_template = {
     first_name = Mahmut
     last_name = Osmanoglu
     historical = yes
+    culture = primary_culture
     ruler = yes
     birth_date = 1785.7.20
     dna = dna_mahmud_02
@@ -49,29 +50,30 @@ tur_mahmut_osmanoglu_template = {
     ideology = ideology_moderate
     traits = {
         ambitious
-        cancer ## HJE, Ness, died of tuberculosis in 1839 ##
+        cancer ## HJE edit, Ness, died of tuberculosis in 1839 ##
     }
 	on_created = {
-		set_variable = is_mahmud_ii ## HJE, Ness, needed for heirs to spawn correctly ##
-		set_variable = is_osmanoglu ## HJE, Ness, needed for heirs to spawn correctly ##
+		set_variable = is_mahmud_ii ## HJE edit, Ness, needed for heirs to spawn correctly ##
+		set_variable = is_osmanoglu ## HJE edit, Ness, needed for heirs to spawn correctly ##
 	}
 }
 tur_abdulmecid_osmanoglu_template = {
     first_name = Abdulmecid
     last_name = Osmanoglu
     historical = yes
+    culture = primary_culture
     heir = yes
     birth_date = 1823.4.25
     interest_group = ig_intelligentsia
     ideology = ideology_moderate
     traits = {
         trait_child
-        honorable ## HJE ##
-        basic_diplomat ## HJE ##
+        honorable ## HJE edit ##
+        basic_diplomat ## HJE edit ##
     }
 	on_created = {
-		set_variable = is_abdulmecid_i ## HJE, Ness, needed for heirs to spawn correctly ##
-		set_variable = is_osmanoglu ## HJE, Ness, needed for heirs to spawn correctly ##
+		set_variable = is_abdulmecid_i ## HJE edit, Ness, needed for heirs to spawn correctly ##
+		set_variable = is_osmanoglu ## HJE edit, Ness, needed for heirs to spawn correctly ##
 	}
 }
 tur_abdulhamid_ii_template = {
@@ -89,10 +91,10 @@ tur_abdulhamid_ii_template = {
         pious
         persistent
         basic_diplomat
-    }   
+    }
 	on_created = {
-		set_variable = is_osmanoglu ## HJE, Ness, needed for heirs to spawn correctly ##
-	}
+		set_variable = is_osmanoglu ## HJE edit, Ness, needed for heirs to spawn correctly ##
+	}	
     interest_group_leader_usage = {
         country_trigger = {
             exists = c:TUR

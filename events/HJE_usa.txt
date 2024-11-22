@@ -5629,7 +5629,7 @@ HJE_usa.12 = {
 					OR = {
 						is_subject_type = subject_type_dominion
 						is_subject_type = subject_type_puppet
-						is_subject_type = subject_type_colonial_administration
+						is_subject_type = subject_type_colony
 					}
 					any_overlord_or_above = {
 						NOR = {

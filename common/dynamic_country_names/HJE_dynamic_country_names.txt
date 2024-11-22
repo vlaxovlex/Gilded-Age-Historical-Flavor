@@ -95,7 +95,7 @@ SAF = { # South Africa
 					}
 					has_diplomatic_pact = {
 						who = c:SAF
-						type = hje_colonial_administration
+						type = colony
 						is_initiator = yes
 					}
 				}
@@ -263,7 +263,7 @@ BIC = { # East India Company
 				NOR = {
 					has_law = law_type:law_monarchy 
 					is_subject_type = subject_type_puppet
-					is_subject_type = subject_type_colonial_administration
+					is_subject_type = subject_type_colony
 				}
 			}
 		}

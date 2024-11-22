@@ -86,8 +86,9 @@ sell_savoy = {
 			owns_entire_state_region = STATE_RHONE
 			is_subject = no
 			NOT = { owes_obligation_to = ROOT }
-			OR = {	relations:root >= relations_threshold:cordial is_ai = yes } #HJE edit
+			OR = {	relations:root >= relations_threshold:cordial is_ai = yes } #HJE edit		
 		}
+		is_ai = yes #HJE edit
 	}
 
 	when_taken = {

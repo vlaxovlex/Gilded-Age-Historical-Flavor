@@ -482,8 +482,13 @@ HJ_russia_the_great_game = { #THE GREAT TRIAL HAS BEGUN nah just kidding
 
 	timeout = 21535
 	on_timeout = {
-		show_as_tooltip = {
-			trigger_event = { id = HJE_britain.11 }
+		if = {
+			limit = {
+				is_ai = no
+			}
+			show_as_tooltip = {
+				trigger_event = { id = HJE_britain.11 }
+			}
 		}
 	}
 

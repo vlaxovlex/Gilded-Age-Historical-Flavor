@@ -57,7 +57,7 @@ raj.1 = {
 #			}
 #			create_diplomatic_pact = {
 #				country = c:BIC
-#				type = hje_colonial_administration	#HJE edit
+#				type = colony	#HJE edit
 #			}
 #		}
 		c:BIC = {
@@ -68,7 +68,7 @@ raj.1 = {
 					is_subject_of = ROOT
 					is_subject_type = subject_type_dominion
 				}
-				change_subject_type = subject_type_colonial_administration
+				change_subject_type = subject_type_colony
 			}
 			if = {
 				limit = {
@@ -788,7 +788,7 @@ raj.7 = {
 			c:GBR = {
 				create_diplomatic_pact = {
 					country = c:BIC
-					type = hje_colonial_administration	#HJE edit
+					type = colony	#HJE edit
 				}
 			}
 			activate_law = law_type:law_appointed_bureaucrats

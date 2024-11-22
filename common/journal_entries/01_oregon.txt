@@ -122,7 +122,7 @@
 			}
 			s:STATE_WASHINGTON = {
 				add_homeland = cu:yankee
-				region_state:USA = { ## HJE edit
+				region_state:USA = { ## HJE edit start
 					hidden_effect = {
 						create_building={
 							building="building_naval_base"
@@ -131,11 +131,11 @@
 							activate_production_methods={ "pm_no_naval_theory" }
 						}
 					}
-				}
+				}	#HJE edit end
 			}
 			s:STATE_OREGON = {
 				add_homeland = cu:yankee
-				region_state:USA = { ## HJE edit
+				region_state:USA = { ## HJE edit start
 					hidden_effect = {
 						create_building={
 							building="building_naval_base"
@@ -144,7 +144,7 @@
 							activate_production_methods={ "pm_no_naval_theory" }
 						}
 					}
-				}
+				}	#HJE edit end
 			}
 			add_modifier = {
 				name = oregon_resolved
@@ -170,7 +170,7 @@
 		s:STATE_WASHINGTON = {
 			add_claim = ROOT
 		}
-	}			#HJE edit end
+	}			#HJE edit end	
 
 	weight = 100
 }
@@ -187,38 +187,6 @@ je_conquer_oregon = {
 			owns_entire_state_region = STATE_OREGON
 		}
 	}
-
-	on_complete = {	#HJE edit start
-		s:STATE_OREGON = {
-			add_homeland = cu:yankee
-			region_state:USA = { ## HJE edit
-				hidden_effect = {
-					create_building={
-						building="building_naval_base"
-						level=15
-						reserves=1
-						activate_production_methods={ "pm_no_naval_theory" }
-					}
-				}
-			}
-		}
-		s:STATE_IDAHO = {
-			add_homeland = cu:yankee
-		}
-		s:STATE_WASHINGTON = {
-			add_homeland = cu:yankee
-			region_state:USA = { ## HJE edit
-				hidden_effect = {
-					create_building={
-						building="building_naval_base"
-						level=15
-						reserves=1
-						activate_production_methods={ "pm_no_naval_theory" }
-					}
-				}
-			}
-		}
-	}				#HJE edit end
 
 	weight = 100
 

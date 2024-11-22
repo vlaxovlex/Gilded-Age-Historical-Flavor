@@ -68,7 +68,19 @@
 			italian_unification.4
 		}
 		effect = {
-			do_risorgimento_math = yes
+			if = {
+				limit = {
+					any_scope_state = {
+						state_region = {
+							OR = {
+								is_homeland = cu:north_italian
+								is_homeland = cu:south_italian
+							}
+						}
+					}
+				}
+				do_risorgimento_math = yes
+			}
 		}
 	}
 
@@ -81,6 +93,7 @@
 			320 = HJE_italy.10 		#UPCI consolidation								#HJE edit
 			200 = HJE_italy.11 		#UPCI annex										#HJE edit
 			200 = HJE_italy.12 		#1860 Italy Claims (Expedition of the Thousand)	#HJE edit
+				
 		}
 		effect = {
 			do_risorgimento_math = yes
@@ -93,7 +106,6 @@
 			italian_unification.3 	#Garibaldi
 			HJE_italy.8 			#Pan-Nationalists annexed by or becomes Unfication Favourite
 		}			#HJE edit end
-
 	}
 
 	on_complete = {
@@ -108,12 +120,28 @@
 		}			#HJE edit end
 	}
 
+	fail = {
+		custom_tooltip = {
+			text = owns_no_italian_homelands_tt
+			NOT = {
+				any_scope_state = {
+					state_region = {
+						OR = {
+							is_homeland = cu:north_italian
+							is_homeland = cu:south_italian
+						}
+					}
+				}
+			}
+		}
+	}
+
 	current_value = {
 		value = root.var:italian_states_radicals_total_bar
 	}
 
 	goal_add_value = {
-		add = 25	
+		add = 25
 	}
 
 	progressbar = yes

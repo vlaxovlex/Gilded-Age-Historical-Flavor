@@ -3,6 +3,10 @@
 
 	group = je_group_historical_content
 
+	modifiers_while_active = {
+		fra_republican_unrest
+	}
+
 	immediate = {
 		fra_set_divided_monarchist_variables = yes
 		random_law = {
@@ -96,10 +100,6 @@
 				}
 			}
 		}
-	}
-
-	modifiers_while_active = {
-		fra_republican_unrest
 	}
 
 	on_weekly_pulse = {
@@ -211,27 +211,23 @@
 			limit = {		#HJE edit
 				is_ai = no	#HJE edit
 			}				#HJE edit
-		any_interest_group = {
-			is_marginal = no
-			law_stance = {
-				law = law_type:law_presidential_republic
-				value > neutral
+			any_political_movement = {
+				is_political_movement_type = movement_radical
+				is_insurrectionary = yes
 			}
-		}
-		capital = {
-			turmoil >= 0.25
-		}
-		OR = {
-			has_journal_entry = je_springtime_of_the_peoples
-			radical_fraction = {
-				value >= 0.25
+			OR = {
+				any_civil_war = {
+					is_civil_war_type = revolution
+					civil_war_progress >= 0.75
+				}
+				AND = {
+					capital = {
+						turmoil >= 0.25
+					}
+				}
 			}
-			any_civil_war = {
-				civil_war_progress > 0.75
-			}
-		}
-		}	#HJE edit start
-		trigger_else = {
+		}	#HJE edit
+		trigger_else = {	#HJE edit start
 			year >= 1848
 			year <= 1852
 			NOT = { ruler_is_bonapartist = yes }
@@ -239,7 +235,7 @@
 	}
 
 	on_fail = {
-		hidden_effect = {												#HJE edit start
+		hidden_effect = {	#HJE edit start
 			if = {
 				limit = {
 					has_law = law_type:law_presidential_republic
@@ -249,7 +245,7 @@
 			else = {
 				trigger_event = { id = HJE_france.9 }
 			}
-		}																#HJE edit end
+		}	#HJE edit end		
 		trigger_event = { id = french_pretenders.6 popup = yes }
 		if = {
 			limit = {
@@ -267,7 +263,7 @@
 	}
 
 	on_invalid = {
-		hidden_effect = {												#HJE edit start
+		hidden_effect = {	#HJE edit start
 			if = {
 				limit = {
 					has_law = law_type:law_presidential_republic
@@ -277,7 +273,7 @@
 			else = {
 				trigger_event = { id = HJE_france.9 }
 			}
-		}																#HJE edit end		
+		}	#HJE edit start				
 		if = {
 			limit = {
 				has_variable = fra_divided_monarchists_freeze

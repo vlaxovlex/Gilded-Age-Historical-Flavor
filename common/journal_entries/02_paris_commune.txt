@@ -42,7 +42,7 @@
 		OR = {
 			AND = {
 				hidden_trigger = {
-					NOT = { has_global_variable = paris_commune_happened }
+					NOT = { has_global_variable = paris_commune_happened }	
 				}
 				c:FRA ?= this
 				any_scope_state = {
@@ -124,7 +124,7 @@
 			}
 			add_technology_researched = socialism
 			add_technology_researched = anarchism
-		}		#HJE edit end
+		}		#HJE edit end		
 	}
 
 	fail = {

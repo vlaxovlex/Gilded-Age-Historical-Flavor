@@ -24,15 +24,15 @@
 				is_split_state = no
 				is_capital = no
 				owner = {
-					is_country_type = unrecognized
 					is_player = no
-			OR = {
-				country_has_primary_culture = cu:manchu
-				country_has_primary_culture = cu:han
-			}
+					is_country_type = unrecognized
+					OR = {
+						country_has_primary_culture = cu:manchu
+						country_has_primary_culture = cu:han
+					}
+				}
 			}
 		}
-	}
 	}
 
 	ai_chance = {
@@ -42,12 +42,15 @@
 				has_global_variable = rus_bought_amur
 			}
 			add = 90
-		}																#HJE edit end
+		}	
 	}
 
 	possible = {
 		c:RUS = {
 			country_rank >= rank_value:great_power
+		}
+		any_neighbouring_state = {
+			state_region = s:STATE_OUTER_MANCHURIA
 		}
 		any_country = {
 			OR = {
@@ -104,7 +107,7 @@
 				}	
 			}
 		}
-		}
+	}
 
 	effect = {
 		random_country = {
@@ -244,7 +247,7 @@ je_the_eastern_border_russia_chuguchak_protocol = {
 				}
 			}
 			add = -90
-		}																#HJE edit end
+		}																#HJE edit end		
 	}
 
 	possible = {
@@ -417,7 +420,7 @@ je_the_eastern_border_treaty_of_aigun = {
 				has_journal_entry = je_reforms_of_alexander
 			}
 			add = 90
-		}																#HJE edit end
+		}	
 	}
 
 	possible = {
@@ -473,16 +476,16 @@ je_the_eastern_border_treaty_of_aigun = {
 		}
 		custom_tooltip = {
 			text = east_siberia_formation_tt
-			OR = {				#HJE edit
+			OR = {
+				is_ai = yes
 				any_military_formation = {
 					is_army = yes
-					current_hq = p:x68226E.land_hq
+					current_hq ?= p:x68226E.land_hq
 					any_combat_unit = {
 						count >= 20
 					}
-				}				
-				is_ai = yes		#HJE edit
-			}					#HJE edit
+				}
+			}
 		}
 	}
 
@@ -709,11 +712,16 @@ je_conquest_of_central_asia_turkmen_button = {
 	}
 
 	possible = {
-		any_scope_state = {
-			region = sr:region_central_asia
-			any_scope_building = {
-				is_building_type = building_barracks
-				level >= 10
+		trigger_if = {
+			limit = {
+				is_ai = no
+			}
+			any_scope_state = {
+				region = sr:region_central_asia
+				any_scope_building = {
+					is_building_type = building_barracks
+					level >= 10
+				}
 			}
 		}
 		has_technology_researched = colonization

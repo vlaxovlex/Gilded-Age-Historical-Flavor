@@ -99,7 +99,7 @@
 		hidden_effect = {
 			create_diplomatic_pact = {
 				country = scope:newly_formed_colonial_nation_capital_scope.owner
-				type = hje_colonial_administration	#HJE edit
+				type = colony
 			}
 			every_state_region = {	#HJE edit start
 				limit = {
@@ -143,7 +143,7 @@ je_colonial_administration_button_niger = {
 			has_global_variable = berlin_conference_happened			
 			has_variable = SFA_attended_berlin_conference
 			NOT = { has_global_variable = berlin_conference_ongoing }	
-		}																#HJE edit end
+		}			
 		any_scope_state = {
 			region = sr:region_niger
 			is_largest_state_in_region = yes
@@ -222,7 +222,7 @@ je_colonial_administration_button_niger = {
 		hidden_effect = {
 			create_diplomatic_pact = {
 				country = scope:newly_formed_colonial_nation_capital_scope.owner
-				type = hje_colonial_administration	#HJE edit
+				type = colony
 			}
 			every_state_region = {	#HJE edit start
 				limit = {
@@ -345,7 +345,7 @@ je_colonial_administration_button_ethiopia = {
 		hidden_effect = {
 			create_diplomatic_pact = {
 				country = scope:newly_formed_colonial_nation_capital_scope.owner
-				type = hje_colonial_administration	#HJE edit
+				type = colony
 			}
 			every_state_region = {	#HJE edit start
 				limit = {
@@ -389,7 +389,7 @@ je_colonial_administration_button_zanj = {
 			has_global_variable = berlin_conference_happened			
 			has_variable = SFA_attended_berlin_conference
 			NOT = { has_global_variable = berlin_conference_ongoing }	
-		}																#HJE edit end
+		}																#HJE edit end		
 		any_scope_state = {
 			region = sr:region_zanj
 			is_largest_state_in_region = yes
@@ -468,7 +468,7 @@ je_colonial_administration_button_zanj = {
 		hidden_effect = {
 			create_diplomatic_pact = {
 				country = scope:newly_formed_colonial_nation_capital_scope.owner
-				type = hje_colonial_administration	#HJE edit
+				type = colony
 			}
 			every_state_region = {	#HJE edit start
 				limit = {
@@ -512,7 +512,7 @@ je_colonial_administration_button_southern_africa = {
 			has_global_variable = berlin_conference_happened			
 			has_variable = SFA_attended_berlin_conference
 			NOT = { has_global_variable = berlin_conference_ongoing }	
-		}																#HJE edit end
+		}																#HJE edit end		
 		any_scope_state = {
 			region = sr:region_southern_africa
 			is_largest_state_in_region = yes
@@ -591,7 +591,7 @@ je_colonial_administration_button_southern_africa = {
 		hidden_effect = {
 			create_diplomatic_pact = {
 				country = scope:newly_formed_colonial_nation_capital_scope.owner
-				type = hje_colonial_administration	#HJE edit
+				type = colony
 			}
 			every_state_region = {	#HJE edit start
 				limit = {
@@ -635,7 +635,7 @@ je_colonial_administration_button_congo = {
 			has_global_variable = berlin_conference_happened			
 			has_variable = SFA_attended_berlin_conference
 			NOT = { has_global_variable = berlin_conference_ongoing }	
-		}																#HJE edit end
+		}																#HJE edit end		
 		any_scope_state = {
 			region = sr:region_congo
 			is_largest_state_in_region = yes
@@ -714,7 +714,7 @@ je_colonial_administration_button_congo = {
 		hidden_effect = {
 			create_diplomatic_pact = {
 				country = scope:newly_formed_colonial_nation_capital_scope.owner
-				type = hje_colonial_administration	#HJE edit
+				type = colony
 			}
 			every_state_region = {	#HJE edit start
 				limit = {
@@ -756,7 +756,7 @@ je_colonial_administration_button_expand_senegal = {
 			has_global_variable = berlin_conference_happened			
 			has_variable = SFA_attended_berlin_conference
 			NOT = { has_global_variable = berlin_conference_ongoing }	
-		}																#HJE edit end
+		}																#HJE edit end		
 		#prevents expanding during diplo play or war as it invalidates wargoals. is_at_war is there for clarity for players even though it's technically included in the former
 		is_diplomatic_play_committed_participant = no
 		is_at_war = no
@@ -852,7 +852,7 @@ je_colonial_administration_button_expand_niger = {
 			has_global_variable = berlin_conference_happened			
 			has_variable = SFA_attended_berlin_conference
 			NOT = { has_global_variable = berlin_conference_ongoing }	
-		}																#HJE edit end
+		}																#HJE edit end		
 		#prevents expanding during diplo play or war as it invalidates wargoals. is_at_war is there for clarity for players even though it's technically included in the former
 		is_diplomatic_play_committed_participant = no
 		is_at_war = no
@@ -947,7 +947,7 @@ je_colonial_administration_button_expand_ethiopia = {
 			has_global_variable = berlin_conference_happened			
 			has_variable = SFA_attended_berlin_conference
 			NOT = { has_global_variable = berlin_conference_ongoing }	
-		}																#HJE edit end
+		}																#HJE edit end		
 		#prevents expanding during diplo play or war as it invalidates wargoals. is_at_war is there for clarity for players even though it's technically included in the former
 		is_diplomatic_play_committed_participant = no
 		is_at_war = no
@@ -1042,7 +1042,7 @@ je_colonial_administration_button_expand_zanj = {
 			has_global_variable = berlin_conference_happened			
 			has_variable = SFA_attended_berlin_conference
 			NOT = { has_global_variable = berlin_conference_ongoing }	
-		}																#HJE edit end
+		}																#HJE edit end		
 		#prevents expanding during diplo play or war as it invalidates wargoals. is_at_war is there for clarity for players even though it's technically included in the former
 		is_diplomatic_play_committed_participant = no
 		is_at_war = no
@@ -1137,7 +1137,7 @@ je_colonial_administration_button_expand_southern_africa = {
 			has_global_variable = berlin_conference_happened			
 			has_variable = SFA_attended_berlin_conference
 			NOT = { has_global_variable = berlin_conference_ongoing }	
-		}																#HJE edit end
+		}																#HJE edit end		
 		#prevents expanding during diplo play or war as it invalidates wargoals. is_at_war is there for clarity for players even though it's technically included in the former
 		is_diplomatic_play_committed_participant = no
 		is_at_war = no
@@ -1232,7 +1232,7 @@ je_colonial_administration_button_expand_congo = {
 			has_global_variable = berlin_conference_happened			
 			has_variable = SFA_attended_berlin_conference
 			NOT = { has_global_variable = berlin_conference_ongoing }	
-		}																#HJE edit end
+		}																#HJE edit end		
 		#prevents expanding during diplo play or war as it invalidates wargoals. is_at_war is there for clarity for players even though it's technically included in the former
 		is_diplomatic_play_committed_participant = no
 		is_at_war = no

@@ -3,34 +3,29 @@
 
 	group = je_group_crises
 
-	is_shown_when_inactive = { #HJE edit start
-		year <= 1852
-		country_is_in_europe = yes
+	is_shown_when_inactive = {
+		#has_technology_researched = egalitarianism
 		capital = {
 			OR = {
-				#region = sr:region_england
-				#region = sr:region_north_sea_coast
+				region = sr:region_england
+				region = sr:region_north_sea_coast
 				region = sr:region_iberia
 				region = sr:region_france
 				region = sr:region_occitania
 				region = sr:region_rhine
+				#region = sr:region_italy
 				region = sr:region_balkans
-				#region = sr:region_greece
-				#region = sr:region_low_countries
 				region = sr:region_north_germany
 				region = sr:region_south_germany
-				#region = sr:region_alpine
-				#region = sr:region_north_italy
-				#region = sr:region_italy
 				region = sr:region_baltic
 				region = sr:region_danubia
 				region = sr:region_poland
 				#region = sr:region_russia
-				#region = sr:region_belarus
 				#region = sr:region_dnieper
-				#region = sr:region_baltics_ruthenia
 			}
 		}
+		year <= 1852	#HJE edit start
+		country_is_in_europe = yes
 		NOR = {	
 			has_variable = already_had_scripted_revolution
 			country_has_primary_culture = cu:north_italian
@@ -44,12 +39,12 @@
 				exists = c:FRA
 				c:FRA = THIS
 			}
-		}
-	}	#HJE edit end
+		}	#HJE edit end
+	}
 
 	possible = {
-		year >= 1846	
-		trigger_if = { #HJE edit
+		year >= 1846	#HJE edit start	
+		trigger_if = { 
 			limit = {
 				OR = {
 					AND = { exists = c:PRU c:PRU = THIS }
@@ -73,76 +68,47 @@
 					any_scope_state = { is_incorporated = yes turmoil > 0.1 }
 				}
 			}
-		}
-		trigger_else = {
-			any_interest_group = {
-				leader = { has_ideology = ideology:ideology_radical }
-				OR = {
-					is_powerful = yes
-					is_insurrectionary = yes
-				}
+		}	
+		trigger_else = {	#HJE edit end
+			radical_fraction = {
+				value >= 0.05
 			}
 		}
 	}
 
 	immediate = {
-		## HJE edit start
 		if = {
 			limit = {
 				NOT = {
-					any_interest_group = {
-						leader = { has_ideology = ideology:ideology_radical }
-						OR = {
-							is_powerful = yes
-							is_insurrectionary = yes
-						}
+					any_political_movement = {
+						is_political_movement_type = movement_radical
 					}
 				}
 			}
-			random_interest_group = {
-				limit = {
-					can_have_radical_leader = yes
-					OR = { is_powerful = yes is_insurrectionary = yes }
-				}
-				leader = { set_ideology = ideology:ideology_radical }
-			}
+			create_political_movement = { type = movement_radical }
 		}
-		## HJE edit end
-		trigger_event = { id = 1848.4 }
+		random_political_movement = {
+			limit = {
+				is_political_movement_type = movement_radical
+			}
+			save_scope_as = radical_movement_scope
+		}
+		set_variable = { name = springtime_timer_var value = 0 }
+		trigger_event = { id = 1848.4 popup = yes }
 	}
 
 	complete = {
-		is_at_war = no
-		has_revolution = no
-		is_revolutionary = no
-		has_insurrectionary_interest_groups = no
-		OR = {
-			custom_tooltip = {
-				text = je_springtime_of_the_peoples_tt_1
-				always = no
+		AND = {
+			any_interest_group = {
+				is_in_government = yes
+				leader = { has_ideology = ideology:ideology_radical }
 			}
-			AND = {
-				any_interest_group = {
-					is_in_government = yes
-					leader = { has_ideology = ideology:ideology_radical }
-				}
-				NOT = { has_law = law_type:law_monarchy }
-				OR = {
-					has_law = law_type:law_census_voting
-					has_law = law_type:law_universal_suffrage
-				}
+			NOT = { has_law = law_type:law_monarchy }
+			OR = {
+				has_law = law_type:law_census_voting
+				has_law = law_type:law_universal_suffrage
 			}
-			custom_tooltip = {
-				text = je_springtime_of_the_peoples_tt_2
-				always = no
-			}
-			NOT = {
-				any_interest_group = {
-					leader = { has_ideology = ideology:ideology_radical }
-					is_marginal = no
-				}
-			}
-		}
+		}		
 	}
 
 	on_complete = {
@@ -153,41 +119,85 @@
 			name = completed_peoples_stringtime_recent
 			months = short_modifier_time
 		}
-		custom_tooltip = je_springtime_of_the_peoples_tt_3
-		hidden_effect = {
-			if = {
-				limit = {
-					any_interest_group = {
-						is_in_government = yes
-						leader = { has_ideology = ideology:ideology_radical }
-					}
-					NOT = { has_law = law_type:law_monarchy }
-					OR = {
-						has_law = law_type:law_wealth_voting
-						has_law = law_type:law_census_voting
-						has_law = law_type:law_universal_suffrage
-					}
-				}
-				trigger_event = { id = peoples_springtime.7 }
+		trigger_event = { id = peoples_springtime.7 }
+	}
+
+	fail = {
+		trigger_if = {
+			limit = {
+				exists = var:springtime_timer_var
+			}
+			custom_tooltip = { 
+				text = springtime_of_the_peoples_timer_tt
+				var:springtime_timer_var >= 12
 			}
 		}
-		custom_tooltip = je_springtime_of_the_peoples_tt_4
-		hidden_effect = {
-			if = {
-				limit = {
-					NOT = {
-						any_interest_group = {
-							leader = { has_ideology = ideology:ideology_radical }
-							is_marginal = no
-						}
-					}
+		trigger_else = {
+			custom_tooltip = { 
+				text = springtime_of_the_peoples_timer_dummy_tt
+				always = no
+			}
+		}
+		AND = {
+			scope:radical_movement_scope ?= {
+				political_movement_support <= 0.10
+				is_being_suppressed = yes
+			}
+			NOT = {
+				any_interest_group = {
+					leader = { has_ideology = ideology:ideology_radical }
+					is_marginal = no
 				}
-				trigger_event = { id = peoples_springtime.8 }
+				any_scope_character = {
+					has_ideology = ideology:ideology_radical
+					has_role = agitator
+				}
 			}
 		}
 	}
 
+	on_fail = {
+		set_variable = {
+			name = completed_peoples_stringtime
+		}
+		set_variable = {
+			name = completed_peoples_stringtime_recent
+			months = short_modifier_time
+		}
+		trigger_event = { id = peoples_springtime.8 }
+	}
+
+	on_timeout = {
+		trigger_event = { id = peoples_springtime.8 }
+	}
+
 	on_monthly_pulse = {
+		effect = {
+			if = {
+				limit = {
+					AND = {
+						scope:radical_movement_scope ?= {
+							political_movement_support <= 0.10
+							is_being_suppressed = yes
+						}
+						NOT = {
+							any_interest_group = {
+								leader = { has_ideology = ideology:ideology_radical }
+								is_marginal = no
+							}
+							any_scope_character = {
+								has_ideology = ideology:ideology_radical
+								has_role = agitator
+							}
+						}
+					}
+				}
+				change_variable = { name = springtime_timer_var add = 1 }
+			}
+			else = {
+				set_variable = { name = springtime_timer_var value = 0 }
+			}
+		}
 		events = {
 			1848.5
 		}
@@ -196,7 +206,6 @@
 			25 = peoples_springtime.3								#HJE edit 10
 			50 = peoples_springtime.4								#HJE edit 10
 			25 = peoples_springtime.5								#HJE edit 10
-			15 = peoples_springtime.100
 			10 = peoples_springtime.110								#HJE edit
 			10 = peoples_springtime.120								#HJE edit
 			25 = peoples_springtime_den.1 	#danish concessions		#HJE edit
@@ -239,5 +248,5 @@
 	transferable = no
 	can_revolution_inherit = no
 
-	timeout = 3650
+	timeout = 1825
 }

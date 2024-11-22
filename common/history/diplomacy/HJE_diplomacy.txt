@@ -10,7 +10,7 @@
 		}	
 		create_diplomatic_pact = {
 			country = c:SAF	
-			type = hje_colonial_administration
+			type = colony
 		}			
 	}
 	c:CHL = {
@@ -56,7 +56,7 @@
 		}	
 		create_diplomatic_pact = {
 			country = c:PHI	
-			type = hje_colonial_administration
+			type = colony
 		}
 		remove_diplomatic_pact = {
 			country = c:CUB	
@@ -64,7 +64,7 @@
 		}	
 		create_diplomatic_pact = {
 			country = c:CUB	
-			type = hje_colonial_administration
+			type = colony
 		}		
 	}
 	c:NET = {
@@ -74,7 +74,7 @@
 		}	
 		create_diplomatic_pact = {
 			country = c:DEI	
-			type = hje_colonial_administration
+			type = colony
 		}	
 	}
 	c:USA = {

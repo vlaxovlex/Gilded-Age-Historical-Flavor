@@ -23,8 +23,8 @@
 			NOT = {
 				exists = c:RHN
 			}
-		}													
-		any_country = {																	#HJE edit start
+		}	
+		any_country = {		#HJE edit start
 			OR = {
 				country_has_primary_culture = cu:north_german
 				country_has_primary_culture = cu:south_german
@@ -98,7 +98,7 @@
 					}
 				}
 			}
-		}																#HJE edit end
+		}	#HJE edit end		
 	}
 }
 
@@ -129,7 +129,7 @@ ITA = {
 			has_technology_researched = nationalism	
 			percent = 1
 		}
-		OR = {															#HJE edit start
+		OR = {	#HJE edit start
 			hidden_trigger = {
 				year >= 1855
 				is_ai = yes
@@ -138,7 +138,7 @@ ITA = {
 				text = any_nation_experienced_italian_revolutions_tt
 				has_global_variable = ITA_1848_revolutions_happened
 			}
-		}																#HJE edit end
+		}		#HJE edit end
 	}
 }
 
@@ -174,7 +174,7 @@ SCA = {
 			text = tt_scandinavia_formation
 			has_global_variable = nordic_pan_nationalism_var	
 			has_variable = scandinvia_monetary_union_var		
-		}					#HJE edit end
+		}					#HJE edit end		
 	}
 }
 

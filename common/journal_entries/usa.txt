@@ -347,7 +347,7 @@ je_american_empire_get_foreign_colony = {
 			OR = {
 				is_subject_type = subject_type_dominion
 				is_subject_type = subject_type_puppet
-				is_subject_type = subject_type_colonial_administration
+				is_subject_type = subject_type_colony
 				AND = {
 					exists = c:PHI
 					c:PHI = THIS
@@ -459,7 +459,7 @@ je_american_empire_liberate_euro_colonies = {
 					OR = {
 						is_subject_type = subject_type_dominion
 						is_subject_type = subject_type_puppet
-						is_subject_type = subject_type_colonial_administration
+						is_subject_type = subject_type_colony
 					}
 					any_overlord_or_above = {
 						NOR = {

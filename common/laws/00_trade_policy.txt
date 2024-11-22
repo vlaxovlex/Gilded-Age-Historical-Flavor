@@ -26,28 +26,19 @@ law_mercantilism = {
 		tariff_export_add = 0.15
 	}
 
-	possible_political_movements = {
-		law_protectionism
-		law_free_trade
-	}	
-	
-	pop_support = {
-		value = 0
-	}
-
 	# Don't change back to mercantilism once we have protectionism or free trade
 	ai_will_do = {
-		trigger_if = {														#HJE edit start
+		trigger_if = {					#HJE edit start
 			limit = { has_variable = var_dynamic_opium_wars_victim }
 			year >= 1850
 			NOT = { has_global_variable = had_second_opium_war }
 		}																	
-		trigger_else = {													#HJE edit end
+		trigger_else = {				#HJE edit end
 			NOR = {
 				has_law = law_type:law_protectionism
 				has_law = law_type:law_free_trade
 			}
-		}																	#HJE edit
+		}								#HJE edit
 	}
 
 	ai_enact_weight_modifier = { #Petitions
@@ -57,6 +48,14 @@ law_mercantilism = {
 			limit = { ai_has_enact_weight_modifier_journal_entries = yes }
 			add = 750
 		}
+		
+		if = {
+			limit = { 
+				has_journal_entry = je_meiji_diplomacy
+				has_law = law_type:law_isolationism
+			}
+			add = 1000
+		}		
 	}
 }
 
@@ -84,20 +83,9 @@ law_protectionism = {
 		tariff_export_add = 0.30
 	}	
 	
-	possible_political_movements = {
-		law_free_trade
-	}	
-
-	pop_support = {
-		value = 0
+	modifier = {
+		country_leverage_resistance_mult = 0.25
 	}
-
-	ai_will_do = {											#HJE edit start
-		NAND = {
-			has_variable = var_dynamic_opium_wars_victim
-			has_global_variable = had_second_opium_war
-		}
-	}														#HJE edit end
 	
 	ai_enact_weight_modifier = { #Petitions
 		value = 0
@@ -106,6 +94,14 @@ law_protectionism = {
 			limit = { ai_has_enact_weight_modifier_journal_entries = yes }
 			add = 750
 		}
+		
+		if = {
+			limit = { 
+				has_journal_entry = je_meiji_diplomacy
+				has_law = law_type:law_isolationism
+			}
+			add = 1000
+		}				
 	}
 }
 
@@ -140,23 +136,14 @@ law_free_trade = {
 		country_trade_route_quantity_mult = 0.5
 		country_trade_route_cost_mult = -0.5
 		country_leverage_resistance_mult = -0.25
-		
 	}
 	
-	possible_political_movements = {
-		law_protectionism
-	}	
-
-	pop_support = {
-		value = 0
-	}
-	
-	ai_will_do = {											#HJE edit start
+	ai_will_do = {							#HJE edit start
 		NAND = {
 			has_variable = var_dynamic_opium_wars_victim
 			has_global_variable = had_second_opium_war
 		}
-	}														#HJE edit end
+	}										#HJE edit end
 
 	ai_enact_weight_modifier = { #Petitions
 		value = 0
@@ -165,6 +152,14 @@ law_free_trade = {
 			limit = { ai_has_enact_weight_modifier_journal_entries = yes }
 			add = 750
 		}
+		
+		if = {
+			limit = { 
+				has_journal_entry = je_meiji_diplomacy
+				has_law = law_type:law_isolationism
+			}
+			add = 1000
+		}		
 	}
 }
 
@@ -177,7 +172,11 @@ law_isolationism = {
 	
 	disallowing_laws = {
 		law_laissez_faire
-	}		
+	}
+	
+	can_enact = {
+		is_in_power_bloc = no
+	}
 	
 	modifier = {
 		country_authority_mult = 0.5
@@ -190,23 +189,14 @@ law_isolationism = {
 		
 		market_disallow_trade_routes_bool = yes
 	}
-	
-	possible_political_movements = {
-		law_protectionism
-		law_free_trade
-	}	
-	
-	pop_support = {
-		value = 0
-	}
-	
+
 	ai_will_do = {
-		trigger_if = {													#HJE edit start
+		trigger_if = {							#HJE edit start
 			limit = { has_variable = var_dynamic_opium_wars_victim }
 			year >= 1850
 			NOT = { has_global_variable = had_second_opium_war }
 		}																
-		trigger_else = {												#HJE edit end
+		trigger_else = {						#HJE edit end
 			OR = {
 				has_journal_entry = je_gyojo_shinwon
 				ruler = {
@@ -216,7 +206,7 @@ law_isolationism = {
 					}
 				}
 			}
-		}																#HJE edit
+		}										#HJE edit
 	}
 
 	ai_enact_weight_modifier = { #Petitions

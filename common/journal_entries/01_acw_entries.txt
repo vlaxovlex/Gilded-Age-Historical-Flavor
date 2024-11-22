@@ -65,13 +65,19 @@
 				year >= 1875
 				NOT = { has_law = law_type:law_slavery_banned }
 			}
-		}	#HJE edit end		
+		}	#HJE edit end	
 	}
 
 	on_fail = {
+		if = {
+			limit = {
+				has_civil_war_from_movement_type = movement_type:movement_pro_slavery
+			}
+			set_variable = csa_will_spawn_var
+		}
 		custom_tooltip = {
 			text = acw_will_happen_tt
-			trigger_event = { id = acw_je_events.1 days = 7 }
+			trigger_event = { id = acw_je_events.1 }
 			if = {	#HJE edit start
 				limit = {
 					OR = {
@@ -182,6 +188,7 @@
 			50 = acw_buildup.12 #Failed Harper's Ferry
 			25 = acw_buildup.13 #Catastrophic Harper's Ferry
 			15 = acw_buildup.11 #Succesful Harper's Ferry			#HJE edit end
+			
 		}
 	}
 	on_yearly_pulse = {
@@ -214,7 +221,7 @@ je_acw_war = {
 	group = je_group_historical_content
 	
 	scripted_button = HJ_acw_emancipation_proclamation_button ## HJE ##
-	scripted_button = HJ_acw_incarceration_proclamation_button ## HJE ##
+	scripted_button = HJ_acw_incarceration_proclamation_button ## HJE ##	
 
 	immediate = {	#HJE edit start
 		ruler = { set_variable = abraham_lincoln }
@@ -231,7 +238,7 @@ je_acw_war = {
 			days = 1095
 		}
 	}	#HJE edit end
-
+	
 	complete = {
 		custom_tooltip = {
 			text = acw_war_tt_complete
@@ -251,30 +258,6 @@ je_acw_war = {
 		}
 		trigger_event = { id = acw_peace_treaty.1 } #Appomattox #HJE edit
 	}
-	
-	fail = {	#HJE edit start
-		custom_tooltip = {
-			text = acw_rebel_victory
-					
-			OR = {
-				AND = {
-					exists = c:CSA
-					NOT = { has_global_variable = { name = acw_no_war } } 
-					NOT = { root = { is_diplomatic_play_enemy_of = c:CSA } }
-				}
-				AND = {
-					exists = c:FSA
-					NOT = { has_global_variable = { name = acw_no_war } } 
-					NOT = { root = { is_diplomatic_play_enemy_of = c:FSA } }
-				}
-			}
-		}
-	}
-	
-	on_fail = {
-		trigger_event = { id = acw_peace_treaty.2 } #Washington
-	}			#HJE edit end
-	
 
 	on_monthly_pulse = {	#HJE edit start
 		#events = {
@@ -300,8 +283,31 @@ je_acw_war = {
 				}
 				set_variable = battle_of_gettysburg_has_begun
 			}
-		}				#HJE edit end
+		}				
+	}	
+	
+	fail = {	
+		custom_tooltip = {
+			text = acw_rebel_victory
+					
+			OR = {
+				AND = {
+					exists = c:CSA
+					NOT = { has_global_variable = { name = acw_no_war } } 
+					NOT = { root = { is_diplomatic_play_enemy_of = c:CSA } }
+				}
+				AND = {
+					exists = c:FSA
+					NOT = { has_global_variable = { name = acw_no_war } } 
+					NOT = { root = { is_diplomatic_play_enemy_of = c:FSA } }
+				}
+			}
+		}
 	}
+	
+	on_fail = {
+		trigger_event = { id = acw_peace_treaty.2 } #Washington
+	}	#HJE edit end
 
 	should_be_pinned_by_default = yes
 	
@@ -324,6 +330,7 @@ je_acw_reconstruction = {
 			25 = acw_followup_events.3 #President Kicks Booth's Ass
 		}
 	}						#HJE edit end
+	
 	complete = {
 		scope:journal_entry = {
 			is_goal_complete = yes
@@ -363,6 +370,12 @@ je_acw_reincorporate = {
 	group = je_group_historical_content
 
 	complete = {
+		NOT = {
+			any_scope_state = {
+				has_modifier = unreconstructed_state
+				is_incorporated = no
+			}
+		}
 		NOT = {
 			any_scope_state = {
 				state_region = {
@@ -440,13 +453,8 @@ je_acw_equality = {
 	group = je_group_historical_content
 
 	complete = {
-		custom_tooltip = {
-			text = acw_african_american_culture_complete_tt
-			cu:afro_american = {
-				NOT = { culture_is_discriminated_in = ROOT }
-			}
-			has_law = law_type:law_slavery_banned	#HJE edit
-		}
+		cultural_acceptance_base = { target = cu:afro_american value >= acceptance_status_4 }
+		has_law = law_type:law_slavery_banned	#HJE edit
 	}
 
 	on_complete = {
