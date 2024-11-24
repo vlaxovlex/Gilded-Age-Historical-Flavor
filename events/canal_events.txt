@@ -383,7 +383,7 @@ canal_events.100 = {
 		}
 	}
 
-	option = { # we will offer to build it for them	#HJE edit tsart
+		option = { # we will offer to build it for them	#HJE edit tsart
 		name = canal_events.100.hje.a
 		default_option = yes
 		ai_chance = 99

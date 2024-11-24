@@ -27,26 +27,18 @@ manifest_destiny.1 = {
 		default_option = yes
 		s:STATE_CALIFORNIA = { 
 			add_homeland = cu:yankee
-			add_homeland = cu:dixie
-			hidden_effect = { remove_claim = c:MEX }
 		}
 		s:STATE_NEVADA = { 
 			add_homeland = cu:yankee
-			hidden_effect = { remove_claim = c:MEX }
 		}
 		s:STATE_UTAH = { 
 			add_homeland = cu:yankee
-			hidden_effect = { remove_claim = c:MEX }
 		}
 		s:STATE_ARIZONA = { 
-			add_homeland = cu:yankee
 			add_homeland = cu:dixie
-			hidden_effect = { remove_claim = c:MEX }
 		}
 		s:STATE_NEW_MEXICO = { 
-			add_homeland = cu:yankee
 			add_homeland = cu:dixie
-			hidden_effect = { remove_claim = c:MEX }
 		}
 	}
 }
@@ -144,9 +136,6 @@ manifest_destiny.3 = {
 				region = sr:region_great_plains
 				region = sr:region_the_midwest
 				region = sr:region_dixie
-				#region = sr:region_western_canada		#HJE edit
-				#region = sr:region_american_frontier	#HJE edit
-				#region = sr:region_west_dixie			#HJE edit
 			}
 			state_region = {
 				any_scope_state = {

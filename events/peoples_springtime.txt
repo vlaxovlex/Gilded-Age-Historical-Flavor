@@ -13,7 +13,26 @@ peoples_springtime.1 = {
 	icon = "gfx/interface/icons/event_icons/event_protest.dds"
 
 	title = peoples_springtime.1.t
-	desc = peoples_springtime.1.d
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				desc = peoples_springtime.1.d
+				trigger = {
+					NAND = {
+						c:FRA ?= this
+						has_variable = france_had_revolution
+					}
+				}
+			}
+			triggered_desc = {
+				desc = peoples_springtime.1.d_france
+				trigger = {
+					c:FRA ?= this
+					has_variable = france_had_revolution
+				}
+			}
+		}
+	}
 	flavor = peoples_springtime.1.f
 
 	trigger = {
@@ -21,34 +40,7 @@ peoples_springtime.1 = {
 		NOT = { has_global_variable = peoples_springtime_happened }
 		country_is_in_europe = yes
 		#has_technology_researched = egalitarianism
-		#country_rank >= rank_value:minor_power	#HJE edit start
-		capital = {
-			OR = {
-				#region = sr:region_england
-				#region = sr:region_north_sea_coast
-				region = sr:region_iberia
-				region = sr:region_france
-				region = sr:region_occitania
-				region = sr:region_rhine
-				region = sr:region_balkans
-				#region = sr:region_greece
-				#region = sr:region_low_countries
-				region = sr:region_north_germany
-				region = sr:region_south_germany
-				#region = sr:region_alpine
-				#region = sr:region_north_italy
-				#region = sr:region_italy
-				region = sr:region_baltic
-				region = sr:region_danubia
-				region = sr:region_poland
-				#region = sr:region_prussia
-				#region = sr:region_baltics_ruthenia
-				#region = sr:region_russia
-				#region = sr:region_belarus
-				#region = sr:region_dnieper
-			}
-		}
-		NOR = {
+		NOR = {	#HJE edit start
 			has_variable = already_had_scripted_revolution
 			country_has_primary_culture = cu:north_italian
 			country_has_primary_culture = cu:south_italian
@@ -65,15 +57,6 @@ peoples_springtime.1 = {
 		year >= 1846
 		year < 1850
 		OR = {
-			any_interest_group = {
-				OR = {
-					leader = { has_ideology = ideology:ideology_radical }
-					any_scope_character = {
-						has_role = agitator
-						has_ideology = ideology:ideology_radical
-					}
-				}
-			}
 			any_country = {	
 				OR = {
 					is_adjacent_to_country = ROOT
@@ -90,55 +73,22 @@ peoples_springtime.1 = {
 					has_journal_entry = HJ_italian_1848_revolutions 		#italian neighbour had a italy revolution
 					has_journal_entry = je_tge_hungarianrevolution	 		#italian neighbour had a hungary revolution
 				}
+			}	#HJE edit end
+			any_political_movement = {
+				OR = {
+					is_political_movement_type = movement_liberal
+					is_political_movement_type = movement_radical
+				}
+				is_revolutionary = yes
 			}
 			AND = {
-				any_scope_state = { turmoil > 0.4 }
-				OR = {
-					has_law = law_type:law_autocracy
-					has_law = law_type:law_oligarchy
-					has_law = law_type:law_landed_voting
-				}
-				any_interest_group = {
-					OR = {
-						ig_approval < -10 # ANGERY
-						is_insurrectionary = yes
-					}
-					OR = {
-						leader = { has_ideology = ideology:ideology_radical }
-						any_scope_character = {
-							has_role = agitator
-							has_ideology = ideology:ideology_radical
-						}
-					}
-				}
+				c:FRA ?= this
+				has_variable = france_had_revolution
 			}
-		}	#HJE edit end
+		}
 	}
 
 	immediate = {
-		if = {	#HJE edit start
-			limit = {
-				NOT = {
-					any_interest_group = {
-						leader = { has_ideology = ideology:ideology_radical }
-					}
-				}
-			}
-			random_interest_group = {
-				limit = {
-					is_marginal = no
-					leader = { NOT = { has_ideology = ideology:ideology_radical } }
-					OR = {
-						is_interest_group_type = ig_rural_folk
-						is_interest_group_type = ig_intelligentsia
-						is_interest_group_type = ig_trade_unions
-						is_interest_group_type = ig_petty_bourgeoisie
-						is_interest_group_type = ig_industrialists
-					}
-				}
-		    	leader = { set_ideology = ideology:ideology_radical }
-			}
-		}	#HJE edit end		
 		set_global_variable = {
 			name = peoples_springtime_happening
 		}
@@ -146,21 +96,21 @@ peoples_springtime.1 = {
 			name = peoples_springtime_recent
 			months = normal_modifier_time
 		}
-		random_interest_group = {
+		random_political_movement = {
 			limit = {
-				OR = {
-					is_insurrectionary = yes
-					ig_approval < -10 # ANGERY
-				}
-				OR = {
-					leader = { has_ideology = ideology:ideology_radical }
-					any_scope_character = {
+				is_political_movement_type = movement_radical
+			}
+			save_scope_as = radical_movement
+		}
+		if ={
+			scope:radical_movement ?= {
+				random_supporting_character = {
+					limit = {
 						has_role = agitator
-						has_ideology = ideology:ideology_radical
 					}
+					save_scope_as = radical_ig_leader
 				}
 			}
-			leader = { save_scope_as = radical_ig_leader }
 		}
 	}
 
@@ -168,10 +118,20 @@ peoples_springtime.1 = {
 
 	option = {
 		name = peoples_springtime.1.a
-		scope:radical_ig_leader = {
-			add_modifier = {
-				name = revolutionary_hero
-				months = normal_modifier_time
+		add_modifier = {
+			name = modifier_radical_movement_enhancement
+			months = normal_modifier_time
+			is_decaying = yes
+		}
+		if = {
+			limit = {
+				exists = scope:radical_ig_leader
+			}
+			scope:radical_ig_leader = {
+				add_modifier = {
+					name = revolutionary_hero
+					months = normal_modifier_time
+				}
 			}
 		}
 	}
@@ -179,12 +139,23 @@ peoples_springtime.1 = {
     option = {
 		name = peoples_springtime.1.b
         default_option = yes
-        scope:radical_ig_leader = {
-        	add_modifier = {
-        		name = treasonous_traitor
-        		months = normal_modifier_time
-        	}
-        }
+		add_modifier = {
+			name = modifier_radical_movement_enhancement
+			months = normal_modifier_time
+			is_decaying = yes
+			multiplier = 0.5
+		}
+        if = {
+			limit = {
+				exists = scope:radical_ig_leader
+			}
+	        scope:radical_ig_leader = {
+	        	add_modifier = {
+	        		name = treasonous_traitor
+	        		months = normal_modifier_time
+	        	}
+	        }
+		}
 	}
 }
 
@@ -439,8 +410,7 @@ peoples_springtime.4 = {
 							any_scope_state = { cu:hungarian = { has_homeland = PREV } }
 						}
 					}							#HJE edit end
-					#has_technology_researched = egalitarianism
-					any_interest_group = {
+					#has_technology_researched = egalitarianism					any_interest_group = {
 						is_powerful = yes
 						OR = {
 							is_interest_group_type = ig_rural_folk
@@ -541,6 +511,8 @@ peoples_springtime.5 = {
 				value = very_large_radicals
 			}
 		}
+		default_option = yes
+		ai_chance = { base = 90 }
 	}
 
 	option = {
@@ -550,7 +522,7 @@ peoples_springtime.5 = {
 				value = very_large_radicals
 			}
 		}
-		default_option = yes
+		ai_chance = { base = 10 }
 	}
 }
 

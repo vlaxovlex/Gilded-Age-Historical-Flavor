@@ -1,18 +1,4 @@
 ﻿DIPLOMACY = {
-	c:GBR = {
-		create_diplomatic_pact = {
-			country = c:NEP
-			type = protectorate
-		}
-		remove_diplomatic_pact = {
-			country = c:SAF	
-			type = puppet	
-		}	
-		create_diplomatic_pact = {
-			country = c:SAF	
-			type = colony
-		}			
-	}
 	c:CHL = {
 		create_diplomatic_pact = {
 			country = c:ARG
@@ -48,24 +34,6 @@
 			country = c:PAP
 			value = 45
 		}
-	}
-	c:SPA = {
-		remove_diplomatic_pact = {
-			country = c:PHI	
-			type = puppet	
-		}	
-		create_diplomatic_pact = {
-			country = c:PHI	
-			type = colony
-		}
-		remove_diplomatic_pact = {
-			country = c:CUB	
-			type = puppet	
-		}	
-		create_diplomatic_pact = {
-			country = c:CUB	
-			type = colony
-		}		
 	}
 	c:NET = {
 		remove_diplomatic_pact = {

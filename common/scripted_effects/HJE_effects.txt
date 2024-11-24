@@ -45,6 +45,103 @@ HJE_cleanup_effect = {
 		}
 	}
 	if = {
+		limit = {
+			exists = c:TUR
+			c:TUR = ROOT
+			is_player = no
+			NOT = { has_variable = te_wargoals }
+			c:EGY = { 
+				is_diplomatic_play_enemy_of = ROOT 
+				has_state_in_state_region = STATE_ADANA
+			}
+		}
+		c:TUR = { set_variable = te_wargoals }
+	    random_diplomatic_play = {
+			limit = {
+				initiator_is = c:TUR
+		        target_is = c:EGY
+			}
+			add_escalation = 90
+			add_initiator_backers = { c:JAB }
+			remove_war_goal = {
+				who = c:TUR
+				war_goal = make_protectorate
+			}
+			if = {
+				limit = { NOT = { s:STATE_ADANA = { is_target_of_wargoal = c:TUR } } }
+				add_war_goal = {
+					holder = c:TUR
+					type = return_state
+					target_state = s:STATE_ADANA.region_state:EGY
+					primary_demand = yes
+				}
+			}
+			if = {
+				limit = { NOT = { s:STATE_ALEPPO = { is_target_of_wargoal = c:TUR } } }
+				add_war_goal = {
+					holder = c:TUR
+					type = return_state
+					target_state = s:STATE_ALEPPO.region_state:EGY
+					primary_demand = yes
+				}
+			}
+			if = {
+				limit = { NOT = { s:STATE_SYRIA = { is_target_of_wargoal = c:TUR } } }
+				add_war_goal = {
+					holder = c:TUR
+					type = return_state
+					target_state = s:STATE_SYRIA.region_state:EGY
+					primary_demand = yes
+				}
+			}
+			if = {
+				limit = { NOT = { s:STATE_LEBANON = { is_target_of_wargoal = c:TUR } } }
+				add_war_goal = {
+					holder = c:TUR
+					type = return_state
+					target_state = s:STATE_LEBANON.region_state:EGY
+					primary_demand = yes
+				}
+			}
+			if = {
+				limit = { NOT = { s:STATE_TRANSJORDAN = { is_target_of_wargoal = c:TUR } } }
+				add_war_goal = {
+					holder = c:TUR
+					type = return_state
+					target_state = s:STATE_TRANSJORDAN.region_state:EGY
+					primary_demand = yes
+				}
+			}
+			if = {
+				limit = { NOT = { s:STATE_PALESTINE = { is_target_of_wargoal = c:TUR } } }
+				add_war_goal = {
+					holder = c:TUR
+					type = return_state
+					target_state = s:STATE_PALESTINE.region_state:EGY
+					primary_demand = yes
+				}
+			}
+			if = {
+				limit = { NOT = { s:STATE_CRETE = { is_target_of_wargoal = c:TUR } } }
+				add_war_goal = {
+					holder = c:TUR
+					type = return_state
+					target_state = s:STATE_CRETE.region_state:EGY
+					primary_demand = yes
+				}
+			}
+			if = {
+				limit = { c:GRE = { is_subject_of = c:EGY } }
+				add_war_goal = {
+					holder = c:TUR
+					type = liberate_subject
+					target_state = s:STATE_ATTICA.region_state:GRE
+					primary_demand = yes
+				}
+			}
+		}
+	}
+	if = {
 		limit = {			#USA AI will try to take these states at least once
 			year > 1840
 			exists = c:USA

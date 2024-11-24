@@ -730,6 +730,8 @@ modifier_liberal_win:0 "¡Victoria Liberal!"
  
  hje_hale:0 "Hale"
  hje_hale_desc:0 "This character eats his vegetables, goes on long walks, and avoids miasmatic vapours."
+ colonial_claims_event_tt:0 "@warning! If you allow slackness just once, such demands will continue unabated"
+ SFA_attended_berlin_conference_event_tt:0 "@warning! While attending the conference, your territories that have been claimed by other powers may be transferred to them, just as you will be able to realize your own colonial claims"
 
  
  #RE-WRITTEN TEXT:

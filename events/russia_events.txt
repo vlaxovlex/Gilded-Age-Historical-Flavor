@@ -1,9 +1,9 @@
 ﻿ namespace = russia_monarchy
 
-## HJE deleted russia_monarchy.1
-## HJE deleted russia_monarchy.2
-## HJE deleted russia_monarchy.3
-## HJE deleted russia_monarchy.4
+## HJE edit deleted russia_monarchy.1
+## HJE edit deleted russia_monarchy.2
+## HJE edit deleted russia_monarchy.3
+## HJE edit deleted russia_monarchy.4
 
 russia_monarchy.5 = { #Accession of Nicholas II
 	type = country_event
@@ -27,6 +27,7 @@ russia_monarchy.5 = { #Accession of Nicholas II
 
 	trigger = {
 		ruler = { has_variable = is_nicky_ii } ## HJE edit ##
+		#Fired by on_action
 	}
 
 	immediate = {
@@ -43,47 +44,45 @@ russia_monarchy.5 = { #Accession of Nicholas II
 				set_character_as_ruler = yes
 			}
 		}
-		ruler = {
-			add_modifier = {
-				name = modifier_nicholas_ii
-				months = very_long_modifier_time
+		add_modifier = {
+			name = modifier_nicholas_ii
+			months = very_long_modifier_time
+		}
+		hidden_effect = {
+			if = {
+				limit = {
+					game_date >= 1904.8.12
+				}
+				create_character = {
+					template = RUS_alexei_ii
+				}
+				set_variable = alexei_born
+			}
+			else_if = {
+				limit = {
+					game_date < 1904.8.12
+					game_date >= 1895.1.1
+				}
+				create_character = {
+					template = RUS_michael_ii
+				}
+			}
+			else_if = {
+				limit = {
+					game_date < 1895.1.1
+					game_date >= 1871.1.1
+				}
+				create_character = {
+					template = RUS_george_i
+				}
 			}
 		}
-#		hidden_effect = { ## HJE edit Start
-#			if = {
-#				limit = {
-#					game_date >= 1904.8.12
-#				}
-#				create_character = {
-#					template = RUS_alexei_ii
-#				}
-#				set_variable = alexei_born
-#			}
-#			else_if = {
-#				limit = {
-#					game_date < 1904.8.12
-#					game_date >= 1895.1.1
-#				}
-#				create_character = {
-#					template = RUS_michael_ii
-#				}
-#			}
-#			else_if = {
-#				limit = {
-#					game_date < 1895.1.1
-#					game_date >= 1871.1.1
-#				}
-#				create_character = {
-#					template = RUS_george_i
-#				}
-#			}
-#		} ## HJE edit End
 	}
 }
 
-## HJE deleted russia_monarchy.6
-## HJE deleted russia_monarchy.7
-## HJE deleted russia_monarchy.8
+## HJE edit deleted russia_monarchy.6
+## HJE edit deleted russia_monarchy.7
+## HJE edit deleted russia_monarchy.8
 
 russia_monarchy.9 = { #Accession of Alexei
 	type = country_event
@@ -106,7 +105,8 @@ russia_monarchy.9 = { #Accession of Alexei
 	cooldown = { months = stupidly_long_modifier_time }
 
 	trigger = {
-		ruler = { has_variable = alexei_alexei_musnt_run_musnt_climb_must_be_careful_all_the_time } ## HJE edit ##
+		ruler = { has_variable = alexei_alexei_musnt_run_musnt_climb_must_be_careful_all_the_time } ## HJE edit ##		
+		#Fired by on_action
 	}
 
 	immediate = {
@@ -129,17 +129,65 @@ russia_monarchy.9 = { #Accession of Alexei
 		custom_tooltip = {
 			text = alexei_ii_enthroned_tt
 		}
-		ruler = {
-			add_modifier = {
-				name = modifier_alexei_ii
-				months = very_long_modifier_time
-			}
+		add_modifier = {
+			name = modifier_alexei_ii
+			months = very_long_modifier_time
 		}
 	}
 }
 
-## HJE deleted russia_monarchy.10
-## HJE deleted russia_monarchy.11
+## HJE edit deleted russia_monarchy.10
+## HJE edit deleted russia_monarchy.11
 
 
+namespace = great_reformer
 
+great_reformer.1 = { #Great Reforms completed
+	type = country_event
+	placement = root
+
+	title = great_reformer.1.t
+	desc = great_reformer.1.d
+	flavor = great_reformer.1.f
+
+	event_image = {
+		video = "votp_monarch_holding_court"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_scales.dds"
+
+	duration = 3
+
+	cooldown = { months = very_long_modifier_time }
+
+	trigger = {
+		#Fired by on_action
+	}
+
+	immediate = {
+		ruler = {
+			save_scope_as = alexander_ii_scope
+		}
+	}
+
+	option = {
+		name = great_reformer.1.a
+		default_option = yes
+		scope:alexander_ii_scope = {
+			add_modifier = {
+				name = modifier_great_reformer
+				months = normal_modifier_time
+			}
+		}
+	}
+
+	option = {
+		name = great_reformer.1.b
+		add_modifier = {
+			name = modifier_great_reforms_complete
+			months = normal_modifier_time
+		}
+	}
+}

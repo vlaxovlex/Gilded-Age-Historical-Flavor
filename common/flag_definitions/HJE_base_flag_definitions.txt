@@ -375,6 +375,10 @@ FRA = { # France
 			OR = {
 				scope:actor = { ruler = { has_variable = is_orleanist } }
 				scope:actor = { ruler = { has_variable = is_legitimist } }
+				scope:actor ?= {
+					has_law = law_type:law_monarchy
+					has_variable = legitimist_restoration_var
+				}
 			}
 		}
 	}

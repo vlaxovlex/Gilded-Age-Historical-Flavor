@@ -119,3 +119,17 @@ CSP = { # Spain
 		}
 	}		
 }
+
+MEX = { 	#Mexican empire
+	flag_definition = {
+		coa = MEX_habsburg
+		subject_canton = MEX_habsburg
+		priority = 100
+		trigger = {
+			exists = scope:actor
+			scope:actor ?= {
+				has_variable = second_mexican_empire
+			}
+		}
+	}	
+}

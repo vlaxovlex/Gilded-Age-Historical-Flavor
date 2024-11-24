@@ -424,6 +424,7 @@ HJE_colonial.1 = { 			### ATTENDING THE BERLIN CONFERENCE? ###
 		name = HJE_colonial.1.a
 		default_option = yes
 	
+		custom_tooltip = SFA_attended_berlin_conference_event_tt
 		set_variable = SFA_attended_berlin_conference
 		if = {
 			limit = {
@@ -3742,7 +3743,7 @@ HJE_colonial.99 = {
 		default_option = yes
 	
 
-
+		custom_tooltip = colonial_claims_event_tt
 		every_state = {
 			limit = {
 				has_claim_by = scope:colonial_claims_scope
@@ -3773,7 +3774,7 @@ HJE_colonial.99 = {
 		create_incident = { country = scope:colonial_claims_scope value = 5 }
 		change_relations = {
 			country = scope:colonial_claims_scope
-			value = -30
+			value = -50
 		}
 		hidden_effect = {
 			set_mutual_secret_goal = {
@@ -3785,7 +3786,7 @@ HJE_colonial.99 = {
 		hidden_effect = {
 			set_variable = {
 				name = colonial_claimant
-				days = 1825
+				days = 3650
 			}		
 		}
 		

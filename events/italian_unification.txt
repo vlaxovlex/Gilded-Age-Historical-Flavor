@@ -75,7 +75,6 @@ italian_unification.2 = {
 	trigger = {
 		any_neighbouring_state = {
 			owner = {
-				is_diplomatic_play_committed_participant = no
 				OR = {
 					country_has_primary_culture = cu:north_italian
 					country_has_primary_culture = cu:south_italian
@@ -84,21 +83,21 @@ italian_unification.2 = {
 					is_subject = no
 					is_subject_of = ROOT
 				}
-				OR = {
+				OR = { 	#HJE edit start
 					is_in_customs_union_with = root
-					AND = { ## HJE edit
+					AND = {
 						year > 1855
 						ROOT = { has_variable = ITA_current_favourite_to_unify }
 					}
-				}
+				}		#HJE edit end
 				country_rank <= rank_value:minor_power
-				OR = {
+				OR = {	#HJE edit start
 					relations:root >= relations_threshold:amicable
-					AND = { ## HJE edit
+					AND = { 
 						year > 1855
 						ROOT = { has_variable = ITA_current_favourite_to_unify }
 					}
-				}
+				}		#HJE edit end
 				is_player = no
 				NOT = { has_variable = italian_minor_dont_annex }
 				NAND = { #HJE edit start
@@ -119,7 +118,7 @@ italian_unification.2 = {
 						}
 					}
 					NOT = { has_variable = ITA_current_favourite_to_unify }
-				}				#HJE edit end
+				}			#HJE edit end
 			}
 		}
 	}
@@ -127,7 +126,6 @@ italian_unification.2 = {
 	immediate = {
 		random_neighbouring_state = {
 			limit = {
-				is_diplomatic_play_committed_participant = no
 				owner = {
 					OR = {
 						country_has_primary_culture = cu:north_italian
@@ -172,7 +170,7 @@ italian_unification.2 = {
 							}
 						}
 						NOT = { has_variable = ITA_current_favourite_to_unify }
-					}
+					}		#HJE edit end
 				}
 			}
 			owner = {
@@ -264,6 +262,10 @@ italian_unification.4 = {
 	trigger = {
 		exists = var:italian_states_radicals_total_bar
 		var:italian_states_radicals_total_bar >= 25
+		NOR = {
+			has_revolution = yes
+			is_revolutionary = yes
+		}
 		any_country = {
 			NOT = {
 				this = root
@@ -556,95 +558,8 @@ italian_unification.6 = {
 	}
 }
 
-## Republic of San Marco - fires for Austria ### HJE EDIT, REPLACED WITH OUR OWN EVENT IN "HJE_ita" ###
-#italian_unification.7 = {
-#	type = country_event
-#	placement = ROOT
-#
-#	title = italian_unification.7.t
-#	desc = italian_unification.7.d
-#	flavor = italian_unification.7.f
-#
-#	event_image = {
-#		video = "unspecific_signed_contract"
-#	}
-#
-#	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
-#
-#	icon = "gfx/interface/icons/event_icons/waving_flag.dds"
-#
-#	duration = 1
-#
-#	trigger = {
-#		#Triggered as part of event chain
-#	}
-#
-#	immediate = {
-#		save_scope_as = rsm_revolted_scope
-#		random_country = {
-#			limit = {	
-#				is_secessionist = yes
-#				OR = {
-#					country_has_primary_culture = cu:north_italian
-#					country_has_primary_culture = cu:south_italian
-#				}
-#			}
-#			activate_law = law_type:law_presidential_republic
-#			activate_law = law_type:law_oligarchy
-#			change_tag = RSM
-#			save_scope_as = rsm_scope	
-#			capital = {
-#				save_scope_as = rsm_capital_scope
-#			}
-#		}
-#		random_diplomatic_play = {
-#			limit = {
-#				target = {
-#					c:RSM ?= this
-#				}
-#			}
-#			add_escalation = 25
-#		}
-#	}
-#
-#	option = {
-#		name = italian_unification.7.a
-#		default_option = yes
-#		custom_tooltip = {
-#			text = italian_states_choose_sides_tt
-#			every_country = {
-#				limit = {
-#					has_journal_entry = je_risorgimento
-#					NOT = {
-#						c:RSM ?= this
-#					}
-#				}
-#				trigger_event = { id = italian_unification.8 days = 7 popup = yes }
-#			}
-#		}
-#		custom_tooltip = italian_states_choose_sides_danger_tt
-#	}
-#
-#	option = {
-#		name = italian_unification.7.b
-#		trigger = {
-#			is_player = yes
-#		}
-#		custom_tooltip = {
-#			text = italian_states_choose_sides_tt
-#			every_country = {
-#				limit = {
-#					has_journal_entry = je_risorgimento
-#					NOT = {
-#						c:RSM ?= this
-#					}
-#				}
-#				trigger_event = { id = italian_unification.8 days = 7 popup = yes }
-#			}
-#		}
-#		custom_tooltip = italian_states_choose_sides_danger_tt
-#		play_as = c:RSM
-#	}
+# Republic of San Marco - fires for Austria
+#HJE edit, replaced with HJE_ita italian_unification.7 = {
 #}
 
 # Republic of San Marco - fires for Italy
@@ -777,10 +692,10 @@ italian_unification.8 = {
 		name = italian_unification.8.b
 		ai_chance = {
 			base = 25
-			modifier = { ## HJE Edit ##
+			modifier = {	#HJE edit start
 				factor = 0
 				has_variable = ITA_current_favourite_to_unify  
-			}
+			}				#HJE edit end
 		}
 		change_relations = {
 			country = scope:rsm_revolted_scope
@@ -911,7 +826,7 @@ italian_unification.10 = {
 	}
 	option = {
 		name = italian_unification.10.b
-		trigger = { NOT = { has_variable = ITA_current_favourite_to_unify } } ## HJE edit ##
+		trigger = { NOT = { has_variable = ITA_current_favourite_to_unify } } ## HJE edit ##		
 		ai_chance = {
 			base = 15
 			modifier = {

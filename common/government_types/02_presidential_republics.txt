@@ -717,7 +717,7 @@ gov_colonial_administration = {
 			AND = {
 				AND = { exists = c:NET is_subject_of = c:NET }
 				AND = { exists = c:DEI c:DEI = ROOT }
-				is_subject_type = subject_type_dominion
+				is_subject_type = subject_type_colony	#HJE edit
 			}
 			AND = {
 				exists = c:SPA

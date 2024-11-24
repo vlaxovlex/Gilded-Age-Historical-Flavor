@@ -116,6 +116,14 @@ colonial_claims = {
 				is_country_type = decentralized
 				#is_subject_of = root
 				has_subject_relation_with = root
+				is_revolutionary = yes
+				is_secessionist = yes
+				any_country = {
+					has_diplomatic_pact = {
+						who = this
+						type = colony
+					}	
+				}
 			}
 			any_scope_state = { 
 				state_is_in_africa = yes
@@ -143,6 +151,14 @@ colonial_claims = {
 					is_country_type = decentralized
 					#is_subject_of = root
 					has_subject_relation_with = root
+					is_revolutionary = yes
+					is_secessionist = yes
+					any_country = {
+						has_diplomatic_pact = {
+							who = this
+							type = colony
+						}	
+					}
 				}
 				any_scope_state = { 
 					state_is_in_africa = yes
@@ -169,6 +185,14 @@ colonial_claims = {
 					is_country_type = decentralized
 					#is_subject_of = root
 					has_subject_relation_with = root
+					is_revolutionary = yes
+					is_secessionist = yes
+					any_country = {
+						has_diplomatic_pact = {
+							who = this
+							type = colony
+						}	
+					}
 				}
 				any_scope_state = { 
 					state_is_in_africa = yes
@@ -192,7 +216,7 @@ colonial_claims = {
 			trigger = {
 				has_global_variable = berlin_conference_happened
 			}
-			add = 85
+			add = 50
 		}
 	}
 }

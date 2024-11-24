@@ -5044,15 +5044,7 @@ ai_strategy_default = {
 				limit = {	
 					country_has_primary_culture = cu:british
 					exists = c:RUS
-					c:RUS ?= {if = {  #HJE edit start
-				limit = {
-					OR = {
-						has_journal_entry = HJ_opium_wars
-						has_journal_entry = HJ_opium_wars_unhistorical
-					}
-				}
-				add = 1000
-			}       #HJE edit end
+					c:RUS ?= {
 						any_scope_state = {
 							region = sr:region_manchuria
 							OR = {

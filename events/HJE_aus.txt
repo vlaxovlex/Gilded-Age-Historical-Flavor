@@ -160,7 +160,11 @@ TGE_austria.2 = {
 			state = s:STATE_WEST_SLOVAKIA.region_state:AUS
 			
 			
-			on_created = {	
+			on_created = {
+				c:HUN = {
+					remove_primary_culture = cu:south_german
+					add_primary_culture = cu:hungarian
+				}
 				every_scope_state = {
 					limit = { is_homeland_of_country_cultures = c:HUN }
 					set_state_owner = c:HUN

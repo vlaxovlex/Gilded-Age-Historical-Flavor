@@ -298,6 +298,29 @@ HJE_france.6 = {
 					target_country = c:MEX
 					type = dp_revolution
 				}
+				create_character = {
+					culture = cu:south_german
+					first_name = Maximilian
+					last_name = von_Habsburg
+					historical = yes
+					ig_leader = no
+					noble = yes
+					birth_date = 1832.7.6
+					dna = dna_aus_maximilian_01
+					interest_group = ig_intelligentsia
+					ideology = ideology_humanitarian_royalist
+					traits = {
+						dockyard_master
+						charismatic
+					}
+					on_created = {
+						set_variable = is_married
+					}
+					trait_generation = {
+						# nothing!
+					}
+					ruler = yes
+				}
 			}
 		}
 		random_country = {

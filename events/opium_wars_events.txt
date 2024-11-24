@@ -47,11 +47,16 @@ opium_wars.1 = {
 				actor_market.owner = {
 					country_rank >= rank_value:major_power
 					# Exclude countries that already have a treaty port e.g. Portugal at game start
-					NOT = {
+					NOR = {
 						any_scope_state = {
-							market = {
+							is_treaty_port = yes
+							any_neighbouring_state = {
 								owner = ROOT
 							}
+						}
+						has_diplomatic_pact = {
+							who = root
+							type = foreign_investment_rights
 						}
 					}
 				}
@@ -79,11 +84,16 @@ opium_wars.1 = {
 					NOT = { actor_market.owner = root }
 					actor_market.owner = {
 						country_rank >= rank_value:major_power
-						NOT = {
+						NOR = {
 							any_scope_state = {
-								market = {
+								is_treaty_port = yes
+								any_neighbouring_state = {
 									owner = ROOT
 								}
+							}
+							has_diplomatic_pact = {
+								who = root
+								type = foreign_investment_rights
 							}
 						}
 					}
@@ -96,6 +106,18 @@ opium_wars.1 = {
 					NOT = { actor_market.owner = root }
 					actor_market.owner = {
 						country_rank >= rank_value:major_power
+						NOR = {
+							any_scope_state = {
+								is_treaty_port = yes
+								any_neighbouring_state = {
+									owner = ROOT
+								}
+							}
+							has_diplomatic_pact = {
+								who = root
+								type = foreign_investment_rights
+							}
+						}
 					}
 				}
 				actor_market.owner = {
@@ -127,6 +149,18 @@ opium_wars.1 = {
 					NOT = { actor_market.owner = root }
 					actor_market.owner = {
 						country_rank >= rank_value:major_power
+						NOR = {
+							any_scope_state = {
+								is_treaty_port = yes
+								any_neighbouring_state = {
+									owner = ROOT
+								}
+							}
+							has_diplomatic_pact = {
+								who = root
+								type = foreign_investment_rights
+							}
+						}
 					}
 				}
 			}
@@ -137,6 +171,18 @@ opium_wars.1 = {
 					NOT = { actor_market.owner = root }
 					actor_market.owner = {
 						country_rank >= rank_value:major_power
+						NOR = {
+							any_scope_state = {
+								is_treaty_port = yes
+								any_neighbouring_state = {
+									owner = ROOT
+								}
+							}
+							has_diplomatic_pact = {
+								who = root
+								type = foreign_investment_rights
+							}
+						}
 					}
 				}
 				actor_market.owner = {
@@ -256,8 +302,24 @@ opium_wars.2 = {
 		name = opium_wars.2.b
 		change_relations = {
 			country = scope:opium_wars_target_country
-			value = 20
+			value = 50
 		}
+		
+		every_subject_or_below = {
+			limit = { 
+				is_direct_subject_of = root
+				any_scope_building = {
+					is_building_type = building_opium_plantation
+				}
+			}
+			
+			add_liberty_desire = 50
+			change_relations = {
+				country = root
+				value = -50
+			}			
+		}
+		
 		hidden_effect = {	
 			every_country = {
 				limit = {
@@ -277,7 +339,7 @@ opium_wars.2 = {
 			}		
 		}		
 		ai_chance = {
-			base = 5
+			base = 1 	#HJE edit 5
 		}
 	}
 }
@@ -541,7 +603,7 @@ opium_wars.4 = {
 		if = {
 			limit = { NOT = { has_law = law_type:law_free_trade } }
 			activate_law = law_type:law_free_trade
-		}	#HJE edit end			
+		}	#HJE edit end	
 	}
 }
 

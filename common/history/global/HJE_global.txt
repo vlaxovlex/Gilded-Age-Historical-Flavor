@@ -14,7 +14,7 @@ GLOBAL = {
 		activate_law = law_type:law_legacy_slavery
 		ig:ig_petty_bourgeoisie = {
 			leader = {
-				set_ideology = ideology_radical
+				set_ideology = ideology:ideology_radical
 			}
 		}
 	}
@@ -81,11 +81,11 @@ GLOBAL = {
 	s:STATE_DISTRICT_OF_COLUMBIA = { add_homeland = cu:yankee }
 	s:STATE_SANTO_DOMINGO = {
 		add_radicals_in_state = {
-			value = 0.25
+			value = large_radicals
 			culture = cu:caribeno
 		}
 		add_radicals_in_state = {
-			value = 0.25
+			value = large_radicals
 			culture = cu:afro_caribeno
 		}
 	}
@@ -173,8 +173,6 @@ GLOBAL = {
 				region = sr:region_senegal
 				region = sr:region_niger
 				region = sr:region_congo
-				region = sr:region_zambezia
-				region = sr:region_angola
 				region = sr:region_zanj
 				state_region = s:STATE_WADDAI
 				state_region = s:STATE_HEREROLAND
@@ -197,7 +195,7 @@ GLOBAL = {
 	}
 	if = {
 		limit = {
-			NOT = {
+			NOR = {
 				exists = c:CAR
 				exists = c:CSP
 				exists = c:VTM_CSP
@@ -437,9 +435,6 @@ GLOBAL = {
 	s:STATE_KACHIN = {
 		add_claim = c:BIC
 	}
-	s:STATE_BURMA = {
-		add_claim = c:BIC
-	}
 	s:STATE_PEGU = {
 		add_claim = c:BIC
 	}
@@ -497,8 +492,8 @@ GLOBAL = {
 	s:STATE_LARISTAN = { 
 		add_claim = c:PER 
 	}
-	s:STATE_HERAT = { 
-		remove_claim = c:PER 
+	s:STATE_HILL_PUNJAB = { 
+		add_claim = c:BIC 
 	}
 	s:STATE_HERAT = { 
 		remove_claim = c:PER 
