@@ -446,6 +446,7 @@ HJ_russia_the_great_game = { #THE GREAT TRIAL HAS BEGUN nah just kidding
 						country_or_subject_owns_entire_state_region = STATE_PUNJAB
 						country_or_subject_owns_entire_state_region = STATE_BALUCHISTAN
 						country_or_subject_owns_entire_state_region = STATE_SINDH
+						country_or_subject_owns_entire_state_region = STATE_HILL_PUNJAB
 					}
 				}
 				custom_tooltip = {

@@ -1656,7 +1656,6 @@ HJE_britain.16 = {			 #France and Other Powers are drawn into the fighting
 			is_capital = yes
 			OR = {
 				region = sr:region_north_germany
-				region = sr:region_low_countries
 				region = sr:region_england
 				region = sr:region_north_sea_coast
 				region = sr:region_iberia
@@ -1664,7 +1663,6 @@ HJE_britain.16 = {			 #France and Other Powers are drawn into the fighting
 				region = sr:region_occitania
 				region = sr:region_rhine
 				region = sr:region_italy
-				region = sr:region_north_italy
 			}
 		}
 		NOR = {					 #Can't like Russia or hate Britain

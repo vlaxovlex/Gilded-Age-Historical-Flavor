@@ -5141,6 +5141,7 @@ HJE_usa.10 = {
 			}
 		}
 		scope:lincoln_ig_scope = {
+			add_ideology = ideology_anti_slavery
 			leader = { save_scope_as = lincoln_scope }
 			party = { add_momentum = momentum_very_large }
 			party = { add_momentum = momentum_very_large }

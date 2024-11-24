@@ -2921,10 +2921,6 @@ ai_strategy_default = {
 						exists = c:USA
 						c:USA = THIS
 					}
-					AND = {
-						exists = c:RUS
-						c:RUS = THIS
-					}
 				}
 				scope:target_country = {
 					OR = {
@@ -6364,10 +6360,6 @@ ai_strategy_default = {
 							exists = c:USA
 							c:USA = THIS
 						}
-						AND = {
-							exists = c:RUS
-							c:RUS = THIS
-						}
 					}
 					scope:target_country = {
 						OR = {
@@ -6783,29 +6775,26 @@ ai_strategy_default = {
 					}
 				}
 				add = 500
-			}
-            
-			# HJE Russia should go for Shengjing in Second Opium War
-			if = {
+			}		 #HJE edit end
+		}  
+		
+		transfer_subject = {
+			if = {  #HJE edit start
 				limit = {
-					exists = c:RUS
-					c:RUS = THIS
-					has_journal_entry = HJ_opium_wars
+					OR = {
+						has_journal_entry = HJ_opium_wars 
+						has_journal_entry = HJ_opium_wars_unhistorical
+					}
 					scope:target_country = {
 						OR = {
 							has_variable = var_dynamic_opium_wars_victim
 							any_overlord_or_above = { has_variable = var_dynamic_opium_wars_victim }
 						}
 					}
-					scope:target_state = {
-						state_region = s:STATE_SHENGJING
-					}
 				}
-				add = 500
-			}	
-		}   #HJE edit end
-		
-		transfer_subject = {
+				add = -1000
+			}		#HJE edit end
+			
 			if = {
 				limit = {
 					has_secret_goal = {
@@ -7119,7 +7108,7 @@ ai_strategy_default = {
 					}
 				}
 				add = 1000
-			}   #HJE edit end
+			}		#HJE edit end
             	
 			if = {
 				limit = {
@@ -7206,26 +7195,7 @@ ai_strategy_default = {
 					}
 				}
 				add = 1000
-			}  
-            
-            if = { # russia had a special interest in manchuria
-				limit = {
-					exists = c:RUS
-					c:RUS = THIS
-					OR = {
-						has_journal_entry = HJ_opium_wars
-						has_journal_entry = HJ_opium_wars_unhistorical
-					}
-					scope:target_country = {
-						exists = c:MAN
-						c:MAN = THIS
-						any_overlord_or_above = {
-							has_variable = var_dynamic_opium_wars_victim
-						}
-					}
-				}
-				add = 1000
-			}	#HJE edit end	
+			}  		#HJE edit end	
 			
 			if = {
 				limit = {

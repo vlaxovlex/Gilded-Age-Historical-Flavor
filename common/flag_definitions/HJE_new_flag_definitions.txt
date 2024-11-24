@@ -128,7 +128,10 @@ MEX = { 	#Mexican empire
 		trigger = {
 			exists = scope:actor
 			scope:actor ?= {
-				has_variable = second_mexican_empire
+				OR = {
+					AND = { exists = scope:second_mexican_empire this = scope:second_mexican_empire }
+					has_law = law_type:law_monarchy
+				}
 			}
 		}
 	}	
