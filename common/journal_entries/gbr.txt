@@ -209,13 +209,8 @@
 
 	timeout = 21535
 	on_timeout = {
-		if = {
-			limit = {
-				is_ai = no
-			}
-			show_as_tooltip = {
-				trigger_event = { id = HJE_britain.11 }
-			}
+		show_as_tooltip = {
+			trigger_event = { id = HJE_britain.11 }
 		}
 	}
 
@@ -226,8 +221,7 @@
 				has_global_variable = TGG_anglo_russian_agreement
 			}
 			hidden_trigger = {
-				has_journal_entry = je_great_game_control
-				is_player = yes
+				any_country = { has_journal_entry = je_great_game_control }
 			}
 		}
 	}

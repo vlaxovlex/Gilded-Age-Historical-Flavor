@@ -1910,9 +1910,7 @@ HJE_italy.13 = {
 	trigger = {
 		is_subject = no
 		NOT = {
-			has_global_variable = {
-				triple_alliance_second_member_comes_globvar
-			}
+			has_global_variable = triple_alliance_second_member_comes_globvar
 		}
 		OR = {
 			AND = {

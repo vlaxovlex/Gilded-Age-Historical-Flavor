@@ -4,7 +4,7 @@
 	group = je_group_crises
 
 	is_shown_when_inactive = {
-		#has_technology_researched = egalitarianism
+		has_technology_researched = egalitarianism
 		capital = {
 			OR = {
 				region = sr:region_england

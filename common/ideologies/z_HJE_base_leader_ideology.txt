@@ -1,5 +1,4 @@
-﻿
-ideology_abolitionist = {
+﻿ideology_abolitionist = {
 	icon = "gfx/interface/icons/ideology_icons/ideology_leader/ideology_leader_abolitionist.dds"
 	
 	character_ideology = yes
@@ -11,51 +10,70 @@ ideology_abolitionist = {
 		law_slave_trade = strongly_disapprove
 	}
 
-	lawgroup_labor_rights = {		
-		law_worker_protections = neutral
-		law_regulatory_bodies = neutral
-		law_serfdom = disapprove
+	lawgroup_land_reform = {
+		law_serfdom = strongly_disapprove
+		law_tenant_farmers = neutral
+		law_homesteading = neutral
+		law_collectivized_agriculture = neutral
+		law_commercialized_agriculture = neutral
 	}
 	
+	country_trigger = {
+		OR = {
+			NOT = { has_law = law_type:law_slavery_banned }
+			has_law = law_type:law_serfdom
+		}
+	}
+
 	# Character scope
-	possible = {
-		owner = { 
-			OR = {
-				NOT = { has_law = law_type:law_slavery_banned }
-				has_law = law_type:law_serfdom
-			}
-		}
-		scope:interest_group = { 
-			OR = {
-				is_interest_group_type = ig_trade_unions
-				is_interest_group_type = ig_intelligentsia
-				is_interest_group_type = ig_petty_bourgeoisie
-				is_interest_group_type = ig_industrialists
-				is_interest_group_type = ig_devout
-			}
-		}
-		scope:interest_group = {
-			NOR = {
-				has_variable = communist_ig_var
-				has_variable = chose_vanguardism
-				has_variable = chose_fascism
-				has_variable = chose_conservatism
-				has_variable = chose_ethno_nationalism
-			}
+	interest_group_leader_trigger = {
+		ideology_abolitionist_valid_trigger = yes
+	}
+
+	non_interest_group_leader_trigger = {
+		interest_group = {
+			ideology_abolitionist_valid_trigger = yes
 		}
 	}
 	
-	leader_weight = {
+	interest_group_leader_weight = {
 		value = 100
 		if = {
-			limit = { scope:interest_group = { is_interest_group_type = ig_trade_unions } }
+			limit = { is_interest_group_type = ig_trade_unions }
 			add = 150
+		}	
+		if = {
+			limit = { is_interest_group_type = ig_intelligentsia }
+			add = 150
+			
+			if = {
+				limit = {
+					owner = { has_journal_entry = je_acw_countdown }
+				}
+				add = 150
+			}		
 		}		
 		if = {
-			limit = { has_trait = tactful }
-			add = 75
+			limit = {
+				owner = { has_journal_entry = je_acw_countdown }
+			}
+			add = 100
 		}
 		if = {
+			limit = {
+				OR = {
+					has_variable = communist_ig_var
+					has_variable = chose_vanguardism
+					has_variable = chose_anarchism
+					has_variable = chose_communism
+					has_variable = chose_ethno_nationalism
+					has_variable = chose_conservatism
+					has_variable = chose_fascism
+				}
+			}
+			multiply = 0.1
+		}
+		if = {	#HJE edit start
 			limit = {
 				exists = c:USA
 				owner = { 
@@ -64,18 +82,31 @@ ideology_abolitionist = {
 				}
 			}
 			add = 100
+		}		#HJE edit end
+	}
+	
+	non_interest_group_leader_weight = {
+		value = 100
+		
+		if = {
+			limit = { has_trait = tactful }
+			add = 75
 		}
 		if = {
-			limit = { 
-				scope:interest_group = { is_interest_group_type = ig_landowners } 
-				exists = c:USA
-				owner = {
-					c:USA = THIS 
-					NOT = { has_law = law_type:law_slavery_banned }
-					NOT = { has_variable = csa_will_spawn_var }
+			limit = {
+				interest_group = {
+					OR = {
+						has_variable = communist_ig_var
+						has_variable = chose_vanguardism
+						has_variable = chose_anarchism
+						has_variable = chose_communism
+						has_variable = chose_ethno_nationalism
+						has_variable = chose_conservatism
+						has_variable = chose_fascism
+					}
 				}
 			}
-			add = -1000
+			multiply = 0.1
 		}
-	}
+	}	
 }

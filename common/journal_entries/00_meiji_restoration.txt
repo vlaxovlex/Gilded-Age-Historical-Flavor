@@ -169,7 +169,7 @@ je_meiji_restoration = {
 			ig:ig_landowners = {
 				is_in_government = yes
 				hidden_trigger = {	#HJE edit start
-					is_player = no
+					is_ai = yes
 				}					#HJE edit end
 			}
 			NOT = { has_law = law_type:law_monarchy }			

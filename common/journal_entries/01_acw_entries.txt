@@ -38,7 +38,7 @@
 				OR = {
 					country_has_voting_franchise = no
 					AND = {
-						year >= 1852
+						year >= 1854
 						in_election_campaign = no
 						has_variable = had_elections_in_last_year
 					}
@@ -53,7 +53,7 @@
 				OR = {
 					country_has_voting_franchise = no
 					AND = {
-						year >= 1860
+						year >= 1862
 						in_election_campaign = no
 						has_variable = had_elections_in_last_year
 					}
@@ -90,6 +90,7 @@
 					}
 				}
 				set_variable = csa_will_spawn_var
+				trigger_event = { id = acw_je_events.1 }
 				hidden_effect = {
 					s:STATE_SOUTH_CAROLINA.region_state:USA  = {
 						create_building={

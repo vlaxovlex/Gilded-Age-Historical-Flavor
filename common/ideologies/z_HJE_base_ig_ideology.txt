@@ -1,23 +1,25 @@
-﻿
-ideology_republican_paternalistic = {
+﻿ideology_republican_paternalistic = {
 	icon = "gfx/interface/icons/ideology_icons/republican_paternalistic.dds"
 	
 	lawgroup_governance_principles = {		
 		law_presidential_republic = approve
 		law_parliamentary_republic = approve
 		law_theocracy = approve
+		law_corporate_state = neutral
 		law_monarchy = neutral
 		law_council_republic = disapprove
 	}
 	
-	lawgroup_distribution_of_power = { 		# changed in HJE to make democrat-majority USA less likely to become an oligarchy
+	lawgroup_distribution_of_power = {
+		law_single_party_state = neutral
 		law_landed_voting = strongly_approve
-		law_oligarchy = neutral
+		law_oligarchy = neutral		#HJE edit start
 		law_autocracy = disapprove
 		law_wealth_voting = approve
-		law_census_voting = neutral
+		law_census_voting = neutral	#HJE edit end
 		law_universal_suffrage = strongly_disapprove
 		law_anarchy = strongly_disapprove
+		law_technocracy = strongly_disapprove
 	}
 	
 	lawgroup_bureaucracy = {

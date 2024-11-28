@@ -5143,12 +5143,21 @@ HJE_usa.10 = {
 		scope:lincoln_ig_scope = {
 			add_ideology = ideology_anti_slavery
 			leader = { save_scope_as = lincoln_scope }
-			party = { add_momentum = momentum_very_large }
+			leader = { set_ideology = ideology:ideology_abolitionist }
 			party = { add_momentum = momentum_very_large }
 	        add_modifier = {
 	            name = ig_party_prospers
 	            months = long_modifier_time
 	        }
+		}
+		random_interest_group = {
+			limit = {
+				has_party = yes
+				is_marginal = no
+				has_ideology = ideology:ideology_pro_slavery
+				NOT = { is_member_of_party = owner.py:liberal_party }
+			}
+			party = { add_momentum = momentum_very_large_decrease }
 		}
 	}
 
@@ -5170,6 +5179,16 @@ HJE_usa.10 = {
 			        tactful
 				}
 			}
+		}
+		scope:lincoln_ig_scope = {
+			add_ideology = ideology_anti_slavery
+			leader = { save_scope_as = lincoln_scope }
+			leader = { set_ideology = ideology:ideology_abolitionist }
+			party = { add_momentum = momentum_very_large }
+	        add_modifier = {
+	            name = ig_party_prospers
+	            months = long_modifier_time
+	        }
 		}
 		random_interest_group = {
 			limit = {

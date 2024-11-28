@@ -39,7 +39,7 @@ peoples_springtime.1 = {
 		NOT = { has_global_variable = peoples_springtime_happening }
 		NOT = { has_global_variable = peoples_springtime_happened }
 		country_is_in_europe = yes
-		#has_technology_researched = egalitarianism
+		has_technology_researched = egalitarianism
 		NOR = {	#HJE edit start
 			has_variable = already_had_scripted_revolution
 			country_has_primary_culture = cu:north_italian
@@ -257,7 +257,7 @@ peoples_springtime.3 = {
 			has_journal_entry = je_springtime_of_the_peoples
 			has_journal_entry = HJ_italian_1848_revolutions			#HJE edit
 		}															#HJE edit
-		#has_technology_researched = egalitarianism
+		has_technology_researched = egalitarianism
 
 		any_interest_group = {
 			OR = {
@@ -362,7 +362,7 @@ peoples_springtime.4 = {
 				country_is_in_europe = yes		#HJE edit 
 				NOT = { THIS = ROOT }			#HJE edit
 				NOT = { is_subject_of = ROOT }	#HJE edit
-				#has_technology_researched = egalitarianism
+				has_technology_researched = egalitarianism
 				any_interest_group = {
 					is_powerful = yes
 					OR = {
@@ -410,7 +410,7 @@ peoples_springtime.4 = {
 							any_scope_state = { cu:hungarian = { has_homeland = PREV } }
 						}
 					}							#HJE edit end
-					#has_technology_researched = egalitarianism					any_interest_group = {
+					has_technology_researched = egalitarianism					any_interest_group = {
 						is_powerful = yes
 						OR = {
 							is_interest_group_type = ig_rural_folk

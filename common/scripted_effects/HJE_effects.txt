@@ -521,7 +521,7 @@ HJE_cleanup_effect = {
 				any_scope_state = { state_region = s:STATE_VENETIA }
 				any_scope_state = { state_region = s:STATE_SICILY }
 			}
-			is_diplomatic_play_committed_participant = no
+			aggressive_diplomatic_plays_permitted = yes
 			exists = c:AUS
 			NOT = { c:AUS = { is_diplomatic_play_enemy_of = ROOT } }
 			OR = {

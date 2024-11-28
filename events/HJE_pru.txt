@@ -1550,7 +1550,7 @@ HJE_prussia.11 = {			 #Loser has to give up Customs Unions
 			}
 			make_independent = yes
 		}
-
+		
 		every_country = {
 			limit = {
 				OR = {
@@ -1856,6 +1856,7 @@ HJE_germany.3 = { #GER: Question of Austria (or equivalent)
 		c:AUS = { 
     		is_subject = no
     		NOT = { is_diplomatic_play_enemy_of = ROOT }
+			NOT = { has_truce_with = root }
     	}
 		NOT = { has_global_variable = triple_alliance_second_member_comes_globvar }	#Globvar to determine how many members there already are
 	}

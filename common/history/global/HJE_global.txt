@@ -208,6 +208,7 @@ GLOBAL = {
 			state = s:STATE_NAVARRA.region_state:SPA
 			state = s:STATE_CATALONIA.region_state:SPA
 		}
+		c:CSP = { add_modifier = { name = revolutionary_zeal months = 36 } }
 	}
 	create_country = {
 		tag = POL
@@ -493,6 +494,18 @@ GLOBAL = {
 		add_claim = c:PER 
 	}
 	s:STATE_HILL_PUNJAB = { 
+		add_claim = c:BIC 
+	}
+	s:STATE_YEMEN = { 
+		add_claim = c:BIC 
+	}
+	s:STATE_ASSAM = { 
+		add_claim = c:BIC 
+	}
+	s:STATE_MANDALAY = { 
+		add_claim = c:BIC 
+	}
+	s:STATE_ARAKAN = { 
 		add_claim = c:BIC 
 	}
 	s:STATE_HERAT = { 

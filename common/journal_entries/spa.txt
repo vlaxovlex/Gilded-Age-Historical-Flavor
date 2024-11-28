@@ -126,7 +126,6 @@ HJ_second_carlist_war = {
 	group = je_group_historical_content
 
 	is_shown_when_inactive = {
-		NOT = { exists = c:CAR }
 		NOT = { has_law = law_type:law_autocracy }
 		NOT = { exists = c:CSP }
 		exists = c:SPA
@@ -257,8 +256,12 @@ HJ_second_carlist_war = {
 	}
 	
 	invalid = {
-		exists = c:CAR
+		OR = {
+			exists = c:CAR
+			exists = c:VTM_CSP
+		}
 	}
+	
 }
 
 HJ_third_carlist_war = {
@@ -269,7 +272,6 @@ HJ_third_carlist_war = {
 	group = je_group_historical_content
 
 	is_shown_when_inactive = {
-		NOT = { exists = c:CAR }
 		year >= 1860
 		NOT = { has_law = law_type:law_autocracy }
 		NOT = { exists = c:CSP }
@@ -399,6 +401,9 @@ HJ_third_carlist_war = {
 	}
 	
 	invalid = {
-		exists = c:CAR
+		OR = {
+			exists = c:CAR
+			exists = c:VTM_CSP
+		}
 	}
 }
